@@ -1,0 +1,738 @@
+[
+  {
+    "id": "alg-linear-eq-1var-001",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If 4x + 9 = 37, what is the value of x?",
+    "choices": [
+      "7",
+      "28",
+      "23/2",
+      "112"
+    ],
+    "answer": "7",
+    "explanation": [
+      "Subtract 9 from both sides: 4x = 28.",
+      "Divide both sides by 4: x = 7."
+    ],
+    "hints": [
+      "What is being added to 4x, and how can you undo it on both sides?",
+      "Once you know what 4x equals, what operation gets x by itself?"
+    ],
+    "wrong_reasons": {
+      "28": "Stopped after subtracting 9 and forgot to divide by 4.",
+      "23/2": "Added 9 to both sides instead of subtracting (4x = 46).",
+      "112": "Multiplied 28 by 4 instead of dividing."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(4*x+9-37,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-002",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "An electrician charges a flat $45 fee for a house call plus $60 for each hour of work. A customer's bill for one house call was $285. For how many hours did the electrician work?",
+    "choices": [
+      "4",
+      "4.75",
+      "5.5",
+      "240"
+    ],
+    "answer": "4",
+    "explanation": [
+      "Let h be the hours worked: 45 + 60h = 285.",
+      "Subtract 45: 60h = 240.",
+      "Divide by 60: h = 4."
+    ],
+    "hints": [
+      "Which part of the bill stays the same no matter how long the job takes?",
+      "After you remove the flat fee, how much of the bill came from hourly work?"
+    ],
+    "wrong_reasons": {
+      "4.75": "Divided the whole bill by 60 without first removing the $45 fee.",
+      "5.5": "Added the $45 fee to the bill instead of subtracting it.",
+      "240": "Found the cost of the labor but forgot to divide by the hourly rate."
+    },
+    "check": "from sympy import *\nh=symbols('h')\nresult=solve(45+60*h-285,h)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-003",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "If 3(x − 5) = 27, what is the value of x?",
+    "answer": "14",
+    "explanation": [
+      "Divide both sides by 3: x − 5 = 9.",
+      "Add 5 to both sides: x = 14."
+    ],
+    "hints": [
+      "Is there a single operation that removes the 3 from the left side all at once?",
+      "After that, what is being subtracted from x?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(3*(x-5)-27,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-004",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "What value of n satisfies the equation n/6 − 2 = 5?",
+    "choices": [
+      "42",
+      "18",
+      "7",
+      "28"
+    ],
+    "answer": "42",
+    "explanation": [
+      "Add 2 to both sides: n/6 = 7.",
+      "Multiply both sides by 6: n = 42."
+    ],
+    "hints": [
+      "Which term should you move first so that n/6 is alone?",
+      "If a number divided by 6 equals 7, how do you find the number?"
+    ],
+    "wrong_reasons": {
+      "18": "Subtracted 2 instead of adding it (n/6 = 3).",
+      "7": "Found n/6 but forgot to multiply by 6.",
+      "28": "Multiplied 5 by 6 and then subtracted 2, undoing the steps in the wrong order."
+    },
+    "check": "from sympy import *\nn=symbols('n')\nresult=solve(n/6-2-5,n)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-005",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A tablet's battery is at 92% charge. While a movie plays, the charge drops by 4 percentage points every 10 minutes. After how many 10-minute intervals will the charge first reach 20%?",
+    "choices": [
+      "18",
+      "23",
+      "28",
+      "5"
+    ],
+    "answer": "18",
+    "explanation": [
+      "Let t be the number of 10-minute intervals: 92 − 4t = 20.",
+      "Subtract 92 from both sides: −4t = −72.",
+      "Divide by −4: t = 18."
+    ],
+    "hints": [
+      "Write the charge after t intervals as an expression. Does it go up or down?",
+      "How many percentage points does the battery need to lose in total?"
+    ],
+    "wrong_reasons": {
+      "23": "Divided the starting charge 92 by 4, which is when the battery would hit 0%, not 20%.",
+      "28": "Added 20 and 92 instead of finding the difference.",
+      "5": "Divided the target 20 by 4, ignoring the starting charge."
+    },
+    "check": "from sympy import *\nt=symbols('t')\nresult=solve(92-4*t-20,t)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-006",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "What value of x satisfies 7x − 2 = 5x + 16?",
+    "answer": "9",
+    "explanation": [
+      "Subtract 5x from both sides: 2x − 2 = 16.",
+      "Add 2 to both sides: 2x = 18.",
+      "Divide by 2: x = 9."
+    ],
+    "hints": [
+      "How can you get all the x-terms on one side of the equation?",
+      "Once the x-terms are together, what is left to undo?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(7*x-2-(5*x+16),x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-007",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Maya has $140 in a savings account and deposits $15 at the end of each week. She makes no withdrawals. Which equation can be used to find w, the number of weeks it will take for her balance to reach $350?",
+    "choices": [
+      "140 + 15w = 350",
+      "15 + 140w = 350",
+      "140 − 15w = 350",
+      "350 + 15w = 140"
+    ],
+    "answer": "140 + 15w = 350",
+    "explanation": [
+      "The balance starts at $140.",
+      "Each week adds $15, so after w weeks the deposits total 15w.",
+      "The balance is 140 + 15w, and it should equal 350."
+    ],
+    "hints": [
+      "Which amount is a one-time starting value, and which amount repeats every week?",
+      "What happens to the balance each week: does it go up or down?"
+    ],
+    "wrong_reasons": {
+      "15 + 140w = 350": "Swapped the starting amount and the weekly rate.",
+      "140 − 15w = 350": "Treated the weekly deposits as withdrawals.",
+      "350 + 15w = 140": "Swapped the starting balance and the goal."
+    },
+    "check": null,
+    "check_note": "Model-selection item: the answer is an equation, not a number. Correct model verified by hand: 140 + 15w = 350 gives w = 14, a whole number of weeks, and each weekly deposit increases the balance."
+  },
+  {
+    "id": "alg-linear-eq-1var-008",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If 2x + 5 = 17, what is the value of 6x + 15?",
+    "choices": [
+      "51",
+      "6",
+      "36",
+      "41"
+    ],
+    "answer": "51",
+    "explanation": [
+      "Notice that 6x + 15 = 3(2x + 5).",
+      "So 6x + 15 = 3 · 17 = 51.",
+      "(Check: x = 6, and 6 · 6 + 15 = 51.)"
+    ],
+    "hints": [
+      "How is the expression 6x + 15 related to 2x + 5?",
+      "Do you need to find x, or can you scale the whole equation?"
+    ],
+    "wrong_reasons": {
+      "6": "Found x but did not evaluate the expression asked for.",
+      "36": "Computed 6x but forgot the + 15.",
+      "41": "Multiplied only the x-term by 3 and kept the + 5 (6 · 6 + 5)."
+    },
+    "check": "from sympy import *\nx=symbols('x')\ns=solve(2*x+5-17,x)[0]\nresult=6*s+15"
+  },
+  {
+    "id": "alg-linear-eq-1var-009",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "What is the solution to the equation 0.5x + 3.5 = 11?",
+    "choices": [
+      "15",
+      "7.5",
+      "3.75",
+      "29"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Subtract 3.5 from both sides: 0.5x = 7.5.",
+      "Divide by 0.5 (the same as multiplying by 2): x = 15."
+    ],
+    "hints": [
+      "What should you remove from the left side first?",
+      "Dividing by 0.5 is the same as multiplying by what number?"
+    ],
+    "wrong_reasons": {
+      "7.5": "Stopped at 0.5x = 7.5 and took that as x.",
+      "3.75": "Multiplied 7.5 by 0.5 instead of dividing by 0.5.",
+      "29": "Added 3.5 instead of subtracting it before dividing by 0.5."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Rational(1,2)*x+Rational(7,2)-11,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-010",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What value of x satisfies 5(2x − 3) − 4x = 21?",
+    "choices": [
+      "6",
+      "4",
+      "1",
+      "18/7"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Distribute: 10x − 15 − 4x = 21.",
+      "Combine like terms: 6x − 15 = 21.",
+      "Add 15: 6x = 36, so x = 6."
+    ],
+    "hints": [
+      "When you distribute the 5, which terms inside the parentheses get multiplied?",
+      "After combining the x-terms, what constant do you need to move?"
+    ],
+    "wrong_reasons": {
+      "4": "Multiplied only the 2x by 5 and left −3 unchanged (6x − 3 = 21).",
+      "1": "Subtracted 15 instead of adding it (6x = 6).",
+      "18/7": "Added 4x instead of subtracting it (14x = 36)."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(5*(2*x-3)-4*x-21,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-011",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "What value of x satisfies (2x + 1)/3 = (x − 4)/2 ?",
+    "answer": "-14",
+    "accept": [
+      "−14"
+    ],
+    "explanation": [
+      "Multiply both sides by 6: 2(2x + 1) = 3(x − 4).",
+      "Distribute: 4x + 2 = 3x − 12.",
+      "Subtract 3x and 2: x = −14."
+    ],
+    "hints": [
+      "What single number could you multiply both sides by to clear both fractions?",
+      "After distributing, how can you collect the x-terms on one side?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve((2*x+1)/3-(x-4)/2,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-012",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A student club pays a one-time $200 fee for a T-shirt design and $5 to print each shirt. The club sells the shirts for $15 each. How many shirts must the club sell so that its sales exactly equal its total costs?",
+    "choices": [
+      "20",
+      "10",
+      "40",
+      "40/3"
+    ],
+    "answer": "20",
+    "explanation": [
+      "Let s be the number of shirts. Revenue is 15s; cost is 200 + 5s.",
+      "Set them equal: 15s = 200 + 5s.",
+      "Subtract 5s: 10s = 200, so s = 20."
+    ],
+    "hints": [
+      "Write one expression for the money coming in and one for the money going out. Which one includes the design fee?",
+      "How much does the club actually gain on each shirt after paying to print it?"
+    ],
+    "wrong_reasons": {
+      "10": "Added the selling price and printing cost (20s = 200) instead of subtracting.",
+      "40": "Divided the fee by the printing cost, ignoring the selling price.",
+      "40/3": "Ignored the $5 printing cost per shirt (15s = 200)."
+    },
+    "check": "from sympy import *\ns=symbols('s')\nresult=solve(15*s-(200+5*s),s)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-013",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the equation 3(x + 4) = 3x + k, k is a constant. If the equation has infinitely many solutions, what is the value of k?",
+    "choices": [
+      "12",
+      "4",
+      "7",
+      "0"
+    ],
+    "answer": "12",
+    "explanation": [
+      "Distribute: 3x + 12 = 3x + k.",
+      "Both sides have the same x-term, so the equation is true for every x only if the constants match.",
+      "So k = 12."
+    ],
+    "hints": [
+      "What does the left side look like after you distribute?",
+      "For an equation to be true for every x, how must the two sides compare?"
+    ],
+    "wrong_reasons": {
+      "4": "Did not distribute the 3 to the 4.",
+      "7": "Added 3 and 4 instead of multiplying.",
+      "0": "Thought the x-terms canceling requires the constants to be 0, which would actually give no solution."
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nresult=solve(Poly(expand(3*(x+4)-(3*x+k)),x).all_coeffs()[-1],k)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-014",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A one-day moving-truck rental costs $29.95 plus $0.40 for each mile driven. The total cost of a one-day rental was $93.15. How many miles was the truck driven?",
+    "answer": "158",
+    "explanation": [
+      "Let m be the miles driven: 29.95 + 0.40m = 93.15.",
+      "Subtract 29.95: 0.40m = 63.20.",
+      "Divide by 0.40: m = 158."
+    ],
+    "hints": [
+      "Which part of the cost does not depend on distance?",
+      "How much of the bill came from mileage, and how many 40-cent charges fit into that amount?"
+    ],
+    "check": "from sympy import *\nm=symbols('m')\nresult=solve(Rational(2995,100)+Rational(40,100)*m-Rational(9315,100),m)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-015",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What is the solution to 0.2(x − 10) = 0.15x + 1 ?",
+    "choices": [
+      "60",
+      "220",
+      "−20",
+      "60/7"
+    ],
+    "answer": "60",
+    "explanation": [
+      "Distribute: 0.2x − 2 = 0.15x + 1.",
+      "Subtract 0.15x: 0.05x − 2 = 1.",
+      "Add 2: 0.05x = 3, so x = 60."
+    ],
+    "hints": [
+      "What do you get when 0.2 multiplies the −10?",
+      "After collecting the x-terms, how much is 0.05x equal to?"
+    ],
+    "wrong_reasons": {
+      "220": "Did not distribute 0.2 to the −10 (0.05x = 11).",
+      "−20": "Subtracted 2 instead of adding it (0.05x = −1).",
+      "60/7": "Added 0.15x to both sides instead of subtracting (0.35x = 3)."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Rational(1,5)*(x-10)-(Rational(3,20)*x+1),x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-016",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following equations has no solution?",
+    "choices": [
+      "4(x − 2) = 4x − 8",
+      "4(x − 2) = 4x − 2",
+      "4(x − 2) = 2x − 8",
+      "4(x − 2) = −4x + 8"
+    ],
+    "answer": "4(x − 2) = 4x − 2",
+    "explanation": [
+      "Each left side is 4(x − 2) = 4x − 8.",
+      "4x − 8 = 4x − 8 is true for all x (infinitely many solutions).",
+      "4x − 8 = 4x − 2 has the same x-terms but different constants: no solution.",
+      "4x − 8 = 2x − 8 gives x = 0, and 4x − 8 = −4x + 8 gives x = 2."
+    ],
+    "hints": [
+      "What does 4(x − 2) look like after distributing?",
+      "If two sides have identical x-terms, what decides whether the equation is always true or never true?"
+    ],
+    "wrong_reasons": {
+      "4(x − 2) = 4x − 8": "Saw the matching 4x on both sides and assumed no solution; the sides are identical, so every x works.",
+      "4(x − 2) = 2x − 8": "Thought matching constants means no solution; this has exactly one solution, x = 0.",
+      "4(x − 2) = −4x + 8": "Thought opposite sides can never be equal; this has exactly one solution, x = 2."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nc={'4(x-2)=4x-8':4*x-8,'4(x-2)=4x-2':4*x-2,'4(x-2)=2x-8':2*x-8,'4(x-2)=-4x+8':-4*x+8}\nr=[s for s,e in c.items() if solveset(Eq(4*(x-2),e),x,S.Reals)==S.EmptySet]\nassert len(r)==1\nresult=r[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-017",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The length of a rectangular garden is 3 feet more than twice its width. The perimeter of the garden is 54 feet. What is the width of the garden, in feet?",
+    "choices": [
+      "8",
+      "9",
+      "17",
+      "19"
+    ],
+    "answer": "8",
+    "explanation": [
+      "Let w be the width. Then the length is 2w + 3.",
+      "Perimeter: 2w + 2(2w + 3) = 54.",
+      "Simplify: 6w + 6 = 54, so 6w = 48 and w = 8."
+    ],
+    "hints": [
+      "How can you write the length using the width?",
+      "How many widths and how many lengths go around a rectangle?"
+    ],
+    "wrong_reasons": {
+      "9": "Dropped the constant from the doubled length (6w = 54).",
+      "17": "Added one width and one length instead of the full perimeter (3w + 3 = 54).",
+      "19": "Solved correctly but gave the length instead of the width."
+    },
+    "check": "from sympy import *\nw=symbols('w')\nresult=solve(2*w+2*(2*w+3)-54,w)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-018",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What value of x satisfies (3/4)x − 2 = (1/2)x + 5 ?",
+    "choices": [
+      "28",
+      "12",
+      "7",
+      "28/5"
+    ],
+    "answer": "28",
+    "explanation": [
+      "Subtract (1/2)x from both sides: (1/4)x − 2 = 5.",
+      "Add 2: (1/4)x = 7.",
+      "Multiply by 4: x = 28."
+    ],
+    "hints": [
+      "What is (3/4)x − (1/2)x? Try rewriting 1/2 with a denominator of 4.",
+      "If one-fourth of x is 7, what is x?"
+    ],
+    "wrong_reasons": {
+      "12": "Subtracted 2 instead of adding it ((1/4)x = 3).",
+      "7": "Stopped at (1/4)x = 7 and forgot to multiply by 4.",
+      "28/5": "Added the coefficients instead of subtracting ((5/4)x = 7)."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Rational(3,4)*x-2-(Rational(1,2)*x+5),x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-019",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "If 3(2x − 7) = 4x + 9, what is the value of x − 5?",
+    "choices": [
+      "10",
+      "15",
+      "3",
+      "−11"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Distribute: 6x − 21 = 4x + 9.",
+      "Subtract 4x and add 21: 2x = 30, so x = 15.",
+      "Then x − 5 = 10."
+    ],
+    "hints": [
+      "After distributing, what do the x-terms and constants on each side become?",
+      "Once you have x, have you answered the question that was actually asked?"
+    ],
+    "wrong_reasons": {
+      "15": "Found x but did not compute x − 5.",
+      "3": "Did not distribute the 3 to the −7 (6x − 7 = 4x + 9 gives x = 8).",
+      "−11": "Moved −21 with the wrong sign (2x = −12 gives x = −6)."
+    },
+    "check": "from sympy import *\nx=symbols('x')\ns=solve(3*(2*x-7)-(4*x+9),x)[0]\nresult=s-5"
+  },
+  {
+    "id": "alg-linear-eq-1var-020",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the equation ax + 6 = 2(3x − 5) + 4x, a is a constant. If the equation has no solution, what is the value of a?",
+    "answer": "10",
+    "explanation": [
+      "Simplify the right side: 6x − 10 + 4x = 10x − 10.",
+      "The equation is ax + 6 = 10x − 10.",
+      "No solution happens when the x-coefficients are equal but the constants differ.",
+      "Since 6 ≠ −10, a = 10 gives no solution."
+    ],
+    "hints": [
+      "What is the right side after you distribute and combine like terms?",
+      "If the x-terms on both sides were identical, what would be left to compare?"
+    ],
+    "check": "from sympy import *\nx,a=symbols('x a')\nd=expand(a*x+6-(2*(3*x-5)+4*x))\nsol=solve(d.coeff(x,1),a)[0]\nassert d.subs(a,sol)!=0\nresult=sol"
+  },
+  {
+    "id": "alg-linear-eq-1var-021",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Candle A is 30 centimeters tall and burns down at a constant rate of 2.5 centimeters per hour. Candle B is 22 centimeters tall and burns down at a constant rate of 1.5 centimeters per hour. Both are lit at the same time. After how many hours will the two candles be the same height?",
+    "choices": [
+      "8",
+      "2",
+      "13",
+      "12"
+    ],
+    "answer": "8",
+    "explanation": [
+      "After t hours, A is 30 − 2.5t cm and B is 22 − 1.5t cm.",
+      "Set them equal: 30 − 2.5t = 22 − 1.5t.",
+      "Rearrange: 8 = t. (Both are 10 cm tall then, so neither has burned out.)"
+    ],
+    "hints": [
+      "Write an expression for each candle's height after t hours.",
+      "The taller candle starts 8 cm ahead. How fast is that gap shrinking each hour?"
+    ],
+    "wrong_reasons": {
+      "2": "Added the burn rates (4t = 8) instead of finding how fast the gap closes.",
+      "13": "Added the heights and the rates (52/4) instead of setting the heights equal.",
+      "12": "Found when Candle A burns out (30 ÷ 2.5), not when the heights match."
+    },
+    "check": "from sympy import *\nt=symbols('t')\nr=solve(30-Rational(5,2)*t-(22-Rational(3,2)*t),t)[0]\nassert 30-Rational(5,2)*r>0\nresult=r"
+  },
+  {
+    "id": "alg-linear-eq-1var-022",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "What value of x satisfies (x + 2)/5 − (x − 1)/3 = 1 ?",
+    "answer": "-2",
+    "accept": [
+      "−2"
+    ],
+    "explanation": [
+      "Multiply every term by 15: 3(x + 2) − 5(x − 1) = 15.",
+      "Distribute carefully: 3x + 6 − 5x + 5 = 15.",
+      "Combine: −2x + 11 = 15, so −2x = 4 and x = −2."
+    ],
+    "hints": [
+      "What is the least common denominator of the two fractions?",
+      "When you subtract 5(x − 1), what happens to the sign of the −1?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve((x+2)/5-(x-1)/3-1,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-023",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation 5x − 3 = 2(x + c), c is a constant. If x = 4 is the solution to the equation, what is the value of c?",
+    "choices": [
+      "9/2",
+      "9",
+      "13/2",
+      "6"
+    ],
+    "answer": "9/2",
+    "explanation": [
+      "Substitute x = 4: 5(4) − 3 = 2(4 + c).",
+      "So 17 = 8 + 2c.",
+      "Then 2c = 9 and c = 9/2."
+    ],
+    "hints": [
+      "If you know x, which unknown is left in the equation?",
+      "After substituting, what does 2(4 + c) become when you distribute?"
+    ],
+    "wrong_reasons": {
+      "9": "Distributed 2 only to the 4 (17 = 8 + c), or forgot to divide 2c = 9 by 2.",
+      "13/2": "Wrote 2(x + c) as x + 2c (17 = 4 + 2c).",
+      "6": "Dropped the −3 on the left (20 = 8 + 2c)."
+    },
+    "check": "from sympy import *\nc=symbols('c')\nresult=solve(5*4-3-2*(4+c),c)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-024",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The table shows the pricing for two cell phone data plans. Each plan charges a fixed monthly fee plus a charge for each gigabyte (GB) of data used. For how many gigabytes of data in a month will the two plans cost the same amount?",
+    "table": {
+      "headers": [
+        "Plan",
+        "Monthly fee",
+        "Cost per GB"
+      ],
+      "rows": [
+        [
+          "A",
+          "$35.00",
+          "$4.00"
+        ],
+        [
+          "B",
+          "$50.00",
+          "$2.50"
+        ]
+      ]
+    },
+    "choices": [
+      "10",
+      "15",
+      "6",
+      "30/13"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Plan A costs 35 + 4g; Plan B costs 50 + 2.5g.",
+      "Set them equal: 35 + 4g = 50 + 2.5g.",
+      "Subtract 2.5g and 35: 1.5g = 15, so g = 10."
+    ],
+    "hints": [
+      "Write the monthly cost of each plan in terms of g, the number of gigabytes.",
+      "Plan B starts $15 higher. By how much does Plan A catch up for each gigabyte?"
+    ],
+    "wrong_reasons": {
+      "15": "Found the difference in monthly fees but did not divide by the difference in per-GB charges.",
+      "6": "Divided the fee difference by Plan B's per-GB charge only.",
+      "30/13": "Added the per-GB charges instead of subtracting (6.5g = 15)."
+    },
+    "check": "from sympy import *\ng=symbols('g')\nresult=solve(35+4*g-(50+Rational(5,2)*g),g)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-025",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A chemist has 40 milliliters of a solution that is 15% acid. How many milliliters of a 40% acid solution must be added so that the mixture is 25% acid?",
+    "answer": "80/3",
+    "accept": [
+      "26.66",
+      "26.67"
+    ],
+    "explanation": [
+      "Let v be the milliliters of 40% solution added.",
+      "Acid: 0.15(40) + 0.40v = 0.25(40 + v).",
+      "Simplify: 6 + 0.40v = 10 + 0.25v.",
+      "So 0.15v = 4 and v = 80/3 ≈ 26.67."
+    ],
+    "hints": [
+      "How many milliliters of pure acid are in the original 40 mL?",
+      "What is the total volume of the mixture after v milliliters are added, and how much acid must it contain?"
+    ],
+    "check": "from sympy import *\nv=symbols('v')\nresult=solve(Rational(15,100)*40+Rational(40,100)*v-Rational(25,100)*(40+v),v)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-026",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation 4(px − 3) = 12x − q, p and q are constants. If the equation has infinitely many solutions, what is the value of p + q?",
+    "choices": [
+      "15",
+      "6",
+      "−9",
+      "24"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Distribute: 4px − 12 = 12x − q.",
+      "For infinitely many solutions the two sides must be identical.",
+      "x-terms: 4p = 12, so p = 3. Constants: −12 = −q, so q = 12.",
+      "p + q = 15."
+    ],
+    "hints": [
+      "What must be true about the x-coefficients and the constants if every x is a solution?",
+      "After distributing, what is the constant on the left side?"
+    ],
+    "wrong_reasons": {
+      "6": "Did not distribute the 4 to the −3, so took q = 3.",
+      "−9": "Made a sign error and took q = −12.",
+      "24": "Set p = 12 by matching px with 12x before distributing the 4."
+    },
+    "check": "from sympy import *\nx,p,q=symbols('x p q')\nd=expand(4*(p*x-3)-(12*x-q))\ns=solve([d.coeff(x,1),d.coeff(x,0)],[p,q])\nresult=s[p]+s[q]"
+  },
+  {
+    "id": "alg-linear-eq-1var-027",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In a science course, the final grade is the average of three lab reports and a final exam, where the final exam counts as two lab reports. Priya's lab report scores are 82, 90, and 77. What score does she need on the final exam to get a final grade of exactly 85?",
+    "choices": [
+      "88",
+      "91",
+      "176",
+      "85"
+    ],
+    "answer": "88",
+    "explanation": [
+      "Because the exam counts twice, there are 5 scores in the average: (82 + 90 + 77 + 2x)/5 = 85.",
+      "Multiply by 5: 249 + 2x = 425.",
+      "Subtract 249: 2x = 176, so x = 88."
+    ],
+    "hints": [
+      "If the exam counts as two lab reports, how many 'scores' are being averaged in all?",
+      "What total must all those scores add up to for the average to be 85?"
+    ],
+    "wrong_reasons": {
+      "91": "Counted the exam only once, averaging four scores.",
+      "176": "Found 2x = 176 but forgot to divide by 2.",
+      "85": "Assumed she just needs to score the target average on the exam."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve((82+90+77+2*x)/5-85,x)[0]"
+  }
+]

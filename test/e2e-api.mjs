@@ -1,0 +1,91 @@
+// End-to-end API check against a running dev server (npm run dev).
+// Usage: node test/e2e-api.mjs [baseUrl]
+import assert from "node:assert/strict";
+
+const BASE = process.argv[2] || "http://localhost:8787";
+let learner;
+const call = async (path, body) => {
+  const res = await fetch(BASE + path, {
+    method: body ? "POST" : "GET",
+    headers: { "content-type": "application/json", "x-learner": learner || "", "x-tz-offset": "300" },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  return { status: res.status, data: await res.json() };
+};
+
+learner = (await call("/api/learners", {})).data.id;
+assert.match(learner, /^[a-f0-9]{32}$/);
+
+assert.equal((await call("/api/tree")).status, 200);
+let tree = (await call("/api/tree")).data;
+const skills = tree.domains.flatMap((d) => d.skills);
+const first = skills.find((s) => s.id === "alg-linear-eq-1var");
+const locked = skills.find((s) => s.id === "alg-linear-func");
+assert.ok(first.unlocked && !locked.unlocked, "root skill open, dependent skill locked");
+assert.equal((await call("/api/lessons", { skill_id: locked.id })).status, 403, "locked skill refuses lessons");
+
+// Lesson 1: answer the first two wrong, the rest right; retry the misses at the end.
+const l1 = (await call("/api/lessons", { skill_id: first.id })).data;
+assert.equal(l1.items.length, 8);
+assert.equal(new Set(l1.items.map((i) => i.id)).size, 8);
+const wrong = (it) => (it.type === "mc" ? it.choices.find((c) => c !== it.answer) : "99999");
+for (const [i, it] of l1.items.entries()) {
+  const r = (await call("/api/answers", { lesson_id: l1.lesson_id, item_id: it.id, response: i < 2 ? wrong(it) : it.answer, time_ms: 5000 })).data;
+  assert.equal(r.correct, i >= 2, `item ${it.id}`);
+}
+for (const it of l1.items.slice(0, 2)) {
+  await call("/api/answers", { lesson_id: l1.lesson_id, item_id: it.id, response: it.answer, time_ms: 4000 });
+}
+const f1 = (await call("/api/lessons/finish", { lesson_id: l1.lesson_id })).data;
+assert.equal(f1.correct, 6, "first-try correct only");
+assert.equal(f1.total, 8);
+assert.equal(f1.xp, 6 * 10 + 15);
+assert.equal(f1.stats.streak, 1);
+assert.equal(f1.stats.lessons_today, 1);
+// Finishing twice doesn't double XP.
+assert.equal((await call("/api/lessons/finish", { lesson_id: l1.lesson_id })).data.stats.xp, 75);
+
+// Grid-in equivalence through the API.
+const spr = l1.items.find((i) => i.type === "spr");
+if (spr && /^-?\d+\/\d+$/.test(spr.answer)) {
+  const [a, b] = spr.answer.split("/").map(Number);
+  assert.ok((await call("/api/answers", { item_id: spr.id, response: String(a / b) })).data.correct);
+}
+
+tree = (await call("/api/tree")).data;
+const after = tree.domains.flatMap((d) => d.skills);
+assert.ok(after.find((s) => s.id === first.id).attempts >= 8);
+assert.ok(after.find((s) => s.id === locked.id).unlocked, "dependent skill unlocks after a lesson");
+assert.ok(after.find((s) => s.id === first.id).mastery > 0);
+
+// Misses are scheduled for review tomorrow, so nothing is due yet.
+assert.equal(tree.stats.reviews_due, 0);
+assert.equal((await call("/api/lessons", { skill_id: null })).status, 404);
+
+// Lesson 2 avoids questions already seen.
+const l2 = (await call("/api/lessons", { skill_id: first.id })).data;
+const seen = new Set(l1.items.map((i) => i.id));
+assert.ok(l2.items.every((i) => !seen.has(i.id)), "no repeats while unseen questions remain");
+
+// Socrates: opening message, a reply, and the daily cap.
+const it = l1.items[0];
+const s1 = await call("/api/socrates", { item_id: it.id, response: wrong(it), history: [] });
+assert.equal(s1.status, 200);
+assert.ok(s1.data.reply.length > 10);
+const s2 = await call("/api/socrates", { item_id: it.id, response: wrong(it), history: [{ role: "socrates", content: s1.data.reply }, { role: "student", content: "I'm not sure" }] });
+assert.equal(s2.status, 200);
+assert.equal((await call("/api/socrates", { item_id: it.id, response: "x", history: [{ role: "socrates", content: "hi" }] })).status, 400, "must end on a student turn");
+const ids = l2.items.map((x) => x.id);
+for (const id of ids.slice(0, 4)) assert.equal((await call("/api/socrates", { item_id: id, response: "1", history: [] })).status, 200);
+const capped = await call("/api/socrates", { item_id: ids[4], response: "1", history: [] });
+assert.equal(capped.status, 429, "sixth conversation of the day is capped");
+assert.equal((await call("/api/socrates", { item_id: it.id, response: "1", history: [] })).status, 200, "an existing conversation can continue");
+
+// Reports, auth and junk input.
+assert.equal((await call("/api/reports", { item_id: it.id, note: "test" })).status, 200);
+learner = "nope";
+assert.equal((await call("/api/tree")).status, 401);
+learner = "' OR 1=1 --";
+assert.equal((await call("/api/tree")).status, 401);
+
+console.log(`e2e ok (offline Socrates: ${s1.data.offline === true})`);

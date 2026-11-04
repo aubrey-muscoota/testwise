@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "testwise",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Preview lives on workers.dev. A muscoota.com/testwise route gets added
+  // only once Aubrey approves putting Testwise on the site.
+  "workers_dev": true,
+  "assets": {
+    "directory": "app/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "testwise",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    // Model for Socrates. Set the key with: npx wrangler secret put ANTHROPIC_API_KEY
+    "TUTOR_MODEL": "claude-opus-5-5"
+  },
+  "observability": { "enabled": true }
+}
