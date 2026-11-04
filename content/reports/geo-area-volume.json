@@ -1,0 +1,8 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "geo-area-volume-026", "reason": "accept list included 85.34, which is neither a correct rounding nor a truncation of 256/3 = 85.333...; accept is now only 85.33."},
+    {"id": "geo-area-volume-016", "reason": "A wheelchair ramp panel with a 9 ft leg and 12 ft other leg is an unrealistically steep ramp; changed the context to a right-triangle flower bed (same numbers, key 54)."}
+  ],
+  "removed": []
+}

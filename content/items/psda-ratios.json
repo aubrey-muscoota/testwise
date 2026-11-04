@@ -1,0 +1,750 @@
+[
+  {
+    "id": "psda-ratios-001",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A pancake recipe uses 3 cups of flour for every 2 cups of milk. If a cook uses 12 cups of flour and follows the recipe, how many cups of milk does the cook use?",
+    "choices": [
+      "6",
+      "8",
+      "11",
+      "18"
+    ],
+    "answer": "8",
+    "explanation": [
+      "The ratio of flour to milk is 3 : 2.",
+      "12 cups of flour is 12 ÷ 3 = 4 times the 3 cups in the recipe.",
+      "So the milk is 4 × 2 = 8 cups."
+    ],
+    "hints": [
+      "How many times larger is 12 cups of flour than the 3 cups in the recipe?",
+      "If the flour is scaled up by that factor, what must happen to the milk?"
+    ],
+    "wrong_reasons": {
+      "6": "Divided 12 by 2 instead of using the full 3 : 2 ratio",
+      "11": "Assumed the difference stays the same (3 − 2 = 1, so 12 − 1) instead of the ratio",
+      "18": "Flipped the ratio, multiplying 12 by 3/2 instead of 2/3"
+    },
+    "check": "from sympy import *\nm=symbols('m')\nresult=solve(Eq(Rational(3,2),12/m),m)[0]"
+  },
+  {
+    "id": "psda-ratios-002",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A copy machine prints 84 pages in 6 minutes. At this rate, how many pages will it print in 15 minutes?",
+    "choices": [
+      "14",
+      "93",
+      "210",
+      "1260"
+    ],
+    "answer": "210",
+    "explanation": [
+      "Find the unit rate: 84 ÷ 6 = 14 pages per minute.",
+      "Multiply by the time: 14 × 15 = 210 pages."
+    ],
+    "hints": [
+      "How many pages does the machine print in just 1 minute?",
+      "Once you know the pages per minute, how do you get the pages for 15 minutes?"
+    ],
+    "wrong_reasons": {
+      "14": "Found the pages per minute but stopped before multiplying by 15",
+      "93": "Added the 9 extra minutes to 84 pages instead of scaling the rate",
+      "1260": "Multiplied 84 by 15 without dividing by 6 first"
+    },
+    "check": "from sympy import *\nresult=Rational(84,6)*15"
+  },
+  {
+    "id": "psda-ratios-003",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A school hallway is 4.5 yards long. What is the length of the hallway, in feet? (1 yard = 3 feet)",
+    "answer": "13.5",
+    "accept": [
+      "27/2"
+    ],
+    "explanation": [
+      "Each yard is 3 feet.",
+      "4.5 yards × 3 feet per yard = 13.5 feet."
+    ],
+    "hints": [
+      "Is a foot a larger or smaller unit than a yard? So should the number get larger or smaller?",
+      "How many feet are in each of the 4.5 yards?"
+    ],
+    "check": "from sympy import *\nresult=Rational(9,2)*3"
+  },
+  {
+    "id": "psda-ratios-004",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A cyclist rides at a constant speed of 18 miles per hour. How many minutes does it take the cyclist to ride 6 miles?",
+    "choices": [
+      "3",
+      "20",
+      "33",
+      "108"
+    ],
+    "answer": "20",
+    "explanation": [
+      "Time = distance ÷ speed = 6 ÷ 18 = 1/3 hour.",
+      "Convert to minutes: 1/3 × 60 = 20 minutes."
+    ],
+    "hints": [
+      "If you know distance and speed, what operation gives the time?",
+      "Your answer is in hours. How many minutes are in one hour?"
+    ],
+    "wrong_reasons": {
+      "3": "Divided speed by distance (18 ÷ 6) instead of distance by speed",
+      "33": "Got 0.33 hour and read the decimal as 33 minutes instead of converting",
+      "108": "Multiplied speed by distance"
+    },
+    "check": "from sympy import *\nresult=Rational(6,18)*60"
+  },
+  {
+    "id": "psda-ratios-005",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In a homeroom, every student either walks to school or rides the bus. The ratio of students who walk to students who ride the bus is 2 : 5. If there are 35 students in the homeroom, how many students walk to school?",
+    "choices": [
+      "7",
+      "10",
+      "14",
+      "25"
+    ],
+    "answer": "10",
+    "explanation": [
+      "The ratio 2 : 5 means 2 + 5 = 7 equal parts make up the whole homeroom.",
+      "Each part is 35 ÷ 7 = 5 students.",
+      "Walkers are 2 parts: 2 × 5 = 10 students."
+    ],
+    "hints": [
+      "The ratio compares walkers to bus riders. How many parts make up the whole class?",
+      "How many students are in one part?"
+    ],
+    "wrong_reasons": {
+      "7": "Found the size of one part but didn't multiply by 2",
+      "14": "Treated 2/5 as the fraction of the whole class instead of 2/7",
+      "25": "Found the number of bus riders instead of walkers"
+    },
+    "check": "from sympy import *\nresult=Rational(35,2+5)*2"
+  },
+  {
+    "id": "psda-ratios-006",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The total weight w, in grams, of n identical glass marbles is given by the equation w = 5.2n. What is the best interpretation of 5.2 in this context?",
+    "choices": [
+      "The weight, in grams, of each marble",
+      "The total number of marbles",
+      "The total weight, in grams, of all the marbles",
+      "The number of marbles in each gram"
+    ],
+    "answer": "The weight, in grams, of each marble",
+    "explanation": [
+      "In w = 5.2n, w grows by 5.2 every time n grows by 1.",
+      "Adding one marble adds 5.2 grams, so 5.2 is the weight of one marble in grams."
+    ],
+    "hints": [
+      "What happens to w when n goes from 1 to 2?",
+      "What are the units of w, and what are the units of n? What would 5.2 have to be measured in?"
+    ],
+    "wrong_reasons": {
+      "The total weight, in grams, of all the marbles": "Confused the constant with the variable w",
+      "The number of marbles in each gram": "Inverted the rate, reading grams per marble as marbles per gram",
+      "The total number of marbles": "Confused the constant of proportionality with the variable n"
+    },
+    "check": null,
+    "check_note": "Interpretation question: the answer is a description of the constant of proportionality, not a computed value."
+  },
+  {
+    "id": "psda-ratios-007",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "On a hiking map, 1 inch represents 25 miles. Two campsites are 3.5 inches apart on the map. What is the actual distance, in miles, between the campsites?",
+    "answer": "87.5",
+    "accept": [
+      "175/2"
+    ],
+    "explanation": [
+      "Each inch on the map stands for 25 miles.",
+      "3.5 inches × 25 miles per inch = 87.5 miles."
+    ],
+    "hints": [
+      "How many miles does each inch on the map stand for?",
+      "How many of those inches separate the campsites?"
+    ],
+    "check": "from sympy import *\nresult=Rational(7,2)*25"
+  },
+  {
+    "id": "psda-ratios-008",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A leaky faucet drips 2 cups of water every hour. At this rate, how many gallons of water does the faucet drip in one day? (1 gallon = 16 cups; 1 day = 24 hours)",
+    "choices": [
+      "1.5",
+      "3",
+      "48",
+      "768"
+    ],
+    "answer": "3",
+    "explanation": [
+      "In 24 hours the faucet drips 2 × 24 = 48 cups.",
+      "Convert to gallons: 48 ÷ 16 = 3 gallons."
+    ],
+    "hints": [
+      "How many cups drip in a full day?",
+      "To change cups into gallons, should you multiply or divide by 16?"
+    ],
+    "wrong_reasons": {
+      "1.5": "Divided 24 hours by 16 and ignored the 2-cup rate",
+      "48": "Found the cups but forgot to convert to gallons",
+      "768": "Multiplied by 16 instead of dividing when converting cups to gallons"
+    },
+    "check": "from sympy import *\nresult=Rational(2*24,16)"
+  },
+  {
+    "id": "psda-ratios-009",
+    "skill_id": "psda-ratios",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A paint color is made by mixing 18 milliliters of blue paint with 24 milliliters of white paint. Which ratio of blue paint to white paint makes the same color?",
+    "choices": [
+      "2:3",
+      "4:3",
+      "12:18",
+      "3:4"
+    ],
+    "answer": "3:4",
+    "explanation": [
+      "The greatest common factor of 18 and 24 is 6.",
+      "18 ÷ 6 = 3 and 24 ÷ 6 = 4, so the ratio is 3 : 4."
+    ],
+    "hints": [
+      "What is the largest number that divides both 18 and 24?",
+      "Which amount is listed first in the question—blue or white?"
+    ],
+    "wrong_reasons": {
+      "2:3": "Divided the two numbers by different values (18 ÷ 9, 24 ÷ 8)",
+      "4:3": "Reversed the order, giving white to blue",
+      "12:18": "Subtracted 6 from each amount, which does not keep the ratio"
+    },
+    "check": "from sympy import *\nr=Rational(18,24)\nresult=f'{r.p}:{r.q}'"
+  },
+  {
+    "id": "psda-ratios-010",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Leah's car gets 32 miles per gallon of gasoline, and gasoline costs $3.60 per gallon. What is the cost of the gasoline Leah's car uses on a 400-mile trip?",
+    "choices": [
+      "$12.50",
+      "$45.00",
+      "$115.20",
+      "$1,440.00"
+    ],
+    "answer": "$45.00",
+    "explanation": [
+      "Gallons used: 400 miles ÷ 32 miles per gallon = 12.5 gallons.",
+      "Cost: 12.5 gallons × $3.60 per gallon = $45.00."
+    ],
+    "hints": [
+      "Before you can find a cost, what quantity do you need to know—miles or gallons?",
+      "How do the units of 400 miles and 32 miles per gallon combine to give gallons?"
+    ],
+    "wrong_reasons": {
+      "$12.50": "Found the number of gallons and stopped (wrote it as dollars)",
+      "$115.20": "Multiplied miles per gallon by dollars per gallon, which has no meaning here",
+      "$1,440.00": "Treated $3.60 as the cost per mile instead of per gallon"
+    },
+    "check": "from sympy import *\nresult=Rational(400,32)*Rational(360,100)"
+  },
+  {
+    "id": "psda-ratios-011",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In a chess club, the ratio of boys to girls is 4 : 3. There are 8 more boys than girls in the club. How many members are in the chess club?",
+    "answer": "56",
+    "explanation": [
+      "Let the club have 4k boys and 3k girls.",
+      "The difference is 4k − 3k = k, so k = 8.",
+      "Total members: 4k + 3k = 7k = 56."
+    ],
+    "hints": [
+      "If the ratio is 4 : 3, what does the difference of 1 part correspond to?",
+      "Once you know the size of one part, how many parts are there in total?"
+    ],
+    "check": "from sympy import *\nk=symbols('k')\nkv=solve(Eq(4*k-3*k,8),k)[0]\nresult=7*kv"
+  },
+  {
+    "id": "psda-ratios-012",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A steel block has a density of 7.8 grams per cubic centimeter and a volume of 250 cubic centimeters. What is the mass of the block, in kilograms? (1 kilogram = 1,000 grams)",
+    "choices": [
+      "0.032",
+      "1.95",
+      "32.05",
+      "1950"
+    ],
+    "answer": "1.95",
+    "explanation": [
+      "Mass = density × volume = 7.8 × 250 = 1,950 grams.",
+      "Convert to kilograms: 1,950 ÷ 1,000 = 1.95 kilograms."
+    ],
+    "hints": [
+      "The density says how many grams are in each cubic centimeter. How many cubic centimeters are there?",
+      "Is your mass in grams or in kilograms?"
+    ],
+    "wrong_reasons": {
+      "0.032": "Divided volume by density and then converted to kilograms",
+      "32.05": "Divided volume by density instead of multiplying",
+      "1950": "Found the mass in grams but did not convert to kilograms"
+    },
+    "check": "from sympy import *\nresult=Rational(78,10)*250/1000"
+  },
+  {
+    "id": "psda-ratios-013",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows the total earnings e, in dollars, that a tutor earns for working h hours. The relationship between e and h is proportional. Which equation represents this relationship?",
+    "table": {
+      "headers": [
+        "Hours worked, h",
+        "Earnings, e (dollars)"
+      ],
+      "rows": [
+        [
+          "3",
+          "51"
+        ],
+        [
+          "5",
+          "85"
+        ],
+        [
+          "8",
+          "136"
+        ]
+      ]
+    },
+    "choices": [
+      "h = 17e",
+      "e = h + 48",
+      "e = 34h",
+      "e = 17h"
+    ],
+    "answer": "e = 17h",
+    "explanation": [
+      "Check the ratio e/h for each row: 51 ÷ 3 = 17, 85 ÷ 5 = 17, 136 ÷ 8 = 17.",
+      "A proportional relationship has the form e = kh, with k = 17.",
+      "So the equation is e = 17h."
+    ],
+    "hints": [
+      "In a proportional relationship, what stays the same from row to row?",
+      "Which variable should be on the left if e depends on h?"
+    ],
+    "wrong_reasons": {
+      "h = 17e": "Inverted the relationship, putting hours per dollar",
+      "e = h + 48": "Used the difference 51 − 3 from the first row, treating it as additive",
+      "e = 34h": "Found the change in earnings (85 − 51) but forgot to divide by the change in hours (2)"
+    },
+    "check": "from sympy import *\nrows=[(3,51),(5,85),(8,136)]\nks={Rational(e,h) for h,e in rows}\nassert len(ks)==1\nk=ks.pop()\nresult=f'e = {k}h'"
+  },
+  {
+    "id": "psda-ratios-014",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A sprinter runs 100 meters in 10 seconds. What is the sprinter's average speed, in kilometers per hour? (1 kilometer = 1,000 meters)",
+    "choices": [
+      "0.6",
+      "10",
+      "36",
+      "600"
+    ],
+    "answer": "36",
+    "explanation": [
+      "Speed in meters per second: 100 ÷ 10 = 10 m/s.",
+      "In one hour (3,600 seconds) the sprinter would cover 10 × 3,600 = 36,000 meters.",
+      "36,000 meters = 36 kilometers, so the speed is 36 km/h."
+    ],
+    "hints": [
+      "How many meters does the sprinter cover in 1 second?",
+      "How many seconds are in an hour, and how many meters are in a kilometer?"
+    ],
+    "wrong_reasons": {
+      "0.6": "Converted seconds to minutes instead of hours (10 × 60 ÷ 1,000), giving km per minute",
+      "10": "Found meters per second and did not convert units",
+      "600": "Multiplied by 60 only and didn't convert meters to kilometers"
+    },
+    "check": "from sympy import *\nresult=Rational(100,10)*3600/1000"
+  },
+  {
+    "id": "psda-ratios-015",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Pump A can fill 1,200 gallons in 40 minutes, and pump B can fill 900 gallons in 20 minutes. Working together at these rates, how many minutes will it take the two pumps to fill a 3,000-gallon tank?",
+    "choices": [
+      "30",
+      "40",
+      "60",
+      "80"
+    ],
+    "answer": "40",
+    "explanation": [
+      "Pump A's rate: 1,200 ÷ 40 = 30 gallons per minute.",
+      "Pump B's rate: 900 ÷ 20 = 45 gallons per minute.",
+      "Together: 30 + 45 = 75 gallons per minute, so 3,000 ÷ 75 = 40 minutes."
+    ],
+    "hints": [
+      "Can you add times directly, or is there a quantity that adds when two pumps work together?",
+      "How many gallons does each pump fill in one minute?"
+    ],
+    "wrong_reasons": {
+      "30": "Averaged the two pumps' times (40 and 20) instead of combining rates",
+      "60": "Added the two pumps' times",
+      "80": "Averaged the two rates (37.5 gallons per minute) instead of adding them"
+    },
+    "check": "from sympy import *\nt=symbols('t',positive=True)\nresult=solve(Eq((Rational(1200,40)+Rational(900,20))*t,3000),t)[0]"
+  },
+  {
+    "id": "psda-ratios-016",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A rectangular rug measures 9 feet by 12 feet. What is the area of the rug, in square yards? (1 yard = 3 feet)",
+    "answer": "12",
+    "explanation": [
+      "Convert each side: 9 feet = 3 yards and 12 feet = 4 yards.",
+      "Area = 3 × 4 = 12 square yards.",
+      "(Alternatively, 108 square feet ÷ 9 square feet per square yard = 12.)"
+    ],
+    "hints": [
+      "How many square feet are in one square yard—is it 3?",
+      "What if you converted each side length to yards before finding the area?"
+    ],
+    "check": "from sympy import *\nresult=(Rational(9,3))*(Rational(12,3))"
+  },
+  {
+    "id": "psda-ratios-017",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Maya types 360 words in 8 minutes. Jon types 270 words in 5 minutes. How many more words per minute does Jon type than Maya?",
+    "choices": [
+      "9",
+      "11.25",
+      "90",
+      "99"
+    ],
+    "answer": "9",
+    "explanation": [
+      "Maya's rate: 360 ÷ 8 = 45 words per minute.",
+      "Jon's rate: 270 ÷ 5 = 54 words per minute.",
+      "Difference: 54 − 45 = 9 words per minute."
+    ],
+    "hints": [
+      "To compare typists who typed for different amounts of time, what common measure would help?",
+      "What is each person's number of words per minute?"
+    ],
+    "wrong_reasons": {
+      "11.25": "Found the difference in words (90) and divided by Maya's time only",
+      "90": "Subtracted total words without accounting for different times",
+      "99": "Added the two rates instead of subtracting"
+    },
+    "check": "from sympy import *\nresult=Rational(270,5)-Rational(360,8)"
+  },
+  {
+    "id": "psda-ratios-018",
+    "skill_id": "psda-ratios",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A concrete mix uses cement, sand, and gravel in the ratio 1 : 2 : 4 by weight. How many kilograms of sand are needed to make 350 kilograms of this mix?",
+    "choices": [
+      "50",
+      "100",
+      "175",
+      "200"
+    ],
+    "answer": "100",
+    "explanation": [
+      "The ratio has 1 + 2 + 4 = 7 parts in total.",
+      "Each part weighs 350 ÷ 7 = 50 kilograms.",
+      "Sand is 2 parts: 2 × 50 = 100 kilograms."
+    ],
+    "hints": [
+      "How many parts make up the whole mix?",
+      "What fraction of the mix is sand?"
+    ],
+    "wrong_reasons": {
+      "50": "Found one part (cement) instead of the sand",
+      "175": "Treated sand as half the mix (350 ÷ 2) instead of 2 of 7 parts",
+      "200": "Found the gravel (4 parts) instead of the sand"
+    },
+    "check": "from sympy import *\nresult=Rational(350,1+2+4)*2"
+  },
+  {
+    "id": "psda-ratios-019",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A jar contains only red and blue marbles, with a ratio of red marbles to blue marbles of 3 : 5. After 12 red marbles are added and no other changes are made, the numbers of red and blue marbles are equal. How many marbles were in the jar before the red marbles were added?",
+    "answer": "48",
+    "explanation": [
+      "Let the jar start with 3k red and 5k blue marbles.",
+      "After adding 12 red: 3k + 12 = 5k, so 2k = 12 and k = 6.",
+      "Original total: 3k + 5k = 8k = 48 marbles."
+    ],
+    "hints": [
+      "Which color's count does not change? How could you write both counts using one variable?",
+      "After 12 red marbles are added, what equation says the two colors are equal?"
+    ],
+    "check": "from sympy import *\nk=symbols('k',positive=True)\nkv=solve(Eq(3*k+12,5*k),k)[0]\nresult=8*kv"
+  },
+  {
+    "id": "psda-ratios-020",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "An architect builds a scale model of a house in which every length on the model is 1/50 of the corresponding length on the actual house. The floor of the model's living room has an area of 120 square centimeters. What is the area of the actual living room floor, in square meters? (1 meter = 100 centimeters)",
+    "choices": [
+      "0.6",
+      "30",
+      "3000",
+      "300000"
+    ],
+    "answer": "30",
+    "explanation": [
+      "Lengths scale by 50, so areas scale by 50² = 2,500.",
+      "Actual area: 120 × 2,500 = 300,000 square centimeters.",
+      "One square meter is 100 × 100 = 10,000 square centimeters, so 300,000 ÷ 10,000 = 30 square meters."
+    ],
+    "hints": [
+      "If every length is multiplied by 50, what happens to an area, which is length times width?",
+      "How many square centimeters are in one square meter—is it 100?"
+    ],
+    "wrong_reasons": {
+      "0.6": "Scaled the area by 50 instead of 50², then converted correctly",
+      "3000": "Scaled by 50² correctly but converted square centimeters to square meters by dividing by 100 instead of 10,000",
+      "300000": "Found the area in square centimeters but did not convert to square meters"
+    },
+    "check": "from sympy import *\nresult=Rational(120*50**2,100**2)"
+  },
+  {
+    "id": "psda-ratios-021",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A machine packages p bottles every m minutes. At this rate, how many hours will it take the machine to package 5p bottles?",
+    "choices": [
+      "m/12",
+      "5m",
+      "12/m",
+      "300m"
+    ],
+    "answer": "m/12",
+    "explanation": [
+      "Packaging 5p bottles takes 5 times as long as p bottles: 5m minutes.",
+      "Convert to hours: 5m ÷ 60 = m/12 hours."
+    ],
+    "hints": [
+      "How does the time for 5p bottles compare to the time for p bottles?",
+      "Your time is in minutes. What do you do to change minutes into hours?"
+    ],
+    "wrong_reasons": {
+      "5m": "Found the time in minutes but didn't convert to hours",
+      "12/m": "Inverted the expression while converting",
+      "300m": "Multiplied by 60 instead of dividing when converting minutes to hours"
+    },
+    "check": "from sympy import *\np,m=symbols('p m',positive=True)\nhours=(5*p)/(p/m)/60\nresult='m/12' if simplify(hours-m/12)==0 else str(hours)"
+  },
+  {
+    "id": "psda-ratios-022",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Dev drives 120 miles from his home to a lake at an average speed of 60 miles per hour. He returns home along the same route at an average speed of 40 miles per hour. What is Dev's average speed, in miles per hour, for the entire round trip?",
+    "answer": "48",
+    "explanation": [
+      "Time going: 120 ÷ 60 = 2 hours. Time returning: 120 ÷ 40 = 3 hours.",
+      "Total distance: 240 miles. Total time: 5 hours.",
+      "Average speed = 240 ÷ 5 = 48 miles per hour."
+    ],
+    "hints": [
+      "Average speed means total distance divided by total time. Did Dev spend the same amount of time on each leg?",
+      "How long did each leg of the trip take?"
+    ],
+    "check": "from sympy import *\nd=120\nresult=Rational(2*d)/(Rational(d,60)+Rational(d,40))"
+  },
+  {
+    "id": "psda-ratios-023",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A traveler has 52,500 Japanese yen. At the exchange rates 1 euro = 1.25 U.S. dollars and 1 U.S. dollar = 140 yen, how many euros is 52,500 yen worth?",
+    "choices": [
+      "300",
+      "375",
+      "468.75",
+      "65625"
+    ],
+    "answer": "300",
+    "explanation": [
+      "Convert yen to dollars: 52,500 ÷ 140 = 375 dollars.",
+      "Convert dollars to euros: since 1 euro = 1.25 dollars, 375 ÷ 1.25 = 300 euros."
+    ],
+    "hints": [
+      "Which conversion should you do first, given the rates you have?",
+      "A euro is worth more than a dollar. Should you have more euros or fewer euros than dollars?"
+    ],
+    "wrong_reasons": {
+      "375": "Converted to dollars but stopped before converting to euros",
+      "468.75": "Multiplied by 1.25 instead of dividing when converting dollars to euros",
+      "65625": "Multiplied the yen directly by 1.25, skipping the conversion to dollars"
+    },
+    "check": "from sympy import *\ndollars=Rational(52500,140)\nresult=dollars/Rational(5,4)"
+  },
+  {
+    "id": "psda-ratios-024",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Ari is painting one wall that is 24 feet long and 9 feet high. The wall needs 2 coats of paint, and one gallon of paint covers 350 square feet. Paint is sold only in 1-quart cans. What is the minimum number of cans Ari must buy? (1 gallon = 4 quarts)",
+    "choices": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Wall area: 24 × 9 = 216 square feet; with 2 coats, 432 square feet must be covered.",
+      "Gallons needed: 432 ÷ 350 ≈ 1.234 gallons, which is about 4.94 quarts.",
+      "Since cans come only in whole quarts, Ari must buy 5 cans."
+    ],
+    "hints": [
+      "How many square feet of paint coverage do 2 coats require?",
+      "How many square feet does one quart cover?",
+      "Can Ari buy part of a can?"
+    ],
+    "wrong_reasons": {
+      "2": "Found the gallons needed (about 1.23) and rounded up to 2, treating gallons as cans",
+      "3": "Forgot the second coat (216 square feet needs about 2.47 quarts)",
+      "4": "Rounded 4.94 quarts down instead of up, leaving part of the wall unpainted"
+    },
+    "check": "from sympy import *\nsqft=24*9*2\nquarts=Rational(sqft,350)*4\nresult=ceiling(quarts)"
+  },
+  {
+    "id": "psda-ratios-025",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A fruit drink is made by mixing concentrate and water in a ratio of 3 : 7 by volume. How many liters of concentrate must be added to 30 liters of this drink so that the ratio of concentrate to water becomes 2 : 3?",
+    "answer": "5",
+    "explanation": [
+      "In 30 liters at 3 : 7, concentrate is 3/10 × 30 = 9 liters and water is 7/10 × 30 = 21 liters.",
+      "Adding concentrate does not change the water, so the new amount of concentrate c must satisfy c : 21 = 2 : 3, which gives c = 2/3 × 21 = 14 liters.",
+      "So 14 − 9 = 5 liters of concentrate must be added."
+    ],
+    "hints": [
+      "How much of the 20 liters is concentrate, and how much is water?",
+      "Which amount stays the same when you add concentrate?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nc=Rational(3,10)*30\nw=Rational(7,10)*30\nresult=solve(Eq((c+x)/w,Rational(2,3)),x)[0]"
+  },
+  {
+    "id": "psda-ratios-026",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The table shows the distance three delivery trucks traveled and the gasoline each used. Assuming each truck's miles per gallon stays constant, how many more gallons of gasoline would the least fuel-efficient truck need than the most fuel-efficient truck to travel 600 miles?",
+    "table": {
+      "headers": [
+        "Truck",
+        "Distance (miles)",
+        "Gasoline used (gallons)"
+      ],
+      "rows": [
+        [
+          "A",
+          "312",
+          "13"
+        ],
+        [
+          "B",
+          "352",
+          "22"
+        ],
+        [
+          "C",
+          "375",
+          "15"
+        ]
+      ]
+    },
+    "choices": [
+      "7",
+      "9",
+      "12.5",
+      "13.5"
+    ],
+    "answer": "13.5",
+    "explanation": [
+      "Miles per gallon: Truck A 312 ÷ 13 = 24, Truck B 352 ÷ 22 = 16, Truck C 375 ÷ 15 = 25.",
+      "Least efficient is B; most efficient is C.",
+      "For 600 miles: B needs 600 ÷ 16 = 37.5 gallons and C needs 600 ÷ 25 = 24 gallons.",
+      "Difference: 37.5 − 24 = 13.5 gallons."
+    ],
+    "hints": [
+      "Does using the most gasoline in the table mean a truck is the least efficient? What measure should you compare?",
+      "Once you know each truck's miles per gallon, how many gallons does a truck need for 600 miles?"
+    ],
+    "wrong_reasons": {
+      "7": "Subtracted the gallons used in the table (22 − 15) instead of finding gallons for 600 miles",
+      "9": "Subtracted the miles-per-gallon values (25 − 16) instead of the gallons needed",
+      "12.5": "Compared Truck B with Truck A, choosing the most efficient truck by smallest gas use in the table instead of by miles per gallon"
+    },
+    "check": "from sympy import *\nt={'A':(312,13),'B':(352,22),'C':(375,15)}\nmpg={k:Rational(d,g) for k,(d,g) in t.items()}\nresult=600/min(mpg.values())-600/max(mpg.values())"
+  },
+  {
+    "id": "psda-ratios-027",
+    "skill_id": "psda-ratios",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Water flows into a tank at a constant rate of r gallons per minute. Which expression gives the number of seconds it takes to put V quarts of water into the tank? (1 gallon = 4 quarts)",
+    "choices": [
+      "15r/V",
+      "240V/r",
+      "15V/r",
+      "V/(240r)"
+    ],
+    "answer": "15V/r",
+    "explanation": [
+      "V quarts = V/4 gallons.",
+      "Time in minutes = (V/4) ÷ r = V/(4r).",
+      "Time in seconds = 60 × V/(4r) = 15V/r."
+    ],
+    "hints": [
+      "What is V quarts in gallons—should the number be larger or smaller than V?",
+      "Once you have the time in minutes, what do you multiply by to get seconds?"
+    ],
+    "wrong_reasons": {
+      "15r/V": "Divided the rate by the amount instead of the amount by the rate",
+      "240V/r": "Multiplied by 4 instead of dividing when converting quarts to gallons",
+      "V/(240r)": "Converted quarts to gallons correctly but divided by 60 instead of multiplying when converting minutes to seconds"
+    },
+    "check": "from sympy import *\nV,r=symbols('V r',positive=True)\nsec=60*(V/4)/r\nresult='15V/r' if simplify(sec-15*V/r)==0 else str(sec)"
+  }
+]

@@ -7,8 +7,8 @@
     "stem": "If 4x + 9 = 37, what is the value of x?",
     "choices": [
       "7",
-      "28",
       "23/2",
+      "28",
       "112"
     ],
     "answer": "7",
@@ -80,10 +80,10 @@
     "type": "mc",
     "stem": "What value of n satisfies the equation n/6 − 2 = 5?",
     "choices": [
-      "42",
-      "18",
       "7",
-      "28"
+      "18",
+      "28",
+      "42"
     ],
     "answer": "42",
     "explanation": [
@@ -108,10 +108,10 @@
     "type": "mc",
     "stem": "A tablet's battery is at 92% charge. While a movie plays, the charge drops by 4 percentage points every 10 minutes. After how many 10-minute intervals will the charge first reach 20%?",
     "choices": [
+      "5",
       "18",
       "23",
-      "28",
-      "5"
+      "28"
     ],
     "answer": "18",
     "explanation": [
@@ -155,9 +155,9 @@
     "type": "mc",
     "stem": "Maya has $140 in a savings account and deposits $15 at the end of each week. She makes no withdrawals. Which equation can be used to find w, the number of weeks it will take for her balance to reach $350?",
     "choices": [
-      "140 + 15w = 350",
       "15 + 140w = 350",
       "140 − 15w = 350",
+      "140 + 15w = 350",
       "350 + 15w = 140"
     ],
     "answer": "140 + 15w = 350",
@@ -175,8 +175,7 @@
       "140 − 15w = 350": "Treated the weekly deposits as withdrawals.",
       "350 + 15w = 140": "Swapped the starting balance and the goal."
     },
-    "check": null,
-    "check_note": "Model-selection item: the answer is an equation, not a number. Correct model verified by hand: 140 + 15w = 350 gives w = 14, a whole number of weeks, and each weekly deposit increases the balance."
+    "check": "from sympy import *\nw=symbols('w')\nbal,weeks=140,0\nwhile bal<350:\n    bal+=15; weeks+=1\nc={'140+15w=350':140+15*w-350,'15+140w=350':15+140*w-350,'140-15w=350':140-15*w-350,'350+15w=140':350+15*w-140}\nr=[s for s,e in c.items() if solve(e,w)==[weeks]]\nassert len(r)==1\nresult=r[0]"
   },
   {
     "id": "alg-linear-eq-1var-008",
@@ -185,10 +184,10 @@
     "type": "mc",
     "stem": "If 2x + 5 = 17, what is the value of 6x + 15?",
     "choices": [
-      "51",
       "6",
       "36",
-      "41"
+      "41",
+      "51"
     ],
     "answer": "51",
     "explanation": [
@@ -214,9 +213,9 @@
     "type": "mc",
     "stem": "What is the solution to the equation 0.5x + 3.5 = 11?",
     "choices": [
-      "15",
-      "7.5",
       "3.75",
+      "7.5",
+      "15",
       "29"
     ],
     "answer": "15",
@@ -242,10 +241,10 @@
     "type": "mc",
     "stem": "What value of x satisfies 5(2x − 3) − 4x = 21?",
     "choices": [
-      "6",
-      "4",
       "1",
-      "18/7"
+      "18/7",
+      "4",
+      "6"
     ],
     "answer": "6",
     "explanation": [
@@ -290,12 +289,12 @@
     "skill_id": "alg-linear-eq-1var",
     "difficulty": 2,
     "type": "mc",
-    "stem": "A student club pays a one-time $200 fee for a T-shirt design and $5 to print each shirt. The club sells the shirts for $15 each. How many shirts must the club sell so that its sales exactly equal its total costs?",
+    "stem": "A student club pays a one-time $200 fee for a T-shirt design and $5 to print each shirt. The club sells every shirt it prints for $15. How many shirts must the club print and sell so that the money it collects exactly equals its total costs?",
     "choices": [
-      "20",
       "10",
-      "40",
-      "40/3"
+      "40/3",
+      "20",
+      "40"
     ],
     "answer": "20",
     "explanation": [
@@ -321,10 +320,10 @@
     "type": "mc",
     "stem": "In the equation 3(x + 4) = 3x + k, k is a constant. If the equation has infinitely many solutions, what is the value of k?",
     "choices": [
-      "12",
+      "0",
       "4",
       "7",
-      "0"
+      "12"
     ],
     "answer": "12",
     "explanation": [
@@ -348,18 +347,19 @@
     "skill_id": "alg-linear-eq-1var",
     "difficulty": 2,
     "type": "spr",
-    "stem": "A one-day moving-truck rental costs $29.95 plus $0.40 for each mile driven. The total cost of a one-day rental was $93.15. How many miles was the truck driven?",
-    "answer": "158",
+    "stem": "A one-day moving-truck rental costs $29.95, which includes the first 50 miles driven. Each mile driven beyond the first 50 costs $0.40. The total cost of a one-day rental was $93.15. How many miles, in all, was the truck driven?",
+    "answer": "208",
     "explanation": [
-      "Let m be the miles driven: 29.95 + 0.40m = 93.15.",
-      "Subtract 29.95: 0.40m = 63.20.",
-      "Divide by 0.40: m = 158."
+      "Let m be the total miles driven. Only m − 50 of those miles are charged: 29.95 + 0.40(m − 50) = 93.15.",
+      "Subtract 29.95: 0.40(m − 50) = 63.20.",
+      "Divide by 0.40: m − 50 = 158.",
+      "Add 50: m = 208 miles."
     ],
     "hints": [
-      "Which part of the cost does not depend on distance?",
-      "How much of the bill came from mileage, and how many 40-cent charges fit into that amount?"
+      "Which part of the cost does not depend on distance, and which miles are not charged extra?",
+      "How many 40-cent charges fit into the mileage part of the bill, and how does that number relate to the total miles?"
     ],
-    "check": "from sympy import *\nm=symbols('m')\nresult=solve(Rational(2995,100)+Rational(40,100)*m-Rational(9315,100),m)[0]"
+    "check": "from sympy import *\nm=symbols('m')\nr=solve(Rational(2995,100)+Rational(40,100)*(m-50)-Rational(9315,100),m)[0]\nassert r>50\nresult=r"
   },
   {
     "id": "alg-linear-eq-1var-015",
@@ -368,10 +368,10 @@
     "type": "mc",
     "stem": "What is the solution to 0.2(x − 10) = 0.15x + 1 ?",
     "choices": [
-      "60",
-      "220",
       "−20",
-      "60/7"
+      "60/7",
+      "60",
+      "220"
     ],
     "answer": "60",
     "explanation": [
@@ -456,10 +456,10 @@
     "type": "mc",
     "stem": "What value of x satisfies (3/4)x − 2 = (1/2)x + 5 ?",
     "choices": [
-      "28",
-      "12",
+      "28/5",
       "7",
-      "28/5"
+      "12",
+      "28"
     ],
     "answer": "28",
     "explanation": [
@@ -485,10 +485,10 @@
     "type": "mc",
     "stem": "If 3(2x − 7) = 4x + 9, what is the value of x − 5?",
     "choices": [
-      "10",
-      "15",
+      "−11",
       "3",
-      "−11"
+      "10",
+      "15"
     ],
     "answer": "10",
     "explanation": [
@@ -533,10 +533,10 @@
     "type": "mc",
     "stem": "Candle A is 30 centimeters tall and burns down at a constant rate of 2.5 centimeters per hour. Candle B is 22 centimeters tall and burns down at a constant rate of 1.5 centimeters per hour. Both are lit at the same time. After how many hours will the two candles be the same height?",
     "choices": [
-      "8",
       "2",
-      "13",
-      "12"
+      "8",
+      "12",
+      "13"
     ],
     "answer": "8",
     "explanation": [
@@ -584,9 +584,9 @@
     "stem": "In the equation 5x − 3 = 2(x + c), c is a constant. If x = 4 is the solution to the equation, what is the value of c?",
     "choices": [
       "9/2",
-      "9",
+      "6",
       "13/2",
-      "6"
+      "9"
     ],
     "answer": "9/2",
     "explanation": [
@@ -631,10 +631,10 @@
       ]
     },
     "choices": [
-      "10",
-      "15",
+      "30/13",
       "6",
-      "30/13"
+      "10",
+      "15"
     ],
     "answer": "10",
     "explanation": [
@@ -683,9 +683,9 @@
     "type": "mc",
     "stem": "In the equation 4(px − 3) = 12x − q, p and q are constants. If the equation has infinitely many solutions, what is the value of p + q?",
     "choices": [
-      "15",
-      "6",
       "−9",
+      "6",
+      "15",
       "24"
     ],
     "answer": "15",
@@ -711,12 +711,12 @@
     "skill_id": "alg-linear-eq-1var",
     "difficulty": 3,
     "type": "mc",
-    "stem": "In a science course, the final grade is the average of three lab reports and a final exam, where the final exam counts as two lab reports. Priya's lab report scores are 82, 90, and 77. What score does she need on the final exam to get a final grade of exactly 85?",
+    "stem": "In a science course, the final grade is a weighted average of three lab reports and one final exam, in which the final exam counts twice as much as each lab report. Priya's lab report scores are 82, 90, and 77. What score does she need on the final exam to get a final grade of exactly 85?",
     "choices": [
+      "85",
       "88",
       "91",
-      "176",
-      "85"
+      "176"
     ],
     "answer": "88",
     "explanation": [

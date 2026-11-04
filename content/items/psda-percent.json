@@ -1,0 +1,814 @@
+[
+  {
+    "id": "psda-percent-001",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A school robotics club has 240 members. Of these members, 35% are seniors. How many members of the club are seniors?",
+    "choices": [
+      "8.4",
+      "84",
+      "156",
+      "205"
+    ],
+    "answer": "84",
+    "explanation": [
+      "35% means 35 out of every 100, or 0.35.",
+      "Multiply: 0.35 · 240 = 84.",
+      "So 84 members are seniors."
+    ],
+    "hints": [
+      "How can you write 35% as a decimal?",
+      "Once you have the decimal, what operation connects it to the 240 members?"
+    ],
+    "wrong_reasons": {
+      "8.4": "Wrote 35% as 0.035 instead of 0.35",
+      "156": "Found the number of members who are not seniors (65%)",
+      "205": "Subtracted 35 from 240 instead of taking 35% of 240"
+    },
+    "check": "from sympy import *\nresult=Rational(35,100)*240"
+  },
+  {
+    "id": "psda-percent-002",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "During a season, a basketball player attempted 60 free throws and made 27 of them. What percent of her free-throw attempts did she make?",
+    "choices": [
+      "27%",
+      "33%",
+      "45%",
+      "55%"
+    ],
+    "answer": "45%",
+    "explanation": [
+      "Percent made = (made ÷ attempted) · 100.",
+      "27 ÷ 60 = 0.45.",
+      "0.45 · 100 = 45, so she made 45% of her attempts."
+    ],
+    "hints": [
+      "Which number is the part and which number is the whole here?",
+      "How do you turn a fraction like part/whole into a percent?"
+    ],
+    "wrong_reasons": {
+      "27%": "Treated the count of made free throws as the percent",
+      "33%": "Used the number of missed free throws (60 − 27) as the percent",
+      "55%": "Found the percent of free throws she missed"
+    },
+    "check": "from sympy import *\nresult=Rational(27,60)*100"
+  },
+  {
+    "id": "psda-percent-003",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A pair of headphones costs $80. The store raises the price by 15%. What is the new price of the headphones?",
+    "choices": [
+      "$12",
+      "$68",
+      "$92",
+      "$95"
+    ],
+    "answer": "$92",
+    "explanation": [
+      "The increase is 15% of $80: 0.15 · 80 = 12.",
+      "Add the increase to the original price: 80 + 12 = 92.",
+      "The new price is $92."
+    ],
+    "hints": [
+      "How many dollars is 15% of $80?",
+      "Should that amount be added to or subtracted from the original price?"
+    ],
+    "wrong_reasons": {
+      "$12": "Found only the amount of the increase, not the new price",
+      "$68": "Subtracted the 15% increase instead of adding it",
+      "$95": "Added 15 dollars instead of 15 percent"
+    },
+    "check": "from sympy import *\nresult=80*(1+Rational(15,100))"
+  },
+  {
+    "id": "psda-percent-004",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A jacket originally priced at $64 is on sale for 25% off. What is the sale price of the jacket, in dollars?",
+    "answer": "48",
+    "accept": [
+      "$48",
+      "48.00"
+    ],
+    "explanation": [
+      "The discount is 25% of $64: 0.25 · 64 = 16.",
+      "Subtract the discount: 64 − 16 = 48.",
+      "The sale price is $48."
+    ],
+    "hints": [
+      "What fraction of the price does a 25% discount remove?",
+      "After you find the discount, what do you do with it?"
+    ],
+    "check": "from sympy import *\nresult=64*(1-Rational(25,100))"
+  },
+  {
+    "id": "psda-percent-005",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The population of a small town grew from 2,500 people to 3,000 people. By what percent did the population increase?",
+    "choices": [
+      "17%",
+      "20%",
+      "83%",
+      "120%"
+    ],
+    "answer": "20%",
+    "explanation": [
+      "Amount of change: 3,000 − 2,500 = 500.",
+      "Percent change uses the original value as the base: 500 ÷ 2,500 = 0.2.",
+      "0.2 · 100 = 20, so the population increased by 20%."
+    ],
+    "hints": [
+      "How many people were added?",
+      "When you compute a percent change, which population goes in the denominator: the starting one or the ending one?"
+    ],
+    "wrong_reasons": {
+      "17%": "Divided the change by the new population (500 ÷ 3,000) instead of the original",
+      "83%": "Computed the old population as a percent of the new one (2,500 ÷ 3,000)",
+      "120%": "Found the new population as a percent of the old one instead of the percent increase"
+    },
+    "check": "from sympy import *\nresult=Rational(3000-2500,2500)*100"
+  },
+  {
+    "id": "psda-percent-006",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In a class, 18 students walk to school. These students make up 40% of the class. How many students are in the class?",
+    "choices": [
+      "7.2",
+      "25.2",
+      "45",
+      "58"
+    ],
+    "answer": "45",
+    "explanation": [
+      "Let n be the number of students. Then 0.40 · n = 18.",
+      "Divide both sides by 0.40: n = 18 ÷ 0.40.",
+      "n = 45, so there are 45 students in the class."
+    ],
+    "hints": [
+      "Is 18 the part or the whole in this situation?",
+      "If 40% of some number is 18, what equation could you write?"
+    ],
+    "wrong_reasons": {
+      "7.2": "Took 40% of 18 instead of finding the whole",
+      "25.2": "Increased 18 by 40% instead of dividing by 0.40",
+      "58": "Added 40 to 18"
+    },
+    "check": "from sympy import *\nn=symbols('n')\nresult=solve(Rational(40,100)*n-18,n)[0]"
+  },
+  {
+    "id": "psda-percent-007",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A family's restaurant bill is $42.00. They leave an 18% tip on the bill. How many dollars is the tip?",
+    "answer": "7.56",
+    "accept": [
+      "$7.56",
+      "189/25"
+    ],
+    "explanation": [
+      "Write 18% as 0.18.",
+      "Multiply: 0.18 · 42 = 7.56.",
+      "The tip is $7.56."
+    ],
+    "hints": [
+      "What decimal is the same as 18%?",
+      "Is the question asking for the tip alone or the total paid?"
+    ],
+    "check": "from sympy import *\nresult=Rational(18,100)*42"
+  },
+  {
+    "id": "psda-percent-008",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A store charges a 6% sales tax on every purchase. Which expression gives the total cost, in dollars, of an item with a price of p dollars after the tax is added?",
+    "choices": [
+      "0.06p",
+      "p + 6",
+      "1.6p",
+      "1.06p"
+    ],
+    "answer": "1.06p",
+    "explanation": [
+      "The tax is 6% of the price: 0.06p.",
+      "Total = price + tax = p + 0.06p.",
+      "Combine like terms: p + 0.06p = 1.06p."
+    ],
+    "hints": [
+      "How much tax, in terms of p, is added to the price?",
+      "What do you get when you add the tax to the original p?"
+    ],
+    "wrong_reasons": {
+      "0.06p": "Gave only the tax amount, not the total cost",
+      "p + 6": "Added 6 dollars instead of 6 percent",
+      "1.6p": "Wrote 6% as 0.6 instead of 0.06"
+    },
+    "check": "from sympy import *\np=symbols('p')\ntarget=p+Rational(6,100)*p\nopts={'0.06p':Rational(6,100)*p,'1.06p':Rational(106,100)*p,'p + 6':p+6,'1.6p':Rational(16,10)*p}\nresult=[k for k,v in opts.items() if simplify(v-target)==0][0]"
+  },
+  {
+    "id": "psda-percent-009",
+    "skill_id": "psda-percent",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Forty students each named their favorite fruit. The results are shown in the table. What percent of the students named orange?",
+    "table": {
+      "headers": [
+        "Fruit",
+        "Number of students"
+      ],
+      "rows": [
+        [
+          "Apple",
+          "14"
+        ],
+        [
+          "Banana",
+          "11"
+        ],
+        [
+          "Orange",
+          "9"
+        ],
+        [
+          "Grape",
+          "6"
+        ]
+      ]
+    },
+    "choices": [
+      "9%",
+      "15%",
+      "22.5%",
+      "77.5%"
+    ],
+    "answer": "22.5%",
+    "explanation": [
+      "The total number of students is 14 + 11 + 9 + 6 = 40.",
+      "Orange: 9 ÷ 40 = 0.225.",
+      "0.225 · 100 = 22.5, so 22.5% named orange."
+    ],
+    "hints": [
+      "How many students named orange, and how many students were surveyed in all?",
+      "How do you turn that part-to-whole fraction into a percent?"
+    ],
+    "wrong_reasons": {
+      "9%": "Treated the count of 9 students as a percent",
+      "15%": "Read the grape row (6 ÷ 40) instead of the orange row",
+      "77.5%": "Found the percent of students who did not name orange"
+    },
+    "check": "from sympy import *\nresult=Rational(9,14+11+9+6)*100"
+  },
+  {
+    "id": "psda-percent-010",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A video game costs $120. The price is increased by 25%. Later, the new price is decreased by 10%. What is the final price of the game?",
+    "choices": [
+      "$108",
+      "$135",
+      "$138",
+      "$140"
+    ],
+    "answer": "$135",
+    "explanation": [
+      "After the increase: 120 · 1.25 = 150.",
+      "The 10% decrease applies to $150: 150 · 0.90 = 135.",
+      "The final price is $135."
+    ],
+    "hints": [
+      "What is the price right after the 25% increase?",
+      "The 10% decrease is 10% of which price: the original one or the increased one?"
+    ],
+    "wrong_reasons": {
+      "$108": "Applied only the 10% decrease to the original price",
+      "$138": "Combined the changes into a single 15% increase on $120",
+      "$140": "Subtracted $10 instead of 10% from the increased price"
+    },
+    "check": "from sympy import *\nresult=120*Rational(125,100)*Rational(90,100)"
+  },
+  {
+    "id": "psda-percent-011",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "After a 25% discount, a pair of running shoes sells for $57. What was the price of the shoes before the discount?",
+    "choices": [
+      "$42.75",
+      "$71.25",
+      "$76",
+      "$82"
+    ],
+    "answer": "$76",
+    "explanation": [
+      "After a 25% discount, the sale price is 75% of the original price: 0.75x = 57.",
+      "Divide: x = 57 ÷ 0.75.",
+      "x = 76, so the original price was $76."
+    ],
+    "hints": [
+      "What percent of the original price is still paid after a 25% discount?",
+      "If that percent of the unknown original price equals $57, what equation can you write?"
+    ],
+    "wrong_reasons": {
+      "$42.75": "Took another 25% off the sale price",
+      "$71.25": "Increased the sale price by 25%, using the sale price as the base instead of the original",
+      "$82": "Added 25 dollars instead of reversing a 25% discount"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Rational(75,100)*x-57,x)[0]"
+  },
+  {
+    "id": "psda-percent-012",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A community garden had 80 registered gardeners last spring. This spring it has 118 registered gardeners. By what percent did the number of registered gardeners increase? (Disregard the percent sign when entering your answer.)",
+    "answer": "47.5",
+    "accept": [
+      "47.5%",
+      "95/2"
+    ],
+    "explanation": [
+      "Change: 118 − 80 = 38.",
+      "Divide by the original number: 38 ÷ 80 = 0.475.",
+      "0.475 · 100 = 47.5, so the increase is 47.5%."
+    ],
+    "hints": [
+      "How many more gardeners are there now than before?",
+      "Which year's count should be the base when you compute the percent increase?"
+    ],
+    "check": "from sympy import *\nresult=Rational(118-80,80)*100"
+  },
+  {
+    "id": "psda-percent-013",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A school surveyed 600 students. Of those surveyed, 55% said they play a sport. Of the students who play a sport, 40% said they play soccer. How many of the surveyed students play soccer?",
+    "choices": [
+      "90",
+      "132",
+      "240",
+      "330"
+    ],
+    "answer": "132",
+    "explanation": [
+      "Students who play a sport: 0.55 · 600 = 330.",
+      "Of those, 40% play soccer: 0.40 · 330 = 132.",
+      "So 132 surveyed students play soccer."
+    ],
+    "hints": [
+      "The 40% is a percent of which group of students?",
+      "How many students are in that group?"
+    ],
+    "wrong_reasons": {
+      "90": "Subtracted the percents (55% − 40% = 15%) and took 15% of 600",
+      "240": "Took 40% of all 600 students instead of 40% of the athletes",
+      "330": "Stopped after finding the number of students who play a sport"
+    },
+    "check": "from sympy import *\nresult=Rational(40,100)*Rational(55,100)*600"
+  },
+  {
+    "id": "psda-percent-014",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows a household's electricity use, in kilowatt-hours (kWh), for four months. By what percent did the household's electricity use decrease from January to April?",
+    "table": {
+      "headers": [
+        "Month",
+        "Electricity use (kWh)"
+      ],
+      "rows": [
+        [
+          "January",
+          "820"
+        ],
+        [
+          "February",
+          "738"
+        ],
+        [
+          "March",
+          "697"
+        ],
+        [
+          "April",
+          "615"
+        ]
+      ]
+    },
+    "choices": [
+      "25%",
+      "33%",
+      "75%",
+      "205%"
+    ],
+    "answer": "25%",
+    "explanation": [
+      "Decrease from January to April: 820 − 615 = 205 kWh.",
+      "Divide by the January value: 205 ÷ 820 = 0.25.",
+      "0.25 · 100 = 25, so use decreased by 25%."
+    ],
+    "hints": [
+      "Which two months does the question compare?",
+      "For a percent decrease, which month's value is the base?"
+    ],
+    "wrong_reasons": {
+      "33%": "Divided the decrease by the April value (205 ÷ 615) instead of the January value",
+      "75%": "Found April's use as a percent of January's use instead of the percent decrease",
+      "205%": "Treated the decrease in kWh as a percent"
+    },
+    "check": "from sympy import *\nresult=Rational(820-615,820)*100"
+  },
+  {
+    "id": "psda-percent-015",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The number p is 150% of the number q, and q is 40% of the number r. If r is positive, p is what percent of r?",
+    "choices": [
+      "6%",
+      "60%",
+      "110%",
+      "190%"
+    ],
+    "answer": "60%",
+    "explanation": [
+      "p = 1.5q and q = 0.4r.",
+      "Substitute: p = 1.5(0.4r) = 0.6r.",
+      "So p is 60% of r."
+    ],
+    "hints": [
+      "Can you write p in terms of q and q in terms of r as equations with decimals?",
+      "What happens if you replace q in the first equation with its expression in terms of r?"
+    ],
+    "wrong_reasons": {
+      "6%": "Multiplied 1.5 by 0.4 correctly but misplaced the decimal when converting to a percent",
+      "110%": "Subtracted the percents (150% − 40%)",
+      "190%": "Added the percents (150% + 40%)"
+    },
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nq=Rational(40,100)*r\np=Rational(150,100)*q\nresult=simplify(p/r)*100"
+  },
+  {
+    "id": "psda-percent-016",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "An online store discounts every item by 30%. A sales tax of 8% is then applied to the discounted price. Which expression gives the final cost, in dollars, of an item whose original price is p dollars?",
+    "choices": [
+      "0.756p",
+      "0.244p",
+      "0.62p",
+      "0.78p"
+    ],
+    "answer": "0.756p",
+    "explanation": [
+      "After the 30% discount, the price is 0.70p.",
+      "The tax multiplies the discounted price by 1.08: 1.08(0.70p).",
+      "1.08 · 0.70 = 0.756, so the final cost is 0.756p."
+    ],
+    "hints": [
+      "What single number do you multiply p by to take 30% off?",
+      "Is the 8% tax computed on the original price or on the discounted price?"
+    ],
+    "wrong_reasons": {
+      "0.244p": "Found the total amount saved compared with the original price, not the final cost",
+      "0.62p": "Subtracted the 8% tax instead of adding it (1 − 0.30 − 0.08)",
+      "0.78p": "Combined the percents by adding (1 − 0.30 + 0.08) instead of applying them one after the other"
+    },
+    "check": "from sympy import *\np=symbols('p')\ntarget=p*(1-Rational(30,100))*(1+Rational(8,100))\nopts={'0.244p':Rational(244,1000)*p,'0.62p':Rational(62,100)*p,'0.756p':Rational(756,1000)*p,'0.78p':Rational(78,100)*p}\nresult=[k for k,v in opts.items() if simplify(v-target)==0][0]"
+  },
+  {
+    "id": "psda-percent-017",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A salesperson earns a base pay of $400 per week plus a commission of 6% of her total sales for the week. Last week she earned $1,018. What were her total sales last week, in dollars?",
+    "answer": "10300",
+    "accept": [
+      "10,300",
+      "$10,300",
+      "10300.00"
+    ],
+    "explanation": [
+      "Let s be her total sales. Then 400 + 0.06s = 1,018.",
+      "Subtract 400: 0.06s = 618.",
+      "Divide by 0.06: s = 10,300."
+    ],
+    "hints": [
+      "Which part of her $1,018 came from commission?",
+      "If 6% of her sales equals that commission, what equation can you solve?"
+    ],
+    "check": "from sympy import *\ns=symbols('s')\nresult=solve(400+Rational(6,100)*s-1018,s)[0]"
+  },
+  {
+    "id": "psda-percent-018",
+    "skill_id": "psda-percent",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The positive number m is 20% less than the number n. The number n is what percent greater than m?",
+    "choices": [
+      "20%",
+      "25%",
+      "80%",
+      "120%"
+    ],
+    "answer": "25%",
+    "explanation": [
+      "m = 0.8n, so n = m ÷ 0.8 = 1.25m.",
+      "n is 1.25 times m, which is 25% more than m.",
+      "So n is 25% greater than m."
+    ],
+    "hints": [
+      "Try a convenient value for n, such as 100. What is m then?",
+      "When you compare n to m, which number is the base of the percent?"
+    ],
+    "wrong_reasons": {
+      "20%": "Assumed the percent difference is the same no matter which number is the base",
+      "80%": "Gave m as a percent of n",
+      "120%": "Added 20% back to 100% without changing the base"
+    },
+    "check": "from sympy import *\nn=symbols('n',positive=True)\nm=n*(1-Rational(20,100))\nresult=simplify((n-m)/m)*100"
+  },
+  {
+    "id": "psda-percent-019",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A lab technician has 40 liters of a saltwater solution that is 15% salt by volume. How many liters of pure water must be added so that the resulting solution is 12% salt by volume?",
+    "answer": "10",
+    "accept": [
+      "10.0"
+    ],
+    "explanation": [
+      "Amount of salt: 0.15 · 40 = 6 liters, and adding water does not change it.",
+      "After adding w liters of water, the volume is 40 + w and salt must be 12% of it: 6 = 0.12(40 + w).",
+      "6 ÷ 0.12 = 50, so 40 + w = 50.",
+      "w = 10 liters."
+    ],
+    "hints": [
+      "Which quantity stays the same when you add pure water?",
+      "After adding w liters of water, what is the total volume, and what fraction of it must be salt?"
+    ],
+    "check": "from sympy import *\nw=symbols('w')\nresult=solve(Rational(15,100)*40-Rational(12,100)*(40+w),w)[0]"
+  },
+  {
+    "id": "psda-percent-020",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The price of a concert ticket was increased by 10%. Then the new price was increased by 20%. The final price is what percent greater than the original price?",
+    "choices": [
+      "2%",
+      "30%",
+      "32%",
+      "132%"
+    ],
+    "answer": "32%",
+    "explanation": [
+      "Let the original price be x. After the 10% increase, the price is 1.10x.",
+      "The 20% increase applies to 1.10x: 1.20 · 1.10x = 1.32x.",
+      "1.32x is 32% more than x, so the final price is 32% greater than the original price."
+    ],
+    "hints": [
+      "What number is the price multiplied by for a 10% increase? For a 20% increase?",
+      "The 20% increase is based on which price: the original one or the increased one?"
+    ],
+    "wrong_reasons": {
+      "2%": "Multiplied the two percents (0.10 · 0.20 = 0.02) instead of the multipliers",
+      "30%": "Added the two percents, ignoring that the 20% is taken of the already increased price",
+      "132%": "Gave the final price as a percent of the original instead of the percent increase"
+    },
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nfinal=x*(1+Rational(10,100))*(1+Rational(20,100))\nresult=simplify((final-x)/x)*100"
+  },
+  {
+    "id": "psda-percent-021",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A boutique sets the retail price of a sweater by marking up its wholesale cost by 60%. During a sale, the boutique discounts the retail price by 25%. The sale price of the sweater is $66. What is the wholesale cost of the sweater, in dollars?",
+    "answer": "55",
+    "accept": [
+      "$55",
+      "55.00"
+    ],
+    "explanation": [
+      "Let c be the wholesale cost. Retail price = 1.60c.",
+      "Sale price = 0.75 · 1.60c = 1.2c.",
+      "Set 1.2c = 66, so c = 66 ÷ 1.2 = 55.",
+      "The wholesale cost is $55."
+    ],
+    "hints": [
+      "How would you write the retail price in terms of the wholesale cost c?",
+      "The 25% discount is taken off which price, and what single multiplier does that give overall?"
+    ],
+    "check": "from sympy import *\nc=symbols('c')\nresult=solve(Rational(160,100)*Rational(75,100)*c-66,c)[0]"
+  },
+  {
+    "id": "psda-percent-022",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A rectangle's length is increased by 30%, and its width is decreased by 30%. By what percent does the area of the rectangle decrease?",
+    "choices": [
+      "0%",
+      "9%",
+      "51%",
+      "91%"
+    ],
+    "answer": "9%",
+    "explanation": [
+      "Original area = LW.",
+      "New area = (1.3L)(0.7W) = 0.91LW.",
+      "The new area is 91% of the original, so the area decreases by 9%."
+    ],
+    "hints": [
+      "If the original length and width are L and W, what are the new length and width?",
+      "What number multiplies LW to give the new area, and how far is it from 1?"
+    ],
+    "wrong_reasons": {
+      "0%": "Assumed a 30% increase and a 30% decrease cancel out",
+      "51%": "Decreased both dimensions by 30% (0.7 · 0.7 = 0.49)",
+      "91%": "Gave the new area as a percent of the original instead of the percent decrease"
+    },
+    "check": "from sympy import *\nL,W=symbols('L W',positive=True)\nresult=(1-simplify((Rational(13,10)*L)*(Rational(7,10)*W)/(L*W)))*100"
+  },
+  {
+    "id": "psda-percent-023",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "At a high school, 40% of the students are juniors and the rest are seniors. Of the juniors, 25% attended a basketball game, and of the seniors, 50% attended the same game. What percent of all the juniors and seniors at the school attended the game?",
+    "choices": [
+      "30%",
+      "37.5%",
+      "40%",
+      "75%"
+    ],
+    "answer": "40%",
+    "explanation": [
+      "Imagine 100 students: 40 juniors and 60 seniors.",
+      "Juniors attending: 0.25 · 40 = 10. Seniors attending: 0.50 · 60 = 30.",
+      "Total attending: 10 + 30 = 40 out of 100, which is 40%."
+    ],
+    "hints": [
+      "What percent of the students are seniors?",
+      "If the school had 100 students, how many juniors and how many seniors would attend?"
+    ],
+    "wrong_reasons": {
+      "30%": "Counted only the seniors who attended",
+      "37.5%": "Averaged 25% and 50% without accounting for the different group sizes",
+      "75%": "Added the two attendance percents"
+    },
+    "check": "from sympy import *\nresult=(Rational(25,100)*40+Rational(50,100)*60)/100*100"
+  },
+  {
+    "id": "psda-percent-024",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A group of students was asked whether they plan to take a summer course. The results, by grade, are shown in the table. Of the students who answered yes, what percent are in grade 11?",
+    "table": {
+      "headers": [
+        "Grade",
+        "Yes",
+        "No",
+        "Total"
+      ],
+      "rows": [
+        [
+          "Grade 10",
+          "48",
+          "42",
+          "90"
+        ],
+        [
+          "Grade 11",
+          "72",
+          "38",
+          "110"
+        ],
+        [
+          "Total",
+          "120",
+          "80",
+          "200"
+        ]
+      ]
+    },
+    "choices": [
+      "36%",
+      "55%",
+      "60%",
+      "65.5%"
+    ],
+    "answer": "60%",
+    "explanation": [
+      "The question restricts attention to the students who answered yes.",
+      "Total yes: 48 + 72 = 120.",
+      "Grade 11 yes: 72. 72 ÷ 120 = 0.6, or 60%."
+    ],
+    "hints": [
+      "Which group is the whole in this question: all students, grade 11 students, or the students who answered yes?",
+      "How many students answered yes in total?"
+    ],
+    "wrong_reasons": {
+      "36%": "Divided by all 200 students instead of only those who answered yes",
+      "55%": "Found the percent of all students who are in grade 11",
+      "65.5%": "Found the percent of grade 11 students who answered yes (72 ÷ 110 ≈ 65.5%), reversing the condition"
+    },
+    "check": "from sympy import *\nyes={'g10':48,'g11':72}\nresult=Rational(yes['g11'],sum(yes.values()))*100"
+  },
+  {
+    "id": "psda-percent-025",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The value of a used car decreases by 15% each year. Two years after it was purchased, the car is worth $14,450. What was the car's value, in dollars, when it was purchased?",
+    "answer": "20000",
+    "accept": [
+      "20,000",
+      "$20,000"
+    ],
+    "explanation": [
+      "Each year the value is multiplied by 0.85.",
+      "After two years: 0.85² · V = 0.7225V = 14,450.",
+      "V = 14,450 ÷ 0.7225 = 20,000."
+    ],
+    "hints": [
+      "What single number is the value multiplied by each year?",
+      "What happens when you apply that multiplier twice to the original value V?"
+    ],
+    "check": "from sympy import *\nV=symbols('V')\nresult=solve(Rational(85,100)**2*V-14450,V)[0]"
+  },
+  {
+    "id": "psda-percent-026",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "If 0.2a = 0.05b, where a and b are positive, then a is what percent of b?",
+    "choices": [
+      "2.5%",
+      "15%",
+      "25%",
+      "400%"
+    ],
+    "answer": "25%",
+    "explanation": [
+      "Divide both sides by 0.2: a = (0.05 ÷ 0.2)b.",
+      "0.05 ÷ 0.2 = 0.25, so a = 0.25b.",
+      "So a is 25% of b."
+    ],
+    "hints": [
+      "Can you rewrite the equation so that a is by itself?",
+      "Once a equals some number times b, how do you read off the percent?"
+    ],
+    "wrong_reasons": {
+      "2.5%": "Found a = 0.25b but moved the decimal the wrong way when converting to a percent",
+      "15%": "Subtracted the coefficients (0.2 − 0.05)",
+      "400%": "Found b as a percent of a instead of a as a percent of b"
+    },
+    "check": "from sympy import *\na,b=symbols('a b',positive=True)\nresult=solve(Rational(2,10)*a-Rational(5,100)*b,a)[0]/b*100"
+  },
+  {
+    "id": "psda-percent-027",
+    "skill_id": "psda-percent",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A chess club had 20% more members in 2025 than in 2024. In 2026, the club had 15% fewer members than in 2025. If the club had 204 members in 2026, how many members did it have in 2024?",
+    "choices": [
+      "192",
+      "200",
+      "204",
+      "208.08"
+    ],
+    "answer": "200",
+    "explanation": [
+      "Let x be the 2024 membership. Then 2025 membership is 1.20x.",
+      "2026 membership is 0.85 · 1.20x = 1.02x.",
+      "Set 1.02x = 204, so x = 200."
+    ],
+    "hints": [
+      "How can you write the 2025 membership in terms of the 2024 membership x?",
+      "Each percent change is based on the previous year. What single multiplier takes you from 2024 to 2026?"
+    ],
+    "wrong_reasons": {
+      "192": "Undid the 15% decrease correctly (204 ÷ 0.85 = 240) but then took 20% off 240 instead of dividing by 1.20",
+      "204": "Assumed the changes roughly cancel and the membership is unchanged",
+      "208.08": "Multiplied 204 by 1.02 instead of dividing by 1.02"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Rational(85,100)*Rational(120,100)*x-204,x)[0]"
+  }
+]

@@ -6,8 +6,8 @@
     "type": "mc",
     "stem": "Which of the following is the solution to 3x − 7 > 11?",
     "choices": [
-      "x > 4/3",
       "x > 6",
+      "x > 4/3",
       "x < 6",
       "x > 18"
     ],
@@ -113,8 +113,8 @@
     "stem": "Which of the following ordered pairs (x, y) is a solution to the inequality y > 2x − 3?",
     "choices": [
       "(2, 1)",
-      "(1, 0)",
       "(3, 2)",
+      "(1, 0)",
       "(0, −4)"
     ],
     "answer": "(1, 0)",
@@ -143,9 +143,9 @@
     "stem": "A delivery van can carry at most 1,200 pounds. The driver weighs 180 pounds, and each box loaded into the van weighs 40 pounds. Which inequality represents the possible numbers of boxes, b, the van can carry with the driver on board?",
     "choices": [
       "180 + 40b ≥ 1,200",
-      "180 + 40b ≤ 1,200",
       "40 + 180b ≤ 1,200",
-      "40b ≤ 1,200 + 180"
+      "40b ≤ 1,200 + 180",
+      "180 + 40b ≤ 1,200"
     ],
     "answer": "180 + 40b ≤ 1,200",
     "explanation": [
@@ -162,8 +162,7 @@
       "40 + 180b ≤ 1,200": "Swapped the fixed weight of the driver with the per-box weight",
       "40b ≤ 1,200 + 180": "Added the driver's weight to the capacity instead of counting it as part of the load"
     },
-    "check": null,
-    "check_note": "Translation item: the answer is an inequality model, not a computed value. Verified by hand: total load = 180 + 40b, and 'at most' means ≤."
+    "check": "from sympy import *\ntruth=lambda b: 180+40*b<=1200\nopts={'180 + 40b ≥ 1,200':lambda b:180+40*b>=1200,'180 + 40b ≤ 1,200':lambda b:180+40*b<=1200,'40 + 180b ≤ 1,200':lambda b:40+180*b<=1200,'40b ≤ 1,200 + 180':lambda b:40*b<=1200+180}\nresult=[k for k,f in opts.items() if all(f(b)==truth(b) for b in range(0,60))][0]"
   },
   {
     "id": "alg-inequalities-007",
@@ -232,7 +231,7 @@
     ],
     "hints": [
       "How much more money does the club still need after what it has already raised?",
-      "If the club sells exactly 45 candles, is the total more than $500?"
+      "If the total raised comes to exactly $500, has the club reached its goal?"
     ],
     "wrong_reasons": {
       "45": "Found c > 45 but chose the boundary, which gives exactly $500 rather than more than $500",
@@ -249,8 +248,8 @@
     "stem": "Which of the following is the solution to 3(2x − 4) ≥ 5x + 1?",
     "choices": [
       "x ≥ 5",
-      "x ≥ 13",
       "x ≤ 13",
+      "x ≥ 13",
       "x ≥ −11"
     ],
     "answer": "x ≥ 13",
@@ -277,10 +276,10 @@
     "type": "mc",
     "stem": "Which of the following describes all solutions to −3 < 2x + 5 ≤ 11?",
     "choices": [
-      "−4 < x ≤ 3",
       "−4 ≤ x < 3",
       "1 < x ≤ 8",
-      "−8 < x ≤ 6"
+      "−8 < x ≤ 6",
+      "−4 < x ≤ 3"
     ],
     "answer": "−4 < x ≤ 3",
     "explanation": [
@@ -325,10 +324,10 @@
     "type": "mc",
     "stem": "In the xy-plane, the graph of a linear inequality has a dashed boundary line that passes through the points (0, 2) and (4, 0). The region below the line, which contains the origin, is shaded. Which inequality is represented by this graph?",
     "choices": [
-      "x + 2y < 4",
       "x + 2y ≤ 4",
       "x + 2y > 4",
-      "2x + y < 4"
+      "2x + y < 4",
+      "x + 2y < 4"
     ],
     "answer": "x + 2y < 4",
     "explanation": [
@@ -405,9 +404,9 @@
     "type": "mc",
     "stem": "Which inequality is equivalent to 7 − 4k > 2k − 11?",
     "choices": [
-      "k < 3",
       "k > 3",
       "k < 9",
+      "k < 3",
       "k < −2/3"
     ],
     "answer": "k < 3",
@@ -505,19 +504,20 @@
     "skill_id": "alg-inequalities",
     "difficulty": 3,
     "type": "spr",
-    "stem": "For a banquet, a caterer charges a $450 setup fee plus $32 per guest, and the venue charges a flat fee of $1,200. The organizers want the combined cost of the caterer and the venue to be no more than $4,000. What is the maximum number of guests they can invite?",
-    "answer": "73",
+    "stem": "For a banquet, a caterer charges a $450 setup fee plus $32 per guest, and the venue charges a flat fee of $1,200. The organizers want the average cost per guest (the combined cost of the caterer and the venue divided by the number of guests) to be no more than $50. What is the least number of guests that must attend?",
+    "answer": "92",
     "explanation": [
       "Let g be the number of guests. The combined cost is 450 + 1,200 + 32g = 1,650 + 32g.",
-      "Set up 1,650 + 32g ≤ 4,000, so 32g ≤ 2,350.",
-      "Divide: g ≤ 73.4375.",
-      "The number of guests must be a whole number, and 74 guests would go over budget, so the maximum is 73."
+      "The average cost per guest is (1,650 + 32g)/g, so set up (1,650 + 32g)/g ≤ 50.",
+      "Since g is positive, multiply both sides by g: 1,650 + 32g ≤ 50g, so 1,650 ≤ 18g.",
+      "Divide: g ≥ 91.66…. The number of guests must be a whole number, and 91 guests would give an average above $50 (about $50.13), so the least number is 92."
     ],
     "hints": [
-      "Which costs are fixed no matter how many guests come?",
+      "Which costs are fixed no matter how many guests come, and how do you find the cost per guest?",
+      "Can you clear the fraction by multiplying both sides by the number of guests? Why is that safe here?",
       "Your division won't come out even. Should you round up or down, and why?"
     ],
-    "check": "from sympy import *\nresult=max(g for g in range(0,1000) if 450+1200+32*g<=4000)"
+    "check": "from sympy import *\nresult=min(g for g in range(1,1000) if Rational(450+1200+32*g,g)<=50)"
   },
   {
     "id": "alg-inequalities-020",
@@ -609,8 +609,8 @@
     "type": "mc",
     "stem": "Which of the following correctly describes the graph of 6x − 4y ≥ 12 in the xy-plane?",
     "choices": [
-      "Solid boundary line with y-intercept −3; the region below the line is shaded",
       "Solid boundary line with y-intercept −3; the region above the line is shaded",
+      "Solid boundary line with y-intercept −3; the region below the line is shaded",
       "Dashed boundary line with y-intercept −3; the region below the line is shaded",
       "Solid boundary line with y-intercept 3; the region below the line is shaded"
     ],
@@ -640,9 +640,9 @@
     "type": "mc",
     "stem": "Which of the following is the solution to (x − 1)/2 − (x + 4)/3 ≥ 1?",
     "choices": [
-      "x ≥ 1",
-      "x ≥ 11",
       "x ≥ 17",
+      "x ≥ 1",
+      "x ≥ 12",
       "x ≤ 17"
     ],
     "answer": "x ≥ 17",
@@ -659,10 +659,10 @@
     ],
     "wrong_reasons": {
       "x ≥ 1": "Did not distribute the subtraction to the 4, writing 3x − 3 − 2x + 8 ≥ 6",
-      "x ≥ 11": "Multiplied the fractions by 6 but left the right side as 1, getting x − 11 ≥ 0... then x ≥ 11 after mishandling the 1",
+      "x ≥ 12": "Multiplied the fractions by 6 but left the right side as 1, getting x − 11 ≥ 1",
       "x ≤ 17": "Reversed the inequality sign even though nothing was multiplied or divided by a negative"
     },
-    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality((x-1)/2-(x+4)/3>=1,x,relational=False)\nopts={'x ≥ 17':Interval(17,oo),'x ≥ 1':Interval(1,oo),'x ≥ 11':Interval(11,oo),'x ≤ 17':Interval(-oo,17)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality((x-1)/2-(x+4)/3>=1,x,relational=False)\nopts={'x ≥ 17':Interval(17,oo),'x ≥ 1':Interval(1,oo),'x ≥ 12':Interval(12,oo),'x ≤ 17':Interval(-oo,17)}\nresult=[k for k,v in opts.items() if v==sol][0]"
   },
   {
     "id": "alg-inequalities-025",

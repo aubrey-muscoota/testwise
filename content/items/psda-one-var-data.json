@@ -1,0 +1,872 @@
+[
+  {
+    "id": "psda-one-var-data-001",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A basketball player scored 18, 24, 15, 22, and 26 points in her last five games. What is the mean number of points she scored per game?",
+    "choices": [
+      "11",
+      "21",
+      "22",
+      "26.25"
+    ],
+    "answer": "21",
+    "explanation": [
+      "Add the five scores: 18 + 24 + 15 + 22 + 26 = 105.",
+      "Divide by the number of games: 105 ÷ 5 = 21.",
+      "The mean is 21 points per game."
+    ],
+    "hints": [
+      "What two quantities do you need to find any mean?",
+      "How many games are you averaging over?"
+    ],
+    "wrong_reasons": {
+      "11": "Found the range (26 − 15) instead of the mean",
+      "22": "Found the median (middle value after sorting) instead of the mean",
+      "26.25": "Divided the total of 105 by 4 instead of by the 5 games"
+    },
+    "check": "from sympy import *\nresult=Rational(18+24+15+22+26,5)"
+  },
+  {
+    "id": "psda-one-var-data-002",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Over six days, Marco spent 20, 45, 30, 70, 35, and 50 minutes on homework. What is the median number of minutes he spent on homework per day?",
+    "choices": [
+      "35",
+      "40",
+      "45",
+      "50"
+    ],
+    "answer": "40",
+    "explanation": [
+      "Put the values in order: 20, 30, 35, 45, 50, 70.",
+      "With 6 values, the median is the mean of the 3rd and 4th values: 35 and 45.",
+      "(35 + 45) ÷ 2 = 40, so the median is 40 minutes."
+    ],
+    "hints": [
+      "Before looking for the middle, what should you do to the list?",
+      "With an even number of values, how many values sit in the middle?"
+    ],
+    "wrong_reasons": {
+      "35": "Used only the lower of the two middle values instead of averaging both",
+      "45": "Used only the upper of the two middle values instead of averaging both",
+      "50": "Averaged the two middle values of the unsorted list (30 and 70)"
+    },
+    "check": "from sympy import *\nimport statistics\nresult=statistics.median([20,45,30,70,35,50])"
+  },
+  {
+    "id": "psda-one-var-data-003",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The table shows the high temperature, in degrees Fahrenheit (°F), in a town on each day of one week. What is the range of the high temperatures for the week?",
+    "table": {
+      "headers": [
+        "Day",
+        "High temperature (°F)"
+      ],
+      "rows": [
+        [
+          "Monday",
+          "48"
+        ],
+        [
+          "Tuesday",
+          "55"
+        ],
+        [
+          "Wednesday",
+          "41"
+        ],
+        [
+          "Thursday",
+          "62"
+        ],
+        [
+          "Friday",
+          "59"
+        ],
+        [
+          "Saturday",
+          "50"
+        ],
+        [
+          "Sunday",
+          "44"
+        ]
+      ]
+    },
+    "choices": [
+      "14",
+      "18",
+      "21",
+      "62"
+    ],
+    "answer": "21",
+    "explanation": [
+      "The highest temperature is 62°F (Thursday).",
+      "The lowest temperature is 41°F (Wednesday).",
+      "Range = 62 − 41 = 21°F."
+    ],
+    "hints": [
+      "Which two values in the table determine the range?",
+      "Is the range found by adding or subtracting those values?"
+    ],
+    "wrong_reasons": {
+      "14": "Subtracted the first day's temperature (48) from the maximum instead of the minimum",
+      "18": "Used the second-highest temperature (59) instead of the highest",
+      "62": "Gave the maximum temperature instead of the difference between maximum and minimum"
+    },
+    "check": "from sympy import *\nt=[48,55,41,62,59,50,44]\nresult=max(t)-min(t)"
+  },
+  {
+    "id": "psda-one-var-data-004",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A delivery driver loaded 8 packages into a van. The mean weight of the packages is 4.5 pounds. What is the total weight, in pounds, of the 8 packages?",
+    "answer": "36",
+    "accept": [
+      "36.0"
+    ],
+    "explanation": [
+      "Mean = total ÷ number of items, so total = mean × number of items.",
+      "Total = 4.5 × 8 = 36.",
+      "The packages weigh 36 pounds in all."
+    ],
+    "hints": [
+      "How is the mean related to the total and the number of packages?",
+      "If you know the mean and the count, how can you undo the division?"
+    ],
+    "check": "from sympy import *\nresult=Rational(9,2)*8"
+  },
+  {
+    "id": "psda-one-var-data-005",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A shoe store recorded the sizes of the running shoes it sold on Saturday. The table shows how many pairs of each size were sold. What is the mode of the shoe sizes sold?",
+    "table": {
+      "headers": [
+        "Shoe size",
+        "Number of pairs sold"
+      ],
+      "rows": [
+        [
+          "7",
+          "3"
+        ],
+        [
+          "8",
+          "6"
+        ],
+        [
+          "9",
+          "8"
+        ],
+        [
+          "10",
+          "5"
+        ],
+        [
+          "11",
+          "2"
+        ]
+      ]
+    },
+    "choices": [
+      "8",
+      "9",
+      "11",
+      "24"
+    ],
+    "answer": "9",
+    "explanation": [
+      "The mode is the value that occurs most often.",
+      "The largest frequency in the table is 8 pairs.",
+      "That frequency belongs to size 9, so the mode is 9."
+    ],
+    "hints": [
+      "Is the mode a value of the data or a count of how many times it occurs?",
+      "Which row of the table has the largest number of pairs?"
+    ],
+    "wrong_reasons": {
+      "8": "Gave the largest frequency (8 pairs) instead of the shoe size with that frequency",
+      "11": "Chose the largest shoe size rather than the most common one",
+      "24": "Gave the total number of pairs sold"
+    },
+    "check": "from sympy import *\nf={7:3,8:6,9:8,10:5,11:2}\nresult=max(f,key=f.get)"
+  },
+  {
+    "id": "psda-one-var-data-006",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A family's mean electric bill for the first 4 months of the year was $80. The bill for the fifth month was $90. What was the family's mean electric bill for all 5 months?",
+    "choices": [
+      "$82",
+      "$85",
+      "$102.50",
+      "$410"
+    ],
+    "answer": "$82",
+    "explanation": [
+      "The total for the first 4 months is 4 × 80 = $320.",
+      "Add the fifth bill: 320 + 90 = $410.",
+      "Divide by 5 months: 410 ÷ 5 = $82."
+    ],
+    "hints": [
+      "What was the total amount paid in the first 4 months?",
+      "After adding the fifth bill, how many months are you averaging over?"
+    ],
+    "wrong_reasons": {
+      "$85": "Averaged the old mean and the new bill as if they carried equal weight",
+      "$102.50": "Divided the new total by 4 instead of 5",
+      "$410": "Found the total of all 5 bills but did not divide"
+    },
+    "check": "from sympy import *\nresult=Rational(4*80+90,5)"
+  },
+  {
+    "id": "psda-one-var-data-007",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A small bakery has 6 employees, including the owner. Five of the employees each earn between $32,000 and $38,000 per year, and the owner earns $150,000 per year. Which measure would best describe the salary of a typical employee at the bakery?",
+    "choices": [
+      "The median, because it is not strongly affected by the owner's much larger salary",
+      "The mean, because it uses every salary in the data set",
+      "The range, because it includes both the highest and lowest salaries",
+      "The mean, because the owner's salary pulls it toward the typical salary"
+    ],
+    "answer": "The median, because it is not strongly affected by the owner's much larger salary",
+    "explanation": [
+      "The owner's salary is far larger than all the others, so it is an outlier.",
+      "An outlier pulls the mean toward it, so the mean would be well above what most employees earn.",
+      "The median depends only on the middle values, so it stays close to the typical salary."
+    ],
+    "hints": [
+      "How does the owner's salary compare with the other five?",
+      "Which measure of center changes a lot when one very large value is included, and which barely changes?"
+    ],
+    "wrong_reasons": {
+      "The mean, because it uses every salary in the data set": "Believes the mean is always the best measure of center, ignoring the effect of an outlier",
+      "The range, because it includes both the highest and lowest salaries": "Confused a measure of spread with a measure of center",
+      "The mean, because the owner's salary pulls it toward the typical salary": "Misunderstands the direction an outlier pulls the mean: it pulls away from the typical value"
+    },
+    "check": null,
+    "check_note": "Conceptual item: choosing a measure of center in the presence of an outlier; no numeric answer to compute."
+  },
+  {
+    "id": "psda-one-var-data-008",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The numbers of pages read last week by the 9 members of a book club were 12, 30, 18, 25, 40, 22, 15, 33, and 28. What is the median number of pages read?",
+    "answer": "25",
+    "explanation": [
+      "Sort the values: 12, 15, 18, 22, 25, 28, 30, 33, 40.",
+      "With 9 values, the median is the 5th value.",
+      "The 5th value is 25."
+    ],
+    "hints": [
+      "What has to happen to the list before you can find its middle?",
+      "With 9 values, which position is exactly in the middle?"
+    ],
+    "check": "from sympy import *\nimport statistics\nresult=statistics.median([12,30,18,25,40,22,15,33,28])"
+  },
+  {
+    "id": "psda-one-var-data-009",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The table shows the number of goals a soccer team scored in each of its 10 games this season. What is the mean number of goals scored per game?",
+    "table": {
+      "headers": [
+        "Goals scored in a game",
+        "Number of games"
+      ],
+      "rows": [
+        [
+          "0",
+          "2"
+        ],
+        [
+          "1",
+          "3"
+        ],
+        [
+          "2",
+          "4"
+        ],
+        [
+          "3",
+          "1"
+        ]
+      ]
+    },
+    "choices": [
+      "1.4",
+      "1.5",
+      "2",
+      "3.5"
+    ],
+    "answer": "1.4",
+    "explanation": [
+      "Multiply each number of goals by its number of games: 0·2 + 1·3 + 2·4 + 3·1 = 0 + 3 + 8 + 3 = 14 goals.",
+      "There were 2 + 3 + 4 + 1 = 10 games.",
+      "Mean = 14 ÷ 10 = 1.4 goals per game."
+    ],
+    "hints": [
+      "How many total goals did the team score across all 10 games?",
+      "Should you divide by the number of rows in the table or by the number of games?"
+    ],
+    "wrong_reasons": {
+      "1.5": "Averaged the goal values 0, 1, 2, 3 without weighting by the number of games",
+      "2": "Gave the mode (most common number of goals) instead of the mean",
+      "3.5": "Divided the 14 total goals by the 4 rows of the table instead of the 10 games"
+    },
+    "check": "from sympy import *\nf={0:2,1:3,2:4,3:1}\nresult=Rational(sum(k*v for k,v in f.items()),sum(f.values()))"
+  },
+  {
+    "id": "psda-one-var-data-010",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Darnell's scores on five quizzes were 78, 85, 92, x, and 88. The mean of his five scores is 86. What is the value of x?",
+    "choices": [
+      "1",
+      "85.75",
+      "86",
+      "87"
+    ],
+    "answer": "87",
+    "explanation": [
+      "The five scores must total 5 × 86 = 430.",
+      "The four known scores total 78 + 85 + 92 + 88 = 343.",
+      "x = 430 − 343 = 87."
+    ],
+    "hints": [
+      "If the mean of five scores is 86, what must the five scores add up to?",
+      "How much of that total is already accounted for by the four known scores?"
+    ],
+    "wrong_reasons": {
+      "1": "Multiplied the mean by 4 instead of 5 to get the total (344 − 343)",
+      "85.75": "Found the mean of the four known scores instead of solving for x",
+      "86": "Assumed the missing score must equal the mean"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq((78+85+92+x+88)/5,86),x)[0]"
+  },
+  {
+    "id": "psda-one-var-data-011",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Two machines fill boxes of cereal. A sample of 5 boxes from each machine had the following weights, in grams. Machine A: 496, 504, 488, 512, 500. Machine B: 499, 501, 498, 502, 500. Which statement correctly compares the two samples?",
+    "choices": [
+      "The means are equal, and the standard deviation of Machine B's weights is greater.",
+      "The means are equal, and the standard deviations are equal.",
+      "The mean of Machine A's weights is greater, and its standard deviation is greater.",
+      "The means are equal, and the standard deviation of Machine A's weights is greater."
+    ],
+    "answer": "The means are equal, and the standard deviation of Machine A's weights is greater.",
+    "explanation": [
+      "Machine A: total 2,500, so the mean is 500 g. Machine B: total 2,500, so the mean is 500 g.",
+      "Machine A's weights are as far as 12 g from 500; Machine B's are at most 2 g from 500.",
+      "Standard deviation measures typical distance from the mean, so Machine A's is greater."
+    ],
+    "hints": [
+      "What is the mean of each sample?",
+      "For each machine, how far do the weights tend to be from that machine's mean?"
+    ],
+    "wrong_reasons": {
+      "The means are equal, and the standard deviation of Machine B's weights is greater.": "Reversed the meaning of standard deviation, thinking values clustered tightly have more spread",
+      "The means are equal, and the standard deviations are equal.": "Assumed that equal means imply equal spread",
+      "The mean of Machine A's weights is greater, and its standard deviation is greater.": "Thought the sample containing the largest weight (512) must have the larger mean"
+    },
+    "check": "from sympy import *\nimport statistics as st\na=[496,504,488,512,500]\nb=[499,501,498,502,500]\nA=\"The means are equal, and the standard deviation of Machine A's weights is greater.\"\nB=\"The means are equal, and the standard deviation of Machine B's weights is greater.\"\nC='The means are equal, and the standard deviations are equal.'\nD=\"The mean of Machine A's weights is greater, and its standard deviation is greater.\"\nsa,sb=st.pstdev(a),st.pstdev(b)\nif st.mean(a)==st.mean(b):\n    result=A if sa>sb else (B if sb>sa else C)\nelse:\n    result=D"
+  },
+  {
+    "id": "psda-one-var-data-012",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A teacher recorded the scores of 20 students on a test, and the mean score was 74. Later, the teacher discovered that one score had been entered as 58 when it should have been 98. After the score is corrected, what is the mean of the 20 scores?",
+    "answer": "76",
+    "accept": [
+      "76.0"
+    ],
+    "explanation": [
+      "The original total is 20 × 74 = 1,480.",
+      "Correcting the score adds 98 − 58 = 40 points, so the new total is 1,520.",
+      "New mean = 1,520 ÷ 20 = 76."
+    ],
+    "hints": [
+      "How does fixing one score change the total of all 20 scores?",
+      "How does a change in the total affect the mean when the number of scores stays at 20?"
+    ],
+    "check": "from sympy import *\nresult=Rational(20*74-58+98,20)"
+  },
+  {
+    "id": "psda-one-var-data-013",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A librarian asked 25 students how many books they read over the summer. The results are shown in the table. What is the median number of books read?",
+    "table": {
+      "headers": [
+        "Number of books",
+        "Number of students"
+      ],
+      "rows": [
+        [
+          "0",
+          "2"
+        ],
+        [
+          "1",
+          "4"
+        ],
+        [
+          "2",
+          "5"
+        ],
+        [
+          "3",
+          "6"
+        ],
+        [
+          "4",
+          "8"
+        ]
+      ]
+    },
+    "choices": [
+      "2",
+      "2.56",
+      "3",
+      "4"
+    ],
+    "answer": "3",
+    "explanation": [
+      "There are 2 + 4 + 5 + 6 + 8 = 25 students, so the median is the 13th value in order.",
+      "Running totals: 0 books covers students 1–2, 1 book covers 3–6, 2 books covers 7–11, 3 books covers 12–17.",
+      "The 13th student read 3 books, so the median is 3."
+    ],
+    "hints": [
+      "With 25 students, which position in the ordered list is the middle one?",
+      "If you count students from the 0-book row upward, in which row does that position fall?"
+    ],
+    "wrong_reasons": {
+      "2": "Found the middle of the listed values 0, 1, 2, 3, 4 instead of the middle student",
+      "2.56": "Calculated the mean (64 ÷ 25) instead of the median",
+      "4": "Gave the mode, the value with the highest frequency"
+    },
+    "check": "from sympy import *\nf=[(0,2),(1,4),(2,5),(3,6),(4,8)]\ndata=[v for v,c in f for _ in range(c)]\nimport statistics\nresult=statistics.median(data)"
+  },
+  {
+    "id": "psda-one-var-data-014",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A store has 12 employees. Every employee receives a raise of $2.00 per hour. Which statement describes how the raise affects the mean and the standard deviation of the employees' hourly wages?",
+    "choices": [
+      "The mean increases by $2.00, and the standard deviation does not change.",
+      "The mean and the standard deviation both increase by $2.00.",
+      "The mean does not change, and the standard deviation increases by $2.00.",
+      "The mean increases by $24.00, and the standard deviation does not change."
+    ],
+    "answer": "The mean increases by $2.00, and the standard deviation does not change.",
+    "explanation": [
+      "Adding $2.00 to every wage adds $24.00 to the total, and 24 ÷ 12 = 2, so the mean rises by $2.00.",
+      "Every wage moves up by the same amount, so the distance of each wage from the mean is unchanged.",
+      "Because the distances from the mean are unchanged, the standard deviation is unchanged."
+    ],
+    "hints": [
+      "If every value goes up by the same amount, what happens to the center of the data?",
+      "Does the distance between any wage and the mean change when everyone gets the same raise?"
+    ],
+    "wrong_reasons": {
+      "The mean and the standard deviation both increase by $2.00.": "Thought adding a constant shifts the spread as well as the center",
+      "The mean does not change, and the standard deviation increases by $2.00.": "Mixed up which measure describes center and which describes spread",
+      "The mean increases by $24.00, and the standard deviation does not change.": "Gave the increase in the total of all wages (12 × $2.00) instead of the mean"
+    },
+    "check": null,
+    "check_note": "Conceptual item: a general property of adding a constant to every value (shift changes the mean, not the standard deviation); it holds for any data set, so there is no single computation to check."
+  },
+  {
+    "id": "psda-one-var-data-015",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A chemistry teacher has two sections. The 12 students in the first section had a mean lab score of 80, and the 18 students in the second section had a mean lab score of 90. What is the mean lab score of all 30 students?",
+    "answer": "86",
+    "accept": [
+      "86.0"
+    ],
+    "explanation": [
+      "Total for the first section: 12 × 80 = 960.",
+      "Total for the second section: 18 × 90 = 1,620.",
+      "Combined mean = (960 + 1,620) ÷ 30 = 2,580 ÷ 30 = 86."
+    ],
+    "hints": [
+      "Why might the answer not simply be halfway between 80 and 90?",
+      "What is the total of all 30 scores?"
+    ],
+    "check": "from sympy import *\nresult=Rational(12*80+18*90,30)"
+  },
+  {
+    "id": "psda-one-var-data-016",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Over one week, Jordan recorded the number of text messages he sent each day: 18, 122, 15, 20, 12, 22, and 15. By how much does the mean of these numbers exceed the median?",
+    "choices": [
+      "12",
+      "14",
+      "17",
+      "110"
+    ],
+    "answer": "14",
+    "explanation": [
+      "Total: 18 + 122 + 15 + 20 + 12 + 22 + 15 = 224, so the mean is 224 ÷ 7 = 32.",
+      "Sorted: 12, 15, 15, 18, 20, 22, 122. The median is the 4th value, 18.",
+      "32 − 18 = 14."
+    ],
+    "hints": [
+      "What has to be done to the list before the median can be read off?",
+      "Which value in the list is pulling the mean away from the middle of the data?"
+    ],
+    "wrong_reasons": {
+      "12": "Took the middle value of the unsorted list (20) as the median",
+      "17": "Subtracted the mode (15) instead of the median",
+      "110": "Found the range (122 − 12) instead of comparing mean and median"
+    },
+    "check": "from sympy import *\nimport statistics as st\nd=[18,122,15,20,12,22,15]\nresult=Rational(sum(d),7)-st.median(d)"
+  },
+  {
+    "id": "psda-one-var-data-017",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A grocer has 6 crates of oranges with a mean weight of 15 kilograms. After one crate is shipped out, the mean weight of the remaining 5 crates is 13 kilograms. What was the weight, in kilograms, of the crate that was shipped out?",
+    "answer": "25",
+    "accept": [
+      "25.0"
+    ],
+    "explanation": [
+      "Original total: 6 × 15 = 90 kg.",
+      "Remaining total: 5 × 13 = 65 kg.",
+      "Shipped crate: 90 − 65 = 25 kg."
+    ],
+    "hints": [
+      "What was the total weight of all 6 crates?",
+      "What is the total weight of the 5 crates that are left?"
+    ],
+    "check": "from sympy import *\nresult=6*15-5*13"
+  },
+  {
+    "id": "psda-one-var-data-018",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The mean height of 10 tomato plants in a garden is 30 centimeters. Two plants, which are 45 centimeters and 39 centimeters tall, are removed. What is the mean height, in centimeters, of the remaining 8 plants?",
+    "choices": [
+      "21.6",
+      "24",
+      "27",
+      "30"
+    ],
+    "answer": "27",
+    "explanation": [
+      "Total height of all 10 plants: 10 × 30 = 300 cm.",
+      "Removing the two plants takes away 45 + 39 = 84 cm, leaving 300 − 84 = 216 cm.",
+      "Mean of the 8 remaining plants: 216 ÷ 8 = 27 cm."
+    ],
+    "hints": [
+      "What is the combined height of the 10 plants?",
+      "After two plants are removed, how many plants share the remaining total?"
+    ],
+    "wrong_reasons": {
+      "21.6": "Divided the remaining total of 216 by 10 instead of by the 8 plants that are left",
+      "24": "Divided the remaining total of 216 by 9, as if only one plant had been removed",
+      "30": "Thought removing plants would not change the mean"
+    },
+    "check": "from sympy import *\nresult=Rational(10*30-(45+39),10-2)"
+  },
+  {
+    "id": "psda-one-var-data-019",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Four running groups each have 5 members. The number of miles each member ran last month is listed for each group. Group A: 20, 40, 60, 80, 100. Group B: 20, 20, 60, 100, 100. Group C: 50, 55, 60, 65, 70. Group D: 20, 60, 60, 60, 100. Which group's data has the greatest standard deviation?",
+    "choices": [
+      "Group A",
+      "Group C",
+      "Group D",
+      "Group B"
+    ],
+    "answer": "Group B",
+    "explanation": [
+      "Every group has a mean of 60 miles.",
+      "Groups A, B, and D all have a range of 80, so compare how far the values typically are from 60.",
+      "In Group B, four of the five values are 40 miles from the mean; in A only two are, and in D only two are.",
+      "So Group B's values are, on average, farthest from the mean, giving the greatest standard deviation."
+    ],
+    "hints": [
+      "What is the mean of each group?",
+      "Several groups have the same range. For each group, how many of the values are far from the mean?"
+    ],
+    "wrong_reasons": {
+      "Group A": "Thought evenly spaced values have the most spread, without comparing distances from the mean",
+      "Group C": "Confused greatest with least standard deviation, or looked at the size of the values rather than their spread",
+      "Group D": "Thought the range alone determines standard deviation, ignoring that three values sit at the mean"
+    },
+    "check": "from sympy import *\nimport statistics as st\ng={'Group A':[20,40,60,80,100],'Group B':[20,20,60,100,100],'Group C':[50,55,60,65,70],'Group D':[20,60,60,60,100]}\nresult=max(g,key=lambda k: st.pstdev(g[k]))"
+  },
+  {
+    "id": "psda-one-var-data-020",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In a game, each player's raw score is multiplied by 3, and then 4 points are subtracted to give the final score. For a group of players, the raw scores have a mean of 20 and a standard deviation of 5. What are the mean and standard deviation of the final scores?",
+    "choices": [
+      "Mean = 56; standard deviation = 11",
+      "Mean = 60; standard deviation = 15",
+      "Mean = 56; standard deviation = 15",
+      "Mean = 56; standard deviation = 5"
+    ],
+    "answer": "Mean = 56; standard deviation = 15",
+    "explanation": [
+      "Multiplying every score by 3 multiplies the mean by 3; subtracting 4 then lowers it by 4: 3 · 20 − 4 = 56.",
+      "Multiplying every score by 3 triples every distance from the mean, so the standard deviation becomes 3 · 5 = 15.",
+      "Subtracting 4 from every score shifts all values equally and does not change distances, so the standard deviation stays 15."
+    ],
+    "hints": [
+      "What happens to the distances between scores and the mean when every score is tripled?",
+      "Does subtracting the same number from every score change how spread out the scores are?"
+    ],
+    "wrong_reasons": {
+      "Mean = 56; standard deviation = 11": "Applied the subtraction of 4 to the standard deviation as well as to the mean",
+      "Mean = 60; standard deviation = 15": "Forgot to subtract 4 when finding the new mean",
+      "Mean = 56; standard deviation = 5": "Thought the standard deviation is unchanged by any transformation"
+    },
+    "check": "from sympy import *\nimport statistics as st\nraw=[15,25]*3\nfin=[3*x-4 for x in raw]\nm=st.mean(raw); s=st.pstdev(raw)\nassert m==20 and s==5\nresult='Mean = %d; standard deviation = %d'%(st.mean(fin),st.pstdev(fin))"
+  },
+  {
+    "id": "psda-one-var-data-021",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A data set consists of the seven values 5, 8, 9, 11, 12, 15, and x. When x is removed from the data set, the mean of the remaining values is 4 less than the mean of all seven values. What is the value of x?",
+    "choices": [
+      "14",
+      "28",
+      "34",
+      "38"
+    ],
+    "answer": "38",
+    "explanation": [
+      "The six known values total 60, so their mean is 10.",
+      "The mean of all seven values must therefore be 10 + 4 = 14.",
+      "The seven values total 7 × 14 = 98, so x = 98 − 60 = 38."
+    ],
+    "hints": [
+      "What is the mean of the six values that remain after x is removed?",
+      "Then what must the mean of all seven values be, and what total does that require?"
+    ],
+    "wrong_reasons": {
+      "14": "Gave the mean of all seven values instead of x",
+      "28": "Found how far x is above the mean of the other six values (7 · 4 = 28) but did not add that mean of 10",
+      "34": "Multiplied the difference of 4 by 6 instead of 7 (x = 10 + 6 · 4)"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nk=[5,8,9,11,12,15]\nresult=solve(Eq((sum(k)+x)/7-Rational(sum(k),6),4),x)[0]"
+  },
+  {
+    "id": "psda-one-var-data-022",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Team A has 10 members, and their mean score on a puzzle challenge is 72. Team B's mean score on the same challenge is 84. The mean score of all members of both teams combined is 79. How many members does Team B have?",
+    "answer": "14",
+    "explanation": [
+      "Let b be the number of members on Team B. The combined total is 72 · 10 + 84b.",
+      "The combined mean is 79, so 720 + 84b = 79(10 + b).",
+      "720 + 84b = 790 + 79b, so 5b = 70 and b = 14."
+    ],
+    "hints": [
+      "How can you write the total score of both teams using an unknown for Team B's size?",
+      "The combined mean is closer to 84 than to 72. What does that suggest about which team is larger?"
+    ],
+    "check": "from sympy import *\nb=symbols('b')\nresult=solve(Eq((72*10+84*b)/(10+b),79),b)[0]"
+  },
+  {
+    "id": "psda-one-var-data-023",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A food truck recorded the number of customers it served on each of 9 days: 31, 44, 38, 52, 40, 35, 47, 29, and 43. The owner then realized the greatest value, 52, was recorded incorrectly and should have been 70. When 52 is replaced by 70, which statement is true?",
+    "choices": [
+      "The mean increases by 2, and the median does not change.",
+      "The mean increases by 18, and the median does not change.",
+      "The mean and the median both increase by 2.",
+      "The mean increases by 1.8, and the median does not change."
+    ],
+    "answer": "The mean increases by 2, and the median does not change.",
+    "explanation": [
+      "Replacing 52 with 70 increases the total by 18, so the mean increases by 18 ÷ 9 = 2.",
+      "Sorted, the data are 29, 31, 35, 38, 40, 43, 44, 47, 52; the median is the 5th value, 40.",
+      "The greatest value stays the greatest, so the 5th value is still 40 and the median does not change."
+    ],
+    "hints": [
+      "By how much does the total of the 9 values change?",
+      "Does changing the largest value change which number sits in the middle of the ordered list?"
+    ],
+    "wrong_reasons": {
+      "The mean increases by 18, and the median does not change.": "Added the full change of 18 to the mean without dividing by the 9 days",
+      "The mean and the median both increase by 2.": "Assumed the median shifts along with the mean",
+      "The mean increases by 1.8, and the median does not change.": "Divided the change of 18 by 10 instead of by the 9 days"
+    },
+    "check": "from sympy import *\nimport statistics as st\nd=[31,44,38,52,40,35,47,29,43]\nn=[70 if v==52 else v for v in d]\ndm=Rational(sum(n)-sum(d),len(d)); dmed=st.median(n)-st.median(d)\nopts={'The mean increases by 2, and the median does not change.':(2,0),\n'The mean increases by 18, and the median does not change.':(18,0),\n'The mean and the median both increase by 2.':(2,2),\n'The mean increases by 1.8, and the median does not change.':(Rational(9,5),0)}\nmatch=[k for k,(a,b) in opts.items() if dm==a and dmed==b]\nassert len(match)==1\nresult=match[0]"
+  },
+  {
+    "id": "psda-one-var-data-024",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A health class surveyed 40 students about how many hours they slept on a school night. The results are shown in the table. Which statement about the data is true?",
+    "table": {
+      "headers": [
+        "Hours of sleep",
+        "Number of students"
+      ],
+      "rows": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "6",
+          "8"
+        ],
+        [
+          "7",
+          "14"
+        ],
+        [
+          "8",
+          "10"
+        ],
+        [
+          "9",
+          "4"
+        ]
+      ]
+    },
+    "choices": [
+      "The mean is greater than the median.",
+      "The median is greater than the mean.",
+      "The mean and the median are equal.",
+      "The mode is greater than both the mean and the median."
+    ],
+    "answer": "The mean is greater than the median.",
+    "explanation": [
+      "Total hours: 5·4 + 6·8 + 7·14 + 8·10 + 9·4 = 20 + 48 + 98 + 80 + 36 = 282, so the mean is 282 ÷ 40 = 7.05.",
+      "The median is the mean of the 20th and 21st values. Running totals are 4, 12, 26, so both are 7 hours.",
+      "Since 7.05 > 7, the mean is greater than the median. The mode is also 7, so it is not greater than the mean."
+    ],
+    "hints": [
+      "With 40 students, which two positions determine the median?",
+      "The frequencies are not symmetric around 7. Is there more weight above 7 or below 7, and how would that affect the mean?"
+    ],
+    "wrong_reasons": {
+      "The median is greater than the mean.": "Assumed the median is larger without computing, or miscounted the values below 7",
+      "The mean and the median are equal.": "Saw that the most common and middle values are both 7 and assumed the mean is also exactly 7",
+      "The mode is greater than both the mean and the median.": "Thought the value with the greatest frequency must be the largest measure of center"
+    },
+    "check": "from sympy import *\nimport statistics as st\nf=[(5,4),(6,8),(7,14),(8,10),(9,4)]\nd=[v for v,c in f for _ in range(c)]\nm=Rational(sum(d),len(d)); md=st.median(d); mo=st.mode(d)\nif mo>m and mo>md: result='The mode is greater than both the mean and the median.'\nelif m>md: result='The mean is greater than the median.'\nelif md>m: result='The median is greater than the mean.'\nelse: result='The mean and the median are equal.'"
+  },
+  {
+    "id": "psda-one-var-data-025",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The test scores of the students in a class have a mean of 75 and a standard deviation of 8. A new student joins the class and scores exactly 75 on the test. When this score is added to the data set, which statement is true?",
+    "choices": [
+      "The mean stays the same, and the standard deviation stays the same.",
+      "The mean stays the same, and the standard deviation increases.",
+      "The mean increases, and the standard deviation decreases.",
+      "The mean stays the same, and the standard deviation decreases."
+    ],
+    "answer": "The mean stays the same, and the standard deviation decreases.",
+    "explanation": [
+      "Adding a value equal to the mean keeps the mean at 75.",
+      "The new score is 0 points from the mean, which is less than the typical distance of 8.",
+      "Including a value with distance 0 lowers the typical distance from the mean, so the standard deviation decreases."
+    ],
+    "hints": [
+      "If you add a value equal to the current mean, does the balance point of the data move?",
+      "How far is the new score from the mean, compared with how far scores typically are?"
+    ],
+    "wrong_reasons": {
+      "The mean stays the same, and the standard deviation stays the same.": "Thought a value equal to the mean adds nothing to the spread, without noticing it lowers the average distance",
+      "The mean stays the same, and the standard deviation increases.": "Thought adding any new value always increases the spread",
+      "The mean increases, and the standard deviation decreases.": "Thought adding any value makes the mean go up"
+    },
+    "check": null,
+    "check_note": "Conceptual item: general effect of adding a value equal to the mean (mean unchanged, standard deviation decreases); holds for any data set with nonzero standard deviation, so there is no single computation to check."
+  },
+  {
+    "id": "psda-one-var-data-026",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A list of five positive integers has a mean of 10 and a median of 12. The only mode of the list is 14. What is the greatest possible value of the smallest integer in the list?",
+    "answer": "4",
+    "explanation": [
+      "The five integers total 5 · 10 = 50. In order, they are a ≤ b ≤ 12 ≤ d ≤ e.",
+      "Only d and e can equal 14, and 14 must appear more often than any other value, so d = e = 14.",
+      "Then a + b = 50 − 12 − 28 = 10. If a = b = 5, then 5 would tie 14 as a mode, so a < b.",
+      "The largest a with a < b and a + b = 10 is a = 4 (with b = 6)."
+    ],
+    "hints": [
+      "What must the five integers add up to?",
+      "For 14 to be the only mode, how many times must it appear, and where in the ordered list can it go?",
+      "Once you know the two largest values, what is left for the two smallest, and what rule stops them from being equal?"
+    ],
+    "check": "from sympy import *\nfrom itertools import combinations_with_replacement as cwr\nfrom collections import Counter\nbest=0\nfor t in cwr(range(1,51),5):\n    if sum(t)!=50 or t[2]!=12: continue\n    c=Counter(t); top=max(c.values())\n    if c[14]==top and list(c.values()).count(top)==1:\n        best=max(best,t[0])\nresult=best"
+  },
+  {
+    "id": "psda-one-var-data-027",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A list of seven different positive integers has a mean of 20 and a median of 15. What is the greatest possible value of the largest integer in the list?",
+    "choices": [
+      "86",
+      "89",
+      "92",
+      "125"
+    ],
+    "answer": "86",
+    "explanation": [
+      "The seven integers total 7 · 20 = 140.",
+      "To make the largest as big as possible, make the others as small as possible. The three below 15 must be different positive integers, at least 1, 2, and 3.",
+      "The middle value is 15, and the two values just above it must be different and greater than 15: at least 16 and 17.",
+      "Largest = 140 − (1 + 2 + 3 + 15 + 16 + 17) = 140 − 54 = 86."
+    ],
+    "hints": [
+      "What is the total of the seven integers?",
+      "To make one value as large as possible, what should you do with the other six?",
+      "What restrictions do 'different' and 'median of 15' place on the values above the median?"
+    ],
+    "wrong_reasons": {
+      "89": "Ignored that the integers must be different above the median, using 15 and 15 instead of 16 and 17 (140 − (1 + 2 + 3 + 15 + 15 + 15) = 89)",
+      "92": "Ignored the 'different' condition entirely, using 1, 1, 1 below and 15, 15 above the median",
+      "125": "Subtracted only the median from the total, forgetting the other five values"
+    },
+    "check": "from sympy import *\nbest=0\nfrom itertools import combinations\nfor low in combinations(range(1,15),3):\n    for hi in combinations(range(16,140),2):\n        g=140-sum(low)-15-sum(hi)\n        if g>max(hi): best=max(best,g)\n        else: break\nresult=best"
+  }
+]

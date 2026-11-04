@@ -113,9 +113,9 @@
     "stem": "Which ordered pair (x, y) is a solution to the system of equations below?\n\nx + 2y = 8\n3x − y = 3",
     "choices": [
       "(1, 0)",
-      "(2, 3)",
       "(3, 2)",
-      "(4, 2)"
+      "(4, 2)",
+      "(2, 3)"
     ],
     "answer": "(2, 3)",
     "explanation": [
@@ -210,7 +210,7 @@
       "Exactly two": "Counted one solution per equation",
       "Infinitely many": "Saw the same slope and assumed the lines are the same line, ignoring the different y-intercepts"
     },
-    "check": "from sympy import *\nx,y=symbols('x y')\ns=linsolve([y-2*x-5,y-2*x+1],[x,y])\nresult={0:'Zero',1:'Exactly one'}.get(len(s),'Infinitely many') if s.is_FiniteSet or s==S.EmptySet else 'Infinitely many'"
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=linsolve([y-2*x-5,y-2*x+1],[x,y])\nif s==S.EmptySet:\n    result='Zero'\nelif any(e.free_symbols for e in list(s)[0]):\n    result='Infinitely many'\nelse:\n    result='Exactly one'"
   },
   {
     "id": "alg-systems-009",
@@ -324,10 +324,10 @@
     "type": "mc",
     "stem": "Which of the following systems of equations has infinitely many solutions?",
     "choices": [
-      "2x + 3y = 6 and 4x + 6y = 12",
       "2x + 3y = 6 and 4x + 6y = 6",
       "2x + 3y = 6 and 3x + 2y = 6",
-      "2x + 3y = 6 and 2x − 3y = 6"
+      "2x + 3y = 6 and 2x − 3y = 6",
+      "2x + 3y = 6 and 4x + 6y = 12"
     ],
     "answer": "2x + 3y = 6 and 4x + 6y = 12",
     "explanation": [
@@ -456,7 +456,7 @@
       "30": "Assumed equal amounts of each solution",
       "40": "Found the amount of the 25% solution instead"
     },
-    "check": "from sympy import *\na,b=symbols('a b')\nresult=solve([a+b-60,Rational(1,10)*a+Rational(1,4)*b-12],[a,b])[a]"
+    "check": "from sympy import *\na,b=symbols('a b')\nresult=solve([a+b-60,Rational(10,100)*a+Rational(25,100)*b-Rational(20,100)*60],[a,b])[a]"
   },
   {
     "id": "alg-systems-017",
@@ -514,9 +514,9 @@
     "stem": "ax + 3y = 7\n4x + 6y = b\n\nIn the system of equations above, a and b are constants. If the system has infinitely many solutions, what is the value of a + b?",
     "choices": [
       "9",
+      "23/2",
       "14",
-      "16",
-      "23/2"
+      "16"
     ],
     "answer": "16",
     "explanation": [
@@ -561,10 +561,10 @@
     "type": "mc",
     "stem": "kx + 2y = 6\n8x + ky = 12\n\nIn the system of equations above, k is a constant. For which value of k does the system have no solution?",
     "choices": [
-      "−4",
       "0",
       "4",
-      "−4 or 4"
+      "−4 or 4",
+      "−4"
     ],
     "answer": "−4",
     "explanation": [
@@ -618,18 +618,19 @@
     "skill_id": "alg-systems",
     "difficulty": 3,
     "type": "spr",
-    "stem": "7x + 3y = 41\n3x + 7y = 9\n\nIf (x, y) is the solution to the system of equations above, what is the value of x − y?",
-    "answer": "8",
+    "stem": "x + 3y = 11\n2x − y = 5\n\nIf (x, y) is the solution to the system of equations above, what is the value of 4x + 5y?",
+    "answer": "27",
     "explanation": [
-      "Subtract the second equation from the first: (7x − 3x) + (3y − 7y) = 41 − 9.",
-      "That gives 4x − 4y = 32.",
-      "Divide by 4: x − y = 8."
+      "Look for numbers m and n so that m(x + 3y) + n(2x − y) = 4x + 5y.",
+      "Matching the x-terms gives m + 2n = 4, and matching the y-terms gives 3m − n = 5, so m = 2 and n = 1.",
+      "So 4x + 5y = 2(x + 3y) + (2x − y) = 2(11) + 5 = 27.",
+      "(Check: the solution is x = 26/7 and y = 17/7, and 4(26/7) + 5(17/7) = 189/7 = 27.)"
     ],
     "hints": [
-      "The question asks for x − y, not x or y. Is there a way to combine the equations that produces x − y directly?",
-      "What happens to the coefficients if you subtract one equation from the other?"
+      "Solving for x and y gives messy fractions. Could some combination of the two equations produce 4x + 5y directly?",
+      "If you add m copies of the first equation to n copies of the second, what must be true about m and n for the x-terms to total 4x and the y-terms to total 5y?"
     ],
-    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([7*x+3*y-41,3*x+7*y-9],[x,y])\nresult=s[x]-s[y]"
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([x+3*y-11,2*x-y-5],[x,y])\nresult=4*s[x]+5*s[y]"
   },
   {
     "id": "alg-systems-024",
@@ -711,7 +712,7 @@
     ],
     "hints": [
       "Which variable would be easier to eliminate, and what would you multiply by to do it?",
-      "After finding x, be careful with signs: what do you get when you move 3 to the other side of 3 − 2y = 4?"
+      "After you find x, substitute it into one of the original equations. How will you keep track of the sign when you solve for y?"
     ],
     "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([3*x-2*y-4,5*x+4*y-3],[x,y])[y]"
   },

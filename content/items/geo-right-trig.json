@@ -1,0 +1,729 @@
+[
+  {
+    "id": "geo-right-trig-001",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A rectangular TV screen is 24 inches wide and 18 inches tall. TV sizes are given by the length of the screen's diagonal. What is the length of the diagonal, in inches?",
+    "choices": [
+      "30",
+      "6√7",
+      "42",
+      "900"
+    ],
+    "answer": "30",
+    "explanation": [
+      "The diagonal and two sides of the screen form a right triangle with the diagonal as the hypotenuse.",
+      "24² + 18² = 576 + 324 = 900.",
+      "√900 = 30, so the diagonal is 30 inches."
+    ],
+    "hints": [
+      "Which segment is the hypotenuse of the right triangle formed by the width, the height, and the diagonal?",
+      "After you add the squares of the legs, are you finished, or is there one more step?"
+    ],
+    "wrong_reasons": {
+      "6√7": "Subtracted the squares (24² − 18²) as if the diagonal were a leg",
+      "42": "Added the side lengths instead of using the Pythagorean theorem",
+      "900": "Forgot to take the square root of 24² + 18²"
+    },
+    "check": "from sympy import *\nresult=sqrt(24**2+18**2)"
+  },
+  {
+    "id": "geo-right-trig-002",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In triangle ABC, angle C is a right angle, AC = 8, BC = 15, and AB = 17. What is the value of sin A?",
+    "choices": [
+      "8/17",
+      "8/15",
+      "15/17",
+      "15/8"
+    ],
+    "answer": "15/17",
+    "explanation": [
+      "Sine is opposite side ÷ hypotenuse.",
+      "The side opposite angle A is BC = 15, and the hypotenuse is AB = 17.",
+      "sin A = 15/17."
+    ],
+    "hints": [
+      "Which side is across the triangle from angle A?",
+      "Which side is across from the right angle, and how does sine use it?"
+    ],
+    "wrong_reasons": {
+      "8/17": "Used the side adjacent to A (that is cos A)",
+      "8/15": "Used adjacent ÷ opposite (that is 1/tan A)",
+      "15/8": "Used opposite ÷ adjacent (that is tan A)"
+    },
+    "check": "from sympy import *\nfrom sympy.geometry import Point, Triangle\nC=Point(0,0); A=Point(8,0); B=Point(0,15)\nassert A.distance(B)==17\nresult=simplify(sin(Triangle(A,B,C).angles[A]))"
+  },
+  {
+    "id": "geo-right-trig-003",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In a right triangle, the two acute angles measure x° and y°. If sin x° = 0.6, what is the value of cos y°?",
+    "choices": [
+      "0.4",
+      "0.6",
+      "0.8",
+      "5/3"
+    ],
+    "answer": "0.6",
+    "explanation": [
+      "The acute angles of a right triangle add to 90°, so they are complementary.",
+      "The sine of an angle equals the cosine of its complement.",
+      "So cos y° = sin x° = 0.6."
+    ],
+    "hints": [
+      "What must x + y equal in a right triangle?",
+      "For angle y, which side is adjacent? How is that side related to angle x?"
+    ],
+    "wrong_reasons": {
+      "0.4": "Assumed sin x° and cos y° must add to 1",
+      "0.8": "Found cos x° instead of cos y°",
+      "5/3": "Took the reciprocal of 0.6"
+    },
+    "check": "from sympy import *\nx=asin(Rational(3,5))\ny=pi/2-x\nresult=cos(y)"
+  },
+  {
+    "id": "geo-right-trig-004",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A square tile is cut along one of its diagonals into two triangles. The cut is 8√2 centimeters long. What is the side length of the tile, in centimeters?",
+    "choices": [
+      "4",
+      "4√2",
+      "16",
+      "8"
+    ],
+    "answer": "8",
+    "explanation": [
+      "Each piece is a 45°-45°-90° triangle whose hypotenuse is the cut.",
+      "In a 45°-45°-90° triangle, the hypotenuse equals a leg times √2.",
+      "So leg × √2 = 8√2, and each leg is 8 cm."
+    ],
+    "hints": [
+      "What kind of triangle do you get when you cut a square along a diagonal?",
+      "In that kind of triangle, how is the hypotenuse related to a leg?"
+    ],
+    "wrong_reasons": {
+      "4": "Divided 8√2 by 2√2 instead of by √2",
+      "4√2": "Took half of the diagonal as the side length",
+      "16": "Multiplied the diagonal by √2 instead of dividing"
+    },
+    "check": "from sympy import *\ns=symbols('s',positive=True)\nresult=solve(Eq(2*s**2,(8*sqrt(2))**2),s)[0]"
+  },
+  {
+    "id": "geo-right-trig-005",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A 13-foot ladder leans against a vertical wall. The bottom of the ladder is on level ground, 5 feet from the base of the wall. How high up the wall does the top of the ladder reach, in feet?",
+    "choices": [
+      "8",
+      "12",
+      "18",
+      "√194"
+    ],
+    "answer": "12",
+    "explanation": [
+      "The wall, the ground, and the ladder form a right triangle; the ladder is the hypotenuse.",
+      "Height² + 5² = 13², so height² = 169 − 25 = 144.",
+      "Height = 12 feet."
+    ],
+    "hints": [
+      "Which of the three lengths is the hypotenuse here?",
+      "If you know the hypotenuse and one leg, how do you rearrange a² + b² = c²?"
+    ],
+    "wrong_reasons": {
+      "8": "Subtracted the lengths, 13 − 5, instead of their squares",
+      "18": "Added the lengths",
+      "√194": "Treated the ladder as a leg and added the squares, 13² + 5²"
+    },
+    "check": "from sympy import *\nh=symbols('h',positive=True)\nresult=solve(Eq(h**2+5**2,13**2),h)[0]"
+  },
+  {
+    "id": "geo-right-trig-006",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A loading ramp rises 7 feet over a horizontal distance of 24 feet, and the ramp's surface is 25 feet long. What is the tangent of the angle the ramp makes with the ground?",
+    "choices": [
+      "7/25",
+      "7/24",
+      "24/25",
+      "24/7"
+    ],
+    "answer": "7/24",
+    "explanation": [
+      "Tangent is opposite ÷ adjacent.",
+      "For the angle at the ground, the rise (7 ft) is opposite and the horizontal distance (24 ft) is adjacent.",
+      "tan = 7/24."
+    ],
+    "hints": [
+      "Which side is across from the angle at the bottom of the ramp?",
+      "Does tangent use the ramp's surface (the hypotenuse) at all?"
+    ],
+    "wrong_reasons": {
+      "7/25": "Used opposite ÷ hypotenuse (that is the sine)",
+      "24/25": "Used adjacent ÷ hypotenuse (that is the cosine)",
+      "24/7": "Used adjacent ÷ opposite, inverting the tangent"
+    },
+    "check": "from sympy import *\nfrom sympy.geometry import Point, Triangle\nG=Point(0,0); F=Point(24,0); T=Point(24,7)  # bottom of ramp, foot below top, top of ramp\nassert G.distance(T)==25\nresult=simplify(tan(Triangle(G,F,T).angles[G]))"
+  },
+  {
+    "id": "geo-right-trig-007",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A straight support cable runs from the top of a 6-meter vertical pole to a stake in level ground. The cable makes a 30° angle with the ground. How long is the cable, in meters?",
+    "answer": "12",
+    "explanation": [
+      "The pole, the ground, and the cable form a right triangle with the cable as the hypotenuse.",
+      "The pole is opposite the 30° angle, so sin 30° = 6 / cable.",
+      "sin 30° = 1/2, so cable = 6 ÷ (1/2) = 12 meters."
+    ],
+    "hints": [
+      "Which side of the triangle is the pole, relative to the 30° angle?",
+      "What do you know about the side opposite the 30° angle in a 30°-60°-90° triangle?"
+    ],
+    "check": "from sympy import *\nL=symbols('L',positive=True)\nresult=solve(Eq(sin(pi/6),6/L),L)[0]"
+  },
+  {
+    "id": "geo-right-trig-008",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In right triangle PQR, angle Q is the right angle, the hypotenuse PR is 26 units long, and cos P = 5/13. What is the length of PQ?",
+    "choices": [
+      "5",
+      "10",
+      "24",
+      "67.6"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Cosine is adjacent ÷ hypotenuse, and PQ is adjacent to angle P.",
+      "PQ / 26 = 5/13.",
+      "PQ = 26 × 5/13 = 10."
+    ],
+    "hints": [
+      "Which side is next to angle P but is not the hypotenuse?",
+      "If PQ ÷ 26 equals 5/13, what operation gets PQ by itself?"
+    ],
+    "wrong_reasons": {
+      "5": "Used the numerator of the ratio as the side length without scaling",
+      "24": "Found the other leg, QR, which is opposite angle P",
+      "67.6": "Divided 26 by 5/13 instead of multiplying"
+    },
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nresult=solve(Eq(x/26,Rational(5,13)),x)[0]"
+  },
+  {
+    "id": "geo-right-trig-009",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equal to sin 40°?",
+    "choices": [
+      "cos 50°",
+      "cos 40°",
+      "sin 50°",
+      "tan 50°"
+    ],
+    "answer": "cos 50°",
+    "explanation": [
+      "The sine of an angle equals the cosine of its complement.",
+      "The complement of 40° is 90° − 40° = 50°.",
+      "So sin 40° = cos 50°."
+    ],
+    "hints": [
+      "In a right triangle with a 40° angle, what is the other acute angle?",
+      "The side opposite one acute angle is adjacent to which other angle?"
+    ],
+    "wrong_reasons": {
+      "cos 40°": "Switched sine to cosine without changing the angle",
+      "sin 50°": "Changed the angle to its complement but kept sine",
+      "tan 50°": "Thought tangent of the complement equals sine"
+    },
+    "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0]\nresult=pick([('cos 40°',cos(rad(40))),('cos 50°',cos(rad(50))),('sin 50°',sin(rad(50))),('tan 50°',tan(rad(50)))], sin(rad(40)))"
+  },
+  {
+    "id": "geo-right-trig-010",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A surveyor stands on level ground 50 meters from the base of a building. The angle of elevation from the ground at her position to the top of the building is 38°. Which expression gives the height of the building, in meters?",
+    "choices": [
+      "50 sin 38°",
+      "50 cos 38°",
+      "50 tan 38°",
+      "50 / tan 38°"
+    ],
+    "answer": "50 tan 38°",
+    "explanation": [
+      "The ground distance (50 m) is adjacent to the 38° angle, and the height is opposite it.",
+      "tan 38° = height / 50.",
+      "Height = 50 tan 38°."
+    ],
+    "hints": [
+      "Relative to the 38° angle, is the 50-meter distance opposite, adjacent, or the hypotenuse?",
+      "Which trig ratio relates the opposite side and the adjacent side?"
+    ],
+    "wrong_reasons": {
+      "50 sin 38°": "Treated the 50-meter ground distance as the hypotenuse",
+      "50 cos 38°": "Treated 50 m as the hypotenuse and mixed up opposite and adjacent",
+      "50 / tan 38°": "Set up tan 38° = 50 / height, swapping opposite and adjacent"
+    },
+    "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0]\nh=symbols('h',positive=True)\n# top of building at (0,h), surveyor at (50,0): elevation angle is atan(h/50)\nH=nsolve(atan(h/50)-rad(38),h,40)\nresult=pick([('50 sin 38°',50*sin(rad(38))),('50 cos 38°',50*cos(rad(38))),('50 tan 38°',50*tan(rad(38))),('50 / tan 38°',50/tan(rad(38)))], H)"
+  },
+  {
+    "id": "geo-right-trig-011",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A rectangular garden has a diagonal path that is 13 meters long. The garden's length is 7 meters more than its width. What is the area of the garden, in square meters?",
+    "answer": "60",
+    "explanation": [
+      "Let the width be w; the length is w + 7, and the diagonal is the hypotenuse: w² + (w + 7)² = 169.",
+      "2w² + 14w + 49 = 169, so w² + 7w − 60 = 0, which factors as (w + 12)(w − 5) = 0.",
+      "w = 5 (a width must be positive), so the length is 12.",
+      "Area = 5 × 12 = 60 square meters."
+    ],
+    "hints": [
+      "If the width is w, how would you write the length?",
+      "How do the width, length, and diagonal relate in a right triangle?",
+      "Once you know both dimensions, what does the question actually ask for?"
+    ],
+    "check": "from sympy import *\nw=symbols('w',positive=True)\nW=solve(Eq(w**2+(w+7)**2,13**2),w)[0]\nresult=W*(W+7)"
+  },
+  {
+    "id": "geo-right-trig-012",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Angle A is an acute angle in a right triangle, and sin A = 3/5. What is the value of tan A?",
+    "choices": [
+      "3/4",
+      "4/5",
+      "5/4",
+      "4/3"
+    ],
+    "answer": "3/4",
+    "explanation": [
+      "sin A = 3/5 means the opposite side is 3k and the hypotenuse is 5k for some k > 0.",
+      "The adjacent side is √(25k² − 9k²) = 4k.",
+      "tan A = opposite / adjacent = 3k/4k = 3/4."
+    ],
+    "hints": [
+      "Can you sketch a right triangle where opposite ÷ hypotenuse is 3/5?",
+      "What length does the Pythagorean theorem give for the remaining side?"
+    ],
+    "wrong_reasons": {
+      "4/3": "Used adjacent ÷ opposite",
+      "4/5": "Found cos A instead of tan A",
+      "5/4": "Used hypotenuse ÷ adjacent (that is 1/cos A)"
+    },
+    "check": "from sympy import *\nA=asin(Rational(3,5))\nresult=simplify(tan(A))"
+  },
+  {
+    "id": "geo-right-trig-013",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A road sign is shaped like an equilateral triangle. The height of the sign, measured from one vertex straight down to the midpoint of the opposite side, is 6√3 inches. What is the perimeter of the sign, in inches?",
+    "answer": "36",
+    "explanation": [
+      "The height splits the sign into two 30°-60°-90° triangles.",
+      "The height is the longer leg, which equals (short leg) × √3, so the short leg is 6 inches.",
+      "The short leg is half of a side, so each side is 12 inches.",
+      "Perimeter = 3 × 12 = 36 inches."
+    ],
+    "hints": [
+      "What two triangles does the height cut the equilateral triangle into?",
+      "In those triangles, which side is the height, and how does it compare with the shortest side?",
+      "How does the shortest side compare with a full side of the sign?"
+    ],
+    "check": "from sympy import *\ns=symbols('s',positive=True)\nS=solve(Eq((s/2)**2+(6*sqrt(3))**2,s**2),s)[0]\nresult=3*S"
+  },
+  {
+    "id": "geo-right-trig-014",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In a right triangle, the acute angles measure (2x + 10)° and (3x − 5)°. What is the value of x?",
+    "choices": [
+      "15",
+      "17",
+      "19",
+      "35"
+    ],
+    "answer": "17",
+    "explanation": [
+      "The two acute angles of a right triangle are complementary.",
+      "(2x + 10) + (3x − 5) = 90, so 5x + 5 = 90.",
+      "5x = 85, so x = 17."
+    ],
+    "hints": [
+      "What is the sum of the two acute angles in any right triangle?",
+      "After combining like terms, what equation do you get?"
+    ],
+    "wrong_reasons": {
+      "15": "Set the two angle measures equal to each other",
+      "19": "Mishandled the constants, getting 5x = 95",
+      "35": "Set the sum of the acute angles equal to 180° instead of 90°"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq((2*x+10)+(3*x-5),90),x)[0]"
+  },
+  {
+    "id": "geo-right-trig-015",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A delivery drone flies 4 kilometers due north, then 9 kilometers due east, then 8 kilometers due north. What is the straight-line distance from the drone's starting point to its final position, in kilometers?",
+    "choices": [
+      "21",
+      "8 + √97",
+      "√161",
+      "15"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Combine the moves: the drone goes 4 + 8 = 12 km north and 9 km east in total.",
+      "The straight-line distance is the hypotenuse of a right triangle with legs 12 and 9.",
+      "√(12² + 9²) = √225 = 15 km."
+    ],
+    "hints": [
+      "Does the order of the north and east moves change where the drone ends up?",
+      "What are the total north distance and total east distance?"
+    ],
+    "wrong_reasons": {
+      "21": "Added all three distances, as if the path were straight",
+      "8 + √97": "Used only the first two legs in the Pythagorean theorem, then added the last leg",
+      "√161": "Squared each of the three legs separately instead of combining the north legs first"
+    },
+    "check": "from sympy import *\nresult=sqrt((4+8)**2+9**2)"
+  },
+  {
+    "id": "geo-right-trig-016",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A kite string is 50 meters long and is pulled straight from a person's hand, at ground level, to the kite. The string makes an angle θ with the level ground, where cos θ = 0.28. How high above the ground is the kite, in meters?",
+    "answer": "48",
+    "explanation": [
+      "The string is the hypotenuse; the horizontal distance is adjacent to θ, and the height is opposite θ.",
+      "Horizontal distance = 50 × 0.28 = 14 meters.",
+      "Height = √(50² − 14²) = √(2500 − 196) = √2304 = 48 meters."
+    ],
+    "hints": [
+      "Which length does cos θ help you find directly?",
+      "Once you know two sides of the right triangle, how can you find the third?"
+    ],
+    "check": "from sympy import *\nt=acos(Rational(28,100))\nresult=nsimplify(50*sin(t))"
+  },
+  {
+    "id": "geo-right-trig-017",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Triangles RST and UVW are similar, with vertices R, S, and T corresponding to U, V, and W, respectively. Angle S is a right angle, RS = 20, ST = 21, and RT = 29. What is the value of cos W?",
+    "choices": [
+      "20/29",
+      "21/29",
+      "20/21",
+      "21/20"
+    ],
+    "answer": "21/29",
+    "explanation": [
+      "Corresponding angles of similar triangles are congruent, so cos W = cos T.",
+      "In triangle RST, the side adjacent to angle T is ST = 21, and the hypotenuse is RT = 29.",
+      "cos W = 21/29."
+    ],
+    "hints": [
+      "Which angle of triangle RST matches angle W?",
+      "Do trig ratios of an angle depend on how big the triangle is?"
+    ],
+    "wrong_reasons": {
+      "20/29": "Used the side opposite T (that is sin W)",
+      "20/21": "Used opposite ÷ adjacent (that is tan W)",
+      "21/20": "Used adjacent ÷ opposite (that is 1/tan W)"
+    },
+    "check": "from sympy import *\nfrom sympy.geometry import Point, Triangle\nS=Point(0,0); R=Point(0,20); T=Point(21,0)\nassert R.distance(T)==29\nf=3  # any scale factor: UVW is a scaled copy with U<->R, V<->S, W<->T\nU=Point(0,20*f); V=Point(0,0); W=Point(21*f,0)\nresult=simplify(cos(Triangle(U,V,W).angles[W]))"
+  },
+  {
+    "id": "geo-right-trig-018",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "At a certain time of day, the sun's rays make an angle θ with level ground, where tan θ = 0.75. A vertical tower 27 meters tall casts a shadow on the level ground. How long is the shadow, in meters?",
+    "choices": [
+      "20.25",
+      "33.75",
+      "36",
+      "45"
+    ],
+    "answer": "36",
+    "explanation": [
+      "The tower's height is opposite θ, and the shadow is adjacent to θ.",
+      "tan θ = 27 / shadow = 0.75.",
+      "Shadow = 27 ÷ 0.75 = 36 meters."
+    ],
+    "hints": [
+      "Where is the angle θ located: at the base of the tower or at the tip of the shadow?",
+      "Relative to θ, which side is the tower and which side is the shadow?",
+      "If 27 ÷ (shadow) = 0.75, how do you get the shadow by itself?"
+    ],
+    "wrong_reasons": {
+      "20.25": "Multiplied 27 by 0.75 instead of dividing",
+      "33.75": "Divided by cos θ (0.8) instead of by tan θ",
+      "45": "Found the distance from the top of the tower to the tip of the shadow (the hypotenuse)"
+    },
+    "check": "from sympy import *\ns=symbols('s',positive=True)\nt=atan(Rational(3,4))\n# tower top at (0,27), shadow tip at (s,0): ray angle with ground is atan(27/s)\nresult=solve(Eq(tan(t),27/s),s)[0]"
+  },
+  {
+    "id": "geo-right-trig-019",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "From point P on level ground, the angle of elevation to the top of a vertical cliff is 30°. From point Q, which is 20 meters closer to the cliff along the same straight line, the angle of elevation is 45°. What is the height of the cliff, in meters?",
+    "choices": [
+      "20√3/3",
+      "20√3",
+      "10√3 − 10",
+      "10 + 10√3"
+    ],
+    "answer": "10 + 10√3",
+    "explanation": [
+      "Let h be the height. From Q (45°), the distance to the cliff is h.",
+      "From P (30°), tan 30° = h / (h + 20), so h + 20 = h√3.",
+      "h(√3 − 1) = 20, so h = 20/(√3 − 1) = 10(√3 + 1).",
+      "h = 10 + 10√3 meters."
+    ],
+    "hints": [
+      "At the 45° point, how does the distance to the cliff compare with the cliff's height?",
+      "How can you write the distance from P to the cliff in terms of h?",
+      "What equation does tan 30° give you?"
+    ],
+    "wrong_reasons": {
+      "20√3/3": "Treated 20 m as the whole distance from P to the cliff and computed 20 tan 30°",
+      "20√3": "Treated 20 m as the distance to the cliff and used tan 60° instead of combining both triangles",
+      "10√3 − 10": "Placed P and Q on opposite sides of the cliff, so h + h√3 = 20"
+    },
+    "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0]\nh=symbols('h',positive=True)\nH=solve(Eq(tan(pi/6),h/(h+20)),h)[0]\nresult=pick([('20√3/3',20*sqrt(3)/3),('20√3',20*sqrt(3)),('10√3 − 10',10*sqrt(3)-10),('10 + 10√3',10+10*sqrt(3))], H)"
+  },
+  {
+    "id": "geo-right-trig-020",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In right triangle ABC, angle B is the right angle and tan A = 2.4. The perimeter of the triangle is 60. What is the length of AB?",
+    "answer": "10",
+    "explanation": [
+      "tan A = BC/AB = 2.4 = 12/5, so let BC = 12k and AB = 5k.",
+      "Then AC = √((5k)² + (12k)²) = 13k.",
+      "Perimeter: 5k + 12k + 13k = 30k = 60, so k = 2.",
+      "AB = 5k = 10."
+    ],
+    "hints": [
+      "Can you write 2.4 as a fraction of whole numbers?",
+      "If the legs are multiples of those numbers, what is the hypotenuse?",
+      "How does the perimeter tell you the scale factor?"
+    ],
+    "check": "from sympy import *\nk=symbols('k',positive=True)\nAB=5*k; BC=Rational(12,5)*AB\nAC=sqrt(AB**2+BC**2)\nK=solve(Eq(AB+BC+AC,60),k)[0]\nresult=AB.subs(k,K)"
+  },
+  {
+    "id": "geo-right-trig-021",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A wooden roof truss is shaped like an isosceles triangle. Its base is 16 feet long and each of its two equal sides is 10 feet long. A vertical post runs from the top vertex straight down to the midpoint of the base. What is the tangent of the angle between the post and one of the equal sides?",
+    "choices": [
+      "3/4",
+      "4/5",
+      "4/3",
+      "8/5"
+    ],
+    "answer": "4/3",
+    "explanation": [
+      "The post splits the base into two 8-foot halves and creates two right triangles with hypotenuse 10.",
+      "The post's length is √(10² − 8²) = 6 feet.",
+      "For the angle at the top between the post and a side, the opposite side is 8 and the adjacent side (the post) is 6.",
+      "tan = 8/6 = 4/3."
+    ],
+    "hints": [
+      "Where does the post meet the base, and how long is each half of the base?",
+      "How long is the post?",
+      "For the angle at the top vertex, which side is opposite and which is adjacent?"
+    ],
+    "wrong_reasons": {
+      "3/4": "Found the tangent of the base angle instead of the angle at the top",
+      "4/5": "Found the sine of the angle at the top (8/10) instead of the tangent",
+      "8/5": "Used the whole base, 16, over the side length 10"
+    },
+    "check": "from sympy import *\npost=sqrt(10**2-8**2)\nresult=Rational(8)/post"
+  },
+  {
+    "id": "geo-right-trig-022",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In a right triangle, one acute angle measures 60° and the hypotenuse is 14 units long. The area of the triangle is k√3 square units. What is the value of k?",
+    "answer": "49/2",
+    "accept": [
+      "24.5"
+    ],
+    "explanation": [
+      "In a 30°-60°-90° triangle, the short leg is half the hypotenuse: 7.",
+      "The long leg is 7√3.",
+      "Area = (1/2)(7)(7√3) = 49√3/2.",
+      "So k = 49/2."
+    ],
+    "hints": [
+      "Which leg is opposite the 30° angle, and how does it compare with the hypotenuse?",
+      "How do you get the other leg from the short leg?",
+      "Which two sides serve as base and height for the area?"
+    ],
+    "check": "from sympy import *\na=14*cos(pi/3); b=14*sin(pi/3)\nresult=nsimplify(Rational(1,2)*a*b/sqrt(3))"
+  },
+  {
+    "id": "geo-right-trig-023",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In a right triangle, the acute angles are A and B, and cos A = k, where 0 < k < 1. Which expression is equal to tan B?",
+    "choices": [
+      "k/√(1 − k²)",
+      "√(1 − k²)/k",
+      "√(1 − k²)",
+      "1/k"
+    ],
+    "answer": "k/√(1 − k²)",
+    "explanation": [
+      "Since A and B are complementary, sin B = cos A = k and cos B = sin A.",
+      "sin A = √(1 − k²), because sin²A + cos²A = 1.",
+      "tan B = sin B / cos B = k/√(1 − k²)."
+    ],
+    "hints": [
+      "How are sin B and cos B related to the trig values of angle A?",
+      "If cos A = k, what is sin A?"
+    ],
+    "wrong_reasons": {
+      "√(1 − k²)/k": "Found tan A instead of tan B",
+      "√(1 − k²)": "Found sin A (which equals cos B) instead of tan B",
+      "1/k": "Treated tangent as the reciprocal of cosine"
+    },
+    "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0]\nk=Rational(3,10)\nA=acos(k); B=pi/2-A\nopts=[('k/√(1 − k²)',k/sqrt(1-k**2)),('√(1 − k²)/k',sqrt(1-k**2)/k),('√(1 − k²)',sqrt(1-k**2)),('1/k',1/k)]\nresult=pick(opts, tan(B)).replace('−','-')  # checker normalizes the key's minus sign to '-'"
+  },
+  {
+    "id": "geo-right-trig-024",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A storage box is a rectangular prism 12 feet long, 4 feet wide, and 3 feet tall. What is the length of the longest straight rod that can fit inside the closed box, in feet?",
+    "choices": [
+      "5",
+      "4√10",
+      "19",
+      "13"
+    ],
+    "answer": "13",
+    "explanation": [
+      "The longest rod runs from one bottom corner to the opposite top corner.",
+      "First, the diagonal of the 12-by-4 floor: √(144 + 16) = √160.",
+      "That floor diagonal and the 3-foot height are legs of another right triangle: √(160 + 9) = √169.",
+      "The longest rod is 13 feet."
+    ],
+    "hints": [
+      "Which two corners of the box are farthest apart?",
+      "Can you find a right triangle whose hypotenuse is that longest segment? What are its legs?"
+    ],
+    "wrong_reasons": {
+      "5": "Used only the width and height, √(4² + 3²)",
+      "4√10": "Found the diagonal of the floor and stopped",
+      "19": "Added the three dimensions"
+    },
+    "check": "from sympy import *\nresult=sqrt(12**2+4**2+3**2)"
+  },
+  {
+    "id": "geo-right-trig-025",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A right triangle has legs 15 centimeters and 20 centimeters long. What is the length, in centimeters, of the altitude drawn from the right angle to the hypotenuse?",
+    "choices": [
+      "9",
+      "12",
+      "17.5",
+      "25"
+    ],
+    "answer": "12",
+    "explanation": [
+      "The hypotenuse is √(15² + 20²) = 25.",
+      "The area is (1/2)(15)(20) = 150.",
+      "Using the hypotenuse as the base: (1/2)(25)(altitude) = 150.",
+      "Altitude = 300/25 = 12 cm."
+    ],
+    "hints": [
+      "Can you compute the triangle's area in two different ways?",
+      "If the hypotenuse is used as the base, what is the matching height?"
+    ],
+    "wrong_reasons": {
+      "9": "Gave the shorter piece of the hypotenuse that the altitude cuts off",
+      "17.5": "Averaged the two legs",
+      "25": "Found the hypotenuse instead of the altitude"
+    },
+    "check": "from sympy import *\nh=symbols('h',positive=True)\nc=sqrt(15**2+20**2)\nresult=solve(Eq(Rational(1,2)*c*h,Rational(1,2)*15*20),h)[0]"
+  },
+  {
+    "id": "geo-right-trig-026",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In right triangle JKL, angle K is the right angle and the hypotenuse JL is twice as long as side KL. What is the measure of angle J, in radians?",
+    "choices": [
+      "π/6",
+      "1/2",
+      "π/4",
+      "π/3"
+    ],
+    "answer": "π/6",
+    "explanation": [
+      "KL is opposite angle J, and JL is the hypotenuse.",
+      "sin J = KL/JL = 1/2.",
+      "The acute angle whose sine is 1/2 is 30°, which is π/6 radians."
+    ],
+    "hints": [
+      "Relative to angle J, which side is KL?",
+      "Which acute angle has a sine of 1/2?",
+      "How do you convert an angle measure from degrees to radians?"
+    ],
+    "wrong_reasons": {
+      "1/2": "Gave the value of sin J instead of the angle",
+      "π/4": "Assumed the triangle was isosceles (45°-45°-90°)",
+      "π/3": "Found angle L, treating KL as adjacent to J"
+    },
+    "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0]\nJ=asin(Rational(1,2))\nresult=pick([('1/2',Rational(1,2)),('π/6',pi/6),('π/4',pi/4),('π/3',pi/3)], J)"
+  },
+  {
+    "id": "geo-right-trig-027",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The cross section of a drainage canal is an isosceles trapezoid. The bottom of the canal is 10 feet wide, the top opening is 26 feet wide, and each slanted side is 17 feet long. What is the area of the cross section, in square feet?",
+    "answer": "270",
+    "explanation": [
+      "Drop a vertical segment from each end of the bottom to the top line; the top is split into 8 + 10 + 8.",
+      "Each slanted side is the hypotenuse of a right triangle with a horizontal leg of 8.",
+      "Depth = √(17² − 8²) = √225 = 15 feet.",
+      "Area = (1/2)(10 + 26)(15) = 270 square feet."
+    ],
+    "hints": [
+      "How much wider is the top than the bottom, and how is that extra width split between the two sides?",
+      "What right triangle has a slanted side as its hypotenuse?",
+      "Once you know the depth, what formula gives the area of a trapezoid?"
+    ],
+    "check": "from sympy import *\nd=sqrt(17**2-((26-10)//2)**2)\nresult=Rational(1,2)*(10+26)*d"
+  }
+]

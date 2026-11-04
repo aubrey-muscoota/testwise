@@ -1,0 +1,743 @@
+[
+  {
+    "id": "adv-nonlinear-func-001",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = 2x² − 3x + 1. What is the value of f(−2)?",
+    "choices": [
+      "−1",
+      "3",
+      "15",
+      "23"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Substitute −2 for x: f(−2) = 2(−2)² − 3(−2) + 1.",
+      "(−2)² = 4, so 2(−2)² = 8.",
+      "−3(−2) = 6.",
+      "f(−2) = 8 + 6 + 1 = 15."
+    ],
+    "hints": [
+      "What do you get when you square a negative number?",
+      "What is −3 times −2? Is it positive or negative?"
+    ],
+    "wrong_reasons": {
+      "3": "Computed −3(−2) as −6 instead of +6",
+      "−1": "Treated (−2)² as −4",
+      "23": "Squared 2·(−2) instead of only −2, getting (−4)² = 16"
+    },
+    "check": "x=-2\nresult=2*x**2-3*x+1"
+  },
+  {
+    "id": "adv-nonlinear-func-002",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A biologist models the number of bacteria in a sample with N(t) = 500(2)ᵗ, where t is the number of hours after the sample was first measured. According to the model, how many bacteria are in the sample 3 hours after it was first measured?",
+    "choices": [
+      "3,000",
+      "4,000",
+      "4,500",
+      "8,000"
+    ],
+    "answer": "4,000",
+    "explanation": [
+      "Substitute t = 3: N(3) = 500(2)³.",
+      "2³ = 8.",
+      "500 · 8 = 4,000."
+    ],
+    "hints": [
+      "Which number in the model gets raised to the power t?",
+      "Should you multiply 500 by 2 first, or evaluate the power first?"
+    ],
+    "wrong_reasons": {
+      "3,000": "Multiplied 2 by 3 instead of raising 2 to the third power",
+      "4,500": "Swapped base and exponent, computing 500 · 3²",
+      "8,000": "Used one hour too many, computing 500 · 2⁴"
+    },
+    "check": "result=500*2**3"
+  },
+  {
+    "id": "adv-nonlinear-func-003",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A ball is tossed upward from the ground. Its height, in feet, t seconds after it is tossed is given by h(t) = −16t² + 64t. What is the height of the ball, in feet, 1.5 seconds after it is tossed?",
+    "answer": "60",
+    "explanation": [
+      "Substitute t = 1.5: h(1.5) = −16(1.5)² + 64(1.5).",
+      "(1.5)² = 2.25, so −16(2.25) = −36.",
+      "64(1.5) = 96.",
+      "h(1.5) = −36 + 96 = 60 feet."
+    ],
+    "hints": [
+      "What number replaces t in the formula?",
+      "Which operation comes first in −16t²: squaring or multiplying by −16?"
+    ],
+    "check": "from sympy import Rational\nt=Rational(3,2)\nresult=-16*t**2+64*t"
+  },
+  {
+    "id": "adv-nonlinear-func-004",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of which of the following functions is a parabola with vertex (3, −5)?",
+    "choices": [
+      "f(x) = (x − 3)² − 5",
+      "f(x) = (x + 3)² − 5",
+      "f(x) = (x − 5)² + 3",
+      "f(x) = (x + 3)² + 5"
+    ],
+    "answer": "f(x) = (x − 3)² − 5",
+    "explanation": [
+      "The vertex form y = (x − h)² + k has vertex (h, k).",
+      "For a vertex of (3, −5), h = 3 and k = −5.",
+      "So the function is f(x) = (x − 3)² − 5."
+    ],
+    "hints": [
+      "In the form (x − h)² + k, what x-value makes the squared part equal 0?",
+      "What is the value of the function at that x-value?"
+    ],
+    "wrong_reasons": {
+      "f(x) = (x + 3)² − 5": "Thought the number inside the parentheses gives the x-coordinate with the same sign",
+      "f(x) = (x − 5)² + 3": "Swapped the roles of the x- and y-coordinates",
+      "f(x) = (x + 3)² + 5": "Reversed the signs of both coordinates"
+    },
+    "check": "L=[\"f(x) = (x - 3)\\u00b2 - 5\", \"f(x) = (x + 3)\\u00b2 - 5\", \"f(x) = (x - 5)\\u00b2 + 3\", \"f(x) = (x + 3)\\u00b2 + 5\"]\nF=[lambda x:(x-3)**2-5,lambda x:(x+3)**2-5,lambda x:(x-5)**2+3,lambda x:(x+3)**2+5]\nfrom sympy import symbols, diff, solve\nX=symbols('x')\ndef T(f):\n    e=f(X); v=solve(diff(e,X),X)\n    return v==[3] and e.subs(X,3)==-5\nok=[L[i] for i in range(len(F)) if T(F[i])]\nassert len(ok)==1, ok\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-005",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The value, in dollars, of a used car t years after it was purchased is modeled by V(t) = 24,000(0.85)ᵗ. Which of the following is the best interpretation of 0.85 in this context?",
+    "choices": [
+      "Each year, the car's value is 85% less than it was the year before.",
+      "Each year, the car's value decreases by $0.85.",
+      "The car was worth $0.85 when it was purchased.",
+      "Each year, the car's value is 15% less than it was the year before."
+    ],
+    "answer": "Each year, the car's value is 15% less than it was the year before.",
+    "explanation": [
+      "In a model a(b)ᵗ, each increase of 1 in t multiplies the value by b.",
+      "Here b = 0.85, so each year the value is 85% of the previous year's value.",
+      "Keeping 85% means losing 100% − 85% = 15% each year."
+    ],
+    "hints": [
+      "If t goes from 2 to 3, what happens to the value: is something added or is it multiplied?",
+      "If you keep 85% of something, what percent did you lose?"
+    ],
+    "wrong_reasons": {
+      "Each year, the car's value is 85% less than it was the year before.": "Confused the percent kept (85%) with the percent lost",
+      "Each year, the car's value decreases by $0.85.": "Treated the exponential factor as a constant amount subtracted each year, as in a linear model",
+      "The car was worth $0.85 when it was purchased.": "Confused the growth factor with the initial value, which is 24,000"
+    },
+    "check": null,
+    "check_note": "Interpretation question: the answer is a statement about meaning, not a computed value."
+  },
+  {
+    "id": "adv-nonlinear-func-006",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = (x − 4)(x + 7). At which points does the graph of y = f(x) cross the x-axis in the xy-plane?",
+    "choices": [
+      "(−4, 0) and (7, 0)",
+      "(4, 0) and (−7, 0)",
+      "(4, 0) and (7, 0)",
+      "(0, 4) and (0, −7)"
+    ],
+    "answer": "(4, 0) and (−7, 0)",
+    "explanation": [
+      "The graph crosses the x-axis where f(x) = 0.",
+      "A product is 0 when one of its factors is 0: x − 4 = 0 or x + 7 = 0.",
+      "So x = 4 or x = −7, giving the points (4, 0) and (−7, 0)."
+    ],
+    "hints": [
+      "What is the y-value of every point on the x-axis?",
+      "What x-value makes x + 7 equal to zero?"
+    ],
+    "wrong_reasons": {
+      "(−4, 0) and (7, 0)": "Took the numbers in the factors as the zeros without changing their signs",
+      "(4, 0) and (7, 0)": "Ignored the sign in x + 7",
+      "(0, 4) and (0, −7)": "Swapped x- and y-coordinates, placing the points on the y-axis"
+    },
+    "check": "L=[\"(4, 0) and (−7, 0)\", \"(−4, 0) and (7, 0)\", \"(4, 0) and (7, 0)\", \"(0, 4) and (0, −7)\"]\nP=[[(4,0),(-7,0)],[(-4,0),(7,0)],[(4,0),(7,0)],[(0,4),(0,-7)]]\nfrom sympy import symbols, solve\nx=symbols('x')\nf=(x-4)*(x+7)\nZ=set(solve(f,x))\ndef T(pts):\n    return all(y==0 and f.subs(x,a)==0 for a,y in pts) and set(a for a,y in pts)==Z\nok=[L[k] for k in range(4) if T(P[k])]\nassert len(ok)==1, ok\nresult=ok[0].replace('−','-')"
+  },
+  {
+    "id": "adv-nonlinear-func-007",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The function g is defined by g(x) = x³ − 2x. What is the value of g(3)?",
+    "answer": "21",
+    "explanation": [
+      "Substitute 3 for x: g(3) = 3³ − 2(3).",
+      "3³ = 27 and 2(3) = 6.",
+      "g(3) = 27 − 6 = 21."
+    ],
+    "hints": [
+      "What does the exponent 3 tell you to do with 3?",
+      "After the substitution, which two numbers are you subtracting?"
+    ],
+    "check": "x=3\nresult=x**3-2*x"
+  },
+  {
+    "id": "adv-nonlinear-func-008",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function h is defined by h(x) = 3ˣ + 4. The graph of y = h(x) crosses the y-axis at the point (0, b). What is the value of b?",
+    "choices": [
+      "1",
+      "4",
+      "5",
+      "7"
+    ],
+    "answer": "5",
+    "explanation": [
+      "The graph crosses the y-axis where x = 0.",
+      "h(0) = 3⁰ + 4.",
+      "Any nonzero number to the power 0 is 1, so h(0) = 1 + 4 = 5."
+    ],
+    "hints": [
+      "What is the x-coordinate of every point on the y-axis?",
+      "What is the value of any nonzero number raised to the power 0?"
+    ],
+    "wrong_reasons": {
+      "1": "Evaluated 3⁰ correctly but forgot to add 4",
+      "4": "Treated 3⁰ as 0",
+      "7": "Treated 3⁰ as 3"
+    },
+    "check": "result=3**0+4"
+  },
+  {
+    "id": "adv-nonlinear-func-009",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A small business estimates its weekly profit, in hundreds of dollars, with P(x) = −2(x − 6)² + 9, where x is the price, in dollars, it charges for each item. According to the model, what is the maximum weekly profit, in hundreds of dollars?",
+    "choices": [
+      "−63",
+      "−2",
+      "6",
+      "9"
+    ],
+    "answer": "9",
+    "explanation": [
+      "P is in vertex form a(x − h)² + k with a = −2, h = 6, k = 9.",
+      "Since a is negative, the parabola opens downward, so the vertex is the highest point.",
+      "The maximum value of P is k = 9."
+    ],
+    "hints": [
+      "Can −2(x − 6)² ever be positive? What is the largest it can be?",
+      "At what price is −2(x − 6)² equal to that largest value, and what is P then?"
+    ],
+    "wrong_reasons": {
+      "−63": "Found P(0), the profit when the price is $0, instead of the maximum",
+      "6": "Gave the price that produces the maximum profit instead of the profit itself",
+      "−2": "Read the leading coefficient as the maximum value"
+    },
+    "check": "from sympy import symbols, diff, solve\nx=symbols('x')\nP=-2*(x-6)**2+9\nresult=P.subs(x,solve(diff(P,x),x)[0])"
+  },
+  {
+    "id": "adv-nonlinear-func-010",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = x² − 6x + 5. What is the minimum value of f(x)?",
+    "choices": [
+      "−4",
+      "3",
+      "5",
+      "32"
+    ],
+    "answer": "−4",
+    "explanation": [
+      "For ax² + bx + c with a > 0, the minimum occurs at x = −b/(2a) = 6/2 = 3.",
+      "f(3) = 9 − 18 + 5 = −4.",
+      "So the minimum value is −4."
+    ],
+    "hints": [
+      "Is the minimum value an x-value or a value of f(x)?",
+      "Where is the vertex of a parabola located relative to its two x-intercepts?"
+    ],
+    "wrong_reasons": {
+      "3": "Gave the x-coordinate of the vertex instead of the minimum value",
+      "5": "Gave the y-intercept (the constant term) as the minimum",
+      "32": "Used x = 3 with the wrong sign and evaluated f(−3)"
+    },
+    "check": "from sympy import symbols, diff, solve\nx=symbols('x')\nf=x**2-6*x+5\nresult=f.subs(x,solve(diff(f,x),x)[0])"
+  },
+  {
+    "id": "adv-nonlinear-func-011",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The functions f and g are defined by f(x) = x² − 9 and g(x) = 2x + 1. What is the value of f(g(2))?",
+    "answer": "16",
+    "explanation": [
+      "Evaluate the inside function first: g(2) = 2(2) + 1 = 5.",
+      "Then f(g(2)) = f(5) = 5² − 9.",
+      "25 − 9 = 16."
+    ],
+    "hints": [
+      "Which function do you evaluate first, the inside one or the outside one?",
+      "Once you know g(2), what input do you give to f?"
+    ],
+    "check": "f=lambda x:x**2-9\ng=lambda x:2*x+1\nresult=f(g(2))"
+  },
+  {
+    "id": "adv-nonlinear-func-012",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows several values of x and the corresponding values of the quadratic function f. Which of the following defines f?",
+    "table": {
+      "headers": [
+        "x",
+        "f(x)"
+      ],
+      "rows": [
+        [
+          "0",
+          "7"
+        ],
+        [
+          "1",
+          "4"
+        ],
+        [
+          "2",
+          "3"
+        ],
+        [
+          "3",
+          "4"
+        ],
+        [
+          "4",
+          "7"
+        ]
+      ]
+    },
+    "choices": [
+      "f(x) = (x − 2)² + 3",
+      "f(x) = (x + 2)² + 3",
+      "f(x) = −3x + 7",
+      "f(x) = 2(x − 2)² + 3"
+    ],
+    "answer": "f(x) = (x − 2)² + 3",
+    "explanation": [
+      "The values decrease from 7 to 3 and then increase again, and f(1) = f(3) = 4, so the vertex is at x = 2 with f(2) = 3.",
+      "So f(x) = a(x − 2)² + 3 for some a.",
+      "Using f(0) = 7: a(4) + 3 = 7, so a = 1.",
+      "f(x) = (x − 2)² + 3, which matches every row."
+    ],
+    "hints": [
+      "Which two x-values give the same output? What does that symmetry tell you about the vertex?",
+      "Once you have the vertex, which other row can you use to find the leading coefficient?"
+    ],
+    "wrong_reasons": {
+      "f(x) = (x + 2)² + 3": "Used the wrong sign for the vertex's x-coordinate inside the parentheses",
+      "f(x) = −3x + 7": "Assumed the function was linear based only on the first two rows",
+      "f(x) = 2(x − 2)² + 3": "Found the vertex correctly but did not use another row to find the leading coefficient"
+    },
+    "check": "L=[\"f(x) = (x - 2)\\u00b2 + 3\", \"f(x) = (x + 2)\\u00b2 + 3\", \"f(x) = -3x + 7\", \"f(x) = 2(x - 2)\\u00b2 + 3\"]\nF=[lambda x:(x-2)**2+3,lambda x:(x+2)**2+3,lambda x:-3*x+7,lambda x:2*(x-2)**2+3]\nD={0:7,1:4,2:3,3:4,4:7}\ndef T(f):\n    return all(f(k)==v for k,v in D.items())\nok=[L[i] for i in range(len(F)) if T(F[i])]\nassert len(ok)==1, ok\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-013",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In 2020, the population of a town was 18,000. The population has decreased by 4% each year since then. Which of the following functions models the population P(t), t years after 2020?",
+    "choices": [
+      "P(t) = 18,000(0.04)ᵗ",
+      "P(t) = 18,000(0.96)ᵗ",
+      "P(t) = 18,000(1.04)ᵗ",
+      "P(t) = 18,000 − 720t"
+    ],
+    "answer": "P(t) = 18,000(0.96)ᵗ",
+    "explanation": [
+      "A decrease of 4% each year means 100% − 4% = 96% of the population remains each year.",
+      "Multiplying by 0.96 once per year gives an exponential model.",
+      "P(t) = 18,000(0.96)ᵗ."
+    ],
+    "hints": [
+      "If the population drops by 4% in one year, what fraction of it is left?",
+      "Is the same number of people lost each year, or the same percent?"
+    ],
+    "wrong_reasons": {
+      "P(t) = 18,000(0.04)ᵗ": "Used the percent lost as the growth factor instead of the percent remaining",
+      "P(t) = 18,000(1.04)ᵗ": "Modeled a 4% increase instead of a 4% decrease",
+      "P(t) = 18,000 − 720t": "Subtracted 4% of the original population every year, a linear model, instead of 4% of the current population"
+    },
+    "check": "L=[\"P(t) = 18,000(0.96)\\u1d57\", \"P(t) = 18,000(0.04)\\u1d57\", \"P(t) = 18,000(1.04)\\u1d57\", \"P(t) = 18,000 - 720t\"]\nF=[lambda t:18000*Rational(96,100)**t,lambda t:18000*Rational(4,100)**t,lambda t:18000*Rational(104,100)**t,lambda t:18000-720*t]\nfrom sympy import Rational\ndef T(f):\n    p=18000\n    for k in range(1,6):\n        p=p*Rational(96,100)\n        if f(k)!=p: return False\n    return True\nok=[L[i] for i in range(len(F)) if T(F[i])]\nassert len(ok)==1, ok\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-014",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A model rocket is launched from a platform. Its height, in meters, t seconds after launch is modeled by h(t) = −4.9t² + 19.6t + 2. According to the model, what is the maximum height of the rocket, in meters?",
+    "answer": "21.6",
+    "accept": [
+      "108/5"
+    ],
+    "explanation": [
+      "The maximum of a downward-opening parabola is at t = −b/(2a) = −19.6/(2 · −4.9) = 2.",
+      "h(2) = −4.9(4) + 19.6(2) + 2.",
+      "h(2) = −19.6 + 39.2 + 2 = 21.6 meters."
+    ],
+    "hints": [
+      "At what time does the rocket stop rising and start falling?",
+      "Is the question asking for that time, or for something you compute from it?"
+    ],
+    "check": "from sympy import symbols, diff, solve, Rational\nt=symbols('t')\nh=Rational(-49,10)*t**2+Rational(196,10)*t+2\nresult=h.subs(t,solve(diff(h,t),t)[0])"
+  },
+  {
+    "id": "adv-nonlinear-func-015",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = 5ˣ. For what value of x is f(x) = 125 · f(2)?",
+    "choices": [
+      "3",
+      "5",
+      "6",
+      "250"
+    ],
+    "answer": "5",
+    "explanation": [
+      "f(2) = 5² = 25, so 125 · f(2) = 125 · 25 = 3,125.",
+      "Write 3,125 as a power of 5: 125 · 25 = 5³ · 5² = 5⁵.",
+      "So 5ˣ = 5⁵ and x = 5."
+    ],
+    "hints": [
+      "Can you write 125 as a power of 5?",
+      "When you multiply two powers of the same base, what happens to the exponents?"
+    ],
+    "wrong_reasons": {
+      "3": "Solved 5ˣ = 125 and ignored the factor f(2)",
+      "6": "Multiplied the exponents 3 and 2 instead of adding them",
+      "250": "Multiplied 125 by the input 2 instead of by f(2) = 25, then gave that product instead of solving for the exponent"
+    },
+    "check": "from sympy import symbols, solve, Eq\nx=symbols('x', real=True)\nresult=solve(Eq(5**x,125*5**2),x)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-016",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = (x + 2)(x − 6). For what value of x does f(x) reach its minimum value?",
+    "choices": [
+      "−16",
+      "−2",
+      "2",
+      "4"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The zeros of f are x = −2 and x = 6.",
+      "A parabola is symmetric, so its vertex lies halfway between the zeros.",
+      "The midpoint is (−2 + 6)/2 = 2."
+    ],
+    "hints": [
+      "Where does the graph cross the x-axis?",
+      "Where is the lowest point of a parabola located relative to its two x-intercepts?"
+    ],
+    "wrong_reasons": {
+      "−16": "Gave the minimum value of f instead of the x-value where it occurs",
+      "−2": "Picked one of the zeros instead of the point between them",
+      "4": "Used 2 and 6 as the zeros (wrong sign on 2) and averaged them"
+    },
+    "check": "from sympy import symbols, diff, solve\nx=symbols('x')\nresult=solve(diff((x+2)*(x-6),x),x)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-017",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The function f is defined by f(x) = x² + bx + 16, where b is a positive constant. The graph of y = f(x) in the xy-plane touches the x-axis at exactly one point. What is the value of b?",
+    "answer": "8",
+    "explanation": [
+      "Touching the x-axis at exactly one point means f(x) = 0 has exactly one solution, so the discriminant is 0.",
+      "b² − 4(1)(16) = 0, so b² = 64.",
+      "b = 8 or b = −8; since b is positive, b = 8."
+    ],
+    "hints": [
+      "How many solutions does f(x) = 0 have, and what does that say about the discriminant?",
+      "Which of the two possible values of b fits the condition given about b?"
+    ],
+    "check": "from sympy import symbols, solve\nb=symbols('b', positive=True)\nresult=solve(b**2-4*16,b)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-018",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The length of a rectangular garden is 3 feet more than twice its width, w. The area of the garden, in square feet, is given by A(w) = w(2w + 3). If the area of the garden is 65 square feet, what is its width, in feet?",
+    "choices": [
+      "5",
+      "6.5",
+      "13",
+      "31"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Set A(w) = 65: 2w² + 3w = 65, so 2w² + 3w − 65 = 0.",
+      "Factor: (2w + 13)(w − 5) = 0.",
+      "w = −13/2 or w = 5; a width must be positive, so w = 5."
+    ],
+    "hints": [
+      "What equation do you get when you set the area equal to 65? What should be on the other side before factoring?",
+      "Can a width be negative?"
+    ],
+    "wrong_reasons": {
+      "6.5": "Took the negative solution −13/2 and dropped its sign",
+      "13": "Gave the length, 2(5) + 3, instead of the width",
+      "31": "Set only the length expression 2w + 3 equal to 65"
+    },
+    "check": "from sympy import symbols, solve\nw=symbols('w', positive=True)\nresult=solve(w*(2*w+3)-65,w)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-019",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The function f is defined by f(x) = 2x² − 12x + c, where c is a constant. The minimum value of f(x) is 7. What is the value of c?",
+    "answer": "25",
+    "explanation": [
+      "The minimum occurs at x = −b/(2a) = 12/4 = 3.",
+      "f(3) = 2(9) − 12(3) + c = c − 18.",
+      "Set the minimum equal to 7: c − 18 = 7, so c = 25."
+    ],
+    "hints": [
+      "Does the value of c change where the vertex is horizontally?",
+      "What expression in c gives the value of f at the vertex?"
+    ],
+    "check": "from sympy import symbols, solve\nx,c=symbols('x c')\nf=2*x**2-12*x+c\nv=solve(f.diff(x),x)[0]\nresult=solve(f.subs(x,v)-7,c)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-020",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A biologist models the size of an insect colony with f(t) = 800(1.5)^(t/4), where t is the number of days after observation began. According to the model, by what percent does the colony increase every 8 days?",
+    "choices": [
+      "50%",
+      "100%",
+      "125%",
+      "225%"
+    ],
+    "answer": "125%",
+    "explanation": [
+      "Increasing t by 8 increases the exponent t/4 by 2.",
+      "So every 8 days the colony is multiplied by (1.5)² = 2.25.",
+      "A factor of 2.25 means the new size is 225% of the old size, an increase of 225% − 100% = 125%."
+    ],
+    "hints": [
+      "If t increases by 8, by how much does t/4 increase?",
+      "If a quantity is multiplied by 2.25, what percent of the original was added?"
+    ],
+    "wrong_reasons": {
+      "50%": "Gave the percent increase for 4 days, not 8 days",
+      "100%": "Added the 50% increase twice instead of multiplying by 1.5 twice",
+      "225%": "Gave the growth factor as a percent instead of the percent increase"
+    },
+    "check": "from sympy import Rational, symbols, simplify\nt=symbols('t')\nf=lambda s:800*Rational(3,2)**(s/4)\nresult=(simplify(f(t+8)/f(t))-1)*100"
+  },
+  {
+    "id": "adv-nonlinear-func-021",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For the quadratic function f, f(−1) = 0, f(7) = 0, and f(3) = −32. What is the value of f(0)?",
+    "choices": [
+      "−32",
+      "−14",
+      "−7",
+      "14"
+    ],
+    "answer": "−14",
+    "explanation": [
+      "Since −1 and 7 are zeros, f(x) = a(x + 1)(x − 7) for some constant a.",
+      "f(3) = a(4)(−4) = −16a = −32, so a = 2.",
+      "f(0) = 2(1)(−7) = −14."
+    ],
+    "hints": [
+      "If you know both zeros, what factored form must f have?",
+      "Which given value lets you find the leading coefficient?"
+    ],
+    "wrong_reasons": {
+      "−32": "Assumed f(0) equals the minimum value f(3)",
+      "−7": "Assumed the leading coefficient is 1",
+      "14": "Made a sign error multiplying (0 + 1)(0 − 7)"
+    },
+    "check": "from sympy import symbols, solve\nx,a=symbols('x a')\nf=a*(x+1)*(x-7)\nA=solve(f.subs(x,3)+32,a)[0]\nresult=f.subs({a:A,x:0})"
+  },
+  {
+    "id": "adv-nonlinear-func-022",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The function g is defined by g(x) = x² − 14x + k, where k is a constant. The graph of y = g(x) in the xy-plane has two x-intercepts that are 4 units apart. What is the value of k?",
+    "answer": "45",
+    "explanation": [
+      "The axis of symmetry is x = 14/2 = 7, and the x-intercepts are equally far from it.",
+      "Being 4 units apart, they are 2 units on each side: x = 5 and x = 9.",
+      "So g(x) = (x − 5)(x − 9) = x² − 14x + 45, and k = 45."
+    ],
+    "hints": [
+      "Where is the axis of symmetry, and how far from it is each x-intercept?",
+      "If you know both zeros, how can you rebuild the expression and read off its constant term?"
+    ],
+    "check": "from sympy import symbols, solve, sqrt\nk=symbols('k')\n# distance between roots of x^2+bx+k is sqrt(b^2-4k)\nresult=solve(sqrt(14**2-4*k)-4,k)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-023",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A patient is given 300 milligrams of a medication. The amount of medication in the patient's body is halved every 6 hours. Which of the following functions gives the amount A(t), in milligrams, remaining t hours after the medication is given?",
+    "choices": [
+      "A(t) = 300(1/2)^(6t)",
+      "A(t) = 300(1/6)^(t/2)",
+      "A(t) = 300 − 25t",
+      "A(t) = 300(1/2)^(t/6)"
+    ],
+    "answer": "A(t) = 300(1/2)^(t/6)",
+    "explanation": [
+      "The amount is multiplied by 1/2 once for every 6 hours that pass.",
+      "After t hours, 6-hour periods have passed t/6 times.",
+      "So A(t) = 300(1/2)^(t/6). Check: A(6) = 150 and A(12) = 75."
+    ],
+    "hints": [
+      "After 12 hours, how many times has the amount been halved?",
+      "Pick a value such as t = 6: which choices give 150?"
+    ],
+    "wrong_reasons": {
+      "A(t) = 300(1/2)^(6t)": "Multiplied t by 6 instead of dividing, which halves the amount 6 times every hour",
+      "A(t) = 300(1/6)^(t/2)": "Swapped the roles of the half-life and the factor 1/2",
+      "A(t) = 300 − 25t": "Assumed the amount drops by the same number of milligrams every hour (150 mg in 6 hours, so 25 mg per hour) instead of being multiplied by the same factor"
+    },
+    "check": "L=[\"A(t) = 300(1/2)^(t/6)\", \"A(t) = 300(1/2)^(6t)\", \"A(t) = 300(1/6)^(t/2)\", \"A(t) = 300 - 25t\"]\nF=[lambda t:300*Rational(1,2)**Rational(t,6),lambda t:300*Rational(1,2)**(6*t),lambda t:300*Rational(1,6)**Rational(t,2),lambda t:300-25*t]\nfrom sympy import Rational\ndef T(f):\n    return all(f(6*n)==300*Rational(1,2)**n for n in range(0,5)) and f(3)==300/2**Rational(1,2)\nok=[L[i] for i in range(len(F)) if T(F[i])]\nassert len(ok)==1, ok\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-024",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = x³ − 4x² − 11x + 30, and x − 2 is a factor of f(x). What is the sum of all the values of x for which f(x) = 0?",
+    "choices": [
+      "−30",
+      "−4",
+      "4",
+      "10"
+    ],
+    "answer": "4",
+    "explanation": [
+      "Divide f(x) by x − 2: f(x) = (x − 2)(x² − 2x − 15).",
+      "Factor the quadratic: x² − 2x − 15 = (x − 5)(x + 3).",
+      "The zeros are 2, 5, and −3, and their sum is 2 + 5 + (−3) = 4."
+    ],
+    "hints": [
+      "After dividing out x − 2, what kind of expression is left, and can it be factored?",
+      "Did you keep the sign of each zero when adding?"
+    ],
+    "wrong_reasons": {
+      "−30": "Found the product of the zeros instead of their sum",
+      "−4": "Used the constants in the factors (−2, −5, and +3) as the zeros, flipping every sign",
+      "10": "Ignored the negative sign of the zero −3"
+    },
+    "check": "from sympy import symbols, solve\nx=symbols('x')\nresult=sum(solve(x**3-4*x**2-11*x+30,x))"
+  },
+  {
+    "id": "adv-nonlinear-func-025",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A bakery's average cost per cake, in dollars, for making n cakes in a month is modeled by C(n) = (1,500 + 4n)/n. According to the model, how many cakes must the bakery make in a month for the average cost per cake to be $10?",
+    "choices": [
+      "6",
+      "150",
+      "250",
+      "375"
+    ],
+    "answer": "250",
+    "explanation": [
+      "Set C(n) = 10: (1,500 + 4n)/n = 10.",
+      "Multiply both sides by n: 1,500 + 4n = 10n.",
+      "Subtract 4n: 1,500 = 6n, so n = 250."
+    ],
+    "hints": [
+      "How can you get rid of the n in the denominator?",
+      "After clearing the fraction, where do the terms with n end up?"
+    ],
+    "wrong_reasons": {
+      "6": "Solved for the difference 10 − 4 instead of the number of cakes",
+      "150": "Ignored the 4n term and divided 1,500 by 10",
+      "375": "Divided 1,500 by 4 instead of by the difference in costs"
+    },
+    "check": "from sympy import symbols, solve, Eq\nn=symbols('n', positive=True)\nresult=solve(Eq((1500+4*n)/n,10),n)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-026",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = a · bˣ, where a and b are positive constants. The graph of y = f(x) in the xy-plane passes through the points (1, 12) and (3, 108). What is the value of f(−1)?",
+    "choices": [
+      "−84",
+      "1/3",
+      "4/3",
+      "4"
+    ],
+    "answer": "4/3",
+    "explanation": [
+      "Divide: f(3)/f(1) = b² = 108/12 = 9, so b = 3.",
+      "Then a · 3 = 12, so a = 4.",
+      "f(−1) = 4 · 3⁻¹ = 4/3."
+    ],
+    "hints": [
+      "What happens to a when you divide f(3) by f(1)?",
+      "What does a negative exponent tell you to do?"
+    ],
+    "wrong_reasons": {
+      "−84": "Assumed the function was linear through the two points",
+      "1/3": "Computed b⁻¹ but forgot to multiply by a",
+      "4": "Found f(0) = a instead of f(−1)"
+    },
+    "check": "from sympy import symbols, solve, Rational\na,b=symbols('a b', positive=True)\ns=solve([a*b-12,a*b**3-108],[a,b],dict=True)[0]\nresult=s[a]*s[b]**(-1)"
+  },
+  {
+    "id": "adv-nonlinear-func-027",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A company's monthly revenue, in thousands of dollars, is modeled by R(x) = −0.5(x − 40)² + 900, where x is the price of its product in dollars. A competitor's revenue is modeled by S(x) = R(x + 10). For what price x does S(x) reach its maximum?",
+    "choices": [
+      "30",
+      "40",
+      "50",
+      "900"
+    ],
+    "answer": "30",
+    "explanation": [
+      "R reaches its maximum when the input to R is 40.",
+      "S(x) = R(x + 10), so S is at its maximum when x + 10 = 40.",
+      "x = 30."
+    ],
+    "hints": [
+      "What must the input to R be for R to be as large as possible?",
+      "If x + 10 equals that input, what is x?"
+    ],
+    "wrong_reasons": {
+      "40": "Ignored the shift and used the maximum of R",
+      "50": "Shifted in the wrong direction, adding 10 instead of subtracting",
+      "900": "Gave the maximum revenue instead of the price where it occurs"
+    },
+    "check": "from sympy import symbols, Rational, solve, diff\nx=symbols('x')\nR=lambda u:-Rational(1,2)*(u-40)**2+900\nS=R(x+10)\nresult=solve(diff(S,x),x)[0]"
+  }
+]

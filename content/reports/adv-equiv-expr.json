@@ -1,0 +1,11 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "adv-equiv-expr-001, -002, -003, -004, -005, -007, -009, -010, -011, -012, -014, -015, -017, -018, -020, -021, -022, -024, -026, -027", "reason": "All 20 MC items had the correct answer as choice A (choices are not shuffled at build), so a student could just pick A; choices reordered so keys are spread 5/5/5/5 across A–D (026 now in numeric order), with each check's choice list updated to match."},
+    {"id": "adv-equiv-expr-007", "reason": "Distractor '5 + 2g' did not match its stated error (subtracting the bills gives 5 − 2g or 2g − 5); changed to '5 − 2g' with matching wrong_reason and check."},
+    {"id": "adv-equiv-expr-011", "reason": "Hint 1 ('... (Do they all?)') was confusing; reworded to a clear question."},
+    {"id": "adv-equiv-expr-015", "reason": "Removed stray space before the question mark in the stem."},
+    {"id": "adv-equiv-expr-025", "reason": "Key used an ASCII hyphen '-7' unlike the rest of the file; changed to '−7' and accept to ['-7']. Value −7 confirmed."}
+  ],
+  "removed": []
+}

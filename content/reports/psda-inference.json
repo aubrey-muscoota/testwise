@@ -1,0 +1,11 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "psda-inference-005", "reason": "Near-duplicate of 001 (sample proportion x population); now asks for bulbs NOT defective, key 2,310, with new distractors, explanation, hints and check."},
+    {"id": "psda-inference-007", "reason": "Distractor 0.092 had a false rationale ('misplaced decimal'); replaced with 0.023, which matches it."},
+    {"id": "psda-inference-009", "reason": "Distractors 29.5/33.5 did not match their '2 x margin of error' rationales; changed to 29.1/33.9 and updated check."},
+    {"id": "psda-inference-016", "reason": "Stem said the new estimate is 'made the same way', which contradicted options that change the method; phrase removed."},
+    {"id": "psda-inference-022", "reason": "Key was a weak 'it is plausible' claim with a circular explanation, and distractors copied item 012; key now says B's mean is likely greater, explanation cites the non-overlap, distractors varied."}
+  ],
+  "removed": []
+}

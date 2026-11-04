@@ -1,0 +1,8 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "alg-linear-func-019", "reason": "Distractor −5 did not match its stated misconception (a sign error gives 3 − 2 = 1); replaced with 1 and updated wrong_reasons."},
+    {"id": "alg-linear-func-027", "reason": "'holds 1,200 liters' could be read as capacity, so the stem now says it contains 1,200 L when draining begins; dropped accepted form 28.58 because 200/7 = 28.571… rounds or truncates to 28.57."}
+  ],
+  "removed": []
+}

@@ -1,0 +1,8 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "psda-ratios-006", "reason": "Choice 'The number of marbles in the bag' mentioned a bag the stem never introduces; reworded to 'The total number of marbles' (wrong_reasons key updated)."},
+    {"id": "psda-ratios-025", "reason": "Near-duplicate of 019 (add one component until the two amounts are equal); varied to 30 L of drink and a 2 : 3 target ratio, so the answer is now 5, with explanation and check rewritten."}
+  ],
+  "removed": []
+}

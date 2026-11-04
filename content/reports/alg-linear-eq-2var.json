@@ -1,0 +1,9 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "alg-linear-eq-2var-021", "reason": "Near-duplicate of 012 (raise one variable, find how the other changes to keep the total fixed); changed to a ratio version (x = 2y, find total volume), new key 300, with explanation, hints, wrong reasons and check updated."},
+    {"id": "alg-linear-eq-2var-022", "reason": "Wrong reasons for all three distractors did not lead to the distractor (e.g. a student with that error would not pick 3x + 5y = 10); rewrote them as sign errors that do."},
+    {"id": "alg-linear-eq-2var-025", "reason": "Reworded the awkward 'points (a, b) ... have both a and b equal to positive integers' to ask for points whose x- and y-coordinates are both positive integers."}
+  ],
+  "removed": []
+}

@@ -1,0 +1,11 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "adv-nonlinear-func-006", "reason": "Check only rebuilt the key string from the zeros; rewritten to test all four choices against f and assert exactly one is correct."},
+    {"id": "adv-nonlinear-func-015", "reason": "wrong_reason for 250 did not describe how a student actually reaches 250; reworded."},
+    {"id": "adv-nonlinear-func-019", "reason": "Removed the stray phrase 'In the xy-plane' before 'the minimum value of f(x)', which read awkwardly."},
+    {"id": "adv-nonlinear-func-023", "reason": "wrong_reason for 300 − 25t was garbled ('150 mg per 6 hours each hour'); reworded."}
+  ],
+  "removed": [],
+  "notes": "All 27 keys checked by blind solving: none wrong, and every item has exactly one defensible choice. 010 and 016 are related (minimum of a quadratic) but ask different things (the minimum value vs. the x-value where it occurs), so both were kept. The writer said six expression/statement mc items test every choice; before this fix only 004, 012, 013 and 023 did."
+}

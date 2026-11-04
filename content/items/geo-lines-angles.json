@@ -1,0 +1,718 @@
+[
+  {
+    "id": "geo-lines-angles-001",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The two blades of an open pair of scissors lie along two straight lines that cross at the pivot. One of the angles formed at the pivot measures 47°. What is the measure of an angle adjacent to it?",
+    "choices": [
+      "43°",
+      "47°",
+      "133°",
+      "313°"
+    ],
+    "answer": "133°",
+    "explanation": [
+      "Adjacent angles formed by two intersecting lines lie along a straight line, so they form a linear pair.",
+      "A linear pair adds to 180°.",
+      "180° − 47° = 133°."
+    ],
+    "hints": [
+      "When two lines cross, what do two angles that sit next to each other add up to?",
+      "Which angle at the pivot shares a side with the 47° angle and lies along the same straight line?"
+    ],
+    "wrong_reasons": {
+      "43°": "Used 90° (complementary) instead of 180°",
+      "47°": "Gave the vertical angle, which is opposite, not adjacent",
+      "313°": "Subtracted from 360° as if the angles went all the way around"
+    },
+    "check": "result=180-47"
+  },
+  {
+    "id": "geo-lines-angles-002",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A triangular sail has two angles that measure 52° and 71°. What is the measure of the third angle of the sail?",
+    "choices": [
+      "38°",
+      "57°",
+      "109°",
+      "123°"
+    ],
+    "answer": "57°",
+    "explanation": [
+      "The angles of any triangle add to 180°.",
+      "52° + 71° = 123°.",
+      "180° − 123° = 57°."
+    ],
+    "hints": [
+      "What is the total of the three angle measures in every triangle?",
+      "How much of that total is already used by the two known angles?"
+    ],
+    "wrong_reasons": {
+      "38°": "Treated the triangle as a right triangle and found 90° − 52°",
+      "109°": "Subtracted only one of the angles from 180°",
+      "123°": "Added the two given angles and stopped (that is the exterior angle, not the third interior angle)"
+    },
+    "check": "result=180-(52+71)"
+  },
+  {
+    "id": "geo-lines-angles-003",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The roof truss of a garden shed is an isosceles triangle. The two sloped boards have equal length and meet at the peak at an angle of 112°. What is the measure, in degrees, of each of the two base angles of the truss?",
+    "answer": "34",
+    "explanation": [
+      "In an isosceles triangle the angles opposite the equal sides are equal, so the two base angles are equal.",
+      "The base angles together use 180° − 112° = 68°.",
+      "Each base angle is 68° ÷ 2 = 34°."
+    ],
+    "hints": [
+      "Which two angles of the truss must be equal, and why?",
+      "After the peak angle is accounted for, how many degrees are left for the other two angles together?"
+    ],
+    "check": "from sympy import *\nb=symbols('b')\nresult=solve(2*b+112-180,b)[0]"
+  },
+  {
+    "id": "geo-lines-angles-004",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Two parallel streets, Elm Street and Oak Street, are both crossed by a straight diagonal avenue. At the Elm Street intersection, the angle on the east side of the avenue, between Elm Street and the part of the avenue that heads toward Oak Street, measures 108°. At the Oak Street intersection, what is the measure of the angle on the east side of the avenue, between Oak Street and the part of the avenue that heads toward Elm Street?",
+    "choices": [
+      "18°",
+      "72°",
+      "108°",
+      "252°"
+    ],
+    "answer": "72°",
+    "explanation": [
+      "The two angles described are same-side (consecutive) interior angles.",
+      "When the lines are parallel, same-side interior angles are supplementary.",
+      "180° − 108° = 72°."
+    ],
+    "hints": [
+      "Both angles are between the parallel streets and on the same side of the avenue. What is that pair of angles called?",
+      "Are such angles equal, or do they add to a fixed total?"
+    ],
+    "wrong_reasons": {
+      "18°": "Subtracted 90° from 108° instead of subtracting from 180°",
+      "108°": "Assumed the angles are equal, as alternate interior angles would be",
+      "252°": "Subtracted from 360° instead of 180°"
+    },
+    "check": "result=180-108"
+  },
+  {
+    "id": "geo-lines-angles-005",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Triangle ABC is similar to triangle DEF, with A corresponding to D, B corresponding to E, and C corresponding to F. If AB = 4, BC = 6, and DE = 10, what is the length of EF?",
+    "choices": [
+      "2.4",
+      "12",
+      "15",
+      "60"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Corresponding sides of similar triangles are proportional.",
+      "The scale factor from ABC to DEF is DE/AB = 10/4 = 2.5.",
+      "EF = 2.5 · BC = 2.5 · 6 = 15."
+    ],
+    "hints": [
+      "Which side of DEF matches BC?",
+      "What number do you multiply AB by to get DE, and should the same number apply to BC?"
+    ],
+    "wrong_reasons": {
+      "2.4": "Inverted the scale factor, using 4/10 instead of 10/4",
+      "12": "Added the difference DE − AB = 6 to BC instead of multiplying by a scale factor",
+      "60": "Multiplied BC by DE without dividing by AB"
+    },
+    "check": "from sympy import *\nresult=Rational(10,4)*6"
+  },
+  {
+    "id": "geo-lines-angles-006",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Two angles form a linear pair. The measure of one angle is 4 times the measure of the other. What is the measure of the larger angle?",
+    "choices": [
+      "36°",
+      "45°",
+      "72°",
+      "144°"
+    ],
+    "answer": "144°",
+    "explanation": [
+      "Angles in a linear pair add to 180°.",
+      "Let the smaller angle be x, so x + 4x = 180 and x = 36.",
+      "The larger angle is 4 · 36° = 144°."
+    ],
+    "hints": [
+      "What total do two angles in a linear pair always have?",
+      "If the smaller angle is x, how would you write the larger one?"
+    ],
+    "wrong_reasons": {
+      "36°": "Found the smaller angle instead of the larger",
+      "45°": "Divided 180° by 4 instead of by 5 parts",
+      "72°": "Used a sum of 90° (complementary) and gave the larger angle"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=4*solve(x+4*x-180,x)[0]"
+  },
+  {
+    "id": "geo-lines-angles-007",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A skateboard ramp's side panel is a triangle with vertices A, B, and C. The exterior angle at vertex C measures 130°. If angle A measures 55°, what is the measure of angle B?",
+    "choices": [
+      "50°",
+      "65°",
+      "75°",
+      "125°"
+    ],
+    "answer": "75°",
+    "explanation": [
+      "An exterior angle of a triangle equals the sum of the two remote (non-adjacent) interior angles.",
+      "So 130° = 55° + m∠B.",
+      "m∠B = 130° − 55° = 75°."
+    ],
+    "hints": [
+      "Which interior angles of the triangle are not next to the exterior angle at C?",
+      "How is the exterior angle at C related to those two angles?"
+    ],
+    "wrong_reasons": {
+      "50°": "Found interior angle C (180° − 130°) instead of angle B",
+      "65°": "Split the exterior angle in half, assuming the two remote angles are equal",
+      "125°": "Subtracted 55° from 180° instead of from the exterior angle"
+    },
+    "check": "result=130-55"
+  },
+  {
+    "id": "geo-lines-angles-008",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Two straight lines intersect. A pair of vertical angles formed by the lines measure (5x − 10)° and (3x + 20)°. What is the value of x?",
+    "choices": [
+      "5",
+      "15",
+      "21.25",
+      "65"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Vertical angles are equal.",
+      "Set 5x − 10 = 3x + 20.",
+      "2x = 30, so x = 15."
+    ],
+    "hints": [
+      "Vertical angles sit directly across from each other. How do their measures compare?",
+      "What equation does that relationship give you?"
+    ],
+    "wrong_reasons": {
+      "5": "Combined the constants incorrectly (2x = 10)",
+      "21.25": "Treated the angles as supplementary and set their sum equal to 180",
+      "65": "Found the angle measure instead of the value of x"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(5*x-10-(3*x+20),x)[0]"
+  },
+  {
+    "id": "geo-lines-angles-009",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A ladder leans against a vertical wall and rests on level ground. The ladder makes a 68° angle with the ground. What is the measure of the angle between the ladder and the wall?",
+    "choices": [
+      "22°",
+      "68°",
+      "112°",
+      "158°"
+    ],
+    "answer": "22°",
+    "explanation": [
+      "The wall, the ground, and the ladder form a right triangle with the right angle where the wall meets the ground.",
+      "The two acute angles of a right triangle add to 90°.",
+      "90° − 68° = 22°."
+    ],
+    "hints": [
+      "What angle does a vertical wall make with level ground?",
+      "In a right triangle, what do the two non-right angles add up to?"
+    ],
+    "wrong_reasons": {
+      "68°": "Assumed the angle with the wall equals the angle with the ground",
+      "112°": "Subtracted from 180° as if the angles formed a linear pair",
+      "158°": "Added 90° to 68° instead of subtracting"
+    },
+    "check": "result=90-68"
+  },
+  {
+    "id": "geo-lines-angles-010",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Lines p and q are parallel and are cut by transversal t. Two corresponding angles formed by t measure (3x + 15)° and (5x − 25)°. What is the measure of one of these angles?",
+    "choices": [
+      "20°",
+      "75°",
+      "86.25°",
+      "105°"
+    ],
+    "answer": "75°",
+    "explanation": [
+      "Corresponding angles formed by parallel lines and a transversal are equal.",
+      "3x + 15 = 5x − 25 gives 40 = 2x, so x = 20.",
+      "The angle measures 3(20) + 15 = 75°."
+    ],
+    "hints": [
+      "When the lines are parallel, how do corresponding angles compare?",
+      "After you find x, what does the question actually ask for?"
+    ],
+    "wrong_reasons": {
+      "20°": "Gave the value of x instead of the angle measure",
+      "86.25°": "Treated the angles as supplementary (sum 180°) instead of equal",
+      "105°": "Gave the supplement of the angle instead of the angle itself"
+    },
+    "check": "from sympy import *\nx=symbols('x')\ns=solve(3*x+15-(5*x-25),x)[0]\nresult=3*s+15"
+  },
+  {
+    "id": "geo-lines-angles-011",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The measures of the angles of a triangle are in the ratio 2 : 3 : 7. What is the measure, in degrees, of the largest angle?",
+    "answer": "105",
+    "explanation": [
+      "Write the angles as 2k, 3k, and 7k.",
+      "2k + 3k + 7k = 180, so 12k = 180 and k = 15.",
+      "The largest angle is 7 · 15 = 105°."
+    ],
+    "hints": [
+      "How could you write each angle using one unknown, based on the ratio?",
+      "What must those three expressions add up to?"
+    ],
+    "check": "from sympy import *\nk=symbols('k')\nresult=7*solve(12*k-180,k)[0]"
+  },
+  {
+    "id": "geo-lines-angles-012",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "At the same time of day, a 6-foot-tall student casts a shadow 4 feet long, and a nearby tree casts a shadow 30 feet long. The sun's rays strike both at the same angle, and both stand vertically on level ground. How tall is the tree, in feet?",
+    "choices": [
+      "20",
+      "32",
+      "45",
+      "180"
+    ],
+    "answer": "45",
+    "explanation": [
+      "The student with its shadow and the tree with its shadow form similar right triangles, because the sun's rays make the same angle with the ground.",
+      "Set up height/shadow for each: 6/4 = h/30.",
+      "h = 30 · 6/4 = 45 feet."
+    ],
+    "hints": [
+      "Why are the two triangles formed by the objects, their shadows, and the sun's rays similar?",
+      "Which ratio stays the same for the student and the tree?"
+    ],
+    "wrong_reasons": {
+      "20": "Inverted the ratio, using shadow/height for one triangle and height/shadow for the other",
+      "32": "Added the 2-foot difference between height and shadow instead of using a ratio",
+      "180": "Multiplied 6 by 30 without dividing by 4"
+    },
+    "check": "from sympy import *\nh=symbols('h')\nresult=solve(Rational(6,4)-h/30,h)[0]"
+  },
+  {
+    "id": "geo-lines-angles-013",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "An A-frame swing set has a side profile shaped like triangle ABC, with the top at A and the feet at B and C on the ground. A crossbar DE is attached with D on AB and E on AC, and DE is parallel to BC. If AD = 6 feet, DB = 3 feet, and DE = 8 feet, what is the length of BC, in feet?",
+    "choices": [
+      "4",
+      "11",
+      "12",
+      "16"
+    ],
+    "answer": "12",
+    "explanation": [
+      "Since DE ∥ BC, triangle ADE is similar to triangle ABC.",
+      "AB = AD + DB = 6 + 3 = 9, so the scale factor is AB/AD = 9/6 = 1.5.",
+      "BC = 1.5 · 8 = 12 feet."
+    ],
+    "hints": [
+      "Which two triangles are similar because DE is parallel to BC?",
+      "In triangle ABC, which side corresponds to AD in triangle ADE: DB or the whole of AB?"
+    ],
+    "wrong_reasons": {
+      "4": "Used DB/AD = 3/6 as the scale factor and multiplied it by DE",
+      "11": "Added DB to DE as if the lengths grew by a fixed amount",
+      "16": "Used AD/DB = 6/3 = 2 as the scale factor instead of AB/AD"
+    },
+    "check": "from sympy import *\nAD,DB,DE=6,3,8\nresult=Rational(AD+DB,AD)*DE"
+  },
+  {
+    "id": "geo-lines-angles-014",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In an isosceles triangle, the two base angles are congruent, and the third angle measures 30° more than each base angle. What is the measure, in degrees, of the third angle?",
+    "answer": "80",
+    "explanation": [
+      "Let each base angle be x; then the third angle is x + 30.",
+      "x + x + (x + 30) = 180, so 3x = 150 and x = 50.",
+      "The third angle is 50 + 30 = 80°."
+    ],
+    "hints": [
+      "If a base angle is x, how would you write the third angle?",
+      "What equation do the three angles of a triangle give you?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(3*x+30-180,x)[0]+30"
+  },
+  {
+    "id": "geo-lines-angles-015",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The two banks of a straight canal are parallel lines running east–west. A footpath starts at point A on the north bank, runs straight to point P between the banks, then turns and runs straight to point B on the south bank. Point P lies east of both A and B. Segment AP makes a 35° angle with the north bank, measured on the east side of A, and segment PB makes a 50° angle with the south bank, measured on the east side of B. What is the measure of angle APB?",
+    "choices": [
+      "15°",
+      "85°",
+      "95°",
+      "275°"
+    ],
+    "answer": "85°",
+    "explanation": [
+      "Imagine a line through P parallel to the banks.",
+      "That line splits angle APB into two parts. By alternate interior angles, the part next to AP is 35° and the part next to PB is 50°.",
+      "m∠APB = 35° + 50° = 85°."
+    ],
+    "hints": [
+      "What helpful line could you draw through P?",
+      "With that extra line, which pairs of alternate interior angles appear?"
+    ],
+    "wrong_reasons": {
+      "15°": "Subtracted the two angles instead of adding them",
+      "95°": "Found the supplement of the correct angle",
+      "275°": "Gave the reflex angle around P (360° − 85°)"
+    },
+    "check": "from sympy import *\nva=Matrix([cos(rad(145)),sin(rad(145))])\nvb=Matrix([cos(rad(230)),sin(rad(230))])\nresult=deg(acos(simplify(va.dot(vb))))"
+  },
+  {
+    "id": "geo-lines-angles-016",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A hiker walks in straight lines between three campsites. The distance between the first two campsites is 7 miles and the distance between the second and third is 12 miles. The three campsites do not lie on a single straight line. Which of the following could be the distance, in miles, between the first and third campsites?",
+    "choices": [
+      "4",
+      "5",
+      "18",
+      "20"
+    ],
+    "answer": "18",
+    "explanation": [
+      "The three campsites form a triangle, so the third side must be greater than 12 − 7 = 5 and less than 12 + 7 = 19.",
+      "Only 18 is strictly between 5 and 19."
+    ],
+    "hints": [
+      "What must be true about any one side of a triangle compared with the other two?",
+      "Since the campsites are not in a straight line, can the third distance be exactly equal to one of those limits?"
+    ],
+    "wrong_reasons": {
+      "4": "Thought the third side only had to be less than the sum, ignoring the lower bound",
+      "5": "Allowed the side to equal the difference, which would put the campsites in a straight line",
+      "20": "Thought the third side only had to be greater than the difference, ignoring the upper bound"
+    },
+    "check": "cands=[4,5,18,20]\nok=[c for c in cands if 12-7<c<12+7]\nresult=ok[0] if len(ok)==1 else None"
+  },
+  {
+    "id": "geo-lines-angles-017",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In triangle ABC, the measure of angle A is (2x + 8)° and the measure of angle B is (3x + 5)°. The exterior angle at vertex C measures (6x − 4)°. What is the measure, in degrees, of interior angle C?",
+    "answer": "82",
+    "explanation": [
+      "The exterior angle at C equals the sum of the remote interior angles: 6x − 4 = (2x + 8) + (3x + 5).",
+      "6x − 4 = 5x + 13, so x = 17.",
+      "The exterior angle is 6(17) − 4 = 98°, so interior angle C is 180° − 98° = 82°."
+    ],
+    "hints": [
+      "Which interior angles are remote from the exterior angle at C, and how do they relate to it?",
+      "Once you know the exterior angle, how is it related to the interior angle at the same vertex?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\ns=solve(6*x-4-(2*x+8)-(3*x+5),x)[0]\nresult=180-(6*s-4)"
+  },
+  {
+    "id": "geo-lines-angles-018",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In triangles PQR and XYZ, which of the following sets of conditions is NOT enough, by itself, to guarantee that triangle PQR is congruent to triangle XYZ?",
+    "choices": [
+      "PQ = XY, QR = YZ, and m∠P = m∠X",
+      "PQ = XY, QR = YZ, and PR = XZ",
+      "PQ = XY, m∠Q = m∠Y, and QR = YZ",
+      "m∠P = m∠X, m∠Q = m∠Y, and PQ = XY"
+    ],
+    "answer": "PQ = XY, QR = YZ, and m∠P = m∠X",
+    "explanation": [
+      "PQ = XY, QR = YZ, and PR = XZ is side-side-side, which guarantees congruence.",
+      "PQ = XY, m∠Q = m∠Y, and QR = YZ is side-angle-side with the angle between the sides, which guarantees congruence.",
+      "m∠P = m∠X, m∠Q = m∠Y, and PQ = XY is angle-side-angle, which guarantees congruence.",
+      "PQ = XY, QR = YZ, and m∠P = m∠X gives two sides and an angle that is not between them (side-side-angle). Two different triangles can satisfy these conditions, so congruence is not guaranteed."
+    ],
+    "hints": [
+      "For each choice, is the given angle between the two given sides or not?",
+      "Which arrangement of sides and angles can be satisfied by two different-shaped triangles?"
+    ],
+    "wrong_reasons": {
+      "PQ = XY, QR = YZ, and PR = XZ": "Did not recognize side-side-side as a valid congruence criterion",
+      "PQ = XY, m∠Q = m∠Y, and QR = YZ": "Missed that angle Q is the included angle between PQ and QR, making this side-angle-side",
+      "m∠P = m∠X, m∠Q = m∠Y, and PQ = XY": "Thought angle-side-angle was not a valid criterion, perhaps confusing it with angle-angle-angle"
+    },
+    "check": null,
+    "check_note": "Conceptual: identifying which congruence criterion (SSA) is invalid has no numeric value to compute."
+  },
+  {
+    "id": "geo-lines-angles-019",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In triangle ABC, the measure of angle A is 70°. The bisector of angle B and the bisector of angle C intersect at point I inside the triangle. What is the measure, in degrees, of angle BIC?",
+    "answer": "125",
+    "explanation": [
+      "Angles B and C together measure 180° − 70° = 110°.",
+      "Each bisector cuts its angle in half, so m∠IBC + m∠ICB = 110° ÷ 2 = 55°.",
+      "In triangle BIC, m∠BIC = 180° − 55° = 125°."
+    ],
+    "hints": [
+      "You don't know angles B and C separately. What do you know about their sum?",
+      "Which triangle contains angle BIC, and what are its other two angles in terms of B and C?"
+    ],
+    "check": "from sympy import *\nB=symbols('B')\nC=110-B\nresult=simplify(180-(B/2+C/2))"
+  },
+  {
+    "id": "geo-lines-angles-020",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In triangle ABC, point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC. The lengths are AD = x, DB = 8, AE = 3, and EC = x − 2. What is the length of AB?",
+    "answer": "14",
+    "explanation": [
+      "Because DE ∥ BC, the sides are divided proportionally: AD/DB = AE/EC.",
+      "x/8 = 3/(x − 2), so x(x − 2) = 24, which gives x² − 2x − 24 = 0.",
+      "(x − 6)(x + 4) = 0, and a length must be positive, so x = 6.",
+      "AB = AD + DB = 6 + 8 = 14."
+    ],
+    "hints": [
+      "When a segment inside a triangle is parallel to one side, how does it divide the other two sides?",
+      "Your equation may have two solutions. Which one makes sense as a length, and is x the final answer?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',positive=True)\ns=[v for v in solve(x*(x-2)-24,x) if v>2][0]\nresult=s+8"
+  },
+  {
+    "id": "geo-lines-angles-021",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A tile designer wants a regular polygon in which each interior angle measures 7 times each exterior angle. How many sides must the polygon have?",
+    "choices": [
+      "8",
+      "14",
+      "16",
+      "22.5"
+    ],
+    "answer": "16",
+    "explanation": [
+      "At each vertex, an interior angle and its exterior angle form a linear pair, so interior + exterior = 180°.",
+      "If the exterior angle is e, then 7e + e = 180°, so e = 22.5°.",
+      "The exterior angles of any polygon add to 360°, so n = 360° ÷ 22.5° = 16."
+    ],
+    "hints": [
+      "At a single vertex, how are the interior angle and the exterior angle related?",
+      "What is the sum of the exterior angles of any convex polygon, and how does that help you count the sides?"
+    ],
+    "wrong_reasons": {
+      "8": "Assumed an interior angle and its exterior angle add to 360° instead of 180°",
+      "14": "Solved 180(n − 2) = 2520 correctly but reported n − 2 instead of n",
+      "22.5": "Found the exterior angle measure instead of the number of sides"
+    },
+    "check": "from sympy import *\ne=symbols('e')\nev=solve(8*e-180,e)[0]\nresult=360/ev"
+  },
+  {
+    "id": "geo-lines-angles-022",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, AB = AC. Point D lies on side BC so that AD = DC. If the measure of angle BAD is 51°, what is the measure of angle ADB?",
+    "choices": [
+      "43°",
+      "86°",
+      "94°",
+      "137°"
+    ],
+    "answer": "86°",
+    "explanation": [
+      "Let m∠B = m∠C = x, since AB = AC.",
+      "Since AD = DC, triangle ADC is isosceles, so m∠DAC = m∠C = x.",
+      "Angle BAC = 51° + x, and the angle sum of triangle ABC gives (51 + x) + x + x = 180, so x = 43.",
+      "Angle ADB is an exterior angle of triangle ADC, so m∠ADB = x + x = 86°."
+    ],
+    "hints": [
+      "Which pairs of equal sides tell you which pairs of angles are equal?",
+      "If you call angle C x, how can you write angle BAC in terms of x?",
+      "How is angle ADB related to the angles of triangle ADC?"
+    ],
+    "wrong_reasons": {
+      "43°": "Stopped at the base angle x instead of finding angle ADB",
+      "94°": "Found angle ADC, the supplement of angle ADB",
+      "137°": "Took the supplement of the base angle (180° − 43°)"
+    },
+    "check": "from sympy import *\nx=symbols('x')\ns=solve((51+x)+2*x-180,x)[0]\nresult=180-51-s"
+  },
+  {
+    "id": "geo-lines-angles-023",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A park walkway runs along the hypotenuse of a right-triangular lawn. A straight sprinkler line runs from the right-angle corner of the lawn perpendicular to the walkway, dividing the walkway into two segments of lengths 4 meters and 9 meters. How long is the sprinkler line, in meters?",
+    "choices": [
+      "6",
+      "6.5",
+      "13",
+      "36"
+    ],
+    "answer": "6",
+    "explanation": [
+      "The perpendicular from the right angle to the hypotenuse splits the lawn into two smaller right triangles that are similar to each other.",
+      "If the sprinkler line has length h, the similarity gives 4/h = h/9.",
+      "h² = 36, so h = 6 meters."
+    ],
+    "hints": [
+      "The perpendicular creates two smaller right triangles. Why are they similar to each other?",
+      "Which side of one small triangle corresponds to the sprinkler line in the other?"
+    ],
+    "wrong_reasons": {
+      "6.5": "Averaged the two segments instead of using similar triangles",
+      "13": "Added the segments, which gives the length of the hypotenuse",
+      "36": "Found h² = 36 but forgot to take the square root"
+    },
+    "check": "from sympy import *\nh=symbols('h',positive=True)\nresult=solve(h**2-4*9,h)[0]"
+  },
+  {
+    "id": "geo-lines-angles-024",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A triangular garden ABC has a straight fence DE built across it, with D on side AB, E on side AC, and DE parallel to BC. The fence divides AB so that AD : DB = 2 : 3. The triangular section ADE has an area of 12 square meters. What is the area, in square meters, of the other section of the garden, the four-sided region DBCE?",
+    "answer": "63",
+    "explanation": [
+      "Since DE ∥ BC, triangle ADE is similar to triangle ABC with AD/AB = 2/(2 + 3) = 2/5.",
+      "Areas of similar figures scale by the square of the scale factor: area ADE / area ABC = (2/5)² = 4/25.",
+      "Area ABC = 12 · 25/4 = 75 square meters.",
+      "Area DBCE = 75 − 12 = 63 square meters."
+    ],
+    "hints": [
+      "What is the ratio AD/AB, not just AD/DB?",
+      "When lengths are scaled by a factor k, by what factor are areas scaled?",
+      "Is the area of the whole triangle the final answer?"
+    ],
+    "check": "from sympy import *\nk=Rational(2,5)\nresult=12/k**2-12"
+  },
+  {
+    "id": "geo-lines-angles-025",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Lines m and n are parallel and are cut by a transversal. Two corresponding angles measure (3a + b)° and (2a + 3b)°. Another angle, which is a same-side interior angle paired with the (3a + b)° angle, measures (a + b)°. What is the measure of the (a + b)° angle?",
+    "choices": [
+      "18°",
+      "36°",
+      "54°",
+      "126°"
+    ],
+    "answer": "54°",
+    "explanation": [
+      "Corresponding angles are equal: 3a + b = 2a + 3b, so a = 2b.",
+      "Same-side interior angles are supplementary: (3a + b) + (a + b) = 180, so 4a + 2b = 180.",
+      "Substitute a = 2b: 8b + 2b = 180, so b = 18 and a = 36.",
+      "The angle measures a + b = 54°."
+    ],
+    "hints": [
+      "What equation do the two corresponding angles give you?",
+      "What equation do the two same-side interior angles give you?",
+      "With two equations in a and b, how can you combine them?"
+    ],
+    "wrong_reasons": {
+      "18°": "Gave the value of b instead of the angle measure",
+      "36°": "Gave the value of a instead of the angle measure",
+      "126°": "Found the (3a + b)° angle, the obtuse partner, instead of the (a + b)° angle"
+    },
+    "check": "from sympy import *\na,b=symbols('a b')\ns=solve([3*a+b-(2*a+3*b),(3*a+b)+(a+b)-180],[a,b])\nresult=s[a]+s[b]"
+  },
+  {
+    "id": "geo-lines-angles-026",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "At each vertex of a triangle, one exterior angle is drawn. The measures of these three exterior angles are in the ratio 3 : 4 : 5. What is the measure of the largest interior angle of the triangle?",
+    "choices": [
+      "30°",
+      "75°",
+      "90°",
+      "150°"
+    ],
+    "answer": "90°",
+    "explanation": [
+      "One exterior angle at each vertex of any polygon gives a total of 360°.",
+      "With measures 3k, 4k, 5k: 12k = 360, so k = 30 and the exterior angles are 90°, 120°, and 150°.",
+      "Each interior angle is 180° minus its exterior angle: 90°, 60°, and 30°.",
+      "The largest interior angle is 90°, at the vertex with the smallest exterior angle."
+    ],
+    "hints": [
+      "What is the sum of one exterior angle at each vertex of a triangle?",
+      "Does the largest interior angle go with the largest or the smallest exterior angle?"
+    ],
+    "wrong_reasons": {
+      "30°": "Paired the largest exterior angle with the largest interior angle, giving the smallest interior angle",
+      "75°": "Applied the ratio to the interior angles using a sum of 180° (5/12 of 180°)",
+      "150°": "Gave the largest exterior angle instead of an interior angle"
+    },
+    "check": "from sympy import *\nk=symbols('k')\nkv=solve(12*k-360,k)[0]\nresult=max(180-3*kv,180-4*kv,180-5*kv)"
+  },
+  {
+    "id": "geo-lines-angles-027",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "To estimate the height of a building, Maya places a small flat mirror on level ground 30 meters from the base of the building. She then stands 2 meters from the mirror, on the opposite side from the building, at the spot where she can just see the top of the building reflected in the mirror. Her eyes are 1.6 meters above the ground. Light reflects off the mirror so that the angle the incoming ray makes with the ground equals the angle the reflected ray makes with the ground. Both Maya and the building are vertical. What is the height of the building, in meters?",
+    "choices": [
+      "24",
+      "29.6",
+      "37.5",
+      "48"
+    ],
+    "answer": "24",
+    "explanation": [
+      "Maya, the mirror, and her eye level form one right triangle; the building, the mirror, and the top of the building form another.",
+      "The angles at the mirror are equal and both triangles have a right angle, so the triangles are similar by angle-angle.",
+      "Height/distance is the same for both: 1.6/2 = h/30.",
+      "h = 30 · 1.6/2 = 24 meters."
+    ],
+    "hints": [
+      "Which two triangles does the reflected light create, and which angles do they share?",
+      "In each triangle, which side is the vertical height and which is the distance along the ground to the mirror?"
+    ],
+    "wrong_reasons": {
+      "29.6": "Added the difference 30 − 2 to her eye height instead of using a ratio",
+      "37.5": "Inverted one ratio, using distance/height for Maya but height/distance for the building",
+      "48": "Multiplied 1.6 by 30 without dividing by 2"
+    },
+    "check": "from sympy import *\nh=symbols('h')\nresult=solve(Rational(16,10)/2-h/30,h)[0]"
+  }
+]

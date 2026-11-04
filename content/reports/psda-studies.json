@@ -1,0 +1,10 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "psda-studies-009", "reason": "Near-duplicate of 003 (divide volunteers into equal or fractional groups); changed it to a 1 : 3 placebo-to-vitamin split of 96 volunteers, so the answer is now 24. Explanation, hints and the sympy check were rewritten."},
+    {"id": "psda-studies-019", "reason": "Near-duplicate of 011 (random sample, observational study, answer 'associated in the population, not causal'); changed it to ask which finding would most weaken a causal claim, with lack of exercise as the confounder. New choices, wrong reasons, explanation and hints."},
+    {"id": "psda-studies-024", "reason": "Hint 1 contradicted itself ('not chance' and then 'decide randomly'); reworded it so it asks which plans assign the program at random."},
+    {"id": "psda-studies-022", "reason": "Added a code check that computes the per-condition and overall recovery rates and picks the statement they support, in place of the check_note."}
+  ],
+  "removed": []
+}

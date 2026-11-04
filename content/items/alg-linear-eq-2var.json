@@ -36,9 +36,9 @@
     "type": "mc",
     "stem": "Which ordered pair (x, y) is a solution to the equation 2x + 5y = 31?",
     "choices": [
-      "(3, 5)",
       "(5, 3)",
       "(0, 31)",
+      "(3, 5)",
       "(26, 1)"
     ],
     "answer": "(3, 5)",
@@ -83,8 +83,8 @@
     "type": "mc",
     "stem": "Jordan has a $50 gift card to spend on songs and movies. Each song costs $1.25 and each movie costs $5. The equation 1.25s + 5m = 50 represents spending the entire card on s songs and m movies. What does the term 5m represent?",
     "choices": [
-      "The total amount, in dollars, spent on movies",
       "The number of movies Jordan buys",
+      "The total amount, in dollars, spent on movies",
       "The price of one movie, in dollars",
       "The amount, in dollars, left on the card after buying movies"
     ],
@@ -113,10 +113,10 @@
     "type": "mc",
     "stem": "In the xy-plane, the graph of 3x + 4y = 12 is a line. At which point does the line cross the y-axis?",
     "choices": [
-      "(0, 3)",
       "(0, 4)",
       "(0, 12)",
-      "(4, 0)"
+      "(4, 0)",
+      "(0, 3)"
     ],
     "answer": "(0, 3)",
     "explanation": [
@@ -142,8 +142,8 @@
     "type": "mc",
     "stem": "A landscaper loads bags of soil that weigh 40 pounds each and bags of mulch that weigh 25 pounds each onto a truck. The total weight of the bags is exactly 1,000 pounds. Which equation represents this situation, where s is the number of bags of soil and m is the number of bags of mulch?",
     "choices": [
-      "40s + 25m = 1,000",
       "25s + 40m = 1,000",
+      "40s + 25m = 1,000",
       "s + m = 1,000",
       "65(s + m) = 1,000"
     ],
@@ -238,9 +238,9 @@
     "type": "mc",
     "stem": "If 2x + y = 9, what is the value of 6x + 3y?",
     "choices": [
-      "27",
       "9",
       "18",
+      "27",
       "81"
     ],
     "answer": "27",
@@ -266,10 +266,10 @@
     "type": "mc",
     "stem": "What is the slope of the line 6x − 3y = 15 in the xy-plane?",
     "choices": [
-      "2",
       "−2",
-      "6",
-      "1/2"
+      "1/2",
+      "2",
+      "6"
     ],
     "answer": "2",
     "explanation": [
@@ -313,10 +313,10 @@
     "type": "mc",
     "stem": "A pet store's sales of fish on one day are modeled by 3x + 11y = 231, where x is the number of small fish sold at $3 each and y is the number of large fish sold at $11 each. If the store had sold 3 more large fish and the total sales stayed the same, how would the number of small fish sold change?",
     "choices": [
-      "It decreases by 11",
       "It decreases by 33",
       "It decreases by 9",
-      "It decreases by 3"
+      "It decreases by 3",
+      "It decreases by 11"
     ],
     "answer": "It decreases by 11",
     "explanation": [
@@ -342,10 +342,10 @@
     "type": "mc",
     "stem": "A line in the xy-plane passes through the points (−2, 7) and (4, −2). Which equation represents the line?",
     "choices": [
-      "3x + 2y = 8",
       "3x − 2y = 8",
       "2x + 3y = 8",
-      "3x + 2y = 4"
+      "3x + 2y = 4",
+      "3x + 2y = 8"
     ],
     "answer": "3x + 2y = 8",
     "explanation": [
@@ -393,8 +393,8 @@
     "type": "mc",
     "stem": "A school spends exactly $2,000 on x graphing calculators at $125 each and y textbooks at $40 each, so 125x + 40y = 2,000. The graph of this equation in the xy-plane crosses the x-axis at (16, 0). Which is the best interpretation of this point?",
     "choices": [
-      "If the school buys no textbooks, it can buy 16 graphing calculators.",
       "If the school buys no graphing calculators, it can buy 16 textbooks.",
+      "If the school buys no textbooks, it can buy 16 graphing calculators.",
       "Each graphing calculator costs 16 times as much as a textbook.",
       "The school buys 16 more graphing calculators than textbooks."
     ],
@@ -423,10 +423,10 @@
     "type": "mc",
     "stem": "The ordered pair (k, 2k) is a solution to the equation 7x − 2y = 18. What is the value of k?",
     "choices": [
-      "6",
-      "18/5",
       "3/2",
-      "18/11"
+      "18/11",
+      "18/5",
+      "6"
     ],
     "answer": "6",
     "explanation": [
@@ -493,10 +493,10 @@
     "type": "mc",
     "stem": "A rideshare driver is paid $0.90 per mile and $0.30 per minute for each trip. The driver was paid $27 for a trip that was 18 miles long. How many minutes long was the trip?",
     "choices": [
+      "30",
       "36",
       "54",
-      "90",
-      "30"
+      "90"
     ],
     "answer": "36",
     "explanation": [
@@ -522,10 +522,10 @@
     "type": "mc",
     "stem": "In the xy-plane, line ℓ has equation ax + 6y = 18, where a is a constant. Line ℓ is parallel to the line 2x − 3y = 7. What is the value of a?",
     "choices": [
+      "−9",
       "−4",
       "4",
-      "9",
-      "−9"
+      "9"
     ],
     "answer": "−4",
     "explanation": [
@@ -572,29 +572,31 @@
     "skill_id": "alg-linear-eq-2var",
     "difficulty": 3,
     "type": "mc",
-    "stem": "A chemist mixes x milliliters of a 12% acid solution with y milliliters of a 30% acid solution. The mixture contains 54 milliliters of acid, so 0.12x + 0.30y = 54. If the chemist uses 1 more milliliter of the 30% solution, how many fewer milliliters of the 12% solution must be used so that the mixture still contains 54 milliliters of acid?",
+    "stem": "A chemist mixes x milliliters of a 12% acid solution with y milliliters of a 30% acid solution. The mixture contains 54 milliliters of acid, so 0.12x + 0.30y = 54. The chemist uses twice as many milliliters of the 12% solution as of the 30% solution. What is the total volume, in milliliters, of the mixture?",
     "choices": [
-      "2.5",
-      "0.4",
-      "0.18",
-      "450"
+      "100",
+      "200",
+      "225",
+      "300"
     ],
-    "answer": "2.5",
+    "answer": "300",
     "explanation": [
-      "1 more mL of the 30% solution adds 0.30 mL of acid.",
-      "The 12% solution must supply 0.30 mL less acid.",
-      "Each mL of the 12% solution has 0.12 mL of acid, so 0.30 ÷ 0.12 = 2.5 fewer mL."
+      "Twice as much 12% solution as 30% solution means x = 2y.",
+      "Substitute: 0.12(2y) + 0.30y = 54, so 0.24y + 0.30y = 0.54y = 54.",
+      "Divide by 0.54: y = 100, so x = 2(100) = 200.",
+      "The total volume is x + y = 200 + 100 = 300 milliliters."
     ],
     "hints": [
-      "How much extra acid does 1 more mL of the 30% solution add?",
-      "How many mL of the 12% solution contain that much acid?"
+      "How can you write x in terms of y using the word 'twice'?",
+      "After you substitute, what equation with only y do you get?",
+      "Does the question ask for x, for y, or for something else?"
     ],
     "wrong_reasons": {
-      "0.4": "Inverted the ratio, computing 0.12 ÷ 0.30.",
-      "0.18": "Subtracted the percentages (0.30 − 0.12) instead of comparing them as a ratio.",
-      "450": "Divided 54 by 0.12, finding x when y = 0 rather than a rate of change."
+      "200": "Found the volume of the 12% solution only, not the total.",
+      "100": "Found the volume of the 30% solution only, not the total.",
+      "225": "Reversed the relationship, using y = 2x instead of x = 2y."
     },
-    "check": "from sympy import *\nx,y,d=symbols('x y d')\nn=solve(Rational(12,100)*(x-d)+Rational(30,100)*(y+1)-(Rational(12,100)*x+Rational(30,100)*y),d)[0]\nresult=n"
+    "check": "from sympy import *\nx,y=symbols('x y')\nsol=solve([Rational(12,100)*x+Rational(30,100)*y-54, x-2*y],[x,y])\nresult=sol[x]+sol[y]"
   },
   {
     "id": "alg-linear-eq-2var-022",
@@ -619,9 +621,9 @@
       "When you divide by a negative coefficient of y, what happens to the signs?"
     ],
     "wrong_reasons": {
-      "3x + 5y = 10": "Assumed positive coefficients mean a positive slope and read the constant as the y-intercept without dividing by 5 or handling signs.",
-      "−3x + 5y = 10": "Found the positive slope correctly but assumed the intercept is negative because the x-coefficient is negative.",
-      "3x + 5y = −10": "Saw the negative constant and assumed the slope was positive because 3 is positive, without solving for y."
+      "3x + 5y = 10": "Made sign errors when moving the x-term and the constant, getting 5y = 3x − 10 instead of 5y = −3x + 10.",
+      "−3x + 5y = 10": "Found the positive slope correctly but missed that the y-intercept, 2, is positive.",
+      "3x + 5y = −10": "Found the negative y-intercept correctly but forgot that moving 3x to the other side makes the slope negative."
     },
     "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT=standard_transformations+(implicit_multiplication_application,)\ndef E(s):\n    l,r=s.replace('\\u2212','-').replace(',','').split('=')\n    return parse_expr(l,transformations=T)-parse_expr(r,transformations=T)\nx,y=symbols('x y')\nch=['3x − 5y = 10','3x + 5y = 10','−3x + 5y = 10','3x + 5y = −10']\nok=[]\nfor c in ch:\n    f=solve(E(c),y)[0]\n    if diff(f,x)>0 and f.subs(x,0)<0: ok.append(c)\nresult=ok[0].replace('−','-') if len(ok)==1 else 'not unique'"
   },
@@ -677,7 +679,7 @@
     "skill_id": "alg-linear-eq-2var",
     "difficulty": 3,
     "type": "mc",
-    "stem": "The graph of 2x + 5y = 40 in the xy-plane is a line. How many points (a, b) on this line have both a and b equal to positive integers?",
+    "stem": "The graph of 2x + 5y = 40 in the xy-plane is a line. How many points on this line have an x-coordinate and a y-coordinate that are both positive integers?",
     "choices": [
       "3",
       "4",
@@ -708,9 +710,9 @@
     "type": "mc",
     "stem": "The line 3x − 2y = 12 in the xy-plane is shifted up 3 units. Which equation represents the new line?",
     "choices": [
-      "3x − 2y = 6",
       "3x − 2y = 18",
       "3x − 2y = 9",
+      "3x − 2y = 6",
       "3x − 2y = 15"
     ],
     "answer": "3x − 2y = 6",
@@ -737,8 +739,8 @@
     "type": "mc",
     "stem": "Eli runs at 6 miles per hour and bikes at 15 miles per hour. On Saturday he spent exactly 3 hours exercising, which is modeled by x/6 + y/15 = 3, where x is the number of miles he ran and y is the number of miles he biked. If Eli biked 30 miles, how many miles did he run?",
     "choices": [
-      "6",
       "1",
+      "6",
       "12",
       "18"
     ],

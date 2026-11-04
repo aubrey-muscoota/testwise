@@ -1,0 +1,14 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "geo-right-trig-018", "reason": "Near-duplicate of 010 (height = ground distance × tan of the angle); now gives the 27 m height and asks for the shadow (27 ÷ 0.75 = 36), with new distractors, explanation, hints and check."},
+    {"id": "geo-right-trig-002", "reason": "Check only restated the key (Rational(15,17)); now builds the triangle from coordinates and computes sin A."},
+    {"id": "geo-right-trig-006", "reason": "Check only restated the key (Rational(7,24)); now builds the ramp triangle and computes tan of the ground angle."},
+    {"id": "geo-right-trig-017", "reason": "Check only restated the key (Rational(21,29)); now builds RST and a scaled UVW with the stated correspondence and computes cos W."},
+    {"id": "geo-right-trig-010", "reason": "Check computed its target with the keyed expression itself; it now solves atan(h/50) = 38° for h and matches that against the choices."},
+    {"id": "geo-right-trig-026", "reason": "Third hint ('How many radians are in 30°?') gave away the angle; now asks how to convert degrees to radians."},
+    {"id": "geo-right-trig-016", "reason": "Reworded the awkward 'If θ is the angle…, cos θ = 0.28' sentence; the math and key (48) are unchanged."}
+  ],
+  "removed": [],
+  "notes": "All 27 keys matched independent solutions. The checker's Unicode-minus mismatch (STR results are not normalized) is still there; 023 keeps its workaround, since the task said to touch no other files."
+}

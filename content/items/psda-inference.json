@@ -1,0 +1,801 @@
+[
+  {
+    "id": "psda-inference-001",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A high school has 1,500 students. In a random sample of 200 of these students, 64 said they ride a bike to school. Based on the sample, about how many students at the school ride a bike to school?",
+    "choices": [
+      "64",
+      "320",
+      "480",
+      "1,020"
+    ],
+    "answer": "480",
+    "explanation": [
+      "The sample proportion is 64 ÷ 200 = 0.32.",
+      "Because the sample was random, use 0.32 as the estimate for the whole school.",
+      "0.32 × 1,500 = 480 students."
+    ],
+    "hints": [
+      "What fraction of the sampled students ride a bike?",
+      "If that fraction holds for the whole school, how would you apply it to 1,500 students?"
+    ],
+    "wrong_reasons": {
+      "64": "Reported the number of bikers in the sample instead of scaling up to the whole school",
+      "320": "Divided 64 by 200 and multiplied by 1,000 instead of by the 1,500 students in the school",
+      "1,020": "Estimated the students who do not ride a bike (68% of 1,500)"
+    },
+    "check": "from sympy import *\nresult=Rational(64,200)*1500"
+  },
+  {
+    "id": "psda-inference-002",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A news station surveyed a random sample of adults in a county and found that 58% of them shop at a local farmers market at least once a month. The margin of error for the estimate is 4%. Which of the following is the most plausible range for the percent of all adults in the county who shop at the farmers market at least once a month?",
+    "choices": [
+      "56% to 60%",
+      "54% to 62%",
+      "58% to 62%",
+      "50% to 66%"
+    ],
+    "answer": "54% to 62%",
+    "explanation": [
+      "A margin of error is added to and subtracted from the sample estimate.",
+      "58% − 4% = 54% and 58% + 4% = 62%.",
+      "So a plausible range is 54% to 62%."
+    ],
+    "hints": [
+      "What two operations do you do with the margin of error and the estimate?",
+      "Does the margin of error go only above the estimate, or on both sides?"
+    ],
+    "wrong_reasons": {
+      "56% to 60%": "Split the 4% margin of error into 2% on each side",
+      "58% to 62%": "Applied the margin of error only above the estimate",
+      "50% to 66%": "Doubled the margin of error, using 8% on each side"
+    },
+    "check": "lo,hi=58-4,58+4\nresult=f'{lo}% to {hi}%'"
+  },
+  {
+    "id": "psda-inference-003",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A snack company randomly selected 50 bags of pretzels from a day's production. The mean weight of the selected bags was 28.4 grams, with a margin of error of 0.6 gram. Based on these results, what is the greatest plausible value, in grams, for the mean weight of all bags produced that day?",
+    "answer": "29",
+    "accept": [
+      "29.0"
+    ],
+    "explanation": [
+      "The plausible values for the mean are the sample mean plus or minus the margin of error.",
+      "The greatest plausible value is 28.4 + 0.6.",
+      "28.4 + 0.6 = 29 grams."
+    ],
+    "hints": [
+      "Which end of the plausible range is the question asking for?",
+      "Should you add or subtract the margin of error to get that end?"
+    ],
+    "check": "from sympy import *\nresult=Rational(284,10)+Rational(6,10)"
+  },
+  {
+    "id": "psda-inference-004",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A town council wants to estimate how many hours per week the town's residents spend exercising. Which of the following methods of choosing people to survey is most likely to produce results that can be generalized to all residents of the town?",
+    "choices": [
+      "Choosing 300 people at random from a list of all town residents",
+      "Surveying 300 people as they leave the town's largest gym",
+      "Posting the survey online and using the first 300 responses",
+      "Asking 300 members of the town's running club"
+    ],
+    "answer": "Choosing 300 people at random from a list of all town residents",
+    "explanation": [
+      "To generalize to a population, every member of that population should have a chance of being chosen.",
+      "Random selection from a list of all residents gives every resident a chance and avoids favoring any group.",
+      "The other methods favor people who are likely to exercise more, or people who choose to respond."
+    ],
+    "hints": [
+      "Which group of people is the council trying to learn about?",
+      "In which method could any resident of the town end up in the sample?"
+    ],
+    "wrong_reasons": {
+      "Surveying 300 people as they leave the town's largest gym": "Thinks a large sample is enough, ignoring that gym-goers likely exercise more than typical residents",
+      "Posting the survey online and using the first 300 responses": "Treats volunteers as a random sample; people who choose to respond may differ from other residents",
+      "Asking 300 members of the town's running club": "Ignores that running club members are not representative of all residents"
+    },
+    "check": null,
+    "check_note": "Conceptual item: identifying a sampling method that supports generalizing to the population; no numeric answer."
+  },
+  {
+    "id": "psda-inference-005",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A warehouse received a shipment of 2,400 light bulbs. An inspector tested a random sample of 80 bulbs from the shipment and found that 3 were defective. Based on this sample, which of the following is the best estimate of the number of bulbs in the entire shipment that are NOT defective?",
+    "choices": [
+      "30",
+      "77",
+      "90",
+      "2,310"
+    ],
+    "answer": "2,310",
+    "explanation": [
+      "In the sample, 80 − 3 = 77 bulbs were not defective, so the fraction not defective is 77/80.",
+      "Apply that fraction to the whole shipment: (77/80) × 2,400.",
+      "(77/80) × 2,400 = 2,310 bulbs that are not defective. (Equivalently, about (3/80) × 2,400 = 90 are defective, and 2,400 − 90 = 2,310.)"
+    ],
+    "hints": [
+      "What fraction of the tested bulbs were not defective?",
+      "How many times larger is the shipment than the sample?"
+    ],
+    "wrong_reasons": {
+      "30": "Found 2,400 ÷ 80, the scale factor, but did not multiply it by anything",
+      "77": "Reported the number of working bulbs in the sample instead of scaling up to the shipment",
+      "90": "Estimated the number of defective bulbs instead of the bulbs that are not defective"
+    },
+    "check": "from sympy import *\nn_sample=80; bad=3; N=2400\nresult=Rational(n_sample-bad,n_sample)*N"
+  },
+  {
+    "id": "psda-inference-006",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A study of a random sample of sunflowers in a field reported that the mean height of all sunflowers in the field is plausibly between 152.6 centimeters and 159.0 centimeters. This range was found by adding and subtracting the margin of error from the sample mean. What is the margin of error, in centimeters?",
+    "answer": "3.2",
+    "accept": [
+      "16/5"
+    ],
+    "explanation": [
+      "The range runs from (sample mean − margin of error) to (sample mean + margin of error).",
+      "So the width of the range, 159.0 − 152.6 = 6.4, is twice the margin of error.",
+      "The margin of error is 6.4 ÷ 2 = 3.2 centimeters."
+    ],
+    "hints": [
+      "How far is it from one end of the range to the other?",
+      "How many margins of error fit across the whole range?"
+    ],
+    "check": "from sympy import *\nresult=(Rational(1590,10)-Rational(1526,10))/2"
+  },
+  {
+    "id": "psda-inference-007",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A city has about 40,000 households. A researcher selected 400 of the households at random and found that 92 of them own a dog. Which of the following is the best estimate of the proportion of all households in the city that own a dog?",
+    "choices": [
+      "0.023",
+      "0.23",
+      "0.77",
+      "4.35"
+    ],
+    "answer": "0.23",
+    "explanation": [
+      "The sample proportion is 92 ÷ 400.",
+      "92 ÷ 400 = 0.23.",
+      "Because the sample was random, 0.23 is the best estimate for all households in the city."
+    ],
+    "hints": [
+      "What is the best estimate of a population proportion when you have a random sample?",
+      "Which number goes on top of the fraction: the dog owners or the sample size?"
+    ],
+    "wrong_reasons": {
+      "0.023": "Misplaced the decimal point when dividing 92 by 400",
+      "0.77": "Found the proportion of households that do not own a dog",
+      "4.35": "Divided 400 by 92, inverting the fraction"
+    },
+    "check": "from sympy import *\nresult=Rational(92,400)"
+  },
+  {
+    "id": "psda-inference-008",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A cooking magazine asked its readers to mail in their answers to the question \"What is your favorite type of food?\" Of the 1,200 readers who responded, 45% chose Italian food. Which of the following best explains why these results should not be used to estimate the percent of all adults in the country whose favorite type of food is Italian?",
+    "choices": [
+      "The sample size of 1,200 is too small to say anything about a population.",
+      "The percent who chose Italian food is less than 50%.",
+      "The people who responded were magazine readers who chose to reply, not a random sample of all adults in the country.",
+      "The question should have asked about only one type of food."
+    ],
+    "answer": "The people who responded were magazine readers who chose to reply, not a random sample of all adults in the country.",
+    "explanation": [
+      "To generalize to all adults in the country, the sample should be randomly selected from all adults in the country.",
+      "These respondents were only readers of one cooking magazine, and they chose themselves by mailing in answers.",
+      "Such a group may have food preferences that differ from adults in general."
+    ],
+    "hints": [
+      "Who had a chance to be included in this survey?",
+      "Could people who read a cooking magazine and choose to reply differ from adults in general?"
+    ],
+    "wrong_reasons": {
+      "The sample size of 1,200 is too small to say anything about a population.": "Believes sample size is the problem; a random sample of 1,200 could support estimates, but this one is not random",
+      "The percent who chose Italian food is less than 50%.": "Confuses whether a result is a majority with whether it can be generalized",
+      "The question should have asked about only one type of food.": "Focuses on the wording of the question rather than on how respondents were selected"
+    },
+    "check": null,
+    "check_note": "Conceptual item: recognizing a voluntary-response, non-representative sample; no numeric answer."
+  },
+  {
+    "id": "psda-inference-009",
+    "skill_id": "psda-inference",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A biologist caught a random sample of 60 trout from a lake and measured them. The mean length of the trout in the sample was 31.5 centimeters, with a margin of error of 1.2 centimeters. Which of the following is a plausible value for the mean length, in centimeters, of all trout in the lake?",
+    "choices": [
+      "29.1",
+      "30.2",
+      "32.4",
+      "33.9"
+    ],
+    "answer": "32.4",
+    "explanation": [
+      "Plausible values are within one margin of error of the sample mean.",
+      "31.5 − 1.2 = 30.3 and 31.5 + 1.2 = 32.7.",
+      "Only 32.4 is between 30.3 and 32.7."
+    ],
+    "hints": [
+      "What range of values do you get from the sample mean and the margin of error?",
+      "Which choice falls inside that range?"
+    ],
+    "wrong_reasons": {
+      "29.1": "Used twice the margin of error (2.4) below the mean",
+      "30.2": "Thought a value just outside the range (below 30.3) is close enough to count as plausible",
+      "33.9": "Used twice the margin of error (2.4) above the mean"
+    },
+    "check": "m,e=31.5,1.2\nvals=[29.1,30.2,32.4,33.9]\nresult=[v for v in vals if m-e<=v<=m+e][0]"
+  },
+  {
+    "id": "psda-inference-010",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Two students each selected a different random sample of 40 households from the same neighborhood and recorded the number of people living in each household. The mean of the first sample was 3.1 people, and the mean of the second sample was 3.4 people. Which of the following is the most likely explanation for the difference between the two sample means?",
+    "choices": [
+      "One of the samples must have been chosen in a biased way.",
+      "The mean household size in the neighborhood changed between the two samples.",
+      "One of the students must have made a calculation error.",
+      "Different random samples from the same population usually give somewhat different results."
+    ],
+    "answer": "Different random samples from the same population usually give somewhat different results.",
+    "explanation": [
+      "Each random sample includes a different set of households.",
+      "Because of chance, sample means vary from one random sample to another even when the population is the same.",
+      "A small difference like 3.1 versus 3.4 is expected from this natural sampling variability."
+    ],
+    "hints": [
+      "Would two random samples from the same neighborhood contain exactly the same households?",
+      "Does a difference between two sample means by itself show that something went wrong?"
+    ],
+    "wrong_reasons": {
+      "One of the samples must have been chosen in a biased way.": "Thinks any difference between random samples signals bias, ignoring sampling variability",
+      "The mean household size in the neighborhood changed between the two samples.": "Attributes a chance difference to a change in the population",
+      "One of the students must have made a calculation error.": "Expects correctly computed sample means to match exactly"
+    },
+    "check": null,
+    "check_note": "Conceptual item: sampling variability between random samples; no numeric answer."
+  },
+  {
+    "id": "psda-inference-011",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A hiking club has 4,200 members. The club surveyed a random sample of 150 members and found that 36% of them want the club to add winter trips. The margin of error for this estimate is 5 percentage points. Based on these results, what is the greatest plausible number of the club's 4,200 members who want the club to add winter trips?",
+    "answer": "1722",
+    "accept": [
+      "1,722"
+    ],
+    "explanation": [
+      "The plausible range for the percent of all members is 36% ± 5%, or 31% to 41%.",
+      "The greatest plausible percent is 41%.",
+      "0.41 × 4,200 = 1,722 members."
+    ],
+    "hints": [
+      "What is the highest plausible percent for all club members?",
+      "How do you turn a percent of the members into a number of members?"
+    ],
+    "check": "from sympy import *\nresult=Rational(36+5,100)*4200"
+  },
+  {
+    "id": "psda-inference-012",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A researcher selected a random sample of teenagers from City A and a random sample of teenagers from City B and recorded how many hours each teenager slept on a school night. The mean for the City A sample was 6.8 hours, and the mean for the City B sample was 7.1 hours. Each estimate has a margin of error of 0.4 hour. Which of the following is the most appropriate conclusion?",
+    "choices": [
+      "The results do not give convincing evidence that the mean sleep time differs between the two cities, because the plausible ranges overlap.",
+      "Teenagers in City B sleep more on average than teenagers in City A, because 7.1 is greater than 6.8.",
+      "Every teenager in City B sleeps more than every teenager in City A.",
+      "The mean sleep time in City B is exactly 0.3 hour greater than in City A."
+    ],
+    "answer": "The results do not give convincing evidence that the mean sleep time differs between the two cities, because the plausible ranges overlap.",
+    "explanation": [
+      "The plausible range for City A is 6.8 ± 0.4, or 6.4 to 7.2 hours.",
+      "The plausible range for City B is 7.1 ± 0.4, or 6.7 to 7.5 hours.",
+      "These ranges overlap (for example, 7.0 is in both), so the two population means could be equal."
+    ],
+    "hints": [
+      "What are the plausible ranges for each city's mean?",
+      "Is there a value that could plausibly be the mean for both cities?"
+    ],
+    "wrong_reasons": {
+      "Teenagers in City B sleep more on average than teenagers in City A, because 7.1 is greater than 6.8.": "Compares the sample means directly and ignores the margins of error",
+      "Every teenager in City B sleeps more than every teenager in City A.": "Treats a statement about means as a statement about every individual",
+      "The mean sleep time in City B is exactly 0.3 hour greater than in City A.": "Treats the difference between sample means as the exact difference between population means"
+    },
+    "check": null,
+    "check_note": "Conceptual item: comparing two estimates using their margins of error; the conclusion is a statement, not a number."
+  },
+  {
+    "id": "psda-inference-013",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A grocery store chain has about 18,000 customers. The chain surveyed a random sample of 250 of its customers about how they usually pay. The results are shown in the table. Based on the sample, which of the following is the best estimate of the number of the chain's customers who usually pay with a mobile app?",
+    "table": {
+      "headers": [
+        "Payment method",
+        "Number of customers"
+      ],
+      "rows": [
+        [
+          "Credit or debit card",
+          "120"
+        ],
+        [
+          "Cash",
+          "45"
+        ],
+        [
+          "Mobile app",
+          "70"
+        ],
+        [
+          "Check",
+          "15"
+        ],
+        [
+          "Total",
+          "250"
+        ]
+      ]
+    },
+    "choices": [
+      "3,240",
+      "4,500",
+      "5,040",
+      "12,960"
+    ],
+    "answer": "5,040",
+    "explanation": [
+      "The proportion of sampled customers who use a mobile app is 70 ÷ 250 = 0.28.",
+      "Apply this proportion to all customers: 0.28 × 18,000.",
+      "0.28 × 18,000 = 5,040 customers."
+    ],
+    "hints": [
+      "Which row of the table matches the question?",
+      "What fraction of the sample is that, and how do you scale it to all 18,000 customers?"
+    ],
+    "wrong_reasons": {
+      "3,240": "Used the cash row (45 ÷ 250) instead of the mobile app row",
+      "4,500": "Assumed customers are split equally among the four payment methods",
+      "12,960": "Estimated the customers who do not use a mobile app"
+    },
+    "check": "from sympy import *\nresult=Rational(70,250)*18000"
+  },
+  {
+    "id": "psda-inference-014",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "To estimate the mean number of hours that students at a high school spend studying each week, a student surveyed 50 students who were working in the school library after school. The mean for these students was 9.5 hours per week. Which of the following best describes the most likely problem with using 9.5 hours as an estimate for all students at the school?",
+    "choices": [
+      "Students in the library after school probably study more than typical students, so the estimate is likely too high.",
+      "A sample of 50 students is always too small to estimate a mean.",
+      "Students in the library after school probably study less than typical students, so the estimate is likely too low.",
+      "The estimate cannot be wrong because the 50 students reported their own study times."
+    ],
+    "answer": "Students in the library after school probably study more than typical students, so the estimate is likely too high.",
+    "explanation": [
+      "The sample was not chosen at random from all students at the school.",
+      "Students who are in the library after school are likely to be students who study more than average.",
+      "So the sample mean probably overestimates the mean for all students."
+    ],
+    "hints": [
+      "Did every student at the school have a chance to be surveyed?",
+      "Would students found in the library tend to study more, less, or about the same as other students?"
+    ],
+    "wrong_reasons": {
+      "A sample of 50 students is always too small to estimate a mean.": "Blames sample size instead of the non-random way the sample was chosen",
+      "Students in the library after school probably study less than typical students, so the estimate is likely too low.": "Recognizes the bias but gets its direction backward",
+      "The estimate cannot be wrong because the 50 students reported their own study times.": "Thinks accurate individual answers make a sample representative"
+    },
+    "check": null,
+    "check_note": "Conceptual item: identifying the direction of bias in a convenience sample; no numeric answer."
+  },
+  {
+    "id": "psda-inference-015",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A town has 6,000 households. A random sample of households in the town was surveyed, and the mean number of cars per household in the sample was 1.8, with a margin of error of 0.15. Based on these results, what is the least plausible value for the total number of cars owned by all 6,000 households in the town?",
+    "answer": "9900",
+    "accept": [
+      "9,900"
+    ],
+    "explanation": [
+      "The plausible range for the mean number of cars per household is 1.8 ± 0.15, or 1.65 to 1.95.",
+      "The least plausible total comes from the least plausible mean.",
+      "1.65 × 6,000 = 9,900 cars."
+    ],
+    "hints": [
+      "What is the smallest plausible mean number of cars per household?",
+      "If you know the mean per household, how do you find the total for all households?"
+    ],
+    "check": "from sympy import *\nresult=(Rational(18,10)-Rational(15,100))*6000"
+  },
+  {
+    "id": "psda-inference-016",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A researcher used a random sample of 200 residents of a state to estimate the mean daily water use per resident. The estimate had a margin of error of 12 gallons. The researcher wants a new estimate with a smaller margin of error. Which of the following changes is most likely to produce a smaller margin of error while still allowing the results to be generalized to all residents of the state?",
+    "choices": [
+      "Selecting a random sample of 100 residents of the state",
+      "Surveying 800 residents who live in the state's largest city",
+      "Rounding each resident's reported water use to the nearest gallon",
+      "Selecting a random sample of 800 residents of the state"
+    ],
+    "answer": "Selecting a random sample of 800 residents of the state",
+    "explanation": [
+      "The margin of error tends to decrease as the size of a random sample increases.",
+      "To still generalize to the whole state, the sample must remain random from all state residents.",
+      "Only a larger random sample from the whole state does both."
+    ],
+    "hints": [
+      "What usually happens to the margin of error when you collect more data at random?",
+      "Which choices would stop the sample from representing the whole state?"
+    ],
+    "wrong_reasons": {
+      "Selecting a random sample of 100 residents of the state": "Has the relationship backward; a smaller sample tends to give a larger margin of error",
+      "Surveying 800 residents who live in the state's largest city": "Focuses on sample size but ignores that a sample from one city cannot be generalized to the whole state",
+      "Rounding each resident's reported water use to the nearest gallon": "Confuses rounding of measurements with the sampling variability that the margin of error describes"
+    },
+    "check": null,
+    "check_note": "Conceptual item: how sample size and random selection affect margin of error and generalization; no numeric answer."
+  },
+  {
+    "id": "psda-inference-017",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A school district selected a random sample of 120 ninth-grade students at Ridgeview High School and asked whether they would join a coding club. Of these students, 35% said yes. To which of the following groups can the results of the survey most appropriately be generalized?",
+    "choices": [
+      "Only the 120 ninth-grade students who were surveyed",
+      "All ninth-grade students at Ridgeview High School",
+      "All students at Ridgeview High School",
+      "All ninth-grade students in the school district"
+    ],
+    "answer": "All ninth-grade students at Ridgeview High School",
+    "explanation": [
+      "Results from a random sample can be generalized to the population the sample was drawn from.",
+      "The sample was drawn only from ninth graders at Ridgeview High School.",
+      "So the results apply to all ninth graders at Ridgeview, not to other grades or schools."
+    ],
+    "hints": [
+      "From exactly which group were the 120 students chosen?",
+      "Did students in other grades or at other schools have any chance of being selected?"
+    ],
+    "wrong_reasons": {
+      "Only the 120 ninth-grade students who were surveyed": "Does not realize that a random sample supports conclusions about the population it was drawn from",
+      "All students at Ridgeview High School": "Overgeneralizes to grades that were not sampled",
+      "All ninth-grade students in the school district": "Overgeneralizes to schools that were not sampled"
+    },
+    "check": null,
+    "check_note": "Conceptual item: identifying the population to which a random sample generalizes; no numeric answer."
+  },
+  {
+    "id": "psda-inference-018",
+    "skill_id": "psda-inference",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A pollster asked a random sample of 600 voters whether they support a proposed bike lane. Based on the results, the pollster reported that the proportion of all voters who support the bike lane is plausibly between 0.43 and 0.51, where this range is centered at the sample proportion. How many of the 600 voters in the sample said they support the bike lane?",
+    "choices": [
+      "24",
+      "258",
+      "282",
+      "306"
+    ],
+    "answer": "282",
+    "explanation": [
+      "The range is centered at the sample proportion, so the sample proportion is the midpoint: (0.43 + 0.51) ÷ 2 = 0.47.",
+      "The number in the sample who said yes is 0.47 × 600.",
+      "0.47 × 600 = 282 voters."
+    ],
+    "hints": [
+      "Where in the plausible range is the sample proportion located?",
+      "Once you know the sample proportion, how do you find the number of voters it represents?"
+    ],
+    "wrong_reasons": {
+      "24": "Found the margin of error (0.04) and multiplied it by 600",
+      "258": "Used the lower end of the range (0.43) as the sample proportion",
+      "306": "Used the upper end of the range (0.51) as the sample proportion"
+    },
+    "check": "from sympy import *\nresult=(Rational(43,100)+Rational(51,100))/2*600"
+  },
+  {
+    "id": "psda-inference-019",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A polling organization surveyed a random sample of adults in a city about a proposed sports stadium. In the sample, 53% supported the stadium. The margin of error for the estimate is 4 percentage points. A city official claims that the results show that a majority (more than 50%) of the city's adults support the stadium. Which of the following best evaluates the official's claim?",
+    "choices": [
+      "The claim is not supported, because the plausible range for the percent of all adults includes values that are not more than 50%.",
+      "The claim is supported, because 53% is greater than 50%.",
+      "The claim is supported, because every value in the plausible range is greater than 50%.",
+      "The claim is not supported, because it is plausible that only 4% of adults support the stadium."
+    ],
+    "answer": "The claim is not supported, because the plausible range for the percent of all adults includes values that are not more than 50%.",
+    "explanation": [
+      "The plausible range for the percent of all adults who support the stadium is 53% ± 4%, or 49% to 57%.",
+      "Some values in this range, such as 49% and 50%, are not a majority.",
+      "So the poll does not show that a majority supports the stadium, even though 53% of the sample did."
+    ],
+    "hints": [
+      "What is the plausible range for the percent of all adults in the city?",
+      "Is every value in that range greater than 50%?"
+    ],
+    "wrong_reasons": {
+      "The claim is supported, because 53% is greater than 50%.": "Treats the sample percent as the exact population percent and ignores the margin of error",
+      "The claim is supported, because every value in the plausible range is greater than 50%.": "Computed the range incorrectly or did not check its lower end, 49%",
+      "The claim is not supported, because it is plausible that only 4% of adults support the stadium.": "Confuses the margin of error with a plausible value for the percent"
+    },
+    "check": null,
+    "check_note": "Conceptual item: judging a claim against the plausible range from a margin of error; the answer is an evaluation, not a number."
+  },
+  {
+    "id": "psda-inference-020",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "An environmental agency selected a random sample of 50 of the 1,200 private wells in a county and measured the nitrate level of the water in each well. The mean nitrate level of the sample was 6.2 milligrams per liter (mg/L), with a margin of error of 0.8 mg/L. Which of the following is the most appropriate conclusion?",
+    "choices": [
+      "The nitrate level of every well in the county is between 5.4 mg/L and 7.0 mg/L.",
+      "It is plausible that the mean nitrate level of all 1,200 wells in the county is between 5.4 mg/L and 7.0 mg/L.",
+      "The mean nitrate level of the 50 sampled wells is somewhere between 5.4 mg/L and 7.0 mg/L, but its exact value is unknown.",
+      "It is plausible that the mean nitrate level of all wells in the state is between 5.4 mg/L and 7.0 mg/L."
+    ],
+    "answer": "It is plausible that the mean nitrate level of all 1,200 wells in the county is between 5.4 mg/L and 7.0 mg/L.",
+    "explanation": [
+      "The plausible range is 6.2 ± 0.8, or 5.4 to 7.0 mg/L.",
+      "The margin of error describes the uncertainty in estimating the population mean, not the spread of individual wells.",
+      "The sample was drawn from the county's 1,200 wells, so the conclusion applies to the mean of those wells."
+    ],
+    "hints": [
+      "Is the margin of error about the mean of the wells or about each individual well?",
+      "From which group of wells was the sample drawn?"
+    ],
+    "wrong_reasons": {
+      "The nitrate level of every well in the county is between 5.4 mg/L and 7.0 mg/L.": "Interprets the plausible range for the mean as a range for individual values",
+      "The mean nitrate level of the 50 sampled wells is somewhere between 5.4 mg/L and 7.0 mg/L, but its exact value is unknown.": "Applies the margin of error to the sample mean, which is known exactly (6.2 mg/L)",
+      "It is plausible that the mean nitrate level of all wells in the state is between 5.4 mg/L and 7.0 mg/L.": "Generalizes beyond the county the sample was drawn from"
+    },
+    "check": null,
+    "check_note": "Conceptual item: correct interpretation of a margin of error for a population mean; no numeric answer."
+  },
+  {
+    "id": "psda-inference-021",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A city has 9,600 registered voters. In a random sample of 320 of these voters, 176 said they support a new library tax, and the rest said they oppose it. The margin of error for the percent who support the tax is 5.5 percentage points. Assuming every registered voter either supports or opposes the tax, what is the greatest plausible number of the city's registered voters who oppose the tax?",
+    "answer": "4848",
+    "accept": [
+      "4,848"
+    ],
+    "explanation": [
+      "The sample percent who support the tax is 176 ÷ 320 = 55%, so the plausible range for support is 49.5% to 60.5%.",
+      "If support is as low as 49.5%, opposition is as high as 100% − 49.5% = 50.5%.",
+      "0.505 × 9,600 = 4,848 voters."
+    ],
+    "hints": [
+      "What percent of the sample supports the tax, and what is its plausible range?",
+      "Which end of the support range gives the most voters who oppose the tax?"
+    ],
+    "check": "from sympy import *\np=Rational(176,320)*100\nresult=(100-(p-Rational(55,10)))/100*9600"
+  },
+  {
+    "id": "psda-inference-022",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A transportation researcher selected a random sample of commuters in City A and a separate random sample of commuters in City B. The mean one-way commute time was 27.5 minutes for the City A sample, with a margin of error of 1.8 minutes, and 32.0 minutes for the City B sample, with a margin of error of 2.1 minutes. Which of the following conclusions is best supported by these results?",
+    "choices": [
+      "Most commuters in City B have a one-way commute longer than 32.0 minutes.",
+      "The mean commute times for all commuters in the two cities are plausibly equal, because the two margins of error are about the same size.",
+      "No comparison can be made, because the two estimates have different margins of error.",
+      "The mean commute time for all commuters in City B is likely greater than that for all commuters in City A."
+    ],
+    "answer": "The mean commute time for all commuters in City B is likely greater than that for all commuters in City A.",
+    "explanation": [
+      "The plausible range for City A's mean is 27.5 ± 1.8, or 25.7 to 29.3 minutes.",
+      "The plausible range for City B's mean is 32.0 ± 2.1, or 29.9 to 34.1 minutes.",
+      "The two ranges do not overlap: every plausible value for City B's mean (at least 29.9) is greater than every plausible value for City A's mean (at most 29.3). So the data suggest that City B's mean commute time is greater."
+    ],
+    "hints": [
+      "What is the plausible range for each city's mean commute time?",
+      "Do the two ranges share any values?"
+    ],
+    "wrong_reasons": {
+      "Most commuters in City B have a one-way commute longer than 32.0 minutes.": "Treats a statement about the mean as a statement about most individual commuters",
+      "The mean commute times for all commuters in the two cities are plausibly equal, because the two margins of error are about the same size.": "Did not check whether the plausible ranges overlap; no value is plausible for both means",
+      "No comparison can be made, because the two estimates have different margins of error.": "Thinks estimates can only be compared if their margins of error are equal"
+    },
+    "check": null,
+    "check_note": "Conceptual item: comparing non-overlapping plausible ranges (25.7–29.3 and 29.9–34.1); the answer is a conclusion. Distractors differ from item 012, its overlapping-range counterpart."
+  },
+  {
+    "id": "psda-inference-023",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A city mailed a survey to 2,000 households chosen at random from all households in the city. Only 240 of the households returned the survey. Of the households that returned it, 70% said they oppose a proposed increase in the trash collection fee. Which of the following is the most appropriate statement about using 70% as an estimate for all households in the city?",
+    "choices": [
+      "The estimate may be unreliable, because the households that chose to respond may have different opinions from those that did not.",
+      "The estimate is reliable, because the 2,000 households were selected at random.",
+      "The estimate is reliable, because 240 responses is a large enough sample.",
+      "The results show that 70% of the 2,000 households that were mailed the survey oppose the increase."
+    ],
+    "answer": "The estimate may be unreliable, because the households that chose to respond may have different opinions from those that did not.",
+    "explanation": [
+      "The 2,000 households were chosen at random, but only 240 of them (12%) responded.",
+      "Households with strong opinions, such as those who oppose a fee increase, may be more likely to send back a survey.",
+      "Because the responders chose themselves, they may not represent all households, so 70% may be biased."
+    ],
+    "hints": [
+      "Which households are actually in the data: the 2,000 that were mailed the survey or the 240 that replied?",
+      "Could the households that bothered to reply differ in their opinions from those that did not?"
+    ],
+    "wrong_reasons": {
+      "The estimate is reliable, because the 2,000 households were selected at random.": "Overlooks nonresponse; random selection does not help if most selected households do not respond",
+      "The estimate is reliable, because 240 responses is a large enough sample.": "Thinks sample size can fix bias caused by who chose to respond",
+      "The results show that 70% of the 2,000 households that were mailed the survey oppose the increase.": "Assumes the 1,760 households that did not respond answered the same way as those that did"
+    },
+    "check": null,
+    "check_note": "Conceptual item: recognizing nonresponse bias; no numeric answer."
+  },
+  {
+    "id": "psda-inference-024",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A vending company owns 720 vending machines. The company selected a random sample of 45 of the machines, and the mean weekly revenue for the sample was $212 per machine, with a margin of error of $18. Using these results, the company found the least and greatest plausible values for the total weekly revenue of all 720 machines. What is the difference, in dollars, between the greatest and least plausible values?",
+    "answer": "25920",
+    "accept": [
+      "25,920",
+      "$25,920"
+    ],
+    "explanation": [
+      "The plausible mean revenue per machine is 212 ± 18, or $194 to $230.",
+      "The plausible totals are 194 × 720 = $139,680 and 230 × 720 = $165,600.",
+      "The difference is 165,600 − 139,680 = $25,920 (which also equals 2 × 18 × 720)."
+    ],
+    "hints": [
+      "What are the least and greatest plausible mean revenues per machine?",
+      "How do you turn a mean per machine into a total for all 720 machines?"
+    ],
+    "check": "from sympy import *\nresult=(212+18)*720-(212-18)*720"
+  },
+  {
+    "id": "psda-inference-025",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A high school has 900 tenth graders, 800 eleventh graders, and 1,000 twelfth graders. A researcher selected a random sample of 100 students from each grade and asked whether they have a part-time job. The results are shown in the table. Based on the results, which of the following is the best estimate of the number of twelfth graders at the school who have a part-time job?",
+    "table": {
+      "headers": [
+        "Grade",
+        "Has a part-time job",
+        "No part-time job",
+        "Total"
+      ],
+      "rows": [
+        [
+          "10th",
+          "18",
+          "82",
+          "100"
+        ],
+        [
+          "11th",
+          "30",
+          "70",
+          "100"
+        ],
+        [
+          "12th",
+          "54",
+          "46",
+          "100"
+        ],
+        [
+          "Total",
+          "102",
+          "198",
+          "300"
+        ]
+      ]
+    },
+    "choices": [
+      "486",
+      "540",
+      "918",
+      "1,458"
+    ],
+    "answer": "540",
+    "explanation": [
+      "The sample of twelfth graders is a random sample of 100 from the 1,000 twelfth graders.",
+      "In that sample, 54 of 100, or 54%, have a part-time job.",
+      "0.54 × 1,000 = 540 twelfth graders."
+    ],
+    "hints": [
+      "Which group of students is the question about, and how many students are in it?",
+      "Since each grade was sampled separately, which part of the table describes that group?"
+    ],
+    "wrong_reasons": {
+      "486": "Treated the 300 sampled students as one sample of the whole school, computing (54/300) × 2,700, even though each grade was sampled equally while grade sizes differ",
+      "918": "Estimated the number of students in all grades who have a part-time job, (102/300) × 2,700",
+      "1,458": "Applied the twelfth graders' 54% to the entire school of 2,700 students"
+    },
+    "check": "from sympy import *\nresult=Rational(54,100)*1000"
+  },
+  {
+    "id": "psda-inference-026",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A national survey of a random sample of 1,000 college students estimated the percent of college students who own a car, with a margin of error of 3 percentage points. The researchers then looked only at the 250 students in the sample who were seniors and used them to estimate the percent of all college seniors who own a car, using the same method. How does the margin of error for the estimate about seniors most likely compare to the original margin of error of 3 percentage points?",
+    "choices": [
+      "It is equal to 3 percentage points, because the data came from the same survey.",
+      "It is less than 3 percentage points, because seniors are more similar to one another than all college students are.",
+      "It is 0.75 percentage point, because 250 is one-fourth of 1,000.",
+      "It is greater than 3 percentage points, because the estimate is based on fewer students."
+    ],
+    "answer": "It is greater than 3 percentage points, because the estimate is based on fewer students.",
+    "explanation": [
+      "The estimate for seniors is based on only 250 students instead of 1,000.",
+      "Smaller random samples have more sampling variability, so they tend to have larger margins of error.",
+      "So the margin of error for the seniors' estimate is most likely greater than 3 percentage points."
+    ],
+    "hints": [
+      "How many students is the seniors' estimate based on?",
+      "Do smaller samples tend to give more precise or less precise estimates?"
+    ],
+    "wrong_reasons": {
+      "It is equal to 3 percentage points, because the data came from the same survey.": "Thinks a margin of error belongs to a survey rather than depending on the size of the group used for each estimate",
+      "It is less than 3 percentage points, because seniors are more similar to one another than all college students are.": "Relies on an unsupported assumption and ignores the effect of the smaller sample size",
+      "It is 0.75 percentage point, because 250 is one-fourth of 1,000.": "Scaled the margin of error in proportion to the sample size, with the relationship in the wrong direction"
+    },
+    "check": null,
+    "check_note": "Conceptual item: effect of a smaller subgroup sample on margin of error; no numeric answer."
+  },
+  {
+    "id": "psda-inference-027",
+    "skill_id": "psda-inference",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "For random samples taken the same way from the same population, the margin of error of an estimate is approximately proportional to 1/√n, where n is the sample size. A researcher's random sample of 400 people produced an estimate with a margin of error of 6 percentage points. Approximately what sample size would produce a margin of error of 4 percentage points?",
+    "answer": "900",
+    "explanation": [
+      "If the margin of error is proportional to 1/√n, then (margin) × √n is about constant.",
+      "So 6 × √400 = 4 × √n, which gives 6 × 20 = 4√n and √n = 30.",
+      "n = 30² = 900."
+    ],
+    "hints": [
+      "If the margin of error is proportional to 1/√n, what product stays the same as n changes?",
+      "Once you know √n, how do you find n?"
+    ],
+    "check": "from sympy import *\nn=symbols('n',positive=True)\nresult=solve(Eq(6*sqrt(400),4*sqrt(n)),n)[0]"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "psda-percent-024", "reason": "The yes column totaled exactly 100, so the conditional percent equalled the raw count (64 -> 64%) and the hard item needed no division; changed the table to yes = 48/72 (total 120), so the key is 72/120 = 60%, and updated the distractors and the check."},
+    {"id": "psda-percent-020", "reason": "Near-duplicate of 025 (and 027), since all three undo a repeated percent change from a final value; rewritten to ask for the overall percent increase after +10% then +20% (key 32%), with new distractors, explanation, hints and check."},
+    {"id": "psda-percent-018", "reason": "The check plugged in n = 100 instead of modelling the relationship; rewritten symbolically as m = 0.8n and (n - m)/m."}
+  ],
+  "removed": []
+}

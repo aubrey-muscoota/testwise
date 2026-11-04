@@ -1,0 +1,10 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "alg-inequalities-024", "reason": "Distractor 'x ≥ 11' had a garbled misconception that does not produce 11 (the writer's stated fix was never applied); replaced with 'x ≥ 12' (right side left as 1: x − 11 ≥ 1) and updated wrong_reasons and check."},
+    {"id": "alg-inequalities-019", "reason": "Near-duplicate of 003 (fixed fee + per-unit cost within a budget, greatest whole number) and easy for difficulty 3; changed to an average-cost-per-guest condition, (1,650 + 32g)/g ≤ 50, key now 92."},
+    {"id": "alg-inequalities-006", "reason": "Check was null; added code that tests each choice against the true load condition for b = 0..59."},
+    {"id": "alg-inequalities-009", "reason": "Second hint named 45 candles, which gave away the boundary; reworded to ask about a total of exactly $500."}
+  ],
+  "removed": []
+}

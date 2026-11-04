@@ -1,0 +1,10 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "alg-systems-008", "reason": "Check returned 'Exactly one' for any one-element linsolve result, including a parametric (same-line) solution, so it could not tell one solution from infinitely many; rewritten to test for free symbols."},
+    {"id": "alg-systems-016", "reason": "Check hard-coded the salt total 12 instead of computing 20% of 60; now models all three concentrations."},
+    {"id": "alg-systems-023", "reason": "Near-duplicate of 010 (swapped-coefficient system, add/subtract to get x ± y); replaced with a d3 SPR: x + 3y = 11, 2x − y = 5, find 4x + 5y = 27 through a weighted combination, with new explanation, hints and check."},
+    {"id": "alg-systems-026", "reason": "Hint 2 gave away the intermediate result (it quoted 3 − 2y = 4, which reveals x = 1); reworded."}
+  ],
+  "removed": []
+}
