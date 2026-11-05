@@ -185,7 +185,11 @@ export function Complete({ result, onContinue }: { result: LessonResult; onConti
   const streakExtended = lessons_today === 1 && streak >= 1;
   const perfect = result.total > 0 && result.correct === result.total;
   const acc = accuracyLine(result.correct, result.total);
-  const speech = useMemo(() => (lessons_today === 1 && streak > 1 ? pick(lines.streak) : pick(lines.lessonComplete)), [lessons_today, streak]);
+  const placed = result.placement;
+  const speech = useMemo(() => {
+    if (placed) return placed.tested_out.length ? "I see you've studied before. Let's skip ahead." : "A fresh start, then. We'll build up from the first steps.";
+    return lessons_today === 1 && streak > 1 ? pick(lines.streak) : pick(lines.lessonComplete);
+  }, [lessons_today, streak, placed]);
 
   useEffect(() => {
     feedback.complete();
@@ -232,8 +236,8 @@ export function Complete({ result, onContinue }: { result: LessonResult; onConti
           transform: [{ translateY: title.interpolate({ inputRange: [0, 1], outputRange: [-48, 0] }) }],
         }}
       >
-        <Text style={[type.h1, s.title]}>Lesson complete!</Text>
-        {result.skillName && <Text style={[type.body, { color: color.textSoft, marginTop: 4 }]}>{result.skillName}</Text>}
+        <Text style={[type.h1, s.title]}>{placed ? "Placement done!" : "Lesson complete!"}</Text>
+        {result.skillName && !placed && <Text style={[type.body, { color: color.textSoft, marginTop: 4 }]}>{result.skillName}</Text>}
       </Animated.View>
 
       <Rise delay={T.speech} style={{ marginVertical: space(3), alignSelf: "center", maxWidth: "100%" }}>
@@ -267,8 +271,30 @@ export function Complete({ result, onContinue }: { result: LessonResult; onConti
         )}
       </View>
 
+      {placed && (
+        <Rise delay={T.badges + 200} style={{ alignSelf: "stretch", marginTop: space(3) }}>
+          <Card style={s.placed}>
+            <Text style={[type.label, { color: color.azureDark }]}>YOUR STARTING POINT</Text>
+            <Text style={[type.h3, { marginTop: space(0.5) }]}>
+              {placed.tested_out.length
+                ? `You tested out of ${placed.tested_out.length} of ${placed.total_skills} skills`
+                : "You'll start from the first skills"}
+            </Text>
+            {placed.next.length > 0 && (
+              <Text style={[type.body, { color: color.textSoft, marginTop: space(1) }]}>
+                Up next: {placed.next.slice(0, 4).map((n) => n.name).join(", ")}
+                {placed.next.length > 4 ? `, and ${placed.next.length - 4} more` : ""}
+              </Text>
+            )}
+            {placed.tested_out.length > 0 && (
+              <Text style={[type.caption, { marginTop: space(1) }]}>Tested-out skills stay open, so you can practice them any time.</Text>
+            )}
+          </Card>
+        </Rise>
+      )}
+
       <Rise delay={T.cta} style={{ alignSelf: "stretch", marginTop: space(3) }}>
-        <Button title="Continue" onPress={onContinue} />
+        <Button title={placed ? "See my path" : "Continue"} onPress={onContinue} />
       </Rise>
       </ScrollView>
     </View>
@@ -290,5 +316,6 @@ const s = StyleSheet.create({
   badges: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: space(1), marginTop: space(2), minHeight: 36 },
   badge: { borderWidth: 2, borderRadius: radius.pill, paddingHorizontal: space(2), paddingVertical: 6 },
   badgeText: { fontFamily: font.black, fontSize: 14, letterSpacing: 0.4 },
+  placed: { padding: space(2), borderWidth: 2, borderColor: color.azureSoft, borderBottomWidth: 5 },
   ribbon: { backgroundColor: FLAME, borderColor: "#D9741A" },
 });

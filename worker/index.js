@@ -52,7 +52,7 @@ function tzOffset(request) {
 
 async function masteryMap(env, learnerId) {
   const { results } = await env.DB.prepare(
-    "SELECT skill_id, rating, attempts, correct FROM skill_mastery WHERE learner_id = ?",
+    "SELECT skill_id, rating, attempts, correct, tested_out FROM skill_mastery WHERE learner_id = ?",
   ).bind(learnerId).all();
   return Object.fromEntries(results.map((r) => [r.skill_id, r]));
 }
@@ -108,6 +108,7 @@ async function tree(env, request, learnerId) {
           attempts: m.attempts,
           mastery: E.masteryPct(m.rating, m.attempts),
           mastered: E.isMastered(m.rating, m.attempts),
+          tested_out: !!m.tested_out,
           unlocked: E.isUnlocked({ prereqs }, mastery) && (itemCount[s.id] || 0) > 0,
         };
       }),
@@ -162,6 +163,83 @@ async function startLesson(env, request, learnerId, skillId) {
     skill_id: skillId || null,
     items: picked.map((p) => ({ ...parseItem(byId.get(p.id)), review: p.review })),
   });
+}
+
+async function allSkills(env) {
+  const { results } = await env.DB.prepare("SELECT id, name, domain_id, position, prereqs FROM skills ORDER BY position").all();
+  return results.map((r) => ({ ...r, prereqs: JSON.parse(r.prereqs || "[]") }));
+}
+
+// Placement quiz: a few questions per domain, easy to hard, so a learner who
+// already knows the basics can skip ahead. Answers go through /api/answers.
+async function startPlacement(env, request, learnerId) {
+  const now = Date.now();
+  const today = E.localDay(now, tzOffset(request));
+  const probes = E.pickPlacementProbes(await allSkills(env));
+  const ids = [...new Set(probes.map((p) => p.skill_id))];
+  const pool = (await env.DB.prepare(
+    `SELECT id, skill_id, difficulty FROM items WHERE status = 'live' AND skill_id IN (${ids.map(() => "?").join(", ")})`,
+  ).bind(...ids).all()).results;
+  const lessonId = crypto.randomUUID();
+  const rand = E.seededRandom(lessonId);
+  const chosen = [];
+  for (const p of probes) {
+    const mine = pool.filter((r) => r.skill_id === p.skill_id);
+    const exact = mine.filter((r) => r.difficulty === p.difficulty);
+    const from = exact.length ? exact : mine;
+    if (from.length) chosen.push(from[Math.floor(rand() * from.length)].id);
+  }
+  if (!chosen.length) return fail(404, "no questions yet");
+  const rows = (await env.DB.prepare(
+    `SELECT * FROM items WHERE id IN (${chosen.map(() => "?").join(", ")})`,
+  ).bind(...chosen).all()).results;
+  const byId = new Map(rows.map((r) => [r.id, r]));
+  await env.DB.prepare(
+    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, kind) VALUES (?, ?, NULL, ?, ?, 'placement')",
+  ).bind(lessonId, learnerId, now, today).run();
+  return json({
+    lesson_id: lessonId,
+    skill_id: null,
+    placement: true,
+    items: chosen.map((id) => ({ ...parseItem(byId.get(id)), review: false })),
+  });
+}
+
+// Tests out the skills a finished placement quiz showed the learner knows.
+// Only ever raises progress, so finishing twice (or late) is harmless.
+async function applyPlacement(env, learnerId, lessonId) {
+  const skills = await allSkills(env);
+  const probes = E.pickPlacementProbes(skills);
+  const first = (await env.DB.prepare(
+    `SELECT a.skill_id, a.correct FROM attempts a WHERE a.lesson_id = ? AND a.answered_at =
+      (SELECT MIN(answered_at) FROM attempts b WHERE b.lesson_id = a.lesson_id AND b.item_id = a.item_id)`,
+  ).bind(lessonId).all()).results;
+  const correctBySkill = new Map();
+  for (const r of first) correctBySkill.set(r.skill_id, correctBySkill.get(r.skill_id) || !!r.correct);
+  const out = E.placementTestOut(probes, correctBySkill, skills);
+  const now = Date.now();
+  if (out.length) {
+    const credit = Math.round(E.UNLOCK_ATTEMPTS * 0.75);
+    await env.DB.batch(out.map((id) => env.DB.prepare(
+      `INSERT INTO skill_mastery (learner_id, skill_id, rating, attempts, correct, updated_at, tested_out) VALUES (?, ?, ?, ?, ?, ?, 1)
+       ON CONFLICT (learner_id, skill_id) DO UPDATE SET rating = MAX(rating, excluded.rating), tested_out = 1,
+       attempts = MAX(attempts, excluded.attempts), correct = MAX(correct, excluded.correct), updated_at = excluded.updated_at`,
+    ).bind(learnerId, id, E.PLACEMENT_RATING, E.UNLOCK_ATTEMPTS, credit, now)));
+  }
+  return out;
+}
+
+async function placementSummary(env, learnerId, testedOut) {
+  const skills = await allSkills(env);
+  const mastery = await masteryMap(env, learnerId);
+  const set = new Set(testedOut);
+  const name = (s) => ({ id: s.id, name: s.name });
+  return {
+    tested_out: skills.filter((s) => set.has(s.id)).map(name),
+    // The skills that are now open to start on.
+    next: skills.filter((s) => !mastery[s.id]?.tested_out && !(mastery[s.id]?.attempts >= E.UNLOCK_ATTEMPTS) && E.isUnlocked(s, mastery)).map(name),
+    total_skills: skills.length,
+  };
 }
 
 async function answer(env, request, learnerId, b) {
@@ -241,7 +319,11 @@ async function finishLesson(env, request, learnerId, b) {
   }
   const done = await env.DB.prepare("SELECT correct, total, xp FROM lessons WHERE id = ?").bind(lesson.id).first();
   const today = E.localDay(Date.now(), tzOffset(request));
-  return json({ ...done, stats: await stats(env, learnerId, today) });
+  const extra = {};
+  if (lesson.kind === "placement") {
+    extra.placement = await placementSummary(env, learnerId, await applyPlacement(env, learnerId, lesson.id));
+  }
+  return json({ ...done, ...extra, stats: await stats(env, learnerId, today) });
 }
 
 async function socrates(env, request, learnerId, b) {
@@ -333,7 +415,9 @@ export default {
       if (!learner) return fail(401, "unknown learner");
 
       if (path === "/api/tree" && request.method === "GET") return await tree(env, request, learner.id);
-      if (path === "/api/lessons" && request.method === "POST") return await startLesson(env, request, learner.id, b.skill_id || null);
+      if (path === "/api/lessons" && request.method === "POST") return b.placement
+        ? await startPlacement(env, request, learner.id)
+        : await startLesson(env, request, learner.id, b.skill_id || null);
       if (path === "/api/answers" && request.method === "POST") return await answer(env, request, learner.id, b);
       if (path === "/api/lessons/finish" && request.method === "POST") return await finishLesson(env, request, learner.id, b);
       if (path === "/api/socrates" && request.method === "POST") return await socrates(env, request, learner.id, b);

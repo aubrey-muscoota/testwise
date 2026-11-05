@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   AccessibilityInfo, ActivityIndicator, Animated, Easing, KeyboardAvoidingView, Platform, Pressable, ScrollView, ScrollViewInstance, StyleSheet, Text, TextInput, View,
 } from "react-native";
-import { api, Item, Lesson as LessonT, Skill, Stats, TutorTurn } from "../api";
+import { api, Item, Lesson as LessonT, Placement, Skill, Stats, TutorTurn } from "../api";
 import {
   Burst, Button, FloatUp, Mascot, Mood, PopIn, Press3D, ProgressBar, Rise, SlideIn, SlideUp, Speech, usePop, useShake,
 } from "../components/ui";
@@ -10,7 +10,7 @@ import { lines, pick } from "../copy";
 import { feedback } from "../motion/feedback";
 import { color, font, radius, space, type } from "../theme";
 
-export type LessonResult = { correct: number; total: number; xp: number; stats: Stats; skillName: string | null };
+export type LessonResult = { correct: number; total: number; xp: number; stats: Stats; skillName: string | null; placement?: Placement };
 
 type Phase = "answering" | "right" | "wrong";
 
@@ -27,7 +27,8 @@ const GREEN_TEXT = "#3F8F3A";
 const CORAL_TEXT = "#C94A45";
 const CORAL_EDGE = "#E5605B";
 
-export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone: (r: LessonResult) => void; onQuit: () => void }) {
+// `placement` runs the placement quiz instead: one try per question, no tutor.
+export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Skill | null; placement?: boolean; onDone: (r: LessonResult) => void; onQuit: () => void }) {
   const [lesson, setLesson] = useState<LessonT | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [queue, setQueue] = useState<{ item: Item; retry: boolean }[]>([]);
@@ -39,7 +40,7 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
   const [tutorOpen, setTutorOpen] = useState(false);
   const [tutorStarted, setTutorStarted] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [line, setLine] = useState(pick(skill ? lines.lessonStart : lines.review));
+  const [line, setLine] = useState(pick(placement ? lines.placement : skill ? lines.lessonStart : lines.review));
   const [reported, setReported] = useState<Set<string>>(new Set());
   // Motion-only state.
   const [fx, setFx] = useState(0); // bumps on every checked answer, replays reactions
@@ -65,15 +66,14 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
   const wasTutorOpen = useRef(false);
 
   useEffect(() => {
-    api
-      .startLesson(skill?.id ?? null)
+    (placement ? api.startPlacement() : api.startLesson(skill?.id ?? null))
       .then((l) => {
         setLesson(l);
         setQueue(l.items.map((item) => ({ item, retry: false })));
         started.current = Date.now();
       })
-      .catch(() => setError("Couldn't start the lesson."));
-  }, [skill]);
+      .catch(() => setError(placement ? "Couldn't start the placement quiz." : "Couldn't start the lesson."));
+  }, [skill, placement]);
 
   const total = lesson?.items.length || 1;
   const current = queue[0];
@@ -132,7 +132,7 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
     const wasWrong = phase === "wrong";
     let rest = queue.slice(1);
     let newDone = done;
-    if (wasWrong && !current.retry) {
+    if (wasWrong && !current.retry && !placement) {
       rest = [...rest, { item: current.item, retry: true }]; // comes back at the end, once
     } else {
       newDone = done + 1;
@@ -161,7 +161,7 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
       setBusy(true);
       try {
         const r = await api.finish(lesson.lesson_id);
-        onDone({ ...r, skillName: skill?.name ?? null });
+        onDone({ ...r, skillName: placement ? "Placement quiz" : skill?.name ?? null });
       } catch {
         setError("Couldn't save the lesson. Check your connection.");
         setBusy(false);
@@ -264,7 +264,7 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
   const checked = phase !== "answering";
   const qKey = item.id + (current.retry ? "-r" : "");
   // The bar moves on Check whenever this answer will count as done on Continue.
-  const counts = phase === "right" || (phase === "wrong" && current.retry);
+  const counts = phase === "right" || (phase === "wrong" && (current.retry || placement));
   const liveText = phase === "right" ? "Correct!" : phase === "wrong" ? `Not quite. Correct answer: ${item.answer}` : "";
   const modalOpen = tutorOpen || quitOpen;
   const mood: Mood = phase === "answering" ? (busy ? "think" : "idle") : phase === "right" ? (cheer ? "cheer" : "happy") : "sad";
@@ -278,7 +278,7 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
         importantForAccessibility={modalOpen ? "no-hide-descendants" : "auto"}
       >
       <View style={s.head}>
-        <Pressable onPress={requestQuit} accessibilityLabel="Quit lesson" hitSlop={12} style={s.quit}>
+        <Pressable onPress={requestQuit} accessibilityLabel={placement ? "Quit placement quiz" : "Quit lesson"} hitSlop={12} style={s.quit}>
           <Text style={s.quitX}>✕</Text>
         </Pressable>
         <ProgressBar value={(done + (counts ? 1 : 0)) / total} fill={color.green} height={16} glow={combo >= 3} />
@@ -309,9 +309,9 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
         {/* Remount per question so the slide and the choice stagger replay. */}
         <View onLayout={(e) => { const { y, height } = e.nativeEvent.layout; block.current = { y, h: height }; }}>
         <SlideIn key={qKey} id={qKey}>
-          {(current.retry || item.review) && (
+          {(current.retry || item.review || placement) && (
             <PopIn from={0.6} style={{ alignSelf: "flex-start" }}>
-              <Text style={[type.label, s.tag]}>{current.retry ? "TRY AGAIN" : "REVIEW"}</Text>
+              <Text style={[type.label, s.tag]}>{current.retry ? "TRY AGAIN" : item.review ? "REVIEW" : `PLACEMENT ${done + 1} OF ${total}`}</Text>
             </PopIn>
           )}
 
@@ -460,7 +460,7 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
             ) : (
               <View style={{ gap: space(1.5) }}>
                 <View style={{ flexDirection: "row", gap: space(1.5) }}>
-                  <Button title="Ask Socrates" kind="special" onPress={() => { setTutorStarted(true); setTutorOpen(true); }} style={{ flex: 1 }} small />
+                  {!placement && <Button title="Ask Socrates" kind="special" onPress={() => { setTutorStarted(true); setTutorOpen(true); }} style={{ flex: 1 }} small />}
                   {!showSolution && <Button title="Solution" kind="secondary" onPress={openSolution} style={{ flex: 1 }} small />}
                 </View>
                 <Button title="Continue" kind="danger" onPress={next} disabled={busy} />
@@ -482,7 +482,7 @@ export function Lesson({ skill, onDone, onQuit }: { skill: Skill | null; onDone:
 
       {tutorStarted && <Tutor key={qKey} visible={tutorOpen} item={item} response={response || ""} onClose={() => setTutorOpen(false)} onSolution={() => { openSolution(); setTutorOpen(false); }} />}
 
-      {quitOpen && <QuitSheet onStay={() => setQuitOpen(false)} onLeave={onQuit} />}
+      {quitOpen && <QuitSheet placement={placement} onStay={() => setQuitOpen(false)} onLeave={onQuit} />}
     </KeyboardAvoidingView>
   );
 }
@@ -632,7 +632,7 @@ function Backdrop({ onPress, visible = true }: { onPress?: () => void; visible?:
   );
 }
 
-function QuitSheet({ onStay, onLeave }: { onStay: () => void; onLeave: () => void }) {
+function QuitSheet({ placement, onStay, onLeave }: { placement: boolean; onStay: () => void; onLeave: () => void }) {
   return (
     <View style={s.overlay}>
       <Backdrop onPress={onStay} />
@@ -641,12 +641,12 @@ function QuitSheet({ onStay, onLeave }: { onStay: () => void; onLeave: () => voi
           <Mascot size={88} float={false} mood="sad" />
           <Text style={[type.h3, { fontFamily: font.black, textAlign: "center", marginTop: space(1.5) }]}>Wait, don't go!</Text>
           <Text style={[type.body, { textAlign: "center", color: color.textSoft, marginTop: space(0.5), marginBottom: space(3) }]}>
-            If you end now, you won't get XP for this lesson.
+            {placement ? "If you end now, you'll start from the first skills." : "If you end now, you won't get XP for this lesson."}
           </Text>
         </View>
-        <Button title="Keep learning" onPress={onStay} />
-        <Pressable onPress={onLeave} accessibilityRole="button" accessibilityLabel="End lesson" style={s.endBtn} hitSlop={8}>
-          <Text style={s.endText}>End lesson</Text>
+        <Button title={placement ? "Keep going" : "Keep learning"} onPress={onStay} />
+        <Pressable onPress={onLeave} accessibilityRole="button" accessibilityLabel={placement ? "Skip the quiz" : "End lesson"} style={s.endBtn} hitSlop={8}>
+          <Text style={s.endText}>{placement ? "Skip the quiz" : "End lesson"}</Text>
         </Pressable>
       </SlideUp>
     </View>

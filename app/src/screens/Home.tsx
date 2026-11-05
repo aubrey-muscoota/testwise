@@ -176,6 +176,21 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
     return () => { window.removeEventListener("keydown", onKey); clearTimeout(t); };
   }, [sheetOpen]);
 
+  // After a placement quiz the next skill can be far down the path: bring it into view.
+  useEffect(() => {
+    if (!tree || cel?.newIds.length) return;
+    const all = tree.domains.flatMap((d) => d.skills);
+    const nx = all.find((sk) => sk.unlocked && !sk.mastered && !sk.tested_out);
+    if (!nx || !all.some((sk) => sk.tested_out)) return;
+    const t = setTimeout(() => {
+      const n = nodeY.current[nx.id];
+      if (!n) return;
+      const y = (domainY.current[n.domain] ?? 0) + n.y;
+      if (y + n.h > viewH.current - 40) scroll.current?.scrollTo({ y: Math.max(0, y - 160), animated: true });
+    }, 800);
+    return () => clearTimeout(t);
+  }, [tree, cel]);
+
   if (!tree) {
     return (
       <View style={s.center}>
@@ -187,7 +202,10 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
 
   const st = tree.stats;
   const allSkills = tree.domains.flatMap((d) => d.skills);
-  const next = allSkills.find((sk) => sk.unlocked && !sk.mastered);
+  // Skills skipped in the placement quiz stay open, but the path starts after them.
+  const next =
+    allSkills.find((sk) => sk.unlocked && !sk.mastered && !sk.tested_out) ??
+    allSkills.find((sk) => sk.unlocked && !sk.mastered);
   const newIds = new Set(cel?.newIds ?? []);
   const newSkill = cel?.newIds.length ? allSkills.find((sk) => sk.id === cel.newIds[0]) : undefined;
   const newCount = cel?.newIds.length ?? 0;

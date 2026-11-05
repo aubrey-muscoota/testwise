@@ -8,6 +8,7 @@ import { Welcome } from "./src/screens/Welcome";
 import { Home } from "./src/screens/Home";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
 import { Complete } from "./src/screens/Complete";
+import { PlacementIntro } from "./src/screens/PlacementIntro";
 import { initFeedback, preloadSounds } from "./src/motion/feedback";
 import { color } from "./src/theme";
 
@@ -15,7 +16,8 @@ type Screen =
   | { name: "boot" }
   | { name: "welcome" }
   | { name: "home"; key: number }
-  | { name: "lesson"; skill: Skill | null }
+  | { name: "placement" }
+  | { name: "lesson"; skill: Skill | null; placement?: boolean }
   | { name: "complete"; result: LessonResult };
 
 export default function App() {
@@ -48,11 +50,13 @@ export default function App() {
       </View>
     );
   } else if (screen.name === "welcome") {
-    body = <Welcome onStart={async () => { await createLearner(); goHome(); }} />;
+    body = <Welcome onStart={async () => { await createLearner(); setScreen({ name: "placement" }); }} />;
+  } else if (screen.name === "placement") {
+    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: true })} onSkip={goHome} />;
   } else if (screen.name === "home") {
     body = <Home key={screen.key} onStartLesson={(skill) => setScreen({ name: "lesson", skill })} onReset={reset} />;
   } else if (screen.name === "lesson") {
-    body = <Lesson skill={screen.skill} onQuit={goHome} onDone={(result) => setScreen({ name: "complete", result })} />;
+    body = <Lesson skill={screen.skill} placement={screen.placement} onQuit={goHome} onDone={(result) => setScreen({ name: "complete", result })} />;
   } else {
     body = <Complete result={screen.result} onContinue={goHome} />;
   }
