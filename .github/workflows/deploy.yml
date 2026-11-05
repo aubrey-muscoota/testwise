@@ -33,10 +33,10 @@ jobs:
       - run: npx wrangler deploy
       - name: Give Socrates the Claude API key
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY || secrets.ANTHROPIC_API_KEY }}
         run: |
           if [ -n "$ANTHROPIC_API_KEY" ]; then
             printf '%s' "$ANTHROPIC_API_KEY" | npx wrangler secret put ANTHROPIC_API_KEY
           else
-            echo "No ANTHROPIC_API_KEY secret; Socrates will use written hints only."
+            echo "No CLAUDE_API_KEY secret; Socrates will use written hints only."
           fi
