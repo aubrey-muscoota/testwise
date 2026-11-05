@@ -54,10 +54,15 @@ node test/e2e-api.mjs    # end-to-end API check against the dev server
 
 ## Deploy (Cloudflare)
 
-```sh
-npx wrangler d1 create testwise            # once; paste the id into wrangler.jsonc
-npx wrangler secret put ANTHROPIC_API_KEY  # optional, enables live Socrates
-npm run deploy
-```
+Deploys run from GitHub Actions on every merge to `main` (`.github/workflows/deploy.yml`), the same way Reed does.
 
-The preview runs on `testwise.<account>.workers.dev`. The app also works mounted at `muscoota.com/testwise`, but no route is configured until that's approved.
+One-time setup:
+
+1. Cloudflare: My Profile, API Tokens, Create Custom Token, with Account permissions **Workers Scripts: Edit** and **D1: Edit**. Copy the token and your Account ID (shown on the Workers & Pages overview).
+2. Anthropic Console: create an API key for Socrates and set a monthly spend limit.
+3. This repo: Settings, Secrets and variables, Actions. Add `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and `ANTHROPIC_API_KEY`.
+4. Merge to `main`, or run the Deploy workflow by hand. It runs the tests, builds the web app, creates the D1 database if missing, applies migrations, loads the questions, deploys the Worker, and passes the API key to it as a Worker secret.
+
+The preview runs on `testwise.<your-subdomain>.workers.dev`. The deploy log prints the exact URL. The app also works mounted at `muscoota.com/testwise`, but no route is configured until that's approved.
+
+Socrates' model is the `TUTOR_MODEL` variable in `wrangler.jsonc`. Without `ANTHROPIC_API_KEY`, Socrates walks through each question's written hints instead.
