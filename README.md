@@ -60,7 +60,7 @@ One-time setup:
 
 1. Cloudflare: My Profile, API Tokens, Create Custom Token, with Account permissions **Workers Scripts: Edit** and **D1: Edit**. Copy the token and your Account ID (shown on the Workers & Pages overview).
 2. Anthropic Console: create an API key for Socrates and set a monthly spend limit.
-3. This repo: Settings, Secrets and variables, Actions. Add `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and `ANTHROPIC_API_KEY`.
+3. This repo: Settings, Secrets and variables, Actions. Add `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and `CLAUDE_API_KEY` (your Claude API key; the deploy hands it to the Worker as `ANTHROPIC_API_KEY`).
 4. Merge to `main`, or run the Deploy workflow by hand. It runs the tests, builds the web app, creates the D1 database if missing, applies migrations, loads the questions, deploys the Worker, and passes the API key to it as a Worker secret.
 
 The preview runs on `testwise.<your-subdomain>.workers.dev`. The deploy log prints the exact URL. The app also works mounted at `muscoota.com/testwise`, but no route is configured until that's approved.
