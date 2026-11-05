@@ -1,0 +1,40 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "adv-nonlinear-eq-031",
+      "reason": "Hint 2 gave away the factor pair (12 and −11) that directly yields the answer; reworded to ask how to factor."
+    },
+    {
+      "id": "adv-nonlinear-eq-035",
+      "reason": "Wrong reason for 81 ('squared 9') did not describe a real path; now the y² = 81 / forgot square root misconception."
+    },
+    {
+      "id": "adv-nonlinear-eq-039",
+      "reason": "Near-duplicate template of 003 (radical of x + constant equals a positive integer); changed to ∛(x − 2) + 5 = 2 so it tests that a cube root can be negative (answer −25, accept -25); explanation, hints, check rewritten."
+    },
+    {
+      "id": "adv-nonlinear-eq-044",
+      "reason": "Hint 3 leaked the discriminant value (√20); reworded. Check hard-coded the answer string; now builds it from the computed roots."
+    },
+    {
+      "id": "adv-nonlinear-eq-046",
+      "reason": "Check solved the hand-derived linear equation 2x = 3(x − 1); now solves 9ˣ = 27^(x − 1) directly."
+    },
+    {
+      "id": "adv-nonlinear-eq-073",
+      "reason": "Check hard-coded the answer choice; now maps the sign of the symbolic discriminant to the choice."
+    },
+    {
+      "id": "adv-nonlinear-eq-074",
+      "reason": "Wrong reason for √(a² − 1) ('expanded as x² + a²') does not produce that choice; replaced with the sign error x² = a² − 1."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "adv-nonlinear-eq-043",
+      "reason": "Near-duplicate of 005 (pick the ordered pair satisfying y = parabola and a line); replaced with an original easy MC: cube volume 125 → surface area 150."
+    }
+  ],
+  "removed": []
+}

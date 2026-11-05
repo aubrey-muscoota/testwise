@@ -646,9 +646,9 @@
     "stem": "A circular fountain has a radius of 8 feet. A lamppost stands 17 feet from the center of the fountain. A straight walkway runs from the lamppost to a point on the edge of the fountain, and the line along the walkway is tangent to the fountain at that point. What is the length of the walkway, in feet?",
     "choices": [
       "9",
-      "15",
       "√353",
-      "25"
+      "25",
+      "15"
     ],
     "answer": "15",
     "explanation": [
@@ -713,5 +713,1266 @@
       "200": "Squared the diagonal as if it were the side"
     },
     "check": "from sympy import *\nr=sqrt(50)\ndiag=2*r\nresult=(diag/sqrt(2))**2"
+  },
+  {
+    "id": "geo-circles-028",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A circular hula hoop has a circumference of 36π inches. What is the radius of the hoop, in inches?",
+    "choices": [
+      "6",
+      "18",
+      "36",
+      "72"
+    ],
+    "answer": "18",
+    "explanation": [
+      "Circumference C = 2πr.",
+      "Set 2πr = 36π.",
+      "Divide both sides by 2π: r = 18."
+    ],
+    "hints": [
+      "Which formula links a circle's circumference to its radius?",
+      "After you set that formula equal to 36π, what can you divide both sides by?"
+    ],
+    "wrong_reasons": {
+      "6": "Treated 36π as the area and took √36",
+      "36": "Gave the diameter (C/π) instead of the radius",
+      "72": "Multiplied by 2 instead of dividing by 2"
+    },
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nresult=solve(2*pi*r-36*pi,r)[0]"
+  },
+  {
+    "id": "geo-circles-029",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A robotic arm rotates through an angle of 5π/6 radians. What is the measure of this angle in degrees?",
+    "choices": [
+      "75°",
+      "150°",
+      "216°",
+      "300°"
+    ],
+    "answer": "150°",
+    "explanation": [
+      "π radians = 180°.",
+      "Multiply by 180°/π: (5π/6)(180°/π).",
+      "= 5 · 30° = 150°."
+    ],
+    "hints": [
+      "How many degrees are in π radians?",
+      "What factor turns a radian measure into a degree measure?"
+    ],
+    "wrong_reasons": {
+      "75°": "Used π radians = 90°",
+      "216°": "Flipped the fraction and multiplied 180° by 6/5",
+      "300°": "Used π radians = 360°"
+    },
+    "check": "from sympy import *\nresult=(5*pi/6)*180/pi"
+  },
+  {
+    "id": "geo-circles-030",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "Lena rides a unicycle whose wheel has a radius of 0.5 meter. The wheel rolls in a straight line without slipping for a distance of 100π meters. How many complete revolutions does the wheel make?",
+    "answer": "100",
+    "explanation": [
+      "One revolution moves the wheel a distance equal to its circumference.",
+      "C = 2π(0.5) = π meters.",
+      "Revolutions = 100π ÷ π = 100."
+    ],
+    "hints": [
+      "How far does the wheel roll during exactly one turn?",
+      "How many of those distances fit into the total distance?"
+    ],
+    "check": "from sympy import *\nr=Rational(1,2)\nresult=100*pi/(2*pi*r)"
+  },
+  {
+    "id": "geo-circles-031",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, which equation represents a circle with center (2, −7) and radius 3?",
+    "choices": [
+      "(x − 2)² + (y + 7)² = 9",
+      "(x − 2)² + (y + 7)² = 3",
+      "(x + 2)² + (y − 7)² = 9",
+      "(x − 2)² + (y + 7)² = 6"
+    ],
+    "answer": "(x − 2)² + (y + 7)² = 9",
+    "explanation": [
+      "A circle with center (h, k) and radius r has equation (x − h)² + (y − k)² = r².",
+      "Here h = 2, k = −7, r = 3.",
+      "So (x − 2)² + (y + 7)² = 3² = 9."
+    ],
+    "hints": [
+      "In the standard form of a circle, what signs appear in front of the center's coordinates?",
+      "Does the right side of the equation hold r or something else?"
+    ],
+    "wrong_reasons": {
+      "(x − 2)² + (y + 7)² = 3": "Put r on the right side instead of r²",
+      "(x + 2)² + (y − 7)² = 9": "Used the center's coordinates with the wrong signs",
+      "(x − 2)² + (y + 7)² = 6": "Doubled the radius instead of squaring it"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\ndef term(v,c):\n    c=nsimplify(c)\n    if c==0: return v+'²'\n    return f'({v}+{-c})²' if c<0 else f'({v}-{c})²'\ndef circ(h,k,r2):\n    return term('x',h)+'+'+term('y',k)+'='+str(nsimplify(r2))\nresult=circ(2,-7,3**2)"
+  },
+  {
+    "id": "geo-circles-032",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A window is shaped like a semicircle. Its straight bottom edge is 4 feet long. What is the area of the window, in square feet?",
+    "choices": [
+      "4π",
+      "8π",
+      "16π",
+      "2π"
+    ],
+    "answer": "2π",
+    "explanation": [
+      "The straight edge is a diameter, so the radius is 2 feet.",
+      "A full circle of radius 2 has area π(2)² = 4π.",
+      "A semicircle is half of that: 2π."
+    ],
+    "hints": [
+      "Which part of the circle is the straight bottom edge?",
+      "What fraction of a full circle is the window?"
+    ],
+    "wrong_reasons": {
+      "4π": "Found the area of the full circle and forgot to take half",
+      "8π": "Used 4 as the radius, then took half",
+      "16π": "Used 4 as the radius and did not take half"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=Rational(4,2)\nresult=pif(pi*r**2/2)"
+  },
+  {
+    "id": "geo-circles-033",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Points J, K, L, and M lie on a circle, with L and M on the same side of chord JK. Angle JLK and angle JMK both intercept arc JK. If angle JLK measures 38°, what is the measure of angle JMK?",
+    "choices": [
+      "19°",
+      "38°",
+      "76°",
+      "142°"
+    ],
+    "answer": "38°",
+    "explanation": [
+      "An inscribed angle is half the measure of its intercepted arc.",
+      "Angle JLK = 38°, so arc JK measures 76°.",
+      "Angle JMK intercepts the same arc, so it also measures 76°/2 = 38°."
+    ],
+    "hints": [
+      "What arc does each of these angles cut off?",
+      "If two inscribed angles cut off the same arc, how must their measures compare?"
+    ],
+    "wrong_reasons": {
+      "19°": "Halved the given inscribed angle",
+      "76°": "Gave the measure of the intercepted arc instead of the angle",
+      "142°": "Treated the angles as supplementary, as if they were on opposite sides of chord JK"
+    },
+    "check": "from sympy import *\narc=2*38\nresult=arc/2"
+  },
+  {
+    "id": "geo-circles-034",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "On a circular dartboard with center O, central angle AOB measures 72°. What fraction of the dartboard's circumference is minor arc AB?",
+    "choices": [
+      "1/10",
+      "1/5",
+      "2/5",
+      "18/25"
+    ],
+    "answer": "1/5",
+    "explanation": [
+      "A central angle has the same measure as its arc: arc AB = 72°.",
+      "The full circle is 360°.",
+      "72/360 = 1/5."
+    ],
+    "hints": [
+      "How does the measure of a central angle relate to the measure of its arc?",
+      "How many degrees make up a full circle?"
+    ],
+    "wrong_reasons": {
+      "1/10": "Halved the angle, as if it were an inscribed angle",
+      "2/5": "Doubled the angle, as if the arc were twice the central angle",
+      "18/25": "Treated 72 as a percent and wrote 72/100"
+    },
+    "check": "from sympy import *\nresult=Rational(72,360)"
+  },
+  {
+    "id": "geo-circles-035",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In the xy-plane, the point (5, k) lies on the circle x² + y² = 169, where k > 0. What is the value of k?",
+    "answer": "12",
+    "explanation": [
+      "Substitute x = 5: 25 + k² = 169.",
+      "k² = 144.",
+      "Since k > 0, k = 12."
+    ],
+    "hints": [
+      "What equation must the coordinates of a point on the circle satisfy?",
+      "After you solve for k², which root does the condition k > 0 allow?"
+    ],
+    "check": "from sympy import *\nk=symbols('k',positive=True)\nresult=solve(5**2+k**2-169,k)[0]"
+  },
+  {
+    "id": "geo-circles-036",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Points A and B lie on a circle with center O and radius 7 centimeters. The chord AB is also 7 centimeters long. What is the measure of angle AOB?",
+    "choices": [
+      "30°",
+      "45°",
+      "60°",
+      "90°"
+    ],
+    "answer": "60°",
+    "explanation": [
+      "OA and OB are radii, so OA = OB = 7.",
+      "With AB = 7, triangle AOB has all three sides equal, so it is equilateral.",
+      "Every angle of an equilateral triangle is 60°, so angle AOB = 60°."
+    ],
+    "hints": [
+      "What are the lengths of segments OA and OB?",
+      "What kind of triangle has three equal sides, and what are its angles?"
+    ],
+    "wrong_reasons": {
+      "30°": "Took half of the equilateral triangle's angle",
+      "45°": "Assumed the triangle was an isosceles right triangle",
+      "90°": "Assumed chord AB forms a right angle at the center"
+    },
+    "check": "from sympy import *\nr=7;c=7\nresult=acos(Rational(r**2+r**2-c**2,2*r*r))*180/pi"
+  },
+  {
+    "id": "geo-circles-037",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, a circle has equation (x − 3)² + (y − 4)² = 4. What is the greatest y-coordinate of any point on the circle?",
+    "choices": [
+      "2",
+      "4",
+      "6",
+      "8"
+    ],
+    "answer": "6",
+    "explanation": [
+      "The center is (3, 4) and r² = 4, so r = 2.",
+      "The highest point is directly above the center, r units up.",
+      "Greatest y = 4 + 2 = 6."
+    ],
+    "hints": [
+      "Where is the center, and what is the radius (not the radius squared)?",
+      "Which point on the circle is farthest up from the center?"
+    ],
+    "wrong_reasons": {
+      "2": "Gave the lowest y-coordinate on the circle",
+      "4": "Gave the y-coordinate of the center",
+      "8": "Added r² = 4 instead of r = 2"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y',real=True)\nf=(x-3)**2+(y-4)**2-4\nresult=max(solve(f.subs(x,3),y))"
+  },
+  {
+    "id": "geo-circles-038",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "On a map, the boundary of a circular park is given by the equation x² + (y + 2)² = 49. What is the area of the park, in square map units?",
+    "choices": [
+      "49π",
+      "7π",
+      "14π",
+      "2401π"
+    ],
+    "answer": "49π",
+    "explanation": [
+      "The equation has the form (x − h)² + (y − k)² = r², so r² = 49.",
+      "Area = πr² = 49π."
+    ],
+    "hints": [
+      "What does the number on the right side of a circle's equation represent?",
+      "Does the area formula use r or r²?"
+    ],
+    "wrong_reasons": {
+      "7π": "Multiplied π by the radius instead of the radius squared",
+      "14π": "Found the circumference instead of the area",
+      "2401π": "Squared 49 as if it were the radius"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nx,y=symbols('x y')\nr2=-(x**2+(y+2)**2-49).subs({x:0,y:-2})\nresult=pif(pi*r2)"
+  },
+  {
+    "id": "geo-circles-039",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "Line ℓ is tangent to a circle with center O at point T. Point P lies on line ℓ, and angle TOP measures 35°. What is the measure, in degrees, of angle OPT?",
+    "answer": "55",
+    "explanation": [
+      "A radius drawn to a point of tangency is perpendicular to the tangent line, so angle OTP = 90°.",
+      "The angles of triangle OTP add to 180°.",
+      "Angle OPT = 180° − 90° − 35° = 55°."
+    ],
+    "hints": [
+      "What angle does radius OT make with the tangent line?",
+      "What do the three angles of triangle OTP add up to?"
+    ],
+    "check": "from sympy import *\nresult=180-90-35"
+  },
+  {
+    "id": "geo-circles-040",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, segment AB is a diameter of a circle with center (1, 2). Point A is at (4, 6). What are the coordinates of point B?",
+    "choices": [
+      "(−3, −4)",
+      "(2.5, 4)",
+      "(7, 10)",
+      "(−2, −2)"
+    ],
+    "answer": "(−2, −2)",
+    "explanation": [
+      "The center is the midpoint of diameter AB.",
+      "To get from A to the center, move −3 in x and −4 in y.",
+      "Move the same amount again from the center: B = (1 − 3, 2 − 4) = (−2, −2)."
+    ],
+    "hints": [
+      "Where does the center of a circle lie on any diameter?",
+      "How do you get from A to the center, and what happens if you repeat that move?"
+    ],
+    "wrong_reasons": {
+      "(−3, −4)": "Found the move from A to the center but did not add it to the center",
+      "(2.5, 4)": "Found the midpoint of A and the center",
+      "(7, 10)": "Added the move from the center to A onto A, extending past A instead of past the center"
+    },
+    "check": "from sympy import *\nC=(1,2);A=(4,6)\nB=(2*C[0]-A[0],2*C[1]-A[1])\nresult=f'({B[0]},{B[1]})'"
+  },
+  {
+    "id": "geo-circles-041",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A carousel turns at a constant rate and makes one complete turn every 12 minutes. Through what angle, in radians, does the carousel turn in 4 minutes?",
+    "choices": [
+      "2π/3",
+      "π/3",
+      "6π",
+      "120"
+    ],
+    "answer": "2π/3",
+    "explanation": [
+      "One complete turn is 2π radians.",
+      "4 minutes is 4/12 = 1/3 of a turn.",
+      "(1/3)(2π) = 2π/3."
+    ],
+    "hints": [
+      "How many radians are in one complete turn?",
+      "What fraction of a full turn happens in 4 minutes?"
+    ],
+    "wrong_reasons": {
+      "π/3": "Used π radians for a full turn",
+      "6π": "Flipped the fraction and used 12/4 of a turn",
+      "120": "Gave the angle in degrees instead of radians"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nresult=pif(Rational(4,12)*2*pi)"
+  },
+  {
+    "id": "geo-circles-042",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In the xy-plane, a circle has center (−1, 4) and is tangent to the x-axis. What is the radius of the circle?",
+    "answer": "4",
+    "explanation": [
+      "The radius to the point of tangency is perpendicular to the x-axis, so it is vertical.",
+      "The circle touches the x-axis at (−1, 0).",
+      "The radius is the vertical distance from (−1, 4) to (−1, 0), which is 4."
+    ],
+    "hints": [
+      "Where on the x-axis does the circle touch it, relative to the center?",
+      "Which coordinate of the center tells you the distance to the x-axis?"
+    ],
+    "check": "from sympy import *\nh,k=-1,4\nresult=sqrt((h-h)**2+(k-0)**2)"
+  },
+  {
+    "id": "geo-circles-043",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A designer triples the radius of a circular logo. By what factor is the circumference of the logo multiplied?",
+    "choices": [
+      "3",
+      "6",
+      "9",
+      "27"
+    ],
+    "answer": "3",
+    "explanation": [
+      "C = 2πr, so circumference is directly proportional to r.",
+      "Replacing r with 3r gives 2π(3r) = 3(2πr).",
+      "The circumference is multiplied by 3."
+    ],
+    "hints": [
+      "In the formula for circumference, is r squared or not?",
+      "What happens to 2πr when r is replaced by 3r?"
+    ],
+    "wrong_reasons": {
+      "6": "Doubled the tripled radius, confusing the 2 in 2πr with a scale factor",
+      "9": "Used the area scale factor (3²)",
+      "27": "Used the volume scale factor (3³)"
+    },
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nresult=simplify(2*pi*(3*r)/(2*pi*r))"
+  },
+  {
+    "id": "geo-circles-044",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A garden bed is shaped like a right triangle with legs of 9 feet and 12 feet. A circular fence passes through all three corners of the bed. What is the radius of the circle, in feet?",
+    "choices": [
+      "7.5",
+      "10.5",
+      "15",
+      "21"
+    ],
+    "answer": "7.5",
+    "explanation": [
+      "When a right triangle's vertices lie on a circle, its hypotenuse is a diameter.",
+      "Hypotenuse = √(9² + 12²) = √225 = 15.",
+      "Radius = 15/2 = 7.5."
+    ],
+    "hints": [
+      "If a right angle is inscribed in a circle, what arc does it intercept?",
+      "Which side of the triangle must therefore pass through the center?"
+    ],
+    "wrong_reasons": {
+      "10.5": "Averaged the two legs",
+      "15": "Used the hypotenuse as the radius instead of the diameter",
+      "21": "Added the two legs"
+    },
+    "check": "from sympy import *\nresult=sqrt(9**2+12**2)/2"
+  },
+  {
+    "id": "geo-circles-045",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A circle has radius r, where r > 0. The numerical value of the circle's circumference is equal to the numerical value of its area. What is the value of r?",
+    "answer": "2",
+    "explanation": [
+      "Set the formulas equal: 2πr = πr².",
+      "Divide both sides by πr (r > 0): 2 = r.",
+      "So r = 2."
+    ],
+    "hints": [
+      "Write the circumference and the area in terms of r. What equation do you get?",
+      "What can you safely divide both sides by, given r > 0?"
+    ],
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nresult=solve(2*pi*r-pi*r**2,r)[0]"
+  },
+  {
+    "id": "geo-circles-046",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A slice of a round cheese wheel has the shape of a sector with radius 8 centimeters. The curved edge of the slice is 6π centimeters long. What is the area of the top face of the slice, in square centimeters?",
+    "choices": [
+      "12π",
+      "48π",
+      "64π",
+      "24π"
+    ],
+    "answer": "24π",
+    "explanation": [
+      "The full circle has circumference 2π(8) = 16π.",
+      "The slice's arc is 6π/16π = 3/8 of the circle.",
+      "The full circle's area is 64π, so the slice's area is (3/8)(64π) = 24π."
+    ],
+    "hints": [
+      "What fraction of the whole circumference is the curved edge?",
+      "Is the slice's share of the area the same as its share of the circumference?"
+    ],
+    "wrong_reasons": {
+      "12π": "Used half the radius in the sector-area computation",
+      "48π": "Multiplied the arc length by the radius and forgot the factor of 1/2",
+      "64π": "Found the area of the whole circle"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=8;s=6*pi\ntheta=s/r\nresult=pif(theta*r**2/2)"
+  },
+  {
+    "id": "geo-circles-047",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "From a point P outside a circle, two lines are drawn that are tangent to the circle at points A and B. Angle APB measures 50°. What is the measure of minor arc AB?",
+    "choices": [
+      "50°",
+      "100°",
+      "130°",
+      "310°"
+    ],
+    "answer": "130°",
+    "explanation": [
+      "Let O be the center. Radii OA and OB are perpendicular to the tangent lines, so angles OAP and OBP are 90°.",
+      "The angles of quadrilateral OAPB add to 360°, so angle AOB = 360° − 90° − 90° − 50° = 130°.",
+      "Minor arc AB has the same measure as central angle AOB: 130°."
+    ],
+    "hints": [
+      "What angle does each tangent line make with the radius to its point of tangency?",
+      "What do the four angles of quadrilateral OAPB add up to?"
+    ],
+    "wrong_reasons": {
+      "50°": "Assumed the arc equals the angle at P",
+      "100°": "Doubled the angle at P, treating it like an inscribed angle",
+      "310°": "Subtracted 50° from 360° instead of using the right angles at A and B"
+    },
+    "check": "from sympy import *\nresult=360-90-90-50"
+  },
+  {
+    "id": "geo-circles-048",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which equation represents the circle in the xy-plane with center (3, −1) and radius 4?",
+    "choices": [
+      "x² + y² + 6x − 2y − 6 = 0",
+      "x² + y² − 6x + 2y − 6 = 0",
+      "x² + y² − 6x + 2y + 6 = 0",
+      "x² + y² − 6x + 2y − 16 = 0"
+    ],
+    "answer": "x² + y² − 6x + 2y − 6 = 0",
+    "explanation": [
+      "Start with (x − 3)² + (y + 1)² = 16.",
+      "Expand: x² − 6x + 9 + y² + 2y + 1 = 16.",
+      "Move everything to one side: x² + y² − 6x + 2y − 6 = 0."
+    ],
+    "hints": [
+      "What is the standard-form equation for this center and radius?",
+      "When you expand the squares, what constant terms appear, and where do they go?"
+    ],
+    "wrong_reasons": {
+      "x² + y² + 6x − 2y − 6 = 0": "Used the center's coordinates with the wrong signs when expanding",
+      "x² + y² − 6x + 2y + 6 = 0": "Made a sign error when moving 16 to the left side",
+      "x² + y² − 6x + 2y − 16 = 0": "Forgot the constants 9 and 1 from expanding the squares"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ne=expand((x-3)**2+(y+1)**2-16)\nP=Poly(e,x,y)\na=P.coeff_monomial(x);b=P.coeff_monomial(y);c=P.coeff_monomial(1)\nresult=f'x²+y²{int(a):+d}x{int(b):+d}y{int(c):+d}=0'"
+  },
+  {
+    "id": "geo-circles-049",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the xy-plane, the circle (x − 2)² + (y − 3)² = 25 crosses the x-axis at two points. One of these points has a positive x-coordinate. What is that x-coordinate?",
+    "answer": "6",
+    "explanation": [
+      "On the x-axis, y = 0: (x − 2)² + 9 = 25.",
+      "(x − 2)² = 16, so x − 2 = 4 or x − 2 = −4.",
+      "x = 6 or x = −2; the positive one is 6."
+    ],
+    "hints": [
+      "What is the y-coordinate of every point on the x-axis?",
+      "After substituting, how many solutions can a squared expression equal to a positive number have?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',real=True)\nresult=max(solve((x-2)**2+(0-3)**2-25,x))"
+  },
+  {
+    "id": "geo-circles-050",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Two meshing gears turn together so that points on their rims travel the same distance. Gear A has radius 6 centimeters, and gear B has radius 4 centimeters. When gear A makes 10 complete revolutions, how many complete revolutions does gear B make?",
+    "choices": [
+      "20/3",
+      "10",
+      "15",
+      "22.5"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Distance traveled by A's rim: 10 · 2π(6) = 120π cm.",
+      "Each revolution of B covers 2π(4) = 8π cm.",
+      "120π ÷ 8π = 15 revolutions."
+    ],
+    "hints": [
+      "How far does a point on gear A's rim travel in 10 revolutions?",
+      "How much distance does one revolution of gear B cover?"
+    ],
+    "wrong_reasons": {
+      "20/3": "Used the ratio of radii upside down",
+      "10": "Assumed both gears make the same number of revolutions",
+      "22.5": "Used the ratio of the gears' areas instead of their circumferences"
+    },
+    "check": "from sympy import *\nd=10*2*pi*6\nresult=d/(2*pi*4)"
+  },
+  {
+    "id": "geo-circles-051",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A rectangular photo that measures 10 inches by 24 inches is mounted so that all four of its corners touch a circular frame. What is the circumference of the circle, in inches?",
+    "choices": [
+      "13π",
+      "34π",
+      "169π",
+      "26π"
+    ],
+    "answer": "26π",
+    "explanation": [
+      "The diagonal of a rectangle inscribed in a circle is a diameter.",
+      "Diagonal = √(10² + 24²) = √676 = 26.",
+      "Circumference = π · 26 = 26π."
+    ],
+    "hints": [
+      "Which segment of the rectangle passes through the center of the circle?",
+      "How can the rectangle's sides give you that segment's length?"
+    ],
+    "wrong_reasons": {
+      "13π": "Multiplied π by the radius instead of the diameter",
+      "34π": "Added the two side lengths to get the diameter",
+      "169π": "Found the area of the circle instead of the circumference"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nd=sqrt(10**2+24**2)\nresult=pif(pi*d)"
+  },
+  {
+    "id": "geo-circles-052",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "Points A, B, and C lie on the edge of a circular courtyard with radius 18 meters. Inscribed angle ACB measures 40° and intercepts minor arc AB. The length of minor arc AB is kπ meters. What is the value of k?",
+    "answer": "8",
+    "explanation": [
+      "The central angle for arc AB is twice the inscribed angle: 80°.",
+      "Circumference = 2π(18) = 36π.",
+      "Arc AB = (80/360)(36π) = 8π, so k = 8."
+    ],
+    "hints": [
+      "How does a central angle compare to an inscribed angle that intercepts the same arc?",
+      "What fraction of the full circle does that central angle represent?"
+    ],
+    "check": "from sympy import *\ncentral=2*40\narc=Rational(central,360)*2*pi*18\nresult=arc/pi"
+  },
+  {
+    "id": "geo-circles-053",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A curved garden path follows an arc of a circle. The path is 15 meters long, and the arc's central angle measures 2.5 radians. What is the radius of the circle, in meters?",
+    "choices": [
+      "3",
+      "6",
+      "12",
+      "37.5"
+    ],
+    "answer": "6",
+    "explanation": [
+      "For an angle θ in radians, arc length s = rθ.",
+      "15 = r(2.5).",
+      "r = 15 ÷ 2.5 = 6."
+    ],
+    "hints": [
+      "When the angle is in radians, what simple formula connects arc length, radius, and angle?",
+      "Which quantity do you need to isolate?"
+    ],
+    "wrong_reasons": {
+      "3": "Used the formula as if s = 2rθ",
+      "12": "Gave the diameter instead of the radius",
+      "37.5": "Multiplied the arc length by the angle instead of dividing"
+    },
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nresult=solve(r*Rational(5,2)-15,r)[0]"
+  },
+  {
+    "id": "geo-circles-054",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane, the edge of a circular pond is modeled by (x − 1)² + (y − 1)² = 9. A bench is located at the point (7, 9). What is the shortest distance from the bench to the edge of the pond?",
+    "choices": [
+      "1",
+      "7",
+      "10",
+      "13"
+    ],
+    "answer": "7",
+    "explanation": [
+      "The center is (1, 1) and the radius is 3.",
+      "Distance from bench to center: √(6² + 8²) = 10.",
+      "The nearest point on the edge lies on that segment, so the distance is 10 − 3 = 7."
+    ],
+    "hints": [
+      "How far is the bench from the center of the pond?",
+      "Along the segment from the bench to the center, where does it cross the edge?"
+    ],
+    "wrong_reasons": {
+      "1": "Subtracted r² = 9 instead of r = 3",
+      "10": "Gave the distance to the center of the pond",
+      "13": "Gave the distance to the farthest point on the edge"
+    },
+    "check": "from sympy import *\nD=sqrt((7-1)**2+(9-1)**2)\nresult=D-sqrt(9)"
+  },
+  {
+    "id": "geo-circles-055",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A circular coaster with radius 6 centimeters is placed on a square napkin so that the coaster touches all four edges of the napkin. What is the area of the part of the napkin not covered by the coaster, in square centimeters?",
+    "choices": [
+      "36 − 9π",
+      "144 − 12π",
+      "108π",
+      "144 − 36π"
+    ],
+    "answer": "144 − 36π",
+    "explanation": [
+      "The coaster's diameter, 12 cm, equals the napkin's side length.",
+      "Napkin area = 12² = 144; coaster area = π(6)² = 36π.",
+      "Uncovered area = 144 − 36π."
+    ],
+    "hints": [
+      "How does the coaster's diameter compare to the napkin's side?",
+      "Which region's area do you subtract from which?"
+    ],
+    "wrong_reasons": {
+      "36 − 9π": "Treated 6 cm as the coaster's diameter, so used a napkin side of 6 and a coaster radius of 3",
+      "144 − 12π": "Subtracted the circumference instead of the area",
+      "108π": "Treated the square's area as 144π"
+    },
+    "check": "from sympy import *\nr=6;s=2*r\nresult=f'{s**2}-{r**2}π'"
+  },
+  {
+    "id": "geo-circles-056",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the xy-plane, a circle has its center on the y-axis and passes through the points (4, 0) and (0, 8). What is the radius of the circle?",
+    "answer": "5",
+    "explanation": [
+      "Let the center be (0, k). Both points are the same distance from it.",
+      "4² + k² = (8 − k)², so 16 + k² = 64 − 16k + k².",
+      "16k = 48, so k = 3, and r = √(16 + 9) = 5."
+    ],
+    "hints": [
+      "If the center is on the y-axis, how many unknown coordinates does it have?",
+      "What must be true about the center's distances to the two given points?"
+    ],
+    "check": "from sympy import *\nk=symbols('k',real=True)\nk0=solve((4-0)**2+(0-k)**2-((0-0)**2+(8-k)**2),k)[0]\nresult=sqrt(16+k0**2)"
+  },
+  {
+    "id": "geo-circles-057",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The circumferences of two circular mirrors are in the ratio 3 : 5. What is the ratio of the area of the smaller mirror to the area of the larger mirror?",
+    "choices": [
+      "9 : 25",
+      "3 : 5",
+      "√3 : √5",
+      "27 : 125"
+    ],
+    "answer": "9 : 25",
+    "explanation": [
+      "Circumference is proportional to radius, so the radii are in the ratio 3 : 5.",
+      "Area is proportional to the square of the radius.",
+      "The areas are in the ratio 3² : 5² = 9 : 25."
+    ],
+    "hints": [
+      "What does the ratio of circumferences tell you about the ratio of radii?",
+      "How does area change when the radius is scaled?"
+    ],
+    "wrong_reasons": {
+      "3 : 5": "Assumed areas scale the same way as circumferences",
+      "27 : 125": "Cubed the ratio, as for volumes",
+      "√3 : √5": "Took square roots of the ratio instead of squaring it"
+    },
+    "check": "from sympy import *\nr1,r2=3,5\na=pi*r1**2;b=pi*r2**2\ng=gcd(a/pi,b/pi)\nresult=f'{a/pi/g}:{b/pi/g}'"
+  },
+  {
+    "id": "geo-circles-058",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A searchlight lights up a sector-shaped region of the ground with radius 10 meters and central angle 0.6 radian. What is the area of the lit region, in square meters?",
+    "choices": [
+      "6",
+      "60",
+      "30",
+      "30π"
+    ],
+    "answer": "30",
+    "explanation": [
+      "For θ in radians, the sector is θ/(2π) of the circle.",
+      "Area = (θ/(2π)) · πr² = (1/2)r²θ.",
+      "(1/2)(10²)(0.6) = 30."
+    ],
+    "hints": [
+      "What fraction of a full turn is 0.6 radian?",
+      "How do you combine that fraction with the full circle's area?"
+    ],
+    "wrong_reasons": {
+      "6": "Found the arc length rθ instead of the area",
+      "60": "Used r²θ without the factor of 1/2",
+      "30π": "Kept an extra factor of π, as if the angle were in degrees"
+    },
+    "check": "from sympy import *\nr=10;th=Rational(3,5)\nresult=(th/(2*pi))*pi*r**2"
+  },
+  {
+    "id": "geo-circles-059",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane, circle C has equation (x + 1)² + (y − 2)² = 9. Circle D is the result of translating circle C 4 units to the right and 3 units down. Which equation represents circle D?",
+    "choices": [
+      "(x + 3)² + (y − 1)² = 9",
+      "(x − 3)² + (y − 5)² = 9",
+      "(x + 5)² + (y − 5)² = 9",
+      "(x − 3)² + (y + 1)² = 9"
+    ],
+    "answer": "(x − 3)² + (y + 1)² = 9",
+    "explanation": [
+      "Circle C has center (−1, 2) and radius 3.",
+      "Translating moves the center to (−1 + 4, 2 − 3) = (3, −1); the radius stays 3.",
+      "Circle D: (x − 3)² + (y + 1)² = 9."
+    ],
+    "hints": [
+      "Where is the center of circle C?",
+      "Does a translation change the center, the radius, or both?"
+    ],
+    "wrong_reasons": {
+      "(x + 3)² + (y − 1)² = 9": "Found the new center correctly but wrote its coordinates with the wrong signs",
+      "(x − 3)² + (y − 5)² = 9": "Moved the center 3 units up instead of down",
+      "(x + 5)² + (y − 5)² = 9": "Moved the center 4 units left and 3 units up, the opposite directions"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\ndef term(v,c):\n    c=nsimplify(c)\n    if c==0: return v+'²'\n    return f'({v}+{-c})²' if c<0 else f'({v}-{c})²'\ndef circ(h,k,r2):\n    return term('x',h)+'+'+term('y',k)+'='+str(nsimplify(r2))\nh,k=-1+4,2-3\nresult=circ(h,k,9)"
+  },
+  {
+    "id": "geo-circles-060",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the xy-plane, the line x + y = 6 is tangent to the circle x² + y² = r², where r > 0. What is the value of r²?",
+    "answer": "18",
+    "explanation": [
+      "Substitute y = 6 − x: x² + (6 − x)² = r², so 2x² − 12x + 36 − r² = 0.",
+      "Tangent means exactly one intersection, so the discriminant is 0: 144 − 8(36 − r²) = 0.",
+      "144 − 288 + 8r² = 0, so r² = 18."
+    ],
+    "hints": [
+      "If you substitute the line into the circle, what kind of equation in x do you get?",
+      "How many solutions must that equation have for the line to be tangent, and what condition guarantees that?"
+    ],
+    "check": "from sympy import *\nx,R=symbols('x R')\ne=expand(x**2+(6-x)**2-R)\na,b,c=Poly(e,x).all_coeffs()\nresult=solve(b**2-4*a*c,R)[0]"
+  },
+  {
+    "id": "geo-circles-061",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of 2x² + 2y² − 12x + 8y − 24 = 0 is a circle. What is the radius of the circle?",
+    "choices": [
+      "√37",
+      "2√19",
+      "5",
+      "25"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Divide every term by 2: x² + y² − 6x + 4y − 12 = 0.",
+      "Complete the squares: (x − 3)² + (y + 2)² = 12 + 9 + 4 = 25.",
+      "r = √25 = 5."
+    ],
+    "hints": [
+      "Before completing the square, what must the coefficients of x² and y² be?",
+      "Whatever you add to complete each square, what must you also do to the other side?"
+    ],
+    "wrong_reasons": {
+      "√37": "Divided the x- and y-terms by 2 but not the constant 24",
+      "2√19": "Completed the square without first dividing by 2",
+      "25": "Gave r² instead of r"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nf=(2*x**2+2*y**2-12*x+8*y-24)/2\nh=solve(diff(f,x),x)[0];k=solve(diff(f,y),y)[0]\nresult=sqrt(-f.subs({x:h,y:k}))"
+  },
+  {
+    "id": "geo-circles-062",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, circle P has equation x² + y² = 9. Circle Q has equation x² + y² − 16x − 12y + c = 0, where c is a constant. The circles touch at exactly one point, and neither circle lies inside the other. What is the value of c?",
+    "choices": [
+      "−69",
+      "51",
+      "91",
+      "93"
+    ],
+    "answer": "51",
+    "explanation": [
+      "Circle Q: (x − 8)² + (y − 6)² = 100 − c, so its center is (8, 6) and r² = 100 − c.",
+      "The centers are √(8² + 6²) = 10 apart. Touching from outside means 3 + r = 10, so r = 7.",
+      "100 − c = 49, so c = 51."
+    ],
+    "hints": [
+      "What are the center and radius of circle Q in terms of c?",
+      "When two circles touch from the outside, how does the distance between centers relate to the radii?"
+    ],
+    "wrong_reasons": {
+      "−69": "Used d + 3 for the radius, which makes circle P lie inside circle Q",
+      "91": "Assumed the circles have equal radii of 3",
+      "93": "Set 100 − c equal to the radius 7 instead of 7²"
+    },
+    "check": "from sympy import *\nx,y,c=symbols('x y c')\nf=x**2+y**2-16*x-12*y+c\nh=solve(diff(f,x),x)[0];k=solve(diff(f,y),y)[0]\nr2=-f.subs({x:h,y:k})\nd=sqrt(h**2+k**2)\nresult=solve(r2-(d-3)**2,c)[0]"
+  },
+  {
+    "id": "geo-circles-063",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A circular stained-glass window has center O and radius 6 inches. A straight lead strip runs along chord AB, and central angle AOB measures 90°. What is the area, in square inches, of the smaller region bounded by chord AB and arc AB?",
+    "choices": [
+      "9π − 18",
+      "9π",
+      "9π − 36",
+      "36π − 18"
+    ],
+    "answer": "9π − 18",
+    "explanation": [
+      "The 90° sector AOB is 1/4 of the circle: (1/4)π(6²) = 9π.",
+      "Triangle AOB is a right triangle with legs 6 and 6, so its area is (1/2)(6)(6) = 18.",
+      "The region between the chord and the arc is sector minus triangle: 9π − 18."
+    ],
+    "hints": [
+      "The region you want is part of which larger shape whose area you can compute?",
+      "What shape must you remove from it, and what are its dimensions?"
+    ],
+    "wrong_reasons": {
+      "9π": "Found the sector area and did not remove the triangle",
+      "9π − 36": "Forgot the 1/2 in the triangle's area",
+      "36π − 18": "Subtracted the triangle from the whole circle instead of the sector"
+    },
+    "check": "from sympy import *\nr=6\nsector=Rational(90,360)*pi*r**2\ntri=Rational(1,2)*r*r\nresult=f'{sector/pi}π-{tri}'"
+  },
+  {
+    "id": "geo-circles-064",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the xy-plane, a circle has equation (x − 1)² + (y + 2)² = 10. Point P = (6, 3) lies outside the circle. A line through P is tangent to the circle at point T. What is the value of PT²?",
+    "answer": "40",
+    "explanation": [
+      "The center is C = (1, −2) and the radius squared is 10.",
+      "CP² = (6 − 1)² + (3 + 2)² = 50.",
+      "Radius CT is perpendicular to PT, so PT² = CP² − CT² = 50 − 10 = 40."
+    ],
+    "hints": [
+      "If you draw the radius from the center of the circle to T, what angle does it make with segment PT?",
+      "Which triangle can you apply the Pythagorean theorem to, and which side is its hypotenuse?"
+    ],
+    "check": "from sympy import *\nC=(1,-2);P=(6,3)\nCP2=(P[0]-C[0])**2+(P[1]-C[1])**2\nresult=CP2-10"
+  },
+  {
+    "id": "geo-circles-065",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, the line y = mx, where m is a positive constant, intersects the circle x² + (y − 10)² = 36 at exactly one point. What is the value of m?",
+    "choices": [
+      "3/5",
+      "3/4",
+      "4/3",
+      "5/3"
+    ],
+    "answer": "4/3",
+    "explanation": [
+      "Substitute y = mx: x² + (mx − 10)² = 36, so (1 + m²)x² − 20mx + 64 = 0.",
+      "Exactly one point means the discriminant is 0: 400m² − 256(1 + m²) = 0.",
+      "144m² = 256, so m² = 16/9 and m = 4/3."
+    ],
+    "hints": [
+      "After substituting the line into the circle, what kind of equation in x results?",
+      "What condition on that equation corresponds to the line touching the circle exactly once?"
+    ],
+    "wrong_reasons": {
+      "3/5": "Used the ratio radius/distance (6/10) as the slope",
+      "3/4": "Used the reciprocal of the correct slope (run over rise instead of rise over run)",
+      "5/3": "Used the ratio distance/radius (10/6) as the slope"
+    },
+    "check": "from sympy import *\nx,m=symbols('x m',positive=True)\ne=expand(x**2+(m*x-10)**2-36)\na,b,c=Poly(e,x).all_coeffs()\nresult=[s for s in solve(b**2-4*a*c,m) if s>0][0]"
+  },
+  {
+    "id": "geo-circles-066",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Sector S has radius r and central angle θ. A new sector is formed by doubling the radius and cutting the central angle in half. The area of the new sector is how many times the area of sector S?",
+    "choices": [
+      "1/2",
+      "1",
+      "2",
+      "4"
+    ],
+    "answer": "2",
+    "explanation": [
+      "Sector area is proportional to r²θ.",
+      "New sector: (2r)²(θ/2) = 4r² · θ/2 = 2r²θ.",
+      "So the new area is 2 times the original."
+    ],
+    "hints": [
+      "How does a sector's area depend on its radius, and how does it depend on its angle?",
+      "If you changed only the radius, by what factor would the area change? What if you changed only the angle?"
+    ],
+    "wrong_reasons": {
+      "1/2": "Thought halving the angle dominates, ignoring that the radius is squared",
+      "1": "Assumed doubling and halving cancel, which is true for arc length but not area",
+      "4": "Accounted for doubling the radius but ignored halving the angle"
+    },
+    "check": "from sympy import *\nr,t=symbols('r t',positive=True)\nA=lambda R,T: R**2*T/2\nresult=simplify(A(2*r,t/2)/A(r,t))"
+  },
+  {
+    "id": "geo-circles-067",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the xy-plane, a circle passes through the points (0, 0), (8, 0), and (0, 6). The equation of the circle can be written as (x − h)² + (y − k)² = r², where r > 0. What is the value of h + k + r?",
+    "answer": "12",
+    "explanation": [
+      "The three points form a right triangle with the right angle at the origin.",
+      "So the segment from (8, 0) to (0, 6) is a diameter; the center is its midpoint (4, 3).",
+      "The diameter is √(64 + 36) = 10, so r = 5, and h + k + r = 4 + 3 + 5 = 12."
+    ],
+    "hints": [
+      "What kind of triangle do the three points form, and where is its right angle?",
+      "What do you know about a right triangle's hypotenuse when its vertices lie on a circle?"
+    ],
+    "check": "from sympy import *\nh,k,R=symbols('h k R')\nsol=solve([(p[0]-h)**2+(p[1]-k)**2-R for p in [(0,0),(8,0),(0,6)]],[h,k,R],dict=True)[0]\nresult=sol[h]+sol[k]+sqrt(sol[R])"
+  },
+  {
+    "id": "geo-circles-068",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A circular water tank has center O and radius 9 meters. A survey marker P is 18 meters from O. Two straight lines through P are tangent to the tank at points A and B. What is the measure of angle APB?",
+    "choices": [
+      "30°",
+      "60°",
+      "90°",
+      "120°"
+    ],
+    "answer": "60°",
+    "explanation": [
+      "Radius OA is perpendicular to tangent PA, so triangle OAP is a right triangle with hypotenuse OP = 18.",
+      "sin(angle APO) = OA/OP = 9/18 = 1/2, so angle APO = 30°.",
+      "By symmetry angle BPO = 30°, so angle APB = 60°."
+    ],
+    "hints": [
+      "In triangle OAP, which angle is a right angle, and which side is the hypotenuse?",
+      "Which trigonometric ratio connects angle APO with OA and OP?"
+    ],
+    "wrong_reasons": {
+      "30°": "Found angle APO but forgot that angle APB is twice it",
+      "90°": "Assumed the two tangent lines are perpendicular",
+      "120°": "Gave central angle AOB instead of angle APB"
+    },
+    "check": "from sympy import *\nresult=2*asin(Rational(9,18))*180/pi"
+  },
+  {
+    "id": "geo-circles-069",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the xy-plane, the circle (x − a)² + (y − a)² = 25, where a is a constant, passes through the point (1, 8). What is the sum of all possible values of a?",
+    "answer": "9",
+    "explanation": [
+      "Substitute (1, 8): (1 − a)² + (8 − a)² = 25.",
+      "Expand: 2a² − 18a + 65 = 25, so a² − 9a + 20 = 0.",
+      "(a − 4)(a − 5) = 0, so a = 4 or a = 5, and the sum is 9."
+    ],
+    "hints": [
+      "What equation must a satisfy for (1, 8) to be on the circle?",
+      "Once you have a quadratic in a, how many solutions can it have, and how do you combine them?"
+    ],
+    "check": "from sympy import *\na=symbols('a',real=True)\nresult=sum(solve((1-a)**2+(8-a)**2-25,a))"
+  },
+  {
+    "id": "geo-circles-070",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "An equilateral triangle is drawn so that all three of its vertices lie on a circle with radius 6 centimeters. What is the side length of the triangle, in centimeters?",
+    "choices": [
+      "3√3",
+      "6",
+      "12",
+      "6√3"
+    ],
+    "answer": "6√3",
+    "explanation": [
+      "The three vertices split the circle into three equal arcs, so each side subtends a 120° central angle.",
+      "Each side is the base of an isosceles triangle with two sides of 6 and a 120° angle between them.",
+      "Splitting that triangle in half gives a 30°-60°-90° triangle with hypotenuse 6, so half the side is 3√3 and the side is 6√3."
+    ],
+    "hints": [
+      "What central angle does each side of the triangle subtend?",
+      "If you draw radii to two vertices and drop a perpendicular from the center to that side, what special triangle appears?"
+    ],
+    "wrong_reasons": {
+      "3√3": "Found half of the side and stopped",
+      "6": "Assumed the side equals the radius, as for a regular hexagon",
+      "12": "Assumed the side equals the diameter"
+    },
+    "check": "from sympy import *\nr=6\ns=sqrt(2*r**2-2*r**2*cos(2*pi/3))\nresult=f'{simplify(s/sqrt(3))}√3'"
+  },
+  {
+    "id": "geo-circles-071",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A flat metal washer is shaped like the region between two circles that share the same center. A straight chord of the outer circle is 24 millimeters long and is tangent to the inner circle. What is the area of the washer, in square millimeters?",
+    "choices": [
+      "144π",
+      "24π",
+      "288π",
+      "576π"
+    ],
+    "answer": "144π",
+    "explanation": [
+      "Let r be the inner radius and R the outer radius. The washer's area is πR² − πr² = π(R² − r²).",
+      "The radius of the inner circle to the point of tangency is perpendicular to the chord, so it bisects the chord into two 12 mm halves.",
+      "A radius of the outer circle to an end of the chord, the inner radius, and half the chord form a right triangle: R² = r² + 12².",
+      "So R² − r² = 144, and the area is 144π (you never need R or r individually)."
+    ],
+    "hints": [
+      "Draw the radius of the inner circle to the point where the chord touches it. What angle does it make with the chord, and where does it meet the chord?",
+      "Now draw a radius of the outer circle to one end of the chord. What right triangle appears, and how are its sides related to the two radii?",
+      "Is the washer's area expressed more easily with R and r separately, or with a combination of them?"
+    ],
+    "wrong_reasons": {
+      "24π": "Multiplied the chord length by π instead of using it to find R² − r²",
+      "288π": "Wrote R² − r² as 2 · 12², as if both halves of the chord were legs of the same right triangle",
+      "576π": "Used the whole chord, 24, as the leg of the right triangle instead of half of it"
+    },
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nchord=24\nR2=r**2+(Rational(chord,2))**2\narea=simplify(pi*R2-pi*r**2)\nc=nsimplify(area/pi)\nresult=f'{c}π'"
+  },
+  {
+    "id": "geo-circles-072",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of x² + y² − 4x + 2y = k is a circle with radius less than 3. Which of the following could be the value of k?",
+    "choices": [
+      "−6",
+      "2",
+      "4",
+      "8"
+    ],
+    "answer": "2",
+    "explanation": [
+      "Complete the squares: (x − 2)² + (y + 1)² = k + 5.",
+      "For a circle with radius less than 3: 0 < k + 5 < 9.",
+      "So −5 < k < 4; of the choices, only k = 2 works (radius √7)."
+    ],
+    "hints": [
+      "After completing the square, what expression in k equals r²?",
+      "What two conditions must r² satisfy here?"
+    ],
+    "wrong_reasons": {
+      "−6": "Ignored that r² must be positive; k = −6 gives r² = −1, which is not a circle",
+      "4": "Gives r² = 9, so the radius is exactly 3, not less than 3",
+      "8": "Treated k as r², forgetting the 4 and 1 added when completing the square"
+    },
+    "check": "from sympy import *\nx,y,k=symbols('x y k')\nf=x**2+y**2-4*x+2*y-k\nh=solve(diff(f,x),x)[0];kk=solve(diff(f,y),y)[0]\nr2=-f.subs({x:h,y:kk})\nresult=[v for v in [-6,2,4,8] if 0<r2.subs(k,v)<9][0]"
+  },
+  {
+    "id": "geo-circles-073",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A cable is wrapped tightly once around a cylindrical water tower with radius 20 meters. The cable is then lengthened by 6π meters and arranged in a circle with the same center as the tower, so that it stays the same distance from the tower all the way around. How far from the tower's surface is the cable, in meters?",
+    "choices": [
+      "6",
+      "23",
+      "6π",
+      "3"
+    ],
+    "answer": "3",
+    "explanation": [
+      "The new circle's circumference is 2π(20) + 6π = 46π.",
+      "Its radius is 46π ÷ 2π = 23 meters.",
+      "The gap is 23 − 20 = 3 meters (notice it does not depend on the tower's radius)."
+    ],
+    "hints": [
+      "What is the circumference of the cable after it is lengthened?",
+      "What radius goes with that circumference, and how does it compare to the tower's radius?"
+    ],
+    "wrong_reasons": {
+      "6": "Divided the extra length by π only, finding the change in diameter",
+      "23": "Gave the new radius instead of the gap",
+      "6π": "Assumed the gap equals the extra cable length"
+    },
+    "check": "from sympy import *\nR=20\nC=2*pi*R+6*pi\nresult=C/(2*pi)-R"
+  },
+  {
+    "id": "geo-circles-074",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Quadrilateral ABCD is inscribed in a circle. The measure of angle A is (3x + 10)°, and the measure of angle C is (2x + 20)°. What is the measure of angle A?",
+    "choices": [
+      "30°",
+      "40°",
+      "80°",
+      "100°"
+    ],
+    "answer": "100°",
+    "explanation": [
+      "Angles A and C are opposite angles of the inscribed quadrilateral.",
+      "Each intercepts an arc, and together those arcs make the whole circle, so A + C = 360°/2 = 180°.",
+      "3x + 10 + 2x + 20 = 180, so x = 30 and angle A = 3(30) + 10 = 100°."
+    ],
+    "hints": [
+      "Which arcs do angles A and C intercept, and what do those arcs add up to?",
+      "How does that sum translate into a relationship between the two angles?"
+    ],
+    "wrong_reasons": {
+      "30°": "Gave the value of x instead of the angle",
+      "40°": "Set the opposite angles equal instead of supplementary",
+      "80°": "Gave the measure of angle C"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nx0=solve((3*x+10)+(2*x+20)-180,x)[0]\nresult=3*x0+10"
+  },
+  {
+    "id": "geo-circles-075",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, a circle lies in the first quadrant and is tangent to both the x-axis and the y-axis. The circle passes through the point (2, 1). Which of the following could be the radius of the circle?",
+    "choices": [
+      "5",
+      "√5",
+      "3",
+      "6"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Tangent to both axes in the first quadrant means the center is (r, r).",
+      "(2 − r)² + (1 − r)² = r² gives r² − 6r + 5 = 0.",
+      "(r − 1)(r − 5) = 0, so r = 1 or r = 5; only 5 is a choice."
+    ],
+    "hints": [
+      "If the circle touches both axes, how far is its center from each axis?",
+      "What equation says (2, 1) is exactly r units from the center?"
+    ],
+    "wrong_reasons": {
+      "√5": "Gave the distance from the origin to (2, 1)",
+      "3": "Took the vertex of r² − 6r + 5 instead of a root",
+      "6": "Gave the sum of the two possible radii"
+    },
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nresult=[s for s in solve((2-r)**2+(1-r)**2-r**2,r) if s in [sqrt(5),3,5,6]][0]"
   }
 ]

@@ -84,9 +84,9 @@
     "stem": "For a sample of taxi rides in a city, the line of best fit is f = 2.1m + 3.5, where f is the predicted fare, in dollars, for a ride of m miles. Which of the following is the best interpretation of 2.1 in this context?",
     "choices": [
       "The predicted fare for a ride of 0 miles is $2.10.",
+      "For each additional mile, the predicted fare increases by $2.10.",
       "The predicted fare for a 1-mile ride is $2.10.",
-      "For each additional dollar, the predicted distance increases by 2.1 miles.",
-      "For each additional mile, the predicted fare increases by $2.10."
+      "For each additional dollar, the predicted distance increases by 2.1 miles."
     ],
     "answer": "For each additional mile, the predicted fare increases by $2.10.",
     "explanation": [
@@ -138,9 +138,9 @@
     },
     "choices": [
       "y = 5x + 3",
-      "y = 3x + 5",
       "y = x + 5",
-      "y = 3x + 14"
+      "y = 3x + 14",
+      "y = 3x + 5"
     ],
     "answer": "y = 3x + 5",
     "explanation": [
@@ -237,9 +237,9 @@
       ]
     },
     "choices": [
-      "It doubles each year, so it shows exponential growth.",
       "It increases by 50 each year, so it shows linear growth.",
       "It increases by 100 each year, so it shows linear growth.",
+      "It doubles each year, so it shows exponential growth.",
       "It increases by 50% each year, so it shows exponential growth."
     ],
     "answer": "It doubles each year, so it shows exponential growth.",
@@ -268,8 +268,8 @@
     "choices": [
       "The estimated number of new subscribers each year",
       "The estimated percent increase in subscribers each year",
-      "The estimated number of subscribers when the newsletter launched",
-      "The estimated number of subscribers after 1 year"
+      "The estimated number of subscribers after 1 year",
+      "The estimated number of subscribers when the newsletter launched"
     ],
     "answer": "The estimated number of subscribers when the newsletter launched",
     "explanation": [
@@ -324,10 +324,10 @@
       ]
     },
     "choices": [
+      "(8, 21.0)",
       "(2, 8.1)",
       "(4, 10.0)",
-      "(10, 21.5)",
-      "(8, 21.0)"
+      "(10, 21.5)"
     ],
     "answer": "(8, 21.0)",
     "explanation": [
@@ -428,10 +428,10 @@
       ]
     },
     "choices": [
+      "v = 20,000(0.85)ᵗ",
       "v = 20,000(0.15)ᵗ",
       "v = 20,000(1.15)ᵗ",
-      "v = 20,000 − 3,000t",
-      "v = 20,000(0.85)ᵗ"
+      "v = 20,000 − 3,000t"
     ],
     "answer": "v = 20,000(0.85)ᵗ",
     "explanation": [
@@ -457,9 +457,9 @@
     "type": "mc",
     "stem": "A city planner collected data on 30 neighborhoods with populations between 2,000 and 9,000 people. The data show a strong positive linear association between a neighborhood's population and its number of daily bus riders, and the planner found a line of best fit for the data. Which of the following is the most appropriate use of the line of best fit?",
     "choices": [
-      "Predicting the number of daily bus riders in a neighborhood with 6,500 people",
       "Predicting the number of daily bus riders in a neighborhood with 40,000 people",
       "Concluding that adding residents to a neighborhood causes more people to ride the bus",
+      "Predicting the number of daily bus riders in a neighborhood with 6,500 people",
       "Concluding that every neighborhood with 5,000 people has the same number of bus riders"
     ],
     "answer": "Predicting the number of daily bus riders in a neighborhood with 6,500 people",
@@ -567,8 +567,8 @@
     "choices": [
       "The predicted monthly revenue is $2.30 in a month when the store spends nothing on ads.",
       "The predicted monthly revenue increases by $2,300 for each additional $100 spent on ads.",
-      "The predicted monthly revenue is $2,300 in a month when the store spends nothing on ads.",
-      "The store must spend $2,300 on ads to earn any revenue."
+      "The store must spend $2,300 on ads to earn any revenue.",
+      "The predicted monthly revenue is $2,300 in a month when the store spends nothing on ads."
     ],
     "answer": "The predicted monthly revenue is $2,300 in a month when the store spends nothing on ads.",
     "explanation": [
@@ -623,10 +623,10 @@
       ]
     },
     "choices": [
+      "y = 2x + 1",
       "y = x + 2",
       "y = 3x − 1",
-      "y = −2x + 13",
-      "y = 2x + 1"
+      "y = −2x + 13"
     ],
     "answer": "y = 2x + 1",
     "explanation": [
@@ -954,5 +954,1410 @@
       "The model's output is in thousands of dollars. How do you write it in dollars before comparing it with $14,100?"
     ],
     "check": "pred=(-0.08*150+24.6)*1000\nresult=14100-pred"
+  },
+  {
+    "id": "psda-two-var-data-028",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A park ranger recorded the daily high temperature and the number of visitors to a trail's warming hut on 25 winter days. On a scatterplot with temperature on the horizontal axis, the points generally fall from left to right, but they are spread widely around any line drawn through them. Which of the following best describes the association between temperature and the number of visitors?",
+    "choices": [
+      "A strong positive association",
+      "A weak negative association",
+      "A weak positive association",
+      "A strong negative association"
+    ],
+    "answer": "A weak negative association",
+    "explanation": [
+      "The points fall from left to right: as temperature increases, the number of visitors tends to decrease. That is a negative association.",
+      "The points are spread widely around any line, so the association is weak, not strong.",
+      "So the association is weak and negative."
+    ],
+    "hints": [
+      "As you move to the right along the temperature axis, do the points tend to go up or down?",
+      "If the points are scattered far from any line you could draw, how closely do the two variables move together?"
+    ],
+    "wrong_reasons": {
+      "A strong positive association": "Confused the direction and the strength: falling points mean negative, and wide spread means weak",
+      "A weak positive association": "Read the direction backwards; points that fall from left to right show a negative association",
+      "A strong negative association": "Got the direction right but ignored that the points are spread widely, which means the association is weak"
+    },
+    "check": null,
+    "check_note": "Conceptual: describing direction and strength of an association from a verbal scatterplot description."
+  },
+  {
+    "id": "psda-two-var-data-029",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function P(t) = 8,500(1.03)ᵗ models the population of a town t years after 2020. Which of the following is the best interpretation of 1.03 in this context?",
+    "choices": [
+      "The estimated population increases by 103% each year.",
+      "The estimated population increases by about 1.03 people each year.",
+      "The estimated population increases by 3% each year.",
+      "The estimated population increases by 30% each year."
+    ],
+    "answer": "The estimated population increases by 3% each year.",
+    "explanation": [
+      "Each time t increases by 1, the population is multiplied by 1.03.",
+      "Multiplying by 1.03 is the same as keeping 100% of the population and adding 3%.",
+      "So the estimated population increases by 3% each year."
+    ],
+    "hints": [
+      "When t goes up by 1, what happens to the value of P(t): is something added or multiplied?",
+      "How can you write 1.03 as 1 plus a percent?"
+    ],
+    "wrong_reasons": {
+      "The estimated population increases by 103% each year.": "Treated the whole factor 1.03 as the percent increase instead of 1.03 − 1",
+      "The estimated population increases by about 1.03 people each year.": "Treated the exponential model as linear, as if 1.03 were added each year",
+      "The estimated population increases by 30% each year.": "Misplaced the decimal when converting 0.03 to a percent"
+    },
+    "check": "from sympy import Rational\nr=(Rational('1.03')-1)*100\nresult=f'The estimated population increases by {r}% each year.'"
+  },
+  {
+    "id": "psda-two-var-data-030",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A researcher studied 40 towns and found a strong positive association between the number of public libraries in a town and the number of restaurants in the town. The data come from records the researcher looked up; no towns were assigned to build libraries. Which conclusion is best supported by the data?",
+    "choices": [
+      "Towns with more libraries tend to have more restaurants, but the data do not show that libraries cause restaurants to open.",
+      "Building more libraries in a town will cause more restaurants to open.",
+      "Towns with more libraries tend to have fewer restaurants.",
+      "There is no relationship between the number of libraries and the number of restaurants in a town."
+    ],
+    "answer": "Towns with more libraries tend to have more restaurants, but the data do not show that libraries cause restaurants to open.",
+    "explanation": [
+      "A strong positive association means towns with more libraries tend to have more restaurants.",
+      "The study only observed existing towns, so it cannot show cause and effect; a third factor, such as a town's population, could explain both.",
+      "So the data support an association but not a causal conclusion."
+    ],
+    "hints": [
+      "What does a positive association tell you about towns with more libraries?",
+      "Were towns randomly assigned to have more libraries, or were they just observed?",
+      "Could something else about a town make both numbers larger?"
+    ],
+    "wrong_reasons": {
+      "Building more libraries in a town will cause more restaurants to open.": "Treated an association from observational data as proof of cause and effect",
+      "Towns with more libraries tend to have fewer restaurants.": "Confused a positive association with a negative one",
+      "There is no relationship between the number of libraries and the number of restaurants in a town.": "Thought that because causation is not shown, there is no association at all"
+    },
+    "check": null,
+    "check_note": "Conceptual: association versus causation in observational data."
+  },
+  {
+    "id": "psda-two-var-data-031",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Ines's savings account balance increases by $40 every month. Theo's savings account balance increases by 2% every month. Which of the following best describes the types of models for the two balances over time?",
+    "choices": [
+      "Ines's: linear; Theo's: exponential",
+      "Ines's: exponential; Theo's: linear",
+      "Both: linear",
+      "Both: exponential"
+    ],
+    "answer": "Ines's: linear; Theo's: exponential",
+    "explanation": [
+      "Ines's balance changes by the same amount ($40) each month, which is linear growth.",
+      "Theo's balance changes by the same percent (2%) each month, which is exponential growth.",
+      "So Ines's balance is linear and Theo's is exponential."
+    ],
+    "hints": [
+      "Which balance grows by a fixed number of dollars, and which grows by a fixed percent?",
+      "Which type of model adds the same amount each step, and which multiplies by the same factor each step?"
+    ],
+    "wrong_reasons": {
+      "Ines's: exponential; Theo's: linear": "Swapped the meanings: a constant amount is linear and a constant percent is exponential",
+      "Both: linear": "Thought that any steady monthly increase is linear, even a percent increase",
+      "Both: exponential": "Thought that any growing balance must be exponential"
+    },
+    "check": null,
+    "check_note": "Conceptual: constant amount of change (linear) versus constant percent change (exponential)."
+  },
+  {
+    "id": "psda-two-var-data-032",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A store tracked the number of winter coats left in stock, y, x weeks after a clearance sale began. On a scatterplot of the data, the points stay close to a line that goes down from about (0, 50) on the left to about (10, 10) on the right. Which of the following equations could be the line of best fit for the data?",
+    "choices": [
+      "y = 4x + 50",
+      "y = −0.25x + 50",
+      "y = 50x − 4",
+      "y = −4x + 50"
+    ],
+    "answer": "y = −4x + 50",
+    "explanation": [
+      "The line starts near y = 50 when x = 0, so the y-intercept is about 50.",
+      "From x = 0 to x = 10, y drops by about 50 − 10 = 40, so the slope is about −40 ÷ 10 = −4.",
+      "The equation y = −4x + 50 matches both features."
+    ],
+    "hints": [
+      "Which point tells you the approximate y-intercept?",
+      "Between the left and right ends, how much does y change, and over how many weeks?"
+    ],
+    "wrong_reasons": {
+      "y = 4x + 50": "Used a positive slope even though the points go down from left to right",
+      "y = −0.25x + 50": "Computed the slope as change in x over change in y (10 ÷ −40)",
+      "y = 50x − 4": "Swapped the slope and the y-intercept"
+    },
+    "check": "from sympy import Rational\nm=Rational(10-50,10-0); b=50\nresult=f'y = {m}x + {b}'"
+  },
+  {
+    "id": "psda-two-var-data-033",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A paper-airplane club launched planes at many different angles. On a scatterplot of launch angle (horizontal axis) and flight distance (vertical axis), the points rise from left to right until an angle of about 40°, then fall, forming a curve shaped like an upside-down U. Which type of model is most appropriate for these data?",
+    "choices": [
+      "Linear with a positive slope",
+      "Quadratic",
+      "Linear with a negative slope",
+      "Exponential growth"
+    ],
+    "answer": "Quadratic",
+    "explanation": [
+      "A linear model either always rises or always falls, so it cannot fit points that rise and then fall.",
+      "An exponential model also only rises or only falls.",
+      "A quadratic model's graph is a parabola, which can rise to a highest point and then fall, matching the upside-down U."
+    ],
+    "hints": [
+      "Can a straight line go up and then come back down?",
+      "Which kind of graph has a single highest point with the graph falling on both sides?"
+    ],
+    "wrong_reasons": {
+      "Linear with a positive slope": "Only looked at the left part of the data, where the points rise",
+      "Linear with a negative slope": "Only looked at the right part of the data, where the points fall",
+      "Exponential growth": "Thought any curved pattern is exponential, but exponential growth never turns back down"
+    },
+    "check": null,
+    "check_note": "Conceptual: choosing a model type from the shape of a scatterplot."
+  },
+  {
+    "id": "psda-two-var-data-034",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The function f(t) = 60(2)ᵗ models the number of members of an online gardening forum t years after it opened. According to the model, how many members will the forum have 3 years after it opened?",
+    "answer": "480",
+    "explanation": [
+      "Substitute t = 3: f(3) = 60(2)³.",
+      "2³ = 8, so f(3) = 60 · 8 = 480."
+    ],
+    "hints": [
+      "What value should replace t?",
+      "Which comes first: the exponent or the multiplication by 60?"
+    ],
+    "check": "result=60*2**3"
+  },
+  {
+    "id": "psda-two-var-data-035",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The table shows the cost, in dollars, of renting a kayak for different numbers of hours. The relationship between hours and cost is linear. What is the cost, in dollars, to rent a kayak for 4 hours?",
+    "table": {
+      "headers": [
+        "Hours",
+        "Cost (dollars)"
+      ],
+      "rows": [
+        [
+          "1",
+          "22"
+        ],
+        [
+          "2",
+          "30"
+        ],
+        [
+          "3",
+          "38"
+        ],
+        [
+          "6",
+          "62"
+        ]
+      ]
+    },
+    "answer": "46",
+    "explanation": [
+      "From 1 hour to 2 hours, the cost rises from $22 to $30, so the cost increases by $8 per hour.",
+      "From 3 hours to 4 hours is one more hour, so the cost is 38 + 8 = 46 dollars."
+    ],
+    "hints": [
+      "How much does the cost change for each additional hour?",
+      "Which row of the table is closest to 4 hours, and how many more hours do you need from there?"
+    ],
+    "check": "from sympy import Rational\npts=[(1,22),(2,30),(3,38),(6,62)]\nm=Rational(pts[3][1]-pts[0][1],pts[3][0]-pts[0][0])\nb=pts[0][1]-m*pts[0][0]\nresult=m*4+b"
+  },
+  {
+    "id": "psda-two-var-data-036",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A forester modeled the heights of young maple trees with the line of best fit h = 2.2a + 1.3, where h is the predicted height, in feet, of a tree that is a years old. One 6-year-old maple in the data set has a residual of 1.5 feet. What is the actual height, in feet, of this tree? (Residual = actual value − predicted value.)",
+    "answer": "16",
+    "explanation": [
+      "Predicted height for a = 6: 2.2(6) + 1.3 = 13.2 + 1.3 = 14.5 feet.",
+      "Actual = predicted + residual = 14.5 + 1.5 = 16 feet."
+    ],
+    "hints": [
+      "What height does the model predict for a 6-year-old tree?",
+      "If the residual is positive, is the actual height above or below the predicted height?"
+    ],
+    "check": "from sympy import Rational\npred=Rational('2.2')*6+Rational('1.3')\nresult=pred+Rational('1.5')"
+  },
+  {
+    "id": "psda-two-var-data-037",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A nursery modeled the heights of its young oak trees with the line of best fit y = 0.8x + 3, where y is the predicted height, in feet, of a tree that is x years old. According to the model, how many years old is a tree with a predicted height of 11 feet?",
+    "answer": "10",
+    "explanation": [
+      "Set the predicted height equal to 11: 0.8x + 3 = 11.",
+      "Subtract 3 from both sides: 0.8x = 8.",
+      "Divide by 0.8: x = 10, so the tree is 10 years old."
+    ],
+    "hints": [
+      "Which variable in the model stands for the height, and which stands for the age?",
+      "What equation do you get when you put the given height in place of the right variable?"
+    ],
+    "check": "from sympy import symbols,solve,Rational\nx=symbols('x')\nresult=solve(Rational(4,5)*x+3-11,x)[0]"
+  },
+  {
+    "id": "psda-two-var-data-038",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A tutor modeled the number of correct answers on a quiz, y, for students who practiced for x minutes with the line of best fit y = 0.5x + 2. Which of the following data points has a positive residual? (Residual = actual value − predicted value.)",
+    "choices": [
+      "(4, 3)",
+      "(6, 5)",
+      "(8, 7)",
+      "(10, 6)"
+    ],
+    "answer": "(8, 7)",
+    "explanation": [
+      "A positive residual means the actual y-value is greater than the predicted y-value.",
+      "Predicted values: x = 4 gives 4, x = 6 gives 5, x = 8 gives 6, x = 10 gives 7.",
+      "Only (8, 7) has an actual value greater than its predicted value: 7 − 6 = 1."
+    ],
+    "hints": [
+      "Does a positive residual put the point above or below the line?",
+      "For each point, what y-value does the line predict at that x-value?"
+    ],
+    "wrong_reasons": {
+      "(4, 3)": "Subtracted in the wrong order (predicted − actual), turning a residual of −1 into +1",
+      "(6, 5)": "Chose a point on the line, which has a residual of 0, not a positive residual",
+      "(10, 6)": "Picked the point with the largest x-value, thinking larger values mean a positive residual"
+    },
+    "check": "ch={'(4, 3)':(4,3),'(6, 5)':(6,5),'(8, 7)':(8,7),'(10, 6)':(10,6)}\nresult=[k for k,(x,y) in ch.items() if y-(0.5*x+2)>0][0]"
+  },
+  {
+    "id": "psda-two-var-data-039",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A teacher made a scatterplot of the number of hours 15 students slept the night before a test (horizontal axis) and their test scores (vertical axis). All but one of the points lie close to a line of best fit that rises from left to right. The remaining point, (4, 95), lies far above the line. Which of the following best describes the point (4, 95)?",
+    "choices": [
+      "It is an outlier with a large negative residual.",
+      "It lies on the line of best fit, so its residual is 0.",
+      "It shows that the association between hours of sleep and test score is negative.",
+      "It is an outlier with a large positive residual."
+    ],
+    "answer": "It is an outlier with a large positive residual.",
+    "explanation": [
+      "The point is far from the pattern formed by the other 14 points, so it is an outlier.",
+      "A residual is the actual value minus the predicted value. A point above the line has an actual score greater than the predicted score.",
+      "So (4, 95) is an outlier with a large positive residual."
+    ],
+    "hints": [
+      "How does this point compare with the pattern of the other points?",
+      "If a point is above the line, is its actual score greater or less than the score the line predicts?"
+    ],
+    "wrong_reasons": {
+      "It is an outlier with a large negative residual.": "Reversed the sign: a point above the line has an actual value greater than its predicted value, so its residual is positive",
+      "It lies on the line of best fit, so its residual is 0.": "Ignored that the point lies far above the line, not on it",
+      "It shows that the association between hours of sleep and test score is negative.": "Let one unusual point override the overall pattern, which rises from left to right"
+    },
+    "check": null,
+    "check_note": "Conceptual: identifying an outlier and the sign of its residual from a verbal scatterplot description."
+  },
+  {
+    "id": "psda-two-var-data-040",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f(t) = 500 · 2^(t/6) models the number of yeast cells in a dough sample t hours after the sample was taken. Which of the following is the best interpretation of the 6 in this context?",
+    "choices": [
+      "The estimated number of yeast cells increases by 6 every hour.",
+      "The estimated number of yeast cells increases by 6% every hour.",
+      "The estimated number of yeast cells doubles every 6 hours.",
+      "The estimated number of yeast cells is multiplied by 6 every 2 hours."
+    ],
+    "answer": "The estimated number of yeast cells doubles every 6 hours.",
+    "explanation": [
+      "When t increases by 6, the exponent t/6 increases by 1.",
+      "An exponent that increases by 1 multiplies the value by the base, 2.",
+      "So the estimated number of cells doubles every 6 hours."
+    ],
+    "hints": [
+      "How much must t increase for the exponent t/6 to go up by exactly 1?",
+      "When the exponent goes up by 1, what happens to the value of 2 raised to it?"
+    ],
+    "wrong_reasons": {
+      "The estimated number of yeast cells increases by 6 every hour.": "Treated the model as linear with a rate of 6",
+      "The estimated number of yeast cells increases by 6% every hour.": "Read the 6 as a percent growth rate",
+      "The estimated number of yeast cells is multiplied by 6 every 2 hours.": "Swapped the roles of the base 2 and the 6 in the exponent"
+    },
+    "check": "from sympy import symbols,simplify,Rational\nt=symbols('t')\nf=500*2**(t/6)\nassert simplify(f.subs(t,t+6)/f)==2\nresult='The estimated number of yeast cells doubles every 6 hours.'"
+  },
+  {
+    "id": "psda-two-var-data-041",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "An analyst used a line of best fit to model monthly rent based on apartment size. For one apartment in the data set, the residual is 0. Which of the following must be true about this apartment? (Residual = actual value − predicted value.)",
+    "choices": [
+      "Its rent is $0.",
+      "Its actual rent is equal to the rent predicted by the line of best fit.",
+      "Its size is 0 square feet.",
+      "Its rent is the same as the rent of every other apartment in the data set."
+    ],
+    "answer": "Its actual rent is equal to the rent predicted by the line of best fit.",
+    "explanation": [
+      "A residual is the actual value minus the predicted value.",
+      "If the residual is 0, the actual value and the predicted value are equal.",
+      "So the apartment's data point lies exactly on the line of best fit."
+    ],
+    "hints": [
+      "What two values does a residual compare?",
+      "If the difference between two numbers is 0, how are the numbers related?"
+    ],
+    "wrong_reasons": {
+      "Its rent is $0.": "Confused a residual of 0 with an actual value of 0",
+      "Its size is 0 square feet.": "Confused a residual of 0 with an x-value of 0 (the y-intercept)",
+      "Its rent is the same as the rent of every other apartment in the data set.": "Thought a residual compares one data point to the other data points rather than to the line"
+    },
+    "check": null,
+    "check_note": "Conceptual: meaning of a zero residual."
+  },
+  {
+    "id": "psda-two-var-data-042",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A park manager modeled the number of daily visitors to a public pool with y = −0.4x² + 56x − 1,200, where y is the predicted number of visitors on a day when the high temperature is x degrees Fahrenheit, for temperatures from 60°F to 95°F. According to the model, how many visitors are predicted on a day when the high temperature is 60°F?",
+    "choices": [
+      "720",
+      "1,920",
+      "2,736",
+      "3,600"
+    ],
+    "answer": "720",
+    "explanation": [
+      "Square first: 60² = 3,600, so −0.4(3,600) = −1,440.",
+      "56(60) = 3,360.",
+      "y = −1,440 + 3,360 − 1,200 = 720."
+    ],
+    "hints": [
+      "What should you compute first in −0.4x² when x = 60: the square or the multiplication?",
+      "After finding each term, which terms are positive and which are negative?"
+    ],
+    "wrong_reasons": {
+      "1,920": "Left out the constant term −1,200",
+      "2,736": "Squared −0.4 · 60 instead of squaring 60 first, getting +576 for the first term",
+      "3,600": "Treated −0.4x² as positive, adding 1,440 instead of subtracting it"
+    },
+    "check": "x=60\nresult=-0.4*x**2+56*x-1200"
+  },
+  {
+    "id": "psda-two-var-data-043",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Two bean plants were measured each week. For Plant A, the line of best fit is h = 1.8w + 6, and for Plant B, it is h = 2.3w + 4, where h is the predicted height, in centimeters, w weeks after the first measurement. Which statement best compares the predicted growth rates of the two plants?",
+    "choices": [
+      "Plant A's predicted height increases by 0.5 centimeter per week more than Plant B's.",
+      "Plant A's predicted height increases by 2 centimeters per week more than Plant B's.",
+      "The two plants have the same predicted growth rate.",
+      "Plant B's predicted height increases by 0.5 centimeter per week more than Plant A's."
+    ],
+    "answer": "Plant B's predicted height increases by 0.5 centimeter per week more than Plant A's.",
+    "explanation": [
+      "In each model, the slope (the coefficient of w) is the predicted increase in height per week.",
+      "Plant A grows 1.8 cm per week and Plant B grows 2.3 cm per week.",
+      "2.3 − 1.8 = 0.5, so Plant B's predicted height increases by 0.5 cm per week more."
+    ],
+    "hints": [
+      "Which number in each equation tells you how fast the height changes each week?",
+      "Which number tells you the height at the first measurement instead?"
+    ],
+    "wrong_reasons": {
+      "Plant A's predicted height increases by 0.5 centimeter per week more than Plant B's.": "Found the difference in slopes but reversed which plant grows faster",
+      "Plant A's predicted height increases by 2 centimeters per week more than Plant B's.": "Compared the y-intercepts (6 − 4), which are starting heights, not growth rates",
+      "The two plants have the same predicted growth rate.": "Thought the larger intercept of A makes up for B's larger slope"
+    },
+    "check": "from sympy import Rational\nd=Rational('2.3')-Rational('1.8')\nresult=f\"Plant B's predicted height increases by {float(d)} centimeter per week more than Plant A's.\""
+  },
+  {
+    "id": "psda-two-var-data-044",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A facilities team drained a water tank and recorded the amount of water left at several times. The line of best fit for the data is w = −12m + 360, where w is the predicted number of liters of water left in the tank m minutes after draining began. In this context, what does the solution to the equation −12m + 360 = 0 represent?",
+    "choices": [
+      "The predicted number of minutes until the tank is empty",
+      "The predicted number of liters in the tank when draining began",
+      "The predicted number of liters drained each minute",
+      "The predicted number of minutes it takes to drain 12 liters"
+    ],
+    "answer": "The predicted number of minutes until the tank is empty",
+    "explanation": [
+      "Setting w = 0 means the predicted amount of water left is 0 liters.",
+      "The value of m that makes this true is a number of minutes.",
+      "So the solution is the predicted number of minutes after draining began when the tank is empty."
+    ],
+    "hints": [
+      "What does it mean, in this context, for w to equal 0?",
+      "Is the solution a number of liters or a number of minutes?"
+    ],
+    "wrong_reasons": {
+      "The predicted number of liters in the tank when draining began": "Described the w-intercept (360), which is found by setting m = 0, not w = 0",
+      "The predicted number of liters drained each minute": "Described the slope (12 liters per minute) instead of the solution",
+      "The predicted number of minutes it takes to drain 12 liters": "Mixed up the slope with the solution; the model drains 12 liters in 1 minute"
+    },
+    "check": null,
+    "check_note": "Conceptual: interpreting the horizontal intercept of a linear model in context."
+  },
+  {
+    "id": "psda-two-var-data-045",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A utility company modeled the monthly electricity use of homes with the line of best fit y = 60x + 500, where y is the predicted monthly electricity use, in kilowatt-hours, for a home with x residents. One home in the data set has 6 residents and uses 989 kilowatt-hours per month. The home's actual use is what percent greater than the use predicted by the line of best fit?",
+    "answer": "15",
+    "accept": [
+      "15%"
+    ],
+    "explanation": [
+      "Predicted use for x = 6: 60(6) + 500 = 860 kilowatt-hours.",
+      "Actual minus predicted: 989 − 860 = 129.",
+      "As a percent of the predicted value: 129 ÷ 860 = 0.15, which is 15%."
+    ],
+    "hints": [
+      "What does the model predict for a home with 6 residents?",
+      "When you find 'what percent greater than the predicted value,' which number goes in the denominator?"
+    ],
+    "check": "from sympy import Rational\npred=60*6+500\nresult=Rational(989-pred,pred)*100"
+  },
+  {
+    "id": "psda-two-var-data-046",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A wildlife biologist estimates that a herd of 3,200 elk will decrease in size by 6% each year. Which equation models the estimated number of elk, P, t years after the estimate was made?",
+    "choices": [
+      "P = 3,200(1.06)ᵗ",
+      "P = 3,200(0.06)ᵗ",
+      "P = 3,200(0.94)ᵗ",
+      "P = 3,200 − 0.06t"
+    ],
+    "answer": "P = 3,200(0.94)ᵗ",
+    "explanation": [
+      "A decrease of 6% each year means each year's number is 100% − 6% = 94% of the previous year's number.",
+      "94% as a decimal is 0.94, so the yearly multiplier is 0.94.",
+      "Starting from 3,200, the model is P = 3,200(0.94)ᵗ."
+    ],
+    "hints": [
+      "What percent of the herd remains after one year?",
+      "Should the model add the same amount each year or multiply by the same factor each year?"
+    ],
+    "wrong_reasons": {
+      "P = 3,200(1.06)ᵗ": "Used a growth factor for a 6% increase instead of a 6% decrease",
+      "P = 3,200(0.06)ᵗ": "Used the percent lost (6%) as the multiplier instead of the percent that remains (94%)",
+      "P = 3,200 − 0.06t": "Treated a percent decrease as a constant subtraction, which would be a linear model"
+    },
+    "check": "from sympy import Rational\nb=1-Rational(6,100)\nresult=f'P = 3,200({float(b)})ᵗ'"
+  },
+  {
+    "id": "psda-two-var-data-047",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A lab technician observed that the number of cells in a culture triples every 4 hours. At the start of the observation, there were 150 thousand cells. Based on this pattern, how many thousand cells will there be 12 hours after the start?",
+    "choices": [
+      "450",
+      "1,350",
+      "4,050",
+      "5,400"
+    ],
+    "answer": "4,050",
+    "explanation": [
+      "12 hours contains 12 ÷ 4 = 3 periods of 4 hours.",
+      "The count triples 3 times: 150 · 3 · 3 · 3 = 150 · 27.",
+      "150 · 27 = 4,050 thousand cells."
+    ],
+    "hints": [
+      "How many 4-hour periods are in 12 hours?",
+      "Each period, is the count multiplied by 3 or increased by 3?"
+    ],
+    "wrong_reasons": {
+      "450": "Tripled only once instead of once for each 4-hour period",
+      "1,350": "Counted only two 4-hour periods in 12 hours",
+      "5,400": "Multiplied 150 by 3 and then by 12 hours, mixing a multiplier with a linear rate"
+    },
+    "check": "result=150*3**(12//4)"
+  },
+  {
+    "id": "psda-two-var-data-048",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following tables shows data that are best modeled by a decreasing exponential function?",
+    "choices": [
+      "x: 0, 1, 2, 3; y: 80, 60, 40, 20",
+      "x: 0, 1, 2, 3; y: 80, 100, 125, 156.25",
+      "x: 0, 1, 2, 3; y: 80, 62, 50, 44",
+      "x: 0, 1, 2, 3; y: 80, 60, 45, 33.75"
+    ],
+    "answer": "x: 0, 1, 2, 3; y: 80, 60, 45, 33.75",
+    "explanation": [
+      "An exponential model has a constant ratio between consecutive y-values when x increases by 1.",
+      "For 80, 60, 45, 33.75: 60/80 = 0.75, 45/60 = 0.75, 33.75/45 = 0.75, a constant ratio less than 1.",
+      "So these values decrease exponentially; 80, 60, 40, 20 has a constant difference instead (linear)."
+    ],
+    "hints": [
+      "For each table, what do you get when you divide each y-value by the one before it?",
+      "For a decreasing exponential function, should that ratio be the same each time, and should it be greater than or less than 1?"
+    ],
+    "wrong_reasons": {
+      "x: 0, 1, 2, 3; y: 80, 60, 40, 20": "These values decrease by a constant difference of 20, which is linear, not exponential",
+      "x: 0, 1, 2, 3; y: 80, 100, 125, 156.25": "These values have a constant ratio of 1.25, which is exponential growth, not decay",
+      "x: 0, 1, 2, 3; y: 80, 62, 50, 44": "These values decrease, but neither the differences nor the ratios are constant"
+    },
+    "check": "from sympy import Rational as R\nch={'x: 0, 1, 2, 3; y: 80, 60, 40, 20':[80,60,40,20],'x: 0, 1, 2, 3; y: 80, 60, 45, 33.75':[80,60,45,R('33.75')],'x: 0, 1, 2, 3; y: 80, 100, 125, 156.25':[80,100,125,R('156.25')],'x: 0, 1, 2, 3; y: 80, 62, 50, 44':[80,62,50,44]}\ndef ok(v):\n    r={R(b)/a for a,b in zip(v,v[1:])}\n    return len(r)==1 and list(r)[0]<1\nresult=[k for k,v in ch.items() if ok(v)][0]"
+  },
+  {
+    "id": "psda-two-var-data-049",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A hiker recorded the depth of snow at a mountain campsite on several days in spring. The line of best fit for the data passes through the points (4, 30) and (12, 18), where x is the number of days after March 1 and y is the predicted snow depth, in centimeters. According to the line of best fit, how many days after March 1 will the predicted snow depth be 0 centimeters?",
+    "answer": "24",
+    "explanation": [
+      "Slope: (18 − 30) ÷ (12 − 4) = −12 ÷ 8 = −1.5 centimeters per day.",
+      "Using (4, 30): 30 = −1.5(4) + b, so b = 36. The line is y = −1.5x + 36.",
+      "Set y = 0: −1.5x + 36 = 0, so x = 24."
+    ],
+    "hints": [
+      "How much does the predicted depth change per day between the two given points?",
+      "Once you have an equation for the line, what value of y are you solving for?"
+    ],
+    "check": "from sympy import symbols,solve,Rational\nx=symbols('x')\nm=Rational(18-30,12-4); b=30-m*4\nresult=solve(m*x+b,x)[0]"
+  },
+  {
+    "id": "psda-two-var-data-050",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows the number of downloads, y, in thousands, of a podcast x weeks after its launch. A student fit two models to the data: the linear model L(x) = 3x + 6 and the exponential model E(x) = 6(1.5)ˣ. Which statement about the models is true?",
+    "table": {
+      "headers": [
+        "Weeks, x",
+        "Downloads, y (thousands)"
+      ],
+      "rows": [
+        [
+          "0",
+          "6"
+        ],
+        [
+          "1",
+          "9"
+        ],
+        [
+          "2",
+          "13.5"
+        ],
+        [
+          "3",
+          "20.25"
+        ],
+        [
+          "4",
+          "30.375"
+        ]
+      ]
+    },
+    "choices": [
+      "Both models fit all five data points exactly.",
+      "E fits all five data points exactly; L fits only the first two.",
+      "L fits all five data points exactly; E fits only the first two.",
+      "Neither model fits any of the data points exactly."
+    ],
+    "answer": "E fits all five data points exactly; L fits only the first two.",
+    "explanation": [
+      "L(x): 6, 9, 12, 15, 18 for x = 0 to 4. It matches the data only at x = 0 and x = 1.",
+      "E(x): 6, 9, 13.5, 20.25, 30.375 for x = 0 to 4. It matches every data point.",
+      "So E fits all five points exactly and L fits only the first two."
+    ],
+    "hints": [
+      "What does each model give for x = 0, 1, 2, 3, and 4?",
+      "Beyond the first two weeks, do the downloads grow by a constant amount or by a constant ratio?"
+    ],
+    "wrong_reasons": {
+      "Both models fit all five data points exactly.": "Checked only the first two points, where the models agree",
+      "L fits all five data points exactly; E fits only the first two.": "Assumed the constant increase from 6 to 9 continues, without checking later rows",
+      "Neither model fits any of the data points exactly.": "Did not substitute the x-values into the models"
+    },
+    "check": "from sympy import Rational as R\nys=[6,9,R('13.5'),R('20.25'),R('30.375')]\nL=[3*x+6 for x in range(5)]\nE=[6*R(3,2)**x for x in range(5)]\nnl=sum(a==b for a,b in zip(L,ys)); ne=sum(a==b for a,b in zip(E,ys))\nassert ne==5 and nl==2 and L[:2]==ys[:2]\nresult='E fits all five data points exactly; L fits only the first two.'"
+  },
+  {
+    "id": "psda-two-var-data-051",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A real estate agent modeled home prices with the line of best fit y = 0.15x + 40, where y is the predicted price, in thousands of dollars, of a home with an area of x square feet. According to the model, what is the difference in predicted price between two homes whose areas differ by 500 square feet?",
+    "choices": [
+      "$75",
+      "$7,500",
+      "$75,000",
+      "$115,000"
+    ],
+    "answer": "$75,000",
+    "explanation": [
+      "Each additional square foot adds 0.15 thousand dollars to the predicted price.",
+      "For 500 square feet: 0.15 · 500 = 75 thousand dollars; the intercept 40 cancels when you subtract.",
+      "75 thousand dollars is $75,000."
+    ],
+    "hints": [
+      "Which part of the equation tells you how the predicted price changes per square foot?",
+      "When you subtract one prediction from another, what happens to the constant 40?",
+      "What units is y measured in?"
+    ],
+    "wrong_reasons": {
+      "$75": "Forgot that y is measured in thousands of dollars",
+      "$7,500": "Made a place-value error converting thousands of dollars to dollars",
+      "$115,000": "Added the intercept 40 to the change, computing a single prediction instead of a difference"
+    },
+    "check": "from sympy import Rational\nresult=Rational('0.15')*500*1000"
+  },
+  {
+    "id": "psda-two-var-data-052",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A craft vendor modeled weekly profit with y = −2x² + 48x + 100, where y is the predicted weekly profit, in dollars, when each bracelet is priced at x dollars. According to the model, what bracelet price gives the greatest predicted weekly profit?",
+    "choices": [
+      "$12",
+      "$24",
+      "$48",
+      "$388"
+    ],
+    "answer": "$12",
+    "explanation": [
+      "The graph of the model is a parabola that opens downward, so its vertex gives the greatest profit.",
+      "The x-coordinate of the vertex is −b ÷ (2a) = −48 ÷ (2 · −2) = 12.",
+      "So a price of $12 gives the greatest predicted profit."
+    ],
+    "hints": [
+      "Does the parabola open up or down, and what does that tell you about its vertex?",
+      "Which coordinate of the vertex is a price, and which is a profit?"
+    ],
+    "wrong_reasons": {
+      "$24": "Used −b ÷ a instead of −b ÷ (2a)",
+      "$48": "Chose the coefficient of x as the best price",
+      "$388": "Gave the greatest predicted profit (the y-coordinate of the vertex) instead of the price"
+    },
+    "check": "from sympy import symbols,diff,solve\nx=symbols('x')\ny=-2*x**2+48*x+100\nresult=solve(diff(y,x),x)[0]"
+  },
+  {
+    "id": "psda-two-var-data-053",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The mass of a medical isotope sample is modeled by m(t) = 640(1/2)^(t/12), where m is the mass, in milligrams, t days after the sample was prepared. According to the model, what is the mass, in milligrams, 36 days after the sample was prepared?",
+    "choices": [
+      "40",
+      "80",
+      "160",
+      "320"
+    ],
+    "answer": "80",
+    "explanation": [
+      "Substitute t = 36: the exponent is 36 ÷ 12 = 3.",
+      "(1/2)³ = 1/8.",
+      "m(36) = 640 · 1/8 = 80 milligrams."
+    ],
+    "hints": [
+      "What is the value of the exponent t/12 when t = 36?",
+      "How many times has the mass been cut in half?"
+    ],
+    "wrong_reasons": {
+      "40": "Halved the mass four times instead of three",
+      "160": "Halved the mass only twice",
+      "320": "Halved the mass only once, ignoring the exponent"
+    },
+    "check": "from sympy import Rational\nresult=640*Rational(1,2)**Rational(36,12)"
+  },
+  {
+    "id": "psda-two-var-data-054",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A student measured dissolved oxygen in water samples at different temperatures. According to the line of best fit, for every increase of 5°C in water temperature, the predicted amount of dissolved oxygen decreases by 2 milligrams per liter. Which of the following could be the equation of the line of best fit, where y is the predicted dissolved oxygen, in milligrams per liter, and x is the water temperature, in °C?",
+    "choices": [
+      "y = −2.5x + 14",
+      "y = 0.4x + 14",
+      "y = −2x + 14",
+      "y = −0.4x + 14"
+    ],
+    "answer": "y = −0.4x + 14",
+    "explanation": [
+      "The slope is the change in y divided by the change in x.",
+      "y decreases by 2 when x increases by 5, so the slope is −2 ÷ 5 = −0.4.",
+      "Only y = −0.4x + 14 has this slope."
+    ],
+    "hints": [
+      "What is the slope when you know the change in y for a change of 5 in x?",
+      "Should the slope be positive or negative?"
+    ],
+    "wrong_reasons": {
+      "y = −2.5x + 14": "Divided the change in x by the change in y (5 ÷ 2)",
+      "y = 0.4x + 14": "Used a positive slope even though oxygen decreases as temperature increases",
+      "y = −2x + 14": "Used the change in y as the slope without dividing by the change of 5 in x"
+    },
+    "check": "from sympy import Rational\nm=Rational(-2,5)\nresult=f'y = {float(m)}x + 14'"
+  },
+  {
+    "id": "psda-two-var-data-055",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A bulk-food store sells bags of almonds. The table shows the price, in dollars, for bags of different weights. The relationship between weight and price is linear. Which equation gives the price y, in dollars, of a bag that weighs x pounds?",
+    "table": {
+      "headers": [
+        "Weight (pounds)",
+        "Price (dollars)"
+      ],
+      "rows": [
+        [
+          "2",
+          "7"
+        ],
+        [
+          "5",
+          "16"
+        ],
+        [
+          "9",
+          "28"
+        ],
+        [
+          "14",
+          "43"
+        ]
+      ]
+    },
+    "choices": [
+      "y = 3x + 1",
+      "y = 9x − 11",
+      "y = 3.5x",
+      "y = 3x + 7"
+    ],
+    "answer": "y = 3x + 1",
+    "explanation": [
+      "Use two rows: from (2, 7) to (5, 16), the slope is (16 − 7) ÷ (5 − 2) = 3.",
+      "Check another pair: (28 − 16) ÷ (9 − 5) = 3, so the rate is constant.",
+      "Using (2, 7): 7 = 3(2) + b, so b = 1. The equation is y = 3x + 1."
+    ],
+    "hints": [
+      "The weights are not evenly spaced. How should you find the change in price per pound?",
+      "Once you know the rate, how can you use one row to find the constant term?"
+    ],
+    "wrong_reasons": {
+      "y = 9x − 11": "Treated consecutive rows as 1 pound apart, using the change in price (9) as the slope",
+      "y = 3.5x": "Divided price by weight for one row (7 ÷ 2), assuming the relationship is proportional",
+      "y = 3x + 7": "Used the first price in the table as the y-intercept, but that price is for 2 pounds, not 0 pounds"
+    },
+    "check": "from sympy import symbols,Rational\nx=symbols('x')\npts=[(2,7),(5,16),(9,28),(14,43)]\nm=Rational(pts[1][1]-pts[0][1],pts[1][0]-pts[0][0])\nb=pts[0][1]-m*pts[0][0]\nassert all(m*a+b==c for a,c in pts)\nresult=f'y = {m}x + {b}'"
+  },
+  {
+    "id": "psda-two-var-data-056",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A transportation study found that the number of electric scooters in a city increases by 12% every 2 years. In 2024, there were 5,000 electric scooters in the city. Which equation models the number of electric scooters, N, t years after 2024?",
+    "choices": [
+      "N = 5,000(1.12)^(2t)",
+      "N = 5,000(0.12)^(t/2)",
+      "N = 5,000(1.24)ᵗ",
+      "N = 5,000(1.12)^(t/2)"
+    ],
+    "answer": "N = 5,000(1.12)^(t/2)",
+    "explanation": [
+      "A 12% increase means multiplying by 1.12.",
+      "The increase happens once every 2 years, so after t years it has happened t/2 times.",
+      "So N = 5,000(1.12)^(t/2)."
+    ],
+    "hints": [
+      "What multiplier corresponds to a 12% increase?",
+      "After t years, how many 2-year periods have passed?"
+    ],
+    "wrong_reasons": {
+      "N = 5,000(1.12)^(2t)": "Multiplied t by 2 instead of dividing, which applies the increase twice each year",
+      "N = 5,000(0.12)^(t/2)": "Used the percent increase (0.12) as the multiplier instead of 1.12",
+      "N = 5,000(1.24)ᵗ": "Doubled the percent and applied it every year, giving far more growth than 12% every 2 years"
+    },
+    "check": "from sympy import symbols,Rational,simplify\nt=symbols('t')\nN=5000*Rational(112,100)**(t/2)\nassert simplify(N.subs(t,t+2)/N-Rational(112,100))==0\nresult='N = 5,000(1.12)^(t/2)'"
+  },
+  {
+    "id": "psda-two-var-data-057",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The function f(t) = 80 · bᵗ models the number of members of a running club t years after it formed, where b is a positive constant. According to the model, the club had 270 members 3 years after it formed. What is the value of b?",
+    "answer": "1.5",
+    "accept": [
+      "3/2"
+    ],
+    "explanation": [
+      "Substitute t = 3 and f(3) = 270: 270 = 80 · b³.",
+      "Divide by 80: b³ = 270 ÷ 80 = 3.375.",
+      "Take the cube root: b = 1.5."
+    ],
+    "hints": [
+      "What equation do you get when you substitute the given information into the model?",
+      "After isolating b³, what operation undoes cubing?"
+    ],
+    "check": "from sympy import symbols,solve,Rational\nb=symbols('b',positive=True)\nresult=solve(80*b**3-270,b)[0]"
+  },
+  {
+    "id": "psda-two-var-data-058",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Data set A and data set B each have the same line of best fit, y = 2x + 3. In data set A, every point lies within 1 unit vertically of the line. In data set B, many points lie as far as 10 units vertically from the line. Which statement is true?",
+    "choices": [
+      "The data sets have the same predicted rate of change, but B shows a stronger linear association than A.",
+      "The data sets have the same predicted rate of change, but A shows a stronger linear association than B.",
+      "The two data sets show equally strong linear associations because they have the same line of best fit.",
+      "Data set A has a greater predicted rate of change than data set B."
+    ],
+    "answer": "The data sets have the same predicted rate of change, but A shows a stronger linear association than B.",
+    "explanation": [
+      "Both lines have slope 2, so the predicted rate of change is the same.",
+      "Points that lie closer to the line of best fit show a stronger linear association.",
+      "A's points are much closer to the line than B's, so A's association is stronger."
+    ],
+    "hints": [
+      "Which feature of a scatterplot tells you how strong a linear association is?",
+      "Does having the same line of best fit mean the points are equally close to it?"
+    ],
+    "wrong_reasons": {
+      "The data sets have the same predicted rate of change, but B shows a stronger linear association than A.": "Thought that more spread means a stronger association; it means a weaker one",
+      "The two data sets show equally strong linear associations because they have the same line of best fit.": "Assumed the line alone determines strength, ignoring how far the points are from it",
+      "Data set A has a greater predicted rate of change than data set B.": "Confused strength of association with the slope; both slopes are 2"
+    },
+    "check": null,
+    "check_note": "Conceptual: strength of a linear association versus the slope of the line of best fit."
+  },
+  {
+    "id": "psda-two-var-data-059",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The number of visitors to a science museum increased by the same percent each year. The table shows the number of visitors in the year the museum opened (year 0) and in each of the next two years. If the pattern continues, how many visitors will the museum have in year 3?",
+    "table": {
+      "headers": [
+        "Year",
+        "Visitors"
+      ],
+      "rows": [
+        [
+          "0",
+          "2,500"
+        ],
+        [
+          "1",
+          "3,000"
+        ],
+        [
+          "2",
+          "3,600"
+        ]
+      ]
+    },
+    "answer": "4320",
+    "accept": [
+      "4,320"
+    ],
+    "explanation": [
+      "Ratio from year 0 to year 1: 3,000 ÷ 2,500 = 1.2. Check: 3,600 ÷ 3,000 = 1.2.",
+      "An increase of the same percent each year means multiplying by 1.2 each year.",
+      "Year 3: 3,600 · 1.2 = 4,320 visitors."
+    ],
+    "hints": [
+      "Does the number of visitors grow by the same amount each year or by the same factor?",
+      "What do you multiply year 2's number by to continue the pattern?"
+    ],
+    "check": "from sympy import Rational\nv=[2500,3000,3600]\nr=Rational(v[1],v[0])\nassert Rational(v[2],v[1])==r\nresult=v[2]*r"
+  },
+  {
+    "id": "psda-two-var-data-060",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A veterinarian modeled a puppy's weight with the line of best fit y = 5x + 40, where y is the predicted weight, in ounces, x weeks after the puppy's first checkup. According to the model, how many weeks after the first checkup will the puppy's predicted weight be twice its predicted weight at 4 weeks?",
+    "choices": [
+      "8",
+      "12",
+      "16",
+      "24"
+    ],
+    "answer": "16",
+    "explanation": [
+      "Predicted weight at 4 weeks: 5(4) + 40 = 60 ounces.",
+      "Twice that weight is 120 ounces.",
+      "Solve 5x + 40 = 120: 5x = 80, so x = 16 weeks."
+    ],
+    "hints": [
+      "What weight does the model predict at 4 weeks?",
+      "Once you know the target weight, what equation in x should you solve?",
+      "Does doubling the number of weeks double the predicted weight when the model has a constant term?"
+    ],
+    "wrong_reasons": {
+      "8": "Doubled the number of weeks, which doesn't double the weight because of the constant 40",
+      "12": "Added 40 ounces to the 4-week weight instead of doubling it, solving 5x + 40 = 100",
+      "24": "Forgot the constant term and solved 5x = 120"
+    },
+    "check": "from sympy import symbols,solve\nx=symbols('x')\ny=lambda v:5*v+40\nresult=solve(y(x)-2*y(4),x)[0]"
+  },
+  {
+    "id": "psda-two-var-data-061",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "An ecologist modeled the area covered by an invasive plant with f(t) = a · bᵗ, where f(t) is the area, in square meters, t years after 2020 and a and b are positive constants. The model gives an area of 180 square meters in 2022 and 607.5 square meters in 2025. According to the model, what was the area, in square meters, in 2020?",
+    "answer": "80",
+    "explanation": [
+      "2022 is t = 2 and 2025 is t = 5, so a · b² = 180 and a · b⁵ = 607.5.",
+      "Divide the equations: b³ = 607.5 ÷ 180 = 3.375, so b = 1.5.",
+      "Then a = 180 ÷ 1.5² = 180 ÷ 2.25 = 80. In 2020 (t = 0), the area is a = 80."
+    ],
+    "hints": [
+      "What values of t correspond to 2022 and 2025?",
+      "What happens to a if you divide one equation by the other?",
+      "Which value of t gives the area in 2020, and what does f equal there?"
+    ],
+    "check": "from sympy import symbols,solve,Rational\na,b=symbols('a b',positive=True)\ns=solve([a*b**2-180,a*b**5-Rational('607.5')],[a,b],dict=True)[0]\nresult=s[a]"
+  },
+  {
+    "id": "psda-two-var-data-062",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A line of best fit for a data set is y = mx + b, where m and b are constants. The data point (2, 15) has a residual of 1, and the data point (6, 20) has a residual of −3. What is the value of m? (Residual = actual value − predicted value.)",
+    "answer": "2.25",
+    "accept": [
+      "9/4"
+    ],
+    "explanation": [
+      "Predicted = actual − residual. At x = 2: 15 − 1 = 14. At x = 6: 20 − (−3) = 23.",
+      "So the line passes through (2, 14) and (6, 23).",
+      "m = (23 − 14) ÷ (6 − 2) = 9 ÷ 4 = 2.25."
+    ],
+    "hints": [
+      "If you know a point's actual value and residual, how can you find the value the line predicts?",
+      "Once you know two points that lie on the line itself, how do you find its slope?"
+    ],
+    "check": "from sympy import symbols,solve\nm,b=symbols('m b')\ns=solve([15-(2*m+b)-1,20-(6*m+b)+3],[m,b])\nresult=s[m]"
+  },
+  {
+    "id": "psda-two-var-data-063",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A gardener modeled the temperature inside a greenhouse on a spring morning with C = 0.5t + 10, where C is the predicted temperature, in degrees Celsius, t minutes after 6:00 a.m. A temperature of C degrees Celsius is equal to F degrees Fahrenheit, where F = 1.8C + 32. Which equation gives the predicted temperature F, in degrees Fahrenheit, t minutes after 6:00 a.m.?",
+    "choices": [
+      "F = 0.9t + 50",
+      "F = 0.9t + 10",
+      "F = 0.5t + 50",
+      "F = 0.9t + 42"
+    ],
+    "answer": "F = 0.9t + 50",
+    "explanation": [
+      "Substitute the model for C: F = 1.8(0.5t + 10) + 32.",
+      "Distribute: F = 0.9t + 18 + 32.",
+      "Combine constants: F = 0.9t + 50."
+    ],
+    "hints": [
+      "What expression can you put in place of C in the conversion formula?",
+      "When you distribute 1.8, which terms does it multiply?"
+    ],
+    "wrong_reasons": {
+      "F = 0.9t + 10": "Converted the slope but left the constant term in degrees Celsius",
+      "F = 0.5t + 50": "Converted the constant term but not the rate of change",
+      "F = 0.9t + 42": "Multiplied only the slope by 1.8 and then added 32 to the original constant 10"
+    },
+    "check": "from sympy import symbols,expand,Rational\nt=symbols('t')\nF=expand(Rational('1.8')*(Rational('0.5')*t+10)+32)\nassert F==Rational(9,10)*t+50\nresult='F = 0.9t + 50'"
+  },
+  {
+    "id": "psda-two-var-data-064",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A city modeled the percent of residents who commute by public transit with p = 1.5t + 20, where p is the predicted percent and t is the number of years after 2000. A planner wants an equivalent model that uses s, the number of years after 2010. Which equation gives p in terms of s?",
+    "choices": [
+      "p = 1.5s + 5",
+      "p = 1.5s + 35",
+      "p = 1.5s + 20",
+      "p = 1.5s + 30"
+    ],
+    "answer": "p = 1.5s + 35",
+    "explanation": [
+      "A year that is s years after 2010 is s + 10 years after 2000, so t = s + 10.",
+      "Substitute: p = 1.5(s + 10) + 20 = 1.5s + 15 + 20.",
+      "So p = 1.5s + 35."
+    ],
+    "hints": [
+      "For any given year, how is the number of years after 2000 related to the number of years after 2010?",
+      "After you substitute, what does the constant term become?"
+    ],
+    "wrong_reasons": {
+      "p = 1.5s + 5": "Substituted t = s − 10 instead of t = s + 10",
+      "p = 1.5s + 20": "Thought shifting the starting year doesn't change the model",
+      "p = 1.5s + 30": "Added the 10-year shift to the constant without multiplying it by the slope 1.5"
+    },
+    "check": "from sympy import symbols,expand,Rational\ns=symbols('s')\np=expand(Rational(3,2)*(s+10)+20)\nassert p==Rational(3,2)*s+35\nresult='p = 1.5s + 35'"
+  },
+  {
+    "id": "psda-two-var-data-065",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "After a pool was treated, the amount of chlorine in the water was modeled by A(t) = 500(0.8)ᵗ, where A(t) is the amount, in grams, t hours after treatment. According to the model, what is the smallest whole number of hours t for which the amount of chlorine is less than 100 grams?",
+    "answer": "8",
+    "explanation": [
+      "Less than 100 grams means 500(0.8)ᵗ < 100, or (0.8)ᵗ < 0.2.",
+      "Test whole numbers: (0.8)⁷ ≈ 0.2097, which is not less than 0.2.",
+      "(0.8)⁸ ≈ 0.1678, which is less than 0.2, so the smallest whole number is 8."
+    ],
+    "hints": [
+      "What inequality expresses 'less than 100 grams'?",
+      "After dividing both sides by 500, which whole-number powers of 0.8 should you test?"
+    ],
+    "check": "t=0\nwhile 500*0.8**t>=100: t+=1\nresult=t"
+  },
+  {
+    "id": "psda-two-var-data-066",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function f(t) = 1,500(1.04)ᵗ models the number of subscribers to a magazine t years after 2015. According to the model, which of the following is closest to the percent increase in the number of subscribers from t = 0 to t = 10?",
+    "choices": [
+      "4%",
+      "40%",
+      "48%",
+      "148%"
+    ],
+    "answer": "48%",
+    "explanation": [
+      "Over 10 years the number is multiplied by (1.04)¹⁰ ≈ 1.48.",
+      "A multiplier of 1.48 means the final amount is 148% of the starting amount.",
+      "So the increase is about 148% − 100% = 48%."
+    ],
+    "hints": [
+      "By what single factor is the starting number multiplied over 10 years?",
+      "If the final amount is some percent of the starting amount, how do you find the percent increase?"
+    ],
+    "wrong_reasons": {
+      "4%": "Gave the yearly percent increase instead of the increase over 10 years",
+      "40%": "Added 4% ten times, ignoring that each year's increase builds on the previous year",
+      "148%": "Gave the final amount as a percent of the start instead of the percent increase"
+    },
+    "check": "result=round((1.04**10-1)*100)"
+  },
+  {
+    "id": "psda-two-var-data-067",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A linear model was fit to a data set. When the residuals are plotted against x, they are negative for the smallest x-values, positive for the middle x-values, and negative again for the largest x-values. Which of the following conclusions is best supported?",
+    "choices": [
+      "The linear model fits the data well, because the residuals are both positive and negative.",
+      "A quadratic model whose graph opens downward would likely fit the data better.",
+      "A quadratic model whose graph opens upward would likely fit the data better.",
+      "A linear model with a greater slope would fit the data better."
+    ],
+    "answer": "A quadratic model whose graph opens downward would likely fit the data better.",
+    "explanation": [
+      "Negative residuals mean the data lie below the line; positive residuals mean they lie above it.",
+      "The data are below the line at both ends and above it in the middle, so the data bend downward on both sides.",
+      "That is the shape of a parabola that opens downward, so such a quadratic model would likely fit better."
+    ],
+    "hints": [
+      "Where are the data points relative to the line when a residual is negative? When it is positive?",
+      "If the points are above the line in the middle and below it at both ends, what shape do they trace?"
+    ],
+    "wrong_reasons": {
+      "The linear model fits the data well, because the residuals are both positive and negative.": "Thought mixed signs alone mean a good fit; a clear pattern in residuals shows the wrong model type",
+      "A quadratic model whose graph opens upward would likely fit the data better.": "Reversed the meaning of residual signs; points above the line in the middle mean the curve bends down",
+      "A linear model with a greater slope would fit the data better.": "Changing the slope can't fix data that curve, since points are below the line at both ends"
+    },
+    "check": null,
+    "check_note": "Conceptual: reading a pattern in residuals to choose a better model."
+  },
+  {
+    "id": "psda-two-var-data-068",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The number of followers of a cooking channel is modeled by f(t) = 200(1.5)ᵗ, where t is the number of months after the channel launched. According to the model, what is the average rate of change in the number of followers, in followers per month, from t = 2 to t = 4?",
+    "choices": [
+      "100",
+      "281.25",
+      "506.25",
+      "562.5"
+    ],
+    "answer": "281.25",
+    "explanation": [
+      "f(2) = 200(1.5)² = 450 and f(4) = 200(1.5)⁴ = 1,012.5.",
+      "Average rate of change = (f(4) − f(2)) ÷ (4 − 2) = 562.5 ÷ 2.",
+      "= 281.25 followers per month."
+    ],
+    "hints": [
+      "What are the model's values at the start and end of the interval?",
+      "How does average rate of change use the change in followers and the change in months?"
+    ],
+    "wrong_reasons": {
+      "100": "Used 200 × 0.5 as if the model increased by a constant amount each month",
+      "506.25": "Divided f(4) by 2 without subtracting f(2)",
+      "562.5": "Found the total change but did not divide by the 2 months"
+    },
+    "check": "from sympy import Rational\nf=lambda t:200*Rational(3,2)**t\nresult=(f(4)-f(2))/(4-2)"
+  },
+  {
+    "id": "psda-two-var-data-069",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A smoothie stand modeled daily sales with the line of best fit y = 1.5x + 10, where y is the predicted number of smoothies sold on a day with x hours of sunshine. On one day, the actual number of smoothies sold was 25% greater than the number predicted, and the residual for that day was 7. How many hours of sunshine were there on that day? (Residual = actual value − predicted value.)",
+    "answer": "12",
+    "explanation": [
+      "Let P be the predicted number. The actual number is 1.25P, so the residual is 1.25P − P = 0.25P.",
+      "0.25P = 7, so P = 28.",
+      "Solve 1.5x + 10 = 28: 1.5x = 18, so x = 12 hours."
+    ],
+    "hints": [
+      "If the actual value is 25% greater than the prediction, how can you write the residual in terms of the prediction?",
+      "Once you know the predicted number of smoothies, how do you use the model to find x?"
+    ],
+    "check": "from sympy import symbols,solve,Rational\nP,x=symbols('P x')\nPv=solve(Rational(5,4)*P-P-7,P)[0]\nresult=solve(Rational(3,2)*x+10-Pv,x)[0]"
+  },
+  {
+    "id": "psda-two-var-data-070",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Two analysts modeled the value of a collectible card. Analyst 1 used V = 1,000(1.1)ᵗ and Analyst 2 used V = 1,000(1.21)^(t/2), where V is the predicted value, in dollars, t years after the card was bought. Which statement about the two models is true?",
+    "choices": [
+      "Analyst 2's model predicts a greater value than Analyst 1's for every t > 0.",
+      "Analyst 1's model predicts a greater value than Analyst 2's for every t > 0.",
+      "Analyst 2's model predicts that the value grows twice as fast as Analyst 1's model predicts.",
+      "The two models give the same predicted value for every value of t."
+    ],
+    "answer": "The two models give the same predicted value for every value of t.",
+    "explanation": [
+      "Rewrite Analyst 2's model: (1.21)^(t/2) = ((1.21)^(1/2))ᵗ.",
+      "The square root of 1.21 is 1.1, so the model is V = 1,000(1.1)ᵗ.",
+      "The two models are equivalent, so they give the same prediction for every t."
+    ],
+    "hints": [
+      "How could you rewrite (1.21)^(t/2) as some number raised to the power t?",
+      "What is the square root of 1.21?"
+    ],
+    "wrong_reasons": {
+      "Analyst 2's model predicts a greater value than Analyst 1's for every t > 0.": "Compared the bases 1.21 and 1.1 without accounting for the exponent t/2",
+      "Analyst 1's model predicts a greater value than Analyst 2's for every t > 0.": "Thought dividing the exponent by 2 always makes the model grow more slowly, without checking the base",
+      "Analyst 2's model predicts that the value grows twice as fast as Analyst 1's model predicts.": "Thought 21% is about double 10%, ignoring that 21% is applied every 2 years"
+    },
+    "check": "from sympy import symbols,Rational,simplify,powsimp\nt=symbols('t',positive=True)\nA=1000*Rational(11,10)**t\nB=1000*Rational(121,100)**(t/2)\nassert simplify(A-B)==0\nresult='The two models give the same predicted value for every value of t.'"
+  },
+  {
+    "id": "psda-two-var-data-071",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A web designer fit two models to the data in the table, which shows the number of daily visits, y, in hundreds, to a website x weeks after launch: a linear model L(x) = 7x − 6 and an exponential model E(x) = 2(1.6)ˣ. For how many of the four data points is the exponential model's prediction closer to the actual value than the linear model's prediction?",
+    "table": {
+      "headers": [
+        "Weeks, x",
+        "Visits, y (hundreds)"
+      ],
+      "rows": [
+        [
+          "1",
+          "4.2"
+        ],
+        [
+          "3",
+          "9.8"
+        ],
+        [
+          "5",
+          "21.5"
+        ],
+        [
+          "7",
+          "46.0"
+        ]
+      ]
+    },
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": "3",
+    "explanation": [
+      "L gives 1, 15, 29, 43; the distances from the data are 3.2, 5.2, 7.5, and 3.0.",
+      "E gives about 3.2, 8.19, 20.97, 53.69; the distances from the data are about 1.0, 1.61, 0.53, and 7.69.",
+      "E is closer at x = 1, 3, and 5, but not at x = 7. That is 3 data points."
+    ],
+    "hints": [
+      "For each x-value, what does each model predict?",
+      "How far is each prediction from the actual value, ignoring whether it is above or below?"
+    ],
+    "wrong_reasons": {
+      "1": "Counted only x = 5, where the exponential model is almost exact, instead of comparing every point",
+      "2": "Compared signed residuals instead of distances, so large negative residuals of L looked smaller",
+      "4": "Assumed the exponential model is closer everywhere, without checking x = 7, where it overshoots"
+    },
+    "check": "pts=[(1,4.2),(3,9.8),(5,21.5),(7,46.0)]\nL=lambda x:7*x-6\nE=lambda x:2*1.6**x\nresult=sum(1 for x,y in pts if abs(E(x)-y)<abs(L(x)-y))"
+  },
+  {
+    "id": "psda-two-var-data-072",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A typing instructor modeled students' progress with y = 30 − 18(0.6)ˣ, where y is the predicted typing speed, in words per minute, after x weeks of lessons. Which of the following best describes the predicted typing speed as the number of weeks increases?",
+    "choices": [
+      "It increases and gets closer and closer to 30 words per minute.",
+      "It increases and gets closer and closer to 18 words per minute.",
+      "It decreases and gets closer and closer to 12 words per minute.",
+      "It increases without any limit."
+    ],
+    "answer": "It increases and gets closer and closer to 30 words per minute.",
+    "explanation": [
+      "As x increases, (0.6)ˣ gets smaller and closer to 0.",
+      "So 18(0.6)ˣ shrinks toward 0, and the amount subtracted from 30 shrinks.",
+      "The predicted speed increases toward 30 words per minute but never reaches it."
+    ],
+    "hints": [
+      "What happens to (0.6)ˣ as x gets very large?",
+      "As x grows, does the amount being subtracted from 30 get larger or smaller, and what does that do to y?"
+    ],
+    "wrong_reasons": {
+      "It increases and gets closer and closer to 18 words per minute.": "Took the coefficient 18 as the limiting value instead of 30",
+      "It decreases and gets closer and closer to 12 words per minute.": "Used the starting value 30 − 18 = 12 and thought the speed falls back toward it",
+      "It increases without any limit.": "Assumed the speed keeps growing without noticing that the subtracted term shrinks toward 0"
+    },
+    "check": "from sympy import symbols,limit,oo\nx=symbols('x')\nL=limit(30-18*(0.6)**x,x,oo)\nassert L==30\nresult='It increases and gets closer and closer to 30 words per minute.'"
+  },
+  {
+    "id": "psda-two-var-data-073",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Fund A starts at $100 and increases by $8 each year. Fund B starts at $100 and increases by 8% each year. Which of the following is closest to how much greater, in dollars, Fund B's value is than Fund A's value after 10 years?",
+    "choices": [
+      "0",
+      "8",
+      "36",
+      "116"
+    ],
+    "answer": "36",
+    "explanation": [
+      "Fund A after 10 years: 100 + 8(10) = $180.",
+      "Fund B after 10 years: 100(1.08)¹⁰ ≈ $215.89.",
+      "Difference: 215.89 − 180 ≈ 35.89, which is closest to 36."
+    ],
+    "hints": [
+      "Which fund grows linearly and which grows exponentially?",
+      "What expression gives each fund's value after 10 years?"
+    ],
+    "wrong_reasons": {
+      "0": "Thought adding $8 a year and adding 8% a year are the same",
+      "8": "Compared only the first year and assumed the gap stays at $8",
+      "116": "Gave Fund B's total increase (about $116) instead of the difference between the funds"
+    },
+    "check": "result=round(100*1.08**10-(100+8*10))"
+  },
+  {
+    "id": "psda-two-var-data-074",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A researcher modeled the percent of commuters in a city who bike to work with p = 0.6t + 18, where p is the predicted percent and t is the number of years after 2015. Which of the following is the best interpretation of 0.6 in this context?",
+    "choices": [
+      "Each year, the predicted percent of commuters who bike increases by 0.6% of the previous year's percent.",
+      "Each year, the predicted percent of commuters who bike increases by 60 percentage points.",
+      "In 2015, the predicted percent of commuters who bike was 0.6%.",
+      "Each year, the predicted percent of commuters who bike increases by 0.6 percentage points."
+    ],
+    "answer": "Each year, the predicted percent of commuters who bike increases by 0.6 percentage points.",
+    "explanation": [
+      "0.6 is the slope, so p increases by 0.6 each time t increases by 1.",
+      "p is itself a percent, so adding 0.6 to it is an increase of 0.6 percentage points (for example, from 18% to 18.6%).",
+      "This is a constant amount added each year, not a 0.6% increase of the previous value."
+    ],
+    "hints": [
+      "What happens to p each time t goes up by 1?",
+      "Is 0.6 added to p, or is p multiplied by something?",
+      "If p goes from 18 to 18.6, is that an increase of 0.6 percentage points or of 0.6% of 18?"
+    ],
+    "wrong_reasons": {
+      "Each year, the predicted percent of commuters who bike increases by 60 percentage points.": "Converted 0.6 to 60% even though p is already measured in percent",
+      "In 2015, the predicted percent of commuters who bike was 0.6%.": "Confused the slope with the intercept; in 2015 (t = 0) the predicted percent is 18%",
+      "Each year, the predicted percent of commuters who bike increases by 0.6% of the previous year's percent.": "Treated the linear slope as a percent growth rate, which would make the model exponential"
+    },
+    "check": null,
+    "check_note": "Conceptual: interpreting a slope when the output variable is a percent (percentage points versus percent change)."
+  },
+  {
+    "id": "psda-two-var-data-075",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The least-squares line of best fit for a data set is y = 2x + 1. The x-values in the data set are 0, 1, 2, …, 10, one point for each, so their mean is 5. Which of the following points, if added to the data set, would increase the slope of the least-squares line of best fit?",
+    "choices": [
+      "(10, 40)",
+      "(0, 20)",
+      "(5, 30)",
+      "(10, 21)"
+    ],
+    "answer": "(10, 40)",
+    "explanation": [
+      "(10, 21) lies exactly on the line, so adding it doesn't change the line.",
+      "(5, 30) is far above the line but at the mean x-value, so it raises the line without tilting it; (0, 20) is far above the line at the left end, which pulls the left side up and makes the line less steep.",
+      "(10, 40) is far above the line at the right end, which pulls the right side up and makes the line steeper."
+    ],
+    "hints": [
+      "Which points lie above the line, and which lie on it?",
+      "If a point far above the line is at the far right, which way does it tilt the line? What if it is at the far left?",
+      "What does a point at the middle x-value do to the line?"
+    ],
+    "wrong_reasons": {
+      "(0, 20)": "Thought any point above the line increases the slope, but a high point at the left end makes the line less steep",
+      "(5, 30)": "Thought a high point raises the slope, but a point at the mean x-value shifts the line up without changing its slope",
+      "(10, 21)": "Chose a point on the line, which leaves the line of best fit unchanged"
+    },
+    "check": "import numpy as np\nxs=list(range(11))\nr=[1,-1,-1,1,0,0,0,1,-1,-1,1]\nys=[2*x+1+e for x,e in zip(xs,r)]\nm0=np.polyfit(xs,ys,1)[0]\nassert abs(m0-2)<1e-9\nch={'(0, 20)':(0,20),'(5, 30)':(5,30),'(10, 21)':(10,21),'(10, 40)':(10,40)}\nup=[k for k,(a,b) in ch.items() if np.polyfit(xs+[a],ys+[b],1)[0]>m0+1e-9]\nassert len(up)==1\nresult=up[0]"
   }
 ]

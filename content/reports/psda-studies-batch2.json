@@ -1,0 +1,115 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "psda-studies-029",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-033",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-034",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-036",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-037",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-038",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-039",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-044",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-045",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-046",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-047",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-048",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-049",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-050",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-051",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-054",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-055",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-064",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-065",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-066",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-067",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-068",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-075",
+      "reason": "Correct choice was noticeably the longest option (test-wise length cue); trimmed the key and/or lengthened distractors so lengths are comparable, keeping each misconception and updating wrong_reasons keys."
+    },
+    {
+      "id": "psda-studies-061",
+      "reason": "Balanced choice lengths (key was longest); rewrote check to evaluate all four statements from the table and select the single true one instead of returning the hard-coded key string."
+    },
+    {
+      "id": "psda-studies-062",
+      "reason": "Key (171 chars) was far longer than every distractor; shortened it and lengthened distractors. Rewrote check to test each choice against the computed ratio and percentage-point difference instead of returning the hard-coded key string."
+    },
+    {
+      "id": "psda-studies-063",
+      "reason": "Shortened key to remove length cue; rewrote check to pick the choice whose stated effect equals the computed new-pill minus look-alike-pill difference instead of hard-coding the key string."
+    },
+    {
+      "id": "psda-studies-069",
+      "reason": "Balanced choice lengths; rewrote check to evaluate each statement (counts, conditional proportions, causal claim, share of satisfied) and select the single true one instead of hard-coding the key string."
+    }
+  ],
+  "replaced": [],
+  "removed": []
+}

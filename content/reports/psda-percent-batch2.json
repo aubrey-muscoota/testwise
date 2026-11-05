@@ -1,0 +1,35 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "psda-percent-059",
+      "reason": "The 'Quarter 3' wrong reason (dividing by Quarter 1 sales) actually leads to Quarter 4, so it did not match its choice; changed the table to 16,000/20,000/24,800/28,500 so Quarter 3 has the largest dollar increase (24%) and Quarter 4 the largest sales, with a close 25% key for Quarter 2, and updated the explanation, wrong reasons and check."
+    },
+    {
+      "id": "psda-percent-060",
+      "reason": "Near-duplicate of 022 (+30%/−30% giving a 9% loss, same numbers in reverse); changed the net loss to 16% so k = 40, and updated the choices, explanation, wrong reasons and check."
+    },
+    {
+      "id": "psda-percent-053",
+      "reason": "The distractor 54 rested on an implausible misconception ('doubling 45%'); replaced it with 0.6 (found p/100 but did not multiply by 100)."
+    },
+    {
+      "id": "psda-percent-073",
+      "reason": "Mislabelled difficulty: a one-step conditional percent from a two-way table followed by a subtraction is medium, not hard; changed difficulty from 3 to 2."
+    },
+    {
+      "id": "psda-percent-045",
+      "reason": "The wrong reason for 30 ('added the two percents to get 100%') did not describe a coherent mistake; rewrote it as giving the gallons added instead of the capacity."
+    },
+    {
+      "id": "psda-percent-072",
+      "reason": "The wrong reason for 5 was muddled (a linear model gives exactly half after 5 years, not less); reworded it as dividing 50% by a fixed 10% (300 deer) per year."
+    },
+    {
+      "id": "psda-percent-028",
+      "reason": "Hint 2 ('Can a percent be greater than 100%?') signalled that the answer is above 100%; replaced it with a neutral hint about turning part ÷ base into a percent."
+    }
+  ],
+  "replaced": [],
+  "removed": []
+}

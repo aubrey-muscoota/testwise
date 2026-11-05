@@ -1,0 +1,32 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "alg-linear-eq-1var-048",
+      "reason": "Replaced weak distractor 19 (a coefficient, not a plausible answer) with 23, the total number of tickets sold."
+    },
+    {
+      "id": "alg-linear-eq-1var-058",
+      "reason": "Replaced null check with code that solves each step and returns the first step whose solution set differs from the previous line (Step 1)."
+    },
+    {
+      "id": "alg-linear-eq-1var-061",
+      "reason": "Check now verifies the solution set is all reals for several values of k plus the symbolic identity, instead of only branching on one hard-coded string."
+    },
+    {
+      "id": "alg-linear-eq-1var-068",
+      "reason": "Hint 2 gave away the 'doubling the right side doubles the solution' shortcut; reworded to a Socratic prompt."
+    },
+    {
+      "id": "alg-linear-eq-1var-074",
+      "reason": "Difficulty relabelled 3 → 2: a one-step scale-and-shift of the given equation (related to item 008) is medium, not hard."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "alg-linear-eq-1var-066",
+      "reason": "Near-duplicate of 020/026 (k(px − 3) = cx + q with constants for no/infinitely many solutions); replaced with an original three-coin value problem (answer 28), same difficulty 3 and type mc."
+    }
+  ],
+  "removed": []
+}

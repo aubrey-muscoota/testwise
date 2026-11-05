@@ -190,8 +190,8 @@
     "type": "mc",
     "stem": "How many solutions does the system of equations below have?\n\ny = 2x + 5\ny = 2x − 1",
     "choices": [
-      "Zero",
       "Exactly one",
+      "Zero",
       "Exactly two",
       "Infinitely many"
     ],
@@ -324,10 +324,10 @@
     "type": "mc",
     "stem": "Which of the following systems of equations has infinitely many solutions?",
     "choices": [
+      "2x + 3y = 6 and 4x + 6y = 12",
       "2x + 3y = 6 and 4x + 6y = 6",
       "2x + 3y = 6 and 3x + 2y = 6",
-      "2x + 3y = 6 and 2x − 3y = 6",
-      "2x + 3y = 6 and 4x + 6y = 12"
+      "2x + 3y = 6 and 2x − 3y = 6"
     ],
     "answer": "2x + 3y = 6 and 4x + 6y = 12",
     "explanation": [
@@ -744,5 +744,1353 @@
       "5": "Gave the kayaker's speed in still water instead of the current's speed"
     },
     "check": "from sympy import *\nk,c=symbols('k c')\nresult=solve([2*(k+c)-12,3*(k-c)-12],[k,c])[c]"
+  },
+  {
+    "id": "alg-systems-028",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, the graphs of y = 2x + 1 and y = −x + 7 intersect at the point (a, b). What is the value of b?",
+    "choices": [
+      "2",
+      "5",
+      "6",
+      "13"
+    ],
+    "answer": "5",
+    "explanation": [
+      "At the intersection point both equations give the same y-value, so set 2x + 1 = −x + 7.",
+      "Add x to both sides and subtract 1 from both sides: 3x = 6, so x = 2.",
+      "Substitute x = 2 into either equation: y = 2(2) + 1 = 5.",
+      "So b = 5."
+    ],
+    "hints": [
+      "At the point where the two graphs cross, what is true about the y-values the two equations give?",
+      "Once you know the x-coordinate of that point, how can you get the y-coordinate?"
+    ],
+    "wrong_reasons": {
+      "2": "Found the x-coordinate a instead of the y-coordinate b",
+      "6": "Reached 3x = 6 and stopped without dividing by 3 or finding y",
+      "13": "Forgot to divide by 3, used x = 6, and then computed y = 2(6) + 1"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([y-(2*x+1),y-(-x+7)],[x,y])\nresult=s[y]"
+  },
+  {
+    "id": "alg-systems-029",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "x + y = 11\n0.2x + 0.5y = 3.4\n\nIf (x, y) is the solution to the system of equations above, what is the value of y?",
+    "choices": [
+      "1.2",
+      "4",
+      "6",
+      "7"
+    ],
+    "answer": "4",
+    "explanation": [
+      "From the first equation, x = 11 − y.",
+      "Substitute into the second equation: 0.2(11 − y) + 0.5y = 3.4, so 2.2 − 0.2y + 0.5y = 3.4.",
+      "Combine like terms: 0.3y = 1.2, so y = 4.",
+      "Check: x = 7, and 0.2(7) + 0.5(4) = 1.4 + 2 = 3.4."
+    ],
+    "hints": [
+      "Would multiplying the second equation by 10 make it easier to work with?",
+      "Which variable is easiest to isolate in the first equation, and where could you put that expression?"
+    ],
+    "wrong_reasons": {
+      "1.2": "Reached 0.3y = 1.2 and stopped before dividing by 0.3",
+      "6": "Divided 1.2 by 0.2, the coefficient of x, instead of by the combined coefficient 0.3",
+      "7": "Found x instead of y"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([x+y-11,Rational(2,10)*x+Rational(5,10)*y-Rational(34,10)],[x,y])\nresult=s[y]"
+  },
+  {
+    "id": "alg-systems-030",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Jordan's playlist has 48 songs, and every song is either rock or jazz. The number of rock songs is 6 more than twice the number of jazz songs. Which system of equations can be used to find the number of rock songs, r, and the number of jazz songs, j, on the playlist?",
+    "choices": [
+      "r + j = 48 and j = 2r + 6",
+      "r + j = 48 and r = 2(j + 6)",
+      "r − j = 48 and r = 2j + 6",
+      "r + j = 48 and r = 2j + 6"
+    ],
+    "answer": "r + j = 48 and r = 2j + 6",
+    "explanation": [
+      "The playlist has 48 songs in all, so r + j = 48.",
+      "\"Twice the number of jazz songs\" is 2j, and \"6 more than\" that is 2j + 6.",
+      "The number of rock songs equals that amount, so r = 2j + 6.",
+      "The system is r + j = 48 and r = 2j + 6."
+    ],
+    "hints": [
+      "Which quantity in the problem is a total, and what equation does it give you?",
+      "In the phrase \"6 more than twice the number of jazz songs,\" which variable gets doubled, and when is the 6 added?"
+    ],
+    "wrong_reasons": {
+      "r + j = 48 and j = 2r + 6": "Reversed the roles of the variables, doubling the rock songs instead of the jazz songs",
+      "r + j = 48 and r = 2(j + 6)": "Added 6 before doubling instead of after, misreading \"6 more than twice\"",
+      "r − j = 48 and r = 2j + 6": "Subtracted instead of adding to represent the total number of songs"
+    },
+    "check": null,
+    "check_note": "Modeling item: the answer is a choice of equations, not a computed value. (The words give j = 14, r = 34, which satisfies only the keyed system.)"
+  },
+  {
+    "id": "alg-systems-031",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A bakery sells muffins for $2.50 each and cookies for $1.75 each. On Saturday it sold 120 of these items for a total of $255. The system below models this situation, where m is the number of muffins sold and c is the number of cookies sold.\n\nm + c = 120\n2.50m + 1.75c = 255\n\nWhat does the expression 2.50m represent in this context?",
+    "choices": [
+      "The number of muffins sold",
+      "The price of one muffin, in dollars",
+      "The total amount of money, in dollars, collected from all items sold",
+      "The total amount of money, in dollars, collected from muffin sales"
+    ],
+    "answer": "The total amount of money, in dollars, collected from muffin sales",
+    "explanation": [
+      "The number 2.50 is the price, in dollars, of one muffin, and m is the number of muffins sold.",
+      "Multiplying a price per item by a number of items gives the money collected for those items.",
+      "So 2.50m is the total amount of money, in dollars, collected from muffin sales.",
+      "The whole left side, 2.50m + 1.75c, is the money from all items, which equals 255."
+    ],
+    "hints": [
+      "What do the number 2.50 and the variable m each stand for on their own?",
+      "What do you get when you multiply a price for one item by a number of items?"
+    ],
+    "wrong_reasons": {
+      "The number of muffins sold": "Described the variable m alone instead of the product 2.50m",
+      "The price of one muffin, in dollars": "Described the coefficient 2.50 alone instead of the product 2.50m",
+      "The total amount of money, in dollars, collected from all items sold": "Confused one term with the entire left side, 2.50m + 1.75c"
+    },
+    "check": null,
+    "check_note": "Interpretation item: the answer is a description of an expression's meaning, not a computed value."
+  },
+  {
+    "id": "alg-systems-032",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "3x + 5y = 14\n6x − 2y = 4\n\nA student wants to solve the system of equations above by eliminating x. By which number could the student multiply the first equation, and then add the result to the second equation, so that x is eliminated?",
+    "choices": [
+      "−6",
+      "−2",
+      "1/2",
+      "2"
+    ],
+    "answer": "−2",
+    "explanation": [
+      "To eliminate x by adding, the x-coefficients must be opposites.",
+      "The second equation has 6x, so the first equation needs −6x.",
+      "Multiplying 3x by −2 gives −6x, and −6x + 6x = 0.",
+      "So the student could multiply the first equation by −2."
+    ],
+    "hints": [
+      "When two terms are added together, what must be true about their coefficients for the sum to be zero?",
+      "What must the x-term of the first equation become to cancel the x-term of the second equation?"
+    ],
+    "wrong_reasons": {
+      "−6": "Used the second equation's x-coefficient as the multiplier, which would give −18x",
+      "1/2": "Found the ratio between the coefficients upside down (and without the negative sign)",
+      "2": "Made the x-coefficients equal instead of opposites, so adding gives 12x rather than 0"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nk=symbols('k')\nresult=solve(Eq(k*3+6,0),k)[0]"
+  },
+  {
+    "id": "alg-systems-033",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "6x − 2y = 14\n5x + 7y = 20\n\nIf (x, y) is the solution to the system of equations above, what is the value of 3x − y?",
+    "answer": "7",
+    "explanation": [
+      "Notice that 6x − 2y = 2(3x − y).",
+      "So the first equation says 2(3x − y) = 14.",
+      "Divide both sides by 2: 3x − y = 7.",
+      "The second equation is not needed to answer this question."
+    ],
+    "hints": [
+      "How does the expression 3x − y compare with the left side of one of the given equations?",
+      "Do you need to find x and y separately to answer this question?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([6*x-2*y-14,5*x+7*y-20],[x,y])\nresult=simplify(3*s[x]-s[y])"
+  },
+  {
+    "id": "alg-systems-034",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "Two angles are supplementary, which means the sum of their measures is 180°. The measure of the larger angle is 30° more than twice the measure of the smaller angle. What is the measure, in degrees, of the larger angle?",
+    "answer": "130",
+    "explanation": [
+      "Let L be the larger angle and s the smaller angle. Then L + s = 180 and L = 2s + 30.",
+      "Substitute: (2s + 30) + s = 180, so 3s + 30 = 180.",
+      "Solve: 3s = 150, so s = 50.",
+      "Then L = 2(50) + 30 = 130."
+    ],
+    "hints": [
+      "If s is the measure of the smaller angle, how would you write the larger angle in terms of s?",
+      "What equation says the two angles together add up to a straight angle?",
+      "After you solve for one angle, which angle is the question asking for?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nL,s=symbols('L s')\nr=solve([L+s-180,L-(2*s+30)],[L,s])\nresult=r[L]"
+  },
+  {
+    "id": "alg-systems-035",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "2(x + 3) = x + y\n4x − y = 9\n\nIf (x, y) is the solution to the system of equations above, what is the value of y?",
+    "answer": "11",
+    "explanation": [
+      "Simplify the first equation: 2x + 6 = x + y, so y = x + 6.",
+      "Substitute into the second equation: 4x − (x + 6) = 9.",
+      "Simplify: 3x − 6 = 9, so 3x = 15 and x = 5.",
+      "Then y = 5 + 6 = 11."
+    ],
+    "hints": [
+      "Can you rewrite the first equation so that y is by itself on one side?",
+      "When you substitute an expression for y after a minus sign, what happens to each term of that expression?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([2*(x+3)-(x+y),4*x-y-9],[x,y])\nresult=s[y]"
+  },
+  {
+    "id": "alg-systems-036",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "y = 4x − 1\n3x + 2y = 20\n\nWhich of the following equations results from substituting the first equation into the second equation?",
+    "choices": [
+      "3x + 8x − 1 = 20",
+      "3(4x − 1) + 2y = 20",
+      "3x + 8x − 2 = 20",
+      "3x + 2y = 4x − 1"
+    ],
+    "answer": "3x + 8x − 2 = 20",
+    "explanation": [
+      "The first equation says y is equal to 4x − 1, so replace y in the second equation with (4x − 1).",
+      "This gives 3x + 2(4x − 1) = 20.",
+      "Distribute the 2 to both terms: 2(4x) − 2(1) = 8x − 2.",
+      "So the result is 3x + 8x − 2 = 20."
+    ],
+    "hints": [
+      "Which variable does the first equation tell you how to replace?",
+      "When you multiply 2 by a quantity in parentheses, which terms inside get multiplied?"
+    ],
+    "wrong_reasons": {
+      "3x + 8x − 1 = 20": "Multiplied only the first term in the parentheses by 2 when distributing",
+      "3(4x − 1) + 2y = 20": "Replaced x instead of y with the expression 4x − 1",
+      "3x + 2y = 4x − 1": "Set the left side of the second equation equal to the expression for y instead of substituting"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ntarget=expand(3*x+2*(4*x-1)-20)\nc={'3x + 8x - 1 = 20':3*x+8*x-1-20,'3x + 8x - 2 = 20':3*x+8*x-2-20,'3(4x - 1) + 2y = 20':3*(4*x-1)+2*y-20,'3x + 2y = 4x - 1':3*x+2*y-(4*x-1)}\nresult=[k for k,e in c.items() if simplify(e-target)==0][0]"
+  },
+  {
+    "id": "alg-systems-037",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A small company makes and sells phone cases. Its weekly cost C, in dollars, of making n cases is C = 200 + 4n, and its weekly revenue R, in dollars, from selling n cases is R = 12n. What is the revenue, in dollars, when the cost and the revenue are equal?",
+    "answer": "300",
+    "explanation": [
+      "The cost and the revenue are equal when 200 + 4n = 12n.",
+      "Subtract 4n from both sides: 200 = 8n, so n = 25.",
+      "The revenue for 25 cases is R = 12(25) = 300.",
+      "Check: C = 200 + 4(25) = 300 as well."
+    ],
+    "hints": [
+      "What equation states that the cost and the revenue are the same?",
+      "Once you know the number of cases, which formula gives the amount the question asks for?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nn,C,R=symbols('n C R')\ns=solve([C-(200+4*n),R-12*n,C-R],[n,C,R])\nresult=s[R]"
+  },
+  {
+    "id": "alg-systems-038",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "y = −2x + 10\ny = 4\n\nWhat is the x-coordinate of the solution to the system of equations above?",
+    "choices": [
+      "−3",
+      "3",
+      "4",
+      "7"
+    ],
+    "answer": "3",
+    "explanation": [
+      "The second equation says y = 4, so substitute 4 for y in the first equation.",
+      "4 = −2x + 10.",
+      "Subtract 10 from both sides: −6 = −2x, so x = 3.",
+      "The solution is (3, 4), so the x-coordinate is 3."
+    ],
+    "hints": [
+      "The second equation already tells you one coordinate. Where could you use it?",
+      "After substituting, what steps isolate x? Watch the signs."
+    ],
+    "wrong_reasons": {
+      "−3": "Made a sign error when dividing −6 by −2",
+      "4": "Gave the y-coordinate instead of the x-coordinate",
+      "7": "Added 4 and 10 instead of subtracting, getting 14 = 2x"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([y-(-2*x+10),y-4],[x,y])\nresult=s[x]"
+  },
+  {
+    "id": "alg-systems-039",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The mean of two numbers, x and y, is 15. The value of x is 4 more than the value of y. What is the value of x?",
+    "choices": [
+      "9.5",
+      "13",
+      "17",
+      "19"
+    ],
+    "answer": "17",
+    "explanation": [
+      "The mean of x and y is (x + y)/2 = 15, so x + y = 30.",
+      "\"x is 4 more than y\" gives x − y = 4.",
+      "Add the two equations: 2x = 34, so x = 17.",
+      "Check: y = 13, and the mean of 17 and 13 is 15."
+    ],
+    "hints": [
+      "How do you compute the mean of two numbers, and what does that tell you about their sum?",
+      "What second equation comes from comparing x and y?"
+    ],
+    "wrong_reasons": {
+      "9.5": "Used x + y = 15, treating the mean as if it were the sum",
+      "13": "Found y instead of x",
+      "19": "Added 4 to the mean instead of setting up a system"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([(x+y)/2-15,x-y-4],[x,y])\nresult=s[x]"
+  },
+  {
+    "id": "alg-systems-040",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "An equilateral triangle and a square have the same perimeter. Each side of the square is 3 centimeters shorter than each side of the triangle. What is the length, in centimeters, of one side of the triangle?",
+    "choices": [
+      "3",
+      "9",
+      "12",
+      "36"
+    ],
+    "answer": "12",
+    "explanation": [
+      "Let t be the side of the triangle and s the side of the square. Equal perimeters give 3t = 4s, and s = t − 3.",
+      "Substitute: 3t = 4(t − 3) = 4t − 12.",
+      "Subtract 3t and add 12: t = 12.",
+      "Check: s = 9, and 3(12) = 36 = 4(9)."
+    ],
+    "hints": [
+      "How many sides does each shape have, and how do you write each perimeter?",
+      "How can you write the side of the square using the side of the triangle?"
+    ],
+    "wrong_reasons": {
+      "3": "Wrote 4t − 3 instead of 4(t − 3), forgetting to multiply the 3 by 4",
+      "9": "Found the side length of the square instead of the triangle",
+      "36": "Found the common perimeter instead of a side length"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nt,s=symbols('t s')\nr=solve([3*t-4*s,s-(t-3)],[t,s])\nresult=r[t]"
+  },
+  {
+    "id": "alg-systems-041",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "For a museum field trip, a school bought only adult tickets and child tickets. Adult tickets cost $12 each and child tickets cost $8 each. The school bought 3 times as many child tickets as adult tickets and spent a total of $540. How many child tickets did the school buy?",
+    "choices": [
+      "15",
+      "27",
+      "45",
+      "60"
+    ],
+    "answer": "45",
+    "explanation": [
+      "Let a be the number of adult tickets and c the number of child tickets. Then c = 3a and 12a + 8c = 540.",
+      "Substitute: 12a + 8(3a) = 540, so 36a = 540.",
+      "Divide: a = 15.",
+      "Then c = 3(15) = 45."
+    ],
+    "hints": [
+      "Which sentence gives a relationship between the two numbers of tickets, and how would you write it?",
+      "What expression gives the total cost in terms of the two numbers of tickets?"
+    ],
+    "wrong_reasons": {
+      "15": "Found the number of adult tickets instead of child tickets",
+      "27": "Divided $540 by $12 + $8 = $20, ignoring that there are 3 times as many child tickets",
+      "60": "Found the total number of tickets instead of the child tickets"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\na,c=symbols('a c')\nr=solve([c-3*a,12*a+8*c-540],[a,c])\nresult=r[c]"
+  },
+  {
+    "id": "alg-systems-042",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A nutritionist is making a 20-ounce snack mix of almonds and raisins. Almonds have 160 calories per ounce and raisins have 85 calories per ounce, and the mix has 2,600 calories in all. The system below models this situation, where a is the number of ounces of almonds and r is the number of ounces of raisins.\n\na + r = 20\n160a + 85r = 2,600\n\nThe solution to the system is (12, 8). Which of the following is the best interpretation of the number 12 in this context?",
+    "choices": [
+      "The mix contains 12 ounces of almonds.",
+      "The mix contains 12 ounces of raisins.",
+      "One ounce of almonds contains 12 calories.",
+      "The mix contains 12 more ounces of almonds than raisins."
+    ],
+    "answer": "The mix contains 12 ounces of almonds.",
+    "explanation": [
+      "The solution is written as (a, r), so the first number is the value of a.",
+      "a is the number of ounces of almonds in the mix.",
+      "So 12 means the mix contains 12 ounces of almonds (and 8 ounces of raisins).",
+      "Check: 12 + 8 = 20 and 160(12) + 85(8) = 1,920 + 680 = 2,600."
+    ],
+    "hints": [
+      "In the ordered pair, which variable does the first number correspond to?",
+      "What quantity, with what units, does that variable stand for?"
+    ],
+    "wrong_reasons": {
+      "The mix contains 12 ounces of raisins.": "Matched the first coordinate to the wrong variable",
+      "One ounce of almonds contains 12 calories.": "Confused the value of a variable with a coefficient (calories per ounce)",
+      "The mix contains 12 more ounces of almonds than raisins.": "Read the coordinate as a difference; the difference is 12 − 8 = 4"
+    },
+    "check": null,
+    "check_note": "Interpretation item: the answer is a statement about meaning. (The system's solution, a = 12 and r = 8, can be verified directly.)"
+  },
+  {
+    "id": "alg-systems-043",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following systems of equations has (2, −3) as its solution?",
+    "choices": [
+      "x + y = −1 and 2x − y = 1",
+      "x + y = −1 and x − y = −5",
+      "x − y = 5 and x + 2y = 4",
+      "x − y = 5 and 2x + y = 1"
+    ],
+    "answer": "x − y = 5 and 2x + y = 1",
+    "explanation": [
+      "A point is a solution to a system only if it makes both equations true.",
+      "Substitute x = 2 and y = −3 into x − y = 5: 2 − (−3) = 5. True.",
+      "Substitute into 2x + y = 1: 2(2) + (−3) = 1. True.",
+      "Each other system has at least one equation that (2, −3) does not satisfy."
+    ],
+    "hints": [
+      "What has to be true about both equations for a point to be the solution of a system?",
+      "When you substitute y = −3, how do you handle subtracting a negative number?"
+    ],
+    "wrong_reasons": {
+      "x + y = −1 and 2x − y = 1": "Checked only the first equation; 2(2) − (−3) = 7, not 1",
+      "x + y = −1 and x − y = −5": "Substituted x = −3 and y = 2, switching the coordinates",
+      "x − y = 5 and x + 2y = 4": "Checked only the first equation; 2 + 2(−3) = −4, not 4"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\npt={x:2,y:-3}\nc={'x + y = -1 and 2x - y = 1':[x+y+1,2*x-y-1],'x - y = 5 and 2x + y = 1':[x-y-5,2*x+y-1],'x + y = -1 and x - y = -5':[x+y+1,x-y+5],'x - y = 5 and x + 2y = 4':[x-y-5,x+2*y-4]}\nresult=[k for k,es in c.items() if all(e.subs(pt)==0 for e in es)][0]"
+  },
+  {
+    "id": "alg-systems-044",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "One equation in a system of two linear equations is y = −(3/4)x + 2. The system has no solution. Which of the following could be the other equation in the system?",
+    "choices": [
+      "3x + 4y = 8",
+      "4x − 3y = 8",
+      "3x − 4y = 8",
+      "3x + 4y = 12"
+    ],
+    "answer": "3x + 4y = 12",
+    "explanation": [
+      "A system has no solution when its lines are parallel and distinct: same slope, different y-intercepts.",
+      "Multiply y = −(3/4)x + 2 by 4 and rearrange: 3x + 4y = 8. Its slope is −3/4.",
+      "3x + 4y = 12 also has slope −3/4 but y-intercept 3, so it is parallel to and different from the given line.",
+      "3x + 4y = 8 is the same line, and the other two choices have different slopes."
+    ],
+    "hints": [
+      "What must be true about the slopes and the y-intercepts of two lines that never meet?",
+      "How could you rewrite the given equation so it looks like the answer choices?"
+    ],
+    "wrong_reasons": {
+      "3x + 4y = 8": "This is the given line rewritten, so the system would have infinitely many solutions",
+      "4x − 3y = 8": "This line has slope 4/3, which is perpendicular, not parallel; the lines intersect once",
+      "3x − 4y = 8": "This line has slope 3/4; the sign of the slope was lost, so the lines intersect once"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef kind(e1,e2):\n    A=Matrix([[e.coeff(x),e.coeff(y)] for e in (e1,e2)])\n    b=Matrix([-e.subs({x:0,y:0}) for e in (e1,e2)])\n    r=A.rank(); ra=A.row_join(b).rank()\n    return 'none' if r<ra else ('one' if r==2 else 'inf')\ng=y-(-Rational(3,4)*x+2)\nc={'3x + 4y = 8':3*x+4*y-8,'3x + 4y = 12':3*x+4*y-12,'4x - 3y = 8':4*x-3*y-8,'3x - 4y = 8':3*x-4*y-8}\nresult=[k for k,e in c.items() if kind(g,e)=='none'][0]"
+  },
+  {
+    "id": "alg-systems-045",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "y = 3x − 5\n6x − 2y = c\n\nIn the system of equations above, c is a constant. If the system has infinitely many solutions, what is the value of c?",
+    "answer": "10",
+    "explanation": [
+      "Infinitely many solutions means the two equations describe the same line.",
+      "Rewrite the first equation with x and y on one side: 3x − y = 5.",
+      "Multiply by 2: 6x − 2y = 10. This matches the left side of the second equation.",
+      "For the equations to be the same line, c = 10."
+    ],
+    "hints": [
+      "How could you rewrite the first equation so that it has the same form as the second?",
+      "For two equations to describe the same line, how must one be related to the other?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nc=symbols('c')\nval=simplify((6*x-2*y).subs(y,3*x-5))\nresult=solve(Eq(c,val),c)[0]"
+  },
+  {
+    "id": "alg-systems-046",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "At a food truck, 3 tacos and 2 lemonades cost $13.75, and 5 tacos and 4 lemonades cost $24.25. Every taco has the same price, and every lemonade has the same price. What is the total cost of 1 taco and 1 lemonade?",
+    "choices": [
+      "$2.00",
+      "$3.25",
+      "$5.25",
+      "$10.50"
+    ],
+    "answer": "$5.25",
+    "explanation": [
+      "Let t be the price of a taco and l the price of a lemonade: 3t + 2l = 13.75 and 5t + 4l = 24.25.",
+      "Subtract the first equation from the second: 2t + 2l = 10.50.",
+      "Divide by 2: t + l = 5.25.",
+      "(Solving fully gives t = 3.25 and l = 2.00, which also sum to 5.25.)"
+    ],
+    "hints": [
+      "What do you get if you subtract one order from the other?",
+      "Is there a way to find the cost of one of each item without finding each price separately?"
+    ],
+    "wrong_reasons": {
+      "$2.00": "Found the price of one lemonade only",
+      "$3.25": "Found the price of one taco only",
+      "$10.50": "Found 2t + 2l, the cost of 2 tacos and 2 lemonades, and forgot to divide by 2"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nt,l=symbols('t l')\nr=solve([3*t+2*l-Rational(1375,100),5*t+4*l-Rational(2425,100)],[t,l])\nresult=r[t]+r[l]"
+  },
+  {
+    "id": "alg-systems-047",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "Five years ago, Tomás was 3 times as old as his niece Ana. Nine years from now, Tomás will be twice as old as Ana. How old is Tomás now, in years?",
+    "answer": "47",
+    "explanation": [
+      "Let T and A be their ages now. Five years ago: T − 5 = 3(A − 5), so T = 3A − 10.",
+      "Nine years from now: T + 9 = 2(A + 9), so T = 2A + 9.",
+      "Set the expressions equal: 3A − 10 = 2A + 9, so A = 19.",
+      "Then T = 2(19) + 9 = 47. Check: 5 years ago 42 = 3 · 14, and in 9 years 56 = 2 · 28."
+    ],
+    "hints": [
+      "How old was each person five years ago, written in terms of their ages now?",
+      "When you write each sentence as an equation, should the 5 and the 9 apply to one person's age or to both?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nT,A=symbols('T A')\nr=solve([T-5-3*(A-5),T+9-2*(A+9)],[T,A])\nresult=r[T]"
+  },
+  {
+    "id": "alg-systems-048",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane, the graphs of 2x + 3y = 12 and 4x − y = k, where k is a constant, intersect at a point on the y-axis. What is the value of k?",
+    "choices": [
+      "−4",
+      "4",
+      "12",
+      "24"
+    ],
+    "answer": "−4",
+    "explanation": [
+      "Every point on the y-axis has x-coordinate 0.",
+      "Substitute x = 0 into 2x + 3y = 12: 3y = 12, so y = 4. The intersection point is (0, 4).",
+      "This point must also satisfy 4x − y = k: 4(0) − 4 = k.",
+      "So k = −4."
+    ],
+    "hints": [
+      "What is the x-coordinate of every point on the y-axis?",
+      "Which equation lets you find the other coordinate of the intersection point without knowing k?"
+    ],
+    "wrong_reasons": {
+      "4": "Used the y-coordinate of the intersection point as k, losing the negative sign from −y",
+      "12": "Set x = 0 and kept the constant 12 from the first equation as k",
+      "24": "Used the point where the first line crosses the x-axis, (6, 0), instead of the y-axis"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nk=symbols('k')\ny0=solve((2*x+3*y-12).subs(x,0),y)[0]\nresult=solve(Eq(4*0-y0,k),k)[0]"
+  },
+  {
+    "id": "alg-systems-049",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A shipping company charges a fixed handling fee plus a constant rate per pound for each package. The table shows the total charges for two packages. What is the total charge, in dollars, for a 12-pound package?",
+    "table": {
+      "headers": [
+        "Weight (pounds)",
+        "Total charge (dollars)"
+      ],
+      "rows": [
+        [
+          "3",
+          "11.20"
+        ],
+        [
+          "8",
+          "19.20"
+        ]
+      ]
+    },
+    "answer": "25.6",
+    "accept": [
+      "25.60",
+      "128/5"
+    ],
+    "explanation": [
+      "Let f be the fee and r the rate per pound: f + 3r = 11.20 and f + 8r = 19.20.",
+      "Subtract the first equation from the second: 5r = 8.00, so r = 1.60.",
+      "Then f = 11.20 − 3(1.60) = 6.40.",
+      "For 12 pounds: 6.40 + 12(1.60) = 6.40 + 19.20 = 25.60."
+    ],
+    "hints": [
+      "If f is the fee and r is the rate per pound, what equation does each row of the table give you?",
+      "Subtracting one of those equations from the other removes which unknown?",
+      "Once you know both the fee and the rate, how do you find the charge for a new weight?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nf,r=symbols('f r')\ns=solve([f+3*r-Rational(1120,100),f+8*r-Rational(1920,100)],[f,r])\nresult=s[f]+12*s[r]"
+  },
+  {
+    "id": "alg-systems-050",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In an isosceles triangle, the two base angles are congruent. The vertex angle measures 12° less than twice the measure of one base angle. What is the measure of the vertex angle?",
+    "choices": [
+      "48°",
+      "64°",
+      "84°",
+      "96°"
+    ],
+    "answer": "84°",
+    "explanation": [
+      "Let b be the measure of each base angle and v the vertex angle. The angles of a triangle sum to 180°, so 2b + v = 180.",
+      "The second condition gives v = 2b − 12.",
+      "Substitute: 2b + 2b − 12 = 180, so 4b = 192 and b = 48.",
+      "Then v = 2(48) − 12 = 84, so the vertex angle measures 84°."
+    ],
+    "hints": [
+      "How many base angles does the triangle have, and what do all three angles add up to?",
+      "How would you write the vertex angle in terms of one base angle?"
+    ],
+    "wrong_reasons": {
+      "48°": "Found the measure of a base angle instead of the vertex angle",
+      "64°": "Counted only one base angle in the angle sum, solving b + (2b − 12) = 180 to get 64, and reported that value",
+      "96°": "Doubled the base angle but forgot to subtract 12°"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nb,v=symbols('b v')\nr=solve([2*b+v-180,v-(2*b-12)],[b,v])\nresult=r[v]"
+  },
+  {
+    "id": "alg-systems-051",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A robotics club has 220 members, each of whom is either a junior or a senior. There are 20% more seniors than juniors in the club. How many seniors are in the club?",
+    "choices": [
+      "100",
+      "110",
+      "120",
+      "132"
+    ],
+    "answer": "120",
+    "explanation": [
+      "Let j be the number of juniors and s the number of seniors. Then s + j = 220.",
+      "20% more than j is j + 0.2j = 1.2j, so s = 1.2j.",
+      "Substitute: 1.2j + j = 220, so 2.2j = 220 and j = 100.",
+      "Then s = 1.2(100) = 120."
+    ],
+    "hints": [
+      "How do you write a number that is 20% more than j?",
+      "The 20% is a percent of which group: the juniors, the seniors, or the whole club?"
+    ],
+    "wrong_reasons": {
+      "100": "Found the number of juniors instead of seniors",
+      "110": "Split the club evenly, ignoring the 20% difference",
+      "132": "Took the difference s − j to be 20% of the whole club (44) instead of 20% of the juniors"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nj,s=symbols('j s')\nr=solve([s+j-220,s-Rational(12,10)*j],[j,s])\nresult=r[s]"
+  },
+  {
+    "id": "alg-systems-052",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "y = 2x + a\nx + y = 3a\n\nIn the system of equations above, a is a constant. Which of the following expresses y in terms of a?",
+    "choices": [
+      "7a/3",
+      "2a/3",
+      "4a/3",
+      "5a/3"
+    ],
+    "answer": "7a/3",
+    "explanation": [
+      "The first equation gives y in terms of x, so substitute 2x + a for y in the second equation: x + (2x + a) = 3a.",
+      "Combine like terms: 3x + a = 3a, so 3x = 2a and x = 2a/3.",
+      "Substitute back into the first equation: y = 2(2a/3) + a = 4a/3 + 3a/3 = 7a/3.",
+      "Check: x + y = 2a/3 + 7a/3 = 9a/3 = 3a."
+    ],
+    "hints": [
+      "Which equation already tells you what y equals, and where could you use that expression?",
+      "Can you treat a as if it were a known number and solve for x first?",
+      "Once you have x in terms of a, does the question ask for x, or for something else?"
+    ],
+    "wrong_reasons": {
+      "2a/3": "Found x in terms of a instead of y",
+      "4a/3": "Computed 2x for y but forgot to add the constant a back in",
+      "5a/3": "Used y = 2x − a, flipping the sign of a when substituting"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\na=symbols('a')\ns=solve([y-(2*x+a),x+y-3*a],[x,y])\nc={'2a/3':2*a/3,'4a/3':4*a/3,'5a/3':5*a/3,'7a/3':7*a/3}\nresult=[k for k,e in c.items() if simplify(e-s[y])==0][0]"
+  },
+  {
+    "id": "alg-systems-053",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "3x + 2y = 11\n3x − 2y = 1\n\nIf (x, y) is the solution to the system of equations above, what is the value of 9x² − 4y²?",
+    "answer": "11",
+    "explanation": [
+      "Factor: 9x² − 4y² = (3x + 2y)(3x − 2y).",
+      "The two given equations supply both factors: 3x + 2y = 11 and 3x − 2y = 1.",
+      "So 9x² − 4y² = 11 · 1 = 11.",
+      "(Solving gives x = 2 and y = 5/2, and 9(4) − 4(25/4) = 36 − 25 = 11.)"
+    ],
+    "hints": [
+      "Can 9x² − 4y² be written as a product of two simpler expressions?",
+      "Do any of those simpler expressions appear in the system?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([3*x+2*y-11,3*x-2*y-1],[x,y])\nresult=9*s[x]**2-4*s[y]**2"
+  },
+  {
+    "id": "alg-systems-054",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "x + y = 5\nx − y = 1\n\nWhich of the following systems of equations has the same solution as the system above?",
+    "choices": [
+      "2y = 6 and x + y = 5",
+      "2x = 4 and x − y = 1",
+      "x + y = 5 and 2x − 2y = 1",
+      "2x = 6 and x + y = 5"
+    ],
+    "answer": "2x = 6 and x + y = 5",
+    "explanation": [
+      "Adding the two equations gives (x + y) + (x − y) = 5 + 1, so 2x = 6.",
+      "Replacing one equation with this sum and keeping the other equation does not change the solution.",
+      "Both systems have the solution (3, 2).",
+      "Each other choice has a solution different from (3, 2)."
+    ],
+    "hints": [
+      "What happens to y if you add the two equations?",
+      "Can you check each choice by finding the solution of the original system first?"
+    ],
+    "wrong_reasons": {
+      "2y = 6 and x + y = 5": "Subtracted the equations but gave the result as 2y = 6 instead of 2y = 4",
+      "2x = 4 and x − y = 1": "Subtracted the constants (5 − 1) while adding the x-terms",
+      "x + y = 5 and 2x − 2y = 1": "Doubled the left side of the second equation but not its right side"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\norig=solve([x+y-5,x-y-1],[x,y])\nc={'2y = 6 and x + y = 5':[2*y-6,x+y-5],'2x = 6 and x + y = 5':[2*x-6,x+y-5],'2x = 4 and x - y = 1':[2*x-4,x-y-1],'x + y = 5 and 2x - 2y = 1':[x+y-5,2*x-2*y-1]}\nresult=[k for k,es in c.items() if solve(es,[x,y])==orig][0]"
+  },
+  {
+    "id": "alg-systems-055",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Ana jogged from her home to a park at an average speed of 6 miles per hour and then walked home along the same route at an average speed of 4 miles per hour. The round trip took 2.5 hours in all. How far, in miles, is the park from Ana's home?",
+    "choices": [
+      "1",
+      "6",
+      "6.25",
+      "12"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Let j be the jogging time and w the walking time, in hours: j + w = 2.5.",
+      "The distance each way is the same, so 6j = 4w, which gives w = 1.5j.",
+      "Substitute: j + 1.5j = 2.5, so j = 1.",
+      "The distance is 6(1) = 6 miles."
+    ],
+    "hints": [
+      "What two quantities are equal for the trip to the park and the trip back?",
+      "If you call the two travel times j and w, what equations can you write?"
+    ],
+    "wrong_reasons": {
+      "1": "Found the jogging time in hours instead of the distance",
+      "6.25": "Averaged the speeds to 5 mph and used half of 5 × 2.5; the average speed for equal distances is not 5 mph",
+      "12": "Found the round-trip distance instead of the one-way distance"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nj,w=symbols('j w')\nr=solve([j+w-Rational(5,2),6*j-4*w],[j,w])\nresult=6*r[j]"
+  },
+  {
+    "id": "alg-systems-056",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A quiz has 25 questions. A student earns 4 points for each correct answer and loses 1 point for each incorrect answer. Kendra answered every question and scored 70 points. How many questions did she answer correctly?",
+    "choices": [
+      "6",
+      "15",
+      "17.5",
+      "19"
+    ],
+    "answer": "19",
+    "explanation": [
+      "Let c be the number correct and w the number incorrect: c + w = 25 and 4c − w = 70.",
+      "Add the two equations: 5c = 95.",
+      "So c = 19 (and w = 6).",
+      "Check: 4(19) − 6 = 76 − 6 = 70."
+    ],
+    "hints": [
+      "What two totals does the problem give you, and what equation does each one produce?",
+      "How should losing a point appear in the points equation?"
+    ],
+    "wrong_reasons": {
+      "6": "Found the number of incorrect answers instead of correct answers",
+      "15": "Added a point for each incorrect answer instead of subtracting, solving 4c + w = 70",
+      "17.5": "Divided 70 by 4, ignoring the points lost for incorrect answers"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nc,w=symbols('c w')\nr=solve([c+w-25,4*c-w-70],[c,w])\nresult=r[c]"
+  },
+  {
+    "id": "alg-systems-057",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "2x + 3y = 7\n4x + 6y = 14\n\nWhich of the following ordered pairs (x, y) is NOT a solution to the system of equations above?",
+    "choices": [
+      "(3, −1)",
+      "(2, 1)",
+      "(−1, 3)",
+      "(5, −1)"
+    ],
+    "answer": "(3, −1)",
+    "explanation": [
+      "The second equation is the first equation multiplied by 2, so both describe the same line.",
+      "So any pair that satisfies 2x + 3y = 7 is a solution to the system.",
+      "Check each pair: 2(2) + 3(1) = 7, 2(−1) + 3(3) = 7, 2(5) + 3(−1) = 7, but 2(3) + 3(−1) = 3.",
+      "So (3, −1) is not a solution."
+    ],
+    "hints": [
+      "How is the second equation related to the first?",
+      "If the system has more than one solution, what is the quickest way to test a point?"
+    ],
+    "wrong_reasons": {
+      "(2, 1)": "Assumed a system can have only one solution; (2, 1) satisfies both equations",
+      "(−1, 3)": "Made a sign error when substituting x = −1; this pair satisfies both equations",
+      "(5, −1)": "Made a sign error when substituting y = −1; this pair satisfies both equations"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nc={'(2, 1)':(2,1),'(-1, 3)':(-1,3),'(3, -1)':(3,-1),'(5, -1)':(5,-1)}\nresult=[k for k,(a,b) in c.items() if not (2*a+3*b==7 and 4*a+6*b==14)][0]"
+  },
+  {
+    "id": "alg-systems-058",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The ratio of x to y is 3 to 4, and 2x + y = 30. What is the value of y?",
+    "choices": [
+      "3",
+      "90/11",
+      "9",
+      "12"
+    ],
+    "answer": "12",
+    "explanation": [
+      "A ratio of x to y of 3 to 4 means x/y = 3/4, so 4x = 3y and x = (3/4)y.",
+      "Substitute into 2x + y = 30: 2(3/4)y + y = 30, so (5/2)y = 30.",
+      "So y = 12.",
+      "Check: x = 9, 9 : 12 = 3 : 4, and 2(9) + 12 = 30."
+    ],
+    "hints": [
+      "How can you rewrite the ratio statement as an equation relating x and y?",
+      "Which variable could you replace so that the second equation has only one unknown?"
+    ],
+    "wrong_reasons": {
+      "3": "Found the scale factor k (with x = 3k and y = 4k) instead of y",
+      "9": "Found x instead of y",
+      "90/11": "Cross-multiplied incorrectly, writing 3x = 4y instead of 4x = 3y"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([4*x-3*y,2*x+y-30],[x,y])\nresult=s[y]"
+  },
+  {
+    "id": "alg-systems-059",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "2x + 3y = 12\nkx + 3y = 12\n\nIn the system of equations above, k is a constant and k ≠ 2. What is the value of y?",
+    "choices": [
+      "0",
+      "4",
+      "6",
+      "12"
+    ],
+    "answer": "4",
+    "explanation": [
+      "Subtract the second equation from the first: (2 − k)x = 0.",
+      "Because k ≠ 2, the factor 2 − k is not zero, so x = 0.",
+      "Substitute x = 0 into the first equation: 3y = 12, so y = 4."
+    ],
+    "hints": [
+      "What happens if you subtract one equation from the other?",
+      "If a product equals zero and one factor is not zero, what must the other factor be?"
+    ],
+    "wrong_reasons": {
+      "0": "Found the value of x instead of y",
+      "6": "Set y = 0 in the first equation, finding where that line crosses the x-axis",
+      "12": "Took the constant on the right side of the equations to be the value of y"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nk=symbols('k')\ns=solve([2*x+3*y-12,k*x+3*y-12],[x,y],dict=True)[0]\nresult=simplify(s[y])"
+  },
+  {
+    "id": "alg-systems-060",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "4x − 3y = 2c\nx + 2y = 5c\n\nIn the system of equations above, c is a nonzero constant. If (x, y) is the solution to the system, what is the value of x/y?",
+    "answer": "19/18",
+    "accept": [
+      "1.055",
+      "1.056"
+    ],
+    "explanation": [
+      "Treat c like a number and solve. From the second equation, x = 5c − 2y.",
+      "Substitute into the first: 4(5c − 2y) − 3y = 2c, so 20c − 11y = 2c and y = 18c/11.",
+      "Then x = 5c − 2(18c/11) = 55c/11 − 36c/11 = 19c/11.",
+      "So x/y = (19c/11) ÷ (18c/11) = 19/18."
+    ],
+    "hints": [
+      "Can you solve the system the usual way, treating c as if it were a known number?",
+      "When you form x/y, what happens to the factor of c?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nc=symbols('c',nonzero=True)\ns=solve([4*x-3*y-2*c,x+2*y-5*c],[x,y])\nresult=simplify(s[x]/s[y])"
+  },
+  {
+    "id": "alg-systems-061",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "ax + by = 7\nbx + ay = 8\n\nIn the system of equations above, a and b are constants. If (2, 1) is a solution to the system, what is the value of a + b?",
+    "answer": "5",
+    "explanation": [
+      "Substitute x = 2 and y = 1 into both equations: 2a + b = 7 and 2b + a = 8.",
+      "These form a new system in a and b.",
+      "Add the two equations: 3a + 3b = 15.",
+      "Divide by 3: a + b = 5. (Solving fully gives a = 2 and b = 3.)"
+    ],
+    "hints": [
+      "If (2, 1) is a solution, what do you get when you put those values into each equation?",
+      "Now a and b are the unknowns. Is there a combination of the new equations that gives a + b directly?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\na,b=symbols('a b')\neqs=[(a*x+b*y-7).subs({x:2,y:1}),(b*x+a*y-8).subs({x:2,y:1})]\nr=solve(eqs,[a,b])\nresult=r[a]+r[b]"
+  },
+  {
+    "id": "alg-systems-062",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "2x + 3y = c\n4x + 6y = 10\n\nIn the system of equations above, c is a constant. Which of the following statements is true?",
+    "choices": [
+      "The system has infinitely many solutions if c = 5 and no solution otherwise.",
+      "The system has exactly one solution for every value of c.",
+      "The system has no solution for every value of c.",
+      "The system has infinitely many solutions if c = 10 and no solution otherwise."
+    ],
+    "answer": "The system has infinitely many solutions if c = 5 and no solution otherwise.",
+    "explanation": [
+      "The second equation divided by 2 is 2x + 3y = 5, so both lines have the same slope. They are never just intersecting lines, so the system never has exactly one solution.",
+      "If c = 5, the two equations describe the same line: infinitely many solutions.",
+      "If c ≠ 5, the equations say 2x + 3y equals two different numbers at once, so the lines are parallel and distinct: no solution.",
+      "So the system has infinitely many solutions if c = 5 and no solution otherwise."
+    ],
+    "hints": [
+      "How do the left sides of the two equations compare?",
+      "Can the left side 2x + 3y equal two different numbers for the same point?",
+      "Is there any value of c that makes the two equations say the same thing?"
+    ],
+    "wrong_reasons": {
+      "The system has exactly one solution for every value of c.": "Assumed two different-looking equations always intersect once, without comparing slopes",
+      "The system has no solution for every value of c.": "Noticed the slopes are equal but missed the value of c that makes the lines identical",
+      "The system has infinitely many solutions if c = 10 and no solution otherwise.": "Matched the constants directly without scaling the second equation down by a factor of 2"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef kind(e1,e2):\n    A=Matrix([[e.coeff(x),e.coeff(y)] for e in (e1,e2)])\n    b=Matrix([-e.subs({x:0,y:0}) for e in (e1,e2)])\n    r=A.rank(); ra=A.row_join(b).rank()\n    return 'none' if r<ra else ('one' if r==2 else 'inf')\nc=symbols('c')\nA=Matrix([[2,3],[4,6]])\nif A.det()!=0:\n    result='The system has exactly one solution for every value of c.'\nelse:\n    cs=solve(Eq(2*10-4*c,0),c)\n    c0=cs[0]\n    assert kind(2*x+3*y-c0,4*x+6*y-10)=='inf' and kind(2*x+3*y-(c0+1),4*x+6*y-10)=='none'\n    result='The system has infinitely many solutions if c = %s and no solution otherwise.'%c0"
+  },
+  {
+    "id": "alg-systems-063",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "ax + by = 6\n2x − 5y = 4\n\nIn the system of equations above, a and b are constants. The system has no solution, and the graph of ax + by = 6 in the xy-plane passes through the point (0, −2). What is the value of a?",
+    "answer": "6/5",
+    "accept": [
+      "1.2"
+    ],
+    "explanation": [
+      "Because (0, −2) is on the line ax + by = 6: a(0) + b(−2) = 6, so b = −3.",
+      "No solution means the lines are parallel, so their slopes are equal. The slope of 2x − 5y = 4 is 2/5, and the slope of ax − 3y = 6 is a/3.",
+      "Set a/3 = 2/5, so a = 6/5.",
+      "Check: (6/5)x − 3y = 6 multiplied by 5/3 is 2x − 5y = 10, which is parallel to but different from 2x − 5y = 4."
+    ],
+    "hints": [
+      "What does the point (0, −2) tell you about one of the constants?",
+      "If a system of two linear equations has no solution, how do the slopes of the two lines compare?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\na,b=symbols('a b')\nb0=solve(Eq(a*0+b*(-2),6),b)[0]\na0=solve(Eq(Matrix([[a,b0],[2,-5]]).det(),0),a)[0]\nassert linsolve([a0*x+b0*y-6,2*x-5*y-4],[x,y])==S.EmptySet\nresult=a0"
+  },
+  {
+    "id": "alg-systems-064",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Two cyclists, Lena and Ravi, start 42 miles apart on a straight road. If they ride toward each other, they meet after 1.5 hours. If instead they ride in the same direction, with Lena, the faster rider, starting behind Ravi, Lena catches up to Ravi after 7 hours. Each cyclist rides at a constant speed. What is Ravi's speed, in miles per hour?",
+    "choices": [
+      "6",
+      "11",
+      "14",
+      "17"
+    ],
+    "answer": "11",
+    "explanation": [
+      "Let L and R be the speeds. Riding toward each other, they close the gap at L + R miles per hour: 1.5(L + R) = 42, so L + R = 28.",
+      "Riding in the same direction, Lena gains on Ravi at L − R miles per hour: 7(L − R) = 42, so L − R = 6.",
+      "Subtract the equations: 2R = 22, so R = 11.",
+      "(Lena's speed is 17 miles per hour.)"
+    ],
+    "hints": [
+      "When two riders move toward each other, how fast does the distance between them shrink?",
+      "When the faster rider chases the slower one, at what rate does the gap close?"
+    ],
+    "wrong_reasons": {
+      "6": "Found the difference of the speeds, L − R, instead of Ravi's speed",
+      "14": "Split the combined speed of 28 miles per hour evenly, ignoring the catch-up information",
+      "17": "Found Lena's speed instead of Ravi's"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nL,R=symbols('L R')\nr=solve([Rational(3,2)*(L+R)-42,7*(L-R)-42],[L,R])\nresult=r[R]"
+  },
+  {
+    "id": "alg-systems-065",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "y = mx + 4\ny = 2x − 1\n\nIn the system of equations above, m is a constant. If the solution (x, y) to the system lies in Quadrant IV of the xy-plane, which of the following could be the value of m?",
+    "choices": [
+      "−10",
+      "−8",
+      "−4",
+      "1"
+    ],
+    "answer": "−10",
+    "explanation": [
+      "In Quadrant IV, x > 0 and y < 0.",
+      "Setting mx + 4 = 2x − 1 gives x = 5/(2 − m).",
+      "From y = 2x − 1, y < 0 requires x < 1/2. So 0 < 5/(2 − m) < 1/2, which means 2 − m > 10, or m < −8.",
+      "Of the choices, only m = −10 works: x = 5/12 and y = −1/6."
+    ],
+    "hints": [
+      "What must be true about the signs of x and y for a point in Quadrant IV?",
+      "Using the second equation, what restriction on x makes y negative?",
+      "Can you write the x-coordinate of the solution in terms of m?"
+    ],
+    "wrong_reasons": {
+      "1": "Made sure x is positive but not that y is negative; with m = 1 the solution (5, 9) is in Quadrant I",
+      "−4": "Made sure x is positive but not that y is negative; with m = −4 the solution is (5/6, 2/3), in Quadrant I",
+      "−8": "Found the boundary value; with m = −8 the solution is (1/2, 0), which lies on the x-axis, not in a quadrant"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nm=symbols('m')\nc={'1':1,'-4':-4,'-8':-8,'-10':-10}\nout=[]\nfor k,v in c.items():\n    s=solve([y-(v*x+4),y-(2*x-1)],[x,y])\n    if s[x]>0 and s[y]<0: out.append(v)\nassert len(out)==1\nresult=out[0]"
+  },
+  {
+    "id": "alg-systems-066",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "ax + 4y = 8\n3x + 2y = b\n\nIn the system of equations above, a and b are constants. If the system has no solution, which of the following must be true?",
+    "choices": [
+      "a = 6 and b = 4",
+      "a = 3/2 and b ≠ 8",
+      "a ≠ 6",
+      "a = 6 and b ≠ 4"
+    ],
+    "answer": "a = 6 and b ≠ 4",
+    "explanation": [
+      "No solution requires parallel, distinct lines. Equal slopes: −a/4 = −3/2, so a = 6.",
+      "With a = 6, the first equation is 6x + 4y = 8, and doubling the second gives 6x + 4y = 2b.",
+      "The lines are distinct only if 2b ≠ 8, that is, b ≠ 4. (If b = 4, the lines are the same.)",
+      "So a = 6 and b ≠ 4."
+    ],
+    "hints": [
+      "What must be true about the slopes of two lines that never intersect?",
+      "Once the slopes match, what extra condition keeps the two lines from being the same line?"
+    ],
+    "wrong_reasons": {
+      "a = 6 and b = 4": "With these values the equations describe the same line, giving infinitely many solutions",
+      "a = 3/2 and b ≠ 8": "Set up the coefficient proportion upside down (a/3 = 2/4)",
+      "a ≠ 6": "This is the condition for exactly one solution, not for no solution"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef kind(e1,e2):\n    A=Matrix([[e.coeff(x),e.coeff(y)] for e in (e1,e2)])\n    b=Matrix([-e.subs({x:0,y:0}) for e in (e1,e2)])\n    r=A.rank(); ra=A.row_join(b).rank()\n    return 'none' if r<ra else ('one' if r==2 else 'inf')\na,b=symbols('a b')\na0=solve(Eq(Matrix([[a,4],[3,2]]).det(),0),a)[0]\nb0=solve(Eq(Matrix([[a0,8],[3,b]]).det(),0),b)[0]\nassert kind(a0*x+4*y-8,3*x+2*y-b0)=='inf' and kind(a0*x+4*y-8,3*x+2*y-(b0+1))=='none'\nresult='a = %s and b \\u2260 %s'%(a0,b0)"
+  },
+  {
+    "id": "alg-systems-067",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Last year, a community choir had 70 singers, each of whom was either a tenor or a soprano. This year, the number of tenors is 25% greater than last year, the number of sopranos is 20% less than last year, and the choir has 74 singers. How many sopranos are in the choir this year?",
+    "choices": [
+      "24",
+      "30",
+      "40",
+      "50"
+    ],
+    "answer": "24",
+    "explanation": [
+      "Let t and s be last year's numbers of tenors and sopranos: t + s = 70.",
+      "This year there are 1.25t tenors and 0.8s sopranos: 1.25t + 0.8s = 74.",
+      "Substitute s = 70 − t: 1.25t + 56 − 0.8t = 74, so 0.45t = 18 and t = 40. Then s = 30.",
+      "This year's sopranos: 0.8(30) = 24."
+    ],
+    "hints": [
+      "Which variables should represent last year's numbers, and how do you write this year's numbers in terms of them?",
+      "How do you write a quantity that is 25% greater, or 20% less, than another quantity?",
+      "After you solve the system, does it give this year's number of sopranos directly?"
+    ],
+    "wrong_reasons": {
+      "30": "Found last year's number of sopranos and did not apply the 20% decrease",
+      "40": "Found last year's number of tenors",
+      "50": "Found this year's number of tenors instead of sopranos"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nt,s=symbols('t s')\nr=solve([t+s-70,Rational(5,4)*t+Rational(4,5)*s-74],[t,s])\nresult=Rational(4,5)*r[s]"
+  },
+  {
+    "id": "alg-systems-068",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A rectangle has a length that is 4 inches greater than its width. If the length were increased by 3 inches and the width were doubled, the perimeter of the new rectangle would be 62 inches. What is the area, in square inches, of the original rectangle?",
+    "answer": "96",
+    "explanation": [
+      "Let L and W be the original length and width: L = W + 4.",
+      "The new rectangle is L + 3 by 2W, so 2(L + 3) + 2(2W) = 62, which simplifies to L + 2W = 28.",
+      "Substitute L = W + 4: 3W + 4 = 28, so W = 8 and L = 12.",
+      "The original area is 12 × 8 = 96 square inches."
+    ],
+    "hints": [
+      "What are the length and width of the new rectangle, written using the original length and width?",
+      "How do you write the perimeter of a rectangle from its length and width?",
+      "Once you have the dimensions, which rectangle's area does the question ask for?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nL,W=symbols('L W')\nr=solve([L-(W+4),2*(L+3)+2*(2*W)-62],[L,W])\nresult=r[L]*r[W]"
+  },
+  {
+    "id": "alg-systems-069",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A car rental company charges a fixed amount per day plus a fixed amount per mile driven. A 3-day rental with 150 miles driven costs $246, and a 5-day rental with 100 miles driven costs $335. At these rates, what is the cost of a 2-day rental with 200 miles driven?",
+    "choices": [
+      "$100",
+      "$114",
+      "$157",
+      "$214"
+    ],
+    "answer": "$214",
+    "explanation": [
+      "Let d be the daily charge and m the charge per mile: 3d + 150m = 246 and 5d + 100m = 335.",
+      "Multiply the first equation by 2 and the second by 3: 6d + 300m = 492 and 15d + 300m = 1,005.",
+      "Subtract: 9d = 513, so d = 57. Then 150m = 246 − 171 = 75, so m = 0.50.",
+      "Cost of 2 days and 200 miles: 2(57) + 200(0.50) = 114 + 100 = $214."
+    ],
+    "hints": [
+      "What equation does each rental give you, if d is the daily charge and m is the charge per mile?",
+      "What could you multiply each equation by so that one unknown has the same coefficient in both?",
+      "After finding both rates, which combination of days and miles are you pricing?"
+    ],
+    "wrong_reasons": {
+      "$100": "Included only the mileage charge and left out the daily charges",
+      "$114": "Included only the daily charges and left out the mileage charge",
+      "$157": "Charged the daily rate for only 1 day"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nd,m=symbols('d m')\nr=solve([3*d+150*m-246,5*d+100*m-335],[d,m])\nresult=2*r[d]+200*r[m]"
+  },
+  {
+    "id": "alg-systems-070",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Line k passes through the point of intersection of the lines 3x − y = 5 and x + 2y = 11. Line k is parallel to the line y = −2x + 9. What is the y-intercept of line k?",
+    "choices": [
+      "−2",
+      "9",
+      "10",
+      "11"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Solve the system: from 3x − y = 5, y = 3x − 5. Substitute: x + 2(3x − 5) = 11, so 7x = 21 and x = 3. Then y = 4.",
+      "Line k is parallel to y = −2x + 9, so its slope is −2.",
+      "Write line k as y = −2x + b and use the point (3, 4): 4 = −6 + b, so b = 10.",
+      "The y-intercept of line k is 10."
+    ],
+    "hints": [
+      "What point do the first two lines have in common?",
+      "What does \"parallel\" tell you about the slope of line k?",
+      "Once you have a slope and a point, how do you find the y-intercept?"
+    ],
+    "wrong_reasons": {
+      "−2": "Used slope 2 instead of −2 when writing the equation of line k",
+      "9": "Assumed line k has the same y-intercept as the parallel line; then it would be the same line, which does not pass through (3, 4)",
+      "11": "Switched the coordinates of the intersection point, using (4, 3)"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([3*x-y-5,x+2*y-11],[x,y])\nb=symbols('b')\nresult=solve(Eq(s[y],-2*s[x]+b),b)[0]"
+  },
+  {
+    "id": "alg-systems-071",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "(2x + y)/5 = (x − y)/3 = 2\n\nIf (x, y) satisfies the equations above, what is the value of x + y?",
+    "choices": [
+      "−2/3",
+      "4",
+      "14/3",
+      "16/3"
+    ],
+    "answer": "14/3",
+    "explanation": [
+      "The chain gives two equations: (2x + y)/5 = 2 and (x − y)/3 = 2, so 2x + y = 10 and x − y = 6.",
+      "Add them: 3x = 16, so x = 16/3.",
+      "Then y = x − 6 = 16/3 − 18/3 = −2/3.",
+      "So x + y = 16/3 − 2/3 = 14/3."
+    ],
+    "hints": [
+      "The line says two different expressions each equal 2. What two separate equations does that give you?",
+      "After clearing the fractions, which operation on the two equations removes y?"
+    ],
+    "wrong_reasons": {
+      "−2/3": "Found y instead of x + y",
+      "4": "Subtracted the cleared equations to get x + 2y = 4 and treated that as x + y",
+      "16/3": "Found x instead of x + y"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([(2*x+y)/5-2,(x-y)/3-2],[x,y])\nresult=s[x]+s[y]"
+  },
+  {
+    "id": "alg-systems-072",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Kai bought only pencils and markers, 18 items in all. Each pencil costs $0.75 and each marker costs $2.25. If Kai had bought as many pencils as he actually bought markers, and as many markers as he actually bought pencils, he would have paid $9.00 more. How much did Kai actually pay?",
+    "choices": [
+      "$9.00",
+      "$22.50",
+      "$31.50",
+      "$40.50"
+    ],
+    "answer": "$22.50",
+    "explanation": [
+      "Let p and m be the actual numbers of pencils and markers: p + m = 18.",
+      "Actual cost: 0.75p + 2.25m. Swapped cost: 0.75m + 2.25p. Their difference: 1.50p − 1.50m = 9, so p − m = 6.",
+      "Solve p + m = 18 and p − m = 6: p = 12 and m = 6.",
+      "Actual cost: 0.75(12) + 2.25(6) = 9.00 + 13.50 = $22.50."
+    ],
+    "hints": [
+      "Write expressions for the actual cost and the swapped cost. What does their difference simplify to?",
+      "Together with the total number of items, what second equation do you now have?",
+      "Which cost, actual or swapped, does the question ask for?"
+    ],
+    "wrong_reasons": {
+      "$9.00": "Gave the difference between the two costs instead of the actual cost",
+      "$31.50": "Found the cost of the swapped purchase instead of the actual purchase",
+      "$40.50": "Priced all 18 items as markers"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\np,m=symbols('p m')\nr=solve([p+m-18,(Rational(3,4)*m+Rational(9,4)*p)-(Rational(3,4)*p+Rational(9,4)*m)-9],[p,m])\nresult=Rational(3,4)*r[p]+Rational(9,4)*r[m]"
+  },
+  {
+    "id": "alg-systems-073",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "(k − 2)x + 3y = 5\n4x + 6y = k\n\nIn the system of equations above, k is a constant. For what value of k does the system have no solution?",
+    "choices": [
+      "2",
+      "4",
+      "8",
+      "10"
+    ],
+    "answer": "4",
+    "explanation": [
+      "For no solution the lines must be parallel: the coefficients must be proportional, (k − 2)/4 = 3/6.",
+      "So k − 2 = 2 and k = 4.",
+      "With k = 4 the system is 2x + 3y = 5 and 4x + 6y = 4. Doubling the first gives 4x + 6y = 10, which contradicts 4x + 6y = 4.",
+      "So the lines are parallel and distinct, and the system has no solution when k = 4."
+    ],
+    "hints": [
+      "For two lines to be parallel, how must the x- and y-coefficients of the equations compare?",
+      "Once you have a value of k, how can you tell whether the lines are parallel or actually the same line?"
+    ],
+    "wrong_reasons": {
+      "2": "Made the x-term of the first equation disappear; the system then has exactly one solution",
+      "8": "Set k − 2 equal to 6, matching coefficients across the equations instead of keeping them in proportion",
+      "10": "Made the constants proportional (k = 2 · 5); with k = 10 the slopes differ and there is one solution"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef kind(e1,e2):\n    A=Matrix([[e.coeff(x),e.coeff(y)] for e in (e1,e2)])\n    b=Matrix([-e.subs({x:0,y:0}) for e in (e1,e2)])\n    r=A.rank(); ra=A.row_join(b).rank()\n    return 'none' if r<ra else ('one' if r==2 else 'inf')\nk=symbols('k')\nks=solve(Eq(Matrix([[k-2,3],[4,6]]).det(),0),k)\nresult=[v for v in ks if kind((v-2)*x+3*y-5,4*x+6*y-v)=='none'][0]"
+  },
+  {
+    "id": "alg-systems-074",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A bag contains only red marbles and blue marbles, 30 in all. After 3 red marbles are removed and 3 blue marbles are added, the bag contains twice as many blue marbles as red marbles. How many blue marbles were in the bag originally?",
+    "choices": [
+      "10",
+      "13",
+      "17",
+      "20"
+    ],
+    "answer": "17",
+    "explanation": [
+      "Let r and b be the original numbers of red and blue marbles: r + b = 30.",
+      "After the changes there are r − 3 red and b + 3 blue, so b + 3 = 2(r − 3), which gives b = 2r − 9.",
+      "Substitute: r + 2r − 9 = 30, so r = 13 and b = 17.",
+      "Check: afterward there are 10 red and 20 blue marbles, and 20 = 2 × 10."
+    ],
+    "hints": [
+      "Should your variables stand for the numbers of marbles before or after the changes?",
+      "How do you write the numbers of red and blue marbles after the changes, in terms of the original numbers?",
+      "Which count, before or after, does the question ask for?"
+    ],
+    "wrong_reasons": {
+      "10": "Found the number of red marbles after the changes",
+      "13": "Found the original number of red marbles instead of blue",
+      "20": "Found the number of blue marbles after the changes instead of originally"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nr,b=symbols('r b')\ns=solve([r+b-30,b+3-2*(r-3)],[r,b])\nresult=s[b]"
+  },
+  {
+    "id": "alg-systems-075",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A theater sold 500 tickets for a concert. Floor tickets cost $40 each and balcony tickets cost $25 each, and ticket sales totaled $15,500. For a second concert, the theater again sold 500 tickets at the same prices, but it sold 50 more floor tickets than it did for the first concert. What were the total ticket sales for the second concert?",
+    "choices": [
+      "$16,250",
+      "$16,750",
+      "$17,500",
+      "$18,750"
+    ],
+    "answer": "$16,250",
+    "explanation": [
+      "Because the total stayed at 500 tickets, 50 more floor tickets means 50 fewer balcony tickets.",
+      "Each switch from balcony to floor adds $40 − $25 = $15 in sales.",
+      "So the second concert's sales were $15,500 + 50($15) = $16,250.",
+      "(Check by solving: f + b = 500 and 40f + 25b = 15,500 give f = 200 and b = 300. Then 40(250) + 25(250) = $16,250.)"
+    ],
+    "hints": [
+      "If the total number of tickets stayed the same, what happened to the number of balcony tickets?",
+      "How much does sales revenue change each time one balcony ticket is replaced by one floor ticket?"
+    ],
+    "wrong_reasons": {
+      "$16,750": "Added $25 for each extra floor ticket, using the balcony price instead of the price difference",
+      "$17,500": "Added $40 for each extra floor ticket but forgot that 50 balcony tickets were no longer sold",
+      "$18,750": "Added both prices, $65, for each extra floor ticket"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nf,b=symbols('f b')\nr=solve([f+b-500,40*f+25*b-15500],[f,b])\nresult=40*(r[f]+50)+25*(r[b]-50)"
   }
 ]

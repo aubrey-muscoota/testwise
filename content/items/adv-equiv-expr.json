@@ -6,8 +6,8 @@
     "type": "mc",
     "stem": "Which of the following is equivalent to 3(2x − 5) − 4x?",
     "choices": [
-      "2x − 5",
       "2x − 15",
+      "2x − 5",
       "10x − 15",
       "−13x"
     ],
@@ -36,8 +36,8 @@
     "type": "mc",
     "stem": "Which of the following is equivalent to (x + 4)(x − 2)?",
     "choices": [
-      "x² + 2x − 8",
       "x² − 8",
+      "x² + 2x − 8",
       "x² − 2x − 8",
       "x² + 2x + 8"
     ],
@@ -68,8 +68,8 @@
     "choices": [
       "3w + 3",
       "2w² + 3",
-      "6w + 6",
-      "2w² + 3w"
+      "2w² + 3w",
+      "6w + 6"
     ],
     "answer": "2w² + 3w",
     "explanation": [
@@ -99,8 +99,8 @@
     "choices": [
       "(x − 7)²",
       "(x + 7)²",
-      "(x − 7)(x + 7)",
-      "x(x − 49)"
+      "x(x − 49)",
+      "(x − 7)(x + 7)"
     ],
     "answer": "(x − 7)(x + 7)",
     "explanation": [
@@ -127,10 +127,10 @@
     "type": "mc",
     "stem": "For x ≠ 0, which of the following is equivalent to (12x³)/(4x)?",
     "choices": [
-      "3x²",
       "3x³",
       "8x²",
-      "3x⁴"
+      "3x⁴",
+      "3x²"
     ],
     "answer": "3x²",
     "explanation": [
@@ -175,9 +175,9 @@
     "type": "mc",
     "stem": "Ana's monthly phone bill, in dollars, is 25 + 8g, and Ben's monthly phone bill, in dollars, is 30 + 6g, where g is the number of gigabytes of data each person uses over the base plan. If both use the same number of extra gigabytes in a month, which expression represents their combined bill, in dollars?",
     "choices": [
+      "55 + 14g",
       "69g",
       "55 + 48g",
-      "55 + 14g",
       "5 − 2g"
     ],
     "answer": "55 + 14g",
@@ -256,8 +256,8 @@
     "choices": [
       "9x² + 4",
       "9x² − 6x + 4",
-      "3x² − 12x + 4",
-      "9x² − 12x + 4"
+      "9x² − 12x + 4",
+      "3x² − 12x + 4"
     ],
     "answer": "9x² − 12x + 4",
     "explanation": [
@@ -284,8 +284,8 @@
     "type": "mc",
     "stem": "Which of the following is equivalent to 2x² − 7x − 15?",
     "choices": [
-      "(2x − 3)(x + 5)",
       "(2x + 3)(x − 5)",
+      "(2x − 3)(x + 5)",
       "(2x + 5)(x − 3)",
       "(2x − 5)(x + 3)"
     ],
@@ -315,10 +315,10 @@
     "type": "mc",
     "stem": "For x > 0, which of the following is equivalent to 1/x + 1/(x + 2)?",
     "choices": [
-      "(2x + 2)/(x² + 2x)",
       "2/(2x + 2)",
       "2/(x² + 2x)",
-      "1/(x² + 2x)"
+      "1/(x² + 2x)",
+      "(2x + 2)/(x² + 2x)"
     ],
     "answer": "(2x + 2)/(x² + 2x)",
     "explanation": [
@@ -367,8 +367,8 @@
     "stem": "A ball is tossed upward from the roof of a building. Its height above the ground, in feet, t seconds after it is tossed is given by h = −16t² + 64t + 80. Which of the following is an equivalent expression for h that shows, as a constant or coefficient, the time at which the ball hits the ground?",
     "choices": [
       "−16(t + 5)(t − 1)",
-      "−16(t − 5)(t − 1)",
       "−16(t − 5)(t + 1)",
+      "−16(t − 5)(t − 1)",
       "16(t − 5)(t + 1)"
     ],
     "answer": "−16(t − 5)(t + 1)",
@@ -398,8 +398,8 @@
     "choices": [
       "x^(2/3)",
       "x³",
-      "x^(5/2)",
-      "x^(7/3)"
+      "x^(7/3)",
+      "x^(5/2)"
     ],
     "answer": "x^(7/3)",
     "explanation": [
@@ -444,10 +444,10 @@
     "type": "mc",
     "stem": "A square patio has side length s feet. A walkway 2 feet wide is built around the entire patio, so the patio and walkway together form a larger square. Which expression represents the area, in square feet, of the walkway alone?",
     "choices": [
+      "8s + 16",
       "16",
       "4s + 4",
-      "8s",
-      "8s + 16"
+      "8s"
     ],
     "answer": "8s + 16",
     "explanation": [
@@ -476,8 +476,8 @@
     "stem": "Which of the following is equivalent to 3x(x − 4) − 2(x² − 6x)?",
     "choices": [
       "x² − 24x",
-      "5x² − 24x",
       "x²",
+      "5x² − 24x",
       "x² − 18x"
     ],
     "answer": "x²",
@@ -525,10 +525,10 @@
     "type": "mc",
     "stem": "For x > 0, which of the following is equivalent to (6x² + 7x − 2)/(2x + 3)?",
     "choices": [
-      "3x − 1 + 1/(2x + 3)",
       "3x − 1",
       "3x + 8 − 26/(2x + 3)",
-      "3x − 1 − 5/(2x + 3)"
+      "3x − 1 − 5/(2x + 3)",
+      "3x − 1 + 1/(2x + 3)"
     ],
     "answer": "3x − 1 + 1/(2x + 3)",
     "explanation": [
@@ -557,8 +557,8 @@
     "stem": "For x > 0 and y > 0, which of the following is equivalent to (16x⁴y⁻⁶)^(1/2) ÷ (xy⁻¹)?",
     "choices": [
       "8x/y²",
-      "4x/y²",
       "4x³/y⁴",
+      "4x/y²",
       "4x/y⁴"
     ],
     "answer": "4x/y²",
@@ -739,5 +739,1307 @@
       "x² + 4x + 4": "Guessed (x + 2)², but (x − 2)(x + 2)² = x³ + 2x² − 4x − 8"
     },
     "check": "C = [\"x² + 2x + 4\", \"x² + 4\", \"x² − 2x + 4\", \"x² + 4x + 4\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return (x**3 - 8)/(x - 2)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-028",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to (4a² − 3ab + 2b²) − (a² + 5ab − b²)?",
+    "choices": [
+      "3a² − 8ab + b²",
+      "3a² − 8ab + 3b²",
+      "3a² + 2ab + b²",
+      "5a² + 2ab + b²"
+    ],
+    "answer": "3a² − 8ab + 3b²",
+    "explanation": [
+      "Distribute the subtraction to every term of the second polynomial: −a² − 5ab + b².",
+      "Group like terms: (4a² − a²) + (−3ab − 5ab) + (2b² + b²).",
+      "Combine each group: 3a² − 8ab + 3b²."
+    ],
+    "hints": [
+      "When you subtract a polynomial in parentheses, what happens to the sign of each of its terms?",
+      "Which terms are like terms here? Can an ab-term combine with an a²-term?"
+    ],
+    "wrong_reasons": {
+      "3a² + 2ab + b²": "Subtracted only the a² term and added the other two terms of the second polynomial",
+      "3a² − 8ab + b²": "Did not change the sign of −b² when distributing the subtraction",
+      "5a² + 2ab + b²": "Added the two polynomials instead of subtracting"
+    },
+    "check": "C = [\"3a² − 8ab + b²\", \"3a² − 8ab + 3b²\", \"3a² + 2ab + b²\", \"5a² + 2ab + b²\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = (4*a**2 - 3*a*b + 2*b**2) - (a**2 + 5*a*b - b**2)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-029",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A jacket has an original price of p dollars. During a sale, the price is reduced by 20%. Priya then uses a coupon that takes an additional 10% off the sale price. Which expression represents the final price, in dollars, that Priya pays?",
+    "choices": [
+      "0.08p",
+      "0.28p",
+      "0.70p",
+      "0.72p"
+    ],
+    "answer": "0.72p",
+    "explanation": [
+      "A 20% reduction leaves 80% of the original price: 0.80p.",
+      "Taking 10% off the sale price leaves 90% of the sale price: 0.90(0.80p).",
+      "Multiply: 0.90 × 0.80 = 0.72, so the final price is 0.72p."
+    ],
+    "hints": [
+      "If a price is reduced by 20%, what percent of the original price is left?",
+      "Is the extra 10% taken off the original price or off the price that has already been reduced?"
+    ],
+    "wrong_reasons": {
+      "0.70p": "Added the two discounts (20% + 10% = 30%) as if both were taken off the original price",
+      "0.28p": "Found the total amount saved instead of the final price",
+      "0.08p": "Multiplied 0.80 by the discount 0.10 instead of by the remaining 0.90"
+    },
+    "check": "C = [\"0.08p\", \"0.28p\", \"0.70p\", \"0.72p\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = p*(1 - Rational(20,100))*(1 - Rational(10,100))\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-030",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to 12x³y − 18x²y²?",
+    "choices": [
+      "6x²y(2x − 3y)",
+      "6x²y(2x² − 3y²)",
+      "6xy(2x − 3y)",
+      "2x²y(6x − 3y)"
+    ],
+    "answer": "6x²y(2x − 3y)",
+    "explanation": [
+      "The greatest common factor of 12 and 18 is 6.",
+      "Every term contains at least x² and y, so the greatest common factor of the terms is 6x²y.",
+      "Divide each term by 6x²y: 12x³y ÷ 6x²y = 2x and 18x²y² ÷ 6x²y = 3y.",
+      "So the expression equals 6x²y(2x − 3y)."
+    ],
+    "hints": [
+      "What is the largest whole number that divides both 12 and 18?",
+      "What is the smallest power of x that appears in both terms? What is the smallest power of y?"
+    ],
+    "wrong_reasons": {
+      "6x²y(2x² − 3y²)": "Divided the coefficients by 6 but did not reduce the exponents of the terms left inside the parentheses",
+      "6xy(2x − 3y)": "Took out only one factor of x as part of the common factor, but then reduced the terms inside as if x² had been taken out; this expands to 12x²y − 18xy², not the given expression",
+      "2x²y(6x − 3y)": "Divided 12 by 2 but divided 18 by 6, using two different factors"
+    },
+    "check": "C = [\"6x²y(2x² − 3y²)\", \"6xy(2x − 3y)\", \"6x²y(2x − 3y)\", \"2x²y(6x − 3y)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 12*x**3*y - 18*x**2*y**2\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-031",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The expression (2/3)(9x − 6) − (1/2)(4x + 10) can be written in the form ax + b, where a and b are constants. What is the value of a + b?",
+    "answer": "−5",
+    "accept": [
+      "-5"
+    ],
+    "explanation": [
+      "(2/3)(9x − 6) = 6x − 4.",
+      "(1/2)(4x + 10) = 2x + 5, so subtracting it gives −2x − 5.",
+      "Combine like terms: 6x − 4 − 2x − 5 = 4x − 9.",
+      "So a = 4 and b = −9, and a + b = −5."
+    ],
+    "hints": [
+      "What is two-thirds of 9x, and what is two-thirds of 6?",
+      "When you subtract (1/2)(4x + 10), does the sign of the constant term change too?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\npl=Poly(expand(Rational(2,3)*(9*x-6)-Rational(1,2)*(4*x+10)),x)\nresult=pl.coeff_monomial(x)+pl.coeff_monomial(1)"
+  },
+  {
+    "id": "adv-equiv-expr-032",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "For x ≠ 0, which of the following is equivalent to (15x⁴ − 10x³ + 5x²)/(5x²)?",
+    "choices": [
+      "3x² − 2x",
+      "3x² − 2x + 5",
+      "3x² − 2x + 1",
+      "3x⁶ − 2x⁵ + x⁴"
+    ],
+    "answer": "3x² − 2x + 1",
+    "explanation": [
+      "Divide each term of the numerator by 5x².",
+      "15x⁴ ÷ 5x² = 3x² and −10x³ ÷ 5x² = −2x.",
+      "5x² ÷ 5x² = 1.",
+      "So the expression equals 3x² − 2x + 1."
+    ],
+    "hints": [
+      "Can you split the fraction into three fractions, each with denominator 5x²?",
+      "When you divide powers of x, what happens to the exponents?",
+      "What is any nonzero quantity divided by itself?"
+    ],
+    "wrong_reasons": {
+      "3x² − 2x": "Treated 5x² ÷ 5x² as 0 instead of 1",
+      "3x² − 2x + 5": "Divided the x² of the last term but not its coefficient 5",
+      "3x⁶ − 2x⁵ + x⁴": "Added the exponents, as in multiplication, instead of subtracting them"
+    },
+    "check": "C = [\"3x² − 2x\", \"3x² − 2x + 1\", \"3x² − 2x + 5\", \"3x⁶ − 2x⁵ + x⁴\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = (15*x**4 - 10*x**3 + 5*x**2)/(5*x**2)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-033",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "For x > 0, which of the following is equivalent to x^(3/4)?",
+    "choices": [
+      "∜(x³)",
+      "∛(x⁴)",
+      "3∜x",
+      "x³/4"
+    ],
+    "answer": "∜(x³)",
+    "explanation": [
+      "A fractional exponent m/n means the nth root of the base raised to the mth power.",
+      "In 3/4, the denominator 4 gives a fourth root and the numerator 3 gives a third power.",
+      "So x^(3/4) = ∜(x³)."
+    ],
+    "hints": [
+      "In a fractional exponent, which part tells you what kind of root to take?",
+      "Which part tells you what power to raise x to?"
+    ],
+    "wrong_reasons": {
+      "∛(x⁴)": "Swapped the roles of the numerator and denominator of the exponent",
+      "x³/4": "Treated the denominator of the exponent as division of the whole power by 4",
+      "3∜x": "Treated the numerator 3 as a coefficient instead of a power"
+    },
+    "check": "C = [\"∛(x⁴)\", \"3∜x\", \"∜(x³)\", \"x³/4\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = x**Rational(3,4)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-034",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to 9a² − 25b²?",
+    "choices": [
+      "(3a − 5b)²",
+      "(3a − 5b)(3a + 5b)",
+      "(9a + 25b)(a − b)",
+      "3(a − 5b)(a + 5b)"
+    ],
+    "answer": "(3a − 5b)(3a + 5b)",
+    "explanation": [
+      "9a² = (3a)² and 25b² = (5b)², so the expression is a difference of two squares.",
+      "Use the pattern u² − v² = (u − v)(u + v) with u = 3a and v = 5b.",
+      "So 9a² − 25b² = (3a − 5b)(3a + 5b)."
+    ],
+    "hints": [
+      "What expression, when squared, gives 9a²? What expression, when squared, gives 25b²?",
+      "What factoring pattern fits one perfect square minus another?"
+    ],
+    "wrong_reasons": {
+      "(3a − 5b)²": "Thought a difference of squares is the square of a difference; (3a − 5b)² has a middle term of −30ab",
+      "(9a + 25b)(a − b)": "Placed the coefficients 9 and 25 in the binomials instead of their square roots",
+      "3(a − 5b)(a + 5b)": "Factored 3 out of both terms even though 25 is not a multiple of 3"
+    },
+    "check": "C = [\"(3a − 5b)²\", \"(9a + 25b)(a − b)\", \"3(a − 5b)(a + 5b)\", \"(3a − 5b)(3a + 5b)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 9*a**2 - 25*b**2\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-035",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "For x ≠ 0, which of the following is equivalent to (3x⁻²)(4x⁵)?",
+    "choices": [
+      "7x³",
+      "12x⁷",
+      "12x³",
+      "12x⁻¹⁰"
+    ],
+    "answer": "12x³",
+    "explanation": [
+      "Multiply the coefficients: 3 · 4 = 12.",
+      "Multiply the powers of x by adding the exponents: x⁻² · x⁵ = x^(−2 + 5).",
+      "−2 + 5 = 3, so the product is 12x³."
+    ],
+    "hints": [
+      "When you multiply powers with the same base, what do you do with the exponents?",
+      "What is the sum of a negative exponent and a positive exponent here?"
+    ],
+    "wrong_reasons": {
+      "12x⁻¹⁰": "Multiplied the exponents instead of adding them",
+      "7x³": "Added the coefficients instead of multiplying them",
+      "12x⁷": "Ignored the negative sign on the exponent −2"
+    },
+    "check": "C = [\"7x³\", \"12x⁷\", \"12x⁻¹⁰\", \"12x³\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = (3*x**-2)*(4*x**5)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-036",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A bakery sells muffins for $3 each. The cost, in dollars, of making n muffins in a day is 40 + 1.25n. Which expression represents the bakery's profit, in dollars, from making and selling n muffins in a day? (Profit is revenue minus cost.)",
+    "choices": [
+      "1.75n + 40",
+      "4.25n − 40",
+      "3n − 38.75",
+      "1.75n − 40"
+    ],
+    "answer": "1.75n − 40",
+    "explanation": [
+      "The revenue from selling n muffins at $3 each is 3n dollars.",
+      "Profit = 3n − (40 + 1.25n).",
+      "Distribute the subtraction: 3n − 40 − 1.25n.",
+      "Combine like terms: 1.75n − 40."
+    ],
+    "hints": [
+      "What expression gives the amount of money the bakery takes in from selling n muffins?",
+      "When you subtract the entire cost expression, what happens to each term inside the parentheses?"
+    ],
+    "wrong_reasons": {
+      "1.75n + 40": "Subtracted 1.25n but added 40 instead of subtracting it",
+      "4.25n − 40": "Added the cost per muffin to the price instead of subtracting it",
+      "3n − 38.75": "Combined 40 and 1.25n as if they were like terms"
+    },
+    "check": "C = [\"1.75n + 40\", \"4.25n − 40\", \"1.75n − 40\", \"3n − 38.75\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 3*n - (40 + Rational(125,100)*n)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-037",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "For all values of x, (x + 2)(x² − 3x + 4) = x³ + ax² + bx + 8, where a and b are constants. What is the value of b?",
+    "answer": "−2",
+    "accept": [
+      "-2"
+    ],
+    "explanation": [
+      "Multiply each term of x + 2 by each term of x² − 3x + 4.",
+      "x(x² − 3x + 4) = x³ − 3x² + 4x.",
+      "2(x² − 3x + 4) = 2x² − 6x + 8.",
+      "The x-terms combine to 4x − 6x = −2x, so b = −2."
+    ],
+    "hints": [
+      "Which pairs of terms, one from each factor, multiply to give a term with x to the first power?",
+      "How many such pairs are there, and what is the sign of each product?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=Poly(expand((x+2)*(x**2-3*x+4)),x).coeff_monomial(x)"
+  },
+  {
+    "id": "adv-equiv-expr-038",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to √50 + √18?",
+    "choices": [
+      "√68",
+      "15√2",
+      "8√2",
+      "16"
+    ],
+    "answer": "8√2",
+    "explanation": [
+      "50 = 25 · 2, so √50 = 5√2.",
+      "18 = 9 · 2, so √18 = 3√2.",
+      "These are like terms: 5√2 + 3√2 = 8√2."
+    ],
+    "hints": [
+      "What perfect square is a factor of 50? What perfect square is a factor of 18?",
+      "Once both radicals have the same number under the root, how can you combine them?"
+    ],
+    "wrong_reasons": {
+      "√68": "Added the numbers under the radical signs",
+      "16": "Simplified to 5√2 + 3√2 correctly but then also added the numbers under the radicals, getting 8√4",
+      "15√2": "Multiplied the coefficients 5 and 3 instead of adding them"
+    },
+    "check": "C = [\"√68\", \"15√2\", \"16\", \"8√2\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = sqrt(50) + sqrt(18)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-039",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is a factor of x² − 2x − 35?",
+    "choices": [
+      "x − 7",
+      "x − 5",
+      "x + 7",
+      "x − 35"
+    ],
+    "answer": "x − 7",
+    "explanation": [
+      "Look for two numbers whose product is −35 and whose sum is −2.",
+      "−7 and 5 work, because (−7)(5) = −35 and −7 + 5 = −2.",
+      "So x² − 2x − 35 = (x − 7)(x + 5), and x − 7 is a factor."
+    ],
+    "hints": [
+      "What two numbers multiply to −35 and add to −2?",
+      "Once you have those two numbers, how do they appear in the binomial factors?"
+    ],
+    "wrong_reasons": {
+      "x + 7": "Chose 7 and −5 with the signs switched; (x + 7)(x − 5) = x² + 2x − 35",
+      "x − 5": "Used −5 and −7, whose product is +35; (x − 5)(x − 7) = x² − 12x + 35",
+      "x − 35": "Used the constant term itself instead of a pair of its factors"
+    },
+    "check": "C = [\"x − 7\", \"x − 5\", \"x + 7\", \"x − 35\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = x**2 - 2*x - 35\nok = [c for c in C if simplify(rem(TG, P(c), x)) == 0]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-040",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A rectangular poster has a length of (x + 5) inches and a width of (x − 5) inches, where x > 5. The area of the poster, in square inches, can be written as x² − k, where k is a constant. What is the value of k?",
+    "answer": "25",
+    "explanation": [
+      "Area = length × width = (x + 5)(x − 5).",
+      "Expand: x² − 5x + 5x − 25.",
+      "The middle terms cancel, leaving x² − 25.",
+      "So k = 25."
+    ],
+    "hints": [
+      "What operation on the length and width gives the area of a rectangle?",
+      "When you expand the product, what happens to the two middle terms?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=-Poly(expand((x+5)*(x-5)),x).coeff_monomial(1)"
+  },
+  {
+    "id": "adv-equiv-expr-041",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Keiko's scores on three quizzes are represented by the expressions 2x + 5, 3x − 1, and x + 8. Which expression represents the mean (average) of her three quiz scores?",
+    "choices": [
+      "2x + 12",
+      "2x + 4",
+      "6x + 4",
+      "6x + 12"
+    ],
+    "answer": "2x + 4",
+    "explanation": [
+      "Add the three expressions: (2x + 5) + (3x − 1) + (x + 8) = 6x + 12.",
+      "The mean is the sum divided by the number of quizzes, 3.",
+      "(6x + 12)/3 = 2x + 4."
+    ],
+    "hints": [
+      "How do you find the mean of three numbers?",
+      "When you divide a two-term expression by 3, which of its terms must be divided?"
+    ],
+    "wrong_reasons": {
+      "6x + 12": "Found the sum of the scores but did not divide by 3",
+      "2x + 12": "Divided only the x-term of the sum by 3",
+      "6x + 4": "Divided only the constant term of the sum by 3"
+    },
+    "check": "C = [\"2x + 4\", \"2x + 12\", \"6x + 4\", \"6x + 12\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = ((2*x + 5) + (3*x - 1) + (x + 8))/3\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-042",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The volume V of a cylinder with radius r and height h is given by V = πr²h. Which of the following correctly expresses h in terms of V and r?",
+    "choices": [
+      "h = Vπr²",
+      "h = V − πr²",
+      "h = πr²/V",
+      "h = V/(πr²)"
+    ],
+    "answer": "h = V/(πr²)",
+    "explanation": [
+      "In V = πr²h, h is multiplied by πr².",
+      "To isolate h, divide both sides of the equation by πr².",
+      "So h = V/(πr²)."
+    ],
+    "hints": [
+      "In the formula, what operation connects h to πr²?",
+      "What operation undoes that one?"
+    ],
+    "wrong_reasons": {
+      "h = Vπr²": "Multiplied by πr² instead of dividing by it",
+      "h = V − πr²": "Subtracted πr² as if it were added to h instead of multiplied by h",
+      "h = πr²/V": "Divided in the wrong order, giving the reciprocal of h"
+    },
+    "check": "C = [\"h = Vπr²\", \"h = V − πr²\", \"h = πr²/V\", \"h = V/(πr²)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = solve(Eq(V, pi*r**2*h), h)[0]\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-043",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "For all values of x, x/3 + x/6 = kx, where k is a constant. What is the value of k?",
+    "answer": "1/2",
+    "accept": [
+      "0.5",
+      ".5"
+    ],
+    "explanation": [
+      "Rewrite the fractions with a common denominator of 6: x/3 = 2x/6.",
+      "Add: 2x/6 + x/6 = 3x/6.",
+      "3x/6 simplifies to (1/2)x, so k = 1/2."
+    ],
+    "hints": [
+      "What common denominator can you use for thirds and sixths?",
+      "After you add, can the resulting fraction be simplified?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=Poly(together(x/3+x/6)*1,x).coeff_monomial(x)"
+  },
+  {
+    "id": "adv-equiv-expr-044",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to x³ − 4x² + 3x − 12?",
+    "choices": [
+      "(x² − 3)(x + 4)",
+      "(x² + 3)(x − 4)",
+      "(x² + 3)(x + 4)",
+      "(x² − 4)(x + 3)"
+    ],
+    "answer": "(x² + 3)(x − 4)",
+    "explanation": [
+      "Group the terms in pairs: (x³ − 4x²) + (3x − 12).",
+      "Factor each group: x²(x − 4) + 3(x − 4).",
+      "Both groups share the binomial factor x − 4.",
+      "So the expression equals (x² + 3)(x − 4)."
+    ],
+    "hints": [
+      "What do the first two terms have in common? What do the last two terms have in common?",
+      "After factoring each pair, is there a binomial that appears in both parts?"
+    ],
+    "wrong_reasons": {
+      "(x² − 3)(x + 4)": "Reversed the signs in both factors; this expands to x³ + 4x² − 3x − 12",
+      "(x² + 3)(x + 4)": "Dropped the negative sign when factoring x² out of x³ − 4x²",
+      "(x² − 4)(x + 3)": "Swapped the numbers 3 and 4 between the two factors"
+    },
+    "check": "C = [\"(x² − 3)(x + 4)\", \"(x² + 3)(x + 4)\", \"(x² − 4)(x + 3)\", \"(x² + 3)(x − 4)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = x**3 - 4*x**2 + 3*x - 12\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-045",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to x² − 5xy + 6y²?",
+    "choices": [
+      "(x − 2y)(x − 3y)",
+      "(x + 2y)(x + 3y)",
+      "(x − y)(x − 6y)",
+      "(x − 2y)(x + 3y)"
+    ],
+    "answer": "(x − 2y)(x − 3y)",
+    "explanation": [
+      "Factor it the way you would factor x² − 5x + 6, with y attached to each number.",
+      "Find two numbers whose product is 6 and whose sum is −5: −2 and −3.",
+      "So x² − 5xy + 6y² = (x − 2y)(x − 3y)."
+    ],
+    "hints": [
+      "If y were replaced by 1, what quadratic would you be factoring?",
+      "Which two numbers multiply to +6 and add to −5?"
+    ],
+    "wrong_reasons": {
+      "(x + 2y)(x + 3y)": "Used positive numbers, which give a middle term of +5xy",
+      "(x − y)(x − 6y)": "Chose factors of 6 whose sum is −7, not −5",
+      "(x − 2y)(x + 3y)": "Mixed the signs, which gives xy − 6y² instead of −5xy + 6y²"
+    },
+    "check": "C = [\"(x + 2y)(x + 3y)\", \"(x − y)(x − 6y)\", \"(x − 2y)(x + 3y)\", \"(x − 2y)(x − 3y)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = x**2 - 5*x*y + 6*y**2\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-046",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "For x > 3, which of the following is equivalent to ((x² − 9)/(2x + 4)) ÷ ((x + 3)/(x + 2))?",
+    "choices": [
+      "x − 3",
+      "2/(x − 3)",
+      "(x − 3)/2",
+      "(x − 3)(x + 3)²/(2(x + 2)²)"
+    ],
+    "answer": "(x − 3)/2",
+    "explanation": [
+      "Dividing by a fraction is the same as multiplying by its reciprocal: ((x² − 9)/(2x + 4)) · ((x + 2)/(x + 3)).",
+      "Factor: x² − 9 = (x − 3)(x + 3) and 2x + 4 = 2(x + 2).",
+      "Cancel the common factors x + 3 and x + 2.",
+      "What remains is (x − 3)/2."
+    ],
+    "hints": [
+      "How do you divide by a fraction?",
+      "Can you factor x² − 9 and 2x + 4 so that common factors appear?"
+    ],
+    "wrong_reasons": {
+      "2/(x − 3)": "Took the reciprocal of the first fraction instead of the second",
+      "x − 3": "Cancelled x + 2 but forgot that 2x + 4 = 2(x + 2) leaves a factor of 2 in the denominator",
+      "(x − 3)(x + 3)²/(2(x + 2)²)": "Multiplied by the second fraction instead of by its reciprocal"
+    },
+    "check": "C = [\"x − 3\", \"(x − 3)/2\", \"2/(x − 3)\", \"(x − 3)(x + 3)²/(2(x + 2)²)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = ((x**2 - 9)/(2*x + 4)) / ((x + 3)/(x + 2))\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-047",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Working alone, printer A can complete a large print job in a hours, and printer B can complete the same job in b hours. Working together at these rates, the two printers complete 1/a + 1/b of the job each hour. Which expression represents the number of hours the two printers need to complete the job together?",
+    "choices": [
+      "(a + b)/(ab)",
+      "(a + b)/2",
+      "1/(a + b)",
+      "ab/(a + b)"
+    ],
+    "answer": "ab/(a + b)",
+    "explanation": [
+      "Write the combined rate as one fraction: 1/a + 1/b = b/(ab) + a/(ab) = (a + b)/(ab) of the job per hour.",
+      "The time to finish one whole job is 1 divided by the rate.",
+      "1 ÷ ((a + b)/(ab)) = ab/(a + b)."
+    ],
+    "hints": [
+      "If a machine finishes 1/5 of a job each hour, how many hours does the whole job take? How is that number related to 1/5?",
+      "How can you write 1/a + 1/b as a single fraction?"
+    ],
+    "wrong_reasons": {
+      "(a + b)/(ab)": "Gave the fraction of the job done per hour instead of the time needed",
+      "(a + b)/2": "Averaged the two times, which ignores that the printers work at the same time",
+      "1/(a + b)": "Added the times first and then took the reciprocal"
+    },
+    "check": "C = [\"(a + b)/(ab)\", \"ab/(a + b)\", \"(a + b)/2\", \"1/(a + b)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 1/(1/a + 1/b)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-048",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "If x² − y² = 48 and x + y = 8, what is the value of x − y?",
+    "answer": "6",
+    "explanation": [
+      "Factor the difference of squares: x² − y² = (x + y)(x − y).",
+      "Substitute the given values: 48 = 8(x − y).",
+      "Divide both sides by 8: x − y = 6."
+    ],
+    "hints": [
+      "Can x² − y² be written as a product that includes x + y?",
+      "After you substitute what you know, what equation is left?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nsol=solve([x**2-y**2-48,x+y-8],[x,y],dict=True)\nvals={s[x]-s[y] for s in sol}\nassert len(vals)==1\nresult=vals.pop()"
+  },
+  {
+    "id": "adv-equiv-expr-049",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The number of foxes in a forest is modeled by the expression 400(1.08)^t, where t is the number of years since the start of 2020. Which of the following expressions models the number of foxes in terms of m, the number of months since the start of 2020?",
+    "choices": [
+      "400(1.08)^(m/12)",
+      "400(1.08)^(12m)",
+      "400(1.0067)^m",
+      "(400/12)(1.08)^m"
+    ],
+    "answer": "400(1.08)^(m/12)",
+    "explanation": [
+      "There are 12 months in a year, so m months is m/12 years. That means t = m/12.",
+      "Substitute m/12 for t in the model.",
+      "The number of foxes is 400(1.08)^(m/12)."
+    ],
+    "hints": [
+      "If m = 24 months, how many years is that? What operation did you use to convert?",
+      "Where in the model should that converted value go?"
+    ],
+    "wrong_reasons": {
+      "400(1.08)^(12m)": "Multiplied by 12 instead of dividing when converting months to years",
+      "400(1.0067)^m": "Divided the 8% annual growth rate by 12, which does not give an equivalent monthly growth factor",
+      "(400/12)(1.08)^m": "Divided the initial number of foxes by 12 instead of changing the exponent"
+    },
+    "check": "C = [\"400(1.08)^(12m)\", \"400(1.0067)^m\", \"400(1.08)^(m/12)\", \"(400/12)(1.08)^m\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = (400*Rational(108,100)**t).subs(t, m/12)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-050",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The kinetic energy K of an object with mass m moving at speed v is given by K = (1/2)mv². Which of the following correctly expresses v in terms of K and m, for v > 0?",
+    "choices": [
+      "v = 2K/m",
+      "v = √(K/(2m))",
+      "v = √(2K/m)",
+      "v = √(2Km)"
+    ],
+    "answer": "v = √(2K/m)",
+    "explanation": [
+      "Multiply both sides by 2: 2K = mv².",
+      "Divide both sides by m: v² = 2K/m.",
+      "Since v > 0, take the positive square root: v = √(2K/m)."
+    ],
+    "hints": [
+      "What can you multiply both sides by to clear the fraction 1/2?",
+      "Once v² is by itself, what operation undoes the square?"
+    ],
+    "wrong_reasons": {
+      "v = √(K/(2m))": "Divided by 2 instead of multiplying by 2 to undo the factor of 1/2",
+      "v = 2K/m": "Isolated v² but forgot to take the square root",
+      "v = √(2Km)": "Multiplied by m instead of dividing by m"
+    },
+    "check": "C = [\"v = 2K/m\", \"v = √(2K/m)\", \"v = √(K/(2m))\", \"v = √(2Km)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = [e for e in solve(Eq(K, Rational(1,2)*m*v**2), v) if e.is_positive][0]\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-051",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "For all values of x, x² − 14x + c = (x − h)² + 3, where c and h are constants. What is the value of c?",
+    "answer": "52",
+    "explanation": [
+      "Expand the right side: (x − h)² + 3 = x² − 2hx + h² + 3.",
+      "Match the x-coefficients: −2h = −14, so h = 7.",
+      "Match the constant terms: c = h² + 3 = 49 + 3.",
+      "So c = 52."
+    ],
+    "hints": [
+      "What do you get when you expand (x − h)²?",
+      "Which coefficient on the left side tells you the value of h?"
+    ],
+    "check": "from sympy import *\nx,c,h=symbols('x c h')\nsol=solve(Poly(expand(x**2-14*x+c-((x-h)**2+3)),x).coeffs(),[c,h],dict=True)\nresult=sol[0][c]"
+  },
+  {
+    "id": "adv-equiv-expr-052",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to 9^(x + 1)?",
+    "choices": [
+      "3^(2x + 1)",
+      "9 · 3^(2x)",
+      "3^(x + 2)",
+      "9^x + 9"
+    ],
+    "answer": "9 · 3^(2x)",
+    "explanation": [
+      "Write 9 as a power of 3: 9^(x + 1) = (3²)^(x + 1).",
+      "Raise a power to a power by multiplying exponents: 3^(2x + 2).",
+      "Split the exponent: 3^(2x + 2) = 3² · 3^(2x) = 9 · 3^(2x)."
+    ],
+    "hints": [
+      "9 is a power of what smaller whole number?",
+      "When you raise a power to a power, what happens to the exponents?",
+      "How can a sum in an exponent be written as a product of two powers?"
+    ],
+    "wrong_reasons": {
+      "3^(2x + 1)": "Rewrote 9 as 3² but doubled only the x, not the whole exponent x + 1",
+      "3^(x + 2)": "Added the exponent 2 from 9 = 3² instead of multiplying the exponents",
+      "9^x + 9": "Turned a sum in the exponent into a sum of powers instead of a product of powers"
+    },
+    "check": "C = [\"9 · 3^(2x)\", \"3^(2x + 1)\", \"3^(x + 2)\", \"9^x + 9\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 9**(x + 1)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-053",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is a factor of 6x² + x − 12?",
+    "choices": [
+      "2x − 3",
+      "2x + 4",
+      "3x + 4",
+      "3x − 4"
+    ],
+    "answer": "3x − 4",
+    "explanation": [
+      "Look for binomial factors (mx + p)(nx + q) with mn = 6, pq = −12, and outer plus inner products adding to x.",
+      "Try (2x + 3)(3x − 4): the outer and inner products are −8x and 9x, which add to x.",
+      "So 6x² + x − 12 = (2x + 3)(3x − 4), and 3x − 4 is a factor."
+    ],
+    "hints": [
+      "What two numbers multiply to 6 · (−12) = −72 and add to 1?",
+      "How can you use those two numbers to split the middle term and factor by grouping?"
+    ],
+    "wrong_reasons": {
+      "3x + 4": "Used the right numbers with the wrong signs; (2x − 3)(3x + 4) = 6x² − x − 12",
+      "2x − 3": "Used the right numbers with the wrong signs; 2x − 3 is a factor of 6x² − x − 12",
+      "2x + 4": "Chose factors of 6x² and −12 without checking that the middle term comes out to x"
+    },
+    "check": "C = [\"2x − 3\", \"2x + 4\", \"3x − 4\", \"3x + 4\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 6*x**2 + x - 12\nok = [c for c in C if simplify(rem(TG, P(c), x)) == 0]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-054",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "For x > 0, which of the following is equivalent to √(72x³)?",
+    "choices": [
+      "6x√(2x)",
+      "36x√(2x)",
+      "6x²√2",
+      "18x√(2x)"
+    ],
+    "answer": "6x√(2x)",
+    "explanation": [
+      "Write 72x³ as a perfect square times what is left over: 72x³ = 36x² · 2x.",
+      "√(36x²) = 6x, because x > 0.",
+      "So √(72x³) = 6x√(2x)."
+    ],
+    "hints": [
+      "What is the largest perfect square that is a factor of 72?",
+      "How can you write x³ as a perfect square times a leftover factor?"
+    ],
+    "wrong_reasons": {
+      "36x√(2x)": "Moved 36 outside the radical without taking its square root",
+      "6x²√2": "Treated √(x³) as x² instead of x√x",
+      "18x√(2x)": "Took half of 36 instead of its square root"
+    },
+    "check": "C = [\"6x√(2x)\", \"36x√(2x)\", \"6x²√2\", \"18x√(2x)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = sqrt(72*x**3)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-055",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the expanded form of (x² + kx − 2)(3x + 1), where k is a constant, the coefficient of x² is −5. What is the value of k?",
+    "answer": "−2",
+    "accept": [
+      "-2"
+    ],
+    "explanation": [
+      "The x²-terms come from x² · 1 and kx · 3x.",
+      "Together they give (1 + 3k)x².",
+      "Set 1 + 3k = −5, so 3k = −6.",
+      "So k = −2."
+    ],
+    "hints": [
+      "Which products of one term from each factor give a term with x²?",
+      "What equation do you get when you set their combined coefficient equal to −5?"
+    ],
+    "check": "from sympy import *\nx,k=symbols('x k')\ncf=Poly(expand((x**2+k*x-2)*(3*x+1)),x).coeff_monomial(x**2)\nresult=solve(Eq(cf,-5),k)[0]"
+  },
+  {
+    "id": "adv-equiv-expr-056",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Lena starts with a square sheet of cardboard that is 20 inches long on each side. She cuts a square with side length x inches from each of the four corners and then folds up the sides to make an open-top box. Which expression represents the volume of the box, in cubic inches?",
+    "choices": [
+      "x(20 − x)²",
+      "x(20 − 2x)²",
+      "(20 − 2x)²",
+      "x(20 − 2x)"
+    ],
+    "answer": "x(20 − 2x)²",
+    "explanation": [
+      "A square of side x is removed from both ends of every edge, so each side of the base is 20 − 2x inches.",
+      "When the sides are folded up, the height of the box is x inches.",
+      "Volume = length × width × height = (20 − 2x)(20 − 2x)(x) = x(20 − 2x)²."
+    ],
+    "hints": [
+      "After squares are cut from both corners along one edge, how long is the part of that edge that remains?",
+      "When the flaps fold up, which measurement becomes the height of the box?"
+    ],
+    "wrong_reasons": {
+      "x(20 − x)²": "Subtracted only one cut from each edge, but a square is removed at both ends",
+      "(20 − 2x)²": "Found the area of the base but did not multiply by the height x",
+      "x(20 − 2x)": "Multiplied the height by only one side length of the base"
+    },
+    "check": "C = [\"x(20 − x)²\", \"(20 − 2x)²\", \"x(20 − 2x)\", \"x(20 − 2x)²\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = x*(20 - 2*x)*(20 - 2*x)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-057",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "For x ≠ 1/2, the expression (6x + k)/(2x − 1) is equivalent to 3 + 5/(2x − 1), where k is a constant. What is the value of k?",
+    "choices": [
+      "−8",
+      "2",
+      "5",
+      "8"
+    ],
+    "answer": "2",
+    "explanation": [
+      "Write 3 as a fraction with denominator 2x − 1: 3 = 3(2x − 1)/(2x − 1).",
+      "Add the numerators: 3(2x − 1) + 5 = 6x − 3 + 5 = 6x + 2.",
+      "So 3 + 5/(2x − 1) = (6x + 2)/(2x − 1), which means k = 2."
+    ],
+    "hints": [
+      "How can you write the whole number 3 as a fraction with denominator 2x − 1?",
+      "After you combine the right side into one fraction, which part of its numerator matches k?"
+    ],
+    "wrong_reasons": {
+      "5": "Matched k with the numerator of the fraction on the right side",
+      "8": "Expanded 3(2x − 1) as 6x + 3 before adding 5",
+      "−8": "Expanded 3(2x − 1) correctly but subtracted 5 instead of adding it"
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nresult=solve(Eq(cancel((3+5/(2*x-1))*(2*x-1))-6*x, k), k)[0]"
+  },
+  {
+    "id": "adv-equiv-expr-058",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to (x + 3)² − (x − 3)²?",
+    "choices": [
+      "0",
+      "18",
+      "12x",
+      "2x² + 18"
+    ],
+    "answer": "12x",
+    "explanation": [
+      "(x + 3)² = x² + 6x + 9 and (x − 3)² = x² − 6x + 9.",
+      "Subtract: (x² + 6x + 9) − (x² − 6x + 9).",
+      "The x² and 9 terms cancel, and 6x − (−6x) = 12x."
+    ],
+    "hints": [
+      "Is (x + 3)² the same as x² + 9? What term would be missing?",
+      "This is one square minus another square. Is there a factoring pattern you could use instead of expanding?"
+    ],
+    "wrong_reasons": {
+      "0": "Expanded both squares as x² + 9, leaving out the middle terms, so everything cancelled",
+      "18": "Expanded (x + 3)² as x² + 9 and (x − 3)² as x² − 9",
+      "2x² + 18": "Added the two squares instead of subtracting"
+    },
+    "check": "C = [\"0\", \"18\", \"12x\", \"2x² + 18\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = (x + 3)**2 - (x - 3)**2\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-059",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "For x ≠ 0 and y ≠ 0, the expression (3x²y)³/(9xy²) can be written as axᵐyⁿ, where a, m, and n are constants. What is the value of a + m + n?",
+    "answer": "9",
+    "explanation": [
+      "Raise each factor to the third power: (3x²y)³ = 27x⁶y³.",
+      "Divide the coefficients: 27 ÷ 9 = 3.",
+      "Subtract exponents: x⁶ ÷ x = x⁵ and y³ ÷ y² = y.",
+      "So the expression is 3x⁵y¹, and a + m + n = 3 + 5 + 1 = 9."
+    ],
+    "hints": [
+      "When you cube 3x²y, what happens to the coefficient, and what happens to each exponent?",
+      "When you divide powers with the same base, what do you do with the exponents?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y',positive=True)\ne=powsimp((3*x**2*y)**3/(9*x*y**2))\nA=e.subs({x:1,y:1})\nM=simplify(x*diff(log(e),x))\nNn=simplify(y*diff(log(e),y))\nresult=A+M+Nn"
+  },
+  {
+    "id": "adv-equiv-expr-060",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For x ≠ 0 and x ≠ 3, which of the following is equivalent to (1/3 − 1/x)/(x − 3)?",
+    "choices": [
+      "−1/(3x)",
+      "(x − 3)/(3x)",
+      "(x − 3)²/(3x)",
+      "1/(3x)"
+    ],
+    "answer": "1/(3x)",
+    "explanation": [
+      "Combine the numerator over the common denominator 3x: 1/3 − 1/x = x/(3x) − 3/(3x) = (x − 3)/(3x).",
+      "Dividing by x − 3 is the same as multiplying by 1/(x − 3).",
+      "(x − 3)/(3x) · 1/(x − 3) = 1/(3x), because x − 3 ≠ 0."
+    ],
+    "hints": [
+      "What common denominator lets you combine 1/3 and 1/x into a single fraction?",
+      "After combining, how does the new numerator compare with the denominator x − 3?"
+    ],
+    "wrong_reasons": {
+      "−1/(3x)": "Wrote 1/3 − 1/x as (3 − x)/(3x), reversing the order of the subtraction",
+      "(x − 3)/(3x)": "Combined the fractions in the numerator but forgot to divide by x − 3",
+      "(x − 3)²/(3x)": "Multiplied by x − 3 instead of dividing by it"
+    },
+    "check": "C = [\"−1/(3x)\", \"(x − 3)/(3x)\", \"(x − 3)²/(3x)\", \"1/(3x)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = (Rational(1,3) - 1/x)/(x - 3)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-061",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In optics, the thin lens equation 1/f = 1/a + 1/b relates the focal length f of a lens to the distance a between an object and the lens and the distance b between the lens and the object's image, where a > f > 0. Which of the following correctly expresses b in terms of a and f?",
+    "choices": [
+      "b = af/(a − f)",
+      "b = af/(f − a)",
+      "b = f − a",
+      "b = (a − f)/(af)"
+    ],
+    "answer": "b = af/(a − f)",
+    "explanation": [
+      "Isolate 1/b: 1/b = 1/f − 1/a.",
+      "Combine using the common denominator af: 1/b = a/(af) − f/(af) = (a − f)/(af).",
+      "Take the reciprocal of both sides: b = af/(a − f)."
+    ],
+    "hints": [
+      "What should you subtract from both sides to get 1/b by itself?",
+      "How can you combine 1/f − 1/a into a single fraction?",
+      "If you know the value of 1/b, how do you find b?"
+    ],
+    "wrong_reasons": {
+      "b = af/(f − a)": "Subtracted in the wrong order, using 1/b = 1/a − 1/f",
+      "b = f − a": "Took the reciprocal of each term separately, as if 1/b = 1/f − 1/a meant b = f − a",
+      "b = (a − f)/(af)": "Found 1/b correctly but forgot to take the reciprocal to get b"
+    },
+    "check": "C = [\"b = af/(a − f)\", \"b = af/(f − a)\", \"b = f − a\", \"b = (a − f)/(af)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = solve(Eq(1/f, 1/a + 1/b), b)[0]\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-062",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "For x > 1, (x^(a²) · x^(b²))/x^(2ab) = x¹⁶, where a and b are constants and a > b. What is the value of a − b?",
+    "answer": "4",
+    "explanation": [
+      "Multiplying powers adds exponents and dividing subtracts them, so the left side equals x^(a² + b² − 2ab).",
+      "a² − 2ab + b² = (a − b)², so x^((a − b)²) = x¹⁶.",
+      "Since x > 1, the exponents must be equal: (a − b)² = 16.",
+      "Because a > b, a − b is positive, so a − b = 4."
+    ],
+    "hints": [
+      "When you multiply and divide powers of the same base, how do you combine the exponents?",
+      "Does the combined exponent match a pattern you know from squaring a binomial?",
+      "Why does the condition a > b matter at the end?"
+    ],
+    "check": "from sympy import *\na,b=symbols('a b')\nd=symbols('d',positive=True)\nexpo=a**2+b**2-2*a*b\nresult=solve(Eq(expand(expo.subs(a,b+d)),16),d)[0]"
+  },
+  {
+    "id": "adv-equiv-expr-063",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For x > 0, which of the following is equivalent to √(x · ∛x)?",
+    "choices": [
+      "x^(1/6)",
+      "x^(5/6)",
+      "x^(2/3)",
+      "x^(4/3)"
+    ],
+    "answer": "x^(2/3)",
+    "explanation": [
+      "Write the cube root as a power: x · ∛x = x¹ · x^(1/3) = x^(4/3).",
+      "A square root is the 1/2 power: √(x^(4/3)) = (x^(4/3))^(1/2).",
+      "Multiply the exponents: (4/3)(1/2) = 2/3, so the expression equals x^(2/3)."
+    ],
+    "hints": [
+      "How can you write ∛x using a fractional exponent?",
+      "Before taking the square root, how can you combine x · ∛x into a single power of x?",
+      "What happens to an exponent when you take the square root of a power?"
+    ],
+    "wrong_reasons": {
+      "x^(4/3)": "Combined x · ∛x correctly but forgot to take the outer square root",
+      "x^(1/6)": "Multiplied the root exponents 1/2 and 1/3 and ignored the factor x",
+      "x^(5/6)": "Added the exponents 1/2 and 1/3 and ignored the factor x"
+    },
+    "check": "C = [\"x^(1/6)\", \"x^(5/6)\", \"x^(4/3)\", \"x^(2/3)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = sqrt(x*x**Rational(1,3))\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-064",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The expression 3x² + bx − 20, where b is a constant, can be written as (3x + p)(x + q), where p and q are integers. Which of the following could be the value of b?",
+    "choices": [
+      "−1",
+      "7",
+      "12",
+      "19"
+    ],
+    "answer": "7",
+    "explanation": [
+      "Expanding (3x + p)(x + q) gives 3x² + (3q + p)x + pq.",
+      "So pq = −20 and b = p + 3q.",
+      "Test integer pairs with a product of −20. For p = −5 and q = 4, b = −5 + 3(4) = 7.",
+      "No integer pair with pq = −20 gives any of the other choices, so b could be 7."
+    ],
+    "hints": [
+      "If you expand (3x + p)(x + q), what expressions in p and q give the x-coefficient and the constant term?",
+      "Why isn't the x-coefficient simply p + q here?",
+      "Which pairs of integers have a product of −20?"
+    ],
+    "wrong_reasons": {
+      "−1": "Used b = p + q, as if the leading coefficient were 1 (for example, p = 4 and q = −5)",
+      "12": "Included only the product 3x · q in the middle term and forgot the product p · x",
+      "19": "Used p = 4 and q = 5, whose product is +20 rather than −20"
+    },
+    "check": "from sympy import *\nC=[-1,7,12,19]\nx=symbols('x')\nposs=set()\nfor p in range(-20,21):\n    for q in range(-20,21):\n        if p*q==-20:\n            poss.add(Poly(expand((3*x+p)*(x+q)),x).coeff_monomial(x))\nok=[c for c in C if c in poss]\nassert len(ok)==1, ok\nresult=ok[0]"
+  },
+  {
+    "id": "adv-equiv-expr-065",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "If 2x + 3y = 7, what is the value of 4^x · 8^y?",
+    "answer": "128",
+    "explanation": [
+      "Write each base as a power of 2: 4 = 2² and 8 = 2³.",
+      "4^x · 8^y = 2^(2x) · 2^(3y) = 2^(2x + 3y).",
+      "Since 2x + 3y = 7, the value is 2⁷ = 128."
+    ],
+    "hints": [
+      "Can 4 and 8 both be written as powers of the same base?",
+      "When you multiply two powers with the same base, what happens to the exponents? Does the result remind you of the given equation?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y',real=True)\nysol=solve(Eq(2*x+3*y,7),y)[0]\ne=simplify(powsimp(expand_power_base((4**x*8**ysol).rewrite(exp),force=True)))\nvals={N(e.subs(x,v)) for v in [0,1,Rational(5,2)]}\nassert max(vals)-min(vals)<1e-9\nresult=nsimplify(list(vals)[0])"
+  },
+  {
+    "id": "adv-equiv-expr-066",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The amount, in milligrams, of a medical isotope remaining t hours after it is prepared is modeled by A = 640(1/2)^(t/8). Which of the following is an equivalent expression for A that shows, as the base of the power, the fraction of the isotope that remains after each 24-hour period?",
+    "choices": [
+      "640(1/6)^(t/24)",
+      "640(1/2)^(3t)",
+      "640(1/8)^(t/8)",
+      "640(1/8)^(t/24)"
+    ],
+    "answer": "640(1/8)^(t/24)",
+    "explanation": [
+      "24 hours is three 8-hour periods, so t/8 = 3 · (t/24).",
+      "Rewrite the power: (1/2)^(t/8) = (1/2)^(3 · t/24) = ((1/2)³)^(t/24).",
+      "(1/2)³ = 1/8, so A = 640(1/8)^(t/24).",
+      "In this form, the base 1/8 is the fraction remaining after each 24-hour period."
+    ],
+    "hints": [
+      "How many 8-hour periods are in 24 hours?",
+      "How can you write t/8 as a number times t/24?",
+      "Which exponent rule lets you move that number from the exponent into the base?"
+    ],
+    "wrong_reasons": {
+      "640(1/6)^(t/24)": "Multiplied the denominator 2 by 3 instead of raising 1/2 to the third power",
+      "640(1/2)^(3t)": "Multiplied the exponent by 3 instead of rewriting it in terms of 24-hour periods",
+      "640(1/8)^(t/8)": "Changed the base to 1/8 but did not change the exponent to count 24-hour periods"
+    },
+    "check": "C = [\"640(1/8)^(t/24)\", \"640(1/6)^(t/24)\", \"640(1/2)^(3t)\", \"640(1/8)^(t/8)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 640*Rational(1,2)**(t/8)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-067",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "If a/b = 3/5, where b ≠ 0, what is the value of (2a + b)/(a − b)?",
+    "choices": [
+      "−13/2",
+      "−11/2",
+      "11/2",
+      "13/2"
+    ],
+    "answer": "−11/2",
+    "explanation": [
+      "From a/b = 3/5, a = (3/5)b.",
+      "Substitute: 2a + b = (6/5)b + b = (11/5)b, and a − b = (3/5)b − b = −(2/5)b.",
+      "Divide: ((11/5)b)/(−(2/5)b) = −11/2, since b ≠ 0."
+    ],
+    "hints": [
+      "Can you write a in terms of b?",
+      "What happens if you divide every term in the numerator and the denominator by b?"
+    ],
+    "wrong_reasons": {
+      "11/2": "Computed the denominator as b − a instead of a − b",
+      "13/2": "Swapped the roles of a and b, using a = 5 and b = 3",
+      "−13/2": "Doubled b instead of a in the numerator"
+    },
+    "check": "from sympy import *\na,b=symbols('a b')\nresult=simplify(((2*a+b)/(a-b)).subs(a,Rational(3,5)*b))"
+  },
+  {
+    "id": "adv-equiv-expr-068",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Dario rides his bike d miles from his home to a lake at an average speed of r miles per hour and then returns home along the same route at an average speed of s miles per hour. Which expression represents his average speed, in miles per hour, for the entire round trip?",
+    "choices": [
+      "2rs/(r + s)",
+      "(r + s)/2",
+      "rs/(r + s)",
+      "(r + s)/(2rs)"
+    ],
+    "answer": "2rs/(r + s)",
+    "explanation": [
+      "Average speed = total distance ÷ total time.",
+      "The total distance is 2d. The total time is d/r + d/s = d(r + s)/(rs).",
+      "Average speed = 2d ÷ (d(r + s)/(rs)) = 2d · rs/(d(r + s)).",
+      "The d's cancel, leaving 2rs/(r + s)."
+    ],
+    "hints": [
+      "How is average speed defined for a whole trip?",
+      "How long does each half of the trip take, in terms of d and the speed?",
+      "When you divide by a fraction, which factors can cancel?"
+    ],
+    "wrong_reasons": {
+      "(r + s)/2": "Averaged the two speeds, ignoring that more time is spent at the slower speed",
+      "rs/(r + s)": "Used d instead of 2d for the total distance",
+      "(r + s)/(2rs)": "Divided total time by total distance, which gives hours per mile"
+    },
+    "check": "C = [\"(r + s)/2\", \"rs/(r + s)\", \"2rs/(r + s)\", \"(r + s)/(2rs)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 2*d/(d/r + d/s)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-069",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "For all values of x, a(x − 2)² + b(x − 2) + c = 3x² − 5x + 4, where a, b, and c are constants. What is the value of a + b + c?",
+    "answer": "16",
+    "explanation": [
+      "The left side becomes a + b + c when x − 2 = 1, that is, when x = 3.",
+      "The equation is true for all x, so substitute x = 3 into both sides.",
+      "Right side: 3(3)² − 5(3) + 4 = 27 − 15 + 4 = 16.",
+      "So a + b + c = 16."
+    ],
+    "hints": [
+      "Instead of expanding, is there a value of x that turns the left side into exactly a + b + c?",
+      "Once you choose that value of x, what does the right side equal?"
+    ],
+    "check": "from sympy import *\nx,a,b,c=symbols('x a b c')\nsol=solve(Poly(expand(a*(x-2)**2+b*(x-2)+c-(3*x**2-5*x+4)),x).coeffs(),[a,b,c],dict=True)[0]\nresult=sol[a]+sol[b]+sol[c]"
+  },
+  {
+    "id": "adv-equiv-expr-070",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For x > 1, which of the following is equivalent to 1/(x − 1) − 2/(x² − 1)?",
+    "choices": [
+      "−1/(x² − 1)",
+      "(x + 3)/(x² − 1)",
+      "1/(x + 1)",
+      "−1/(x + 1)"
+    ],
+    "answer": "1/(x + 1)",
+    "explanation": [
+      "Factor the second denominator: x² − 1 = (x − 1)(x + 1).",
+      "Rewrite the first fraction with that denominator: 1/(x − 1) = (x + 1)/((x − 1)(x + 1)).",
+      "Subtract the numerators: (x + 1 − 2)/((x − 1)(x + 1)) = (x − 1)/((x − 1)(x + 1)).",
+      "Cancel the common factor x − 1 to get 1/(x + 1)."
+    ],
+    "hints": [
+      "Can x² − 1 be factored so that it shares a factor with x − 1?",
+      "After subtracting, is the new numerator related to one of the factors in the denominator?"
+    ],
+    "wrong_reasons": {
+      "−1/(x² − 1)": "Subtracted the numerators without first rewriting the fractions over a common denominator",
+      "(x + 3)/(x² − 1)": "Added 2 instead of subtracting it when combining the numerators",
+      "−1/(x + 1)": "Wrote the numerator as 2 − (x + 1) instead of (x + 1) − 2"
+    },
+    "check": "C = [\"−1/(x² − 1)\", \"(x + 3)/(x² − 1)\", \"1/(x + 1)\", \"−1/(x + 1)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 1/(x - 1) - 2/(x**2 - 1)\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-071",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to x² + 6x + 9 − y²?",
+    "choices": [
+      "(x + 3 − y)²",
+      "(x − y + 3)(x − y − 3)",
+      "(x + y + 3)(x − y − 3)",
+      "(x + 3 − y)(x + 3 + y)"
+    ],
+    "answer": "(x + 3 − y)(x + 3 + y)",
+    "explanation": [
+      "The first three terms form a perfect square trinomial: x² + 6x + 9 = (x + 3)².",
+      "So the expression is (x + 3)² − y², a difference of two squares.",
+      "Using u² − v² = (u − v)(u + v) with u = x + 3 and v = y gives (x + 3 − y)(x + 3 + y)."
+    ],
+    "hints": [
+      "Do any three of the terms form a familiar pattern by themselves?",
+      "Once those three terms are rewritten, what kind of expression is left?"
+    ],
+    "wrong_reasons": {
+      "(x + 3 − y)²": "Treated the expression as a perfect square instead of a difference of squares",
+      "(x − y + 3)(x − y − 3)": "Grouped x with −y, which gives (x − y)² − 9 instead",
+      "(x + y + 3)(x − y − 3)": "Grouped the 3 with y, which gives x² − (y + 3)² instead"
+    },
+    "check": "C = [\"(x + 3 − y)(x + 3 + y)\", \"(x + 3 − y)²\", \"(x − y + 3)(x − y − 3)\", \"(x + y + 3)(x − y − 3)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = x**2 + 6*x + 9 - y**2\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-072",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A rectangular mural has an area of (6x² + 5x − 6) square feet, where x > 1. The length of the mural is (3x − 2) feet. Which expression represents the perimeter of the mural, in feet?",
+    "choices": [
+      "10x + 2",
+      "5x + 1",
+      "4x + 6",
+      "12x² + 10x − 12"
+    ],
+    "answer": "10x + 2",
+    "explanation": [
+      "The width is the area divided by the length: (6x² + 5x − 6)/(3x − 2).",
+      "Factor the area: 6x² + 5x − 6 = (3x − 2)(2x + 3), so the width is 2x + 3 feet.",
+      "Perimeter = 2(length + width) = 2((3x − 2) + (2x + 3)).",
+      "So the perimeter is 2(5x + 1) = 10x + 2."
+    ],
+    "hints": [
+      "If you know the area and the length of a rectangle, how can you find its width?",
+      "Can the area expression be factored so that 3x − 2 is one of the factors?",
+      "Once you know both dimensions, how do you find the perimeter?"
+    ],
+    "wrong_reasons": {
+      "5x + 1": "Added the length and width but did not double the sum",
+      "4x + 6": "Doubled the width but left out the length",
+      "12x² + 10x − 12": "Doubled the area instead of working with the length and width"
+    },
+    "check": "C = [\"5x + 1\", \"4x + 6\", \"10x + 2\", \"12x² + 10x − 12\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 2*((3*x - 2) + cancel((6*x**2 + 5*x - 6)/(3*x - 2)))\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-073",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "If 3x² − 12x = 9, what is the value of (x − 2)²?",
+    "answer": "7",
+    "explanation": [
+      "Divide both sides of the given equation by 3: x² − 4x = 3.",
+      "Expand the expression you want: (x − 2)² = x² − 4x + 4.",
+      "Substitute: (x − 2)² = 3 + 4 = 7."
+    ],
+    "hints": [
+      "Is there a common factor you can divide out of the given equation?",
+      "When you expand (x − 2)², do you see part of the simplified equation inside it?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nvals={simplify((s-2)**2) for s in solve(Eq(3*x**2-12*x,9),x)}\nassert len(vals)==1\nresult=vals.pop()"
+  },
+  {
+    "id": "adv-equiv-expr-074",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Which of the following is a factor of x⁴ − 13x² + 36?",
+    "choices": [
+      "x − 4",
+      "x − 9",
+      "x + 3",
+      "x² + 9"
+    ],
+    "answer": "x + 3",
+    "explanation": [
+      "Let u = x². The expression becomes u² − 13u + 36.",
+      "u² − 13u + 36 = (u − 4)(u − 9), so the expression is (x² − 4)(x² − 9).",
+      "Each factor is a difference of squares: (x − 2)(x + 2)(x − 3)(x + 3).",
+      "Of the choices, only x + 3 is a factor."
+    ],
+    "hints": [
+      "If you let u = x², what quadratic in u do you get?",
+      "After factoring in terms of u, can any of the factors be factored further?"
+    ],
+    "wrong_reasons": {
+      "x − 4": "Factored the expression as (x² − 4)(x² − 9) but then treated x² − 4 as if it contained the factor x − 4",
+      "x² + 9": "Used the wrong signs; (x² + 4)(x² + 9) = x⁴ + 13x² + 36",
+      "x − 9": "Factored the expression as (x² − 4)(x² − 9) but then treated x² − 9 as if it contained the factor x − 9"
+    },
+    "check": "C = [\"x − 4\", \"x − 9\", \"x + 3\", \"x² + 9\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = x**4 - 13*x**2 + 36\nok = [c for c in C if simplify(rem(TG, P(c), x)) == 0]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-075",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A cube has edge length s and volume V, so V = s³. The surface area of the cube is 6s². Which of the following expresses the surface area of the cube in terms of V?",
+    "choices": [
+      "6V²",
+      "6V^(1/3)",
+      "6V^(3/2)",
+      "6V^(2/3)"
+    ],
+    "answer": "6V^(2/3)",
+    "explanation": [
+      "From V = s³, the edge length is s = ∛V = V^(1/3).",
+      "Substitute into the surface area formula: 6s² = 6(V^(1/3))².",
+      "Multiply the exponents: (V^(1/3))² = V^(2/3), so the surface area is 6V^(2/3)."
+    ],
+    "hints": [
+      "If you know the volume V, how could you find the edge length s?",
+      "How can that root be written using a fractional exponent?",
+      "What happens to a fractional exponent when you square the power?"
+    ],
+    "wrong_reasons": {
+      "6V^(3/2)": "Wrote s = ∛V correctly but then inverted the exponent when squaring, using 3/2 instead of 2/3",
+      "6V^(1/3)": "Replaced s² with s, forgetting to square the edge length",
+      "6V²": "Substituted V for s instead of the cube root of V"
+    },
+    "check": "C = [\"6V²\", \"6V^(1/3)\", \"6V^(2/3)\", \"6V^(3/2)\"]\n\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nNAMES = 'a b c d f h k m n p q r s t u v w x y z K V'\nSY = dict(zip(NAMES.split(), symbols(NAMES, positive=True)))\nglobals().update(SY)\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\nLD = dict(SY); LD.update({'sqrt': sqrt, 'cbrt': lambda e: e**Rational(1,3), 'root4': lambda e: e**Rational(1,4), 'pi': pi})\ndef P(c):\n    if '=' in c:\n        c = c.split('=')[1]\n    c = c.replace('−', '-').replace('·', '*').replace(',', '').replace('π', ' pi ')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    F = {'√': 'sqrt', '∛': 'cbrt', '∜': 'root4'}\n    c = re.sub(r'([√∛∜])\\(', lambda m: ' ' + F[m.group(1)] + '(', c)\n    c = re.sub(r'([√∛∜])([A-Za-z0-9.]+)', lambda m: ' ' + F[m.group(1)] + '(' + m.group(2) + ')', c)\n    return parse_expr(c, transformations=T, local_dict=LD)\nimport random as _r\n_r.seed(7)\nPTS = []\nfor _i in range(3):\n    pt = {sym: Rational(_r.randint(11, 59), _r.randint(7, 13)) for sym in SY.values()}\n    pt[SY['a']] = pt[SY['f']] + Rational(_r.randint(20, 40), 7)\n    PTS.append(pt)\ndef eq(A, B):\n    return all(abs(N(A.subs(p) - B.subs(p), 30)) < 1e-9 * max(1, abs(N(B.subs(p), 30))) for p in PTS)\nTG = 6*[e for e in solve(Eq(V, s**3), s) if e.is_positive][0]**2\nok = [c for c in C if eq(P(c), TG)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
   }
 ]

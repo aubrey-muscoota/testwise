@@ -1,0 +1,27 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "alg-linear-eq-2var-038",
+      "reason": "Wrong reason for 'It decreases by 2.' did not lead to that choice; rewrote it as reporting the new y-value (−2) as the change."
+    },
+    {
+      "id": "alg-linear-eq-2var-040",
+      "reason": "Second hint ('where do you land if x goes up by 1?') nearly gave the answer (2, 6); replaced with a hint to compute change in y over change in x for each choice."
+    },
+    {
+      "id": "alg-linear-eq-2var-043",
+      "reason": "Wrong reason for '10 pencils and 5 pens' ('likely an estimate') named no misconception; rewrote it as miscounting the pencil cost as $6."
+    },
+    {
+      "id": "alg-linear-eq-2var-048",
+      "reason": "Wrong reason for Quadrant III was incorrect (a positive slope through (0, −5) misses Quadrant II, not III); rewrote it as treating the y-intercept as +5, which misses Quadrant III."
+    },
+    {
+      "id": "alg-linear-eq-2var-063",
+      "reason": "Wrong reasons for Quadrants III and IV were swapped (a falling line with a positive y-intercept misses III, a rising line with a positive y-intercept misses IV); corrected both."
+    }
+  ],
+  "replaced": [],
+  "removed": []
+}

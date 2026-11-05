@@ -1,0 +1,40 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "psda-inference-060",
+      "reason": "Near-duplicate of 027 (same 1/√n setup with margins 6 and 4 and sizes 400/900); changed to margins 5 and 3 with Survey B using 1,280 more people, so the answer is now 720. Explanation and check updated."
+    },
+    {
+      "id": "psda-inference-074",
+      "reason": "Wrong reasons described the consequence of each choice rather than the misconception behind it; rewrote them as real errors (reversed the 45% condition, treated 44.5% as reaching 45%, used only the sample percent for the 50% claim)."
+    },
+    {
+      "id": "psda-inference-051",
+      "reason": "Check hard-coded the plausible percents 19% and 25%; it now computes them from the givens 22% ± 3."
+    },
+    {
+      "id": "psda-inference-066",
+      "reason": "Check hard-coded the plausible percents 30% and 38%; it now computes them from the givens 34% ± 4."
+    },
+    {
+      "id": "psda-inference-065",
+      "reason": "Mislabelled difficulty: a two-stage sample proportion scaled to the population is medium, not hard; changed difficulty from 3 to 2."
+    },
+    {
+      "id": "psda-inference-073",
+      "reason": "Mislabelled difficulty: spotting the one margin of error that grows with sample size is a single monotonic check, so medium, not hard; changed difficulty from 3 to 2."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "psda-inference-033",
+      "reason": "Near-duplicate of 006 (centered plausible range given, find its center vs. its half-width, same setup sentence); replaced with an easy SPR that computes a sample percent (56 of 80) and adds the margin of error, answer 79."
+    },
+    {
+      "id": "psda-inference-037",
+      "reason": "Near-duplicate of new item 031 (sample rate per unit times population count); replaced with an easy SPR that finds the sample percent as the center of a 61%–69% range and converts it to a count of 200, answer 130."
+    }
+  ],
+  "removed": []
+}

@@ -22,7 +22,7 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 
 ## How questions are made
 
-1. A writer drafts 27 questions per skill (9 easy, 9 medium, 9 hard), each with a worked solution, Socratic hints, the misconception behind every wrong choice, and Python code that computes the answer independently.
+1. A writer drafts questions per skill in even thirds of easy, medium and hard (75 per skill, 1,425 in all), each with a worked solution, Socratic hints, the misconception behind every wrong choice, and Python code that computes the answer independently.
 2. `check_items.py` runs that code and rejects any question whose code doesn't reproduce the key.
 3. A separate reviewer solves every question blind, without seeing the key, and fixes or removes any that are wrong, ambiguous, or off-level.
 4. In the app, students can report a question. Reports are stored in `item_checks`.
@@ -34,6 +34,7 @@ All questions are original. Testwise is not affiliated with College Board.
 - Each learner has a rating per skill, and each question has a difficulty rating on the same scale (Elo/Rasch style). Every answer nudges both.
 - A lesson is 8 questions: up to 3 due reviews first, then unseen questions near the level the learner gets right about 65% of the time, easiest first.
 - A missed question comes back at the end of the lesson, then again tomorrow, then after 2.5, 6 and 16 days. After that it graduates.
+- New learners can take a 12-question placement quiz: three per domain, from an early, a middle and a late skill, easy to hard. A passed question tests out that skill and everything it builds on (a medium or hard pass only counts if an easier one in the same domain was also right). Tested-out skills stay open to practice.
 - A skill unlocks after 8 answers in each of its prerequisites. It counts as mastered after 12+ answers at 80%+ predicted accuracy on medium-hard questions.
 
 ## Socrates

@@ -1,0 +1,24 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "psda-one-var-data-034",
+      "reason": "Check invented a five-price data set and asserted its median; it now computes 0.80 × 45 directly from the givens."
+    },
+    {
+      "id": "psda-one-var-data-059",
+      "reason": "Wrong_reasons for 36 and 45 did not point to one misconception each ('added 1.5 to Q3' gives 31.5, which would flag 36, 45 and 52); rewritten to name the specific wrong cutoff each comes from."
+    },
+    {
+      "id": "psda-one-var-data-062",
+      "reason": "Check returned the key string if a flag held and 'other' if not; it now works out the new mean and variance for general n (population and sample form) and maps the signs of the changes to one of the four choices."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "psda-one-var-data-036",
+      "reason": "Near-duplicate of 002 (median of six unordered values, difficulty 1); replaced with an original difficulty-1 SPR on the range of 8 temperatures that include negatives (6 − (−7) = 13)."
+    }
+  ],
+  "removed": []
+}

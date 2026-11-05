@@ -734,5 +734,1351 @@
       "85": "Assumed she just needs to score the target average on the exam."
     },
     "check": "from sympy import *\nx=symbols('x')\nresult=solve((82+90+77+2*x)/5-85,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-028",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A 64-ounce jug of juice is poured into glasses that all hold the same amount. After 5 glasses are filled, 14 ounces of juice remain in the jug. How many ounces does each glass hold?",
+    "choices": [
+      "2.8",
+      "10",
+      "12.8",
+      "15.6"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Let g be the ounces in each glass. The juice used is 5g.",
+      "Starting amount minus juice used equals what is left: 64 − 5g = 14.",
+      "Subtract 64 from both sides: −5g = −50, so g = 10."
+    ],
+    "hints": [
+      "How much juice in total went into the 5 glasses?",
+      "How can you share that amount equally among the glasses?"
+    ],
+    "wrong_reasons": {
+      "12.8": "Divided all 64 ounces among the 5 glasses, ignoring the 14 ounces left in the jug.",
+      "15.6": "Added the 14 ounces to 64 instead of subtracting them.",
+      "2.8": "Divided the leftover 14 ounces by 5 instead of the amount poured."
+    },
+    "check": "from sympy import *\ng=symbols('g')\nresult=solve(64-5*g-14,g)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-029",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If 3(x + 2) = 21, what is the value of x + 2?",
+    "choices": [
+      "5",
+      "7",
+      "25/3",
+      "9"
+    ],
+    "answer": "7",
+    "explanation": [
+      "The left side is 3 times the quantity x + 2.",
+      "Divide both sides by 3: x + 2 = 7.",
+      "There is no need to find x itself, so x + 2 = 7."
+    ],
+    "hints": [
+      "What quantity is being multiplied by 3 on the left side?",
+      "Can you undo that multiplication in one step and stop there?"
+    ],
+    "wrong_reasons": {
+      "5": "Found the value of x, not x + 2.",
+      "9": "Found x + 2 = 7, then mistook 7 for x and added 2 again.",
+      "25/3": "Multiplied only x by 3 (3x + 2 = 21), giving x = 19/3 and x + 2 = 25/3."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nxv=solve(3*(x+2)-21,x)[0]\nresult=xv+2"
+  },
+  {
+    "id": "alg-linear-eq-1var-030",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which equation has the same solution as 3(x − 4) = 18?",
+    "choices": [
+      "x − 4 = 6",
+      "x − 4 = 15",
+      "3x − 4 = 18",
+      "x = 6"
+    ],
+    "answer": "x − 4 = 6",
+    "explanation": [
+      "Divide both sides of 3(x − 4) = 18 by 3: x − 4 = 6.",
+      "Dividing both sides by the same nonzero number does not change the solution, so x − 4 = 6 has the same solution (x = 10).",
+      "x = 6 has solution 6, x − 4 = 15 has solution 19, and 3x − 4 = 18 has solution 22/3."
+    ],
+    "hints": [
+      "What single operation would remove the 3 from the left side?",
+      "If you do the same thing to both sides, does the solution change?"
+    ],
+    "wrong_reasons": {
+      "x − 4 = 15": "Subtracted 3 from both sides instead of dividing by 3.",
+      "3x − 4 = 18": "Multiplied only x by 3 and left the 4 alone, which changes the equation.",
+      "x = 6": "Divided by 3 correctly but then dropped the − 4; x = 6 is not the solution."
+    },
+    "check": "from sympy import *\nx=symbols('x')\ns=solve(3*(x-4)-18,x)[0]\nc={'x-4=6':x-4-6,'x-4=15':x-4-15,'3x-4=18':3*x-4-18,'x=6':x-6}\nr=[k for k,e in c.items() if solve(e,x)[0]==s]\nassert len(r)==1\nresult=r[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-031",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Two angles are supplementary. The measure of the larger angle is 24° less than 3 times the measure of the smaller angle. What is the measure, in degrees, of the larger angle?",
+    "choices": [
+      "51",
+      "129",
+      "141",
+      "156"
+    ],
+    "answer": "129",
+    "explanation": [
+      "Let s be the smaller angle. The larger angle is 3s − 24.",
+      "Supplementary angles add to 180°: s + (3s − 24) = 180.",
+      "Combine: 4s − 24 = 180, so 4s = 204 and s = 51.",
+      "The larger angle is 3(51) − 24 = 129°."
+    ],
+    "hints": [
+      "What do the measures of two supplementary angles add up to?",
+      "How would you write the larger angle using the smaller angle's measure?",
+      "Did you answer for the angle the question asks about?"
+    ],
+    "wrong_reasons": {
+      "51": "Found the smaller angle instead of the larger one.",
+      "141": "Wrote the larger angle as 3s + 24 (24 more instead of 24 less).",
+      "156": "Subtracted 24 from 180 without setting up the relationship between the angles."
+    },
+    "check": "from sympy import *\ns=symbols('s')\nsv=solve(s+3*s-24-180,s)[0]\nresult=3*sv-24"
+  },
+  {
+    "id": "alg-linear-eq-1var-032",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "After a 30% discount, the sale price of a jacket is $56. What was the original price of the jacket, in dollars?",
+    "choices": [
+      "39.20",
+      "72.80",
+      "80",
+      "86"
+    ],
+    "answer": "80",
+    "explanation": [
+      "After a 30% discount, the buyer pays 70% of the original price p.",
+      "So 0.7p = 56.",
+      "Divide by 0.7: p = 80."
+    ],
+    "hints": [
+      "If 30% is taken off, what percent of the original price is left?",
+      "What equation connects that percent of p to the sale price?"
+    ],
+    "wrong_reasons": {
+      "72.80": "Added 30% of the sale price to $56; the discount was 30% of the original price, not of $56.",
+      "39.20": "Took another 30% off the sale price instead of working backward.",
+      "86": "Added 30 dollars instead of accounting for 30 percent."
+    },
+    "check": "from sympy import *\np=symbols('p')\nresult=solve(Rational(70,100)*p-56,p)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-033",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "Four friends split the cost of a pizza order equally. Each friend also pays $2.50 toward the delivery tip. If each friend paid a total of $9.75, what was the cost, in dollars, of the pizza order, not including the tip?",
+    "answer": "29",
+    "accept": [
+      "29.00",
+      "29.0"
+    ],
+    "explanation": [
+      "Let c be the cost of the pizza order. Each friend's share of the pizza is c/4.",
+      "Each friend's total: c/4 + 2.50 = 9.75.",
+      "Subtract 2.50: c/4 = 7.25.",
+      "Multiply by 4: c = 29."
+    ],
+    "hints": [
+      "How much of each friend's $9.75 was not for the tip?",
+      "How does one friend's share compare with the cost of the whole order?"
+    ],
+    "check": "from sympy import *\nc=symbols('c')\nresult=solve(c/4+Rational(5,2)-Rational(39,4),c)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-034",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A landscaper uses the equation 85 + 40h = 325 to find h, the number of hours a job took. In the equation, 85 is a fixed equipment fee, in dollars, and 325 is the total charge for the job, in dollars. What does the number 40 represent?",
+    "choices": [
+      "The charge, in dollars, for each hour of work",
+      "The fixed equipment fee, in dollars",
+      "The number of hours the job took",
+      "The total charge, in dollars, not including the equipment fee"
+    ],
+    "answer": "The charge, in dollars, for each hour of work",
+    "explanation": [
+      "The term 40h grows by 40 each time h, the number of hours, increases by 1.",
+      "So 40 is the amount added to the charge for each hour worked.",
+      "85 is the fixed fee, h is the number of hours, and 325 − 85 = 240 is the total hourly charge for the job."
+    ],
+    "hints": [
+      "Which term in the equation changes when the number of hours changes?",
+      "If the job took one more hour, how much would the total charge go up?"
+    ],
+    "wrong_reasons": {
+      "The fixed equipment fee, in dollars": "The fixed fee is the constant 85, which does not depend on h.",
+      "The number of hours the job took": "The number of hours is the variable h, not its coefficient.",
+      "The total charge, in dollars, not including the equipment fee": "That would be 40h = 240 for this job, not the coefficient 40."
+    },
+    "check": null,
+    "check_note": "Conceptual: interpreting a coefficient in context; there is no numeric answer to compute."
+  },
+  {
+    "id": "alg-linear-eq-1var-035",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Five less than three times a number n is 22. Which equation represents this situation?",
+    "choices": [
+      "5 − 3n = 22",
+      "3(n − 5) = 22",
+      "3n + 5 = 22",
+      "3n − 5 = 22"
+    ],
+    "answer": "3n − 5 = 22",
+    "explanation": [
+      "Three times a number n is 3n.",
+      "Five less than 3n means 5 is subtracted from 3n: 3n − 5.",
+      "This expression is equal to 22, so 3n − 5 = 22."
+    ],
+    "hints": [
+      "What expression stands for \"three times a number n\"?",
+      "In \"five less than something,\" what is the five subtracted from?"
+    ],
+    "wrong_reasons": {
+      "5 − 3n = 22": "Reversed the order: \"five less than 3n\" means 3n − 5, not 5 − 3n.",
+      "3(n − 5) = 22": "Subtracted 5 from n before tripling instead of subtracting 5 from 3n.",
+      "3n + 5 = 22": "Added 5 instead of subtracting it."
+    },
+    "check": "from sympy import *\nn=symbols('n')\ntarget=3*n-5\nc={'5-3n=22':5-3*n,'3n-5=22':3*n-5,'3(n-5)=22':3*(n-5),'3n+5=22':3*n+5}\nr=[k for k,e in c.items() if expand(e-target)==0]\nassert len(r)==1\nresult=r[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-036",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "What value of x satisfies (2/5)x + 3 = 11?",
+    "choices": [
+      "16/5",
+      "8",
+      "20",
+      "35"
+    ],
+    "answer": "20",
+    "explanation": [
+      "Subtract 3 from both sides: (2/5)x = 8.",
+      "Multiply both sides by 5/2: x = 8 · 5/2 = 20."
+    ],
+    "hints": [
+      "What should you do first to get the x-term alone on one side?",
+      "What number can you multiply by to turn (2/5)x into x?"
+    ],
+    "wrong_reasons": {
+      "16/5": "Multiplied 8 by 2/5 instead of dividing by 2/5.",
+      "8": "Subtracted 3 but then ignored the coefficient 2/5.",
+      "35": "Added 3 to 11 instead of subtracting, then divided 14 by 2/5."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Rational(2,5)*x+3-11,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-037",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A 15-foot board is cut into two pieces. One piece is 3 feet longer than the other. What is the length, in feet, of the shorter piece?",
+    "answer": "6",
+    "accept": [
+      "6.0"
+    ],
+    "explanation": [
+      "Let s be the length of the shorter piece. The longer piece is s + 3.",
+      "The pieces add to the whole board: s + (s + 3) = 15.",
+      "So 2s + 3 = 15, 2s = 12, and s = 6."
+    ],
+    "hints": [
+      "If the shorter piece is s feet long, how would you write the length of the longer piece?",
+      "What must the two lengths add up to?"
+    ],
+    "check": "from sympy import *\ns=symbols('s')\nresult=solve(s+(s+3)-15,s)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-038",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Each side of a regular hexagon has length (x + 3) centimeters. The perimeter of the hexagon is 54 centimeters. What is the value of x?",
+    "choices": [
+      "6",
+      "8.5",
+      "9",
+      "10.5"
+    ],
+    "answer": "6",
+    "explanation": [
+      "A regular hexagon has 6 equal sides, so its perimeter is 6(x + 3).",
+      "Set up the equation: 6(x + 3) = 54.",
+      "Divide by 6: x + 3 = 9, so x = 6."
+    ],
+    "hints": [
+      "How many sides does a hexagon have, and how do their lengths compare?",
+      "What expression gives the total length of all the sides?"
+    ],
+    "wrong_reasons": {
+      "9": "Found the side length x + 3 instead of x.",
+      "8.5": "Multiplied only x by 6 (6x + 3 = 54).",
+      "10.5": "Used 4 sides, as for a square, instead of 6."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(6*(x+3)-54,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-039",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A pool contains 1,500 gallons of water. A hose adds water at a constant rate of 450 gallons per hour. The pool is full when it holds 6,000 gallons. How many minutes will it take the hose to fill the pool?",
+    "answer": "600",
+    "explanation": [
+      "Let t be the number of hours. Then 1,500 + 450t = 6,000.",
+      "Subtract 1,500: 450t = 4,500, so t = 10 hours.",
+      "Convert to minutes: 10 × 60 = 600 minutes."
+    ],
+    "hints": [
+      "Write an equation for the amount of water after t hours.",
+      "The rate is given per hour. What unit does the question ask for?"
+    ],
+    "check": "from sympy import *\nt=symbols('t')\nresult=solve(1500+450*t-6000,t)[0]*60"
+  },
+  {
+    "id": "alg-linear-eq-1var-040",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The sum of a number and one-third of that number is 32. What is the number?",
+    "answer": "24",
+    "explanation": [
+      "Let n be the number. Then n + (1/3)n = 32.",
+      "Combine like terms: (4/3)n = 32.",
+      "Multiply by 3/4: n = 24."
+    ],
+    "hints": [
+      "How can you write \"one-third of the number\" using n?",
+      "What do you get when you combine n and that term?"
+    ],
+    "check": "from sympy import *\nn=symbols('n')\nresult=solve(n+n/3-32,n)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-041",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Ana bought 3 notebooks that cost $2.40 each and some pens that cost $0.80 each. She spent $11.20 in all. How many pens did she buy?",
+    "choices": [
+      "5",
+      "11",
+      "14",
+      "23"
+    ],
+    "answer": "5",
+    "explanation": [
+      "The notebooks cost 3 × 2.40 = 7.20 dollars.",
+      "If p is the number of pens, 7.20 + 0.80p = 11.20.",
+      "Subtract 7.20: 0.80p = 4.00, so p = 5."
+    ],
+    "hints": [
+      "How much did all of the notebooks cost together?",
+      "How much money is left over for pens, and how many pens does that buy?"
+    ],
+    "wrong_reasons": {
+      "11": "Subtracted the price of only one notebook instead of three.",
+      "14": "Divided the total by the pen price without removing the notebook cost.",
+      "23": "Added the notebook cost to the total instead of subtracting it."
+    },
+    "check": "from sympy import *\np=symbols('p')\nresult=solve(3*Rational(240,100)+Rational(80,100)*p-Rational(1120,100),p)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-042",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The height h, in centimeters, of a sunflower w weeks after it was first measured is modeled by the equation h = 2.5w + 14. According to the model, how many weeks after it was first measured will the sunflower be 39 centimeters tall?",
+    "choices": [
+      "10",
+      "15.6",
+      "21.2",
+      "111.5"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Substitute h = 39: 39 = 2.5w + 14.",
+      "Subtract 14: 25 = 2.5w.",
+      "Divide by 2.5: w = 10."
+    ],
+    "hints": [
+      "Which variable in the model stands for the height?",
+      "After you substitute, what must you undo first to isolate w?"
+    ],
+    "wrong_reasons": {
+      "15.6": "Divided 39 by 2.5 without first subtracting the starting height of 14.",
+      "21.2": "Added 14 to 39 instead of subtracting it.",
+      "111.5": "Substituted 39 for w instead of for h."
+    },
+    "check": "from sympy import *\nw=symbols('w')\nresult=solve(Rational(5,2)*w+14-39,w)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-043",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The radius of a circle is (x − 1) inches, and its circumference is 10π inches. What is the value of x?",
+    "choices": [
+      "4",
+      "5",
+      "6",
+      "11"
+    ],
+    "answer": "6",
+    "explanation": [
+      "The circumference of a circle is 2π times the radius, so 2π(x − 1) = 10π.",
+      "Divide both sides by 2π: x − 1 = 5.",
+      "Add 1: x = 6."
+    ],
+    "hints": [
+      "What formula connects a circle's radius and its circumference?",
+      "Which factor appears on both sides of your equation and can be divided away?"
+    ],
+    "wrong_reasons": {
+      "4": "Subtracted 1 instead of adding it when solving x − 1 = 5.",
+      "11": "Used circumference = πr (forgot the 2), getting x − 1 = 10.",
+      "5": "Found the radius, x − 1 = 5, instead of the value of x."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(2*pi*(x-1)-10*pi,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-044",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "How many solutions does the equation 0.4(5x − 3) = 2x + 1.2 have?",
+    "choices": [
+      "Exactly one",
+      "Exactly two",
+      "Infinitely many",
+      "Zero"
+    ],
+    "answer": "Zero",
+    "explanation": [
+      "Distribute on the left: 0.4(5x) − 0.4(3) = 2x − 1.2.",
+      "The equation becomes 2x − 1.2 = 2x + 1.2.",
+      "Subtract 2x from both sides: −1.2 = 1.2, which is never true.",
+      "So the equation has zero solutions."
+    ],
+    "hints": [
+      "What does the left side look like after distributing?",
+      "Compare the x-terms on the two sides. What happens to x when you try to collect it on one side?"
+    ],
+    "wrong_reasons": {
+      "Exactly one": "Assumed a linear equation always has one solution without checking whether the x-terms cancel.",
+      "Exactly two": "A linear equation can have zero, one, or infinitely many solutions, never exactly two.",
+      "Infinitely many": "Made a sign error while distributing (wrote 2x + 1.2 on the left), so the two sides looked identical."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nd=expand(Rational(2,5)*(5*x-3)-(2*x+Rational(6,5)))\nresult='Infinitely many' if d==0 else ('Zero' if not d.has(x) else 'Exactly one')"
+  },
+  {
+    "id": "alg-linear-eq-1var-045",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What value of x satisfies 20 − 3(x − 2) = 11?",
+    "choices": [
+      "−5",
+      "1",
+      "11/3",
+      "5"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Distribute −3: −3(x − 2) = −3x + 6.",
+      "The equation becomes 20 − 3x + 6 = 11, or 26 − 3x = 11.",
+      "Subtract 26: −3x = −15, so x = 5."
+    ],
+    "hints": [
+      "When you multiply −3 by −2, what sign does the result have?",
+      "After distributing, which constants can you combine on the left side?"
+    ],
+    "wrong_reasons": {
+      "1": "Distributed −3 to −2 as −6 instead of +6 (20 − 3x − 6 = 11).",
+      "11/3": "Multiplied only x by 3 and wrote 20 − 3x + 2 = 11.",
+      "−5": "Solved −3x = −15 but lost the negative sign on one side."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(20-3*(x-2)-11,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-046",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The mean of the four numbers x, x + 4, 2x − 1, and 13 is 15. What is the value of x?",
+    "answer": "11",
+    "explanation": [
+      "The mean is the sum divided by 4, so the sum of the four numbers is 4 × 15 = 60.",
+      "The sum is x + (x + 4) + (2x − 1) + 13 = 4x + 16.",
+      "Solve 4x + 16 = 60: 4x = 44, so x = 11."
+    ],
+    "hints": [
+      "If you know the mean of four numbers, what do you know about their total?",
+      "How many x's are in the sum, and what is the sum of the constant terms?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve((x+(x+4)+(2*x-1)+13)/4-15,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-047",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In a triangle, the measures of the three angles are x°, (3x − 20)°, and (x + 15)°. What is the measure, in degrees, of the largest angle of the triangle?",
+    "choices": [
+      "37",
+      "52",
+      "91",
+      "109"
+    ],
+    "answer": "91",
+    "explanation": [
+      "The angles of a triangle add to 180°: x + (3x − 20) + (x + 15) = 180.",
+      "Combine: 5x − 5 = 180, so 5x = 185 and x = 37.",
+      "The angles are 37°, 3(37) − 20 = 91°, and 37 + 15 = 52°.",
+      "The largest angle is 91°."
+    ],
+    "hints": [
+      "What is the sum of the interior angles of any triangle?",
+      "Once you know x, which expression gives the biggest angle?"
+    ],
+    "wrong_reasons": {
+      "37": "Found x but did not compute the angle measures.",
+      "52": "Computed x + 15 and assumed the angle with the added constant is the largest.",
+      "109": "Combined −20 and +15 as −35, getting x = 43 and 3x − 20 = 109."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nxv=solve(x+(3*x-20)+(x+15)-180,x)[0]\nresult=max(xv,3*xv-20,xv+15)"
+  },
+  {
+    "id": "alg-linear-eq-1var-048",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A theater sold adult tickets for $12 each and child tickets for $7 each for an afternoon show. It sold 3 more child tickets than adult tickets and collected $211 in all. How many child tickets did the theater sell?",
+    "choices": [
+      "7",
+      "10",
+      "13",
+      "23"
+    ],
+    "answer": "13",
+    "explanation": [
+      "Let a be the number of adult tickets. Then a + 3 child tickets were sold.",
+      "Total money: 12a + 7(a + 3) = 211.",
+      "Simplify: 19a + 21 = 211, so 19a = 190 and a = 10.",
+      "Child tickets: 10 + 3 = 13."
+    ],
+    "hints": [
+      "If a adult tickets were sold, how many child tickets were sold?",
+      "Which tickets does the question ask about?"
+    ],
+    "wrong_reasons": {
+      "10": "Found the number of adult tickets, not child tickets.",
+      "7": "Subtracted 3 from the adult count instead of adding 3.",
+      "23": "Found the total number of tickets sold (10 + 13) instead of only the child tickets."
+    },
+    "check": "from sympy import *\na=symbols('a')\nav=solve(12*a+7*(a+3)-211,a)[0]\nresult=av+3"
+  },
+  {
+    "id": "alg-linear-eq-1var-049",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Two ships leave the same port at the same time and travel in opposite directions. One ship travels at 18 kilometers per hour and the other at 24 kilometers per hour. After how many hours will the ships be 315 kilometers apart?",
+    "choices": [
+      "7.5",
+      "13.125",
+      "17.5",
+      "52.5"
+    ],
+    "answer": "7.5",
+    "explanation": [
+      "Each hour, the distance between the ships grows by 18 + 24 = 42 kilometers.",
+      "After t hours they are 42t kilometers apart, so 42t = 315.",
+      "Divide: t = 7.5 hours."
+    ],
+    "hints": [
+      "When two objects move in opposite directions, how does the distance between them change each hour?",
+      "How can you write the distance between the ships after t hours?"
+    ],
+    "wrong_reasons": {
+      "13.125": "Used only the faster ship's speed.",
+      "17.5": "Used only the slower ship's speed.",
+      "52.5": "Subtracted the speeds, as if the ships moved in the same direction."
+    },
+    "check": "from sympy import *\nt=symbols('t')\nresult=solve(18*t+24*t-315,t)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-050",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "Jordan earns $18 per hour for the first 40 hours he works in a week and 1.5 times that hourly rate for each hour beyond 40. One week he earned $909. How many hours did he work that week?",
+    "answer": "47",
+    "explanation": [
+      "For the first 40 hours he earns 40 × 18 = 720 dollars.",
+      "The overtime rate is 1.5 × 18 = 27 dollars per hour.",
+      "If h is the total hours, 720 + 27(h − 40) = 909.",
+      "So 27(h − 40) = 189, h − 40 = 7, and h = 47."
+    ],
+    "hints": [
+      "How much does Jordan earn for a full 40 hours at the regular rate?",
+      "What is his hourly pay for each hour beyond 40?",
+      "Does your answer give the overtime hours or the total hours?"
+    ],
+    "check": "from sympy import *\nh=symbols('h')\nresult=solve(40*18+Rational(3,2)*18*(h-40)-909,h)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-051",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows the cost to ship a package of three different weights. The cost increases by the same amount for each additional pound. At this rate, what is the weight, in pounds, of a package that costs $23.25 to ship?",
+    "table": {
+      "headers": [
+        "Weight (pounds)",
+        "Shipping cost (dollars)"
+      ],
+      "rows": [
+        [
+          "1",
+          "7.50"
+        ],
+        [
+          "2",
+          "9.25"
+        ],
+        [
+          "3",
+          "11.00"
+        ]
+      ]
+    },
+    "choices": [
+      "31/10",
+      "9",
+      "10",
+      "93/7"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Each additional pound adds 9.25 − 7.50 = 1.75 dollars.",
+      "A 1-pound package costs 7.50, so a w-pound package costs 7.50 + 1.75(w − 1).",
+      "Set 7.50 + 1.75(w − 1) = 23.25: 1.75(w − 1) = 15.75, so w − 1 = 9.",
+      "Therefore w = 10 pounds."
+    ],
+    "hints": [
+      "How much does the cost go up from one row of the table to the next?",
+      "The first row is for 1 pound, not 0 pounds. How many pounds beyond 1 does a w-pound package have?"
+    ],
+    "wrong_reasons": {
+      "9": "Found the number of pounds beyond the first pound, not the total weight.",
+      "93/7": "Divided the whole cost by $1.75 per pound, ignoring the starting cost in the table.",
+      "31/10": "Divided the cost by the cost of a 1-pound package, assuming every pound costs $7.50."
+    },
+    "check": "from sympy import *\nw=symbols('w')\nr=Rational(925,100)-Rational(750,100)\nassert Rational(1100,100)-Rational(925,100)==r\nresult=solve(Rational(750,100)+r*(w-1)-Rational(2325,100),w)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-052",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The sum of four consecutive odd integers is 136. What is the greatest of the four integers?",
+    "choices": [
+      "31",
+      "34",
+      "37",
+      "40"
+    ],
+    "answer": "37",
+    "explanation": [
+      "Let the smallest be n. The four integers are n, n + 2, n + 4, and n + 6.",
+      "Their sum is 4n + 12 = 136.",
+      "So 4n = 124 and n = 31.",
+      "The greatest integer is 31 + 6 = 37."
+    ],
+    "hints": [
+      "If one odd integer is n, what is the next odd integer?",
+      "Which of your four expressions represents the greatest integer?"
+    ],
+    "wrong_reasons": {
+      "31": "Found the smallest integer instead of the greatest.",
+      "34": "Found the mean of the four integers, which is even and not one of them.",
+      "40": "Added 6 to the mean (34) instead of to the smallest integer."
+    },
+    "check": "from sympy import *\nn=symbols('n')\nnv=solve(n+(n+2)+(n+4)+(n+6)-136,n)[0]\nassert nv%2==1\nresult=nv+6"
+  },
+  {
+    "id": "alg-linear-eq-1var-053",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "What value of x satisfies x/3 + x/4 + x/6 = 18?",
+    "answer": "24",
+    "explanation": [
+      "Multiply every term by 12, the least common denominator: 4x + 3x + 2x = 216.",
+      "Combine: 9x = 216.",
+      "Divide: x = 24."
+    ],
+    "hints": [
+      "What number could you multiply every term by to clear all the denominators?",
+      "After clearing fractions, how many x's do you have in all?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(x/3+x/4+x/6-18,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-054",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What value of x satisfies 2[3 − (x − 4)] = x + 5?",
+    "choices": [
+      "−7/3",
+      "5/2",
+      "3",
+      "9/2"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Inside the brackets: 3 − (x − 4) = 3 − x + 4 = 7 − x.",
+      "The equation becomes 2(7 − x) = x + 5, or 14 − 2x = x + 5.",
+      "Add 2x and subtract 5: 9 = 3x, so x = 3."
+    ],
+    "hints": [
+      "What happens to each term inside the parentheses when you subtract the whole group (x − 4)?",
+      "Simplify the inside of the brackets before multiplying by 2. What do you get?"
+    ],
+    "wrong_reasons": {
+      "−7/3": "Wrote 3 − (x − 4) as 3 − x − 4, not changing the sign of the 4.",
+      "5/2": "Multiplied only the 3 inside the brackets by 2.",
+      "9/2": "Multiplied only the 7 by 2, writing 14 − x instead of 14 − 2x."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(2*(3-(x-4))-(x+5),x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-055",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "What value of x satisfies (5 − x)/4 = x + 2?",
+    "answer": "−3/5",
+    "accept": [
+      "-3/5",
+      "-0.6",
+      "-.6",
+      "−0.6"
+    ],
+    "explanation": [
+      "Multiply both sides by 4: 5 − x = 4x + 8.",
+      "Add x and subtract 8 from both sides: −3 = 5x.",
+      "Divide: x = −3/5."
+    ],
+    "hints": [
+      "What can you multiply both sides by to clear the fraction?",
+      "When you multiply the right side, does every term get multiplied?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve((5-x)/4-(x+2),x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-056",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The total cost of a concert ticket is the ticket price plus a 6% sales tax on the ticket price, plus a $5 service fee that is not taxed. If the total cost is $58, what is the ticket price, in dollars?",
+    "choices": [
+      "49.72",
+      "49.82",
+      "50",
+      "53"
+    ],
+    "answer": "50",
+    "explanation": [
+      "Let p be the ticket price. The tax is 0.06p, so the total is p + 0.06p + 5 = 1.06p + 5.",
+      "Set 1.06p + 5 = 58: 1.06p = 53.",
+      "Divide: p = 50."
+    ],
+    "hints": [
+      "Which part of the total is taxed, and which part is not?",
+      "How can you write the ticket price plus its tax as a single term?"
+    ],
+    "wrong_reasons": {
+      "53": "Removed the service fee but forgot to remove the tax.",
+      "49.82": "Subtracted 6% of $53 instead of dividing by 1.06; the tax was 6% of the ticket price, not of $53.",
+      "49.72": "Divided the whole $58 by 1.06 first, as if the service fee were also taxed."
+    },
+    "check": "from sympy import *\np=symbols('p')\nresult=solve(p+Rational(6,100)*p+5-58,p)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-057",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Lena is 4 times as old as her nephew. In 12 years, Lena will be twice as old as her nephew will be then. How old is the nephew now?",
+    "choices": [
+      "0",
+      "6",
+      "18",
+      "24"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Let n be the nephew's age now. Lena is 4n.",
+      "In 12 years their ages will be 4n + 12 and n + 12.",
+      "Then 4n + 12 = 2(n + 12) = 2n + 24.",
+      "So 2n = 12 and n = 6."
+    ],
+    "hints": [
+      "Write both people's ages 12 years from now using n.",
+      "\"Twice as old as her nephew will be then\" — which age gets doubled?"
+    ],
+    "wrong_reasons": {
+      "0": "Distributed the 2 only to n, writing 4n + 12 = 2n + 12.",
+      "18": "Found the nephew's age in 12 years, not now.",
+      "24": "Found Lena's current age instead of the nephew's."
+    },
+    "check": "from sympy import *\nn=symbols('n')\nresult=solve(4*n+12-2*(n+12),n)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-058",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A student solved the equation 4(x − 3) = 2x + 6 using the steps shown in the table. In which step did the student first make an error?",
+    "table": {
+      "headers": [
+        "Step",
+        "Equation"
+      ],
+      "rows": [
+        [
+          "Step 1",
+          "4x − 3 = 2x + 6"
+        ],
+        [
+          "Step 2",
+          "2x − 3 = 6"
+        ],
+        [
+          "Step 3",
+          "2x = 9"
+        ],
+        [
+          "Step 4",
+          "x = 4.5"
+        ]
+      ]
+    },
+    "choices": [
+      "Step 2",
+      "Step 1",
+      "Step 3",
+      "Step 4"
+    ],
+    "answer": "Step 1",
+    "explanation": [
+      "Distributing 4 over (x − 3) gives 4x − 12, not 4x − 3.",
+      "So Step 1 is the first error; the student multiplied only x by 4.",
+      "Correctly, 4x − 12 = 2x + 6 gives 2x = 18 and x = 9.",
+      "Steps 2 through 4 each follow correctly from the line before them."
+    ],
+    "hints": [
+      "When you distribute 4 over (x − 3), which terms get multiplied by 4?",
+      "Check each step only against the line just before it. Is each one a valid move?"
+    ],
+    "wrong_reasons": {
+      "Step 2": "Subtracting 2x from both sides of Step 1's equation correctly gives 2x − 3 = 6.",
+      "Step 3": "Adding 3 to both sides of Step 2's equation correctly gives 2x = 9.",
+      "Step 4": "Dividing both sides of 2x = 9 by 2 correctly gives 4.5; the error came earlier."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nsteps=[Eq(4*x-3,2*x+6),Eq(2*x-3,6),Eq(2*x,9),Eq(x,Rational(9,2))]\nprev=solveset(Eq(4*(x-3),2*x+6),x,S.Reals)\nr=None\nfor i,e in enumerate(steps):\n    s=solveset(e,x,S.Reals)\n    if s!=prev:\n        r='Step %d'%(i+1)\n        break\n    prev=s\nresult=r"
+  },
+  {
+    "id": "alg-linear-eq-1var-059",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In a class, 1/3 of the students walk to school, 1/4 of the students ride bikes, and the remaining 25 students take the bus. How many students are in the class?",
+    "choices": [
+      "35",
+      "300/7",
+      "60",
+      "300"
+    ],
+    "answer": "60",
+    "explanation": [
+      "Let n be the number of students. The walkers and bikers make up 1/3 + 1/4 = 7/12 of the class.",
+      "So the bus riders are 1 − 7/12 = 5/12 of the class: (5/12)n = 25.",
+      "Multiply by 12/5: n = 60."
+    ],
+    "hints": [
+      "What fraction of the class walks or bikes?",
+      "What fraction of the class takes the bus?"
+    ],
+    "wrong_reasons": {
+      "35": "Added the fractions as 1/3 + 1/4 = 2/7 by adding numerators and denominators.",
+      "300/7": "Used 7/12, the fraction who walk or bike, for the bus riders.",
+      "300": "Treated the 25 bus riders as 1/12 of the class."
+    },
+    "check": "from sympy import *\nn=symbols('n')\nresult=solve(n-n/3-n/4-25,n)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-060",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the equation 7x + c = 3x + 2c − 12, c is a constant. If the solution to the equation is x = c, what is the value of c?",
+    "answer": "−4",
+    "accept": [
+      "-4"
+    ],
+    "explanation": [
+      "Since x = c is the solution, substitute c for x: 7c + c = 3c + 2c − 12.",
+      "Combine like terms: 8c = 5c − 12.",
+      "Subtract 5c: 3c = −12, so c = −4."
+    ],
+    "hints": [
+      "If x = c is the solution, what can you replace every x with?",
+      "After that substitution, how many different unknowns are left in the equation?"
+    ],
+    "check": "from sympy import *\nx,c=symbols('x c')\nxs=solve(7*x+c-(3*x+2*c-12),x)[0]\nresult=solve(xs-c,c)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-061",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation 2(3x + k) = 6x + 2k, k is a constant. Which statement about the solutions to the equation is true?",
+    "choices": [
+      "It has no solution for any value of k.",
+      "It has exactly one solution for every value of k.",
+      "It has infinitely many solutions only when k = 0.",
+      "It has infinitely many solutions for every value of k."
+    ],
+    "answer": "It has infinitely many solutions for every value of k.",
+    "explanation": [
+      "Distribute on the left: 2(3x + k) = 6x + 2k.",
+      "Both sides are exactly 6x + 2k, whatever k is.",
+      "An equation whose two sides are identical is true for every x.",
+      "So for every value of k, the equation has infinitely many solutions."
+    ],
+    "hints": [
+      "What do you get when you distribute the 2 on the left side?",
+      "After simplifying, compare the two sides term by term. What role does k play in each side?"
+    ],
+    "wrong_reasons": {
+      "It has no solution for any value of k.": "Saw the x-terms cancel and assumed that always means no solution; here the constants cancel too.",
+      "It has exactly one solution for every value of k.": "Assumed every linear equation has one solution without simplifying.",
+      "It has infinitely many solutions only when k = 0.": "Thought k must vanish for the sides to match, but 2k appears on both sides for any k."
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nok=all(solveset(Eq(2*(3*x+kv),6*x+2*kv),x,S.Reals)==S.Reals for kv in [-3,0,Rational(1,2),5,17])\nok=ok and expand(2*(3*x+k)-(6*x+2*k))==0\nresult='It has infinitely many solutions for every value of k.' if ok else 'other'"
+  },
+  {
+    "id": "alg-linear-eq-1var-062",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The formula F = (9/5)C + 32 converts a temperature of C degrees Celsius to F degrees Fahrenheit. At what temperature is the number of degrees Fahrenheit equal to the number of degrees Celsius?",
+    "choices": [
+      "−40",
+      "−32",
+      "−160/9",
+      "40"
+    ],
+    "answer": "−40",
+    "explanation": [
+      "The two readings are equal when F = C, so set C = (9/5)C + 32.",
+      "Subtract (9/5)C: −(4/5)C = 32.",
+      "Multiply by −5/4: C = −40.",
+      "Check: (9/5)(−40) + 32 = −72 + 32 = −40."
+    ],
+    "hints": [
+      "What single variable can you use for both readings if they are equal?",
+      "After you substitute, how can you collect the C-terms on one side?"
+    ],
+    "wrong_reasons": {
+      "40": "Made a sign error when dividing 32 by −4/5.",
+      "−160/9": "Divided −32 by 9/5 instead of by 9/5 − 1 = 4/5, forgetting the C on the other side.",
+      "−32": "Ignored the coefficients and set C = −32 by moving only the constant."
+    },
+    "check": "from sympy import *\nC=symbols('C')\nresult=solve(Rational(9,5)*C+32-C,C)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-063",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Rosa leaves a trailhead at 9:00 a.m. and bikes along a path at a constant 12 miles per hour. Her brother leaves the same trailhead at 9:30 a.m. and bikes along the same path, in the same direction, at a constant 16 miles per hour. How many minutes after her brother leaves will he catch up to Rosa?",
+    "answer": "90",
+    "explanation": [
+      "Let t be the hours after the brother leaves. Rosa has then biked for t + 0.5 hours.",
+      "They are at the same place when 16t = 12(t + 0.5).",
+      "So 16t = 12t + 6, 4t = 6, and t = 1.5 hours.",
+      "1.5 hours is 90 minutes."
+    ],
+    "hints": [
+      "When the brother starts, how long has Rosa already been biking?",
+      "What is true about the two distances from the trailhead at the moment he catches up?",
+      "Is your answer in the units the question asks for?"
+    ],
+    "check": "from sympy import *\nt=symbols('t')\nresult=solve(16*t-12*(t+Rational(1,2)),t)[0]*60"
+  },
+  {
+    "id": "alg-linear-eq-1var-064",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "If (x − a)/3 = (x + a)/5, where a is a nonzero constant, what is x in terms of a?",
+    "choices": [
+      "−4a",
+      "4a",
+      "a",
+      "8a"
+    ],
+    "answer": "4a",
+    "explanation": [
+      "Multiply both sides by 15: 5(x − a) = 3(x + a).",
+      "Distribute: 5x − 5a = 3x + 3a.",
+      "Collect terms: 2x = 8a, so x = 4a."
+    ],
+    "hints": [
+      "What can you multiply both sides by to clear both denominators?",
+      "Treat a like a number. How would you collect the x-terms on one side?"
+    ],
+    "wrong_reasons": {
+      "−4a": "Cross-multiplied with the denominators on the wrong sides: 3(x − a) = 5(x + a).",
+      "a": "Did not distribute: wrote 5x − a = 3x + a.",
+      "8a": "Stopped at 2x = 8a without dividing by 2."
+    },
+    "check": "from sympy import *\nx,a=symbols('x a')\ns=solve((x-a)/3-(x+a)/5,x)[0]\nc={'-4a':-4*a,'a':a,'4a':4*a,'8a':8*a}\nr=[k for k,e in c.items() if simplify(e-s)==0]\nassert len(r)==1\nresult=r[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-065",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation ax + 3 = bx + 7, a and b are constants and a ≠ b. Which expression represents the solution to the equation?",
+    "choices": [
+      "4/(b − a)",
+      "10/(a − b)",
+      "(a − b)/4",
+      "4/(a − b)"
+    ],
+    "answer": "4/(a − b)",
+    "explanation": [
+      "Subtract bx and 3 from both sides: ax − bx = 4.",
+      "Factor out x: (a − b)x = 4.",
+      "Since a ≠ b, divide by a − b: x = 4/(a − b)."
+    ],
+    "hints": [
+      "How can you get every term containing x onto one side?",
+      "What common factor do ax and bx share?",
+      "Why does the question need to say a ≠ b?"
+    ],
+    "wrong_reasons": {
+      "4/(b − a)": "Moved the x-terms to the right side, getting −4 = (b − a)x, then dropped the negative sign.",
+      "10/(a − b)": "Added 3 and 7 instead of subtracting 3 from 7.",
+      "(a − b)/4": "Divided the wrong way: divided (a − b) by 4 instead of 4 by (a − b)."
+    },
+    "check": "from sympy import *\nx,a,b=symbols('x a b')\ns=solve(a*x+3-(b*x+7),x)[0]\nc={'4/(a-b)':4/(a-b),'4/(b-a)':4/(b-a),'10/(a-b)':10/(a-b),'(a-b)/4':(a-b)/4}\nr=[k for k,e in c.items() if simplify(e-s)==0]\nassert len(r)==1\nresult=r[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-066",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A jar contains only nickels, dimes, and quarters. There are twice as many dimes as nickels, and there are 4 fewer quarters than dimes. The total value of the coins in the jar is $11.00. How many quarters are in the jar?",
+    "choices": [
+      "16",
+      "28",
+      "32",
+      "76"
+    ],
+    "answer": "28",
+    "explanation": [
+      "Let n be the number of nickels. Then there are 2n dimes and 2n − 4 quarters.",
+      "Write the total value in cents: 5n + 10(2n) + 25(2n − 4) = 1,100.",
+      "Simplify: 5n + 20n + 50n − 100 = 1,100, so 75n = 1,200 and n = 16.",
+      "The number of quarters is 2(16) − 4 = 28."
+    ],
+    "hints": [
+      "If n is the number of nickels, how would you write the number of dimes and the number of quarters?",
+      "What is each kind of coin worth, and how could you write the total value in cents to avoid decimals?",
+      "Which kind of coin does the question ask about?"
+    ],
+    "wrong_reasons": {
+      "16": "Found the number of nickels, n, instead of the number of quarters.",
+      "32": "Found the number of dimes, 2n, instead of the number of quarters.",
+      "76": "Found the total number of coins (16 + 32 + 28) instead of only the quarters."
+    },
+    "check": "from sympy import *\nn=symbols('n')\nnv=solve(5*n+10*(2*n)+25*(2*n-4)-1100,n)[0]\nassert nv.is_integer and nv>0 and 2*nv-4>0\nresult=2*nv-4"
+  },
+  {
+    "id": "alg-linear-eq-1var-067",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation kx − 6 = 2x + 9, k is a positive integer. For how many values of k is the solution to the equation a positive integer?",
+    "choices": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": "4",
+    "explanation": [
+      "Collect terms: kx − 2x = 15, so (k − 2)x = 15.",
+      "For x to be a positive integer, k − 2 must be a positive divisor of 15.",
+      "The positive divisors of 15 are 1, 3, 5, and 15, so k = 3, 5, 7, or 17.",
+      "That is 4 values of k."
+    ],
+    "hints": [
+      "Rearrange the equation so that x is multiplied by a single expression in k.",
+      "For x to be a positive whole number, what must be true about the number multiplying x?",
+      "Have you included every possibility, even the smallest and largest?"
+    ],
+    "wrong_reasons": {
+      "2": "Counted only the divisors 3 and 5, leaving out 1 and 15.",
+      "3": "Left out the divisor 1 (k = 3, which gives x = 15).",
+      "5": "Also counted k = 1, but then x = −15, which is not positive."
+    },
+    "check": "from sympy import *\nx=symbols('x')\ncnt=0\nfor k in range(1,500):\n    if k==2: continue\n    s=solve(k*x-6-(2*x+9),x)[0]\n    if s.is_integer and s>0: cnt+=1\nresult=cnt"
+  },
+  {
+    "id": "alg-linear-eq-1var-068",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The equation x/4 + x/6 = k, where k is a constant, has the solution x = 24. What is the solution to the equation x/4 + x/6 = 2k?",
+    "choices": [
+      "12",
+      "20",
+      "34",
+      "48"
+    ],
+    "answer": "48",
+    "explanation": [
+      "Substitute x = 24 into the first equation: 24/4 + 24/6 = 6 + 4 = 10, so k = 10.",
+      "The second equation is x/4 + x/6 = 20.",
+      "Multiply by 12: 3x + 2x = 240, so 5x = 240 and x = 48.",
+      "(Doubling the right side of x/4 + x/6 = k doubles the solution.)"
+    ],
+    "hints": [
+      "What does the given solution tell you about the value of k?",
+      "Once you know k, what number is on the right side of the new equation, and how could you clear its fractions?"
+    ],
+    "wrong_reasons": {
+      "12": "Halved the solution instead of doubling it.",
+      "20": "Found 2k = 20 and gave that as the solution for x.",
+      "34": "Added k = 10 to the original solution instead of solving the new equation."
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nkv=(x/4+x/6).subs(x,24)\nresult=solve(x/4+x/6-2*kv,x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-069",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Company A rents a car for $40 plus $0.25 per mile driven. Company B rents a car for $25 plus $0.40 per mile driven. For a certain trip, renting from Company B would cost $12 less than renting from Company A. How many miles is the trip?",
+    "choices": [
+      "20",
+      "80",
+      "100",
+      "180"
+    ],
+    "answer": "20",
+    "explanation": [
+      "Company A costs 40 + 0.25m and Company B costs 25 + 0.40m for m miles.",
+      "B costs $12 less than A: 25 + 0.40m = (40 + 0.25m) − 12.",
+      "Simplify: 25 + 0.40m = 28 + 0.25m, so 0.15m = 3.",
+      "So m = 20 miles. (A costs $45 and B costs $33.)"
+    ],
+    "hints": [
+      "Write the cost for each company in terms of m, the number of miles.",
+      "\"B costs $12 less than A\" — which cost needs 12 added or subtracted to make the two equal?"
+    ],
+    "wrong_reasons": {
+      "100": "Found the mileage at which the two costs are equal.",
+      "180": "Set up the equation as if B costs $12 more than A.",
+      "80": "Divided 12 by the per-mile difference, ignoring the difference in base fees."
+    },
+    "check": "from sympy import *\nm=symbols('m')\nA=40+Rational(25,100)*m\nB=25+Rational(40,100)*m\nresult=solve(A-B-12,m)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-070",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, the exterior angle at vertex C measures (5x − 12)°. The interior angles at vertices A and B measure (2x + 9)° and (x + 15)°, respectively. What is the measure, in degrees, of interior angle C?",
+    "choices": [
+      "18",
+      "78",
+      "87",
+      "102"
+    ],
+    "answer": "102",
+    "explanation": [
+      "An exterior angle of a triangle equals the sum of the two interior angles not next to it: 5x − 12 = (2x + 9) + (x + 15).",
+      "So 5x − 12 = 3x + 24, 2x = 36, and x = 18.",
+      "The exterior angle at C is 5(18) − 12 = 78°.",
+      "Interior angle C and the exterior angle at C form a straight line, so angle C = 180 − 78 = 102°."
+    ],
+    "hints": [
+      "How does an exterior angle of a triangle relate to the two interior angles that are not next to it?",
+      "How are an interior angle and the exterior angle at the same vertex related?"
+    ],
+    "wrong_reasons": {
+      "18": "Found x but did not use it to compute the angle.",
+      "78": "Found the exterior angle at C, not the interior angle.",
+      "87": "Set the exterior angle plus the two other interior angles equal to 180°."
+    },
+    "check": "from sympy import *\nx=symbols('x')\nxv=solve(5*x-12-((2*x+9)+(x+15)),x)[0]\nA=2*xv+9\nCv=180-(5*xv-12)\nassert A+(xv+15)+Cv==180\nresult=Cv"
+  },
+  {
+    "id": "alg-linear-eq-1var-071",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A hiker walks up a trail at an average speed of 2 miles per hour and returns down the same trail at an average speed of 3 miles per hour. The round trip takes 5 hours. How many miles long is the trail, one way?",
+    "answer": "6",
+    "explanation": [
+      "Let d be the one-way length. Time = distance ÷ speed, so the trip up takes d/2 hours and the trip down takes d/3 hours.",
+      "Total time: d/2 + d/3 = 5.",
+      "Multiply by 6: 3d + 2d = 30, so 5d = 30 and d = 6."
+    ],
+    "hints": [
+      "How can you write the time for each part of the trip using d?",
+      "What must the two times add up to?"
+    ],
+    "check": "from sympy import *\nd=symbols('d')\nresult=solve(d/2+d/3-5,d)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-072",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A phone's battery is fully charged at 100%. When the screen is on, the charge drops by 12 percentage points per hour. When the screen is off, it drops by 2 percentage points per hour. Over a 10-hour period, the charge fell from 100% to 30%. For how many of those hours was the screen on?",
+    "choices": [
+      "1",
+      "5",
+      "35/6",
+      "7"
+    ],
+    "answer": "5",
+    "explanation": [
+      "The total drop is 100 − 30 = 70 percentage points.",
+      "If the screen was on for s hours, it was off for 10 − s hours.",
+      "So 12s + 2(10 − s) = 70, which simplifies to 10s + 20 = 70.",
+      "Then 10s = 50 and s = 5."
+    ],
+    "hints": [
+      "By how many percentage points did the charge fall in all?",
+      "If the screen was on for s hours, how many hours was it off?"
+    ],
+    "wrong_reasons": {
+      "1": "Used the remaining charge of 30% as the total drop.",
+      "35/6": "Divided the 70-point drop by 12, as if the screen had been on the entire time, ignoring the 2-point hourly drop while it was off.",
+      "7": "Divided the 70-point drop by 10 hours to get an average rate instead of finding hours."
+    },
+    "check": "from sympy import *\ns=symbols('s')\nsv=solve(12*s+2*(10-s)-(100-30),s)[0]\nassert 0<=sv<=10\nresult=sv"
+  },
+  {
+    "id": "alg-linear-eq-1var-073",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Dana spent 1/4 of her money on a book. She then spent 1/3 of the money she had left on lunch. After these purchases, she had $30. How much money, in dollars, did Dana have at first?",
+    "choices": [
+      "45",
+      "60",
+      "72",
+      "90"
+    ],
+    "answer": "60",
+    "explanation": [
+      "Let m be the starting amount. After the book she had (3/4)m.",
+      "Lunch cost 1/3 of that, so she kept 2/3 of it: (2/3)(3/4)m = (1/2)m.",
+      "So (1/2)m = 30 and m = 60."
+    ],
+    "hints": [
+      "After buying the book, what fraction of her original money did Dana have?",
+      "The lunch fraction is a fraction of what amount?"
+    ],
+    "wrong_reasons": {
+      "72": "Treated both fractions as parts of the original amount (1 − 1/4 − 1/3 = 5/12).",
+      "45": "Undid only the lunch purchase and not the book purchase.",
+      "90": "Treated the $30 as 1/3 of her original money."
+    },
+    "check": "from sympy import *\nm=symbols('m')\nresult=solve(Rational(2,3)*Rational(3,4)*m-30,m)[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-074",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "If 3x + 2 = k, which expression is equal to 6x + 7 in terms of k?",
+    "choices": [
+      "2k + 3",
+      "2k + 5",
+      "2k + 7",
+      "2k − 4"
+    ],
+    "answer": "2k + 3",
+    "explanation": [
+      "Multiply both sides of 3x + 2 = k by 2: 6x + 4 = 2k.",
+      "6x + 7 is 3 more than 6x + 4.",
+      "So 6x + 7 = 2k + 3."
+    ],
+    "hints": [
+      "How is 6x related to 3x?",
+      "If you double both sides of the given equation, how does the result compare with 6x + 7?"
+    ],
+    "wrong_reasons": {
+      "2k + 5": "Doubled k but subtracted the original constant 2 instead of the doubled constant 4 (7 − 2 = 5).",
+      "2k + 7": "Replaced 6x with 2k, forgetting that doubling also doubles the + 2.",
+      "2k − 4": "Found 6x = 2k − 4 and forgot to add 7."
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nxs=solve(3*x+2-k,x)[0]\ne=expand(6*xs+7)\nc={'2k+3':2*k+3,'2k+5':2*k+5,'2k+7':2*k+7,'2k-4':2*k-4}\nr=[s for s,v in c.items() if simplify(v-e)==0]\nassert len(r)==1\nresult=r[0]"
+  },
+  {
+    "id": "alg-linear-eq-1var-075",
+    "skill_id": "alg-linear-eq-1var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "On a number line, point P is at −4 and point Q is at 11. Point R lies between P and Q so that the distance from P to R is twice the distance from R to Q. What is the coordinate of R?",
+    "answer": "6",
+    "explanation": [
+      "Let R be at x, with −4 < x < 11. Then PR = x − (−4) = x + 4 and RQ = 11 − x.",
+      "PR is twice RQ: x + 4 = 2(11 − x).",
+      "So x + 4 = 22 − 2x, 3x = 18, and x = 6.",
+      "Check: PR = 10 and RQ = 5."
+    ],
+    "hints": [
+      "If R is at x, how can you write each distance using x?",
+      "Which distance is the larger one, and what equation links the two?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nxv=solve(x+4-2*(11-x),x)[0]\nassert -4<xv<11\nresult=xv"
   }
 ]

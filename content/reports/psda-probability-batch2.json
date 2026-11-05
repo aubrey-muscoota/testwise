@@ -1,0 +1,32 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "psda-probability-028",
+      "reason": "wrong_reasons for 1/4 was vague ('Divided by 8 or miscounted'); now names the specific miscount (8 letters, 2/8)."
+    },
+    {
+      "id": "psda-probability-029",
+      "reason": "wrong_reasons for 0.16 and 1.14 were vague; rewritten as a borrowing error and as subtracting from 2 instead of 1."
+    },
+    {
+      "id": "psda-probability-058",
+      "reason": "Mislabelled difficulty (recognizing P(A and B) = 0 for mutually exclusive events is easy), changed from 2 to 1; check was null with no check_note, now models the events as disjoint sets of outcomes."
+    },
+    {
+      "id": "psda-probability-069",
+      "reason": "wrong_reasons for the P(used app | over $50) choice was vague (\"Divided by the wrong group or stopped...\"); rewritten as a specific misconception."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "psda-probability-039",
+      "reason": "Near-duplicate of 051 (and close to 074): compare two groups where the bigger raw count has the smaller rate. Replaced with an original d1 mc item: which die event has probability exactly 1/2 (distractors from boundary and factor-counting errors)."
+    },
+    {
+      "id": "psda-probability-060",
+      "reason": "Near-duplicate of 044 (P(exactly one of two independent events)), only in symbols; check just hard-coded the answer string. Replaced with an original d3 mc item: expression for P(both starred) drawing 2 of n tiles without replacement, check computes C(3,2)/C(n,2) and matches the choice."
+    }
+  ],
+  "removed": []
+}

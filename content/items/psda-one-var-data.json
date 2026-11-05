@@ -368,8 +368,8 @@
     "choices": [
       "The means are equal, and the standard deviation of Machine B's weights is greater.",
       "The means are equal, and the standard deviations are equal.",
-      "The mean of Machine A's weights is greater, and its standard deviation is greater.",
-      "The means are equal, and the standard deviation of Machine A's weights is greater."
+      "The means are equal, and the standard deviation of Machine A's weights is greater.",
+      "The mean of Machine A's weights is greater, and its standard deviation is greater."
     ],
     "answer": "The means are equal, and the standard deviation of Machine A's weights is greater.",
     "explanation": [
@@ -635,8 +635,8 @@
     "choices": [
       "Mean = 56; standard deviation = 11",
       "Mean = 60; standard deviation = 15",
-      "Mean = 56; standard deviation = 15",
-      "Mean = 56; standard deviation = 5"
+      "Mean = 56; standard deviation = 5",
+      "Mean = 56; standard deviation = 15"
     ],
     "answer": "Mean = 56; standard deviation = 15",
     "explanation": [
@@ -868,5 +868,1531 @@
       "125": "Subtracted only the median from the total, forgetting the other five values"
     },
     "check": "from sympy import *\nbest=0\nfrom itertools import combinations\nfor low in combinations(range(1,15),3):\n    for hi in combinations(range(16,140),2):\n        g=140-sum(low)-15-sum(hi)\n        if g>max(hi): best=max(best,g)\n        else: break\nresult=best"
+  },
+  {
+    "id": "psda-one-var-data-028",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The five-number summary of the times, in minutes, that 60 students took to finish a logic puzzle is shown: minimum 6, first quartile 11, median 15, third quartile 22, maximum 41. What is the interquartile range of the times, in minutes?",
+    "choices": [
+      "7",
+      "11",
+      "16",
+      "35"
+    ],
+    "answer": "11",
+    "explanation": [
+      "The interquartile range (IQR) is the third quartile minus the first quartile.",
+      "IQR = 22 − 11 = 11 minutes."
+    ],
+    "hints": [
+      "Which two values in the summary mark the middle half of the data?",
+      "Is the IQR a sum or a difference of those two values?"
+    ],
+    "wrong_reasons": {
+      "7": "Subtracted the median from the third quartile, which covers only one quarter of the data",
+      "16": "Subtracted the minimum from the third quartile instead of using the first quartile",
+      "35": "Found the range (maximum − minimum) instead of the interquartile range"
+    },
+    "check": "from sympy import *\nq1,q3=11,22\nresult=q3-q1"
+  },
+  {
+    "id": "psda-one-var-data-029",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The race times of 96 runners in a 5-kilometer race have a third quartile of 31 minutes. Approximately how many of the runners had race times greater than 31 minutes?",
+    "choices": [
+      "24",
+      "31",
+      "48",
+      "72"
+    ],
+    "answer": "24",
+    "explanation": [
+      "The third quartile is the value that about 75% of the data fall below.",
+      "So about 25% of the times are above 31 minutes.",
+      "25% of 96 is 0.25 · 96 = 24 runners."
+    ],
+    "hints": [
+      "What fraction of a data set is greater than the third quartile?",
+      "How many runners make up that fraction of 96?"
+    ],
+    "wrong_reasons": {
+      "31": "Used the quartile value itself as the number of runners",
+      "48": "Treated the third quartile like the median, which splits the data in half",
+      "72": "Found the number of runners below the third quartile instead of above it"
+    },
+    "check": "from sympy import *\nn=96\nresult=n*Rational(1,4)"
+  },
+  {
+    "id": "psda-one-var-data-030",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The ages of the volunteers at a community garden have a range of 34 years. The oldest volunteer is 71 years old. How old, in years, is the youngest volunteer?",
+    "answer": "37",
+    "explanation": [
+      "Range = oldest age − youngest age, so 34 = 71 − youngest.",
+      "Youngest = 71 − 34 = 37 years."
+    ],
+    "hints": [
+      "How is the range of a data set calculated from its greatest and least values?",
+      "Which of those two values do you already know?"
+    ],
+    "check": "from sympy import *\ny=symbols('y')\nresult=solve(Eq(71-y,34),y)[0]"
+  },
+  {
+    "id": "psda-one-var-data-031",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following data sets has a standard deviation of 0?",
+    "choices": [
+      "0, 1, 2, 3, 4",
+      "−2, −1, 0, 1, 2",
+      "4, 4, 4, 4, 4",
+      "0, 0, 0, 0, 10"
+    ],
+    "answer": "4, 4, 4, 4, 4",
+    "explanation": [
+      "Standard deviation measures how far the values typically are from the mean.",
+      "It is 0 only when every value equals the mean, that is, when all the values are the same.",
+      "Only 4, 4, 4, 4, 4 has no spread at all."
+    ],
+    "hints": [
+      "What does the standard deviation measure about a data set?",
+      "What would have to be true of the values for that measure to be zero?"
+    ],
+    "wrong_reasons": {
+      "0, 1, 2, 3, 4": "Thought a data set starting at 0 has a standard deviation of 0",
+      "−2, −1, 0, 1, 2": "Confused a mean of 0 with a standard deviation of 0",
+      "0, 0, 0, 0, 10": "Thought that if the mode and median are 0, the standard deviation is also 0"
+    },
+    "check": "from sympy import *\nimport statistics as st\nopts={'0, 1, 2, 3, 4':[0,1,2,3,4],'−2, −1, 0, 1, 2':[-2,-1,0,1,2],'4, 4, 4, 4, 4':[4]*5,'0, 0, 0, 0, 10':[0,0,0,0,10]}\nm=[k for k,v in opts.items() if st.pstdev(v)==0]\nassert len(m)==1\nresult=m[0]"
+  },
+  {
+    "id": "psda-one-var-data-032",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The stem-and-leaf plot shows the number of push-ups each of 11 members of a fitness class did in one minute. In the plot, 3 | 2 represents 32 push-ups. What is the median number of push-ups?",
+    "table": {
+      "headers": [
+        "Stem",
+        "Leaf"
+      ],
+      "rows": [
+        [
+          "3",
+          "2 5 8"
+        ],
+        [
+          "4",
+          "0 1 1 6 9"
+        ],
+        [
+          "5",
+          "3 7"
+        ],
+        [
+          "6",
+          "4"
+        ]
+      ]
+    },
+    "choices": [
+      "4",
+      "41",
+      "46",
+      "48"
+    ],
+    "answer": "41",
+    "explanation": [
+      "Read the values in order: 32, 35, 38, 40, 41, 41, 46, 49, 53, 57, 64.",
+      "With 11 values, the median is the 6th value.",
+      "The 6th value is 41."
+    ],
+    "hints": [
+      "How do you turn each stem and leaf into a full number?",
+      "With 11 values, which position is in the middle?"
+    ],
+    "wrong_reasons": {
+      "4": "Gave the middle stem instead of a full data value",
+      "46": "Counted to the 7th value instead of the 6th",
+      "48": "Found the midpoint of the least and greatest values, (32 + 64) ÷ 2"
+    },
+    "check": "from sympy import *\nimport statistics as st\nplot={3:[2,5,8],4:[0,1,1,6,9],5:[3,7],6:[4]}\nd=[10*s+l for s,ls in plot.items() for l in ls]\nresult=st.median(d)"
+  },
+  {
+    "id": "psda-one-var-data-033",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A real estate agent recorded the sale prices of 200 homes sold in a city last year. Most homes sold for moderate prices, but a few sold for much higher prices, so the distribution is skewed to the right. Which statement about the sale prices is most likely true?",
+    "choices": [
+      "The median is greater than the mean.",
+      "The mean and the median are equal.",
+      "The mean is greater than the median.",
+      "The mode is greater than the mean."
+    ],
+    "answer": "The mean is greater than the median.",
+    "explanation": [
+      "In a right-skewed distribution, a few very large values form a long tail on the high end.",
+      "Those large values raise the mean, but the median depends only on the middle value.",
+      "So the mean is pulled above the median."
+    ],
+    "hints": [
+      "Which measure of center uses the actual size of every value, including the few very high prices?",
+      "Which measure depends only on the position of the middle value?"
+    ],
+    "wrong_reasons": {
+      "The median is greater than the mean.": "Reversed the effect of skew; this is typical of a left-skewed distribution",
+      "The mean and the median are equal.": "Assumed every distribution is symmetric",
+      "The mode is greater than the mean.": "Thought the most common price must also be the largest measure of center"
+    },
+    "check": null,
+    "check_note": "Conceptual item: relating skewness to the relative positions of the mean and median; no numeric data are given."
+  },
+  {
+    "id": "psda-one-var-data-034",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A clothing store lowered the price of every jacket it sells by 20%. Before the sale, the median price of the jackets was $45. What is the median price, in dollars, of the jackets during the sale?",
+    "answer": "36",
+    "explanation": [
+      "Lowering each price by 20% multiplies each price by 0.80.",
+      "Multiplying every value by the same positive number keeps the values in the same order, so the median is multiplied by that number too.",
+      "New median = 0.80 · 45 = $36."
+    ],
+    "hints": [
+      "If every price is multiplied by the same number, does the order of the prices change?",
+      "What single number do you multiply a price by to lower it by 20%?"
+    ],
+    "check": "from sympy import *\nmedian_before=45\nfactor=1-Rational(20,100)\nresult=factor*median_before"
+  },
+  {
+    "id": "psda-one-var-data-035",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The numbers of birds Priya counted at a feeder on 7 mornings were 3, 5, 5, 7, 8, 8, and 9. She counts birds on one more morning. Which of the following counts would make 8 the only mode of the 8 counts?",
+    "choices": [
+      "5",
+      "7",
+      "8",
+      "9"
+    ],
+    "answer": "8",
+    "explanation": [
+      "Right now 5 and 8 each appear twice, so there are two modes.",
+      "For 8 to be the only mode, 8 must appear more often than any other value.",
+      "Adding another 8 makes 8 appear three times, more than any other count."
+    ],
+    "hints": [
+      "Which values are tied for the most appearances right now?",
+      "What would break the tie in favor of 8?"
+    ],
+    "wrong_reasons": {
+      "5": "Added a value that makes 5, not 8, the only mode",
+      "7": "Thought adding a value next to 8 would make 8 the mode; 5 and 8 stay tied",
+      "9": "Did not notice that adding 9 creates a three-way tie among 5, 8, and 9"
+    },
+    "check": "from sympy import *\nfrom collections import Counter\nd=[3,5,5,7,8,8,9]\nok=[]\nfor c in ['5','7','8','9']:\n    cnt=Counter(d+[int(c)]); top=max(cnt.values())\n    if [k for k,v in cnt.items() if v==top]==[8]: ok.append(c)\nassert len(ok)==1\nresult=ok[0]"
+  },
+  {
+    "id": "psda-one-var-data-036",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A weather station recorded the low temperature, in degrees Celsius (°C), on each of 8 days: −4, 3, −7, 0, 5, 2, −1, and 6. What is the range of these low temperatures, in °C?",
+    "answer": "13",
+    "accept": [
+      "13.0"
+    ],
+    "explanation": [
+      "The range is the greatest value minus the least value.",
+      "The greatest low temperature is 6°C and the least is −7°C.",
+      "Range = 6 − (−7) = 6 + 7 = 13°C."
+    ],
+    "hints": [
+      "Which of the temperatures is the greatest, and which is the least?",
+      "What happens when you subtract a negative number?"
+    ],
+    "check": "from sympy import *\nt=[-4,3,-7,0,5,2,-1,6]\nresult=max(t)-min(t)"
+  },
+  {
+    "id": "psda-one-var-data-037",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A dog walker recorded the number of dogs she walked on each of 7 days: 14, 9, 21, 9, 17, 9, and 14. Which of the following correctly orders the mode, median, and mean of these numbers from least to greatest?",
+    "choices": [
+      "mode, median, mean",
+      "mean, median, mode",
+      "All three are equal.",
+      "mode, mean, median"
+    ],
+    "answer": "mode, mean, median",
+    "explanation": [
+      "In order: 9, 9, 9, 14, 14, 17, 21. The mode is 9 and the median (4th value) is 14.",
+      "The sum is 93, so the mean is 93 ÷ 7 ≈ 13.3.",
+      "So mode (9) < mean (≈13.3) < median (14)."
+    ],
+    "hints": [
+      "Which value appears most often, and which value is in the middle of the ordered list?",
+      "Is the total of the seven values more or less than 7 · 14?"
+    ],
+    "wrong_reasons": {
+      "mode, median, mean": "Assumed the mean is always the largest measure, without calculating it",
+      "mean, median, mode": "Confused the mode with the greatest value, 21",
+      "All three are equal.": "Assumed the measures of center coincide without calculating them"
+    },
+    "check": "from sympy import *\nimport statistics as st\nd=[14,9,21,9,17,9,14]\nv={'mode':st.mode(d),'median':st.median(d),'mean':Rational(sum(d),len(d))}\nresult=', '.join(sorted(v,key=lambda k:v[k]))"
+  },
+  {
+    "id": "psda-one-var-data-038",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Over 5 days, Tomás swam a different number of laps each day. The mean number of laps he swam per day was 8. Which of the following could be the numbers of laps he swam on the 5 days?",
+    "choices": [
+      "6, 7, 8, 9, 12",
+      "3, 7, 9, 10, 11",
+      "2, 8, 8, 8, 9",
+      "8, 9, 10, 11, 12"
+    ],
+    "answer": "3, 7, 9, 10, 11",
+    "explanation": [
+      "A mean of 8 over 5 days means the total must be 5 · 8 = 40 laps.",
+      "Check the sums: 3 + 7 + 9 + 10 + 11 = 40; 6 + 7 + 8 + 9 + 12 = 42; 2 + 8 + 8 + 8 + 9 = 35; 8 + 9 + 10 + 11 + 12 = 50.",
+      "Only 3, 7, 9, 10, 11 has a total of 40 (and it also has 5 different values)."
+    ],
+    "hints": [
+      "If the mean of 5 values is 8, what must the 5 values add up to?",
+      "Which list has exactly that total?"
+    ],
+    "wrong_reasons": {
+      "6, 7, 8, 9, 12": "Chose the list whose middle value (median) is 8 instead of checking the mean",
+      "2, 8, 8, 8, 9": "Chose the list whose most common value (mode) is 8; its values are also not all different",
+      "8, 9, 10, 11, 12": "Chose the list that starts at 8, confusing the mean with the minimum"
+    },
+    "check": "from sympy import *\nopts={'3, 7, 9, 10, 11':[3,7,9,10,11],'6, 7, 8, 9, 12':[6,7,8,9,12],'2, 8, 8, 8, 9':[2,8,8,8,9],'8, 9, 10, 11, 12':[8,9,10,11,12]}\nm=[k for k,v in opts.items() if Rational(sum(v),5)==8 and len(set(v))==5]\nassert len(m)==1\nresult=m[0]"
+  },
+  {
+    "id": "psda-one-var-data-039",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A carpenter measured 14 boards. The mean length of the boards is 6.5 feet. If each length is converted from feet to inches (1 foot = 12 inches), what is the mean length of the boards, in inches?",
+    "choices": [
+      "6.5",
+      "18.5",
+      "78",
+      "1,092"
+    ],
+    "answer": "78",
+    "explanation": [
+      "Converting to inches multiplies every length by 12.",
+      "When every value is multiplied by 12, the mean is also multiplied by 12.",
+      "6.5 · 12 = 78 inches."
+    ],
+    "hints": [
+      "What happens to each board's length when you change feet to inches?",
+      "If every value is changed in the same way, how does the mean change?"
+    ],
+    "wrong_reasons": {
+      "6.5": "Assumed the mean stays the same when the units change",
+      "18.5": "Added 12 to the mean instead of multiplying by 12",
+      "1,092": "Found the total length of all 14 boards in inches instead of the mean"
+    },
+    "check": "from sympy import *\nm=Rational(13,2)\nresult=12*m"
+  },
+  {
+    "id": "psda-one-var-data-040",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The table summarizes the number of hours each student in a service club volunteered last month. How many students volunteered at least 10 hours?",
+    "table": {
+      "headers": [
+        "Hours volunteered",
+        "Number of students"
+      ],
+      "rows": [
+        [
+          "0–4",
+          "6"
+        ],
+        [
+          "5–9",
+          "11"
+        ],
+        [
+          "10–14",
+          "14"
+        ],
+        [
+          "15–19",
+          "9"
+        ],
+        [
+          "20–24",
+          "3"
+        ]
+      ]
+    },
+    "answer": "26",
+    "explanation": [
+      "“At least 10 hours” includes the intervals 10–14, 15–19, and 20–24.",
+      "Add their counts: 14 + 9 + 3 = 26 students."
+    ],
+    "hints": [
+      "Which intervals contain values of 10 hours or more?",
+      "Should the 10–14 interval be included?"
+    ],
+    "check": "from sympy import *\nrows=[(0,4,6),(5,9,11),(10,14,14),(15,19,9),(20,24,3)]\nresult=sum(c for lo,hi,c in rows if lo>=10)"
+  },
+  {
+    "id": "psda-one-var-data-041",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A museum recorded how long, in minutes, each of 50 visitors spent in one exhibit. One visitor, a researcher, stayed far longer than anyone else. Which measure of spread is least affected by the researcher's time?",
+    "choices": [
+      "The range",
+      "The standard deviation",
+      "All three are affected equally.",
+      "The interquartile range"
+    ],
+    "answer": "The interquartile range",
+    "explanation": [
+      "The range uses the maximum, so one extreme value changes it a lot.",
+      "The standard deviation uses every value's distance from the mean, so a far-off value increases it noticeably.",
+      "The interquartile range uses only the middle half of the data, so a single extreme value has little effect on it."
+    ],
+    "hints": [
+      "Which values in the data does each measure of spread depend on?",
+      "Does the extreme time fall in the middle half of the data?"
+    ],
+    "wrong_reasons": {
+      "The range": "Thought the range ignores extreme values, when it is built directly from the maximum",
+      "The standard deviation": "Believed the standard deviation is resistant to outliers, but it uses every value's distance from the mean",
+      "All three are affected equally.": "Did not distinguish between measures that use every value and measures that use only the middle of the data"
+    },
+    "check": null,
+    "check_note": "Conceptual item: resistance of measures of spread to an outlier; no numeric data are given."
+  },
+  {
+    "id": "psda-one-var-data-042",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A survey of 40 smartphone owners found that the mean number of apps installed on their phones was 42. Which statement is the best interpretation of this mean?",
+    "choices": [
+      "Half of the 40 phones have more than 42 apps installed.",
+      "The most common number of apps installed is 42.",
+      "Each of the 40 phones has exactly 42 apps installed.",
+      "If all the apps were redistributed so each of the 40 phones had the same number, each phone would have 42 apps."
+    ],
+    "answer": "If all the apps were redistributed so each of the 40 phones had the same number, each phone would have 42 apps.",
+    "explanation": [
+      "The mean is the total divided by the number of values: here, total apps ÷ 40 = 42.",
+      "So the total is 40 · 42 apps, and sharing that total equally gives 42 per phone.",
+      "The mean does not say how many phones are above 42 (median) or which count is most common (mode)."
+    ],
+    "hints": [
+      "How is a mean calculated from the individual values?",
+      "What does that calculation have to do with sharing a total equally?"
+    ],
+    "wrong_reasons": {
+      "Half of the 40 phones have more than 42 apps installed.": "Described the median instead of the mean",
+      "The most common number of apps installed is 42.": "Described the mode instead of the mean",
+      "Each of the 40 phones has exactly 42 apps installed.": "Thought a mean means every value is equal to it"
+    },
+    "check": null,
+    "check_note": "Conceptual item: interpreting the mean as a fair-share value; nothing to compute."
+  },
+  {
+    "id": "psda-one-var-data-043",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The lengths, in centimeters, of 5 fish caught in a lake were 4, 9, 11, 15, and 20. A sixth fish, 2 centimeters long, is added to the data. What is the median length of the 6 fish, in centimeters?",
+    "choices": [
+      "9",
+      "10",
+      "10.2",
+      "11"
+    ],
+    "answer": "10",
+    "explanation": [
+      "In order, the 6 lengths are 2, 4, 9, 11, 15, 20.",
+      "With 6 values, the median is the mean of the 3rd and 4th values.",
+      "(9 + 11) ÷ 2 = 10 centimeters."
+    ],
+    "hints": [
+      "Where does the new length go in the ordered list?",
+      "With 6 values, which values are in the middle?"
+    ],
+    "wrong_reasons": {
+      "9": "Took the 3rd value alone instead of averaging the 3rd and 4th values",
+      "10.2": "Calculated the mean, 61 ÷ 6 ≈ 10.2, instead of the median",
+      "11": "Assumed adding a small value would not change the median"
+    },
+    "check": "from sympy import *\nimport statistics as st\nresult=st.median([4,9,11,15,20,2])"
+  },
+  {
+    "id": "psda-one-var-data-044",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A coffee cart recorded the number of customers it served on each of 8 mornings: 14, 22, 9, 31, 18, 27, 12, and 25. The first quartile is the median of the lower half of the ordered data, and the third quartile is the median of the upper half. What is the interquartile range of these numbers?",
+    "choices": [
+      "13",
+      "15",
+      "20",
+      "22"
+    ],
+    "answer": "13",
+    "explanation": [
+      "In order: 9, 12, 14, 18, 22, 25, 27, 31.",
+      "Lower half 9, 12, 14, 18 has median (12 + 14) ÷ 2 = 13, so Q1 = 13.",
+      "Upper half 22, 25, 27, 31 has median (25 + 27) ÷ 2 = 26, so Q3 = 26.",
+      "IQR = 26 − 13 = 13."
+    ],
+    "hints": [
+      "What should you do to the eight numbers before splitting them into halves?",
+      "Each half has four values. How do you find the median of four values?"
+    ],
+    "wrong_reasons": {
+      "15": "Used the 2nd and 7th ordered values (12 and 27) as the quartiles instead of averaging the middle pair of each half",
+      "20": "Gave the median of the whole data set, (18 + 22) ÷ 2, instead of the IQR",
+      "22": "Found the range, 31 − 9, instead of the interquartile range"
+    },
+    "check": "from sympy import *\nimport statistics as st\nd=sorted([14,22,9,31,18,27,12,25])\nh=len(d)//2\nresult=st.median(d[h:])-st.median(d[:h])"
+  },
+  {
+    "id": "psda-one-var-data-045",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The daily high temperatures in a city during one week had a range of 15 degrees Celsius (°C). A temperature C in degrees Celsius is converted to degrees Fahrenheit (°F) using F = 1.8C + 32. What is the range of the week's daily high temperatures in degrees Fahrenheit?",
+    "choices": [
+      "15",
+      "27",
+      "47",
+      "59"
+    ],
+    "answer": "27",
+    "explanation": [
+      "The range is the difference between the highest and lowest temperatures.",
+      "Converting multiplies each temperature by 1.8 and then adds 32. Adding 32 to both temperatures does not change their difference.",
+      "So the range becomes 1.8 · 15 = 27°F."
+    ],
+    "hints": [
+      "Write the range in °F as (1.8·high + 32) − (1.8·low + 32). What happens to the 32s?",
+      "What happens to a difference when both numbers are multiplied by 1.8?"
+    ],
+    "wrong_reasons": {
+      "15": "Assumed the range is the same in any units",
+      "47": "Added 32 to the range without multiplying by 1.8",
+      "59": "Converted the range as if it were a single temperature, adding 32 after multiplying"
+    },
+    "check": "from sympy import *\nlo=symbols('lo')\nhi=lo+15\nF=lambda c:Rational(9,5)*c+32\nresult=simplify(F(hi)-F(lo))"
+  },
+  {
+    "id": "psda-one-var-data-046",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The mean of the four numbers 6, 13, 17, and x is equal to x. What is the value of x?",
+    "answer": "12",
+    "explanation": [
+      "The mean of the four numbers is (6 + 13 + 17 + x) ÷ 4 = (36 + x) ÷ 4.",
+      "Set this equal to x: 36 + x = 4x.",
+      "So 3x = 36 and x = 12."
+    ],
+    "hints": [
+      "How would you write the mean of these four numbers as an expression in x?",
+      "What equation says that this expression is the same as x?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq((6+13+17+x)/4,x),x)[0]"
+  },
+  {
+    "id": "psda-one-var-data-047",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "Customers rated a new phone app from 1 star to 4 stars. The table shows the number of customers who gave each rating. The mean rating was 2.5 stars. What is the value of k?",
+    "table": {
+      "headers": [
+        "Rating (stars)",
+        "Number of customers"
+      ],
+      "rows": [
+        [
+          "1",
+          "3"
+        ],
+        [
+          "2",
+          "5"
+        ],
+        [
+          "3",
+          "k"
+        ],
+        [
+          "4",
+          "2"
+        ]
+      ]
+    },
+    "answer": "8",
+    "explanation": [
+      "Total stars: 1·3 + 2·5 + 3k + 4·2 = 21 + 3k. Number of customers: 3 + 5 + k + 2 = 10 + k.",
+      "Mean: (21 + 3k) ÷ (10 + k) = 2.5.",
+      "21 + 3k = 25 + 2.5k, so 0.5k = 4 and k = 8."
+    ],
+    "hints": [
+      "How do you find the total number of stars from a frequency table?",
+      "How many customers are there in all, written in terms of k?"
+    ],
+    "check": "from sympy import *\nk=symbols('k')\nf={1:3,2:5,3:k,4:2}\nresult=solve(Eq(sum(v*c for v,c in f.items())/sum(f.values()),Rational(5,2)),k)[0]"
+  },
+  {
+    "id": "psda-one-var-data-048",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table summarizes the number of minutes 50 students spent reading on one evening. Which interval contains the median number of minutes?",
+    "table": {
+      "headers": [
+        "Minutes reading",
+        "Number of students"
+      ],
+      "rows": [
+        [
+          "0–9",
+          "6"
+        ],
+        [
+          "10–19",
+          "8"
+        ],
+        [
+          "20–29",
+          "9"
+        ],
+        [
+          "30–39",
+          "13"
+        ],
+        [
+          "40–49",
+          "14"
+        ]
+      ]
+    },
+    "choices": [
+      "10–19",
+      "20–29",
+      "30–39",
+      "40–49"
+    ],
+    "answer": "30–39",
+    "explanation": [
+      "With 50 students, the median is the mean of the 25th and 26th values in order.",
+      "Running totals: 0–9 has students 1–6, 10–19 has 7–14, 20–29 has 15–23, and 30–39 has 24–36.",
+      "Both the 25th and 26th values are in the 30–39 interval."
+    ],
+    "hints": [
+      "With 50 values, which positions in the ordered list determine the median?",
+      "If you keep a running total of the counts from the top of the table, where do those positions land?"
+    ],
+    "wrong_reasons": {
+      "10–19": "Located the first quartile (about the 13th value) instead of the 25th and 26th values",
+      "20–29": "Chose the middle row of the table instead of the interval containing the middle student",
+      "40–49": "Chose the interval with the most students (the modal interval)"
+    },
+    "check": "from sympy import *\nrows=[('0–9',6),('10–19',8),('20–29',9),('30–39',13),('40–49',14)]\nn=sum(c for _,c in rows)\ndef where(p):\n    t=0\n    for lab,c in rows:\n        t+=c\n        if p<=t: return lab\na,b=where(n//2),where(n//2+1)\nassert a==b\nresult=a"
+  },
+  {
+    "id": "psda-one-var-data-049",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The data set 4, 8, 15, 20, 23, x has a median of 16. What is the value of x?",
+    "answer": "17",
+    "explanation": [
+      "With 6 values, the median is the mean of the 3rd and 4th values in order.",
+      "A median of 16 is between 15 and 20, so x must sit between them: the ordered list is 4, 8, 15, x, 20, 23.",
+      "(15 + x) ÷ 2 = 16, so x = 17.",
+      "Check: if x were 20 or more, the median would be (15 + 20) ÷ 2 = 17.5; if x were 15 or less, it would be at most 15."
+    ],
+    "hints": [
+      "With six values, which positions in the ordered list give the median?",
+      "For the median to be 16, where must x fall among the other five values?"
+    ],
+    "check": "from sympy import *\nimport statistics as st\nsol=[x for x in range(-100,101) if st.median([4,8,15,20,23,x])==16]\nassert len(sol)==1\nresult=sol[0]"
+  },
+  {
+    "id": "psda-one-var-data-050",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In a science course, a student's final grade is a weighted average: homework counts for 20%, quizzes count for 30%, and the final exam counts for 50%. Lena's homework average is 95, her quiz average is 80, and her final exam score is 72. What is Lena's final grade?",
+    "choices": [
+      "72",
+      "79",
+      "82.3",
+      "85.9"
+    ],
+    "answer": "79",
+    "explanation": [
+      "Multiply each score by its weight: 0.20 · 95 = 19, 0.30 · 80 = 24, and 0.50 · 72 = 36.",
+      "Add the weighted parts: 19 + 24 + 36 = 79."
+    ],
+    "hints": [
+      "What decimal goes with each percent weight?",
+      "After weighting each score, what do you do with the three results?"
+    ],
+    "wrong_reasons": {
+      "72": "Used only the final exam score because it has the largest weight",
+      "82.3": "Took the ordinary mean of the three scores, ignoring the weights",
+      "85.9": "Matched the weights to the wrong scores (50% to homework and 20% to the final exam)"
+    },
+    "check": "from sympy import *\nw=[Rational(20,100),Rational(30,100),Rational(50,100)]\ns=[95,80,72]\nresult=sum(a*b for a,b in zip(w,s))"
+  },
+  {
+    "id": "psda-one-var-data-051",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows the number of books each of 20 students in a reading club finished last month. How many of the students finished more books than the mean number of books for the club?",
+    "table": {
+      "headers": [
+        "Number of books",
+        "Number of students"
+      ],
+      "rows": [
+        [
+          "0",
+          "2"
+        ],
+        [
+          "1",
+          "5"
+        ],
+        [
+          "2",
+          "6"
+        ],
+        [
+          "3",
+          "4"
+        ],
+        [
+          "4",
+          "2"
+        ],
+        [
+          "5",
+          "1"
+        ]
+      ]
+    },
+    "choices": [
+      "6",
+      "7",
+      "10",
+      "13"
+    ],
+    "answer": "7",
+    "explanation": [
+      "Total books: 0·2 + 1·5 + 2·6 + 3·4 + 4·2 + 5·1 = 42, so the mean is 42 ÷ 20 = 2.1.",
+      "Students with more than 2.1 books finished 3, 4, or 5 books.",
+      "That is 4 + 2 + 1 = 7 students."
+    ],
+    "hints": [
+      "How do you find the total number of books from the table?",
+      "Once you know the mean, which rows of the table are above it?"
+    ],
+    "wrong_reasons": {
+      "6": "Gave the frequency of the most common value instead of counting students above the mean",
+      "10": "Assumed half the students must be above the mean, confusing the mean with the median",
+      "13": "Rounded the mean down to 2 and counted students with 2 or more books"
+    },
+    "check": "from sympy import *\nf=[(0,2),(1,5),(2,6),(3,4),(4,2),(5,1)]\nm=Rational(sum(v*c for v,c in f),sum(c for v,c in f))\nresult=sum(c for v,c in f if v>m)"
+  },
+  {
+    "id": "psda-one-var-data-052",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The mean of the three numbers a, b, and c is 10. What is the mean of the three numbers a + 3, b + 5, and c + 7?",
+    "answer": "15",
+    "explanation": [
+      "Since the mean of a, b, and c is 10, a + b + c = 30.",
+      "The new sum is (a + 3) + (b + 5) + (c + 7) = (a + b + c) + 15 = 45.",
+      "The new mean is 45 ÷ 3 = 15."
+    ],
+    "hints": [
+      "What is a + b + c?",
+      "How much larger is the new total than the old total?"
+    ],
+    "check": "from sympy import *\na,b,c=symbols('a b c')\nnew=((a+3)+(b+5)+(c+7))/3\nresult=new.subs(a,30-b-c)"
+  },
+  {
+    "id": "psda-one-var-data-053",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A coach recorded the number of free throws each of 7 players made in practice: 2, 31, 33, 34, 36, 38, and 40. The value 2 is removed from the data. Which of the following statements are true?\n\nI. The mean increases.\nII. The median increases.\nIII. The standard deviation decreases.",
+    "choices": [
+      "I only",
+      "III only",
+      "I and III only",
+      "I, II, and III"
+    ],
+    "answer": "I, II, and III",
+    "explanation": [
+      "Mean: before, 214 ÷ 7 ≈ 30.6; after, 212 ÷ 6 ≈ 35.3. So I is true.",
+      "Median: before, the 4th value is 34; after, the 6 values 31, 33, 34, 36, 38, 40 have median (34 + 36) ÷ 2 = 35. So II is true.",
+      "The value 2 was far from the others, so removing it makes the data much less spread out. So III is true."
+    ],
+    "hints": [
+      "Is 2 close to the other values or far from them?",
+      "After removing one value, the list has an even number of values. Which values are in the middle now?"
+    ],
+    "wrong_reasons": {
+      "I only": "Did not see that removing a value far from the mean reduces the standard deviation, and assumed the median is unaffected",
+      "III only": "Thought removing a value cannot raise the mean",
+      "I and III only": "Assumed the median never changes when an outlier is removed, without recomputing it for the 6 remaining values"
+    },
+    "check": "from sympy import *\nimport statistics as st\na=[2,31,33,34,36,38,40]; b=a[1:]\nI=Rational(sum(b),6)>Rational(sum(a),7)\nII=st.median(b)>st.median(a)\nIII=st.pstdev(b)<st.pstdev(a)\nlab={(True,False,False):'I only',(False,False,True):'III only',(True,False,True):'I and III only',(True,True,True):'I, II, and III'}\nresult=lab[(I,II,III)]"
+  },
+  {
+    "id": "psda-one-var-data-054",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Section A of a statistics course has more students than Section B. On the same exam, the mean score in Section A was 70 and the mean score in Section B was 90. Which of the following could be the mean exam score of all students in both sections combined?",
+    "choices": [
+      "76",
+      "80",
+      "84",
+      "90"
+    ],
+    "answer": "76",
+    "explanation": [
+      "The combined mean is a weighted average of 70 and 90, so it lies between them.",
+      "If the sections were the same size, the combined mean would be exactly 80.",
+      "Because Section A is larger, the combined mean is pulled toward 70, so it must be less than 80. Of the choices, only 76 works."
+    ],
+    "hints": [
+      "What would the combined mean be if the two sections had the same number of students?",
+      "Which section's mean has more influence on the combined mean?"
+    ],
+    "wrong_reasons": {
+      "80": "Averaged the two means without considering that the sections have different sizes",
+      "84": "Weighted the combined mean toward the smaller section instead of the larger one",
+      "90": "Thought the combined mean could equal the higher section's mean"
+    },
+    "check": "from sympy import *\nvals={'76':76,'80':80,'84':84,'90':90}\n# combined mean = (nA*70+nB*90)/(nA+nB) with nA>nB, i.e. strictly between 70 and 80\nposs=set()\nfor nA in range(2,60):\n    for nB in range(1,nA):\n        poss.add(Rational(nA*70+nB*90,nA+nB))\nm=[k for k,v in vals.items() if v in poss]\nassert len(m)==1\nresult=m[0]"
+  },
+  {
+    "id": "psda-one-var-data-055",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows the five-number summaries of the scores on a history test for two classes. Which statement correctly compares the two classes?",
+    "table": {
+      "headers": [
+        "Statistic",
+        "Class A",
+        "Class B"
+      ],
+      "rows": [
+        [
+          "Minimum",
+          "52",
+          "48"
+        ],
+        [
+          "First quartile",
+          "64",
+          "70"
+        ],
+        [
+          "Median",
+          "75",
+          "78"
+        ],
+        [
+          "Third quartile",
+          "82",
+          "84"
+        ],
+        [
+          "Maximum",
+          "97",
+          "92"
+        ]
+      ]
+    },
+    "choices": [
+      "Class B has a greater median and a greater interquartile range.",
+      "Class A has a greater median and a greater range.",
+      "Class B has a greater median and a smaller interquartile range.",
+      "Class B has a smaller range and a greater interquartile range."
+    ],
+    "answer": "Class B has a greater median and a smaller interquartile range.",
+    "explanation": [
+      "Medians: Class A 75, Class B 78, so Class B's median is greater.",
+      "IQRs: Class A 82 − 64 = 18, Class B 84 − 70 = 14, so Class B's IQR is smaller.",
+      "Ranges: Class A 97 − 52 = 45, Class B 92 − 48 = 44."
+    ],
+    "hints": [
+      "How do you find the interquartile range from a five-number summary?",
+      "Compare each measure for the two classes one at a time. Which values do you subtract?"
+    ],
+    "wrong_reasons": {
+      "Class B has a greater median and a greater interquartile range.": "Compared only the third quartiles (84 > 82) instead of computing Q3 − Q1",
+      "Class A has a greater median and a greater range.": "Assumed the class with the highest maximum score also has the greater median",
+      "Class B has a smaller range and a greater interquartile range.": "Found the range correctly but compared the first quartiles (70 > 64) instead of computing Q3 − Q1"
+    },
+    "check": "from sympy import *\nA=dict(mn=52,q1=64,md=75,q3=82,mx=97)\nB=dict(mn=48,q1=70,md=78,q3=84,mx=92)\niq=lambda s:s['q3']-s['q1']; rg=lambda s:s['mx']-s['mn']\nopts={'Class B has a greater median and a smaller interquartile range.':B['md']>A['md'] and iq(B)<iq(A),\n'Class B has a greater median and a greater interquartile range.':B['md']>A['md'] and iq(B)>iq(A),\n'Class A has a greater median and a greater range.':A['md']>B['md'] and rg(A)>rg(B),\n'Class B has a smaller range and a greater interquartile range.':rg(B)<rg(A) and iq(B)>iq(A)}\nm=[k for k,v in opts.items() if v]\nassert len(m)==1\nresult=m[0]"
+  },
+  {
+    "id": "psda-one-var-data-056",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A city's air-quality monitor recorded these readings on 5 days: 12, 15, 18, 21, and 24. Two more readings will be added to the data. Which of the following pairs of new readings would keep the mean of the data the same?",
+    "choices": [
+      "Readings of 18 and 21",
+      "Readings of 20 and 22",
+      "Readings of 6 and 24",
+      "Readings of 10 and 26"
+    ],
+    "answer": "Readings of 10 and 26",
+    "explanation": [
+      "The current mean is (12 + 15 + 18 + 21 + 24) ÷ 5 = 90 ÷ 5 = 18.",
+      "For the mean to stay 18 with 7 values, the total must be 7 · 18 = 126, so the two new readings must add to 126 − 90 = 36.",
+      "Only 10 + 26 = 36, so 10 and 26 keep the mean at 18."
+    ],
+    "hints": [
+      "What is the mean of the five readings now?",
+      "For the mean to stay the same, how must the two new readings balance around it?"
+    ],
+    "wrong_reasons": {
+      "Readings of 18 and 21": "Thought including the mean as one of the new values is enough, ignoring that 21 is above the mean",
+      "Readings of 20 and 22": "Thought values close to the mean would not change it, but both are above 18",
+      "Readings of 6 and 24": "Chose two values that are spread out without checking that they are equally far above and below 18"
+    },
+    "check": "from sympy import *\nd=[12,15,18,21,24]\nm0=Rational(sum(d),5)\nopts={'Readings of 10 and 26':(10,26),'Readings of 18 and 21':(18,21),'Readings of 20 and 22':(20,22),'Readings of 6 and 24':(6,24)}\nm=[k for k,(p,q) in opts.items() if Rational(sum(d)+p+q,7)==m0]\nassert len(m)==1\nresult=m[0]"
+  },
+  {
+    "id": "psda-one-var-data-057",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The mean of 9 consecutive even integers is 46. What is the greatest of these integers?",
+    "choices": [
+      "50",
+      "54",
+      "55",
+      "62"
+    ],
+    "answer": "54",
+    "explanation": [
+      "For equally spaced numbers, the mean is the middle (5th) number, so the 5th integer is 46.",
+      "There are 4 integers above the middle one, each 2 more than the previous one.",
+      "The greatest is 46 + 4 · 2 = 54."
+    ],
+    "hints": [
+      "For a list of equally spaced numbers, where does the mean fall in the list?",
+      "How many integers come after the middle one, and how far apart are consecutive even integers?"
+    ],
+    "wrong_reasons": {
+      "50": "Counted up 4 steps of 1 instead of 4 steps of 2",
+      "55": "Added 9, the number of integers, to the mean",
+      "62": "Treated 46 as the smallest integer and counted 8 steps of 2"
+    },
+    "check": "from sympy import *\nn=symbols('n')\ns=solve(Eq(sum(n+2*i for i in range(9))/9,46),n)[0]\nresult=s+16"
+  },
+  {
+    "id": "psda-one-var-data-058",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A town surveyed its households about the number of cars each household owns. The table shows the percent of households that own each number of cars. Based on the table, what is the mean number of cars per household?",
+    "table": {
+      "headers": [
+        "Number of cars",
+        "Percent of households"
+      ],
+      "rows": [
+        [
+          "0",
+          "10%"
+        ],
+        [
+          "1",
+          "35%"
+        ],
+        [
+          "2",
+          "40%"
+        ],
+        [
+          "3",
+          "15%"
+        ]
+      ]
+    },
+    "choices": [
+      "1.5",
+      "1.6",
+      "2",
+      "25"
+    ],
+    "answer": "1.6",
+    "explanation": [
+      "Treat the percents as weights: mean = 0(0.10) + 1(0.35) + 2(0.40) + 3(0.15).",
+      "= 0 + 0.35 + 0.80 + 0.45 = 1.6 cars per household."
+    ],
+    "hints": [
+      "If there were 100 households, how many would own each number of cars?",
+      "How would you find the total number of cars for those 100 households?"
+    ],
+    "wrong_reasons": {
+      "1.5": "Averaged the values 0, 1, 2, and 3 without weighting by the percents",
+      "2": "Gave the most common number of cars (also the median) instead of the mean",
+      "25": "Averaged the four percents instead of the numbers of cars"
+    },
+    "check": "from sympy import *\nf={0:10,1:35,2:40,3:15}\nresult=Rational(sum(v*p for v,p in f.items()),sum(f.values()))"
+  },
+  {
+    "id": "psda-one-var-data-059",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A researcher recorded the hours of screen time per week for a group of teenagers. The first quartile was 18 hours and the third quartile was 30 hours. The researcher calls a value an outlier if it is more than 1.5 times the interquartile range above the third quartile or below the first quartile. Which of the following values would be an outlier?",
+    "choices": [
+      "2",
+      "36",
+      "45",
+      "52"
+    ],
+    "answer": "52",
+    "explanation": [
+      "IQR = 30 − 18 = 12, and 1.5 · 12 = 18.",
+      "Upper cutoff: 30 + 18 = 48. Lower cutoff: 18 − 18 = 0.",
+      "Only 52 is beyond a cutoff (52 > 48)."
+    ],
+    "hints": [
+      "What is the interquartile range, and what is 1.5 times it?",
+      "Where are the cutoffs above Q3 and below Q1?"
+    ],
+    "wrong_reasons": {
+      "2": "Assumed a value near 0 must be an outlier, but the lower cutoff is 0",
+      "36": "Used Q3 + 0.5 · IQR = 36 as the boundary, treating any value at or beyond it as an outlier, instead of using 1.5 · IQR",
+      "45": "Used Q3 + IQR = 42 as the cutoff, forgetting to multiply the IQR by 1.5, and chose the first value above 42"
+    },
+    "check": "from sympy import *\nq1,q3=18,30\niqr=q3-q1\nlo,hi=q1-Rational(3,2)*iqr,q3+Rational(3,2)*iqr\nm=[c for c in ['2','36','45','52'] if int(c)>hi or int(c)<lo]\nassert len(m)==1\nresult=m[0]"
+  },
+  {
+    "id": "psda-one-var-data-060",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A data set consists of the five numbers 3, 7, 10, 14, and x. The mean of the data set is equal to its median. What is the sum of all possible values of x?",
+    "answer": "25.5",
+    "accept": [
+      "51/2"
+    ],
+    "explanation": [
+      "The mean is (34 + x) ÷ 5. The median depends on where x falls in the order.",
+      "If x ≤ 7, the median is 7: (34 + x) ÷ 5 = 7 gives x = 1, which works.",
+      "If 7 ≤ x ≤ 10, the median is x: (34 + x) ÷ 5 = x gives x = 8.5, which works.",
+      "If x ≥ 10, the median is 10: (34 + x) ÷ 5 = 10 gives x = 16, which works.",
+      "Sum of possible values: 1 + 8.5 + 16 = 25.5."
+    ],
+    "hints": [
+      "Can the median be found without knowing where x falls in the ordered list?",
+      "How many different positions could x take, and what would the median be in each case?",
+      "After solving each case, does the value of x actually fit that case?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nmean=(3+7+10+14+x)/5\nsols=set()\nfor lo,hi,med in [(-oo,7,7),(7,10,x),(10,oo,10)]:\n    for s in solve(Eq(mean,med),x):\n        if lo<=s<=hi: sols.add(s)\nresult=sum(sols)"
+  },
+  {
+    "id": "psda-one-var-data-061",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A teacher asked students to rate a field trip on a scale from 1 to 5. The table shows the number of students who gave each rating, where k is a positive integer. The median rating is 3. What is the least possible value of k?",
+    "table": {
+      "headers": [
+        "Rating",
+        "Number of students"
+      ],
+      "rows": [
+        [
+          "1",
+          "4"
+        ],
+        [
+          "2",
+          "6"
+        ],
+        [
+          "3",
+          "k"
+        ],
+        [
+          "4",
+          "5"
+        ],
+        [
+          "5",
+          "3"
+        ]
+      ]
+    },
+    "answer": "3",
+    "explanation": [
+      "There are 18 + k ratings. Ten ratings are below 3 (4 + 6) and eight are above 3 (5 + 3).",
+      "For the median to be 3, the middle position(s) must land among the k ratings of 3, which occupy positions 11 through 10 + k.",
+      "k = 1: 19 ratings, median is the 10th value, a 2. k = 2: 20 ratings, median is (10th + 11th) ÷ 2 = (2 + 3) ÷ 2 = 2.5.",
+      "k = 3: 21 ratings, median is the 11th value, a 3. So the least k is 3."
+    ],
+    "hints": [
+      "How many ratings are below 3, and how many are above 3?",
+      "If the total number of ratings is even, which two positions matter, and what happens if they fall in different rows?"
+    ],
+    "check": "from sympy import *\nimport statistics as st\nk=1\nwhile True:\n    d=[1]*4+[2]*6+[3]*k+[4]*5+[5]*3\n    if st.median(d)==3: break\n    k+=1\nresult=k"
+  },
+  {
+    "id": "psda-one-var-data-062",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A data set of n values has a mean of 50 and a standard deviation of 6. Two new values, 44 and 56, are added to the data set. Which statement about the new data set of n + 2 values is true?",
+    "choices": [
+      "The mean and the standard deviation are both unchanged.",
+      "The mean is unchanged, and the standard deviation decreases.",
+      "The mean is unchanged, and the standard deviation increases.",
+      "The mean increases, and the standard deviation increases."
+    ],
+    "answer": "The mean and the standard deviation are both unchanged.",
+    "explanation": [
+      "44 and 56 are each 6 away from 50, on opposite sides, so their sum is 100 = 2 · 50 and the mean stays 50.",
+      "The standard deviation is based on the average squared distance from the mean. Originally that average is 6² = 36.",
+      "Each new value has squared distance 6² = 36, exactly the existing average, so adding them leaves the average squared distance at 36.",
+      "So the standard deviation stays 6."
+    ],
+    "hints": [
+      "How far is each new value from the mean, and in which directions?",
+      "Compare each new value's distance from the mean with the standard deviation itself. Would values at exactly that distance pull the typical distance up or down?"
+    ],
+    "wrong_reasons": {
+      "The mean is unchanged, and the standard deviation decreases.": "Assumed any values added symmetrically around the mean reduce the spread; that happens only if they are closer to the mean than the typical distance",
+      "The mean is unchanged, and the standard deviation increases.": "Thought adding values that are not equal to the mean must increase the spread",
+      "The mean increases, and the standard deviation increases.": "Noticed 56 is above the mean but ignored that 44 is equally far below it"
+    },
+    "check": "from sympy import *\nn=symbols('n',positive=True)\nmu,sd=50,6\nnew=[44,56]\nS=n*mu+sum(new)\nSS=n*sd**2  # sum of squared deviations (population form)\nm2=simplify(S/(n+2))\nSS2=simplify(SS+sum((v-m2)**2 for v in new))\nv2=simplify(SS2/(n+2))\ndm=simplify(m2-mu); dv=simplify(v2-sd**2)\n# sample form gives the same: (36(n-1)+72)/(n+1)=36\nassert simplify((sd**2*(n-1)+sum((v-m2)**2 for v in new))/(n+1)-sd**2)==0\nsgn=lambda e:0 if e==0 else (1 if e.subs(n,10)>0 else -1)\nlab={(0,0):'The mean and the standard deviation are both unchanged.',(0,-1):'The mean is unchanged, and the standard deviation decreases.',(0,1):'The mean is unchanged, and the standard deviation increases.',(1,1):'The mean increases, and the standard deviation increases.'}\nresult=lab[(sgn(dm),sgn(dv))]"
+  },
+  {
+    "id": "psda-one-var-data-063",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The 25 workers at Plant A have a median hourly wage of $21. The 40 workers at Plant B have a median hourly wage of $27. Which statement must be true about the median hourly wage of all 65 workers at the two plants?",
+    "choices": [
+      "It is $24.",
+      "It is greater than $24, because Plant B has more workers.",
+      "It is between $21 and $27, inclusive.",
+      "It cannot be determined to lie within any particular range."
+    ],
+    "answer": "It is between $21 and $27, inclusive.",
+    "explanation": [
+      "The combined median is the 33rd of the 65 wages in order.",
+      "At least 13 Plant A wages are at most $21 and at least 20 Plant B wages are at most $27, so at least 33 wages are at most $27. Thus the 33rd wage is at most $27.",
+      "Similarly, at least 13 Plant A wages and at least 20 Plant B wages are $21 or more, so at least 33 wages are at least $21. Thus the 33rd wage is at least $21.",
+      "The exact value depends on the individual wages, so only the range $21 to $27 is certain."
+    ],
+    "hints": [
+      "With 65 wages, which position in the combined ordered list is the median?",
+      "How many wages are guaranteed to be at most $27? How many are guaranteed to be at least $21?"
+    ],
+    "wrong_reasons": {
+      "It is $24.": "Averaged the two medians, which is not how medians combine",
+      "It is greater than $24, because Plant B has more workers.": "Treated medians like means and weighted them by group size; the combined median depends on the individual wages, not on a weighted average",
+      "It cannot be determined to lie within any particular range.": "Did not realize that each plant's median guarantees how many wages lie above and below it"
+    },
+    "check": null,
+    "check_note": "Conceptual item: bounds on the median of a combined data set; the answer is a must-be-true statement, verified by counting argument in the explanation."
+  },
+  {
+    "id": "psda-one-var-data-064",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A restaurant recorded the delivery times, in whole minutes, of 20 orders. The table summarizes the results. Which of the following could be the mean delivery time, in minutes, of the 20 orders?",
+    "table": {
+      "headers": [
+        "Delivery time (minutes)",
+        "Number of orders"
+      ],
+      "rows": [
+        [
+          "10–19",
+          "4"
+        ],
+        [
+          "20–29",
+          "10"
+        ],
+        [
+          "30–39",
+          "5"
+        ],
+        [
+          "40–49",
+          "1"
+        ]
+      ]
+    },
+    "choices": [
+      "12",
+      "21",
+      "27",
+      "36"
+    ],
+    "answer": "27",
+    "explanation": [
+      "The smallest possible mean uses the least value in each interval: (10·4 + 20·10 + 30·5 + 40·1) ÷ 20 = 430 ÷ 20 = 21.5.",
+      "The largest possible mean uses the greatest value in each interval: (19·4 + 29·10 + 39·5 + 49·1) ÷ 20 = 610 ÷ 20 = 30.5.",
+      "The mean must be between 21.5 and 30.5. Only 27 is in this range."
+    ],
+    "hints": [
+      "If every time in an interval were as small as possible, what would the mean be?",
+      "If every time were as large as possible, what would the mean be?"
+    ],
+    "wrong_reasons": {
+      "12": "Assumed the mean falls in the first interval listed, ignoring that most orders took 20 minutes or more",
+      "21": "Underestimated the least possible mean; even if every time were at the bottom of its interval, the mean would be 21.5",
+      "36": "Assumed the mean is in the 30–39 interval without weighting each interval by its frequency"
+    },
+    "check": "from sympy import *\nrows=[(10,19,4),(20,29,10),(30,39,5),(40,49,1)]\nn=sum(c for *_,c in rows)\nlo=Rational(sum(a*c for a,b,c in rows),n); hi=Rational(sum(b*c for a,b,c in rows),n)\nm=[s for s in ['12','21','27','36'] if lo<=int(s)<=hi]\nassert len(m)==1\nresult=m[0]"
+  },
+  {
+    "id": "psda-one-var-data-065",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "For x > 5, a data set consists of the five values x, x + 2, x + 5, x + 9, and 3x. The mean of the data set is 3 more than its median. What is the value of x?",
+    "answer": "12",
+    "explanation": [
+      "Because x > 5, 3x > x + 9, so the ordered values are x, x + 2, x + 5, x + 9, 3x and the median is x + 5.",
+      "The mean is (x + x + 2 + x + 5 + x + 9 + 3x) ÷ 5 = (7x + 16) ÷ 5.",
+      "Set (7x + 16) ÷ 5 = (x + 5) + 3, so 7x + 16 = 5x + 40.",
+      "Then 2x = 24 and x = 12."
+    ],
+    "hints": [
+      "Which of the five expressions is the largest when x > 5, and which is in the middle?",
+      "Can you write both the mean and the median as expressions in x?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nvals=[x,x+2,x+5,x+9,3*x]\nfor s in solve(Eq(sum(vals)/5,sorted(vals,key=lambda e:e.subs(x,6))[2]+3),x):\n    if s>5:\n        nums=sorted(v.subs(x,s) for v in vals)\n        assert sum(nums)/5==nums[2]+3\n        result=s"
+  },
+  {
+    "id": "psda-one-var-data-066",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A data set consists of 11 different numbers, and its median is 50. Which of the following changes would definitely change the median?",
+    "choices": [
+      "Replacing the 4th-smallest number with a number greater than all 11 numbers",
+      "Increasing the greatest number by 100",
+      "Decreasing the least number by 100",
+      "Increasing each of the three greatest numbers by 5"
+    ],
+    "answer": "Replacing the 4th-smallest number with a number greater than all 11 numbers",
+    "explanation": [
+      "The median of 11 numbers is the 6th number in order, which is 50.",
+      "Changing the largest or smallest values while they stay at the ends does not change which number is 6th, so the first three changes leave the median at 50.",
+      "Removing a number below the median and putting a new number above all the others shifts every number above it down one place: the old 7th number becomes the new 6th.",
+      "Because the numbers are different, the old 7th number is greater than 50, so the median changes."
+    ],
+    "hints": [
+      "Which position in the ordered list is the median of 11 numbers?",
+      "For each change, does the number in that position stay the same?"
+    ],
+    "wrong_reasons": {
+      "Increasing the greatest number by 100": "Thought the median, like the mean, is affected by the size of an extreme value",
+      "Decreasing the least number by 100": "Thought lowering the smallest value pulls the median down, as it would pull down the mean",
+      "Increasing each of the three greatest numbers by 5": "Thought changing several values must change the median, even though none of them is the middle value and the order of positions is kept"
+    },
+    "check": null,
+    "check_note": "Conceptual item: which changes affect the median of a data set with unspecified values."
+  },
+  {
+    "id": "psda-one-var-data-067",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A data set of 8 values has a mean of m. Two values, m + 10 and m − 4, are added to the data set. Which expression represents the mean of the new data set of 10 values?",
+    "choices": [
+      "m + 0.75",
+      "m + 3",
+      "m + 6",
+      "m + 0.6"
+    ],
+    "answer": "m + 0.6",
+    "explanation": [
+      "The original 8 values have a total of 8m.",
+      "The two new values add (m + 10) + (m − 4) = 2m + 6.",
+      "New mean = (8m + 2m + 6) ÷ 10 = (10m + 6) ÷ 10 = m + 0.6."
+    ],
+    "hints": [
+      "What is the total of the original 8 values in terms of m?",
+      "After adding the two new values, how many values are there, and what is their total?"
+    ],
+    "wrong_reasons": {
+      "m + 0.75": "Divided the extra 6 by the original 8 values instead of the new total of 10",
+      "m + 3": "Averaged the two new values' distances from m, as if they were the only values",
+      "m + 6": "Added the combined extra amount to the mean without dividing by the number of values"
+    },
+    "check": "from sympy import *\nm=symbols('m')\nnew=(8*m+(m+10)+(m-4))/10\nd=simplify(new-m)\nlab={Rational(3,5):'m + 0.6',Rational(3,4):'m + 0.75',3:'m + 3',6:'m + 6'}\nresult=lab[d]"
+  },
+  {
+    "id": "psda-one-var-data-068",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A data set contains 25 different values. The 3 greatest values and the 3 least values are removed, leaving 19 values. Which statement must be true?",
+    "choices": [
+      "The mean of the data set is unchanged.",
+      "The range of the data set is unchanged.",
+      "The median of the data set is unchanged.",
+      "The median of the data set decreases."
+    ],
+    "answer": "The median of the data set is unchanged.",
+    "explanation": [
+      "The original median is the 13th of the 25 values, with 12 values below it and 12 above it.",
+      "Removing 3 values from each end leaves 9 values below it and 9 values above it.",
+      "So the same value is the middle (10th) of the remaining 19 values, and the median is unchanged.",
+      "The mean could rise or fall, and the range shrinks because the maximum and minimum are removed."
+    ],
+    "hints": [
+      "Before the removal, how many values are below the median and how many are above it?",
+      "After removing the same number from each end, is the same value still in the middle?"
+    ],
+    "wrong_reasons": {
+      "The mean of the data set is unchanged.": "Assumed removing values symmetrically by position keeps the mean, but the removed values need not be balanced in size",
+      "The range of the data set is unchanged.": "Did not notice that the maximum and minimum are among the values removed",
+      "The median of the data set decreases.": "Thought removing values always changes the median, without checking the middle position"
+    },
+    "check": null,
+    "check_note": "Conceptual item: effect of trimming equal numbers of extreme values on the median; values are unspecified."
+  },
+  {
+    "id": "psda-one-var-data-069",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Amara took 7 tests in a course. The mean of her first 4 test scores was 81, the mean of her last 4 test scores was 86, and the mean of all 7 test scores was 83. What was her score on the 4th test?",
+    "answer": "87",
+    "explanation": [
+      "The first 4 tests total 4 · 81 = 324, and the last 4 tests total 4 · 86 = 344.",
+      "Together, 324 + 344 = 668 counts every test once, except the 4th test, which is counted twice.",
+      "All 7 tests total 7 · 83 = 581.",
+      "So the 4th test score is 668 − 581 = 87."
+    ],
+    "hints": [
+      "Which test is included in both the “first 4” and the “last 4”?",
+      "If you add the totals of the two groups, how does that compare with the total of all 7 tests?"
+    ],
+    "check": "from sympy import *\na,b,t4=symbols('a b t4')\n# a = sum of tests 1-3, b = sum of tests 5-7\nsol=solve([Eq(a+t4,4*81),Eq(t4+b,4*86),Eq(a+t4+b,7*83)],[a,b,t4])\nresult=sol[t4]"
+  },
+  {
+    "id": "psda-one-var-data-070",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The deviation of a value from the mean of its data set is the value minus the mean. A data set has 5 values. The deviations of four of the values from the mean are −6, 2, 3, and 4. The fifth value is 21. What is the mean of the data set?",
+    "choices": [
+      "18",
+      "21",
+      "21.6",
+      "24"
+    ],
+    "answer": "24",
+    "explanation": [
+      "The deviations of all the values from the mean always add to 0.",
+      "So the fifth deviation is 0 − (−6 + 2 + 3 + 4) = −3.",
+      "The fifth value is 3 less than the mean: 21 = mean − 3, so the mean is 24."
+    ],
+    "hints": [
+      "What is always true about the sum of all the deviations from the mean?",
+      "Once you know the fifth value's deviation, how is that value related to the mean?"
+    ],
+    "wrong_reasons": {
+      "18": "Found the fifth deviation of −3 but subtracted it from 21 with the wrong sign",
+      "21": "Assumed the fifth value must be equal to the mean",
+      "21.6": "Added the sum of the four deviations divided by 5 (3 ÷ 5) to 21 instead of using the fact that all deviations sum to 0"
+    },
+    "check": "from sympy import *\nm=symbols('m')\ndev=[-6,2,3,4]\nresult=solve(Eq(sum(dev)+(21-m),0),m)[0]"
+  },
+  {
+    "id": "psda-one-var-data-071",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A list of numbers contains the number 1 one time, the number 2 two times, the number 3 three times, and so on, up to the number 10 ten times. What is the median of the list?",
+    "choices": [
+      "5.5",
+      "7",
+      "10",
+      "28"
+    ],
+    "answer": "7",
+    "explanation": [
+      "The list has 1 + 2 + … + 10 = 55 numbers, so the median is the 28th number in order.",
+      "Running totals: through 5 there are 15 numbers, through 6 there are 21, and through 7 there are 28.",
+      "The 28th number is the last 7, so the median is 7."
+    ],
+    "hints": [
+      "How many numbers are in the list altogether?",
+      "Which position is the middle one, and how can you count up to it?"
+    ],
+    "wrong_reasons": {
+      "5.5": "Found the median of the distinct values 1 through 10, ignoring how many times each appears",
+      "10": "Gave the mode, the value that appears most often",
+      "28": "Gave the position of the median instead of the value in that position"
+    },
+    "check": "from sympy import *\nimport statistics as st\nd=[v for v in range(1,11) for _ in range(v)]\nresult=st.median(d)"
+  },
+  {
+    "id": "psda-one-var-data-072",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A data set has a mean of 15, a median of 12, and a standard deviation of 4. Each value x in the data set is replaced by 30 − x. Which of the following gives the mean, median, and standard deviation of the new data set?",
+    "choices": [
+      "Mean 15, median 18, standard deviation 4",
+      "Mean 15, median 12, standard deviation 4",
+      "Mean 45, median 42, standard deviation 4",
+      "Mean −15, median −12, standard deviation −4"
+    ],
+    "answer": "Mean 15, median 18, standard deviation 4",
+    "explanation": [
+      "Replacing x with 30 − x multiplies each value by −1 and then adds 30.",
+      "Mean: 30 − 15 = 15. The order of the values reverses, so the middle value becomes 30 − 12 = 18.",
+      "Multiplying by −1 does not change how far apart the values are, and adding 30 shifts them without changing spread, so the standard deviation stays 4."
+    ],
+    "hints": [
+      "How does the transformation affect a single value, and does it keep the values in the same order?",
+      "Does multiplying every value by −1 make the values more spread out, less spread out, or neither?"
+    ],
+    "wrong_reasons": {
+      "Mean 15, median 12, standard deviation 4": "Noticed the mean is unchanged and assumed the median must be unchanged too",
+      "Mean 45, median 42, standard deviation 4": "Added 30 to each measure, ignoring the subtraction of x",
+      "Mean −15, median −12, standard deviation −4": "Negated every measure and forgot the 30; a standard deviation can never be negative"
+    },
+    "check": "from sympy import *\nimport statistics as st\nd=[12,12,12,17,22]\nmean=lambda L:Rational(sum(L),len(L))\nsd=lambda L:sqrt(sum((v-mean(L))**2 for v in L)/len(L))\nassert mean(d)==15 and st.median(d)==12 and sd(d)==4\nn=[30-v for v in d]\nresult=f'Mean {mean(n)}, median {st.median(n)}, standard deviation {sd(n)}'"
+  },
+  {
+    "id": "psda-one-var-data-073",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A botanist measured the heights, in centimeters, of plants in two greenhouses. In Greenhouse A, the shortest plant is 12 cm tall and the range of heights is 25 cm. In Greenhouse B, the tallest plant is 40 cm tall and the range of heights is 14 cm. What is the range, in centimeters, of the heights of all the plants in both greenhouses combined?",
+    "choices": [
+      "14",
+      "19.5",
+      "28",
+      "39"
+    ],
+    "answer": "28",
+    "explanation": [
+      "Greenhouse A: tallest = 12 + 25 = 37 cm. Greenhouse B: shortest = 40 − 14 = 26 cm.",
+      "Combined shortest: the lesser of 12 and 26, which is 12 cm. Combined tallest: the greater of 37 and 40, which is 40 cm.",
+      "Combined range = 40 − 12 = 28 cm."
+    ],
+    "hints": [
+      "What are the shortest and tallest plants in each greenhouse?",
+      "For the combined data, which plant is shortest overall and which is tallest overall?"
+    ],
+    "wrong_reasons": {
+      "14": "Used Greenhouse B's range, thinking the combined range equals one group's range",
+      "19.5": "Averaged the two ranges",
+      "39": "Added the two ranges together"
+    },
+    "check": "from sympy import *\naMin=12; aMax=aMin+25\nbMax=40; bMin=bMax-14\nresult=max(aMax,bMax)-min(aMin,bMin)"
+  },
+  {
+    "id": "psda-one-var-data-074",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The mean of a list of 10 numbers is 25. The mean of the 6 smallest numbers in the list is 18. What is the least possible value of the largest number in the list?",
+    "choices": [
+      "25",
+      "28.4",
+      "35.5",
+      "47.3"
+    ],
+    "answer": "35.5",
+    "explanation": [
+      "The 10 numbers total 10 · 25 = 250, and the 6 smallest total 6 · 18 = 108.",
+      "So the 4 largest numbers total 250 − 108 = 142.",
+      "The largest of 4 numbers with total 142 is smallest when all 4 are equal: 142 ÷ 4 = 35.5.",
+      "This is possible: for example, six numbers equal to 18 and four numbers equal to 35.5."
+    ],
+    "hints": [
+      "What is the total of the 4 numbers that are not among the 6 smallest?",
+      "If you want the largest of those 4 numbers to be as small as possible, how should the 4 numbers compare with one another?"
+    ],
+    "wrong_reasons": {
+      "25": "Assumed the largest number only has to be at least the mean of the whole list",
+      "28.4": "Divided the remaining total of 142 by 5 instead of by the 4 remaining numbers",
+      "47.3": "Divided the remaining total by 3, leaving out one of the 4 largest numbers"
+    },
+    "check": "from sympy import *\nrest=10*25-6*18\nbest=Rational(rest,4)\n# feasibility: six values of 18 and four of best keep the 6 smallest as the 18s\nlist_=[18]*6+[best]*4\nassert sum(list_)==250 and sorted(list_)[:6]==[18]*6\nresult=best"
+  },
+  {
+    "id": "psda-one-var-data-075",
+    "skill_id": "psda-one-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A data set consists of n different numbers, where n is odd. Each number greater than the median is increased by 6, and the other numbers are unchanged. As a result, the mean of the data set increases by 2.8. What is the value of n?",
+    "choices": [
+      "7",
+      "8",
+      "14",
+      "15"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Since n is odd and the numbers are different, exactly (n − 1) ÷ 2 numbers are greater than the median.",
+      "The total increases by 6 · (n − 1) ÷ 2 = 3(n − 1), so the mean increases by 3(n − 1) ÷ n.",
+      "Set 3(n − 1) ÷ n = 2.8: 3n − 3 = 2.8n, so 0.2n = 3 and n = 15."
+    ],
+    "hints": [
+      "How many numbers are greater than the median when n is odd and all the numbers are different?",
+      "By how much does the total increase, and how does that change the mean?"
+    ],
+    "wrong_reasons": {
+      "7": "Gave the number of values that were increased instead of the total number of values",
+      "8": "Counted the values above the median plus the median itself instead of the whole data set",
+      "14": "Doubled the number of values above the median and forgot to count the median itself"
+    },
+    "check": "from sympy import *\nn=symbols('n',positive=True)\nresult=solve(Eq(6*(n-1)/2/n,Rational(28,10)),n)[0]"
   }
 ]

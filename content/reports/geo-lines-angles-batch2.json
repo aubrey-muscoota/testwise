@@ -1,0 +1,27 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "geo-lines-angles-036",
+      "reason": "Wrong-answer rationales for '3, 4, 8' and '2, 9, 12' were vague or duplicated; rewrote each to name the specific mistaken inequality test. Key unchanged."
+    },
+    {
+      "id": "geo-lines-angles-061",
+      "reason": "Check hard-coded the angle-statement option as False; it now compares angle C with 3 times angle F from the givens. Key unchanged."
+    },
+    {
+      "id": "geo-lines-angles-063",
+      "reason": "Check only restated the solution's angle chase; replaced with a coordinate model (AB = AC, D on AC with BD = BC) solved numerically for AD = BD. Key 36 unchanged."
+    },
+    {
+      "id": "geo-lines-angles-066",
+      "reason": "Rationale for distractor 120° ('angles split evenly') did not match how 120 arises; now names the 180° − 60° supplement error. Key unchanged."
+    },
+    {
+      "id": "geo-lines-angles-075",
+      "reason": "Mislabelled difficulty: one linear equation plus spotting an equilateral triangle is medium, not hard; changed from 3 to 2."
+    }
+  ],
+  "replaced": [],
+  "removed": []
+}

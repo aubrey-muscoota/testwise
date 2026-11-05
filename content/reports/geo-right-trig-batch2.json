@@ -1,0 +1,29 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "geo-right-trig-058",
+      "reason": "Check listed the correct choice's value as the computed target expression (s*h/2), so it would match whatever was computed; it now lists 9√3 as a literal and computes the area from the side and altitude."
+    },
+    {
+      "id": "geo-right-trig-050",
+      "reason": "Same 'rectangular TV screen diagonal' setting as 001; changed the context to a solar panel (math and key 1200 unchanged), and the check now derives both edges from sin θ = 0.6 instead of a typed-in 3/5 height factor."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "geo-right-trig-059",
+      "reason": "Near-duplicate of 041 (cone slant height from 6 and 8, answer 10) and of 024 (longest rod inside a closed solid); now a right triangle with one leg twice the other and hypotenuse 10, asking for the shorter leg (2√5)."
+    },
+    {
+      "id": "geo-right-trig-067",
+      "reason": "Near-duplicate of 009 (sin θ = cos of the complement, only in radians), and too easy for difficulty 3; now a chained problem: isosceles right triangle ABC with legs 4 feeds triangle ACD (right angle at C, 60° at A), asking for AD (8√2)."
+    },
+    {
+      "id": "geo-right-trig-074",
+      "reason": "Near-duplicate of 064: both reduce to tan A = 2 and ask for a sin/cos product (074's key 4/5 was even a distractor in 064); now tan A = 9 tan B with hypotenuse 20, asking for the area (60)."
+    }
+  ],
+  "removed": [],
+  "notes": "All 48 keys matched independent blind solutions. No ambiguous items, leaky hints or correct distractors found. In 072, the distractors t² + 1 and 1 + 2t²/(1 + t²) equal 2 only when t = 1; the question asks for a value that holds for every t > 0, so 2 is the only defensible answer."
+}

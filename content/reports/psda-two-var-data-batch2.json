@@ -1,0 +1,40 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "psda-two-var-data-045",
+      "reason": "Daily household use of 380–437 kWh is unrealistic (typical is ~30 kWh/day); changed to monthly use with model y = 60x + 500 and actual 989 kWh (answer still 15), with explanation and check updated."
+    },
+    {
+      "id": "psda-two-var-data-059",
+      "reason": "Stem said the table shows 'the first three years after the museum opened' but the table starts at year 0; reworded to the opening year (year 0) and the next two years."
+    },
+    {
+      "id": "psda-two-var-data-060",
+      "reason": "Wrong reason for choice 12 did not describe the error that produces it; rewritten (added 40 instead of doubling: 5x + 40 = 100). Two-step linear item relabelled from difficulty 3 to 2."
+    },
+    {
+      "id": "psda-two-var-data-072",
+      "reason": "Hint 2 effectively stated the answer (y approaches 30 from below); replaced with a question about whether the subtracted term grows or shrinks."
+    },
+    {
+      "id": "psda-two-var-data-074",
+      "reason": "Distractor had an unnatural parenthetical '(multiplied by 1.006)' that signalled it was multiplicative; reworded to '0.6% of the previous year's percent'."
+    },
+    {
+      "id": "psda-two-var-data-032",
+      "reason": "Removed a no-op .replace('-','-') from the check code."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "psda-two-var-data-037",
+      "reason": "Near-duplicate template of 016 and 003 (two linear models compared at a given week, plug in and subtract); replaced with a d1 SPR that solves a line of best fit for the input given a predicted height (answer 10)."
+    },
+    {
+      "id": "psda-two-var-data-039",
+      "reason": "Near-duplicate of 008 (table of yearly values, 'which best describes how the number changes', linear vs exponential); replaced with a d1 MC on identifying an outlier and the sign of its residual."
+    }
+  ],
+  "removed": []
+}

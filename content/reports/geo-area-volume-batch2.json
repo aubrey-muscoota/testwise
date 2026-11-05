@@ -1,0 +1,16 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "geo-area-volume-055",
+      "reason": "Distractor 16 had an incoherent rationale (\"squared the volume factor 4\" when the volume factor is 8); replaced it with 64, the result of squaring the volume factor 8, a real misconception."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "geo-area-volume-069",
+      "reason": "Near-duplicate of geo-area-volume-054 (sphere and cylinder with equal radius and equal volume, solve for height) and too easy for difficulty 3; replaced with an original difficulty-3 mc item: mailing tube with curved area 144π and volume 216π, find the radius (key 3)."
+    }
+  ],
+  "removed": []
+}
