@@ -1,0 +1,778 @@
+[
+  {
+    "id": "alg-inequalities-001",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is the solution to 3x − 7 > 11?",
+    "choices": [
+      "x > 6",
+      "x > 4/3",
+      "x < 6",
+      "x > 18"
+    ],
+    "answer": "x > 6",
+    "explanation": [
+      "Add 7 to both sides: 3x > 18.",
+      "Divide both sides by 3. Dividing by a positive number keeps the direction of the inequality.",
+      "So x > 6."
+    ],
+    "hints": [
+      "What could you do to both sides to get the x-term alone on the left?",
+      "Are you dividing by a positive or a negative number, and what does that mean for the inequality sign?"
+    ],
+    "wrong_reasons": {
+      "x > 4/3": "Subtracted 7 from 11 instead of adding 7 to both sides, getting 3x > 4",
+      "x < 6": "Reversed the inequality sign even though both sides were divided by a positive number",
+      "x > 18": "Added 7 correctly but forgot to divide both sides by 3"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality(3*x-7>11,x,relational=False)\nopts={'x > 6':Interval.open(6,oo),'x > 4/3':Interval.open(Rational(4,3),oo),'x < 6':Interval.open(-oo,6),'x > 18':Interval.open(18,oo)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+  },
+  {
+    "id": "alg-inequalities-002",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is the solution to −2x + 5 ≤ 13?",
+    "choices": [
+      "x ≤ −4",
+      "x ≥ −4",
+      "x ≥ −9",
+      "x ≥ 4"
+    ],
+    "answer": "x ≥ −4",
+    "explanation": [
+      "Subtract 5 from both sides: −2x ≤ 8.",
+      "Divide both sides by −2. Dividing by a negative number reverses the inequality sign.",
+      "So x ≥ −4."
+    ],
+    "hints": [
+      "What should you undo first to isolate the term with x?",
+      "When you divide both sides by a negative number, what has to happen to the inequality symbol?"
+    ],
+    "wrong_reasons": {
+      "x ≤ −4": "Divided by −2 but did not reverse the inequality sign",
+      "x ≥ −9": "Added 5 to 13 instead of subtracting, getting −2x ≤ 18",
+      "x ≥ 4": "Reversed the sign but lost the negative when dividing 8 by −2"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality(-2*x+5<=13,x,relational=False)\nopts={'x ≥ -4':Interval(-4,oo),'x ≤ -4':Interval(-oo,-4),'x ≥ -9':Interval(-9,oo),'x ≥ 4':Interval(4,oo)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+  },
+  {
+    "id": "alg-inequalities-003",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A prepaid phone plan costs $25 per month plus $0.10 for each text message sent. Dana wants her monthly bill to be at most $40. What is the greatest number of text messages she can send in one month?",
+    "answer": "150",
+    "explanation": [
+      "Let t be the number of texts. The bill is 25 + 0.10t.",
+      "Set up 25 + 0.10t ≤ 40.",
+      "Subtract 25: 0.10t ≤ 15.",
+      "Divide by 0.10: t ≤ 150, so the greatest number is 150."
+    ],
+    "hints": [
+      "Which part of the bill stays the same each month, and which part depends on the number of texts?",
+      "Does \"at most $40\" mean the bill can be equal to 40, less than 40, or both?"
+    ],
+    "check": "from sympy import *\nt=symbols('t',integer=True)\nresult=max(n for n in range(0,1000) if 25+Rational(1,10)*n<=40)"
+  },
+  {
+    "id": "alg-inequalities-004",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following values of x is a solution to 4x + 9 < 1?",
+    "choices": [
+      "−3",
+      "−2",
+      "0",
+      "2"
+    ],
+    "answer": "−3",
+    "explanation": [
+      "Subtract 9 from both sides: 4x < −8.",
+      "Divide by 4: x < −2.",
+      "Only values less than −2 work. Of the choices, only −3 is less than −2. (−2 itself makes 4x + 9 equal to 1, not less than 1.)"
+    ],
+    "hints": [
+      "What inequality do you get after removing the constant term from the left side?",
+      "Is the boundary value itself included when the symbol is < ?"
+    ],
+    "wrong_reasons": {
+      "−2": "Solved correctly to x < −2 but included the boundary value, which makes both sides equal",
+      "0": "Reversed the inequality and got x > −2",
+      "2": "Added 9 to 1 instead of subtracting, getting 4x < 10, or x < 2.5"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=[v for v in [-3,-2,0,2] if 4*v+9<1][0]"
+  },
+  {
+    "id": "alg-inequalities-005",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following ordered pairs (x, y) is a solution to the inequality y > 2x − 3?",
+    "choices": [
+      "(2, 1)",
+      "(3, 2)",
+      "(1, 0)",
+      "(0, −4)"
+    ],
+    "answer": "(1, 0)",
+    "explanation": [
+      "Substitute each pair into y > 2x − 3.",
+      "For (1, 0): 2(1) − 3 = −1, and 0 > −1 is true.",
+      "For (2, 1): 2(2) − 3 = 1, and 1 > 1 is false. For (3, 2): 2 > 3 is false. For (0, −4): −4 > −3 is false.",
+      "So (1, 0) is the solution."
+    ],
+    "hints": [
+      "What do you get on the right side when you plug in the x-value of each pair?",
+      "For each pair, is the y-value strictly greater than that number?"
+    ],
+    "wrong_reasons": {
+      "(2, 1)": "This point lies on the boundary line y = 2x − 3, so it makes the two sides equal; the strict symbol > excludes it",
+      "(3, 2)": "Swapped the roles of x and y when substituting (3 > 2(2) − 3 is true)",
+      "(0, −4)": "Compared −4 with −3 and treated the more negative number as greater"
+    },
+    "check": "from sympy import *\npts={'(1, 0)':(1,0),'(2, 1)':(2,1),'(3, 2)':(3,2),'(0, -4)':(0,-4)}\nresult=[k for k,(a,b) in pts.items() if b>2*a-3][0]"
+  },
+  {
+    "id": "alg-inequalities-006",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A delivery van can carry at most 1,200 pounds. The driver weighs 180 pounds, and each box loaded into the van weighs 40 pounds. Which inequality represents the possible numbers of boxes, b, the van can carry with the driver on board?",
+    "choices": [
+      "180 + 40b ≥ 1,200",
+      "40 + 180b ≤ 1,200",
+      "40b ≤ 1,200 + 180",
+      "180 + 40b ≤ 1,200"
+    ],
+    "answer": "180 + 40b ≤ 1,200",
+    "explanation": [
+      "The total weight is the driver's weight plus 40 pounds for each box: 180 + 40b.",
+      "\"At most 1,200\" means the total must be less than or equal to 1,200.",
+      "So 180 + 40b ≤ 1,200."
+    ],
+    "hints": [
+      "Which quantity is multiplied by the number of boxes, and which is added only once?",
+      "What symbol matches the phrase \"at most\"?"
+    ],
+    "wrong_reasons": {
+      "180 + 40b ≥ 1,200": "Read \"at most\" as \"at least\"",
+      "40 + 180b ≤ 1,200": "Swapped the fixed weight of the driver with the per-box weight",
+      "40b ≤ 1,200 + 180": "Added the driver's weight to the capacity instead of counting it as part of the load"
+    },
+    "check": "from sympy import *\ntruth=lambda b: 180+40*b<=1200\nopts={'180 + 40b ≥ 1,200':lambda b:180+40*b>=1200,'180 + 40b ≤ 1,200':lambda b:180+40*b<=1200,'40 + 180b ≤ 1,200':lambda b:40+180*b<=1200,'40b ≤ 1,200 + 180':lambda b:40*b<=1200+180}\nresult=[k for k,f in opts.items() if all(f(b)==truth(b) for b in range(0,60))][0]"
+  },
+  {
+    "id": "alg-inequalities-007",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "What is the least integer n that satisfies 5n − 3 > 22?",
+    "answer": "6",
+    "explanation": [
+      "Add 3 to both sides: 5n > 25.",
+      "Divide by 5: n > 5.",
+      "n must be greater than 5, so 5 itself does not work. The least integer greater than 5 is 6."
+    ],
+    "hints": [
+      "After isolating n, is the boundary value allowed?",
+      "Which integer comes right after the boundary?"
+    ],
+    "check": "from sympy import *\nresult=min(n for n in range(-100,100) if 5*n-3>22)"
+  },
+  {
+    "id": "alg-inequalities-008",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is the solution to x/3 + 2 ≥ 5?",
+    "choices": [
+      "x ≥ 1",
+      "x ≥ 9",
+      "x ≥ 21",
+      "x ≤ 9"
+    ],
+    "answer": "x ≥ 9",
+    "explanation": [
+      "Subtract 2 from both sides: x/3 ≥ 3.",
+      "Multiply both sides by 3 (a positive number, so the sign stays the same): x ≥ 9."
+    ],
+    "hints": [
+      "What is the first thing you can remove from the left side?",
+      "x is being divided by 3. What operation undoes that?"
+    ],
+    "wrong_reasons": {
+      "x ≥ 1": "Divided 3 by 3 instead of multiplying by 3 to undo the division",
+      "x ≥ 21": "Added 2 to 5 instead of subtracting, then multiplied 7 by 3",
+      "x ≤ 9": "Reversed the inequality sign even though nothing was multiplied or divided by a negative"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality(x/3+2>=5,x,relational=False)\nopts={'x ≥ 9':Interval(9,oo),'x ≥ 1':Interval(1,oo),'x ≥ 21':Interval(21,oo),'x ≤ 9':Interval(-oo,9)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+  },
+  {
+    "id": "alg-inequalities-009",
+    "skill_id": "alg-inequalities",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A robotics club has already raised $140 for a competition trip and needs to raise more than $500 in total. The club sells scented candles for $8 each. What is the least number of candles the club must sell to reach its goal?",
+    "choices": [
+      "45",
+      "46",
+      "63",
+      "80"
+    ],
+    "answer": "46",
+    "explanation": [
+      "Let c be the number of candles. The total raised is 140 + 8c.",
+      "Set up 140 + 8c > 500, so 8c > 360 and c > 45.",
+      "Selling exactly 45 candles gives exactly $500, which is not more than $500.",
+      "The least whole number of candles greater than 45 is 46."
+    ],
+    "hints": [
+      "How much more money does the club still need after what it has already raised?",
+      "If the total raised comes to exactly $500, has the club reached its goal?"
+    ],
+    "wrong_reasons": {
+      "45": "Found c > 45 but chose the boundary, which gives exactly $500 rather than more than $500",
+      "63": "Ignored the $140 already raised and rounded 500 ÷ 8 = 62.5 up",
+      "80": "Added the $140 to the goal instead of subtracting it: 640 ÷ 8 = 80"
+    },
+    "check": "from sympy import *\nresult=min(c for c in range(0,1000) if 140+8*c>500)"
+  },
+  {
+    "id": "alg-inequalities-010",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is the solution to 3(2x − 4) ≥ 5x + 1?",
+    "choices": [
+      "x ≥ 5",
+      "x ≤ 13",
+      "x ≥ 13",
+      "x ≥ −11"
+    ],
+    "answer": "x ≥ 13",
+    "explanation": [
+      "Distribute: 6x − 12 ≥ 5x + 1.",
+      "Subtract 5x from both sides: x − 12 ≥ 1.",
+      "Add 12 to both sides: x ≥ 13."
+    ],
+    "hints": [
+      "What does the left side become after you multiply out the parentheses?",
+      "How can you get all the x-terms on one side without dividing by a negative?"
+    ],
+    "wrong_reasons": {
+      "x ≥ 5": "Multiplied only the first term by 3, writing 6x − 4 ≥ 5x + 1",
+      "x ≤ 13": "Reversed the inequality sign without having multiplied or divided by a negative number",
+      "x ≥ −11": "Subtracted 12 instead of adding it when moving the constant, getting x ≥ 1 − 12"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality(3*(2*x-4)>=5*x+1,x,relational=False)\nopts={'x ≥ 13':Interval(13,oo),'x ≥ 5':Interval(5,oo),'x ≤ 13':Interval(-oo,13),'x ≥ -11':Interval(-11,oo)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+  },
+  {
+    "id": "alg-inequalities-011",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following describes all solutions to −3 < 2x + 5 ≤ 11?",
+    "choices": [
+      "−4 ≤ x < 3",
+      "1 < x ≤ 8",
+      "−8 < x ≤ 6",
+      "−4 < x ≤ 3"
+    ],
+    "answer": "−4 < x ≤ 3",
+    "explanation": [
+      "Subtract 5 from all three parts: −8 < 2x ≤ 6.",
+      "Divide all three parts by 2: −4 < x ≤ 3.",
+      "The symbols stay the same, since 2 is positive: −4 is excluded and 3 is included."
+    ],
+    "hints": [
+      "Whatever you do to the middle part, what must you also do to the two outer parts?",
+      "After you divide, which endpoint keeps the strict symbol < and which keeps ≤ ?"
+    ],
+    "wrong_reasons": {
+      "−4 ≤ x < 3": "Found the right endpoints but swapped which one is included",
+      "1 < x ≤ 8": "Added 5 to each part instead of subtracting it",
+      "−8 < x ≤ 6": "Subtracted 5 correctly but forgot to divide every part by 2"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality(2*x+5>-3,x,relational=False).intersect(solve_univariate_inequality(2*x+5<=11,x,relational=False))\nopts={'-4 < x ≤ 3':Interval.Lopen(-4,3),'-4 ≤ x < 3':Interval.Ropen(-4,3),'1 < x ≤ 8':Interval.Lopen(1,8),'-8 < x ≤ 6':Interval.Lopen(-8,6)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+  },
+  {
+    "id": "alg-inequalities-012",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "How many integers x satisfy −7 ≤ 3x − 1 < 11?",
+    "answer": "6",
+    "explanation": [
+      "Add 1 to all three parts: −6 ≤ 3x < 12.",
+      "Divide by 3: −2 ≤ x < 4.",
+      "The integers are −2, −1, 0, 1, 2, 3 (−2 is included, 4 is not).",
+      "That is 6 integers."
+    ],
+    "hints": [
+      "What range of x-values do you get once x is alone in the middle?",
+      "Which endpoint is included and which is not, and how does that affect your count?"
+    ],
+    "check": "from sympy import *\nresult=len([n for n in range(-100,100) if -7<=3*n-1<11])"
+  },
+  {
+    "id": "alg-inequalities-013",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of a linear inequality has a dashed boundary line that passes through the points (0, 2) and (4, 0). The region below the line, which contains the origin, is shaded. Which inequality is represented by this graph?",
+    "choices": [
+      "x + 2y ≤ 4",
+      "x + 2y > 4",
+      "2x + y < 4",
+      "x + 2y < 4"
+    ],
+    "answer": "x + 2y < 4",
+    "explanation": [
+      "The line through (0, 2) and (4, 0) has slope (0 − 2)/(4 − 0) = −1/2 and y-intercept 2, so it is y = −(1/2)x + 2, or x + 2y = 4.",
+      "A dashed line means points on the line are not included, so the symbol is strict (< or >).",
+      "Test the origin, which is shaded: 0 + 2(0) = 0, which is less than 4.",
+      "So the inequality is x + 2y < 4."
+    ],
+    "hints": [
+      "What is the equation of the line through the two given points?",
+      "What does a dashed boundary tell you about which symbol to use?",
+      "If you plug in a point you know is shaded, which way does the inequality have to point?"
+    ],
+    "wrong_reasons": {
+      "x + 2y ≤ 4": "Used the right line and shading but treated the dashed boundary as solid",
+      "x + 2y > 4": "Used the right line but shaded the wrong side; the origin does not satisfy this inequality",
+      "2x + y < 4": "Swapped the intercepts, giving a line through (0, 4) and (2, 0)"
+    },
+    "check": "from sympy import *\nopts={'x + 2y < 4':lambda X,Y:X+2*Y<4,'x + 2y ≤ 4':lambda X,Y:X+2*Y<=4,'x + 2y > 4':lambda X,Y:X+2*Y>4,'2x + y < 4':lambda X,Y:2*X+Y<4}\nR=Rational\nok=lambda f: (not f(0,2)) and (not f(4,0)) and f(0,0) and f(4,R(-1,100)) and f(-2,R(299,100)) and not f(0,R(201,100)) and not f(-2,R(301,100))\nresult=[k for k,f in opts.items() if ok(f)][0]"
+  },
+  {
+    "id": "alg-inequalities-014",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Gym A charges a one-time $60 joining fee plus $25 per month. Gym B has no joining fee and charges $35 per month. What is the least whole number of months for which the total cost at Gym A is less than the total cost at Gym B?",
+    "choices": [
+      "1",
+      "3",
+      "6",
+      "7"
+    ],
+    "answer": "7",
+    "explanation": [
+      "After m months, Gym A costs 60 + 25m and Gym B costs 35m.",
+      "Set up 60 + 25m < 35m.",
+      "Subtract 25m: 60 < 10m, so m > 6.",
+      "At 6 months both cost $210, so Gym A is not yet cheaper. The least whole number greater than 6 is 7."
+    ],
+    "hints": [
+      "What expression gives each gym's total cost after m months?",
+      "At exactly the boundary value you find, are the costs different or equal?"
+    ],
+    "wrong_reasons": {
+      "1": "Divided the $60 fee by the sum of the monthly rates (25 + 35) instead of their difference",
+      "3": "Divided 60 by 25 and rounded up, ignoring Gym B's cost entirely",
+      "6": "Found the month when the costs are equal ($210 each) rather than when Gym A is less"
+    },
+    "check": "from sympy import *\nresult=min(m for m in range(0,1000) if 60+25*m<35*m)"
+  },
+  {
+    "id": "alg-inequalities-015",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A bakery's oven is available for at most 240 minutes each morning. Each tray of muffins needs 3 minutes of oven time, and each tray of scones needs 5 minutes. The bakery must bake at least 20 trays of muffins each morning. What is the greatest number of trays of scones the bakery can bake in one morning?",
+    "answer": "36",
+    "explanation": [
+      "Let m be trays of muffins and s be trays of scones: 3m + 5s ≤ 240 and m ≥ 20.",
+      "To leave the most oven time for scones, bake the fewest muffins allowed: m = 20.",
+      "Then 60 + 5s ≤ 240, so 5s ≤ 180 and s ≤ 36.",
+      "The greatest number of trays of scones is 36."
+    ],
+    "hints": [
+      "Which inequality describes the oven-time limit, and which describes the muffin requirement?",
+      "To make room for as many scones as possible, how many muffin trays should the bakery bake?"
+    ],
+    "check": "from sympy import *\nresult=max(s for s in range(0,1000) if any(3*m+5*s<=240 for m in range(20,1000)))"
+  },
+  {
+    "id": "alg-inequalities-016",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which inequality is equivalent to 7 − 4k > 2k − 11?",
+    "choices": [
+      "k > 3",
+      "k < 9",
+      "k < 3",
+      "k < −2/3"
+    ],
+    "answer": "k < 3",
+    "explanation": [
+      "Add 4k to both sides: 7 > 6k − 11.",
+      "Add 11 to both sides: 18 > 6k.",
+      "Divide by 6: 3 > k, which is the same as k < 3."
+    ],
+    "hints": [
+      "Which side could you move the k-terms to so that the coefficient of k stays positive?",
+      "Once you have a number compared with 6k, what is the last step?"
+    ],
+    "wrong_reasons": {
+      "k > 3": "Moved the k-terms to the left (−6k > −18) and divided by −6 without reversing the sign",
+      "k < 9": "Combined −4k and −2k as −2k instead of −6k, getting −2k > −18",
+      "k < −2/3": "Subtracted 11 from both sides instead of adding 11, getting 7 − 11 > 6k"
+    },
+    "check": "from sympy import *\nk=symbols('k',real=True)\nsol=solve_univariate_inequality(7-4*k>2*k-11,k,relational=False)\nopts={'k < 3':Interval.open(-oo,3),'k > 3':Interval.open(3,oo),'k < 9':Interval.open(-oo,9),'k < -2/3':Interval.open(-oo,Rational(-2,3))}\nresult=[k_ for k_,v in opts.items() if v==sol][0]"
+  },
+  {
+    "id": "alg-inequalities-017",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "Marisol's scores on her first four chemistry quizzes are shown in the table. Each quiz is worth 100 points. She wants the average (arithmetic mean) of her first five quiz scores to be at least 85. What is the least score she can earn on the fifth quiz to reach her goal?",
+    "table": {
+      "headers": [
+        "Quiz",
+        "Score"
+      ],
+      "rows": [
+        [
+          "1",
+          "82"
+        ],
+        [
+          "2",
+          "75"
+        ],
+        [
+          "3",
+          "91"
+        ],
+        [
+          "4",
+          "88"
+        ]
+      ]
+    },
+    "answer": "89",
+    "explanation": [
+      "The four scores add to 82 + 75 + 91 + 88 = 336.",
+      "Let q be the fifth score. She needs (336 + q)/5 ≥ 85.",
+      "Multiply by 5: 336 + q ≥ 425.",
+      "Subtract 336: q ≥ 89, so the least score is 89."
+    ],
+    "hints": [
+      "What total of all five scores would give an average of exactly 85?",
+      "How much of that total has she already earned?"
+    ],
+    "check": "from sympy import *\ns=[82,75,91,88]\nresult=min(q for q in range(0,101) if Rational(sum(s)+q,5)>=85)"
+  },
+  {
+    "id": "alg-inequalities-018",
+    "skill_id": "alg-inequalities",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following ordered pairs (x, y) is a solution to the system of inequalities y ≥ x + 1 and y < −2x + 7?",
+    "choices": [
+      "(1, 3)",
+      "(3, 2)",
+      "(2, 3)",
+      "(−1, 10)"
+    ],
+    "answer": "(1, 3)",
+    "explanation": [
+      "A solution must make both inequalities true.",
+      "(1, 3): 3 ≥ 2 is true and 3 < 5 is true, so it works.",
+      "(3, 2): 2 ≥ 4 is false. (2, 3): 3 ≥ 3 is true, but 3 < 3 is false. (−1, 10): 10 ≥ 0 is true, but 10 < 9 is false.",
+      "So (1, 3) is the only solution among the choices."
+    ],
+    "hints": [
+      "How many of the inequalities does a point have to satisfy to be a solution to the system?",
+      "For a point that lands exactly on a boundary line, does it matter whether that line's symbol is strict?"
+    ],
+    "wrong_reasons": {
+      "(3, 2)": "Checked only the second inequality; this point fails y ≥ x + 1",
+      "(2, 3)": "This point lies on the boundary y = −2x + 7, which is excluded because the symbol is strict",
+      "(−1, 10)": "Checked only the first inequality; this point fails y < −2x + 7"
+    },
+    "check": "from sympy import *\npts={'(1, 3)':(1,3),'(3, 2)':(3,2),'(2, 3)':(2,3),'(-1, 10)':(-1,10)}\nresult=[k for k,(a,b) in pts.items() if b>=a+1 and b<-2*a+7][0]"
+  },
+  {
+    "id": "alg-inequalities-019",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "For a banquet, a caterer charges a $450 setup fee plus $32 per guest, and the venue charges a flat fee of $1,200. The organizers want the average cost per guest (the combined cost of the caterer and the venue divided by the number of guests) to be no more than $50. What is the least number of guests that must attend?",
+    "answer": "92",
+    "explanation": [
+      "Let g be the number of guests. The combined cost is 450 + 1,200 + 32g = 1,650 + 32g.",
+      "The average cost per guest is (1,650 + 32g)/g, so set up (1,650 + 32g)/g ≤ 50.",
+      "Since g is positive, multiply both sides by g: 1,650 + 32g ≤ 50g, so 1,650 ≤ 18g.",
+      "Divide: g ≥ 91.66…. The number of guests must be a whole number, and 91 guests would give an average above $50 (about $50.13), so the least number is 92."
+    ],
+    "hints": [
+      "Which costs are fixed no matter how many guests come, and how do you find the cost per guest?",
+      "Can you clear the fraction by multiplying both sides by the number of guests? Why is that safe here?",
+      "Your division won't come out even. Should you round up or down, and why?"
+    ],
+    "check": "from sympy import *\nresult=min(g for g in range(1,1000) if Rational(450+1200+32*g,g)<=50)"
+  },
+  {
+    "id": "alg-inequalities-020",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "If 2x − 5 ≥ 9, what is the least possible value of 6x − 15?",
+    "choices": [
+      "7",
+      "9",
+      "27",
+      "42"
+    ],
+    "answer": "27",
+    "explanation": [
+      "Notice that 6x − 15 = 3(2x − 5).",
+      "Since 2x − 5 ≥ 9, multiplying both sides by 3 gives 3(2x − 5) ≥ 27.",
+      "So 6x − 15 ≥ 27, and its least possible value is 27 (when x = 7)."
+    ],
+    "hints": [
+      "How is the expression 6x − 15 related to 2x − 5?",
+      "If you know the smallest value 2x − 5 can be, what happens to that bound when you multiply by a positive number?"
+    ],
+    "wrong_reasons": {
+      "7": "Found the least value of x instead of the least value of 6x − 15",
+      "9": "Assumed 6x − 15 has the same lower bound as 2x − 5",
+      "42": "Found x = 7 and computed 6x but forgot to subtract 15"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality(2*x-5>=9,x,relational=False)\nresult=6*sol.inf-15"
+  },
+  {
+    "id": "alg-inequalities-021",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the inequality 5x + k ≤ 5(x − 2), k is a constant. If the inequality has no solution, what is the least possible integer value of k?",
+    "answer": "−9",
+    "accept": [
+      "-9"
+    ],
+    "explanation": [
+      "Distribute the right side: 5x + k ≤ 5x − 10.",
+      "Subtract 5x from both sides: k ≤ −10. The variable is gone, so the inequality is either always true or never true.",
+      "If k ≤ −10, every x works. If k > −10, no x works, so the inequality has no solution.",
+      "The least integer greater than −10 is −9."
+    ],
+    "hints": [
+      "What happens to the x-terms once you distribute and collect like terms?",
+      "When x disappears, what condition on k makes the remaining statement false?",
+      "Is −10 itself a value that gives no solution?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\ndef nosol(kv):\n    e=expand(5*x+kv-5*(x-2))\n    assert not e.free_symbols\n    return bool(e>0)\nresult=min(kv for kv in range(-100,100) if nosol(kv))"
+  },
+  {
+    "id": "alg-inequalities-022",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A ferry can carry at most 14 vehicles and at most 10,000 kilograms of vehicle weight per trip. Each car weighs 1,500 kilograms, and each motorcycle weighs 250 kilograms. If the ferry carries 8 motorcycles on a trip, what is the greatest number of cars it can also carry?",
+    "choices": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Let c be the number of cars. Space limit: c + 8 ≤ 14, so c ≤ 6.",
+      "Weight limit: 1,500c + 250(8) ≤ 10,000, so 1,500c ≤ 8,000 and c ≤ 5.33….",
+      "Both limits must hold, and c must be a whole number, so c ≤ 5.",
+      "The greatest number of cars is 5."
+    ],
+    "hints": [
+      "What inequality does each of the two limits give you?",
+      "If the two limits give different maximums, which one actually controls the answer?",
+      "Can the ferry carry part of a car?"
+    ],
+    "wrong_reasons": {
+      "6": "Used only the 14-vehicle space limit, or rounded 5.33 up instead of down",
+      "7": "Ignored the motorcycles' weight (1,500c ≤ 10,000 gives about 6.67) and rounded up",
+      "8": "Added the motorcycles' 2,000 kg to the weight limit instead of subtracting it: 1,500c ≤ 12,000"
+    },
+    "check": "from sympy import *\nresult=max(c for c in range(0,100) if c+8<=14 and 1500*c+250*8<=10000)"
+  },
+  {
+    "id": "alg-inequalities-023",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Which of the following correctly describes the graph of 6x − 4y ≥ 12 in the xy-plane?",
+    "choices": [
+      "Solid boundary line with y-intercept −3; the region above the line is shaded",
+      "Solid boundary line with y-intercept −3; the region below the line is shaded",
+      "Dashed boundary line with y-intercept −3; the region below the line is shaded",
+      "Solid boundary line with y-intercept 3; the region below the line is shaded"
+    ],
+    "answer": "Solid boundary line with y-intercept −3; the region below the line is shaded",
+    "explanation": [
+      "Solve for y. Subtract 6x: −4y ≥ −6x + 12.",
+      "Divide by −4 and reverse the sign: y ≤ (3/2)x − 3.",
+      "The boundary line y = (3/2)x − 3 has y-intercept −3, and it is solid because the symbol includes equality.",
+      "Since y ≤ (3/2)x − 3, the shaded region is below the line."
+    ],
+    "hints": [
+      "What happens to the inequality symbol when you divide by the coefficient of y?",
+      "Does the symbol include \"or equal to\"? What does that tell you about the boundary line?",
+      "Once y is alone, does y ≤ … mean above or below the line?"
+    ],
+    "wrong_reasons": {
+      "Solid boundary line with y-intercept −3; the region above the line is shaded": "Divided by −4 without reversing the inequality, getting y ≥ (3/2)x − 3",
+      "Dashed boundary line with y-intercept −3; the region below the line is shaded": "Treated ≥ as a strict inequality; a dashed line is only for < or >",
+      "Solid boundary line with y-intercept 3; the region below the line is shaded": "Made a sign error dividing 12 by −4, getting +3 for the intercept"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y',real=True)\nineq=lambda X,Y: 6*X-4*Y>=12\nb=solve(Eq(6*0-4*y,12),y)[0]\nstyle='Solid' if ineq(0,b) else 'Dashed'\nside='below' if ineq(0,b-1) else 'above'\nresult=f'{style} boundary line with y-intercept {b}; the region {side} the line is shaded'"
+  },
+  {
+    "id": "alg-inequalities-024",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Which of the following is the solution to (x − 1)/2 − (x + 4)/3 ≥ 1?",
+    "choices": [
+      "x ≥ 17",
+      "x ≥ 1",
+      "x ≥ 12",
+      "x ≤ 17"
+    ],
+    "answer": "x ≥ 17",
+    "explanation": [
+      "Multiply every term by 6, the least common denominator: 3(x − 1) − 2(x + 4) ≥ 6.",
+      "Distribute, keeping the negative on both terms of the second product: 3x − 3 − 2x − 8 ≥ 6.",
+      "Combine like terms: x − 11 ≥ 6.",
+      "Add 11: x ≥ 17."
+    ],
+    "hints": [
+      "What single number could you multiply every term by to clear both fractions?",
+      "When you subtract the whole quantity 2(x + 4), what happens to the sign of each term inside?",
+      "Did you multiply the right side by the same number as the left?"
+    ],
+    "wrong_reasons": {
+      "x ≥ 1": "Did not distribute the subtraction to the 4, writing 3x − 3 − 2x + 8 ≥ 6",
+      "x ≥ 12": "Multiplied the fractions by 6 but left the right side as 1, getting x − 11 ≥ 1",
+      "x ≤ 17": "Reversed the inequality sign even though nothing was multiplied or divided by a negative"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsol=solve_univariate_inequality((x-1)/2-(x+4)/3>=1,x,relational=False)\nopts={'x ≥ 17':Interval(17,oo),'x ≥ 1':Interval(1,oo),'x ≥ 12':Interval(12,oo),'x ≤ 17':Interval(-oo,17)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+  },
+  {
+    "id": "alg-inequalities-025",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the system of inequalities y > 2x + c and y < −x + 10, c is a constant. If the point (3, 4) is a solution to the system, which of the following could be the value of c?",
+    "choices": [
+      "−5",
+      "−2",
+      "1",
+      "3"
+    ],
+    "answer": "−5",
+    "explanation": [
+      "Check the second inequality: 4 < −3 + 10 = 7, which is true for any c.",
+      "Substitute into the first inequality: 4 > 2(3) + c, so 4 > 6 + c.",
+      "Subtract 6: c < −2.",
+      "Of the choices, only −5 is less than −2."
+    ],
+    "hints": [
+      "Which inequality in the system actually involves c?",
+      "After substituting the point, what condition on c do you get?",
+      "Is the boundary value of c allowed when the symbol is strict?"
+    ],
+    "wrong_reasons": {
+      "−2": "Found the boundary c = −2, but then 4 > 6 + c becomes 4 > 4, which is false",
+      "1": "Subtracted in the wrong order (6 − 4) and got c < 2",
+      "3": "Reversed the inequality and got c > −2"
+    },
+    "check": "from sympy import *\nresult=[cv for cv in [-5,-2,1,3] if 4>2*3+cv and 4<-3+10][0]"
+  },
+  {
+    "id": "alg-inequalities-026",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The numbers x and y satisfy 3 ≤ x ≤ 7 and −4 ≤ y ≤ 2. What is the greatest possible value of x − y?",
+    "choices": [
+      "3",
+      "5",
+      "9",
+      "11"
+    ],
+    "answer": "11",
+    "explanation": [
+      "To make x − y as large as possible, make x as large as possible and y as small as possible.",
+      "The greatest x is 7 and the least y is −4.",
+      "So the greatest value of x − y is 7 − (−4) = 11."
+    ],
+    "hints": [
+      "Subtracting y: does a larger y make x − y bigger or smaller?",
+      "Which endpoint of each range should you pick?"
+    ],
+    "wrong_reasons": {
+      "3": "Added the greatest x and least y (7 + (−4)) instead of subtracting",
+      "5": "Used the greatest y instead of the least y: 7 − 2",
+      "9": "Found the greatest value of x + y (7 + 2) instead of x − y"
+    },
+    "check": "from sympy import *\nresult=max(a-b for a in [3,7] for b in [-4,2])"
+  },
+  {
+    "id": "alg-inequalities-027",
+    "skill_id": "alg-inequalities",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Water drains from a tank at a constant rate. The table shows the depth d, in inches, of the water t minutes after draining begins. Which inequality gives all values of t for which the depth of the water is at least 30 inches?",
+    "table": {
+      "headers": [
+        "t (minutes)",
+        "d (inches)"
+      ],
+      "rows": [
+        [
+          "0",
+          "96"
+        ],
+        [
+          "4",
+          "84"
+        ],
+        [
+          "10",
+          "66"
+        ]
+      ]
+    },
+    "choices": [
+      "0 ≤ t ≤ 11",
+      "0 ≤ t ≤ 22",
+      "0 ≤ t ≤ 32",
+      "t ≥ 22"
+    ],
+    "answer": "0 ≤ t ≤ 22",
+    "explanation": [
+      "From t = 0 to t = 4, the depth drops 12 inches, so the rate is 3 inches per minute. (Check: from 4 to 10, it drops 18 inches in 6 minutes.)",
+      "So d = 96 − 3t.",
+      "Set 96 − 3t ≥ 30: −3t ≥ −66, and dividing by −3 reverses the sign: t ≤ 22.",
+      "Time starts at 0, so 0 ≤ t ≤ 22."
+    ],
+    "hints": [
+      "How many inches does the depth drop each minute?",
+      "What equation gives d in terms of t?",
+      "When you divide by a negative rate, what happens to the inequality sign?"
+    ],
+    "wrong_reasons": {
+      "0 ≤ t ≤ 11": "Miscomputed the rate as 6 inches per minute (dividing 18 by 3 instead of 6), then solved 96 − 6t ≥ 30",
+      "0 ≤ t ≤ 32": "Found when the tank still has any water (d ≥ 0) instead of at least 30 inches",
+      "t ≥ 22": "Divided by −3 without reversing the inequality sign"
+    },
+    "check": "from sympy import *\nt=symbols('t',real=True)\nT=[0,4,10]; D=[96,84,66]\nm=Rational(D[1]-D[0],T[1]-T[0]); b=D[0]\nassert all(b+m*T[i]==D[i] for i in range(3))\nsol=solve_univariate_inequality(b+m*t>=30,t,relational=False).intersect(Interval(0,oo))\nopts={'0 ≤ t ≤ 22':Interval(0,22),'t ≥ 22':Interval(22,oo),'0 ≤ t ≤ 32':Interval(0,32),'0 ≤ t ≤ 11':Interval(0,11)}\nresult=[k for k,v in opts.items() if v==sol][0]"
+  }
+]

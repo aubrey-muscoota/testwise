@@ -1,0 +1,710 @@
+[
+  {
+    "id": "geo-area-volume-001",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A community garden plot is a rectangle that is 12 feet long and 7.5 feet wide. What is the area of the plot, in square feet?",
+    "choices": [
+      "39",
+      "84",
+      "90",
+      "180"
+    ],
+    "answer": "90",
+    "explanation": [
+      "The area of a rectangle is length × width.",
+      "12 × 7.5 = 90.",
+      "The plot's area is 90 square feet."
+    ],
+    "hints": [
+      "Which two measurements of a rectangle do you combine to find the space it covers?",
+      "Is the question asking for the distance around the plot or the space inside it?"
+    ],
+    "wrong_reasons": {
+      "39": "Found the perimeter, 2(12 + 7.5), instead of the area",
+      "84": "Dropped the 0.5 and computed 12 × 7",
+      "180": "Doubled the product, mixing the area formula with the perimeter formula"
+    },
+    "check": "from sympy import *\nresult=Rational(12)*Rational(15,2)"
+  },
+  {
+    "id": "geo-area-volume-002",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A triangular sail has a base of 6 meters along the boom and a height of 9 meters measured perpendicular to the base. What is the area of the sail, in square meters?",
+    "choices": [
+      "13.5",
+      "15",
+      "27",
+      "54"
+    ],
+    "answer": "27",
+    "explanation": [
+      "The area of a triangle is (1/2) × base × height.",
+      "(1/2)(6)(9) = (1/2)(54) = 27.",
+      "The sail's area is 27 square meters."
+    ],
+    "hints": [
+      "How does a triangle's area compare with the area of a rectangle with the same base and height?",
+      "After you multiply the base and height, what is left to do?"
+    ],
+    "wrong_reasons": {
+      "13.5": "Took half of the product twice",
+      "15": "Added the base and height instead of multiplying",
+      "54": "Forgot the factor of 1/2 in the triangle area formula"
+    },
+    "check": "from sympy import *\nresult=Rational(1,2)*6*9"
+  },
+  {
+    "id": "geo-area-volume-003",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A gift box is shaped like a cube with edges that are 5 centimeters long. What is the volume of the box, in cubic centimeters?",
+    "answer": "125",
+    "explanation": [
+      "Every edge of a cube has the same length, so the volume is s × s × s = s³.",
+      "5³ = 5 × 5 × 5 = 125.",
+      "The volume is 125 cubic centimeters."
+    ],
+    "hints": [
+      "For a box, which three measurements do you multiply to get the volume?",
+      "In a cube, how do the length, width, and height compare?"
+    ],
+    "check": "from sympy import *\ns=5\nresult=s**3"
+  },
+  {
+    "id": "geo-area-volume-004",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A circular rug has a diameter of 10 feet. What is the area of the rug, in square feet?",
+    "choices": [
+      "10π",
+      "25π",
+      "20π",
+      "100π"
+    ],
+    "answer": "25π",
+    "explanation": [
+      "The radius is half the diameter: r = 10 ÷ 2 = 5 feet.",
+      "The area of a circle is πr².",
+      "π(5)² = 25π square feet."
+    ],
+    "hints": [
+      "Does the area formula for a circle use the diameter or the radius?",
+      "How do you get the radius from the diameter?"
+    ],
+    "wrong_reasons": {
+      "10π": "Found the circumference, πd, instead of the area",
+      "20π": "Used the circumference formula 2πr with the diameter in place of the radius",
+      "100π": "Used the diameter, 10, as the radius in πr²"
+    },
+    "check": "from sympy import *\nr=Rational(10,2)\nA=pi*r**2\nresult=f\"{A/pi}π\""
+  },
+  {
+    "id": "geo-area-volume-005",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A fish tank is a rectangular prism that is 40 centimeters long, 20 centimeters wide, and 25 centimeters tall. What is the volume of the tank, in cubic centimeters?",
+    "choices": [
+      "85",
+      "800",
+      "2,000",
+      "20,000"
+    ],
+    "answer": "20,000",
+    "explanation": [
+      "The volume of a rectangular prism is length × width × height.",
+      "40 × 20 = 800, the area of the base.",
+      "800 × 25 = 20,000 cubic centimeters."
+    ],
+    "hints": [
+      "Which formula gives the amount of space inside a box shape?",
+      "If you know the area of the bottom of the tank, what do you multiply it by?"
+    ],
+    "wrong_reasons": {
+      "85": "Added the three dimensions instead of multiplying",
+      "800": "Found only the area of the base and forgot the height",
+      "2,000": "Made a place-value error when multiplying 800 by 25"
+    },
+    "check": "from sympy import *\nresult=40*20*25"
+  },
+  {
+    "id": "geo-area-volume-006",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A square floor tile has an area of 81 square inches. What is the perimeter of the tile, in inches?",
+    "choices": [
+      "9",
+      "20.25",
+      "36",
+      "324"
+    ],
+    "answer": "36",
+    "explanation": [
+      "The area of a square is s², so s² = 81.",
+      "The side length is s = √81 = 9 inches.",
+      "The perimeter is 4s = 4(9) = 36 inches."
+    ],
+    "hints": [
+      "What number, multiplied by itself, gives 81?",
+      "Once you know one side, how many equal sides does the square have?"
+    ],
+    "wrong_reasons": {
+      "9": "Found the side length but stopped before finding the perimeter",
+      "20.25": "Divided the area by 4 as if area were the perimeter",
+      "324": "Multiplied the area by 4 instead of first finding the side length"
+    },
+    "check": "from sympy import *\ns=sqrt(81)\nresult=4*s"
+  },
+  {
+    "id": "geo-area-volume-007",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A soup can is a right circular cylinder with a radius of 3 inches and a height of 10 inches. What is the volume of the can, in cubic inches?",
+    "choices": [
+      "90π",
+      "30π",
+      "60π",
+      "360π"
+    ],
+    "answer": "90π",
+    "explanation": [
+      "The volume of a cylinder is πr²h.",
+      "r² = 3² = 9.",
+      "π(9)(10) = 90π cubic inches."
+    ],
+    "hints": [
+      "What shape is the base of the can, and what is its area?",
+      "How does the height of the can enter into the volume?"
+    ],
+    "wrong_reasons": {
+      "30π": "Forgot to square the radius and computed π(3)(10)",
+      "60π": "Computed 2πrh, the area of the curved side, instead of the volume",
+      "360π": "Used the diameter, 6, in place of the radius"
+    },
+    "check": "from sympy import *\nr,h=3,10\nV=pi*r**2*h\nresult=f\"{V/pi}π\""
+  },
+  {
+    "id": "geo-area-volume-008",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The cross section of a drainage ditch is a trapezoid. Its parallel sides are 8 feet and 14 feet long, and the distance between them is 5 feet. What is the area of the cross section, in square feet?",
+    "choices": [
+      "27",
+      "55",
+      "70",
+      "110"
+    ],
+    "answer": "55",
+    "explanation": [
+      "The area of a trapezoid is (1/2)(b₁ + b₂)h.",
+      "b₁ + b₂ = 8 + 14 = 22.",
+      "(1/2)(22)(5) = 55 square feet."
+    ],
+    "hints": [
+      "How could you use the average of the two parallel sides?",
+      "Which length plays the role of the height here?"
+    ],
+    "wrong_reasons": {
+      "27": "Added all three measurements instead of using the trapezoid formula",
+      "70": "Multiplied only the longer base by the height",
+      "110": "Forgot the factor of 1/2 in the trapezoid formula"
+    },
+    "check": "from sympy import *\nresult=Rational(1,2)*(8+14)*5"
+  },
+  {
+    "id": "geo-area-volume-009",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A rectangular poster has an area of 72 square inches. If the poster is 9 inches long, what is its width, in inches?",
+    "answer": "8",
+    "explanation": [
+      "Area = length × width, so 72 = 9 × w.",
+      "Divide both sides by 9: w = 72 ÷ 9 = 8.",
+      "The width is 8 inches."
+    ],
+    "hints": [
+      "Write the area formula with the numbers you know. Which quantity is missing?",
+      "What operation undoes multiplying by 9?"
+    ],
+    "check": "from sympy import *\nw=symbols('w')\nresult=solve(9*w-72,w)[0]"
+  },
+  {
+    "id": "geo-area-volume-010",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "An architect enlarges the plan for a rectangular room by multiplying both the length and the width by 3. The area of the enlarged room is how many times the area of the original room?",
+    "choices": [
+      "3",
+      "6",
+      "9",
+      "27"
+    ],
+    "answer": "9",
+    "explanation": [
+      "Let the original dimensions be L and W, so the original area is LW.",
+      "The new dimensions are 3L and 3W, so the new area is (3L)(3W) = 9LW.",
+      "The new area is 9 times the original."
+    ],
+    "hints": [
+      "Try picking a simple original rectangle, such as 1 by 2. What is its area before and after?",
+      "When both factors of a product are tripled, what happens to the product?"
+    ],
+    "wrong_reasons": {
+      "3": "Assumed area scales by the same factor as each length",
+      "6": "Added the two scale factors (3 + 3) instead of multiplying them",
+      "27": "Cubed the scale factor, which is how volume scales, not area"
+    },
+    "check": "from sympy import *\nL,W=symbols('L W',positive=True)\nresult=simplify((3*L)*(3*W)/(L*W))"
+  },
+  {
+    "id": "geo-area-volume-011",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A glass ornament is shaped like a sphere with a diameter of 6 inches. The volume of the ornament is kπ cubic inches. What is the value of k?",
+    "answer": "36",
+    "explanation": [
+      "The radius is half the diameter: r = 3 inches.",
+      "The volume of a sphere is (4/3)πr³.",
+      "(4/3)π(27) = 36π, so k = 36."
+    ],
+    "hints": [
+      "Which measurement of the sphere does the volume formula use?",
+      "After you cube the radius, what fraction multiplies the result?"
+    ],
+    "check": "from sympy import *\nr=Rational(3)\nresult=Rational(4,3)*r**3"
+  },
+  {
+    "id": "geo-area-volume-012",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A patio is shaped like a 20-foot by 15-foot rectangle with a 6-foot by 5-foot rectangle removed from one corner, leaving an L shape. What is the area of the patio, in square feet?",
+    "choices": [
+      "70",
+      "270",
+      "300",
+      "330"
+    ],
+    "answer": "270",
+    "explanation": [
+      "The full rectangle would have area 20 × 15 = 300 square feet.",
+      "The removed corner has area 6 × 5 = 30 square feet.",
+      "The patio's area is 300 − 30 = 270 square feet."
+    ],
+    "hints": [
+      "Could you find the area of a simpler shape first and then adjust it?",
+      "Does the missing corner add to the area or take away from it?"
+    ],
+    "wrong_reasons": {
+      "70": "Found the perimeter of the L shape (which equals the rectangle's perimeter) instead of its area",
+      "300": "Ignored the removed corner",
+      "330": "Added the corner's area instead of subtracting it"
+    },
+    "check": "from sympy import *\nresult=20*15-6*5"
+  },
+  {
+    "id": "geo-area-volume-013",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A paper snow-cone cup is shaped like a right circular cone. The circular opening has a radius of 4 centimeters, and the cup is 9 centimeters deep. What is the volume of the cup, in cubic centimeters?",
+    "choices": [
+      "12π",
+      "144π",
+      "192π",
+      "48π"
+    ],
+    "answer": "48π",
+    "explanation": [
+      "The volume of a cone is (1/3)πr²h.",
+      "r² = 16, so πr²h = π(16)(9) = 144π.",
+      "(1/3)(144π) = 48π cubic centimeters."
+    ],
+    "hints": [
+      "How does a cone's volume compare with a cylinder that has the same base and height?",
+      "Which measurement in the formula gets squared?"
+    ],
+    "wrong_reasons": {
+      "12π": "Forgot to square the radius: (1/3)π(4)(9)",
+      "144π": "Used the cylinder formula and left out the factor of 1/3",
+      "192π": "Used the diameter, 8, in place of the radius"
+    },
+    "check": "from sympy import *\nr,h=4,9\nV=Rational(1,3)*pi*r**2*h\nresult=f\"{V/pi}π\""
+  },
+  {
+    "id": "geo-area-volume-014",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A rectangular swimming pool is 25 meters long and 10 meters wide, and it will be filled with water to a uniform depth of 1.6 meters. A pump adds water at a rate of 50 cubic meters per hour. How many hours will it take to fill the pool to that depth, starting from empty?",
+    "answer": "8",
+    "explanation": [
+      "The water's volume is 25 × 10 × 1.6 = 400 cubic meters.",
+      "At 50 cubic meters per hour, the time is 400 ÷ 50.",
+      "It takes 8 hours."
+    ],
+    "hints": [
+      "What shape does the water in the pool form, and how do you find its volume?",
+      "If you know the total amount and the amount per hour, how do you get the number of hours?"
+    ],
+    "check": "from sympy import *\nV=25*10*Rational(16,10)\nresult=V/50"
+  },
+  {
+    "id": "geo-area-volume-015",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The length of a rectangular vegetable bed is 4 feet more than its width. The area of the bed is 96 square feet. What is the width of the bed, in feet?",
+    "choices": [
+      "8",
+      "12",
+      "24",
+      "40"
+    ],
+    "answer": "8",
+    "explanation": [
+      "Let w be the width, so the length is w + 4 and w(w + 4) = 96.",
+      "Rewrite as w² + 4w − 96 = 0 and factor: (w + 12)(w − 8) = 0.",
+      "A width must be positive, so w = 8 feet."
+    ],
+    "hints": [
+      "If you call the width w, how would you write the length?",
+      "Which solution of your equation makes sense for a real length?"
+    ],
+    "wrong_reasons": {
+      "12": "Found the length instead of the width",
+      "24": "Divided the area by 4 instead of setting up w(w + 4) = 96",
+      "40": "Found the perimeter, 2(8 + 12), instead of the width"
+    },
+    "check": "from sympy import *\nw=symbols('w',positive=True)\nresult=solve(w*(w+4)-96,w)[0]"
+  },
+  {
+    "id": "geo-area-volume-016",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A flower bed is shaped like a right triangle. One leg of the triangle is 9 feet long, and the hypotenuse is 15 feet long. What is the area of the flower bed, in square feet?",
+    "choices": [
+      "54",
+      "67.5",
+      "108",
+      "135"
+    ],
+    "answer": "54",
+    "explanation": [
+      "Use the Pythagorean theorem to find the other leg: 9² + b² = 15², so b² = 225 − 81 = 144 and b = 12.",
+      "In a right triangle, the two legs serve as base and height.",
+      "Area = (1/2)(9)(12) = 54 square feet."
+    ],
+    "hints": [
+      "Is the hypotenuse perpendicular to either leg? Which two sides meet at the right angle?",
+      "How can you find the missing leg from the two sides you know?"
+    ],
+    "wrong_reasons": {
+      "67.5": "Used the hypotenuse as the height: (1/2)(9)(15)",
+      "108": "Found the missing leg but forgot the factor of 1/2",
+      "135": "Multiplied the leg by the hypotenuse with no 1/2"
+    },
+    "check": "from sympy import *\nb=sqrt(15**2-9**2)\nresult=Rational(1,2)*9*b"
+  },
+  {
+    "id": "geo-area-volume-017",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A wooden block is shaped like a cube. The total surface area of all six faces of the block is 150 square centimeters. What is the volume of the block, in cubic centimeters?",
+    "choices": [
+      "5",
+      "25",
+      "125",
+      "750"
+    ],
+    "answer": "125",
+    "explanation": [
+      "A cube has 6 congruent square faces, so each face has area 150 ÷ 6 = 25.",
+      "Each edge is √25 = 5 centimeters.",
+      "The volume is 5³ = 125 cubic centimeters."
+    ],
+    "hints": [
+      "How many faces does a cube have, and how do their areas compare?",
+      "Once you know the area of one face, how do you get the edge length?"
+    ],
+    "wrong_reasons": {
+      "5": "Found the edge length but stopped before computing the volume",
+      "25": "Found the area of one face, not the volume",
+      "750": "Multiplied the surface area by the edge length"
+    },
+    "check": "from sympy import *\ns=symbols('s',positive=True)\ne=solve(6*s**2-150,s)[0]\nresult=e**3"
+  },
+  {
+    "id": "geo-area-volume-018",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A circular fountain has a circumference of 18π feet. What is the area of the fountain's surface, in square feet?",
+    "choices": [
+      "9π",
+      "162π",
+      "324π",
+      "81π"
+    ],
+    "answer": "81π",
+    "explanation": [
+      "Circumference is 2πr, so 2πr = 18π and r = 9.",
+      "Area is πr² = π(9)² = 81π square feet."
+    ],
+    "hints": [
+      "What does the circumference tell you about the radius?",
+      "Once you have the radius, which formula gives the area?"
+    ],
+    "wrong_reasons": {
+      "9π": "Found the radius correctly but did not square it",
+      "162π": "Doubled the area, mixing in the 2 from the circumference formula",
+      "324π": "Treated 18 as the radius instead of the diameter"
+    },
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nR=solve(2*pi*r-18*pi,r)[0]\nA=pi*R**2\nresult=f\"{A/pi}π\""
+  },
+  {
+    "id": "geo-area-volume-019",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A company redesigns its cylindrical juice can. The new can's radius is twice the old can's radius, and the new can's height is half the old can's height. The volume of the new can is how many times the volume of the old can?",
+    "choices": [
+      "1",
+      "2",
+      "4",
+      "8"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The old volume is πr²h.",
+      "The new volume is π(2r)²(h/2) = π(4r²)(h/2) = 2πr²h.",
+      "The new can holds 2 times as much."
+    ],
+    "hints": [
+      "In the formula πr²h, which dimension has a bigger effect when it is doubled?",
+      "What does doubling the radius do to r²?"
+    ],
+    "wrong_reasons": {
+      "1": "Assumed doubling one dimension and halving another cancel out, forgetting the radius is squared",
+      "4": "Accounted for the squared radius but ignored that the height was halved",
+      "8": "Cubed the factor of 2 as if every dimension doubled"
+    },
+    "check": "from sympy import *\nr,h=symbols('r h',positive=True)\nresult=simplify(pi*(2*r)**2*(h/2)/(pi*r**2*h))"
+  },
+  {
+    "id": "geo-area-volume-020",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A rectangular aquarium has an interior base that is 40 centimeters by 25 centimeters, and it contains water to a depth of 18 centimeters. When 12 identical solid steel balls are placed in the tank, they sink completely and the water level rises to 18.6 centimeters. No water spills. What is the volume of one steel ball, in cubic centimeters?",
+    "answer": "50",
+    "explanation": [
+      "The balls push up a layer of water 40 × 25 × (18.6 − 18) cubic centimeters.",
+      "That layer is 1,000 × 0.6 = 600 cubic centimeters, the combined volume of the 12 balls.",
+      "One ball has volume 600 ÷ 12 = 50 cubic centimeters."
+    ],
+    "hints": [
+      "When the balls sink, what quantity equals the volume of the extra water height?",
+      "Do you need the original 18 cm of water, or only how much the level changed?"
+    ],
+    "check": "from sympy import *\nrise=Rational(186,10)-18\nresult=40*25*rise/12"
+  },
+  {
+    "id": "geo-area-volume-021",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Two closed cylindrical storage tanks are similar. The ratio of the surface area of the smaller tank to the surface area of the larger tank is 9 to 16. The larger tank holds 128 cubic meters. How many cubic meters does the smaller tank hold?",
+    "choices": [
+      "40.5",
+      "54",
+      "72",
+      "96"
+    ],
+    "answer": "54",
+    "explanation": [
+      "For similar solids, the ratio of areas is the square of the ratio of lengths, so the length ratio is √(9/16) = 3/4.",
+      "The ratio of volumes is the cube of the length ratio: (3/4)³ = 27/64.",
+      "The smaller tank holds 128 × 27/64 = 54 cubic meters."
+    ],
+    "hints": [
+      "If the area ratio is 9 : 16, what is the ratio of corresponding lengths?",
+      "How does the volume ratio of similar solids relate to their length ratio?"
+    ],
+    "wrong_reasons": {
+      "40.5": "Squared the area ratio (9/16)² instead of cubing the length ratio",
+      "72": "Used the area ratio 9/16 as the volume ratio",
+      "96": "Used the length ratio 3/4 as the volume ratio"
+    },
+    "check": "from sympy import *\nk=sqrt(Rational(9,16))\nresult=128*k**3"
+  },
+  {
+    "id": "geo-area-volume-022",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A tabletop is shaped like a regular hexagon with sides that are 6 inches long. What is the area of the tabletop, in square inches?",
+    "choices": [
+      "54√3",
+      "9√3",
+      "108",
+      "108√3"
+    ],
+    "answer": "54√3",
+    "explanation": [
+      "Lines from the center to each vertex divide a regular hexagon into 6 congruent equilateral triangles with side 6.",
+      "Each equilateral triangle has area (√3/4)s² = (√3/4)(36) = 9√3.",
+      "The hexagon's area is 6 × 9√3 = 54√3 square inches."
+    ],
+    "hints": [
+      "Can you split the hexagon into smaller shapes you already know how to measure?",
+      "What is the height of an equilateral triangle with side 6? Is it 6?"
+    ],
+    "wrong_reasons": {
+      "9√3": "Found the area of only one of the six triangles",
+      "108": "Used the side length 6 as the height of each triangle",
+      "108√3": "Used (√3/2)s² for each triangle, doubling the correct area"
+    },
+    "check": "from sympy import *\ns=6\ntri=sqrt(3)/4*s**2\nA=6*tri\nresult=f\"{simplify(A/sqrt(3))}√3\""
+  },
+  {
+    "id": "geo-area-volume-023",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A lawn sprinkler sprays water a distance of 15 feet and rotates back and forth through an angle of 120°, watering a region shaped like a sector of a circle. The area of the watered region is kπ square feet. What is the value of k?",
+    "answer": "75",
+    "explanation": [
+      "A 120° sector is 120/360 = 1/3 of a full circle.",
+      "The full circle with radius 15 has area π(15)² = 225π.",
+      "The sector's area is (1/3)(225π) = 75π, so k = 75."
+    ],
+    "hints": [
+      "What fraction of a full turn is 120°?",
+      "What would the area be if the sprinkler went all the way around?"
+    ],
+    "check": "from sympy import *\nr=15\nA=Rational(120,360)*pi*r**2\nresult=A/pi"
+  },
+  {
+    "id": "geo-area-volume-024",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A square is drawn inside a circle of radius 5 so that all four vertices of the square lie on the circle. What is the area of the region inside the circle but outside the square?",
+    "choices": [
+      "25π − 25",
+      "25π − 100",
+      "100 − 25π",
+      "25π − 50"
+    ],
+    "answer": "25π − 50",
+    "explanation": [
+      "The diagonal of the square is a diameter of the circle, so it has length 10.",
+      "A square with diagonal d has area d²/2 = 100/2 = 50.",
+      "The circle's area is 25π, so the region has area 25π − 50."
+    ],
+    "hints": [
+      "Which segment of the square stretches all the way across the circle?",
+      "If you know a square's diagonal, how can you find its side or its area?"
+    ],
+    "wrong_reasons": {
+      "25π − 25": "Took the radius, 5, as the side of the square",
+      "25π − 100": "Took the diameter, 10, as the side of the square instead of the diagonal",
+      "100 − 25π": "Pictured the circle inside a square with side 10 instead of the square inside the circle"
+    },
+    "check": "from sympy import *\nr=5\nd=2*r\ns=d/sqrt(2)\nsq=simplify(s**2)\nc=simplify(pi*r**2/pi)\nresult=f\"{c}π-{sq}\""
+  },
+  {
+    "id": "geo-area-volume-025",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "An open-top box is made from a square sheet of cardboard 20 inches on each side. A square 3 inches on each side is cut from each corner, and the sides are folded up. What is the volume of the box, in cubic inches?",
+    "choices": [
+      "364",
+      "588",
+      "867",
+      "1,200"
+    ],
+    "answer": "588",
+    "explanation": [
+      "Cutting 3 inches from both ends of each side leaves a base 20 − 2(3) = 14 inches on a side.",
+      "The folded-up flaps make the height 3 inches.",
+      "Volume = 14 × 14 × 3 = 588 cubic inches."
+    ],
+    "hints": [
+      "After the corners are removed, how long is each side of the base? Remember there is a cut at both ends.",
+      "Which measurement becomes the height when the flaps fold up?"
+    ],
+    "wrong_reasons": {
+      "364": "Found the area of the cardboard left after cutting (400 − 36), not the volume",
+      "867": "Subtracted the 3-inch cut from only one end of each side, using a 17-inch base",
+      "1,200": "Used the full 20-by-20 sheet as the base"
+    },
+    "check": "from sympy import *\nx=3\nb=20-2*x\nresult=b*b*x"
+  },
+  {
+    "id": "geo-area-volume-026",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A solid ball fits snugly inside a cylindrical container, touching the top, the bottom, and the curved side. The volume of the container is 128π cubic centimeters. The volume of the ball is kπ cubic centimeters. What is the value of k?",
+    "answer": "256/3",
+    "accept": [
+      "85.33"
+    ],
+    "explanation": [
+      "If the ball's radius is r, the cylinder also has radius r and height 2r.",
+      "The cylinder's volume is πr²(2r) = 2πr³ = 128π, so r³ = 64 and r = 4.",
+      "The ball's volume is (4/3)π(4)³ = (256/3)π, so k = 256/3."
+    ],
+    "hints": [
+      "If the ball touches the top and bottom, how is the cylinder's height related to the ball's radius?",
+      "Can you write the cylinder's volume using only the radius?"
+    ],
+    "check": "from sympy import *\nr=symbols('r',positive=True)\nR=solve(pi*r**2*(2*r)-128*pi,r)[0]\nresult=Rational(4,3)*R**3"
+  },
+  {
+    "id": "geo-area-volume-027",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A rectangular banner is redesigned so that its length is increased by 20% and its width is decreased by 20%. The area of the new banner is what percent of the area of the original banner?",
+    "choices": [
+      "80%",
+      "96%",
+      "100%",
+      "104%"
+    ],
+    "answer": "96%",
+    "explanation": [
+      "The new length is 1.2L and the new width is 0.8W.",
+      "The new area is (1.2L)(0.8W) = 0.96LW.",
+      "The new area is 96% of the original."
+    ],
+    "hints": [
+      "Try a banner that is 10 by 10. What are its new dimensions?",
+      "Do a 20% increase and a 20% decrease apply to the same starting amount here?"
+    ],
+    "wrong_reasons": {
+      "80%": "Applied only the 20% decrease and ignored the increase",
+      "100%": "Assumed a 20% increase and a 20% decrease cancel out",
+      "104%": "Thought the increase outweighs the decrease, adding 4% instead of losing it"
+    },
+    "check": "from sympy import *\nL,W=symbols('L W',positive=True)\nresult=simplify(Rational(12,10)*L*Rational(8,10)*W/(L*W))*100"
+  }
+]

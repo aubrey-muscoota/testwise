@@ -1,0 +1,893 @@
+[
+  {
+    "id": "psda-probability-001",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A bag contains 6 red marbles, 9 blue marbles, and 5 green marbles. One marble is selected at random from the bag. What is the probability that the marble is blue?",
+    "choices": [
+      "1/3",
+      "9/20",
+      "11/20",
+      "9/11"
+    ],
+    "answer": "9/20",
+    "explanation": [
+      "The bag has 6 + 9 + 5 = 20 marbles in all.",
+      "9 of the 20 marbles are blue.",
+      "So the probability is 9/20."
+    ],
+    "hints": [
+      "How many marbles are in the bag altogether?",
+      "Which number counts the outcomes you want, and which counts all possible outcomes?"
+    ],
+    "wrong_reasons": {
+      "9/11": "Compared blue marbles to non-blue marbles (9 to 11) instead of to the total",
+      "1/3": "Treated the three colors as equally likely, ignoring how many marbles of each color there are",
+      "11/20": "Found the probability that the marble is not blue"
+    },
+    "check": "from sympy import *\nresult=Rational(9,6+9+5)"
+  },
+  {
+    "id": "psda-probability-002",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A town survey asked 50 households which type of pet they own. Each household gave exactly one answer. The results are shown in the table. If one of these households is selected at random, what is the probability that it owns a cat?",
+    "table": {
+      "headers": [
+        "Pet type",
+        "Number of households"
+      ],
+      "rows": [
+        [
+          "Dog",
+          "18"
+        ],
+        [
+          "Cat",
+          "14"
+        ],
+        [
+          "Fish",
+          "6"
+        ],
+        [
+          "None",
+          "12"
+        ]
+      ]
+    },
+    "choices": [
+      "1/4",
+      "7/25",
+      "9/25",
+      "7/19"
+    ],
+    "answer": "7/25",
+    "explanation": [
+      "Add the counts to confirm the total: 18 + 14 + 6 + 12 = 50 households.",
+      "14 households own a cat.",
+      "The probability is 14/50 = 7/25."
+    ],
+    "hints": [
+      "What is the total number of households that could be selected?",
+      "Should the households with no pet be part of that total?"
+    ],
+    "wrong_reasons": {
+      "7/19": "Left the 12 households with no pet out of the total, dividing by 38",
+      "1/4": "Assumed each of the four categories is equally likely",
+      "9/25": "Read the dog row (18/50) instead of the cat row"
+    },
+    "check": "from sympy import *\nresult=Rational(14,18+14+6+12)"
+  },
+  {
+    "id": "psda-probability-003",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A game spinner is divided into 8 equal sections numbered 1 through 8. If the spinner is spun once, what is the probability that it lands on a number greater than 5?",
+    "choices": [
+      "3/8",
+      "1/2",
+      "3/5",
+      "5/8"
+    ],
+    "answer": "3/8",
+    "explanation": [
+      "The numbers greater than 5 are 6, 7, and 8, so there are 3 favorable sections.",
+      "All 8 sections are equally likely.",
+      "The probability is 3/8."
+    ],
+    "hints": [
+      "Which of the numbers 1 through 8 are greater than 5? Does 5 itself count?",
+      "How many equally likely sections are there in total?"
+    ],
+    "wrong_reasons": {
+      "1/2": "Included 5 as 'greater than 5,' counting 5, 6, 7, and 8",
+      "5/8": "Found the probability of landing on 5 or less",
+      "3/5": "Compared favorable sections to unfavorable sections (3 to 5) instead of to all 8"
+    },
+    "check": "from sympy import *\nresult=Rational(len([k for k in range(1,9) if k>5]),8)"
+  },
+  {
+    "id": "psda-probability-004",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "For a school fundraiser, 150 raffle tickets were sold, and one winning ticket will be drawn at random. Maya bought 12 of the tickets. What is the probability that Maya wins the raffle?",
+    "answer": "2/25",
+    "accept": [
+      "0.08",
+      ".08",
+      "12/150",
+      "4/50",
+      "6/75"
+    ],
+    "explanation": [
+      "Each of the 150 tickets is equally likely to be drawn.",
+      "12 of those tickets belong to Maya.",
+      "The probability is 12/150 = 2/25, or 0.08."
+    ],
+    "hints": [
+      "How many tickets give Maya a win, and how many tickets could be drawn?",
+      "Can your fraction be simplified or written as a decimal?"
+    ],
+    "check": "from sympy import *\nresult=Rational(12,150)"
+  },
+  {
+    "id": "psda-probability-005",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "At a factory, the probability that a randomly selected light bulb is defective is 0.04. Based on this probability, how many defective bulbs would be expected in a shipment of 2,500 bulbs?",
+    "choices": [
+      "10",
+      "100",
+      "625",
+      "2,400"
+    ],
+    "answer": "100",
+    "explanation": [
+      "The expected number of defective bulbs is the probability times the number of bulbs.",
+      "0.04 · 2,500 = 100.",
+      "About 100 bulbs would be expected to be defective."
+    ],
+    "hints": [
+      "If 4 out of every 100 bulbs are defective, how many groups of 100 are in 2,500?",
+      "What operation connects a probability and a total count to an expected count?"
+    ],
+    "wrong_reasons": {
+      "10": "Wrote 0.04 as 0.004 (misplaced the decimal)",
+      "625": "Divided 2,500 by 4 instead of multiplying by 0.04",
+      "2,400": "Found the expected number of bulbs that are not defective"
+    },
+    "check": "from sympy import *\nresult=Rational(4,100)*2500"
+  },
+  {
+    "id": "psda-probability-006",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A gym tracked 120 members. Each member takes exactly one type of class, either in the morning or in the evening. The results are shown in the table. If a member who takes Spin is selected at random, what is the probability that the member attends in the evening?",
+    "table": {
+      "headers": [
+        "",
+        "Morning",
+        "Evening"
+      ],
+      "rows": [
+        [
+          "Yoga",
+          "22",
+          "34"
+        ],
+        [
+          "Spin",
+          "40",
+          "24"
+        ]
+      ]
+    },
+    "choices": [
+      "1/5",
+      "3/8",
+      "12/29",
+      "29/60"
+    ],
+    "answer": "3/8",
+    "explanation": [
+      "The words 'a member who takes Spin' mean only the Spin row matters.",
+      "The Spin row has 40 + 24 = 64 members.",
+      "24 of those 64 attend in the evening, so the probability is 24/64 = 3/8."
+    ],
+    "hints": [
+      "Which group of members is the selection being made from?",
+      "How many members are in that group, and how many of them attend in the evening?"
+    ],
+    "wrong_reasons": {
+      "1/5": "Divided by all 120 members instead of only the Spin members",
+      "12/29": "Divided by all evening members (58), finding the probability of Spin given evening",
+      "29/60": "Found the probability that any member attends in the evening, ignoring the Spin condition"
+    },
+    "check": "from sympy import *\nresult=Rational(24,40+24)"
+  },
+  {
+    "id": "psda-probability-007",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A playlist has 40 songs: 16 are pop songs, 10 are rock songs, and the rest are hip-hop songs. The shuffle feature plays one song at random. What is the probability that the song is NOT a pop song?",
+    "choices": [
+      "7/20",
+      "2/5",
+      "3/5",
+      "2/3"
+    ],
+    "answer": "3/5",
+    "explanation": [
+      "Songs that are not pop are the rock and hip-hop songs: 40 − 16 = 24.",
+      "The probability is 24/40.",
+      "24/40 = 3/5."
+    ],
+    "hints": [
+      "How many songs are something other than pop?",
+      "Is there a quicker way using the probability that the song is pop?"
+    ],
+    "wrong_reasons": {
+      "2/5": "Found the probability that the song is pop",
+      "7/20": "Counted only the hip-hop songs (14) as 'not pop,' forgetting the rock songs",
+      "2/3": "Treated the three genres as equally likely, so two of three genres are not pop"
+    },
+    "check": "from sympy import *\nresult=1-Rational(16,40)"
+  },
+  {
+    "id": "psda-probability-008",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A jar contains only red and yellow jelly beans. The probability of selecting a red jelly bean at random from the jar is 3/8. If the jar contains 120 jelly beans, how many of them are yellow?",
+    "answer": "75",
+    "explanation": [
+      "If the probability of red is 3/8, the probability of yellow is 1 − 3/8 = 5/8.",
+      "The number of yellow jelly beans is 5/8 · 120.",
+      "5/8 · 120 = 75."
+    ],
+    "hints": [
+      "If 3/8 of the jelly beans are red, what fraction must be yellow?",
+      "How do you find a fraction of 120?"
+    ],
+    "check": "from sympy import *\nresult=(1-Rational(3,8))*120"
+  },
+  {
+    "id": "psda-probability-009",
+    "skill_id": "psda-probability",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A fair coin is flipped 5 times and lands heads up every time. What is the probability that the coin lands heads up on the 6th flip?",
+    "choices": [
+      "1/32",
+      "1/64",
+      "Less than 1/2, because tails is due",
+      "1/2"
+    ],
+    "answer": "1/2",
+    "explanation": [
+      "Each flip of a fair coin is independent of the flips before it.",
+      "The coin has no memory, so the earlier results do not change the next flip.",
+      "The probability of heads on the 6th flip is 1/2."
+    ],
+    "hints": [
+      "Does a coin 'know' what it landed on before?",
+      "What is the probability of heads on any single flip of a fair coin?"
+    ],
+    "wrong_reasons": {
+      "1/32": "Found the probability of getting 5 heads in a row, which already happened",
+      "1/64": "Found the probability of 6 heads in a row instead of the probability of just the next flip",
+      "Less than 1/2, because tails is due": "Gambler's fallacy: believed past flips affect an independent future flip"
+    },
+    "check": "from sympy import *\n# P(heads on flip 6 | heads on flips 1-5) for independent fair flips\np=Rational(1,2)\nresult=p**6/p**5"
+  },
+  {
+    "id": "psda-probability-010",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A city surveyed 200 residents about a proposed new park. The results, by age group, are shown in the table. If a resident who opposes the park is selected at random, what is the probability that the resident is over 55 years old?",
+    "table": {
+      "headers": [
+        "Age group",
+        "Support",
+        "Oppose",
+        "Undecided"
+      ],
+      "rows": [
+        [
+          "Under 30",
+          "48",
+          "12",
+          "20"
+        ],
+        [
+          "30 to 55",
+          "36",
+          "24",
+          "10"
+        ],
+        [
+          "Over 55",
+          "18",
+          "22",
+          "10"
+        ]
+      ]
+    },
+    "choices": [
+      "11/100",
+      "1/4",
+      "11/29",
+      "11/25"
+    ],
+    "answer": "11/29",
+    "explanation": [
+      "The condition 'opposes the park' limits the selection to the Oppose column.",
+      "The Oppose column total is 12 + 24 + 22 = 58.",
+      "22 of those residents are over 55, so the probability is 22/58 = 11/29."
+    ],
+    "hints": [
+      "Which column or row describes the group the resident is chosen from?",
+      "What is the total of that group, and how many of them are over 55?"
+    ],
+    "wrong_reasons": {
+      "11/25": "Divided by the over-55 total (50), finding the probability of opposing given over 55",
+      "11/100": "Divided by all 200 residents, finding the probability of being over 55 and opposing",
+      "1/4": "Found the probability of being over 55, ignoring the condition"
+    },
+    "check": "from sympy import *\nresult=Rational(22,12+24+22)"
+  },
+  {
+    "id": "psda-probability-011",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A basketball player makes each free throw with probability 0.8, and the results of her free throws are independent of each other. What is the probability that she makes both of her next two free throws?",
+    "answer": "0.64",
+    "accept": [
+      ".64",
+      "16/25",
+      "64/100"
+    ],
+    "explanation": [
+      "Because the throws are independent, multiply their probabilities.",
+      "0.8 · 0.8 = 0.64.",
+      "The probability she makes both is 0.64."
+    ],
+    "hints": [
+      "When two events are independent, how do you find the probability that both happen?",
+      "Should the answer be larger or smaller than 0.8? Why?"
+    ],
+    "check": "from sympy import *\nresult=Rational(8,10)**2"
+  },
+  {
+    "id": "psda-probability-012",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A club has 10 members: 4 juniors and 6 seniors. Two different members are chosen at random to be president and treasurer. What is the probability that both chosen members are juniors?",
+    "choices": [
+      "2/15",
+      "4/25",
+      "2/5",
+      "11/15"
+    ],
+    "answer": "2/15",
+    "explanation": [
+      "The probability the first member chosen is a junior is 4/10.",
+      "After one junior is chosen, 3 juniors remain among 9 members, so the second probability is 3/9.",
+      "Multiply: 4/10 · 3/9 = 12/90 = 2/15."
+    ],
+    "hints": [
+      "After the first person is chosen, how many members are left to choose from?",
+      "How many juniors are left if the first choice was a junior?"
+    ],
+    "wrong_reasons": {
+      "4/25": "Used 4/10 for both choices, as if the same person could be chosen twice",
+      "2/5": "Found the probability that one chosen member is a junior (4/10) and did not account for the second choice",
+      "11/15": "Added 4/10 and 3/9 instead of multiplying"
+    },
+    "check": "from sympy import *\nresult=Rational(4,10)*Rational(3,9)"
+  },
+  {
+    "id": "psda-probability-013",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In a large city, the probability that a randomly chosen adult has a library card is 0.62. In a random sample of 450 adults from the city, about how many would be expected NOT to have a library card?",
+    "choices": [
+      "17.1",
+      "171",
+      "279",
+      "388"
+    ],
+    "answer": "171",
+    "explanation": [
+      "The probability of not having a card is 1 − 0.62 = 0.38.",
+      "Expected number without a card: 0.38 · 450.",
+      "0.38 · 450 = 171."
+    ],
+    "hints": [
+      "What is the probability that an adult does NOT have a card?",
+      "How do you turn a probability into an expected count for 450 adults?"
+    ],
+    "wrong_reasons": {
+      "279": "Found the expected number of adults who do have a card",
+      "388": "Subtracted 62 from 450, treating the probability as a count",
+      "17.1": "Wrote 0.38 as 0.038 (misplaced the decimal)"
+    },
+    "check": "from sympy import *\nresult=(1-Rational(62,100))*450"
+  },
+  {
+    "id": "psda-probability-014",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A high school has 240 seniors. Of these, 90 play a school sport and 150 do not. Among the seniors who play a sport, 36 have a part-time job. Among the seniors who do not play a sport, 84 have a part-time job. If a senior who has a part-time job is selected at random, what is the probability that the senior plays a school sport?",
+    "answer": "3/10",
+    "accept": [
+      "0.3",
+      ".3",
+      "36/120",
+      "12/40"
+    ],
+    "explanation": [
+      "The selection is only from seniors with a part-time job: 36 + 84 = 120 seniors.",
+      "36 of those seniors play a sport.",
+      "The probability is 36/120 = 3/10."
+    ],
+    "hints": [
+      "Which group is the senior being selected from?",
+      "How many seniors are in that group, and how many of them play a sport?"
+    ],
+    "check": "from sympy import *\nresult=Rational(36,36+84)"
+  },
+  {
+    "id": "psda-probability-015",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In a class of 32 students, 18 students have a dog, 12 students have a cat, and 5 students have both a dog and a cat. If one student from the class is selected at random, what is the probability that the student has a dog or a cat?",
+    "choices": [
+      "7/32",
+      "5/8",
+      "25/32",
+      "15/16"
+    ],
+    "answer": "25/32",
+    "explanation": [
+      "The 5 students with both pets are counted in the 18 and also in the 12.",
+      "Students with a dog or a cat: 18 + 12 − 5 = 25.",
+      "The probability is 25/32."
+    ],
+    "hints": [
+      "Is anyone counted twice if you simply add 18 and 12?",
+      "How can you adjust the sum so each student is counted exactly once?"
+    ],
+    "wrong_reasons": {
+      "15/16": "Added 18 and 12 without subtracting the 5 students counted twice",
+      "5/8": "Counted only students with exactly one type of pet (13 + 7), leaving out those with both",
+      "7/32": "Found the probability that the student has neither a dog nor a cat"
+    },
+    "check": "from sympy import *\nresult=Rational(18+12-5,32)"
+  },
+  {
+    "id": "psda-probability-016",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In a survey of adults, the probability that a randomly chosen respondent owns a bicycle is 0.3. Among the respondents who own a car, the probability of owning a bicycle is also 0.3. Which of the following conclusions is best supported by this information?",
+    "choices": [
+      "Among these respondents, owning a bicycle is independent of owning a car.",
+      "Respondents who own a car are more likely to own a bicycle than other respondents.",
+      "Exactly 30% of the respondents own both a car and a bicycle.",
+      "No respondent owns both a car and a bicycle."
+    ],
+    "answer": "Among these respondents, owning a bicycle is independent of owning a car.",
+    "explanation": [
+      "Compare the probability of owning a bicycle overall with the probability of owning a bicycle given car ownership.",
+      "Both probabilities are 0.3, so knowing that a respondent owns a car does not change the chance that they own a bicycle.",
+      "That is the definition of independent events."
+    ],
+    "hints": [
+      "What does the condition 'among respondents who own a car' do to the group being considered?",
+      "If learning one fact does not change the probability of another, what is that relationship called?"
+    ],
+    "wrong_reasons": {
+      "Respondents who own a car are more likely to own a bicycle than other respondents.": "Assumed the conditional probability shows a positive association, even though it equals the overall probability",
+      "Exactly 30% of the respondents own both a car and a bicycle.": "Confused P(bicycle given car) with P(car and bicycle)",
+      "No respondent owns both a car and a bicycle.": "Confused independent events with mutually exclusive events"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is an interpretation (independence), not a computed value."
+  },
+  {
+    "id": "psda-probability-017",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A quality-control team tested parts made by three machines. The results are shown in the table. If a part made by Machine A or Machine C is selected at random, what is the probability that the part failed the test?",
+    "table": {
+      "headers": [
+        "Machine",
+        "Pass",
+        "Fail"
+      ],
+      "rows": [
+        [
+          "A",
+          "184",
+          "16"
+        ],
+        [
+          "B",
+          "141",
+          "9"
+        ],
+        [
+          "C",
+          "238",
+          "12"
+        ]
+      ]
+    },
+    "choices": [
+      "7/150",
+      "14/225",
+      "16/125",
+      "28/37"
+    ],
+    "answer": "14/225",
+    "explanation": [
+      "The condition 'made by Machine A or Machine C' limits the selection to the A and C rows.",
+      "Machines A and C made 200 + 250 = 450 parts in all.",
+      "Of those, 16 + 12 = 28 failed, so the probability is 28/450 = 14/225."
+    ],
+    "hints": [
+      "Which parts are you choosing from: all parts, or only some of them?",
+      "How many parts did Machines A and C make together, and how many of those failed?"
+    ],
+    "wrong_reasons": {
+      "7/150": "Divided the 28 failed A and C parts by all 600 parts instead of only the 450 parts from Machines A and C",
+      "28/37": "Reversed the condition, finding the probability that a failed part came from Machine A or C",
+      "16/125": "Added the failure rates of Machine A (16/200) and Machine C (12/250) instead of combining the counts"
+    },
+    "check": "from sympy import *\nA=(184,16); C=(238,12)\nresult=Rational(A[1]+C[1], sum(A)+sum(C))"
+  },
+  {
+    "id": "psda-probability-018",
+    "skill_id": "psda-probability",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Two fair six-sided dice, each with faces numbered 1 through 6, are rolled. What is the probability that the sum of the two numbers rolled is 8?",
+    "choices": [
+      "1/12",
+      "1/11",
+      "5/36",
+      "1/6"
+    ],
+    "answer": "5/36",
+    "explanation": [
+      "There are 6 · 6 = 36 equally likely ordered outcomes.",
+      "The outcomes with a sum of 8 are (2, 6), (3, 5), (4, 4), (5, 3), and (6, 2): 5 outcomes.",
+      "The probability is 5/36."
+    ],
+    "hints": [
+      "Are the sums 2 through 12 all equally likely? How could you check?",
+      "Is rolling a 2 then a 6 the same outcome as rolling a 6 then a 2?"
+    ],
+    "wrong_reasons": {
+      "1/12": "Counted only unordered pairs (2 and 6, 3 and 5, 4 and 4), missing that order matters",
+      "1/11": "Treated the 11 possible sums from 2 to 12 as equally likely",
+      "1/6": "Used the count for a sum of 7 (6 outcomes) instead of 8"
+    },
+    "check": "from sympy import *\nresult=Rational(len([(a,b) for a in range(1,7) for b in range(1,7) if a+b==8]),36)"
+  },
+  {
+    "id": "psda-probability-019",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "On Dana's drive to school she passes 3 traffic lights. Each light is red when she reaches it with probability 0.4, independent of the other lights. What is the probability that at least one of the 3 lights is red when she reaches it?",
+    "choices": [
+      "0.064",
+      "0.216",
+      "0.784",
+      "0.936"
+    ],
+    "answer": "0.784",
+    "explanation": [
+      "'At least one red' is the complement of 'no lights red.'",
+      "The probability a light is not red is 0.6, so P(no red) = 0.6³ = 0.216.",
+      "P(at least one red) = 1 − 0.216 = 0.784."
+    ],
+    "hints": [
+      "What is the opposite of 'at least one light is red'?",
+      "How do you find the probability that all three independent lights are not red?"
+    ],
+    "wrong_reasons": {
+      "0.064": "Found the probability that all three lights are red",
+      "0.216": "Found the probability that no light is red and stopped there",
+      "0.936": "Subtracted the probability of all three red (0.4³) from 1 instead of the probability of none red"
+    },
+    "check": "from sympy import *\nresult=1-Rational(6,10)**3"
+  },
+  {
+    "id": "psda-probability-020",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A coach has a box containing 6 red practice jerseys and some blue practice jerseys, and no other jerseys. The coach takes 2 jerseys from the box at random, one after the other, without replacing the first. The probability that both jerseys are red is 1/3. How many blue jerseys are in the box?",
+    "answer": "4",
+    "explanation": [
+      "Let n be the number of blue jerseys, so there are 6 + n jerseys in all.",
+      "P(both red) = (6/(6 + n)) · (5/(5 + n)) = 30/((6 + n)(5 + n)).",
+      "Set 30/((6 + n)(5 + n)) = 1/3, so (6 + n)(5 + n) = 90.",
+      "10 · 9 = 90, so 6 + n = 10 and n = 4."
+    ],
+    "hints": [
+      "If there are n blue jerseys, how many jerseys are left after one red jersey is removed?",
+      "What equation says the product of the two probabilities equals 1/3?",
+      "Can you find two consecutive whole numbers whose product is 90?"
+    ],
+    "check": "from sympy import *\nn=symbols('n',positive=True)\nresult=[s for s in solve(Rational(6)/(6+n)*Rational(5)/(5+n)-Rational(1,3),n) if s>0][0]"
+  },
+  {
+    "id": "psda-probability-021",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A clinic gave a screening test to 500 people. The table shows how many people have a certain condition and how many tested positive. If a person who tested positive is selected at random, what is the probability that the person has the condition?",
+    "table": {
+      "headers": [
+        "",
+        "Positive",
+        "Negative"
+      ],
+      "rows": [
+        [
+          "Has the condition",
+          "45",
+          "5"
+        ],
+        [
+          "Does not have the condition",
+          "90",
+          "360"
+        ]
+      ]
+    },
+    "choices": [
+      "9/100",
+      "27/100",
+      "1/3",
+      "9/10"
+    ],
+    "answer": "1/3",
+    "explanation": [
+      "The condition 'tested positive' limits the selection to the Positive column.",
+      "Total positive: 45 + 90 = 135.",
+      "45 of those people have the condition, so the probability is 45/135 = 1/3."
+    ],
+    "hints": [
+      "Are you choosing from everyone, from people with the condition, or from people who tested positive?",
+      "How many people tested positive altogether?"
+    ],
+    "wrong_reasons": {
+      "9/10": "Found the probability of testing positive given the condition (45/50), reversing the condition",
+      "9/100": "Divided by all 500 people, finding the probability of having the condition and testing positive",
+      "27/100": "Found the probability that a person tests positive (135/500)"
+    },
+    "check": "from sympy import *\nresult=Rational(45,45+90)"
+  },
+  {
+    "id": "psda-probability-022",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "At a college, 60% of students live on campus and the rest live off campus. Of the students who live on campus, 25% have a car. Of the students who live off campus, 70% have a car. If a student who has a car is selected at random, what is the probability that the student lives on campus?",
+    "choices": [
+      "3/20",
+      "1/4",
+      "5/19",
+      "15/43"
+    ],
+    "answer": "15/43",
+    "explanation": [
+      "Imagine 100 students: 60 live on campus and 40 live off campus.",
+      "On campus with a car: 25% of 60 = 15. Off campus with a car: 70% of 40 = 28.",
+      "Students with a car: 15 + 28 = 43.",
+      "P(on campus given car) = 15/43."
+    ],
+    "hints": [
+      "Could you pick a convenient total number of students to make the percents into counts?",
+      "How many students in total have a car, and how many of them live on campus?"
+    ],
+    "wrong_reasons": {
+      "1/4": "Gave the probability of having a car given on campus, reversing the condition",
+      "3/20": "Found the probability a student lives on campus and has a car (15 out of 100)",
+      "5/19": "Compared 25% to 25% + 70%, ignoring that 60% and 40% of students live in each place"
+    },
+    "check": "from sympy import *\nresult=Rational(60*25,100)/(Rational(60*25,100)+Rational(40*70,100))"
+  },
+  {
+    "id": "psda-probability-023",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A theater sold adult and student tickets for its Friday and Saturday shows, as shown in the table, where x is the number of student tickets sold for Friday. If a Friday ticket is selected at random, the probability that it is a student ticket is 0.4. What is the total number of student tickets sold for both shows?",
+    "table": {
+      "headers": [
+        "Show",
+        "Adult",
+        "Student"
+      ],
+      "rows": [
+        [
+          "Friday",
+          "120",
+          "x"
+        ],
+        [
+          "Saturday",
+          "150",
+          "90"
+        ]
+      ]
+    },
+    "answer": "170",
+    "explanation": [
+      "Friday has 120 + x tickets, and x of them are student tickets.",
+      "Set x/(120 + x) = 0.4, so x = 48 + 0.4x.",
+      "0.6x = 48, so x = 80.",
+      "Total student tickets: 80 + 90 = 170."
+    ],
+    "hints": [
+      "How would you write the probability of a Friday student ticket in terms of x?",
+      "After you find x, does the question ask for x itself?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nxs=solve(x/(120+x)-Rational(2,5),x)[0]\nresult=xs+90"
+  },
+  {
+    "id": "psda-probability-024",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A jar contains only green tokens and white tokens, and the probability of selecting a green token at random is 1/4. After 10 more green tokens are added to the jar, the probability of selecting a green token at random becomes 2/5. How many tokens were in the jar originally?",
+    "choices": [
+      "10",
+      "30",
+      "40",
+      "50"
+    ],
+    "answer": "40",
+    "explanation": [
+      "Let T be the original number of tokens, so there were T/4 green tokens.",
+      "After adding 10 green tokens: (T/4 + 10)/(T + 10) = 2/5.",
+      "Cross-multiply: 5(T/4 + 10) = 2(T + 10), so 5T/4 + 50 = 2T + 20.",
+      "30 = 3T/4, so T = 40."
+    ],
+    "hints": [
+      "If you call the original total T, how many green tokens were there at first?",
+      "When 10 green tokens are added, which parts of the probability fraction change?"
+    ],
+    "wrong_reasons": {
+      "10": "Gave the original number of green tokens instead of the total",
+      "30": "Stopped at 3T/4 = 30 and reported 30 as T",
+      "50": "Gave the total number of tokens after the 10 green tokens were added"
+    },
+    "check": "from sympy import *\nT=symbols('T')\nresult=solve((T/4+10)/(T+10)-Rational(2,5),T)[0]"
+  },
+  {
+    "id": "psda-probability-025",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A school counselor recorded whether students play a musical instrument and whether they take an AP class, as shown in the table. For what value of k would taking an AP class be independent of playing an instrument for these students?",
+    "table": {
+      "headers": [
+        "",
+        "AP class",
+        "No AP class"
+      ],
+      "rows": [
+        [
+          "Plays an instrument",
+          "24",
+          "36"
+        ],
+        [
+          "Does not play an instrument",
+          "k",
+          "60"
+        ]
+      ]
+    },
+    "choices": [
+      "24",
+      "36",
+      "40",
+      "90"
+    ],
+    "answer": "40",
+    "explanation": [
+      "Independence means the proportion taking AP is the same for both groups.",
+      "For students who play an instrument: 24/(24 + 36) = 24/60 = 0.4.",
+      "For students who do not: k/(k + 60) must also equal 0.4.",
+      "k = 0.4k + 24, so 0.6k = 24 and k = 40."
+    ],
+    "hints": [
+      "What does independence say about the AP rate among instrument players compared with non-players?",
+      "What fraction of instrument players take an AP class?"
+    ],
+    "wrong_reasons": {
+      "24": "Made the AP counts equal in both rows instead of making the AP proportions equal",
+      "36": "Copied the instrument row's no-AP count, assuming the rows should match cell by cell",
+      "90": "Set up the proportion upside down, using 36/24 = k/60"
+    },
+    "check": "from sympy import *\nk=symbols('k')\nresult=solve(k/(k+60)-Rational(24,60),k)[0]"
+  },
+  {
+    "id": "psda-probability-026",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A store shelf holds 12 phones, and 3 of them are defective. An inspector selects 2 of the phones at random, one after the other, without replacement. What is the probability that exactly one of the 2 selected phones is defective?",
+    "choices": [
+      "1/22",
+      "9/44",
+      "3/8",
+      "9/22"
+    ],
+    "answer": "9/22",
+    "explanation": [
+      "Defective first, then not: (3/12)(9/11) = 27/132.",
+      "Not defective first, then defective: (9/12)(3/11) = 27/132.",
+      "Add the two orders: 54/132 = 9/22."
+    ],
+    "hints": [
+      "In how many different orders could exactly one defective phone be selected?",
+      "After the first phone is removed, how many phones are left to choose from?"
+    ],
+    "wrong_reasons": {
+      "3/8": "Treated the picks as if the first phone were replaced (2 · 1/4 · 3/4)",
+      "9/44": "Counted only one order (defective first), forgetting the other order",
+      "1/22": "Found the probability that both phones are defective"
+    },
+    "check": "from sympy import *\nresult=Rational(3,12)*Rational(9,11)+Rational(9,12)*Rational(3,11)"
+  },
+  {
+    "id": "psda-probability-027",
+    "skill_id": "psda-probability",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A park counted 400 visitors last month. Of these visitors, 55% visited on a weekend and the rest visited on a weekday. Of the weekend visitors, 40% brought a dog. Of the weekday visitors, 120 did not bring a dog. If a visitor who brought a dog is selected at random, what is the probability that the visitor came on a weekday?",
+    "answer": "15/37",
+    "accept": [
+      ".4054",
+      "0.4054",
+      "60/148",
+      "30/74"
+    ],
+    "explanation": [
+      "Weekend visitors: 0.55 · 400 = 220; weekday visitors: 400 − 220 = 180.",
+      "Weekend visitors with a dog: 0.40 · 220 = 88. Weekday visitors with a dog: 180 − 120 = 60.",
+      "Visitors with a dog: 88 + 60 = 148.",
+      "P(weekday given dog) = 60/148 = 15/37."
+    ],
+    "hints": [
+      "Could a two-way table of weekend/weekday and dog/no dog help organize the counts?",
+      "How many weekday visitors brought a dog?",
+      "Which total belongs in the denominator?"
+    ],
+    "check": "from sympy import *\nwe=Rational(55,100)*400\nwd=400-we\nd_we=Rational(40,100)*we\nd_wd=wd-120\nresult=d_wd/(d_we+d_wd)"
+  }
+]

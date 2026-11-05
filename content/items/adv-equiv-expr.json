@@ -1,0 +1,743 @@
+[
+  {
+    "id": "adv-equiv-expr-001",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to 3(2x − 5) − 4x?",
+    "choices": [
+      "2x − 5",
+      "2x − 15",
+      "10x − 15",
+      "−13x"
+    ],
+    "answer": "2x − 15",
+    "explanation": [
+      "Distribute the 3 to both terms in the parentheses: 3(2x − 5) = 6x − 15.",
+      "Now the expression is 6x − 15 − 4x.",
+      "Combine the x-terms: 6x − 4x = 2x.",
+      "So the expression is equivalent to 2x − 15."
+    ],
+    "hints": [
+      "When you multiply 3 by (2x − 5), how many terms inside the parentheses get multiplied?",
+      "Which terms in the result are like terms that can be combined?"
+    ],
+    "wrong_reasons": {
+      "2x − 5": "Multiplied only the 2x by 3 and left the −5 unchanged",
+      "10x − 15": "Treated −4x as +4x when combining like terms",
+      "−13x": "Combined unlike terms (6x, −15, and −4x) into a single x-term"
+    },
+    "check": "C = [\"2x − 5\", \"2x − 15\", \"10x − 15\", \"−13x\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 3*(2*x - 5) - 4*x\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-002",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to (x + 4)(x − 2)?",
+    "choices": [
+      "x² + 2x − 8",
+      "x² − 8",
+      "x² − 2x − 8",
+      "x² + 2x + 8"
+    ],
+    "answer": "x² + 2x − 8",
+    "explanation": [
+      "Multiply each term of the first binomial by each term of the second: x·x, x·(−2), 4·x, and 4·(−2).",
+      "That gives x² − 2x + 4x − 8.",
+      "Combine the middle terms: −2x + 4x = 2x.",
+      "So (x + 4)(x − 2) = x² + 2x − 8."
+    ],
+    "hints": [
+      "How many separate products do you get when every term in one binomial multiplies every term in the other?",
+      "What are the two products that give x-terms, and what is their sum?"
+    ],
+    "wrong_reasons": {
+      "x² − 8": "Multiplied only the first terms and the last terms, skipping the two middle products",
+      "x² − 2x − 8": "Got the sign of the middle term wrong (combined −2x and 4x as −2x)",
+      "x² + 2x + 8": "Lost the negative sign when multiplying 4 by −2"
+    },
+    "check": "C = [\"x² − 8\", \"x² − 2x − 8\", \"x² + 2x + 8\", \"x² + 2x − 8\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return (x + 4)*(x - 2)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-003",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A community garden plot is shaped like a rectangle. Its width is w feet, and its length is 3 feet more than twice its width. Which expression represents the area of the plot, in square feet?",
+    "choices": [
+      "3w + 3",
+      "2w² + 3",
+      "6w + 6",
+      "2w² + 3w"
+    ],
+    "answer": "2w² + 3w",
+    "explanation": [
+      "The length is 2w + 3 feet and the width is w feet.",
+      "Area of a rectangle = length × width = w(2w + 3).",
+      "Distribute: w·2w + w·3 = 2w² + 3w.",
+      "So the area is 2w² + 3w square feet."
+    ],
+    "hints": [
+      "How would you write \"3 more than twice the width\" using w?",
+      "What operation on the length and width gives the area of a rectangle?",
+      "When you multiply w by a two-term expression, what happens to each term?"
+    ],
+    "wrong_reasons": {
+      "3w + 3": "Added the length and width instead of multiplying them",
+      "2w² + 3": "Multiplied w by only the 2w term of the length",
+      "6w + 6": "Found the perimeter, 2(w) + 2(2w + 3), instead of the area"
+    },
+    "check": "C = [\"2w² + 3w\", \"3w + 3\", \"2w² + 3\", \"6w + 6\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return w*(2*w + 3)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-004",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to x² − 49?",
+    "choices": [
+      "(x − 7)²",
+      "(x + 7)²",
+      "(x − 7)(x + 7)",
+      "x(x − 49)"
+    ],
+    "answer": "(x − 7)(x + 7)",
+    "explanation": [
+      "x² − 49 is a difference of two squares: x² − 7².",
+      "A difference of squares a² − b² factors as (a − b)(a + b).",
+      "So x² − 49 = (x − 7)(x + 7).",
+      "Check: (x − 7)(x + 7) = x² + 7x − 7x − 49 = x² − 49."
+    ],
+    "hints": [
+      "Is 49 a perfect square? What number squared gives 49?",
+      "If you multiply out each choice, which one makes the x-terms cancel completely?"
+    ],
+    "wrong_reasons": {
+      "(x − 7)²": "Thought x² − 49 is a perfect square trinomial; (x − 7)² = x² − 14x + 49",
+      "(x + 7)²": "Confused a difference of squares with the square of a sum; (x + 7)² = x² + 14x + 49",
+      "x(x − 49)": "Factored an x out of the 49 as well, but x(x − 49) = x² − 49x"
+    },
+    "check": "C = [\"(x − 7)²\", \"(x + 7)²\", \"(x − 7)(x + 7)\", \"x(x − 49)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return x**2 - 49\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-005",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "For x ≠ 0, which of the following is equivalent to (12x³)/(4x)?",
+    "choices": [
+      "3x²",
+      "3x³",
+      "8x²",
+      "3x⁴"
+    ],
+    "answer": "3x²",
+    "explanation": [
+      "Divide the coefficients: 12 ÷ 4 = 3.",
+      "Divide the powers of x by subtracting exponents: x³ ÷ x¹ = x³⁻¹ = x².",
+      "So (12x³)/(4x) = 3x²."
+    ],
+    "hints": [
+      "What happens to the coefficients 12 and 4 when you divide?",
+      "When you divide powers with the same base, what do you do with the exponents?"
+    ],
+    "wrong_reasons": {
+      "3x³": "Divided the coefficients but did not reduce the power of x",
+      "8x²": "Subtracted the coefficients (12 − 4) instead of dividing them",
+      "3x⁴": "Added the exponents, as you would when multiplying, instead of subtracting"
+    },
+    "check": "C = [\"3x³\", \"8x²\", \"3x²\", \"3x⁴\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 12*x**3/(4*x)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-006",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The expression 5(x + 3) − 2(x − 1) can be written in the form ax + b, where a and b are constants. What is the value of b?",
+    "answer": "17",
+    "explanation": [
+      "Distribute: 5(x + 3) = 5x + 15 and −2(x − 1) = −2x + 2.",
+      "Add: 5x + 15 − 2x + 2.",
+      "Combine like terms: 3x + 17.",
+      "So b = 17."
+    ],
+    "hints": [
+      "When you distribute −2 across (x − 1), what is −2 times −1?",
+      "After distributing, which terms have no x?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=Poly(expand(5*(x+3)-2*(x-1)),x).coeff_monomial(1)"
+  },
+  {
+    "id": "adv-equiv-expr-007",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Ana's monthly phone bill, in dollars, is 25 + 8g, and Ben's monthly phone bill, in dollars, is 30 + 6g, where g is the number of gigabytes of data each person uses over the base plan. If both use the same number of extra gigabytes in a month, which expression represents their combined bill, in dollars?",
+    "choices": [
+      "69g",
+      "55 + 48g",
+      "55 + 14g",
+      "5 − 2g"
+    ],
+    "answer": "55 + 14g",
+    "explanation": [
+      "The combined bill is the sum (25 + 8g) + (30 + 6g).",
+      "Add the constant terms: 25 + 30 = 55.",
+      "Add the g-terms: 8g + 6g = 14g.",
+      "So the combined bill is 55 + 14g dollars."
+    ],
+    "hints": [
+      "Which operation combines two bills into one total?",
+      "Which parts of the two expressions are like terms?"
+    ],
+    "wrong_reasons": {
+      "69g": "Combined the constant terms with the g-terms as if they were all like terms",
+      "55 + 48g": "Multiplied the per-gigabyte rates (8 × 6) instead of adding them",
+      "5 − 2g": "Subtracted Ana's bill from Ben's instead of adding the bills"
+    },
+    "check": "C = [\"55 + 14g\", \"69g\", \"55 + 48g\", \"5 − 2g\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return (25 + 8*g) + (30 + 6*g)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-008",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "For all values of x, (x + 6)² = x² + bx + 36, where b is a constant. What is the value of b?",
+    "answer": "12",
+    "explanation": [
+      "(x + 6)² means (x + 6)(x + 6).",
+      "Multiply: x² + 6x + 6x + 36.",
+      "Combine the middle terms: x² + 12x + 36.",
+      "So b = 12."
+    ],
+    "hints": [
+      "What does squaring a binomial mean in terms of multiplication?",
+      "When you multiply (x + 6) by itself, how many terms end up containing x to the first power?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=Poly(expand((x+6)**2),x).coeff_monomial(x)"
+  },
+  {
+    "id": "adv-equiv-expr-009",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to 6x + 15?",
+    "choices": [
+      "3(2x + 15)",
+      "3(2x + 5)",
+      "6(x + 15)",
+      "2(3x + 15)"
+    ],
+    "answer": "3(2x + 5)",
+    "explanation": [
+      "Find the greatest common factor of 6x and 15. Both 6 and 15 are divisible by 3.",
+      "Divide each term by 3: 6x ÷ 3 = 2x and 15 ÷ 3 = 5.",
+      "So 6x + 15 = 3(2x + 5).",
+      "Check: 3(2x) + 3(5) = 6x + 15."
+    ],
+    "hints": [
+      "What is the largest number that divides both 6 and 15?",
+      "After you pull a factor out, what must be left over from each term so that multiplying back gives the original?"
+    ],
+    "wrong_reasons": {
+      "3(2x + 15)": "Divided only the 6x term by 3 and left 15 unchanged",
+      "6(x + 15)": "Factored 6 out of the 6x term but did not divide 15 by 6",
+      "2(3x + 15)": "Divided only the 6x term by 2 and left 15 unchanged"
+    },
+    "check": "C = [\"3(2x + 15)\", \"6(x + 15)\", \"2(3x + 15)\", \"3(2x + 5)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 6*x + 15\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-010",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to (3x − 2)²?",
+    "choices": [
+      "9x² + 4",
+      "9x² − 6x + 4",
+      "3x² − 12x + 4",
+      "9x² − 12x + 4"
+    ],
+    "answer": "9x² − 12x + 4",
+    "explanation": [
+      "(3x − 2)² = (3x − 2)(3x − 2).",
+      "Multiply: 9x² − 6x − 6x + 4.",
+      "Combine the middle terms: −6x − 6x = −12x.",
+      "So (3x − 2)² = 9x² − 12x + 4."
+    ],
+    "hints": [
+      "Is squaring a binomial the same as squaring each term separately?",
+      "When you write (3x − 2) times itself, how many middle products are there, and what is each one?"
+    ],
+    "wrong_reasons": {
+      "9x² + 4": "Squared each term separately and left out the middle term",
+      "9x² − 6x + 4": "Included only one of the two middle products, −6x, instead of both",
+      "3x² − 12x + 4": "Squared x but not the coefficient 3 in the first term"
+    },
+    "check": "C = [\"9x² + 4\", \"9x² − 12x + 4\", \"9x² − 6x + 4\", \"3x² − 12x + 4\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return (3*x - 2)**2\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-011",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to 2x² − 7x − 15?",
+    "choices": [
+      "(2x − 3)(x + 5)",
+      "(2x + 3)(x − 5)",
+      "(2x + 5)(x − 3)",
+      "(2x − 5)(x + 3)"
+    ],
+    "answer": "(2x + 3)(x − 5)",
+    "explanation": [
+      "The factors must have the form (2x + p)(x + q) with pq = −15.",
+      "The x-term from (2x + p)(x + q) is 2qx + px, so we need 2q + p = −7.",
+      "Try p = 3, q = −5: 2(−5) + 3 = −7. ✓",
+      "So 2x² − 7x − 15 = (2x + 3)(x − 5). Check: 2x² − 10x + 3x − 15."
+    ],
+    "hints": [
+      "Expand each choice. Do they all give 2x² as the first term and −15 as the constant?",
+      "Since the choices share the same first and last terms, what part of the expansion will tell them apart?",
+      "For (2x + p)(x + q), which number gets multiplied by 2 when you form the middle term?"
+    ],
+    "wrong_reasons": {
+      "(2x − 3)(x + 5)": "Used the right numbers but with the signs switched, which gives +7x instead of −7x",
+      "(2x + 5)(x − 3)": "Placed 5 and 3 in the wrong binomials, so the middle term is −6x + 5x = −x",
+      "(2x − 5)(x + 3)": "Placed the numbers in the wrong binomials and switched signs, giving a middle term of +x"
+    },
+    "check": "C = [\"(2x − 3)(x + 5)\", \"(2x + 5)(x − 3)\", \"(2x + 3)(x − 5)\", \"(2x − 5)(x + 3)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 2*x**2 - 7*x - 15\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-012",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "For x > 0, which of the following is equivalent to 1/x + 1/(x + 2)?",
+    "choices": [
+      "(2x + 2)/(x² + 2x)",
+      "2/(2x + 2)",
+      "2/(x² + 2x)",
+      "1/(x² + 2x)"
+    ],
+    "answer": "(2x + 2)/(x² + 2x)",
+    "explanation": [
+      "A common denominator is x(x + 2) = x² + 2x.",
+      "Rewrite each fraction: 1/x = (x + 2)/(x(x + 2)) and 1/(x + 2) = x/(x(x + 2)).",
+      "Add the numerators: (x + 2) + x = 2x + 2.",
+      "So the sum is (2x + 2)/(x² + 2x)."
+    ],
+    "hints": [
+      "Can you add two fractions by adding their denominators? What do you need first?",
+      "What expression is a multiple of both x and x + 2?",
+      "After rewriting each fraction, what does each numerator become?"
+    ],
+    "wrong_reasons": {
+      "2/(2x + 2)": "Added the numerators and added the denominators separately",
+      "2/(x² + 2x)": "Used the common denominator but kept each numerator as 1 instead of multiplying it by the missing factor",
+      "1/(x² + 2x)": "Multiplied the two fractions instead of adding them"
+    },
+    "check": "C = [\"2/(2x + 2)\", \"(2x + 2)/(x² + 2x)\", \"2/(x² + 2x)\", \"1/(x² + 2x)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 1/x + 1/(x + 2)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-013",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the equation (ax + 4)(2x − b) = 6x² − x − 12, a and b are constants, and the equation is true for all values of x. What is the value of a + b?",
+    "answer": "6",
+    "explanation": [
+      "Expand the left side: 2ax² − abx + 8x − 4b.",
+      "Match the x² terms: 2a = 6, so a = 3.",
+      "Match the constant terms: −4b = −12, so b = 3.",
+      "Check the x-term: −ab + 8 = −9 + 8 = −1. ✓",
+      "So a + b = 3 + 3 = 6."
+    ],
+    "hints": [
+      "If two polynomials are equal for every x, what must be true about their coefficients?",
+      "Which single product on the left side makes the x² term? Which makes the constant term?"
+    ],
+    "check": "from sympy import *\nx,a,b=symbols('x a b')\nd=Poly(expand((a*x+4)*(2*x-b)-(6*x**2-x-12)),x).all_coeffs()\nsol=solve(d,[a,b],dict=True)\nassert len(sol)==1\nresult=sol[0][a]+sol[0][b]"
+  },
+  {
+    "id": "adv-equiv-expr-014",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A ball is tossed upward from the roof of a building. Its height above the ground, in feet, t seconds after it is tossed is given by h = −16t² + 64t + 80. Which of the following is an equivalent expression for h that shows, as a constant or coefficient, the time at which the ball hits the ground?",
+    "choices": [
+      "−16(t + 5)(t − 1)",
+      "−16(t − 5)(t − 1)",
+      "−16(t − 5)(t + 1)",
+      "16(t − 5)(t + 1)"
+    ],
+    "answer": "−16(t − 5)(t + 1)",
+    "explanation": [
+      "Factor out −16: −16t² + 64t + 80 = −16(t² − 4t − 5).",
+      "Factor the trinomial: t² − 4t − 5 = (t − 5)(t + 1), since (−5)(1) = −5 and −5 + 1 = −4.",
+      "So h = −16(t − 5)(t + 1). The factor (t − 5) shows h = 0 when t = 5, so the ball hits the ground after 5 seconds."
+    ],
+    "hints": [
+      "What common factor do all three terms share, including its sign?",
+      "After factoring it out, which two numbers multiply to the constant and add to the t-coefficient?",
+      "In the factored form, which factor gives a positive time when it equals zero?"
+    ],
+    "wrong_reasons": {
+      "−16(t + 5)(t − 1)": "Got the signs in the binomial factors reversed, which gives −16t² − 64t + 80",
+      "−16(t − 5)(t − 1)": "Chose factors whose product is +5 instead of −5",
+      "16(t − 5)(t + 1)": "Factored out 16 instead of −16, which flips the sign of every term"
+    },
+    "check": "C = [\"−16(t + 5)(t − 1)\", \"−16(t − 5)(t − 1)\", \"16(t − 5)(t + 1)\", \"−16(t − 5)(t + 1)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return -16*t**2 + 64*t + 80\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-015",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "For x > 0, which of the following is equivalent to x² · ∛x?",
+    "choices": [
+      "x^(2/3)",
+      "x³",
+      "x^(5/2)",
+      "x^(7/3)"
+    ],
+    "answer": "x^(7/3)",
+    "explanation": [
+      "Rewrite the cube root as a power: ∛x = x^(1/3).",
+      "When multiplying powers with the same base, add the exponents: x² · x^(1/3) = x^(2 + 1/3).",
+      "2 + 1/3 = 6/3 + 1/3 = 7/3.",
+      "So the expression is equivalent to x^(7/3)."
+    ],
+    "hints": [
+      "How can you write a cube root as an exponent?",
+      "When two powers of x are multiplied, what happens to the exponents?"
+    ],
+    "wrong_reasons": {
+      "x^(2/3)": "Multiplied the exponents (2 · 1/3) instead of adding them",
+      "x³": "Treated ∛x as x¹ and added 2 + 1",
+      "x^(5/2)": "Treated the cube root as a square root, x^(1/2)"
+    },
+    "check": "C = [\"x^(7/3)\", \"x^(2/3)\", \"x³\", \"x^(5/2)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return x**2*cbrt(x)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-016",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "For x ≠ 2, the expression (x² + 5x − 14)/(x − 2) is equivalent to x + k, where k is a constant. What is the value of k?",
+    "answer": "7",
+    "explanation": [
+      "Factor the numerator: x² + 5x − 14 = (x + 7)(x − 2), since 7 · (−2) = −14 and 7 + (−2) = 5.",
+      "Divide out the common factor (x − 2), which is allowed because x ≠ 2.",
+      "The expression simplifies to x + 7, so k = 7."
+    ],
+    "hints": [
+      "Can the numerator be factored so that one of its factors matches the denominator?",
+      "Which two numbers multiply to −14 and add to 5?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nq=cancel((x**2+5*x-14)/(x-2))\nresult=q-x"
+  },
+  {
+    "id": "adv-equiv-expr-017",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A square patio has side length s feet. A walkway 2 feet wide is built around the entire patio, so the patio and walkway together form a larger square. Which expression represents the area, in square feet, of the walkway alone?",
+    "choices": [
+      "16",
+      "4s + 4",
+      "8s",
+      "8s + 16"
+    ],
+    "answer": "8s + 16",
+    "explanation": [
+      "The walkway adds 2 feet on each side, so the large square has side s + 2 + 2 = s + 4.",
+      "Area of the large square: (s + 4)² = s² + 8s + 16.",
+      "Subtract the patio's area: (s² + 8s + 16) − s² = 8s + 16.",
+      "So the walkway's area is 8s + 16 square feet."
+    ],
+    "hints": [
+      "The walkway borders the patio on both the left and the right. How much longer is the large square's side than s?",
+      "How can you find the area of just the border using the areas of two squares?",
+      "When you square s + 4, did you include the middle term?"
+    ],
+    "wrong_reasons": {
+      "16": "Squared s + 4 as s² + 16, leaving out the middle term 8s",
+      "4s + 4": "Added the walkway width to only one side, using (s + 2)² − s²",
+      "8s": "Forgot the constant term 16 when expanding (s + 4)²"
+    },
+    "check": "C = [\"16\", \"8s + 16\", \"4s + 4\", \"8s\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return (s + 4)**2 - s**2\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-018",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is equivalent to 3x(x − 4) − 2(x² − 6x)?",
+    "choices": [
+      "x² − 24x",
+      "5x² − 24x",
+      "x²",
+      "x² − 18x"
+    ],
+    "answer": "x²",
+    "explanation": [
+      "Distribute 3x: 3x(x − 4) = 3x² − 12x.",
+      "Distribute −2: −2(x² − 6x) = −2x² + 12x.",
+      "Add: 3x² − 12x − 2x² + 12x.",
+      "The x-terms cancel (−12x + 12x = 0), leaving x²."
+    ],
+    "hints": [
+      "When you distribute −2 to −6x, is the product positive or negative?",
+      "After distributing, what do the x-terms add up to?"
+    ],
+    "wrong_reasons": {
+      "x² − 24x": "Distributed −2 to −6x as −12x instead of +12x",
+      "5x² − 24x": "Distributed +2 instead of −2, ignoring the subtraction sign",
+      "x² − 18x": "Multiplied only the x² term by −2 and subtracted 6x without multiplying it by −2"
+    },
+    "check": "C = [\"x² − 24x\", \"5x² − 24x\", \"x² − 18x\", \"x²\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 3*x*(x - 4) - 2*(x**2 - 6*x)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-019",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The expression 6/(x + 1) − 6/(x + 3), where x > 0, can be rewritten as a/(x² + 4x + 3), where a is a constant. What is the value of a?",
+    "answer": "12",
+    "explanation": [
+      "Note that x² + 4x + 3 = (x + 1)(x + 3), the common denominator.",
+      "Rewrite: 6(x + 3)/((x + 1)(x + 3)) − 6(x + 1)/((x + 1)(x + 3)).",
+      "Numerator: 6(x + 3) − 6(x + 1) = 6x + 18 − 6x − 6 = 12.",
+      "So the expression equals 12/(x² + 4x + 3), and a = 12."
+    ],
+    "hints": [
+      "How does x² + 4x + 3 relate to the two denominators x + 1 and x + 3?",
+      "After writing both fractions over that denominator, what is each numerator?",
+      "When you subtract 6(x + 1), what happens to the sign of the 6?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=simplify((6/(x+1)-6/(x+3))*(x**2+4*x+3))"
+  },
+  {
+    "id": "adv-equiv-expr-020",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For x > 0, which of the following is equivalent to (6x² + 7x − 2)/(2x + 3)?",
+    "choices": [
+      "3x − 1 + 1/(2x + 3)",
+      "3x − 1",
+      "3x + 8 − 26/(2x + 3)",
+      "3x − 1 − 5/(2x + 3)"
+    ],
+    "answer": "3x − 1 + 1/(2x + 3)",
+    "explanation": [
+      "Divide the leading terms: 6x² ÷ 2x = 3x. Then 3x(2x + 3) = 6x² + 9x, and (6x² + 7x − 2) − (6x² + 9x) = −2x − 2.",
+      "Divide again: −2x ÷ 2x = −1. Then −1(2x + 3) = −2x − 3, and (−2x − 2) − (−2x − 3) = 1.",
+      "The quotient is 3x − 1 with remainder 1, so the expression equals 3x − 1 + 1/(2x + 3).",
+      "Check: (2x + 3)(3x − 1) + 1 = 6x² + 7x − 3 + 1 = 6x² + 7x − 2. ✓"
+    ],
+    "hints": [
+      "What do you multiply 2x by to get 6x²?",
+      "After subtracting, what is left, and what do you multiply 2x + 3 by next?",
+      "Does (2x + 3) times your quotient give exactly the numerator, or is something left over?"
+    ],
+    "wrong_reasons": {
+      "3x − 1": "Found the quotient but dropped the remainder of 1",
+      "3x + 8 − 26/(2x + 3)": "Added 9x instead of subtracting it in the first step (7x + 9x = 16x)",
+      "3x − 1 − 5/(2x + 3)": "Made a sign error in the last subtraction, computing −2 − 3 instead of −2 − (−3)"
+    },
+    "check": "C = [\"3x − 1\", \"3x + 8 − 26/(2x + 3)\", \"3x − 1 + 1/(2x + 3)\", \"3x − 1 − 5/(2x + 3)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return (6*x**2 + 7*x - 2)/(2*x + 3)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-021",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For x > 0 and y > 0, which of the following is equivalent to (16x⁴y⁻⁶)^(1/2) ÷ (xy⁻¹)?",
+    "choices": [
+      "8x/y²",
+      "4x/y²",
+      "4x³/y⁴",
+      "4x/y⁴"
+    ],
+    "answer": "4x/y²",
+    "explanation": [
+      "Apply the exponent 1/2 to each factor: 16^(1/2) = 4, (x⁴)^(1/2) = x², (y⁻⁶)^(1/2) = y⁻³. So the first part is 4x²y⁻³.",
+      "Divide by xy⁻¹ by subtracting exponents: x²⁻¹ = x and y⁻³⁻⁽⁻¹⁾ = y⁻².",
+      "The result is 4xy⁻², which is 4x/y²."
+    ],
+    "hints": [
+      "What does raising a product to the 1/2 power do to each factor, including the 16?",
+      "When dividing y⁻³ by y⁻¹, what do you get when you subtract a negative exponent?"
+    ],
+    "wrong_reasons": {
+      "8x/y²": "Multiplied 16 by 1/2 instead of taking its square root",
+      "4x³/y⁴": "Multiplied by xy⁻¹ instead of dividing by it",
+      "4x/y⁴": "Subtracted 1 instead of −1 from the y exponent (−3 − 1 = −4)"
+    },
+    "check": "C = [\"4x/y²\", \"8x/y²\", \"4x³/y⁴\", \"4x/y⁴\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return sqrt(16*x**4*y**(-6))/(x*y**(-1))\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-022",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The number of rabbits in a wildlife preserve is modeled by the expression 1,200(1.21)^t, where t is the number of years since the start of a study. Which of the following expressions is equivalent to the model and shows the factor by which the population grows every half year?",
+    "choices": [
+      "1,200(1.1)^(2t)",
+      "1,200(1.105)^(2t)",
+      "1,200(1.1)^(t/2)",
+      "1,200(1.21)^(2t)"
+    ],
+    "answer": "1,200(1.1)^(2t)",
+    "explanation": [
+      "There are 2 half-years in each year, so t years contain 2t half-years. We want the form 1,200(b)^(2t).",
+      "(b)^(2t) = (b²)^t, so we need b² = 1.21.",
+      "b = √1.21 = 1.1.",
+      "So 1,200(1.21)^t = 1,200(1.1)^(2t), which shows growth by a factor of 1.1 (10%) every half year."
+    ],
+    "hints": [
+      "If t is measured in years, how many half-year periods have passed after t years?",
+      "If you rewrite the model with exponent 2t, what number squared must give 1.21?",
+      "Is a 21% yearly growth the same as 10.5% growth every half year? Try squaring 1.105."
+    ],
+    "wrong_reasons": {
+      "1,200(1.105)^(2t)": "Halved the yearly growth rate (21% ÷ 2), but compound growth does not split evenly; 1.105² ≈ 1.221, not 1.21",
+      "1,200(1.1)^(t/2)": "Used the half-year factor but divided t by 2 instead of doubling the number of periods",
+      "1,200(1.21)^(2t)": "Doubled the exponent without changing the growth factor, which makes the model grow too fast"
+    },
+    "check": "C = [\"1,200(1.105)^(2t)\", \"1,200(1.1)^(2t)\", \"1,200(1.1)^(t/2)\", \"1,200(1.21)^(2t)\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 1200*(Rational(121,100))**t\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-023",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "If x + 1/x = 5, what is the value of x² + 1/x²?",
+    "answer": "23",
+    "explanation": [
+      "Square both sides: (x + 1/x)² = 25.",
+      "Expand the left side: x² + 2·x·(1/x) + 1/x² = x² + 2 + 1/x².",
+      "So x² + 2 + 1/x² = 25, which means x² + 1/x² = 23."
+    ],
+    "hints": [
+      "Which operation on x + 1/x would produce an x² term and a 1/x² term?",
+      "When you square x + 1/x, what is the middle term equal to?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nr=solve(x+1/x-5,x)\nvals={simplify(v**2+1/v**2) for v in r}\nassert len(vals)==1\nresult=vals.pop()"
+  },
+  {
+    "id": "adv-equiv-expr-024",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The daily operating cost, in dollars, of a delivery van driven at an average speed of x miles per hour is modeled by C = 2x² − 24x + 90. Which of the following equivalent forms of the expression displays the minimum daily operating cost as a constant or coefficient?",
+    "choices": [
+      "2(x − 6)² + 54",
+      "2(x − 6)² + 18",
+      "2(x − 12)² − 198",
+      "2(x + 6)² + 18"
+    ],
+    "answer": "2(x − 6)² + 18",
+    "explanation": [
+      "Factor 2 from the x-terms: C = 2(x² − 12x) + 90.",
+      "Complete the square inside: x² − 12x + 36 = (x − 6)². Adding 36 inside the parentheses adds 2 · 36 = 72 to the expression, so subtract 72 outside.",
+      "C = 2(x − 6)² + 90 − 72 = 2(x − 6)² + 18.",
+      "Because 2(x − 6)² is never negative, the minimum cost is 18 dollars, at x = 6."
+    ],
+    "hints": [
+      "What form of a quadratic shows its minimum value directly?",
+      "To complete the square for x² − 12x, what number do you add?",
+      "If you add a number inside parentheses that are multiplied by 2, how much did you really add to the whole expression?"
+    ],
+    "wrong_reasons": {
+      "2(x − 6)² + 54": "Subtracted 36 instead of 2 · 36 = 72 to balance the completed square",
+      "2(x − 12)² − 198": "Used the whole coefficient 12 instead of half of it when completing the square",
+      "2(x + 6)² + 18": "Used the wrong sign inside the squared binomial; 2(x + 6)² + 18 = 2x² + 24x + 90"
+    },
+    "check": "C = [\"2(x − 6)² + 54\", \"2(x − 12)² − 198\", \"2(x − 6)² + 18\", \"2(x + 6)² + 18\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return 2*x**2 - 24*x + 90\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  },
+  {
+    "id": "adv-equiv-expr-025",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The expression (3x − 4)(x + 2) − (x − 3)² can be written in the form ax² + bx + c, where a, b, and c are constants. What is the value of a + b + c?",
+    "answer": "−7",
+    "accept": [
+      "-7"
+    ],
+    "explanation": [
+      "Expand (3x − 4)(x + 2) = 3x² + 6x − 4x − 8 = 3x² + 2x − 8.",
+      "Expand (x − 3)² = x² − 6x + 9.",
+      "Subtract: 3x² + 2x − 8 − x² + 6x − 9 = 2x² + 8x − 17.",
+      "a + b + c = 2 + 8 − 17 = −7."
+    ],
+    "hints": [
+      "When you subtract (x − 3)², what happens to the sign of each of its terms?",
+      "Is there a value of x that would make a + b + c appear directly when you evaluate ax² + bx + c?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\ne=expand((3*x-4)*(x+2)-(x-3)**2)\nresult=sum(Poly(e,x).all_coeffs())"
+  },
+  {
+    "id": "adv-equiv-expr-026",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the expression (x² − kx + 12)/(x − 3), k is a constant. If the expression is equivalent to a linear expression for all x ≠ 3, what is the value of k?",
+    "choices": [
+      "−7",
+      "3",
+      "4",
+      "7"
+    ],
+    "answer": "7",
+    "explanation": [
+      "For the fraction to simplify to a linear expression, x − 3 must be a factor of x² − kx + 12.",
+      "If x − 3 is a factor, then the numerator equals 0 when x = 3: 3² − 3k + 12 = 0.",
+      "21 − 3k = 0, so k = 7.",
+      "Check: x² − 7x + 12 = (x − 3)(x − 4), so the expression equals x − 4."
+    ],
+    "hints": [
+      "What must be true about the numerator for the denominator to divide out completely?",
+      "If x − 3 is a factor of a polynomial, what is the polynomial's value at x = 3?"
+    ],
+    "wrong_reasons": {
+      "−7": "Substituted x = −3 instead of x = 3 when using the factor x − 3",
+      "4": "Gave the root of the other factor (x − 4) instead of the value of k",
+      "3": "Gave the value of x that makes the denominator 0 instead of solving for k"
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nsol=solve(rem(x**2-k*x+12,x-3,x),k)\nassert len(sol)==1\nresult=sol[0]"
+  },
+  {
+    "id": "adv-equiv-expr-027",
+    "skill_id": "adv-equiv-expr",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For x ≠ 2, which of the following is equivalent to (x³ − 8)/(x − 2)?",
+    "choices": [
+      "x² + 4",
+      "x² − 2x + 4",
+      "x² + 2x + 4",
+      "x² + 4x + 4"
+    ],
+    "answer": "x² + 2x + 4",
+    "explanation": [
+      "x³ − 8 is a difference of cubes: x³ − 2³.",
+      "A difference of cubes factors as a³ − b³ = (a − b)(a² + ab + b²), so x³ − 8 = (x − 2)(x² + 2x + 4).",
+      "Divide out the factor x − 2 (allowed since x ≠ 2).",
+      "So the expression equals x² + 2x + 4."
+    ],
+    "hints": [
+      "Is 8 a perfect cube? How could you write x³ − 8 as a difference of two cubes?",
+      "If you multiply (x − 2) by each choice, which product gives exactly x³ − 8?"
+    ],
+    "wrong_reasons": {
+      "x² + 4": "Assumed the quotient is a² + b², leaving out the middle term",
+      "x² − 2x + 4": "Used the sum-of-cubes factor, which has a negative middle term",
+      "x² + 4x + 4": "Guessed (x + 2)², but (x − 2)(x + 2)² = x³ + 2x² − 4x − 8"
+    },
+    "check": "C = [\"x² + 2x + 4\", \"x² + 4\", \"x² − 2x + 4\", \"x² + 4x + 4\"]\ndef _target():\n    from sympy import symbols, sqrt, cbrt, Rational, expand, Integer\n    x, y, t, s, w, g, n = symbols('x y t s w g n')\n    return (x**3 - 8)/(x - 2)\nfrom sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor\nimport re\nT = standard_transformations + (implicit_multiplication_application, convert_xor)\nx, y, t, s, w, g, n = symbols('x y t s w g n')\nSUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'}\ndef P(c):\n    c = c.replace('−', '-').replace('·', '*').replace(',', '')\n    c = re.sub('[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+', lambda m: '**(' + ''.join(SUP[ch] for ch in m.group()) + ')', c)\n    return parse_expr(c, transformations=T, local_dict={'x':x,'y':y,'t':t,'s':s,'w':w,'g':g,'n':n})\nPTS = [{x:Rational(13,10), y:Rational(7,3), t:Rational(5,4), s:Rational(17,5), w:Rational(9,7), g:Rational(11,3), n:Rational(19,6)},\n       {x:Rational(27,10), y:Rational(3,2), t:Rational(7,3), s:Rational(23,4), w:Rational(31,8), g:Rational(5,2), n:Rational(41,9)},\n       {x:Rational(41,10), y:Rational(11,5), t:Rational(17,4), s:Rational(2,7), w:Rational(13,3), g:Rational(29,4), n:Rational(3,8)}]\ndef eq(a, b):\n    return all(abs(N(a.subs(p) - b.subs(p), 30)) < 1e-9 * max(1, abs(N(b.subs(p)))) for p in PTS)\ntarget = _target()\nok = [c for c in C if eq(P(c), target)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−', '-')"
+  }
+]

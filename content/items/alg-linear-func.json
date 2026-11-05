@@ -1,0 +1,807 @@
+[
+  {
+    "id": "alg-linear-func-001",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = 4x − 9. What is the value of f(5)?",
+    "choices": [
+      "−16",
+      "7/2",
+      "11",
+      "29"
+    ],
+    "answer": "11",
+    "explanation": [
+      "Substitute 5 for x: f(5) = 4(5) − 9.",
+      "4(5) = 20, and 20 − 9 = 11.",
+      "So f(5) = 11."
+    ],
+    "hints": [
+      "What does f(5) tell you to do with the number 5?",
+      "After you multiply, what operation does the rule say comes next?"
+    ],
+    "wrong_reasons": {
+      "29": "Added 9 instead of subtracting it",
+      "−16": "Subtracted 9 from 5 before multiplying, computing 4(5 − 9)",
+      "7/2": "Solved 4x − 9 = 5 for x instead of evaluating f(5)"
+    },
+    "check": "result = 4*5 - 9"
+  },
+  {
+    "id": "alg-linear-func-002",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A plumber charges for each job according to the function C(h) = 65h + 40, where C(h) is the total charge, in dollars, for a job that takes h hours. What is the best interpretation of 40 in this context?",
+    "choices": [
+      "A fixed charge, in dollars, that the plumber adds to every job regardless of its length",
+      "The charge, in dollars, for each hour of work",
+      "The total charge, in dollars, for a 1-hour job",
+      "The number of hours a typical job takes"
+    ],
+    "answer": "A fixed charge, in dollars, that the plumber adds to every job regardless of its length",
+    "explanation": [
+      "When h = 0, C(0) = 40, so 40 is the charge before any hours are counted.",
+      "The 65 is multiplied by h, so it is the cost per hour; the 40 is added once no matter how long the job takes.",
+      "So 40 is a fixed charge for every job."
+    ],
+    "hints": [
+      "Which number in the rule gets multiplied by the hours, and which one doesn't?",
+      "What would the plumber charge if the job took 0 hours?"
+    ],
+    "wrong_reasons": {
+      "The charge, in dollars, for each hour of work": "Mixed up the slope (65, the hourly rate) with the constant term",
+      "The total charge, in dollars, for a 1-hour job": "Forgot to add the hourly rate; a 1-hour job costs 65 + 40 = 105 dollars",
+      "The number of hours a typical job takes": "Ignored the units; 40 is measured in dollars, not hours"
+    },
+    "check": null,
+    "check_note": "Interpretation item: the answer is a meaning in context, not a computed value."
+  },
+  {
+    "id": "alg-linear-func-003",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The charge of a phone battery while streaming video is modeled by B(t) = 100 − 8t, where B(t) is the percent of charge remaining after t hours of streaming. According to the model, after how many hours of streaming will the battery have 20% charge remaining?",
+    "answer": "10",
+    "explanation": [
+      "Set B(t) = 20: 100 − 8t = 20.",
+      "Subtract 100 from both sides: −8t = −80.",
+      "Divide by −8: t = 10."
+    ],
+    "hints": [
+      "Which variable stands for the 20% — the input or the output?",
+      "Once you write the equation, what do you undo first?"
+    ],
+    "check": "from sympy import *\nt=symbols('t')\nresult=solve(100-8*t-20,t)[0]"
+  },
+  {
+    "id": "alg-linear-func-004",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of a linear function passes through the points (2, 7) and (6, 19). What is the slope of the graph?",
+    "choices": [
+      "−3",
+      "1/3",
+      "3",
+      "13/4"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Slope = (change in y) ÷ (change in x).",
+      "Change in y: 19 − 7 = 12. Change in x: 6 − 2 = 4.",
+      "12 ÷ 4 = 3."
+    ],
+    "hints": [
+      "What does slope compare: how much y changes, or how much x changes, or both?",
+      "Which difference goes on top of the fraction?"
+    ],
+    "wrong_reasons": {
+      "1/3": "Divided the change in x by the change in y",
+      "−3": "Subtracted the coordinates in opposite orders, (19 − 7)/(2 − 6)",
+      "13/4": "Added the coordinates instead of subtracting: (7 + 19)/(2 + 6)"
+    },
+    "check": "from sympy import *\nresult=Rational(19-7,6-2)"
+  },
+  {
+    "id": "alg-linear-func-005",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The table shows four values of x and their corresponding values of f(x) for a linear function f. Which equation defines f?",
+    "table": {
+      "headers": [
+        "x",
+        "f(x)"
+      ],
+      "rows": [
+        [
+          "0",
+          "5"
+        ],
+        [
+          "1",
+          "8"
+        ],
+        [
+          "2",
+          "11"
+        ],
+        [
+          "3",
+          "14"
+        ]
+      ]
+    },
+    "choices": [
+      "f(x) = 5x + 3",
+      "f(x) = 3x + 5",
+      "f(x) = 3x + 8",
+      "f(x) = x + 3"
+    ],
+    "answer": "f(x) = 3x + 5",
+    "explanation": [
+      "When x increases by 1, f(x) increases by 3, so the slope is 3.",
+      "When x = 0, f(x) = 5, so the y-intercept is 5.",
+      "So f(x) = 3x + 5."
+    ],
+    "hints": [
+      "As x goes up by 1, how much does f(x) change each time?",
+      "Which row of the table tells you where the graph crosses the y-axis?"
+    ],
+    "wrong_reasons": {
+      "f(x) = 5x + 3": "Swapped the slope and the y-intercept",
+      "f(x) = 3x + 8": "Used f(1) = 8 as the y-intercept instead of f(0)",
+      "f(x) = x + 3": "Took the change in f(x) as the y-intercept and assumed a slope of 1"
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT = standard_transformations + (implicit_multiplication_application,)\nx, t, m = symbols('x t m')\ndef P(s): return parse_expr(s.split('=')[-1].replace('−','-').replace(',',''), transformations=T, local_dict={'x':x,'t':t,'m':m})\nC = ['f(x) = 3x + 5', 'f(x) = 5x + 3', 'f(x) = 3x + 8', 'f(x) = x + 3']\nok = [c for c in C if all(P(c).subs(x,a)==b for a,b in [(0,5),(1,8),(2,11),(3,14)])]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−','-')\n"
+  },
+  {
+    "id": "alg-linear-func-006",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function h is defined by h(x) = (2/3)x − 6. At which point does the graph of y = h(x) cross the x-axis in the xy-plane?",
+    "choices": [
+      "(0, −6)",
+      "(−9, 0)",
+      "(4, 0)",
+      "(9, 0)"
+    ],
+    "answer": "(9, 0)",
+    "explanation": [
+      "On the x-axis, y = 0, so solve (2/3)x − 6 = 0.",
+      "Add 6: (2/3)x = 6.",
+      "Multiply by 3/2: x = 9, so the point is (9, 0)."
+    ],
+    "hints": [
+      "What is the value of y at every point on the x-axis?",
+      "After you isolate the x-term, what do you multiply by to undo 2/3?"
+    ],
+    "wrong_reasons": {
+      "(0, −6)": "Gave the y-intercept instead of the x-intercept",
+      "(−9, 0)": "Made a sign error when moving −6 to the other side",
+      "(4, 0)": "Multiplied 6 by 2/3 instead of dividing by 2/3"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nr=solve(Rational(2,3)*x-6,x)[0]\nresult='('+str(r)+',0)'"
+  },
+  {
+    "id": "alg-linear-func-007",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A climbing gym charges a one-time sign-up fee of $30 plus $22 for each month of membership. The total cost of a membership is a linear function of the number of months. What is the total cost, in dollars, of a 9-month membership?",
+    "answer": "228",
+    "explanation": [
+      "The cost function is C(m) = 22m + 30.",
+      "C(9) = 22(9) + 30 = 198 + 30.",
+      "So the total cost is $228."
+    ],
+    "hints": [
+      "Which part of the cost is paid once, and which part is paid every month?",
+      "How would you write the total cost after m months?"
+    ],
+    "check": "result = 22*9 + 30"
+  },
+  {
+    "id": "alg-linear-func-008",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A candle is 30 centimeters tall when it is lit. It burns down at a constant rate of 1.5 centimeters per hour. Which function gives the height h(t), in centimeters, of the candle t hours after it is lit?",
+    "choices": [
+      "h(t) = 30 − 1.5t",
+      "h(t) = 30 + 1.5t",
+      "h(t) = 1.5 − 30t",
+      "h(t) = 1.5t − 30"
+    ],
+    "answer": "h(t) = 30 − 1.5t",
+    "explanation": [
+      "The starting height, at t = 0, is 30 cm.",
+      "The height goes down by 1.5 cm every hour, so subtract 1.5t.",
+      "So h(t) = 30 − 1.5t."
+    ],
+    "hints": [
+      "What is the height when t = 0?",
+      "Does the height get larger or smaller as time passes, and by how much each hour?"
+    ],
+    "wrong_reasons": {
+      "h(t) = 30 + 1.5t": "Treated burning as making the candle taller (wrong sign on the rate)",
+      "h(t) = 1.5 − 30t": "Swapped the starting height and the rate",
+      "h(t) = 1.5t − 30": "Reversed the signs of both terms, giving a negative starting height"
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT = standard_transformations + (implicit_multiplication_application,)\nx, t, m = symbols('x t m')\ndef P(s): return parse_expr(s.split('=')[-1].replace('−','-').replace(',',''), transformations=T, local_dict={'x':x,'t':t,'m':m})\nC = ['h(t) = 30 − 1.5t', 'h(t) = 30 + 1.5t', 'h(t) = 1.5 − 30t', 'h(t) = 1.5t − 30']\nok = [c for c in C if P(c).subs(t,0)==30 and nsimplify(diff(P(c),t))==Rational(-3,2)]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−','-')\n"
+  },
+  {
+    "id": "alg-linear-func-009",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = 7x + c, where c is a constant. If f(2) = 20, what is the value of c?",
+    "choices": [
+      "−6",
+      "6",
+      "13",
+      "34"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Substitute x = 2: 7(2) + c = 20.",
+      "14 + c = 20.",
+      "c = 6."
+    ],
+    "hints": [
+      "What equation do you get when you replace x with 2 and f(2) with 20?",
+      "Once you simplify 7(2), what is left to undo?"
+    ],
+    "wrong_reasons": {
+      "13": "Forgot to multiply 7 by 2, computing 20 − 7",
+      "34": "Added 14 to 20 instead of subtracting",
+      "−6": "Subtracted in the wrong order, computing 14 − 20"
+    },
+    "check": "from sympy import *\nc=symbols('c')\nresult=solve(7*2+c-20,c)[0]"
+  },
+  {
+    "id": "alg-linear-func-010",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The value of a laptop, in dollars, t years after it was purchased is modeled by V(t) = 1,200 − 175t. What is the best interpretation of 175 in this context?",
+    "choices": [
+      "The value of the laptop, in dollars, 1 year after it was purchased",
+      "The purchase price of the laptop, in dollars",
+      "The number of years until the laptop has no value",
+      "The amount, in dollars, by which the laptop's value decreases each year"
+    ],
+    "answer": "The amount, in dollars, by which the laptop's value decreases each year",
+    "explanation": [
+      "175 is multiplied by t, the number of years, so it is the rate of change.",
+      "It is subtracted, so the value goes down by $175 for each year that passes.",
+      "So 175 is the yearly decrease in value."
+    ],
+    "hints": [
+      "Which number is attached to the variable t?",
+      "What happens to V(t) when t goes up by 1?"
+    ],
+    "wrong_reasons": {
+      "The value of the laptop, in dollars, 1 year after it was purchased": "Confused the yearly change with the value after one year, which is 1,200 − 175 = 1,025 dollars",
+      "The purchase price of the laptop, in dollars": "Mixed up the rate with the constant 1,200, which is the value at t = 0",
+      "The number of years until the laptop has no value": "Confused the rate with the zero of the function; the value reaches 0 after about 6.9 years"
+    },
+    "check": null,
+    "check_note": "Interpretation item: the answer is a meaning in context, not a computed value."
+  },
+  {
+    "id": "alg-linear-func-011",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "For a linear function f, f(3) = 11 and f(7) = 23. What is the value of f(10)?",
+    "choices": [
+      "26",
+      "32",
+      "35",
+      "110/3"
+    ],
+    "answer": "32",
+    "explanation": [
+      "Slope = (23 − 11) ÷ (7 − 3) = 12 ÷ 4 = 3.",
+      "From x = 7 to x = 10, x increases by 3, so f increases by 3 · 3 = 9.",
+      "f(10) = 23 + 9 = 32."
+    ],
+    "hints": [
+      "How much does f change for each increase of 1 in x?",
+      "How many steps of 1 is it from x = 7 to x = 10?"
+    ],
+    "wrong_reasons": {
+      "26": "Added the slope only once instead of once for each unit from 7 to 10",
+      "35": "Divided the change in f by 3 instead of 4, getting a slope of 4",
+      "110/3": "Assumed f is proportional (f(x) = (11/3)x), ignoring the y-intercept"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nm=Rational(23-11,7-3)\nresult=23+m*(10-7)"
+  },
+  {
+    "id": "alg-linear-func-012",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A tank is being filled with water at a constant rate. The table shows the volume of water in the tank, in gallons, at three times after a timer was started. How many gallons of water were in the tank when the timer was started?",
+    "table": {
+      "headers": [
+        "Time (minutes)",
+        "Volume (gallons)"
+      ],
+      "rows": [
+        [
+          "4",
+          "62"
+        ],
+        [
+          "10",
+          "110"
+        ],
+        [
+          "16",
+          "158"
+        ]
+      ]
+    },
+    "answer": "30",
+    "explanation": [
+      "Rate = (110 − 62) ÷ (10 − 4) = 48 ÷ 6 = 8 gallons per minute.",
+      "Going back 4 minutes from t = 4 to t = 0 removes 4 · 8 = 32 gallons.",
+      "62 − 32 = 30 gallons."
+    ],
+    "hints": [
+      "How many gallons are added each minute?",
+      "How far back in time is the start of the timer from the first row of the table?"
+    ],
+    "check": "from sympy import *\nr=Rational(110-62,10-4)\nresult=62-4*r"
+  },
+  {
+    "id": "alg-linear-func-013",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of the linear function f has a slope of −3/2 and passes through the point (−2, 5). Which equation defines f?",
+    "choices": [
+      "f(x) = −(3/2)x + 2",
+      "f(x) = −(3/2)x + 8",
+      "f(x) = −(3/2)x + 5",
+      "f(x) = −(2/3)x + 11/3"
+    ],
+    "answer": "f(x) = −(3/2)x + 2",
+    "explanation": [
+      "Use y − 5 = −(3/2)(x − (−2)) = −(3/2)(x + 2).",
+      "Distribute: y − 5 = −(3/2)x − 3.",
+      "Add 5: f(x) = −(3/2)x + 2."
+    ],
+    "hints": [
+      "If you know a point and the slope, what form of a line's equation lets you write it down right away?",
+      "What is x − (−2) once you simplify it?"
+    ],
+    "wrong_reasons": {
+      "f(x) = −(3/2)x + 8": "Used x − 2 instead of x + 2 in point-slope form",
+      "f(x) = −(3/2)x + 5": "Used the y-coordinate of the given point as the y-intercept",
+      "f(x) = −(2/3)x + 11/3": "Flipped the slope to its reciprocal before finding the intercept"
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT = standard_transformations + (implicit_multiplication_application,)\nx, t, m = symbols('x t m')\ndef P(s): return parse_expr(s.split('=')[-1].replace('−','-').replace(',',''), transformations=T, local_dict={'x':x,'t':t,'m':m})\nC = ['f(x) = −(3/2)x + 2', 'f(x) = −(3/2)x + 8', 'f(x) = −(3/2)x + 5', 'f(x) = −(2/3)x + 11/3']\nok = [c for c in C if diff(P(c),x)==Rational(-3,2) and P(c).subs(x,-2)==5]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−','-')\n"
+  },
+  {
+    "id": "alg-linear-func-014",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane, line k has equation y = 4x − 7. Line j is parallel to line k and passes through the point (3, 2). What is the y-coordinate of the y-intercept of line j?",
+    "choices": [
+      "−10",
+      "−7",
+      "11/4",
+      "14"
+    ],
+    "answer": "−10",
+    "explanation": [
+      "Parallel lines have equal slopes, so line j has slope 4: y = 4x + b.",
+      "Substitute (3, 2): 2 = 12 + b.",
+      "b = −10."
+    ],
+    "hints": [
+      "What do parallel lines have in common?",
+      "Once you know the slope, which point can you substitute to find b?"
+    ],
+    "wrong_reasons": {
+      "−7": "Assumed parallel lines share the same y-intercept",
+      "14": "Added 12 to 2 instead of subtracting",
+      "11/4": "Used the perpendicular slope −1/4 instead of the same slope"
+    },
+    "check": "from sympy import *\nb=symbols('b')\nresult=solve(4*3+b-2,b)[0]"
+  },
+  {
+    "id": "alg-linear-func-015",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The function f is defined by f(x) = ax + 9, where a is a constant. If f(−4) = 29, what is the value of f(6)?",
+    "answer": "-21",
+    "explanation": [
+      "f(−4) = −4a + 9 = 29, so −4a = 20 and a = −5.",
+      "So f(x) = −5x + 9.",
+      "f(6) = −30 + 9 = −21."
+    ],
+    "hints": [
+      "What does the fact f(−4) = 29 let you find first?",
+      "Once you know a, how do you get f(6)?"
+    ],
+    "check": "from sympy import *\na=symbols('a')\nA=solve(-4*a+9-29,a)[0]\nresult=A*6+9"
+  },
+  {
+    "id": "alg-linear-func-016",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A taxi fare is a linear function of the distance traveled. The table shows the fare for three trips. According to the table, by how much does the fare increase for each additional mile traveled?",
+    "table": {
+      "headers": [
+        "Distance (miles)",
+        "Fare (dollars)"
+      ],
+      "rows": [
+        [
+          "2",
+          "9.50"
+        ],
+        [
+          "5",
+          "16.25"
+        ],
+        [
+          "8",
+          "23.00"
+        ]
+      ]
+    },
+    "choices": [
+      "$2.25",
+      "$3.25",
+      "$4.75",
+      "$5.00"
+    ],
+    "answer": "$2.25",
+    "explanation": [
+      "Between 2 and 5 miles, the fare rises by 16.25 − 9.50 = 6.75 dollars.",
+      "That is over 3 miles, so the rate is 6.75 ÷ 3 = 2.25 dollars per mile.",
+      "The 5-to-8-mile trip confirms it: (23.00 − 16.25) ÷ 3 = 2.25."
+    ],
+    "hints": [
+      "What two quantities change between any two rows of the table?",
+      "Why can't you just divide one fare by its distance?"
+    ],
+    "wrong_reasons": {
+      "$4.75": "Divided the first fare by its distance (9.50 ÷ 2), ignoring the fixed starting charge",
+      "$3.25": "Divided the second fare by its distance (16.25 ÷ 5), ignoring the fixed starting charge",
+      "$5.00": "Found the fixed starting charge (the fare at 0 miles) instead of the per-mile rate"
+    },
+    "check": "from sympy import *\nresult=(Rational('16.25')-Rational('9.50'))/(5-2)"
+  },
+  {
+    "id": "alg-linear-func-017",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "For the linear function h, h(x + 1) − h(x) = −4 for every value of x, and h(0) = 15. Which equation defines h?",
+    "choices": [
+      "h(x) = 15x − 4",
+      "h(x) = 4x + 15",
+      "h(x) = −4x + 19",
+      "h(x) = −4x + 15"
+    ],
+    "answer": "h(x) = −4x + 15",
+    "explanation": [
+      "h(x + 1) − h(x) is the change in h when x goes up by 1, so the slope is −4.",
+      "h(0) = 15 is the y-intercept.",
+      "So h(x) = −4x + 15."
+    ],
+    "hints": [
+      "What does h(x + 1) − h(x) measure about a line?",
+      "What does h(0) tell you about where the graph crosses the y-axis?"
+    ],
+    "wrong_reasons": {
+      "h(x) = 15x − 4": "Swapped the slope and the y-intercept",
+      "h(x) = 4x + 15": "Read h(x + 1) − h(x) = −4 as an increase of 4",
+      "h(x) = −4x + 19": "Treated 15 as h(1) instead of h(0)"
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT = standard_transformations + (implicit_multiplication_application,)\nx, t, m = symbols('x t m')\ndef P(s): return parse_expr(s.split('=')[-1].replace('−','-').replace(',',''), transformations=T, local_dict={'x':x,'t':t,'m':m})\nC = ['h(x) = −4x + 15', 'h(x) = 15x − 4', 'h(x) = 4x + 15', 'h(x) = −4x + 19']\nok = [c for c in C if P(c).subs(x,0)==15 and simplify(P(c).subs(x,x+1)-P(c))==-4]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−','-')\n"
+  },
+  {
+    "id": "alg-linear-func-018",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A hiker starts at an elevation of 1,850 feet and descends at a constant rate. After 40 minutes, she is at an elevation of 1,250 feet. Which function gives her elevation E(m), in feet, m minutes after she starts?",
+    "choices": [
+      "E(m) = 1,250 − 15m",
+      "E(m) = 1,850 − 600m",
+      "E(m) = 1,850 − 15m",
+      "E(m) = 1,850 + 15m"
+    ],
+    "answer": "E(m) = 1,850 − 15m",
+    "explanation": [
+      "She descends 1,850 − 1,250 = 600 feet in 40 minutes.",
+      "600 ÷ 40 = 15 feet per minute, downward.",
+      "Starting at 1,850: E(m) = 1,850 − 15m."
+    ],
+    "hints": [
+      "How many feet does she drop in total, and over how many minutes?",
+      "Which elevation should be the value when m = 0?"
+    ],
+    "wrong_reasons": {
+      "E(m) = 1,250 − 15m": "Used the elevation at 40 minutes as the starting value",
+      "E(m) = 1,850 − 600m": "Used the total drop as the rate per minute",
+      "E(m) = 1,850 + 15m": "Used a positive rate even though she is descending"
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT = standard_transformations + (implicit_multiplication_application,)\nx, t, m = symbols('x t m')\ndef P(s): return parse_expr(s.split('=')[-1].replace('−','-').replace(',',''), transformations=T, local_dict={'x':x,'t':t,'m':m})\nC = ['E(m) = 1,850 − 15m', 'E(m) = 1,250 − 15m', 'E(m) = 1,850 − 600m', 'E(m) = 1,850 + 15m']\nok = [c for c in C if P(c).subs(m,0)==1850 and P(c).subs(m,40)==1250]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−','-')\n"
+  },
+  {
+    "id": "alg-linear-func-019",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For the linear function f, f(4) = 3, and the graph of y = f(x) in the xy-plane has an x-intercept at (10, 0). What is the value of f(0)?",
+    "choices": [
+      "1",
+      "5",
+      "10",
+      "20"
+    ],
+    "answer": "5",
+    "explanation": [
+      "The graph passes through (4, 3) and (10, 0), so slope = (0 − 3) ÷ (10 − 4) = −1/2.",
+      "From x = 4 to x = 0, x decreases by 4, so f changes by (−4)(−1/2) = +2.",
+      "f(0) = 3 + 2 = 5."
+    ],
+    "hints": [
+      "What two points on the graph do you know?",
+      "If x goes down from 4 to 0, does f(x) go up or down, and by how much?"
+    ],
+    "wrong_reasons": {
+      "1": "Subtracted 2 instead of adding it: with a negative slope, moving left from x = 4 to x = 0 makes f larger",
+      "20": "Used slope −2 (change in x over change in y) instead of −1/2",
+      "10": "Confused the x-intercept with the y-intercept"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nm=Rational(0-3,10-4)\nresult=3+m*(0-4)"
+  },
+  {
+    "id": "alg-linear-func-020",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = 3x − 8. The function g is defined by g(x) = f(x − 2) + 5. Which equation defines g?",
+    "choices": [
+      "g(x) = 3x + 3",
+      "g(x) = 3x − 5",
+      "g(x) = 3x − 9",
+      "g(x) = 3x − 19"
+    ],
+    "answer": "g(x) = 3x − 9",
+    "explanation": [
+      "f(x − 2) = 3(x − 2) − 8 = 3x − 6 − 8 = 3x − 14.",
+      "Add 5: g(x) = 3x − 14 + 5.",
+      "g(x) = 3x − 9."
+    ],
+    "hints": [
+      "What do you get when you replace every x in f's rule with (x − 2)?",
+      "Did the 3 get multiplied by everything inside the parentheses?"
+    ],
+    "wrong_reasons": {
+      "g(x) = 3x + 3": "Substituted x + 2 instead of x − 2",
+      "g(x) = 3x − 5": "Did not distribute the 3 to the −2, writing 3x − 2 − 8 + 5",
+      "g(x) = 3x − 19": "Subtracted 5 instead of adding it"
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT = standard_transformations + (implicit_multiplication_application,)\nx, t, m = symbols('x t m')\ndef P(s): return parse_expr(s.split('=')[-1].replace('−','-').replace(',',''), transformations=T, local_dict={'x':x,'t':t,'m':m})\nC = ['g(x) = 3x − 9', 'g(x) = 3x + 3', 'g(x) = 3x − 5', 'g(x) = 3x − 19']\nok = [c for c in C if expand(P(c)-((3*(x-2)-8)+5))==0]\nassert len(ok) == 1, ok\nresult = ok[0].replace('−','-')\n"
+  },
+  {
+    "id": "alg-linear-func-021",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Phone plan A costs $18 per month plus $0.05 per text message sent. Phone plan B costs $10 per month plus $0.09 per text message sent. For what number of text messages sent in a month do the two plans cost the same amount?",
+    "answer": "200",
+    "explanation": [
+      "Plan A: 18 + 0.05n. Plan B: 10 + 0.09n.",
+      "Set them equal: 18 + 0.05n = 10 + 0.09n, so 8 = 0.04n.",
+      "n = 8 ÷ 0.04 = 200."
+    ],
+    "hints": [
+      "How would you write the monthly cost of each plan for n texts?",
+      "What does it mean, as an equation, for the two plans to cost the same?"
+    ],
+    "check": "from sympy import *\nn=symbols('n')\nresult=solve(18+Rational(5,100)*n-(10+Rational(9,100)*n),n)[0]"
+  },
+  {
+    "id": "alg-linear-func-022",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function p is defined by p(x) = (k − 3)x + 2k, where k is a constant. In the xy-plane, the graph of y = p(x) passes through the point (2, 18). What is the slope of the graph of y = p(x)?",
+    "choices": [
+      "3",
+      "6",
+      "9",
+      "12"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Substitute (2, 18): (k − 3)(2) + 2k = 18.",
+      "2k − 6 + 2k = 18, so 4k = 24 and k = 6.",
+      "The slope is k − 3 = 6 − 3 = 3."
+    ],
+    "hints": [
+      "Which expression in p's rule is the slope?",
+      "What equation do you get by plugging in the point (2, 18), and what can it tell you?"
+    ],
+    "wrong_reasons": {
+      "6": "Gave the value of k instead of the slope k − 3",
+      "12": "Gave the y-intercept 2k instead of the slope",
+      "9": "Computed k + 3 instead of k − 3"
+    },
+    "check": "from sympy import *\nk=symbols('k')\nK=solve((k-3)*2+2*k-18,k)[0]\nresult=K-3"
+  },
+  {
+    "id": "alg-linear-func-023",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A company's monthly profit P, in thousands of dollars, from selling n hundred units of a product is modeled by P(n) = 4.5n − 27. Which of the following statements is true according to the model?",
+    "choices": [
+      "The company breaks even when it sells 6 units in a month.",
+      "Each additional unit sold increases the monthly profit by $4.50.",
+      "If the company sells no units in a month, its profit is $27,000.",
+      "The company breaks even when it sells 600 units in a month."
+    ],
+    "answer": "The company breaks even when it sells 600 units in a month.",
+    "explanation": [
+      "Break even means P(n) = 0: 4.5n = 27, so n = 6.",
+      "n is measured in hundreds of units, so n = 6 means 600 units.",
+      "The other statements ignore the units: one unit adds 4,500 ÷ 100 = $45, and at n = 0 the profit is −$27,000 (a loss)."
+    ],
+    "hints": [
+      "What value of P(n) means the company breaks even?",
+      "If n = 1 means 100 units and P = 1 means $1,000, what does one extra unit add?"
+    ],
+    "wrong_reasons": {
+      "The company breaks even when it sells 6 units in a month.": "Solved P(n) = 0 correctly but forgot that n counts hundreds of units",
+      "Each additional unit sold increases the monthly profit by $4.50.": "Ignored both scales; one unit adds 4.5 thousand ÷ 100 = $45 to profit",
+      "If the company sells no units in a month, its profit is $27,000.": "Missed the negative sign; P(0) = −27 means a loss of $27,000"
+    },
+    "check": "from sympy import *\nn=symbols('n')\nbe_units=solve(Rational(9,2)*n-27,n)[0]*100\nper_unit=Rational(9,2)*1000/100\nP0=(-27)*1000\nS=['The company breaks even when it sells 600 units in a month.', 'The company breaks even when it sells 6 units in a month.', 'Each additional unit sold increases the monthly profit by $4.50.', 'If the company sells no units in a month, its profit is $27,000.']\ntruth=[be_units==600, be_units==6, per_unit==Rational(9,2), P0==27000]\nassert truth.count(True)==1\nresult=S[truth.index(True)]"
+  },
+  {
+    "id": "alg-linear-func-024",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the xy-plane, the graph of the linear function f passes through the points (1, 7) and (5, −5). The function g is defined by g(x) = f(x) + 4. What is the x-coordinate of the x-intercept of the graph of y = g(x)?",
+    "answer": "14/3",
+    "accept": [
+      "4.666",
+      "4.667"
+    ],
+    "explanation": [
+      "Slope of f = (−5 − 7) ÷ (5 − 1) = −3, and 7 = −3(1) + b gives b = 10, so f(x) = −3x + 10.",
+      "g(x) = −3x + 10 + 4 = −3x + 14.",
+      "Set g(x) = 0: 3x = 14, so x = 14/3."
+    ],
+    "hints": [
+      "Before you can work with g, what do you need to know about f?",
+      "Adding 4 to f(x) changes which part of the equation?",
+      "What is true about y at an x-intercept?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nm=Rational(-5-7,5-1)\nf=m*(x-1)+7\nresult=solve(f+4,x)[0]"
+  },
+  {
+    "id": "alg-linear-func-025",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The table shows four values of x and their corresponding values of f(x) for a linear function f. What is the value of a?",
+    "table": {
+      "headers": [
+        "x",
+        "f(x)"
+      ],
+      "rows": [
+        [
+          "−3",
+          "20"
+        ],
+        [
+          "1",
+          "12"
+        ],
+        [
+          "7",
+          "0"
+        ],
+        [
+          "a",
+          "−14"
+        ]
+      ]
+    },
+    "choices": [
+      "0",
+      "7",
+      "14",
+      "35"
+    ],
+    "answer": "14",
+    "explanation": [
+      "Slope = (12 − 20) ÷ (1 − (−3)) = −8 ÷ 4 = −2.",
+      "Using (7, 0): f(x) = −2(x − 7) = −2x + 14.",
+      "−2a + 14 = −14, so −2a = −28 and a = 14."
+    ],
+    "hints": [
+      "Which two rows give you enough to find the slope?",
+      "Once you have the rule for f, what equation does the last row give you?"
+    ],
+    "wrong_reasons": {
+      "35": "Used the reciprocal slope −1/2 (change in x over change in f(x))",
+      "0": "Made a sign error, getting a − 7 = −7",
+      "7": "Ignored the y-intercept and solved −2a = −14"
+    },
+    "check": "from sympy import *\nx,a=symbols('x a')\nm=Rational(12-20,1-(-3))\nf=m*(x-7)\nresult=solve(f.subs(x,a)+14,a)[0]"
+  },
+  {
+    "id": "alg-linear-func-026",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For the linear function f, f(a + 3) − f(a) = 12 for every value of a, and f(5) = 16. What is the value of f(−1)?",
+    "choices": [
+      "−56",
+      "−8",
+      "−4",
+      "40"
+    ],
+    "answer": "−8",
+    "explanation": [
+      "An increase of 3 in x raises f by 12, so the slope is 12 ÷ 3 = 4.",
+      "From x = 5 to x = −1, x decreases by 6, so f decreases by 6 · 4 = 24.",
+      "f(−1) = 16 − 24 = −8."
+    ],
+    "hints": [
+      "How much does x change in f(a + 3) − f(a), and what is the slope then?",
+      "How far is it from x = 5 to x = −1, and in which direction?"
+    ],
+    "wrong_reasons": {
+      "−56": "Took 12 as the slope instead of dividing by the change of 3 in x",
+      "40": "Added 24 instead of subtracting, even though x decreases",
+      "−4": "Counted the distance from 5 to −1 as 5 instead of 6"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nm=Rational(12,3)\nresult=16+m*(-1-5)"
+  },
+  {
+    "id": "alg-linear-func-027",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A water tank contains 1,200 liters of water when it begins to be drained at a constant rate; after 15 minutes it holds 930 liters. At the same moment the draining starts, a second tank that starts empty begins filling at a constant rate of 24 liters per minute. After how many minutes will the two tanks hold the same volume of water?",
+    "answer": "200/7",
+    "accept": [
+      "28.57"
+    ],
+    "explanation": [
+      "Draining rate: (1,200 − 930) ÷ 15 = 270 ÷ 15 = 18 liters per minute.",
+      "First tank: 1,200 − 18t. Second tank: 24t.",
+      "1,200 − 18t = 24t gives 42t = 1,200, so t = 200/7 ≈ 28.57 minutes."
+    ],
+    "hints": [
+      "How fast is the first tank losing water each minute?",
+      "Can you write each tank's volume as a function of t?",
+      "What equation says the volumes are equal?"
+    ],
+    "check": "from sympy import *\nt=symbols('t')\nr=Rational(1200-930,15)\nresult=solve(1200-r*t-24*t,t)[0]"
+  }
+]

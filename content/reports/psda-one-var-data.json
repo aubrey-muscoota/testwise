@@ -1,0 +1,10 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "psda-one-var-data-018", "reason": "Near-duplicate of 017 (mean of n items, one removed); now two plants (45 cm and 39 cm) are removed, key 216/8 = 27, with new distractors, explanation, hints and check, and the stem now states the unit (centimeters)."},
+    {"id": "psda-one-var-data-021", "reason": "Wrong_reasons for 28 and 34 described the arithmetic wrongly; rewritten (28 = 7·4 without adding the mean of 10; 34 = 10 + 6·4)."},
+    {"id": "psda-one-var-data-023", "reason": "The check returned the key string if a condition held and 'other' if not; it now computes the change in mean and median and picks the one matching choice out of all four."},
+    {"id": "psda-one-var-data-024", "reason": "The last explanation step was muddled ('which equals the mode'); now it states clearly that 7.05 > 7 and that the mode (7) is not greater than the mean."}
+  ],
+  "removed": []
+}

@@ -1,0 +1,11 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "psda-two-var-data-003", "reason": "Near-duplicate of 001 (plug one value into a line of best fit); varied to ask for the predicted difference between day 10 and day 4 (answer 270), with explanation, hints and check rewritten."},
+    {"id": "psda-two-var-data-013", "reason": "Stem said 'at the end of each year' but the table starts at t = 0 (purchase); reworded to 't years after it was bought'."},
+    {"id": "psda-two-var-data-014", "reason": "Stem said the line 'has a strong positive association'; reworded so the data show the association and the line is fit to them."},
+    {"id": "psda-two-var-data-017", "reason": "With a in dollars the model implied $120 of revenue per $1 of ads; a is now in hundreds of dollars and the slope distractor was reworded to match."},
+    {"id": "psda-two-var-data-019", "reason": "Key of 518.4 bacteria is a fractional count; changed data to 400 and 500 bacteria (answer 625), stated a and b are positive, and updated explanation and check."}
+  ],
+  "removed": []
+}

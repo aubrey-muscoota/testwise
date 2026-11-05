@@ -1,0 +1,11 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "adv-nonlinear-eq-003", "reason": "Check solved the already-squared equation x + 5 = 16 instead of the original; now solves √(x + 5) = 4 directly."},
+    {"id": "adv-nonlinear-eq-009", "reason": "Hint 3 asked which solution makes sense 'for a length' when the question asks for the width; reworded."},
+    {"id": "adv-nonlinear-eq-019", "reason": "Check solved the hand-cleared equation x + 2(x − 3) = 3 instead of the original rational equation; now solves the original."},
+    {"id": "adv-nonlinear-eq-022", "reason": "Stem was hard to read ('For what ticket price, in dollars, greater than $20 will...') and said 'about' 400 − 10p tickets, which made the model vague; reworded."},
+    {"id": "adv-nonlinear-eq-024", "reason": "Near-duplicate of 008 (y = x² + constant against a horizontal line); changed the line to y = 2x + 3 so it needs a discriminant inequality (c > 4). Key 5 and choices unchanged; explanation, hints, wrong_reasons and check rewritten."}
+  ],
+  "removed": []
+}

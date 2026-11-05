@@ -1,0 +1,958 @@
+[
+  {
+    "id": "psda-two-var-data-001",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A biology class measured a bean plant's height every week. The line of best fit for the data is h = 2.4w + 15, where h is the predicted height, in centimeters, w weeks after the plant was first measured. According to the line of best fit, what is the predicted height of the plant 10 weeks after it was first measured?",
+    "choices": [
+      "17.4",
+      "24",
+      "39",
+      "42.4"
+    ],
+    "answer": "39",
+    "explanation": [
+      "Substitute w = 10 into h = 2.4w + 15.",
+      "2.4 · 10 = 24.",
+      "24 + 15 = 39, so the predicted height is 39 centimeters."
+    ],
+    "hints": [
+      "Which letter in the equation stands for the number of weeks?",
+      "After you multiply, is there anything left in the equation that you still need to include?"
+    ],
+    "wrong_reasons": {
+      "24": "Multiplied 2.4 by 10 but forgot to add the starting height of 15",
+      "17.4": "Added 2.4 and 15 without multiplying by the number of weeks",
+      "42.4": "Multiplied 2.4 by 11, counting one week too many"
+    },
+    "check": "w=10\nresult=2.4*w+15"
+  },
+  {
+    "id": "psda-two-var-data-002",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A researcher recorded the age, in years, and the reaction time, in milliseconds, of 20 adults. On a scatterplot of the data with age on the horizontal axis, the points lie close to a line that rises from left to right. Which of the following best describes the relationship between age and reaction time for these adults?",
+    "choices": [
+      "A strong positive linear association",
+      "A strong negative linear association",
+      "A weak positive linear association",
+      "No association"
+    ],
+    "answer": "A strong positive linear association",
+    "explanation": [
+      "Points that rise from left to right show that reaction time tends to increase as age increases, so the association is positive.",
+      "Points that lie close to a line show a strong linear association.",
+      "So the data show a strong positive linear association."
+    ],
+    "hints": [
+      "As you move right on the graph (older adults), what happens to the heights of the points?",
+      "If the points are close to a line, is the association weak or strong?"
+    ],
+    "wrong_reasons": {
+      "A strong negative linear association": "Mixed up the direction: a line that rises from left to right shows a positive association",
+      "A weak positive linear association": "Did not use the fact that the points lie close to the line, which makes the association strong",
+      "No association": "Thought a scatterplot must show an exact pattern to show an association"
+    },
+    "check": null,
+    "check_note": "Conceptual: identifying the direction and strength of an association described in words."
+  },
+  {
+    "id": "psda-two-var-data-003",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A theater began selling tickets for a new show. The line of best fit for the data is t = 45d + 120, where t is the predicted total number of tickets sold d days after sales began. According to the line of best fit, how many more tickets are predicted to have been sold in total 10 days after sales began than 4 days after sales began?",
+    "answer": "270",
+    "explanation": [
+      "Predicted total at d = 10: 45 · 10 + 120 = 570.",
+      "Predicted total at d = 4: 45 · 4 + 120 = 300.",
+      "570 − 300 = 270. (This is the same as 45 · 6, because the slope 45 is the predicted number of tickets sold per day and 10 − 4 = 6 days.)"
+    ],
+    "hints": [
+      "What does the line predict for the total after 10 days? After 4 days?",
+      "What does the 45 in the equation tell you about each additional day?"
+    ],
+    "check": "t=lambda d:45*d+120\nresult=t(10)-t(4)"
+  },
+  {
+    "id": "psda-two-var-data-004",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "For a sample of taxi rides in a city, the line of best fit is f = 2.1m + 3.5, where f is the predicted fare, in dollars, for a ride of m miles. Which of the following is the best interpretation of 2.1 in this context?",
+    "choices": [
+      "The predicted fare for a ride of 0 miles is $2.10.",
+      "The predicted fare for a 1-mile ride is $2.10.",
+      "For each additional dollar, the predicted distance increases by 2.1 miles.",
+      "For each additional mile, the predicted fare increases by $2.10."
+    ],
+    "answer": "For each additional mile, the predicted fare increases by $2.10.",
+    "explanation": [
+      "2.1 is the slope, the amount f changes when m increases by 1.",
+      "f is measured in dollars and m in miles, so the slope is in dollars per mile.",
+      "So the predicted fare goes up by $2.10 for each additional mile."
+    ],
+    "hints": [
+      "What happens to f when m goes from 4 to 5?",
+      "What are the units of f, and what are the units of m?"
+    ],
+    "wrong_reasons": {
+      "The predicted fare for a ride of 0 miles is $2.10.": "Confused the slope with the y-intercept, which is 3.5",
+      "The predicted fare for a 1-mile ride is $2.10.": "Forgot to add the 3.5; a 1-mile ride is predicted to cost $5.60",
+      "For each additional dollar, the predicted distance increases by 2.1 miles.": "Reversed the roles of the variables, reading dollars per mile as miles per dollar"
+    },
+    "check": null,
+    "check_note": "Interpretation question: the answer describes the meaning of the slope in context, not a computed value."
+  },
+  {
+    "id": "psda-two-var-data-005",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The table shows four values of x and their corresponding values of y. Which equation describes the relationship between x and y?",
+    "table": {
+      "headers": [
+        "x",
+        "y"
+      ],
+      "rows": [
+        [
+          "0",
+          "5"
+        ],
+        [
+          "1",
+          "8"
+        ],
+        [
+          "2",
+          "11"
+        ],
+        [
+          "3",
+          "14"
+        ]
+      ]
+    },
+    "choices": [
+      "y = 5x + 3",
+      "y = 3x + 5",
+      "y = x + 5",
+      "y = 3x + 14"
+    ],
+    "answer": "y = 3x + 5",
+    "explanation": [
+      "Each time x increases by 1, y increases by 3, so the slope is 3.",
+      "When x = 0, y = 5, so the y-intercept is 5.",
+      "So y = 3x + 5."
+    ],
+    "hints": [
+      "How much does y change each time x goes up by 1?",
+      "What is y when x is 0?"
+    ],
+    "wrong_reasons": {
+      "y = 5x + 3": "Swapped the slope and the y-intercept",
+      "y = x + 5": "Used the change in x (1) as the slope instead of the change in y",
+      "y = 3x + 14": "Used the last y-value in the table as the y-intercept"
+    },
+    "check": "xs=[0,1,2,3]; ys=[5,8,11,14]\nopts={'y = 3x + 5':lambda x:3*x+5,'y = 5x + 3':lambda x:5*x+3,'y = x + 5':lambda x:x+5,'y = 3x + 14':lambda x:3*x+14}\nresult=[k for k,f in opts.items() if all(f(a)==b for a,b in zip(xs,ys))][0]"
+  },
+  {
+    "id": "psda-two-var-data-006",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A tutor collected data on how many hours each of 12 students studied for a test and the students' scores. The line of best fit is s = 4h + 62, where s is the predicted score for a student who studied h hours. One student studied 5 hours and scored 78. Which statement is true about this student's actual score compared with the score predicted by the line of best fit?",
+    "choices": [
+      "It is 4 points higher than predicted.",
+      "It is 4 points lower than predicted.",
+      "It is 16 points higher than predicted.",
+      "It is equal to the predicted score."
+    ],
+    "answer": "It is 4 points lower than predicted.",
+    "explanation": [
+      "The predicted score is s = 4(5) + 62 = 82.",
+      "The actual score is 78.",
+      "78 − 82 = −4, so the actual score is 4 points lower than predicted."
+    ],
+    "hints": [
+      "What score does the line predict for 5 hours of studying?",
+      "Is 78 above or below that prediction, and by how much?"
+    ],
+    "wrong_reasons": {
+      "It is 4 points higher than predicted.": "Found the right difference but subtracted in the wrong order",
+      "It is 16 points higher than predicted.": "Compared 78 with the y-intercept 62 instead of with the prediction for 5 hours",
+      "It is equal to the predicted score.": "Assumed every data point lies on the line of best fit"
+    },
+    "check": "p=4*5+62\na=78\nd=a-p\nresult=('It is %d points lower than predicted.'%(-d)) if d<0 else ('It is %d points higher than predicted.'%d)"
+  },
+  {
+    "id": "psda-two-var-data-007",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A phone reviewer tracked a phone's battery during continuous video playback. The line of best fit is b = −2.5h + 80, where b is the predicted battery charge, as a percent, h hours after the reviewer started recording. According to the line of best fit, after how many hours will the battery charge be 0%?",
+    "answer": "32",
+    "explanation": [
+      "Set b = 0: 0 = −2.5h + 80.",
+      "Add 2.5h to both sides: 2.5h = 80.",
+      "Divide by 2.5: h = 32."
+    ],
+    "hints": [
+      "What value of b means the battery is empty?",
+      "Once you substitute that value, which operations will get h by itself?"
+    ],
+    "check": "from sympy import *\nh=symbols('h')\nresult=solve(Eq(-Rational(5,2)*h+80,0),h)[0]"
+  },
+  {
+    "id": "psda-two-var-data-008",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The table shows the number of members in a hiking club at the start of each year. Which of the following best describes how the number of members changes over these years?",
+    "table": {
+      "headers": [
+        "Year",
+        "Number of members"
+      ],
+      "rows": [
+        [
+          "1",
+          "50"
+        ],
+        [
+          "2",
+          "100"
+        ],
+        [
+          "3",
+          "200"
+        ],
+        [
+          "4",
+          "400"
+        ]
+      ]
+    },
+    "choices": [
+      "It doubles each year, so it shows exponential growth.",
+      "It increases by 50 each year, so it shows linear growth.",
+      "It increases by 100 each year, so it shows linear growth.",
+      "It increases by 50% each year, so it shows exponential growth."
+    ],
+    "answer": "It doubles each year, so it shows exponential growth.",
+    "explanation": [
+      "From year to year: 50 to 100, 100 to 200, 200 to 400.",
+      "The differences are 50, 100, 200, which are not constant, so the growth is not linear.",
+      "Each value is 2 times the one before it, so the number of members doubles each year: exponential growth."
+    ],
+    "hints": [
+      "Is the amount added each year the same?",
+      "What do you get if you divide each value by the value before it?"
+    ],
+    "wrong_reasons": {
+      "It increases by 50 each year, so it shows linear growth.": "Looked only at the first change (50 to 100) and assumed it repeats",
+      "It increases by 100 each year, so it shows linear growth.": "Averaged or guessed a constant difference without checking every change",
+      "It increases by 50% each year, so it shows exponential growth.": "Recognized exponential growth but confused an increase of 100% (doubling) with 50%"
+    },
+    "check": "ys=[50,100,200,400]\nd=[b-a for a,b in zip(ys,ys[1:])]\nr=[b/a for a,b in zip(ys,ys[1:])]\nresult='It doubles each year, so it shows exponential growth.' if len(set(r))==1 and r[0]==2 else ('It increases by %d each year, so it shows linear growth.'%d[0] if len(set(d))==1 else 'other')"
+  },
+  {
+    "id": "psda-two-var-data-009",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f(t) = 1,200(1.05)ᵗ models the number of subscribers to a local newsletter t years after it launched. Which of the following is the best interpretation of 1,200 in this context?",
+    "choices": [
+      "The estimated number of new subscribers each year",
+      "The estimated percent increase in subscribers each year",
+      "The estimated number of subscribers when the newsletter launched",
+      "The estimated number of subscribers after 1 year"
+    ],
+    "answer": "The estimated number of subscribers when the newsletter launched",
+    "explanation": [
+      "When t = 0, (1.05)⁰ = 1, so f(0) = 1,200.",
+      "t = 0 is the moment the newsletter launched.",
+      "So 1,200 is the estimated number of subscribers at launch."
+    ],
+    "hints": [
+      "What is the value of t at launch?",
+      "What does any nonzero number raised to the 0 power equal?"
+    ],
+    "wrong_reasons": {
+      "The estimated number of new subscribers each year": "Treated the exponential model like a linear one, where a constant is added each year",
+      "The estimated percent increase in subscribers each year": "Confused the initial value with the growth factor 1.05, which gives the 5% increase",
+      "The estimated number of subscribers after 1 year": "Thought the constant gives the value at t = 1; after 1 year the model gives 1,260"
+    },
+    "check": null,
+    "check_note": "Interpretation question: the answer describes what the initial value represents in context."
+  },
+  {
+    "id": "psda-two-var-data-010",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A student modeled the data in the table with the line y = 1.8x + 4. For which data point is the absolute value of the residual the greatest? (A residual is the actual y-value minus the y-value predicted by the model.)",
+    "table": {
+      "headers": [
+        "x",
+        "y"
+      ],
+      "rows": [
+        [
+          "2",
+          "8.1"
+        ],
+        [
+          "4",
+          "10.0"
+        ],
+        [
+          "6",
+          "15.2"
+        ],
+        [
+          "8",
+          "21.0"
+        ],
+        [
+          "10",
+          "21.5"
+        ]
+      ]
+    },
+    "choices": [
+      "(2, 8.1)",
+      "(4, 10.0)",
+      "(10, 21.5)",
+      "(8, 21.0)"
+    ],
+    "answer": "(8, 21.0)",
+    "explanation": [
+      "Predicted values: x = 2 gives 7.6, x = 4 gives 11.2, x = 8 gives 18.4, x = 10 gives 22.0.",
+      "Residuals: 8.1 − 7.6 = 0.5, 10.0 − 11.2 = −1.2, 21.0 − 18.4 = 2.6, 21.5 − 22.0 = −0.5.",
+      "The largest absolute residual is 2.6, at (8, 21.0)."
+    ],
+    "hints": [
+      "For each x-value, what y-value does the model predict?",
+      "Which actual value is farthest from its predicted value, whether above or below?"
+    ],
+    "wrong_reasons": {
+      "(2, 8.1)": "Picked the point with the smallest x-value instead of computing residuals",
+      "(4, 10.0)": "Chose the point with the most negative residual (−1.2) without comparing absolute values",
+      "(10, 21.5)": "Picked the point with the greatest y-value, confusing a large y-value with a large residual"
+    },
+    "check": "pts=[(2,8.1),(4,10.0),(6,15.2),(8,21.0),(10,21.5)]\nch={'(2, 8.1)':(2,8.1),'(4, 10.0)':(4,10.0),'(8, 21.0)':(8,21.0),'(10, 21.5)':(10,21.5)}\nbest=max(pts,key=lambda p:abs(p[1]-(1.8*p[0]+4)))\nresult=[k for k,v in ch.items() if v==best][0]"
+  },
+  {
+    "id": "psda-two-var-data-011",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A coffee shop owner modeled daily iced-drink sales with the line of best fit y = 0.45x + 12, where y is the predicted number of iced drinks sold, in dozens, on a day when the high temperature is x degrees Fahrenheit. On one day the high temperature was 40°F and the shop sold 28.5 dozen iced drinks. What is the residual for this day? (Residual = actual value − predicted value.)",
+    "answer": "-1.5",
+    "accept": [
+      "−1.5",
+      "-3/2"
+    ],
+    "explanation": [
+      "Predicted value: 0.45(40) + 12 = 18 + 12 = 30.",
+      "Actual value: 28.5.",
+      "Residual = 28.5 − 30 = −1.5."
+    ],
+    "hints": [
+      "What does the model predict when x = 40?",
+      "In which order do you subtract to get a residual?"
+    ],
+    "check": "result=28.5-(0.45*40+12)"
+  },
+  {
+    "id": "psda-two-var-data-012",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A scatterplot shows the relationship between the number of solar panels x installed on a building and the building's monthly energy savings y, in dollars. The line of best fit passes through the points (2, 31) and (10, 79). According to this line, what are the predicted monthly energy savings, in dollars, for a building with 15 solar panels?",
+    "choices": [
+      "90",
+      "109",
+      "118.5",
+      "127"
+    ],
+    "answer": "109",
+    "explanation": [
+      "Slope: (79 − 31) ÷ (10 − 2) = 48 ÷ 8 = 6.",
+      "Using (2, 31): 31 = 6(2) + b, so b = 19, and y = 6x + 19.",
+      "At x = 15: y = 6(15) + 19 = 109."
+    ],
+    "hints": [
+      "How much does y change for each additional panel between the two given points?",
+      "Once you know the slope, how can one of the points give you the y-intercept?"
+    ],
+    "wrong_reasons": {
+      "90": "Used the slope but forgot the y-intercept, computing 6 × 15",
+      "118.5": "Assumed the line passes through the origin, using 79/10 = 7.9 per panel",
+      "127": "Extended from (10, 79) by 5 panels using the wrong slope 9.6 (48 ÷ 5)"
+    },
+    "check": "from sympy import *\nm=Rational(79-31,10-2)\nb=31-m*2\nresult=m*15+b"
+  },
+  {
+    "id": "psda-two-var-data-013",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows the estimated value of a car t years after it was bought. Which equation best models the value v, in dollars, t years after the car was bought?",
+    "table": {
+      "headers": [
+        "Years after purchase, t",
+        "Value (dollars)"
+      ],
+      "rows": [
+        [
+          "0",
+          "20,000"
+        ],
+        [
+          "1",
+          "17,000"
+        ],
+        [
+          "2",
+          "14,450"
+        ],
+        [
+          "3",
+          "12,282.50"
+        ]
+      ]
+    },
+    "choices": [
+      "v = 20,000(0.15)ᵗ",
+      "v = 20,000(1.15)ᵗ",
+      "v = 20,000 − 3,000t",
+      "v = 20,000(0.85)ᵗ"
+    ],
+    "answer": "v = 20,000(0.85)ᵗ",
+    "explanation": [
+      "The value is not dropping by the same amount each year: 3,000, then 2,550, then 2,167.50.",
+      "Divide each value by the one before it: 17,000 ÷ 20,000 = 0.85, and 14,450 ÷ 17,000 = 0.85.",
+      "The value is multiplied by 0.85 each year, so v = 20,000(0.85)ᵗ."
+    ],
+    "hints": [
+      "Does the value go down by the same amount each year, or by the same factor?",
+      "What fraction of the previous year's value is left each year?"
+    ],
+    "wrong_reasons": {
+      "v = 20,000(0.15)ᵗ": "Used the percent lost (15%) as the growth factor instead of the percent kept (85%)",
+      "v = 20,000(1.15)ᵗ": "Wrote a 15% increase instead of a 15% decrease",
+      "v = 20,000 − 3,000t": "Assumed the drop in the first year repeats every year, treating the data as linear"
+    },
+    "check": "data={0:20000,1:17000,2:14450,3:12282.5}\nopts={'v = 20,000(0.85)ᵗ':lambda t:20000*0.85**t,'v = 20,000(0.15)ᵗ':lambda t:20000*0.15**t,'v = 20,000(1.15)ᵗ':lambda t:20000*1.15**t,'v = 20,000 − 3,000t':lambda t:20000-3000*t}\nresult=[k for k,f in opts.items() if all(abs(f(t)-v)<1e-6 for t,v in data.items())][0]"
+  },
+  {
+    "id": "psda-two-var-data-014",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A city planner collected data on 30 neighborhoods with populations between 2,000 and 9,000 people. The data show a strong positive linear association between a neighborhood's population and its number of daily bus riders, and the planner found a line of best fit for the data. Which of the following is the most appropriate use of the line of best fit?",
+    "choices": [
+      "Predicting the number of daily bus riders in a neighborhood with 6,500 people",
+      "Predicting the number of daily bus riders in a neighborhood with 40,000 people",
+      "Concluding that adding residents to a neighborhood causes more people to ride the bus",
+      "Concluding that every neighborhood with 5,000 people has the same number of bus riders"
+    ],
+    "answer": "Predicting the number of daily bus riders in a neighborhood with 6,500 people",
+    "explanation": [
+      "A line of best fit is most reliable for x-values inside the range of the data, here 2,000 to 9,000 people.",
+      "6,500 is inside this range, so using the line there is appropriate.",
+      "Predictions for 40,000 people would be extrapolation, and an association alone does not show cause and effect."
+    ],
+    "hints": [
+      "What range of populations did the planner actually collect data for?",
+      "Does a strong association tell you that one variable causes the other?"
+    ],
+    "wrong_reasons": {
+      "Predicting the number of daily bus riders in a neighborhood with 40,000 people": "Extrapolated far outside the range of the data, where the trend may not hold",
+      "Concluding that adding residents to a neighborhood causes more people to ride the bus": "Treated an observed association as proof of cause and effect",
+      "Concluding that every neighborhood with 5,000 people has the same number of bus riders": "Forgot that a model gives predictions and actual data points vary around the line"
+    },
+    "check": null,
+    "check_note": "Conceptual: appropriate use of a model (interpolation versus extrapolation and causation)."
+  },
+  {
+    "id": "psda-two-var-data-015",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows values of x and y that have a linear relationship. What is the value of y when x = 0?",
+    "table": {
+      "headers": [
+        "x",
+        "y"
+      ],
+      "rows": [
+        [
+          "3",
+          "20"
+        ],
+        [
+          "7",
+          "32"
+        ],
+        [
+          "11",
+          "44"
+        ]
+      ]
+    },
+    "choices": [
+      "3",
+      "11",
+      "17",
+      "20"
+    ],
+    "answer": "11",
+    "explanation": [
+      "From x = 3 to x = 7, y increases from 20 to 32: 12 over 4, so the slope is 3.",
+      "Going back from x = 3 to x = 0 is 3 steps of 1, so y decreases by 3 · 3 = 9.",
+      "y = 20 − 9 = 11."
+    ],
+    "hints": [
+      "By how much does y change for each increase of 1 in x?",
+      "How many units of x is it from 3 back to 0?"
+    ],
+    "wrong_reasons": {
+      "3": "Gave the slope instead of the y-intercept",
+      "17": "Subtracted the slope only once instead of three times",
+      "20": "Used the first y-value in the table, which is at x = 3, not x = 0"
+    },
+    "check": "from sympy import *\nm=Rational(32-20,7-3)\nresult=20-m*3"
+  },
+  {
+    "id": "psda-two-var-data-016",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Two bakeries each tracked their weekly bread sales. For Bakery A, the line of best fit is y = 3x + 10, and for Bakery B, it is y = 2.5x + 14, where y is the predicted number of loaves sold, in hundreds, in week x. According to these models, in which week will the two bakeries have the same predicted sales?",
+    "choices": [
+      "2",
+      "8",
+      "34",
+      "48"
+    ],
+    "answer": "8",
+    "explanation": [
+      "Set the predictions equal: 3x + 10 = 2.5x + 14.",
+      "Subtract 2.5x and 10 from both sides: 0.5x = 4.",
+      "Divide by 0.5: x = 8."
+    ],
+    "hints": [
+      "What equation says the two predictions are the same?",
+      "After collecting the x-terms on one side, what is left on the other side?"
+    ],
+    "wrong_reasons": {
+      "2": "Multiplied 4 by 0.5 instead of dividing by 0.5",
+      "34": "Gave the predicted number of loaves (in hundreds) at that week instead of the week number",
+      "48": "Added the intercepts (10 + 14) and divided by 0.5 instead of subtracting them"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(3*x+10,Rational(5,2)*x+14),x)[0]"
+  },
+  {
+    "id": "psda-two-var-data-017",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A marketing analyst found that the line of best fit r = 0.12a + 2.3 models the monthly revenue r, in thousands of dollars, of a small online store, where a is the amount the store spends on ads that month, in hundreds of dollars. Which of the following is the best interpretation of 2.3 in this context?",
+    "choices": [
+      "The predicted monthly revenue is $2.30 in a month when the store spends nothing on ads.",
+      "The predicted monthly revenue increases by $2,300 for each additional $100 spent on ads.",
+      "The predicted monthly revenue is $2,300 in a month when the store spends nothing on ads.",
+      "The store must spend $2,300 on ads to earn any revenue."
+    ],
+    "answer": "The predicted monthly revenue is $2,300 in a month when the store spends nothing on ads.",
+    "explanation": [
+      "2.3 is the value of r when a = 0.",
+      "a = 0 means $0 spent on ads.",
+      "r is in thousands of dollars, so 2.3 means $2,300 of predicted revenue."
+    ],
+    "hints": [
+      "What is r when a is 0?",
+      "What unit is r measured in?"
+    ],
+    "wrong_reasons": {
+      "The predicted monthly revenue is $2.30 in a month when the store spends nothing on ads.": "Ignored that r is measured in thousands of dollars",
+      "The predicted monthly revenue increases by $2,300 for each additional $100 spent on ads.": "Confused the y-intercept with the slope",
+      "The store must spend $2,300 on ads to earn any revenue.": "Mixed up the input and output, treating 2.3 as an amount spent rather than revenue"
+    },
+    "check": null,
+    "check_note": "Interpretation question: meaning of the y-intercept with units."
+  },
+  {
+    "id": "psda-two-var-data-018",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows data for x and y. Of the following equations, which one models the data best?",
+    "table": {
+      "headers": [
+        "x",
+        "y"
+      ],
+      "rows": [
+        [
+          "1",
+          "3.1"
+        ],
+        [
+          "2",
+          "5.0"
+        ],
+        [
+          "3",
+          "6.8"
+        ],
+        [
+          "4",
+          "9.1"
+        ],
+        [
+          "5",
+          "10.9"
+        ]
+      ]
+    },
+    "choices": [
+      "y = x + 2",
+      "y = 3x − 1",
+      "y = −2x + 13",
+      "y = 2x + 1"
+    ],
+    "answer": "y = 2x + 1",
+    "explanation": [
+      "Each time x increases by 1, y increases by about 2 (1.9, 1.8, 2.3, 1.8).",
+      "At x = 1 a slope of 2 gives 2 + b ≈ 3.1, so b is about 1.",
+      "Checking: y = 2x + 1 gives 3, 5, 7, 9, 11, which are all close to the data."
+    ],
+    "hints": [
+      "About how much does y go up each time x goes up by 1?",
+      "Which equation gives values close to the table when you test a couple of x-values?"
+    ],
+    "wrong_reasons": {
+      "y = x + 2": "Used the change in x (1) as the slope; this line fits only the first point",
+      "y = 3x − 1": "Fit only the first two points loosely and overestimated the rate of change",
+      "y = −2x + 13": "Used the right size of slope but the wrong sign, as if y decreased"
+    },
+    "check": "xs=[1,2,3,4,5]; ys=[3.1,5.0,6.8,9.1,10.9]\nopts={'y = 2x + 1':lambda x:2*x+1,'y = x + 2':lambda x:x+2,'y = 3x − 1':lambda x:3*x-1,'y = −2x + 13':lambda x:-2*x+13}\nresult=min(opts,key=lambda k:sum((opts[k](a)-b)**2 for a,b in zip(xs,ys)))"
+  },
+  {
+    "id": "psda-two-var-data-019",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A lab technician counted the bacteria in a sample. At 0 hours there were 400 bacteria, and at 2 hours there were 500 bacteria. The count is modeled by f(t) = a · bᵗ, where a and b are positive constants and t is the number of hours. According to the model, how many bacteria will there be at 4 hours?",
+    "answer": "625",
+    "explanation": [
+      "At t = 0, f(0) = a = 400.",
+      "At t = 2, 400b² = 500, so b² = 1.25.",
+      "At t = 4, f(4) = 400b⁴ = 400(b²)² = 400(1.25)² = 400(1.5625) = 625."
+    ],
+    "hints": [
+      "What does f(0) tell you about a?",
+      "Do you need b itself, or would b² be enough to find b⁴?"
+    ],
+    "check": "from sympy import *\nb=symbols('b',positive=True)\na=400\nbv=solve(Eq(a*b**2,500),b)[0]\nresult=a*bv**4"
+  },
+  {
+    "id": "psda-two-var-data-020",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A coach modeled the data in the table with the line y = 5x + 20, where y is a player's predicted free-throw score after x hours of practice. For how many of the six players does the model underestimate the actual score?",
+    "table": {
+      "headers": [
+        "Hours of practice, x",
+        "Score, y"
+      ],
+      "rows": [
+        [
+          "1",
+          "26"
+        ],
+        [
+          "2",
+          "29"
+        ],
+        [
+          "3",
+          "36"
+        ],
+        [
+          "4",
+          "43"
+        ],
+        [
+          "5",
+          "44"
+        ],
+        [
+          "6",
+          "52"
+        ]
+      ]
+    },
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": "4",
+    "explanation": [
+      "Predicted scores for x = 1 to 6: 25, 30, 35, 40, 45, 50.",
+      "Residuals (actual − predicted): 1, −1, 1, 3, −1, 2.",
+      "The model underestimates when the actual score is greater than the predicted score, which happens for 4 players."
+    ],
+    "hints": [
+      "What does it mean for a model to underestimate a value?",
+      "Is the residual positive or negative when the model underestimates?"
+    ],
+    "wrong_reasons": {
+      "1": "Counted only the point with the largest residual",
+      "2": "Counted the points the model overestimates (negative residuals) instead",
+      "3": "Assumed the points must split evenly above and below the line"
+    },
+    "check": "pts=[(1,26),(2,29),(3,36),(4,43),(5,44),(6,52)]\nresult=sum(1 for x,y in pts if y>5*x+20)"
+  },
+  {
+    "id": "psda-two-var-data-021",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A survey tracked the percent of households in a town that use a streaming service. The line of best fit is p = 1.4x + 52, where p is the predicted percent of households and x is the number of years after 2010. According to the line of best fit, in what year will the predicted percent first be greater than 75%? (Assume x is a whole number.)",
+    "answer": "2027",
+    "explanation": [
+      "Solve 1.4x + 52 > 75: 1.4x > 23, so x > 16.43 (to two decimal places).",
+      "The smallest whole number greater than 16.43 is 17.",
+      "x = 17 means 2010 + 17 = 2027."
+    ],
+    "hints": [
+      "What inequality says the predicted percent is greater than 75?",
+      "After solving for x, which whole number is the first one that works, and what year is that?"
+    ],
+    "check": "import math\nx=math.floor(23/1.4)+1\nresult=2010+x"
+  },
+  {
+    "id": "psda-two-var-data-022",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A linear model and an exponential model were each fit to data on the number of downloads of an app, in thousands, x months after launch. The linear model is L(x) = 40 + 12x and the exponential model is E(x) = 40(1.2)ˣ. What is the smallest whole number of months x > 0 for which the exponential model predicts more downloads than the linear model?",
+    "choices": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Compare the models month by month: x = 4 gives E ≈ 82.9 and L = 88.",
+      "x = 5 gives E ≈ 99.5 and L = 100, so E is still smaller.",
+      "x = 6 gives E ≈ 119.4 and L = 112, so E is larger for the first time at x = 6."
+    ],
+    "hints": [
+      "Which model is larger at x = 1?",
+      "Can you make a small table of both models' values to see where they cross?"
+    ],
+    "wrong_reasons": {
+      "3": "Assumed exponential growth overtakes linear growth almost immediately",
+      "4": "Compared the growth amounts from one month to the next instead of the total predictions",
+      "5": "Rounded E(5) ≈ 99.5 up to 100 and treated the near tie as the exponential model being larger"
+    },
+    "check": "x=1\nwhile 40*1.2**x<=40+12*x:\n    x+=1\nresult=x"
+  },
+  {
+    "id": "psda-two-var-data-023",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A cyclist's distance during a training ride is modeled by d = 0.25t + 1.2, where d is the predicted distance, in kilometers, from the starting point t minutes after the cyclist's timer started. According to the model, by how many kilometers does the predicted distance increase for each hour of riding?",
+    "choices": [
+      "0.25",
+      "4",
+      "15",
+      "16.2"
+    ],
+    "answer": "15",
+    "explanation": [
+      "The slope 0.25 means 0.25 kilometer per minute.",
+      "1 hour = 60 minutes.",
+      "0.25 · 60 = 15 kilometers per hour."
+    ],
+    "hints": [
+      "What does the slope tell you about one minute of riding?",
+      "How many minutes are in an hour?"
+    ],
+    "wrong_reasons": {
+      "0.25": "Gave the increase per minute without converting to hours",
+      "4": "Divided 1 by 0.25, finding minutes per kilometer instead of kilometers per hour",
+      "16.2": "Found the predicted distance at t = 60 (15 + 1.2) instead of the increase"
+    },
+    "check": "result=0.25*60"
+  },
+  {
+    "id": "psda-two-var-data-024",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A line of best fit for a data set has the form y = mx + 18. The line predicts y = 46 when x = 8. One data point in the set is (12, 57.5). What is the residual for this data point? (Residual = actual value − predicted value.)",
+    "answer": "-2.5",
+    "accept": [
+      "−2.5",
+      "-5/2"
+    ],
+    "explanation": [
+      "Use the prediction at x = 8: 46 = 8m + 18, so 8m = 28 and m = 3.5.",
+      "Predicted value at x = 12: 3.5(12) + 18 = 42 + 18 = 60.",
+      "Residual = 57.5 − 60 = −2.5."
+    ],
+    "hints": [
+      "What does the prediction at x = 8 tell you about m?",
+      "Once you have the full equation, what does it predict at x = 12?"
+    ],
+    "check": "from sympy import *\nm=symbols('m')\nmv=solve(Eq(8*m+18,46),m)[0]\nresult=Rational(115,2)-(mv*12+18)"
+  },
+  {
+    "id": "psda-two-var-data-025",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A scientist measured the mass of a radioactive sample every 3 days, as shown in the table. Which equation models the mass m, in grams, t days after the first measurement?",
+    "table": {
+      "headers": [
+        "Days, t",
+        "Mass (grams)"
+      ],
+      "rows": [
+        [
+          "0",
+          "800"
+        ],
+        [
+          "3",
+          "400"
+        ],
+        [
+          "6",
+          "200"
+        ],
+        [
+          "9",
+          "100"
+        ]
+      ]
+    },
+    "choices": [
+      "m = 800(1/2)^(t/3)",
+      "m = 800(1/2)^(3t)",
+      "m = 800(1/2)^t",
+      "m = 800 − (400/3)t"
+    ],
+    "answer": "m = 800(1/2)^(t/3)",
+    "explanation": [
+      "The mass halves every 3 days: 800, 400, 200, 100.",
+      "After t days, the number of 3-day periods is t/3.",
+      "So m = 800(1/2)^(t/3)."
+    ],
+    "hints": [
+      "By what factor does the mass change from one measurement to the next?",
+      "How many 3-day periods have passed after t days?"
+    ],
+    "wrong_reasons": {
+      "m = 800(1/2)^(3t)": "Multiplied by 3 in the exponent instead of dividing, making the mass halve 3 times each day",
+      "m = 800(1/2)^t": "Ignored the 3-day spacing in the table and assumed the mass halves every day",
+      "m = 800 − (400/3)t": "Assumed the first drop of 400 grams over 3 days repeats, treating the data as linear"
+    },
+    "check": "data={0:800,3:400,6:200,9:100}\nopts={'m = 800(1/2)^(t/3)':lambda t:800*0.5**(t/3),'m = 800(1/2)^(3t)':lambda t:800*0.5**(3*t),'m = 800(1/2)^t':lambda t:800*0.5**t,'m = 800 − (400/3)t':lambda t:800-400*t/3}\nresult=[k for k,f in opts.items() if all(abs(f(t)-v)<1e-9 for t,v in data.items())][0]"
+  },
+  {
+    "id": "psda-two-var-data-026",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The table shows values of x and y. Which equation fits all of the data in the table?",
+    "table": {
+      "headers": [
+        "x",
+        "y"
+      ],
+      "rows": [
+        [
+          "0",
+          "2"
+        ],
+        [
+          "1",
+          "5"
+        ],
+        [
+          "2",
+          "10"
+        ],
+        [
+          "3",
+          "17"
+        ],
+        [
+          "4",
+          "26"
+        ]
+      ]
+    },
+    "choices": [
+      "y = 2x² + x + 2",
+      "y = 6x + 2",
+      "y = x² + 2x + 2",
+      "y = 2(2.5)ˣ"
+    ],
+    "answer": "y = x² + 2x + 2",
+    "explanation": [
+      "The differences in y are 3, 5, 7, 9, which are not constant, so the relationship is not linear.",
+      "The second differences are all 2, which points to a quadratic.",
+      "Testing y = x² + 2x + 2: x = 0 gives 2, x = 1 gives 5, x = 2 gives 10, x = 3 gives 17, x = 4 gives 26. All match."
+    ],
+    "hints": [
+      "Are the changes in y constant? If not, what about the changes in those changes?",
+      "Which equation still works when you test x = 2 and x = 3, not just the first point?"
+    ],
+    "wrong_reasons": {
+      "y = 2x² + x + 2": "Checked only x = 0 and x = 1, where it also gives 2 and 5",
+      "y = 6x + 2": "Found a line through the first and last points only, assuming the data are linear",
+      "y = 2(2.5)ˣ": "Used the ratio of the first two y-values (5 ÷ 2) as a constant growth factor without checking the rest"
+    },
+    "check": "xs=[0,1,2,3,4]; ys=[2,5,10,17,26]\nopts={'y = x² + 2x + 2':lambda x:x**2+2*x+2,'y = 2x² + x + 2':lambda x:2*x**2+x+2,'y = 6x + 2':lambda x:6*x+2,'y = 2(2.5)ˣ':lambda x:2*2.5**x}\nresult=[k for k,f in opts.items() if all(abs(f(a)-b)<1e-9 for a,b in zip(xs,ys))][0]"
+  },
+  {
+    "id": "psda-two-var-data-027",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "For a sample of used cars, the line of best fit is p = −0.08m + 24.6, where p is the predicted price, in thousands of dollars, of a car with m thousand miles on it. One car in the sample has 150,000 miles and sold for $14,100. By how many dollars is this car's actual price greater than the price predicted by the line of best fit?",
+    "answer": "1500",
+    "accept": [
+      "1,500",
+      "$1,500",
+      "$1500"
+    ],
+    "explanation": [
+      "150,000 miles means m = 150.",
+      "Predicted price: −0.08(150) + 24.6 = −12 + 24.6 = 12.6, which is $12,600.",
+      "Difference: $14,100 − $12,600 = $1,500."
+    ],
+    "hints": [
+      "What value of m stands for 150,000 miles?",
+      "The model's output is in thousands of dollars. How do you write it in dollars before comparing it with $14,100?"
+    ],
+    "check": "pred=(-0.08*150+24.6)*1000\nresult=14100-pred"
+  }
+]

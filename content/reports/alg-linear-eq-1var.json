@@ -1,0 +1,10 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "alg-linear-eq-1var-007", "reason": "Replaced null check with code that simulates the weekly balance and selects the only equation whose solution matches (w = 14)."},
+    {"id": "alg-linear-eq-1var-012", "reason": "Stem clarified that every printed shirt is sold and 'sales' means money collected (removes ambiguity about unsold shirts)."},
+    {"id": "alg-linear-eq-1var-014", "reason": "Near-duplicate of 002 (flat fee + per-unit rate = total); varied to include 50 free miles, new key 208, explanation/hints/check updated."},
+    {"id": "alg-linear-eq-1var-027", "reason": "Reworded 'final exam counts as two lab reports' to an explicit weighted average where the exam counts twice as much as each lab report."}
+  ],
+  "removed": []
+}

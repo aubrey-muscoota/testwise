@@ -1,0 +1,10 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "geo-circles-025", "reason": "Stem said the walkway 'touches the edge at exactly one point', which a walkway aimed straight at the center also does (that makes distractor 9 defensible); stem now says the walkway's line is tangent to the fountain at its endpoint."},
+    {"id": "geo-circles-007", "reason": "Check code only restated the answer (result=90); it now places a wheel of symbolic radius on the ground, finds the contact point, and computes the angle between OP and the ground."},
+    {"id": "geo-circles-021", "reason": "Check code hard-coded the central angle 5π/12; it now derives it from arc 5π and radius 12."},
+    {"id": "geo-circles-023", "reason": "Explanation said 'the area increases by 0.44'; it now says the increase is 0.44πr², which is 44% of the original area."}
+  ],
+  "removed": []
+}

@@ -1,0 +1,748 @@
+[
+  {
+    "id": "alg-systems-001",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If x + y = 14 and x − y = 4, what is the value of x?",
+    "choices": [
+      "5",
+      "9",
+      "10",
+      "18"
+    ],
+    "answer": "9",
+    "explanation": [
+      "Add the two equations: (x + y) + (x − y) = 14 + 4.",
+      "The y-terms cancel, leaving 2x = 18.",
+      "Divide by 2: x = 9."
+    ],
+    "hints": [
+      "What happens to the y-terms if you add the two equations together?",
+      "Once only x is left, what is the last step to get x by itself?"
+    ],
+    "wrong_reasons": {
+      "5": "Found y instead of x",
+      "10": "Subtracted the constants (14 − 4) instead of solving the system",
+      "18": "Added the equations correctly but forgot to divide 2x = 18 by 2"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([x+y-14,x-y-4],[x,y])[x]"
+  },
+  {
+    "id": "alg-systems-002",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If y = 3x and 2x + y = 20, what is the value of y?",
+    "choices": [
+      "4",
+      "10",
+      "12",
+      "60"
+    ],
+    "answer": "12",
+    "explanation": [
+      "Replace y with 3x in the second equation: 2x + 3x = 20.",
+      "Combine like terms: 5x = 20, so x = 4.",
+      "Then y = 3(4) = 12."
+    ],
+    "hints": [
+      "The first equation tells you what y equals. Where could you put that expression?",
+      "After you find x, which equation gives y most quickly?"
+    ],
+    "wrong_reasons": {
+      "4": "Found x and stopped without computing y",
+      "10": "Multiplied 2 by 3x when substituting, writing 6x = 20, so x = 10/3 and y = 10",
+      "60": "Multiplied 20 by 3 instead of substituting y = 3x into the second equation"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([y-3*x,2*x+y-20],[x,y])[y]"
+  },
+  {
+    "id": "alg-systems-003",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A school play sold 50 tickets for a total of $500. Adult tickets cost $12 each and student tickets cost $7 each. Which system of equations can be solved to find the number of adult tickets, a, and the number of student tickets, s, that were sold?",
+    "choices": [
+      "a + s = 50 and 12a + 7s = 500",
+      "a + s = 500 and 12a + 7s = 50",
+      "a + s = 50 and 7a + 12s = 500",
+      "a + s = 50 and 19(a + s) = 500"
+    ],
+    "answer": "a + s = 50 and 12a + 7s = 500",
+    "explanation": [
+      "The total number of tickets is 50, so a + s = 50.",
+      "Each adult ticket brings in 12 dollars and each student ticket 7 dollars, so the money collected is 12a + 7s.",
+      "That money equals 500, so the system is a + s = 50 and 12a + 7s = 500."
+    ],
+    "hints": [
+      "Which quantity in the problem counts tickets, and which counts dollars?",
+      "If you sold a adult tickets at $12 each, how much money would they bring in?"
+    ],
+    "wrong_reasons": {
+      "a + s = 500 and 12a + 7s = 50": "Swapped the ticket count and the dollar total",
+      "a + s = 50 and 7a + 12s = 500": "Attached each price to the wrong type of ticket",
+      "a + s = 50 and 19(a + s) = 500": "Added the two prices together as if every ticket cost $19"
+    },
+    "check": null,
+    "check_note": "Modeling item: the answer is a choice of equations, not a computed value."
+  },
+  {
+    "id": "alg-systems-004",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "If 2x + 3y = 19 and y = x + 3, what is the value of x?",
+    "answer": "2",
+    "explanation": [
+      "Substitute x + 3 for y: 2x + 3(x + 3) = 19.",
+      "Distribute: 2x + 3x + 9 = 19, so 5x + 9 = 19.",
+      "Subtract 9 and divide by 5: x = 2."
+    ],
+    "hints": [
+      "The second equation already says what y equals. How could you use that in the first equation?",
+      "When you multiply 3 by (x + 3), what happens to both terms inside the parentheses?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([2*x+3*y-19,y-x-3],[x,y])[x]"
+  },
+  {
+    "id": "alg-systems-005",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which ordered pair (x, y) is a solution to the system of equations below?\n\nx + 2y = 8\n3x − y = 3",
+    "choices": [
+      "(1, 0)",
+      "(3, 2)",
+      "(4, 2)",
+      "(2, 3)"
+    ],
+    "answer": "(2, 3)",
+    "explanation": [
+      "From the first equation, x = 8 − 2y.",
+      "Substitute into the second: 3(8 − 2y) − y = 3, so 24 − 7y = 3 and y = 3.",
+      "Then x = 8 − 2(3) = 2, so the solution is (2, 3).",
+      "Check: 2 + 6 = 8 and 6 − 3 = 3."
+    ],
+    "hints": [
+      "A solution has to make both equations true at once. How could you test each choice quickly?",
+      "Which coordinate comes first in an ordered pair (x, y)?"
+    ],
+    "wrong_reasons": {
+      "(1, 0)": "Checked only the second equation (3 − 0 = 3); it fails the first",
+      "(3, 2)": "Found the right values but reversed the order of x and y",
+      "(4, 2)": "Checked only the first equation (4 + 4 = 8); it fails the second"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([x+2*y-8,3*x-y-3],[x,y])\nresult=f'({s[x]}, {s[y]})'"
+  },
+  {
+    "id": "alg-systems-006",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "At a farm stand, 2 pounds of apples and 3 pounds of pears cost $10.50. At the same prices, 4 pounds of apples and 1 pound of pears cost $9.50. What is the price of 1 pound of pears?",
+    "choices": [
+      "$1.80",
+      "$2.10",
+      "$2.30",
+      "$4.10"
+    ],
+    "answer": "$2.30",
+    "explanation": [
+      "Let a be the price per pound of apples and p the price per pound of pears: 2a + 3p = 10.50 and 4a + p = 9.50.",
+      "Multiply the first equation by 2: 4a + 6p = 21.00.",
+      "Subtract the second equation: 5p = 11.50, so p = 2.30.",
+      "A pound of pears costs $2.30."
+    ],
+    "hints": [
+      "How could you make the apple terms in the two equations match?",
+      "Once the apple terms match, what operation makes them disappear?"
+    ],
+    "wrong_reasons": {
+      "$1.80": "Found the price per pound of apples instead of pears",
+      "$2.10": "Divided $10.50 by the 5 total pounds, as if both fruits had the same price",
+      "$4.10": "Found the combined price of 1 pound of apples and 1 pound of pears"
+    },
+    "check": "from sympy import *\na,p=symbols('a p')\nresult=solve([2*a+3*p-Rational(21,2),4*a+p-Rational(19,2)],[a,p])[p]"
+  },
+  {
+    "id": "alg-systems-007",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "5x + 2y = 31\n3x − 2y = 9\n\nIf (x, y) is the solution to the system of equations above, what is the value of y?",
+    "answer": "3",
+    "explanation": [
+      "Add the equations: the y-terms cancel, giving 8x = 40, so x = 5.",
+      "Substitute into the first equation: 5(5) + 2y = 31, so 2y = 6.",
+      "So y = 3."
+    ],
+    "hints": [
+      "Look at the y-terms: what happens to them if you add the equations?",
+      "After you know x, which equation would you plug it into to find y?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([5*x+2*y-31,3*x-2*y-9],[x,y])[y]"
+  },
+  {
+    "id": "alg-systems-008",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "How many solutions does the system of equations below have?\n\ny = 2x + 5\ny = 2x − 1",
+    "choices": [
+      "Zero",
+      "Exactly one",
+      "Exactly two",
+      "Infinitely many"
+    ],
+    "answer": "Zero",
+    "explanation": [
+      "Both lines have slope 2.",
+      "Their y-intercepts are different (5 and −1).",
+      "Lines with the same slope and different intercepts are parallel and never meet, so there are zero solutions."
+    ],
+    "hints": [
+      "What do the two equations tell you about the slope of each line?",
+      "If two lines rise at exactly the same rate but start at different heights, will they ever cross?"
+    ],
+    "wrong_reasons": {
+      "Exactly one": "Assumed any two different equations must cross at one point",
+      "Exactly two": "Counted one solution per equation",
+      "Infinitely many": "Saw the same slope and assumed the lines are the same line, ignoring the different y-intercepts"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=linsolve([y-2*x-5,y-2*x+1],[x,y])\nif s==S.EmptySet:\n    result='Zero'\nelif any(e.free_symbols for e in list(s)[0]):\n    result='Infinitely many'\nelse:\n    result='Exactly one'"
+  },
+  {
+    "id": "alg-systems-009",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Gym A charges a $45 joining fee plus $25 per month. Gym B has no joining fee and charges $40 per month. After how many months will the total amount paid be the same at both gyms?",
+    "choices": [
+      "1.8",
+      "3",
+      "15",
+      "120"
+    ],
+    "answer": "3",
+    "explanation": [
+      "After m months, Gym A costs 45 + 25m and Gym B costs 40m.",
+      "Set them equal: 45 + 25m = 40m.",
+      "Subtract 25m: 45 = 15m, so m = 3."
+    ],
+    "hints": [
+      "How would you write each gym's total cost after m months?",
+      "If the two totals are the same, what equation can you write?"
+    ],
+    "wrong_reasons": {
+      "1.8": "Divided the joining fee by Gym A's monthly rate (45 ÷ 25) instead of by the difference in rates",
+      "15": "Gave the difference in monthly rates, not the number of months",
+      "120": "Gave the equal total cost (40 × 3) instead of the number of months"
+    },
+    "check": "from sympy import *\nm=symbols('m')\nresult=solve(45+25*m-40*m,m)[0]"
+  },
+  {
+    "id": "alg-systems-010",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "3x + 5y = 23\n5x + 3y = 17\n\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
+    "choices": [
+      "3",
+      "4",
+      "5",
+      "40"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Add the two equations: 8x + 8y = 40.",
+      "Divide both sides by 8: x + y = 5.",
+      "(Check: the solution is x = 1, y = 4.)"
+    ],
+    "hints": [
+      "Is there a way to get x + y directly, without finding x and y separately?",
+      "What do you notice about the coefficients if you add the two equations?"
+    ],
+    "wrong_reasons": {
+      "3": "Subtracted the equations and found y − x instead of x + y",
+      "4": "Found only the value of y",
+      "40": "Added the equations but forgot to divide 8x + 8y = 40 by 8"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([3*x+5*y-23,5*x+3*y-17],[x,y])\nresult=s[x]+s[y]"
+  },
+  {
+    "id": "alg-systems-011",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A florist makes small and large bouquets. Each small bouquet uses 6 roses and each large bouquet uses 15 roses. One morning the florist made 22 bouquets using a total of 213 roses. How many large bouquets did the florist make?",
+    "answer": "9",
+    "explanation": [
+      "Let s be small bouquets and l be large bouquets: s + l = 22 and 6s + 15l = 213.",
+      "From the first equation, s = 22 − l. Substitute: 6(22 − l) + 15l = 213.",
+      "132 + 9l = 213, so 9l = 81 and l = 9."
+    ],
+    "hints": [
+      "What two different totals does the problem give you, and what does each one count?",
+      "If every bouquet were small, how many roses would that use, and how many extra roses does each large bouquet add?"
+    ],
+    "check": "from sympy import *\ns,l=symbols('s l')\nresult=solve([s+l-22,6*s+15*l-213],[s,l])[l]"
+  },
+  {
+    "id": "alg-systems-012",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "6x − 4y = 7\nkx − 2y = 3\n\nIn the system of equations above, k is a constant. For what value of k does the system have no solution?",
+    "choices": [
+      "−3",
+      "3",
+      "6",
+      "12"
+    ],
+    "answer": "3",
+    "explanation": [
+      "A system of two linear equations has no solution when the lines are parallel but not the same line.",
+      "Multiply the second equation by 2: 2kx − 4y = 6. For the lines to be parallel, the x-coefficients must match: 2k = 6, so k = 3.",
+      "With k = 3 the equations become 6x − 4y = 7 and 6x − 4y = 6, which can't both be true, so there is no solution."
+    ],
+    "hints": [
+      "What must be true about two lines for them never to intersect?",
+      "How could you rewrite the second equation so its y-term matches the first equation's y-term?"
+    ],
+    "wrong_reasons": {
+      "−3": "Made a sign error when comparing the ratios of the coefficients",
+      "6": "Assumed the x-coefficients must be equal without first matching the y-coefficients",
+      "12": "Scaled in the wrong direction, multiplying 6 by 2 instead of dividing"
+    },
+    "check": "from sympy import *\nx,y,k=symbols('x y k')\nks=solve(Matrix([[6,-4],[k,-2]]).det(),k)\nresult=[v for v in ks if linsolve([6*x-4*y-7,v*x-2*y-3],[x,y])==S.EmptySet][0]"
+  },
+  {
+    "id": "alg-systems-013",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following systems of equations has infinitely many solutions?",
+    "choices": [
+      "2x + 3y = 6 and 4x + 6y = 6",
+      "2x + 3y = 6 and 3x + 2y = 6",
+      "2x + 3y = 6 and 2x − 3y = 6",
+      "2x + 3y = 6 and 4x + 6y = 12"
+    ],
+    "answer": "2x + 3y = 6 and 4x + 6y = 12",
+    "explanation": [
+      "A system has infinitely many solutions when both equations describe the same line.",
+      "In 4x + 6y = 12, every term is 2 times the matching term of 2x + 3y = 6, so the two equations are equivalent.",
+      "Every point on that line solves both equations, so there are infinitely many solutions."
+    ],
+    "hints": [
+      "What would have to be true about two equations for every solution of one to also solve the other?",
+      "Can you multiply one equation by a single number and get the other one exactly — including the constant?"
+    ],
+    "wrong_reasons": {
+      "2x + 3y = 6 and 4x + 6y = 6": "Matched the x- and y-coefficients but not the constant, which gives parallel lines with no solution",
+      "2x + 3y = 6 and 3x + 2y = 6": "Thought swapping the coefficients produces the same line; these lines cross at one point",
+      "2x + 3y = 6 and 2x − 3y = 6": "Thought changing only the sign of a term keeps the same line; these lines cross at one point"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nsy=[(Eq(2*x+3*y,6),Eq(4*x+6*y,12)),(Eq(2*x+3*y,6),Eq(4*x+6*y,6)),(Eq(2*x+3*y,6),Eq(3*x+2*y,6)),(Eq(2*x+3*y,6),Eq(2*x-3*y,6))]\nlab=[\"2x + 3y = 6 and 4x + 6y = 12\", \"2x + 3y = 6 and 4x + 6y = 6\", \"2x + 3y = 6 and 3x + 2y = 6\", \"2x + 3y = 6 and 2x − 3y = 6\"]\nresult=[lab[i] for i,(a,b) in enumerate(sy) if (lambda s: s!=S.EmptySet and list(s)[0].free_symbols)(linsolve([a,b],[x,y]))][0]"
+  },
+  {
+    "id": "alg-systems-014",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The table shows some values of the linear functions f and g. If (a, b) is the solution to the system y = f(x) and y = g(x), what is the value of b?",
+    "table": {
+      "headers": [
+        "x",
+        "f(x)",
+        "g(x)"
+      ],
+      "rows": [
+        [
+          "0",
+          "3",
+          "12"
+        ],
+        [
+          "2",
+          "7",
+          "10"
+        ],
+        [
+          "4",
+          "11",
+          "8"
+        ]
+      ]
+    },
+    "choices": [
+      "3",
+      "9",
+      "12",
+      "21"
+    ],
+    "answer": "9",
+    "explanation": [
+      "From the table, f increases by 4 every time x increases by 2, so f(x) = 2x + 3.",
+      "g decreases by 2 every time x increases by 2, so g(x) = −x + 12.",
+      "Set them equal: 2x + 3 = −x + 12, so 3x = 9 and x = 3.",
+      "Then b = f(3) = 2(3) + 3 = 9."
+    ],
+    "hints": [
+      "Neither row of the table shows f and g equal. What could you find from the table that would let you go beyond it?",
+      "Once you know where the two functions meet, which coordinate is the question asking for?"
+    ],
+    "wrong_reasons": {
+      "3": "Found the x-coordinate a instead of b",
+      "12": "Used the y-intercept of g as if it were the meeting point",
+      "21": "Forgot to divide 3x = 9 by 3, used x = 9, and got f(9) = 21"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([y-(2*x+3),y-(-x+12)],[x,y])[y]"
+  },
+  {
+    "id": "alg-systems-015",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "(1/2)x + (1/3)y = 4\nx − y = 3\n\nWhat value of x satisfies the system of equations above?",
+    "choices": [
+      "2",
+      "3",
+      "6",
+      "33/5"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Multiply the first equation by 6 to clear fractions: 3x + 2y = 24.",
+      "From the second equation, x = y + 3. Substitute: 3(y + 3) + 2y = 24, so 5y + 9 = 24 and y = 3.",
+      "Then x = 3 + 3 = 6."
+    ],
+    "hints": [
+      "What number could you multiply the first equation by to get rid of both fractions?",
+      "When you multiply an equation by a number, which parts of the equation have to be multiplied?"
+    ],
+    "wrong_reasons": {
+      "2": "Cleared fractions on the left side but forgot to multiply the 4 on the right, using 3x + 2y = 4",
+      "3": "Found y instead of x",
+      "33/5": "Cleared fractions with the coefficients swapped, writing 2x + 3y = 24"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([Rational(1,2)*x+Rational(1,3)*y-4,x-y-3],[x,y])[x]"
+  },
+  {
+    "id": "alg-systems-016",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A chemist mixes a 10% saline solution with a 25% saline solution to make 60 liters of a 20% saline solution. How many liters of the 10% solution does the chemist use?",
+    "choices": [
+      "20",
+      "30",
+      "40",
+      "48"
+    ],
+    "answer": "20",
+    "explanation": [
+      "Let a be liters of 10% solution and b be liters of 25% solution: a + b = 60.",
+      "The salt adds up: 0.10a + 0.25b = 0.20(60) = 12.",
+      "Substitute b = 60 − a: 0.10a + 15 − 0.25a = 12, so −0.15a = −3 and a = 20."
+    ],
+    "hints": [
+      "Besides the total volume, what other quantity must add up correctly in the mixture?",
+      "Is the final 20% closer to 10% or to 25%? What does that suggest about which solution is used more?"
+    ],
+    "wrong_reasons": {
+      "48": "Assumed all 12 liters of salt came from the 25% solution and computed 12 ÷ 0.25",
+      "30": "Assumed equal amounts of each solution",
+      "40": "Found the amount of the 25% solution instead"
+    },
+    "check": "from sympy import *\na,b=symbols('a b')\nresult=solve([a+b-60,Rational(10,100)*a+Rational(25,100)*b-Rational(20,100)*60],[a,b])[a]"
+  },
+  {
+    "id": "alg-systems-017",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "3x + ay = 10\n2x − y = 1\n\nIn the system of equations above, a is a constant. If the solution to the system has x = 2, what is the value of a?",
+    "choices": [
+      "4/3",
+      "3",
+      "4",
+      "16/3"
+    ],
+    "answer": "4/3",
+    "explanation": [
+      "Substitute x = 2 into the second equation: 4 − y = 1, so y = 3.",
+      "Substitute x = 2 and y = 3 into the first equation: 6 + 3a = 10.",
+      "So 3a = 4 and a = 4/3."
+    ],
+    "hints": [
+      "Which equation has no unknown constant in it, so you can use it first?",
+      "Once you know both x and y, what equation is left with only a in it?"
+    ],
+    "wrong_reasons": {
+      "3": "Gave the value of y instead of a",
+      "4": "Found 3a = 4 but forgot to divide by 3",
+      "16/3": "Added 6 to both sides instead of subtracting, getting 3a = 16"
+    },
+    "check": "from sympy import *\nx,y,a=symbols('x y a')\nyv=solve((2*x-y-1).subs(x,2),y)[0]\nresult=solve((3*x+a*y-10).subs({x:2,y:yv}),a)[0]"
+  },
+  {
+    "id": "alg-systems-018",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A rectangular garden has a length that is 3 feet more than twice its width. The perimeter of the garden is 54 feet. What is the length of the garden, in feet?",
+    "answer": "19",
+    "explanation": [
+      "Let l be the length and w the width: l = 2w + 3 and 2l + 2w = 54.",
+      "Divide the perimeter equation by 2: l + w = 27.",
+      "Substitute: (2w + 3) + w = 27, so 3w = 24 and w = 8.",
+      "Then l = 2(8) + 3 = 19 feet."
+    ],
+    "hints": [
+      "What two facts does the problem give you, and how can each be written as an equation?",
+      "After you find one dimension, does it answer the question that was asked?"
+    ],
+    "check": "from sympy import *\nl,w=symbols('l w')\nresult=solve([l-(2*w+3),2*l+2*w-54],[l,w])[l]"
+  },
+  {
+    "id": "alg-systems-019",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "ax + 3y = 7\n4x + 6y = b\n\nIn the system of equations above, a and b are constants. If the system has infinitely many solutions, what is the value of a + b?",
+    "choices": [
+      "9",
+      "23/2",
+      "14",
+      "16"
+    ],
+    "answer": "16",
+    "explanation": [
+      "Infinitely many solutions means the two equations describe the same line, so one must be a multiple of the other.",
+      "The y-coefficients are 3 and 6, so the second equation is 2 times the first.",
+      "So 2a = 4, giving a = 2, and b = 2(7) = 14.",
+      "a + b = 2 + 14 = 16."
+    ],
+    "hints": [
+      "What must be true about two equations whose graphs are the same line?",
+      "Which pair of matching coefficients is fully known, and what does it tell you about the multiplier?"
+    ],
+    "wrong_reasons": {
+      "9": "Scaled the x-coefficient correctly (a = 2) but kept b = 7 without scaling the constant",
+      "14": "Found b but forgot to add a",
+      "23/2": "Scaled in the wrong direction, getting a = 8 and b = 7/2"
+    },
+    "check": "from sympy import *\na,b,t=symbols('a b t')\ns=solve([4-t*a,6-t*3,b-t*7],[a,b,t],dict=True)[0]\nresult=s[a]+s[b]"
+  },
+  {
+    "id": "alg-systems-020",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Maya drove a total of 310 miles in 5 hours. She drove part of the trip at an average speed of 50 miles per hour and the rest at an average speed of 70 miles per hour. How many miles did Maya drive at 70 miles per hour?",
+    "answer": "210",
+    "explanation": [
+      "Let p be the hours at 50 mph and q the hours at 70 mph: p + q = 5 and 50p + 70q = 310.",
+      "Substitute p = 5 − q: 250 − 50q + 70q = 310, so 20q = 60 and q = 3.",
+      "Distance at 70 mph = 70 × 3 = 210 miles."
+    ],
+    "hints": [
+      "Which two totals does the problem give you — and is it easier to use time or distance as your unknowns?",
+      "Once you know how long she drove at 70 mph, is that the quantity the question asks for?"
+    ],
+    "check": "from sympy import *\np,q=symbols('p q')\nresult=70*solve([p+q-5,50*p+70*q-310],[p,q])[q]"
+  },
+  {
+    "id": "alg-systems-021",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "kx + 2y = 6\n8x + ky = 12\n\nIn the system of equations above, k is a constant. For which value of k does the system have no solution?",
+    "choices": [
+      "0",
+      "4",
+      "−4 or 4",
+      "−4"
+    ],
+    "answer": "−4",
+    "explanation": [
+      "The lines are parallel or identical when k/8 = 2/k, so k² = 16 and k = 4 or k = −4.",
+      "If k = 4: 4x + 2y = 6 doubled is 8x + 4y = 12, which is the second equation, so the lines are the same (infinitely many solutions).",
+      "If k = −4: −4x + 2y = 6 multiplied by −2 is 8x − 4y = −12, but the second equation says 8x − 4y = 12. These can't both be true, so there is no solution.",
+      "So k = −4."
+    ],
+    "hints": [
+      "For which values of k do the two lines have the same slope?",
+      "For each of those values, are the lines parallel, or are they actually the same line?"
+    ],
+    "wrong_reasons": {
+      "0": "Thought making the x-term disappear would make the system unsolvable; with k = 0 there is one solution",
+      "4": "Found a value that gives equal slopes, but with k = 4 the equations describe the same line",
+      "−4 or 4": "Found both values that give equal slopes without checking whether the constants also match"
+    },
+    "check": "from sympy import *\nx,y,k=symbols('x y k')\nks=solve(Matrix([[k,2],[8,k]]).det(),k)\nresult=[v for v in ks if linsolve([v*x+2*y-6,8*x+v*y-12],[x,y])==S.EmptySet][0]"
+  },
+  {
+    "id": "alg-systems-022",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Candle A is 30 centimeters tall and burns down at a constant rate of 1.5 centimeters per hour. Candle B is 22 centimeters tall and burns down at a constant rate of 0.7 centimeter per hour. Both candles are lit at the same time. When the two candles are the same height, what is that height, in centimeters?",
+    "choices": [
+      "8",
+      "10",
+      "15",
+      "45"
+    ],
+    "answer": "15",
+    "explanation": [
+      "After t hours, Candle A's height is 30 − 1.5t and Candle B's height is 22 − 0.7t.",
+      "Set them equal: 30 − 1.5t = 22 − 0.7t, so 8 = 0.8t and t = 10.",
+      "Height = 30 − 1.5(10) = 15 centimeters."
+    ],
+    "hints": [
+      "How would you write each candle's height after t hours?",
+      "Once you know when the heights match, what value does the question actually want?"
+    ],
+    "wrong_reasons": {
+      "8": "Gave the difference in the starting heights",
+      "10": "Found the time in hours instead of the height",
+      "45": "Added the amount burned instead of subtracting it, computing 30 + 1.5(10)"
+    },
+    "check": "from sympy import *\nt,h=symbols('t h')\nresult=solve([h-(30-Rational(3,2)*t),h-(22-Rational(7,10)*t)],[t,h])[h]"
+  },
+  {
+    "id": "alg-systems-023",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "x + 3y = 11\n2x − y = 5\n\nIf (x, y) is the solution to the system of equations above, what is the value of 4x + 5y?",
+    "answer": "27",
+    "explanation": [
+      "Look for numbers m and n so that m(x + 3y) + n(2x − y) = 4x + 5y.",
+      "Matching the x-terms gives m + 2n = 4, and matching the y-terms gives 3m − n = 5, so m = 2 and n = 1.",
+      "So 4x + 5y = 2(x + 3y) + (2x − y) = 2(11) + 5 = 27.",
+      "(Check: the solution is x = 26/7 and y = 17/7, and 4(26/7) + 5(17/7) = 189/7 = 27.)"
+    ],
+    "hints": [
+      "Solving for x and y gives messy fractions. Could some combination of the two equations produce 4x + 5y directly?",
+      "If you add m copies of the first equation to n copies of the second, what must be true about m and n for the x-terms to total 4x and the y-terms to total 5y?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=solve([x+3*y-11,2*x-y-5],[x,y])\nresult=4*s[x]+5*s[y]"
+  },
+  {
+    "id": "alg-systems-024",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A school has exactly $1,500 to spend on 40 calculators. Basic calculators cost $15 each and graphing calculators cost $90 each. If the school spends the entire $1,500 and buys exactly 40 calculators, how many more basic calculators than graphing calculators does it buy?",
+    "choices": [
+      "12",
+      "16",
+      "20",
+      "28"
+    ],
+    "answer": "16",
+    "explanation": [
+      "Let b be basic and g be graphing calculators: b + g = 40 and 15b + 90g = 1,500.",
+      "Substitute b = 40 − g: 600 − 15g + 90g = 1,500, so 75g = 900 and g = 12.",
+      "Then b = 40 − 12 = 28.",
+      "The difference is 28 − 12 = 16."
+    ],
+    "hints": [
+      "What two totals must both be met by the school's purchase?",
+      "After you find how many of each type, what final step does the question require?"
+    ],
+    "wrong_reasons": {
+      "12": "Found the number of graphing calculators and stopped",
+      "20": "Assumed the school bought equal numbers of each and halved 40",
+      "28": "Found the number of basic calculators but did not subtract"
+    },
+    "check": "from sympy import *\nb,g=symbols('b g')\ns=solve([b+g-40,15*b+90*g-1500],[b,g])\nresult=s[b]-s[g]"
+  },
+  {
+    "id": "alg-systems-025",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, line ℓ passes through the points (0, 4) and (6, 0). Line m has equation y = x − 1. If lines ℓ and m intersect at the point (a, b), what is the value of a?",
+    "choices": [
+      "2",
+      "3",
+      "5",
+      "25/3"
+    ],
+    "answer": "3",
+    "explanation": [
+      "The slope of ℓ is (0 − 4)/(6 − 0) = −2/3, and its y-intercept is 4, so ℓ is y = −(2/3)x + 4.",
+      "Set the equations equal: x − 1 = −(2/3)x + 4.",
+      "Add (2/3)x and 1 to both sides: (5/3)x = 5, so x = 3.",
+      "So a = 3 (and b = 2)."
+    ],
+    "hints": [
+      "What information do you need to write an equation for line ℓ, and which point gives it to you right away?",
+      "At the intersection point, what must be true about the y-values from the two equations?"
+    ],
+    "wrong_reasons": {
+      "2": "Found b, the y-coordinate, instead of a",
+      "5": "Reached (5/3)x = 5 but did not divide by 5/3",
+      "25/3": "Multiplied 5 by 5/3 instead of dividing"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([y-(-Rational(2,3)*x+4),y-(x-1)],[x,y])[x]"
+  },
+  {
+    "id": "alg-systems-026",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "3x − 2y = 4\n5x + 4y = 3\n\nIf (x, y) is the solution to the system of equations above, what is the value of y?",
+    "answer": "-1/2",
+    "accept": [
+      "-0.5",
+      "-.5",
+      "−1/2",
+      "−0.5"
+    ],
+    "explanation": [
+      "Multiply the first equation by 2: 6x − 4y = 8.",
+      "Add it to the second equation: 11x = 11, so x = 1.",
+      "Substitute into the first equation: 3 − 2y = 4, so −2y = 1 and y = −1/2."
+    ],
+    "hints": [
+      "Which variable would be easier to eliminate, and what would you multiply by to do it?",
+      "After you find x, substitute it into one of the original equations. How will you keep track of the sign when you solve for y?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve([3*x-2*y-4,5*x+4*y-3],[x,y])[y]"
+  },
+  {
+    "id": "alg-systems-027",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A kayaker paddles 12 miles downstream in 2 hours. Paddling at the same effort, the return trip of 12 miles upstream takes 3 hours. Assuming the kayaker's speed in still water and the speed of the current are both constant, what is the speed of the current, in miles per hour?",
+    "choices": [
+      "1",
+      "2",
+      "4",
+      "5"
+    ],
+    "answer": "1",
+    "explanation": [
+      "Let k be the kayaker's speed in still water and c the current's speed. Downstream speed is k + c; upstream speed is k − c.",
+      "Downstream: 2(k + c) = 12, so k + c = 6. Upstream: 3(k − c) = 12, so k − c = 4.",
+      "Subtract: 2c = 2, so c = 1 mile per hour."
+    ],
+    "hints": [
+      "How does the current change the kayaker's speed going downstream compared with going upstream?",
+      "If you know both the downstream speed and the upstream speed, how could you combine them to isolate the current?"
+    ],
+    "wrong_reasons": {
+      "2": "Found the difference between the downstream and upstream speeds but did not divide by 2",
+      "4": "Gave the upstream speed, k − c",
+      "5": "Gave the kayaker's speed in still water instead of the current's speed"
+    },
+    "check": "from sympy import *\nk,c=symbols('k c')\nresult=solve([2*(k+c)-12,3*(k-c)-12],[k,c])[c]"
+  }
+]

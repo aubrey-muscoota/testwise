@@ -1,0 +1,10 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {"id": "psda-probability-017", "reason": "Near-duplicate of 010 (three-row table, P(row | one column), same distractor pattern); varied to P(failed | made by Machine A or C) = 28/450 = 14/225 with new choices, wrong_reasons, explanation, hints and check."},
+    {"id": "psda-probability-006", "reason": "Awkward stem sentence ('each attend exactly one type of class at one time of day') reworded so a 16-year-old can read it clearly."},
+    {"id": "psda-probability-012", "reason": "wrong_reasons for 2/5 was garbled ('only one chosen member is a junior on a single pick'); rewritten as using 4/10 for one choice and ignoring the second."},
+    {"id": "psda-probability-009", "reason": "Check just restated the answer (Rational(1,2)); now models the conditional probability P(6 heads)/P(5 heads)."}
+  ],
+  "removed": []
+}

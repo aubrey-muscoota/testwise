@@ -1,0 +1,22 @@
+{
+  "reviewed": 27,
+  "fixed": [
+    {
+      "id": "geo-lines-angles-004",
+      "reason": "Stem was ambiguous ('that lies between the two streets' could modify the avenue); now names both angles explicitly as east-side angles between the streets (same-side interior), key 72° unchanged."
+    },
+    {
+      "id": "geo-lines-angles-013",
+      "reason": "Near-duplicate of 024 (same DE∥BC setup with the same 2:3 AD:DB split and the same AD/DB trap); changed to AD = 6, DB = 3, DE = 8, key now 12, with updated choices, explanation, wrong_reasons and check."
+    },
+    {
+      "id": "geo-lines-angles-016",
+      "reason": "Second hint gave away the bounds 5 and 19; reworded so students have to find the limits themselves."
+    },
+    {
+      "id": "geo-lines-angles-026",
+      "reason": "Reworded the awkward opening ('A triangle has one exterior angle at each vertex') for readability; math and key 90° unchanged."
+    }
+  ],
+  "removed": []
+}

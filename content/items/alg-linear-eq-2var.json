@@ -1,0 +1,764 @@
+[
+  {
+    "id": "alg-linear-eq-2var-001",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A bakery sells muffins for $3 each and scones for $4 each. On Saturday, the bakery's revenue from muffins and scones was $120, which is modeled by 3m + 4s = 120, where m is the number of muffins sold and s is the number of scones sold. If the bakery sold 20 muffins, how many scones did it sell?",
+    "choices": [
+      "15",
+      "30",
+      "45",
+      "60"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Substitute m = 20: 3(20) + 4s = 120.",
+      "Simplify: 60 + 4s = 120, so 4s = 60.",
+      "Divide by 4: s = 15."
+    ],
+    "hints": [
+      "Which variable's value do you already know, and where does it go in the equation?",
+      "After you account for the muffin revenue, how much money is left for scones?",
+      "How many $4 scones make up that remaining amount?"
+    ],
+    "wrong_reasons": {
+      "30": "Divided 120 by 4 and ignored the money that came from muffins.",
+      "45": "Added the muffin revenue instead of subtracting it: (120 + 60)/4.",
+      "60": "Found the revenue left for scones ($60) but forgot to divide by the $4 price."
+    },
+    "check": "from sympy import *\nm,s=symbols('m s')\nresult=solve((3*m+4*s-120).subs(m,20),s)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-002",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which ordered pair (x, y) is a solution to the equation 2x + 5y = 31?",
+    "choices": [
+      "(5, 3)",
+      "(0, 31)",
+      "(3, 5)",
+      "(26, 1)"
+    ],
+    "answer": "(3, 5)",
+    "explanation": [
+      "Test each pair by substituting x and y.",
+      "For (3, 5): 2(3) + 5(5) = 6 + 25 = 31. ✓",
+      "The other pairs give 25, 155, and 57, so only (3, 5) works."
+    ],
+    "hints": [
+      "What does it mean for an ordered pair to be a solution of an equation?",
+      "In an ordered pair (x, y), which number gets multiplied by 2?"
+    ],
+    "wrong_reasons": {
+      "(5, 3)": "Swapped the coordinates, using 5 for x and 3 for y.",
+      "(0, 31)": "Assumed the constant 31 is where the graph crosses the y-axis, forgetting to divide by the coefficient 5.",
+      "(26, 1)": "With y = 1, found 2x = 26 but forgot to divide by 2."
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nch=[(3,5),(5,3),(0,31),(26,1)]\nok=[p for p in ch if 2*p[0]+5*p[1]==31]\nresult='(%d, %d)'%ok[0] if len(ok)==1 else 'not unique'"
+  },
+  {
+    "id": "alg-linear-eq-2var-003",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "If 5x − 2y = 18 and y = 6, what is the value of x?",
+    "answer": "6",
+    "explanation": [
+      "Substitute y = 6: 5x − 2(6) = 18.",
+      "Simplify: 5x − 12 = 18, so 5x = 30.",
+      "Divide by 5: x = 6."
+    ],
+    "hints": [
+      "Which variable can you replace with a number right away?",
+      "Once only x is left, what must you undo first: the 12 or the 5?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve((5*x-2*y-18).subs(y,6),x)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-004",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Jordan has a $50 gift card to spend on songs and movies. Each song costs $1.25 and each movie costs $5. The equation 1.25s + 5m = 50 represents spending the entire card on s songs and m movies. What does the term 5m represent?",
+    "choices": [
+      "The number of movies Jordan buys",
+      "The total amount, in dollars, spent on movies",
+      "The price of one movie, in dollars",
+      "The amount, in dollars, left on the card after buying movies"
+    ],
+    "answer": "The total amount, in dollars, spent on movies",
+    "explanation": [
+      "m is the number of movies, and each movie costs $5.",
+      "Multiplying the number of movies by the price per movie gives the total dollars spent on movies.",
+      "So 5m is the total amount, in dollars, spent on movies."
+    ],
+    "hints": [
+      "What quantity does m count?",
+      "If you multiply a number of items by the price of each item, what do you get?"
+    ],
+    "wrong_reasons": {
+      "The number of movies Jordan buys": "Confused the term 5m with the variable m.",
+      "The price of one movie, in dollars": "Described only the coefficient 5, not the product 5m.",
+      "The amount, in dollars, left on the card after buying movies": "Thought the term showed a remaining balance; that would be 50 − 5m."
+    },
+    "check": null,
+    "check_note": "Interpretation item: the answer is a verbal description of a term in context, so there is no numeric value to compute."
+  },
+  {
+    "id": "alg-linear-eq-2var-005",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of 3x + 4y = 12 is a line. At which point does the line cross the y-axis?",
+    "choices": [
+      "(0, 4)",
+      "(0, 12)",
+      "(4, 0)",
+      "(0, 3)"
+    ],
+    "answer": "(0, 3)",
+    "explanation": [
+      "A line crosses the y-axis where x = 0.",
+      "Substitute x = 0: 4y = 12.",
+      "So y = 3, and the point is (0, 3)."
+    ],
+    "hints": [
+      "What is the value of x at every point on the y-axis?",
+      "After you substitute that value, what equation is left for y?"
+    ],
+    "wrong_reasons": {
+      "(0, 4)": "Set y = 0 and solved for x (the x-intercept value), then wrote it as a y-coordinate.",
+      "(0, 12)": "Used the constant 12 without dividing by the coefficient of y.",
+      "(4, 0)": "Found the x-intercept instead of the y-intercept."
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nb=solve((3*x+4*y-12).subs(x,0),y)[0]\nresult='(0, %s)'%b"
+  },
+  {
+    "id": "alg-linear-eq-2var-006",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A landscaper loads bags of soil that weigh 40 pounds each and bags of mulch that weigh 25 pounds each onto a truck. The total weight of the bags is exactly 1,000 pounds. Which equation represents this situation, where s is the number of bags of soil and m is the number of bags of mulch?",
+    "choices": [
+      "25s + 40m = 1,000",
+      "40s + 25m = 1,000",
+      "s + m = 1,000",
+      "65(s + m) = 1,000"
+    ],
+    "answer": "40s + 25m = 1,000",
+    "explanation": [
+      "Each soil bag adds 40 pounds, so s bags weigh 40s pounds.",
+      "Each mulch bag adds 25 pounds, so m bags weigh 25m pounds.",
+      "The two weights add to 1,000: 40s + 25m = 1,000."
+    ],
+    "hints": [
+      "How much do s bags of soil weigh in all?",
+      "How do you combine the soil weight and the mulch weight to get the total?"
+    ],
+    "wrong_reasons": {
+      "25s + 40m = 1,000": "Matched each weight to the wrong variable.",
+      "s + m = 1,000": "Treated 1,000 as the number of bags instead of the total weight.",
+      "65(s + m) = 1,000": "Added the two weights together as if every bag weighed 65 pounds."
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT=standard_transformations+(implicit_multiplication_application,)\ndef E(s):\n    l,r=s.replace('\\u2212','-').replace(',','').split('=')\n    return parse_expr(l,transformations=T)-parse_expr(r,transformations=T)\ns,m=symbols('s m')\nch=['40s + 25m = 1,000','25s + 40m = 1,000','s + m = 1,000','65(s + m) = 1,000']\n# 25 soil bags alone or 40 mulch bags alone each weigh 1,000 lb\nok=[c for c in ch if E(c).subs({s:25,m:0})==0 and E(c).subs({s:0,m:40})==0]\nresult=ok[0].replace('−','-') if len(ok)==1 else 'not unique'"
+  },
+  {
+    "id": "alg-linear-eq-2var-007",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The point (a, −5) lies on the line y = −2x + 7 in the xy-plane. What is the value of a?",
+    "answer": "6",
+    "explanation": [
+      "Substitute x = a and y = −5: −5 = −2a + 7.",
+      "Subtract 7: −12 = −2a.",
+      "Divide by −2: a = 6."
+    ],
+    "hints": [
+      "In the point (a, −5), which coordinate is a, and which is −5?",
+      "After you substitute, what do you need to undo to get a by itself?"
+    ],
+    "check": "from sympy import *\na=symbols('a')\nresult=solve(-2*a+7-(-5),a)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-008",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The table shows three values of x and their corresponding values of y. Which equation could relate x and y?",
+    "table": {
+      "headers": [
+        "x",
+        "y"
+      ],
+      "rows": [
+        [
+          "0",
+          "5"
+        ],
+        [
+          "2",
+          "11"
+        ],
+        [
+          "4",
+          "17"
+        ]
+      ]
+    },
+    "choices": [
+      "y = 3x + 5",
+      "y = 6x + 5",
+      "y = 5x + 3",
+      "y = 3x + 11"
+    ],
+    "answer": "y = 3x + 5",
+    "explanation": [
+      "When x increases by 2, y increases by 6, so y changes by 3 for each 1 that x increases. The slope is 3.",
+      "When x = 0, y = 5, so the y-intercept is 5.",
+      "The equation is y = 3x + 5. Check: 3(4) + 5 = 17. ✓"
+    ],
+    "hints": [
+      "When x goes up by 2, how much does y go up? What does that mean for an increase of 1?",
+      "Which row of the table tells you the value of y when x is 0?"
+    ],
+    "wrong_reasons": {
+      "y = 6x + 5": "Used the change in y (6) as the slope without dividing by the change in x (2).",
+      "y = 5x + 3": "Swapped the slope and the y-intercept.",
+      "y = 3x + 11": "Used the y-value from the second row as the y-intercept."
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT=standard_transformations+(implicit_multiplication_application,)\ndef E(s):\n    l,r=s.replace('\\u2212','-').replace(',','').split('=')\n    return parse_expr(l,transformations=T)-parse_expr(r,transformations=T)\nx,y=symbols('x y')\nrows=[(0,5),(2,11),(4,17)]\nch=['y = 3x + 5','y = 6x + 5','y = 5x + 3','y = 3x + 11']\nok=[c for c in ch if all(E(c).subs({x:a,y:b})==0 for a,b in rows)]\nresult=ok[0].replace('−','-') if len(ok)==1 else 'not unique'"
+  },
+  {
+    "id": "alg-linear-eq-2var-009",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If 2x + y = 9, what is the value of 6x + 3y?",
+    "choices": [
+      "9",
+      "18",
+      "27",
+      "81"
+    ],
+    "answer": "27",
+    "explanation": [
+      "Notice that 6x + 3y = 3(2x + y).",
+      "Since 2x + y = 9, 6x + 3y = 3(9) = 27."
+    ],
+    "hints": [
+      "How is the expression 6x + 3y related to 2x + y?",
+      "Do you need to know x and y separately, or is there a shortcut?"
+    ],
+    "wrong_reasons": {
+      "9": "Assumed the new expression has the same value as the original one.",
+      "18": "Multiplied by 2 instead of 3 (doubled 9).",
+      "81": "Squared 9 instead of multiplying by the factor 3."
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nyy=9-2*x\nresult=simplify(6*x+3*yy)"
+  },
+  {
+    "id": "alg-linear-eq-2var-010",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What is the slope of the line 6x − 3y = 15 in the xy-plane?",
+    "choices": [
+      "−2",
+      "1/2",
+      "2",
+      "6"
+    ],
+    "answer": "2",
+    "explanation": [
+      "Solve for y: −3y = −6x + 15.",
+      "Divide every term by −3: y = 2x − 5.",
+      "The coefficient of x is the slope, 2."
+    ],
+    "hints": [
+      "What form of a linear equation shows the slope directly?",
+      "When you divide both sides by the coefficient of y, what happens to the sign of each term?"
+    ],
+    "wrong_reasons": {
+      "−2": "Did not change the sign when dividing by −3.",
+      "6": "Took the coefficient of x in standard form as the slope.",
+      "1/2": "Divided in the wrong order, computing 3/6 instead of 6/3."
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=diff(solve(6*x-3*y-15,y)[0],x)"
+  },
+  {
+    "id": "alg-linear-eq-2var-011",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A delivery van has 90 cubic feet of cargo space. Each small package takes up 0.6 cubic feet and each large package takes up 1.5 cubic feet. The equation 0.6s + 1.5L = 90 represents a full van with s small packages and L large packages. If the full van holds 40 large packages, how many small packages does it hold?",
+    "answer": "50",
+    "explanation": [
+      "Substitute L = 40: 0.6s + 1.5(40) = 90.",
+      "Simplify: 0.6s + 60 = 90, so 0.6s = 30.",
+      "Divide by 0.6: s = 50."
+    ],
+    "hints": [
+      "How much space do the 40 large packages use?",
+      "How much space is left over, and how many 0.6-cubic-foot packages fit in it?"
+    ],
+    "check": "from sympy import *\ns,L=symbols('s L')\nresult=solve((Rational(3,5)*s+Rational(3,2)*L-90).subs(L,40),s)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-012",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A pet store's sales of fish on one day are modeled by 3x + 11y = 231, where x is the number of small fish sold at $3 each and y is the number of large fish sold at $11 each. If the store had sold 3 more large fish and the total sales stayed the same, how would the number of small fish sold change?",
+    "choices": [
+      "It decreases by 33",
+      "It decreases by 9",
+      "It decreases by 3",
+      "It decreases by 11"
+    ],
+    "answer": "It decreases by 11",
+    "explanation": [
+      "3 more large fish add 3 × $11 = $33 in sales.",
+      "To keep the total at $231, sales of small fish must drop by $33.",
+      "At $3 each, that is 33 ÷ 3 = 11 fewer small fish."
+    ],
+    "hints": [
+      "How many extra dollars do 3 more large fish bring in?",
+      "How many small fish are worth that many dollars?"
+    ],
+    "wrong_reasons": {
+      "It decreases by 33": "Gave the change in dollars instead of the number of fish.",
+      "It decreases by 9": "Multiplied 3 by the $3 price instead of using the $11 price of large fish.",
+      "It decreases by 3": "Assumed each large fish replaces exactly one small fish."
+    },
+    "check": "from sympy import *\nx,y,d=symbols('x y d')\n# keep 3x+11y fixed when y -> y+3 and x -> x+d\nn=solve(3*(x+d)+11*(y+3)-(3*x+11*y),d)[0]\nresult='It decreases by %s'%(-n)"
+  },
+  {
+    "id": "alg-linear-eq-2var-013",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A line in the xy-plane passes through the points (−2, 7) and (4, −2). Which equation represents the line?",
+    "choices": [
+      "3x − 2y = 8",
+      "2x + 3y = 8",
+      "3x + 2y = 4",
+      "3x + 2y = 8"
+    ],
+    "answer": "3x + 2y = 8",
+    "explanation": [
+      "Slope = (−2 − 7)/(4 − (−2)) = −9/6 = −3/2.",
+      "Using (4, −2): y + 2 = −(3/2)(x − 4), so y = −(3/2)x + 4.",
+      "Multiply by 2 and rearrange: 3x + 2y = 8. Check (−2, 7): −6 + 14 = 8. ✓"
+    ],
+    "hints": [
+      "What is the slope between the two points?",
+      "Once you have an equation in slope-intercept form, how can you clear the fraction to compare with the choices?",
+      "Could you check a choice by substituting both points?"
+    ],
+    "wrong_reasons": {
+      "3x − 2y = 8": "Made a sign error in the slope, getting a positive slope of 3/2.",
+      "2x + 3y = 8": "Used the reciprocal of the slope, −2/3.",
+      "3x + 2y = 4": "Multiplied the x-term by 2 but not the y-intercept 4 when clearing the fraction."
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT=standard_transformations+(implicit_multiplication_application,)\ndef E(s):\n    l,r=s.replace('\\u2212','-').replace(',','').split('=')\n    return parse_expr(l,transformations=T)-parse_expr(r,transformations=T)\nx,y=symbols('x y')\npts=[(-2,7),(4,-2)]\nch=['3x + 2y = 8','3x − 2y = 8','2x + 3y = 8','3x + 2y = 4']\nok=[c for c in ch if all(E(c).subs({x:a,y:b})==0 for a,b in pts)]\nresult=ok[0].replace('−','-') if len(ok)==1 else 'not unique'"
+  },
+  {
+    "id": "alg-linear-eq-2var-014",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the xy-plane, the graph of 5x − 4y = 20 crosses the x-axis at (a, 0) and the y-axis at (0, b). What is the value of a + b?",
+    "answer": "-1",
+    "accept": [
+      "−1"
+    ],
+    "explanation": [
+      "For the x-intercept, let y = 0: 5x = 20, so a = 4.",
+      "For the y-intercept, let x = 0: −4y = 20, so b = −5.",
+      "a + b = 4 + (−5) = −1."
+    ],
+    "hints": [
+      "Which variable is 0 on the x-axis, and which is 0 on the y-axis?",
+      "When you solve −4y = 20, what sign should b have?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ne=5*x-4*y-20\nresult=solve(e.subs(y,0),x)[0]+solve(e.subs(x,0),y)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-015",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A school spends exactly $2,000 on x graphing calculators at $125 each and y textbooks at $40 each, so 125x + 40y = 2,000. The graph of this equation in the xy-plane crosses the x-axis at (16, 0). Which is the best interpretation of this point?",
+    "choices": [
+      "If the school buys no graphing calculators, it can buy 16 textbooks.",
+      "If the school buys no textbooks, it can buy 16 graphing calculators.",
+      "Each graphing calculator costs 16 times as much as a textbook.",
+      "The school buys 16 more graphing calculators than textbooks."
+    ],
+    "answer": "If the school buys no textbooks, it can buy 16 graphing calculators.",
+    "explanation": [
+      "On the x-axis, y = 0, so the point describes buying 0 textbooks.",
+      "x = 16 then means 16 calculators, and 125(16) = 2,000. ✓",
+      "So with no textbooks, the school can buy 16 calculators."
+    ],
+    "hints": [
+      "What is the value of y at a point on the x-axis, and what does y count?",
+      "Which variable does the 16 belong to?"
+    ],
+    "wrong_reasons": {
+      "If the school buys no graphing calculators, it can buy 16 textbooks.": "Mixed up which variable is 0 at an x-intercept.",
+      "Each graphing calculator costs 16 times as much as a textbook.": "Read 16 as a ratio of prices; the actual ratio is 125/40 = 3.125.",
+      "The school buys 16 more graphing calculators than textbooks.": "Treated the point as a difference between the two quantities rather than a specific purchase."
+    },
+    "check": null,
+    "check_note": "Interpretation item: the answer is a verbal description of an intercept in context; the arithmetic (2,000/125 = 16) is given in the stem."
+  },
+  {
+    "id": "alg-linear-eq-2var-016",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The ordered pair (k, 2k) is a solution to the equation 7x − 2y = 18. What is the value of k?",
+    "choices": [
+      "3/2",
+      "18/11",
+      "18/5",
+      "6"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Substitute x = k and y = 2k: 7k − 2(2k) = 18.",
+      "Simplify: 7k − 4k = 3k = 18.",
+      "Divide by 3: k = 6."
+    ],
+    "hints": [
+      "Which expression replaces x, and which replaces y?",
+      "What is −2 times 2k?"
+    ],
+    "wrong_reasons": {
+      "18/5": "Substituted y = 2k but wrote −2y as −2k, getting 5k = 18.",
+      "3/2": "Swapped the coordinates, substituting x = 2k and y = k, getting 12k = 18.",
+      "18/11": "Made a sign error and added 4k, getting 11k = 18."
+    },
+    "check": "from sympy import *\nk=symbols('k')\nresult=solve(7*k-2*(2*k)-18,k)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-017",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "Each ordered pair (x, y) in the table is a solution to the same linear equation. What is the value of y when x = 11?",
+    "table": {
+      "headers": [
+        "x",
+        "y"
+      ],
+      "rows": [
+        [
+          "−1",
+          "10"
+        ],
+        [
+          "2",
+          "4"
+        ],
+        [
+          "5",
+          "−2"
+        ]
+      ]
+    },
+    "answer": "-14",
+    "accept": [
+      "−14"
+    ],
+    "explanation": [
+      "From x = −1 to x = 2, y drops from 10 to 4: a change of −6 for +3 in x, so the slope is −2.",
+      "Using (2, 4): y = −2(x − 2) + 4 = −2x + 8.",
+      "When x = 11: y = −22 + 8 = −14."
+    ],
+    "hints": [
+      "As x increases by 3, how much does y change each time?",
+      "Can you use that rate to step from x = 5 to x = 11, or write the equation?"
+    ],
+    "check": "from sympy import *\nx,m,b=symbols('x m b')\nsol=solve([m*(-1)+b-10,m*2+b-4],[m,b])\nassert sol[m]*5+sol[b]==-2\nresult=sol[m]*11+sol[b]"
+  },
+  {
+    "id": "alg-linear-eq-2var-018",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A rideshare driver is paid $0.90 per mile and $0.30 per minute for each trip. The driver was paid $27 for a trip that was 18 miles long. How many minutes long was the trip?",
+    "choices": [
+      "30",
+      "36",
+      "54",
+      "90"
+    ],
+    "answer": "36",
+    "explanation": [
+      "Write the equation 0.90m + 0.30t = 27, with m miles and t minutes.",
+      "Substitute m = 18: 16.20 + 0.30t = 27, so 0.30t = 10.80.",
+      "Divide by 0.30: t = 36 minutes."
+    ],
+    "hints": [
+      "How much of the $27 came from the miles driven?",
+      "How many minutes at $0.30 each account for the rest?"
+    ],
+    "wrong_reasons": {
+      "54": "Divided the mileage pay ($16.20) by $0.30 instead of the remaining pay.",
+      "90": "Divided the full $27 by $0.30, ignoring the mileage pay.",
+      "30": "Subtracted 18 miles from $27 directly, as if each mile paid $1."
+    },
+    "check": "from sympy import *\nm,t=symbols('m t')\nresult=solve((Rational(9,10)*m+Rational(3,10)*t-27).subs(m,18),t)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-019",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, line ℓ has equation ax + 6y = 18, where a is a constant. Line ℓ is parallel to the line 2x − 3y = 7. What is the value of a?",
+    "choices": [
+      "−9",
+      "−4",
+      "4",
+      "9"
+    ],
+    "answer": "−4",
+    "explanation": [
+      "Write 2x − 3y = 7 as y = (2/3)x − 7/3, so its slope is 2/3.",
+      "Write ax + 6y = 18 as y = −(a/6)x + 3, so its slope is −a/6.",
+      "Parallel lines have equal slopes: −a/6 = 2/3, so a = −4."
+    ],
+    "hints": [
+      "What must be true about the slopes of parallel lines?",
+      "When you solve ax + 6y = 18 for y, what is the coefficient of x?"
+    ],
+    "wrong_reasons": {
+      "4": "Forgot the negative sign when finding the slope −a/6.",
+      "9": "Used the perpendicular slope −3/2 instead of the same slope.",
+      "−9": "Used the perpendicular slope and also made a sign error."
+    },
+    "check": "from sympy import *\nx,y,a=symbols('x y a')\nm1=diff(solve(2*x-3*y-7,y)[0],x)\nm2=diff(solve(a*x+6*y-18,y)[0],x)\nresult=solve(m2-m1,a)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-020",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Line k passes through the point (3, −1) and is perpendicular to the line 4x + 5y = 20. Line k crosses the y-axis at (0, b). What is the value of b?",
+    "answer": "-19/4",
+    "accept": [
+      "−19/4",
+      "-4.75",
+      "−4.75"
+    ],
+    "explanation": [
+      "The line 4x + 5y = 20 has slope −4/5, so line k has slope 5/4.",
+      "Line k: y + 1 = (5/4)(x − 3).",
+      "At x = 0: y + 1 = −15/4, so b = −15/4 − 1 = −19/4."
+    ],
+    "hints": [
+      "How are the slopes of perpendicular lines related?",
+      "Once you know the slope of k and one point on it, how can you find its value of y when x = 0?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\nm=-1/diff(solve(4*x+5*y-20,y)[0],x)\nresult=-1+m*(0-3)"
+  },
+  {
+    "id": "alg-linear-eq-2var-021",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A chemist mixes x milliliters of a 12% acid solution with y milliliters of a 30% acid solution. The mixture contains 54 milliliters of acid, so 0.12x + 0.30y = 54. The chemist uses twice as many milliliters of the 12% solution as of the 30% solution. What is the total volume, in milliliters, of the mixture?",
+    "choices": [
+      "100",
+      "200",
+      "225",
+      "300"
+    ],
+    "answer": "300",
+    "explanation": [
+      "Twice as much 12% solution as 30% solution means x = 2y.",
+      "Substitute: 0.12(2y) + 0.30y = 54, so 0.24y + 0.30y = 0.54y = 54.",
+      "Divide by 0.54: y = 100, so x = 2(100) = 200.",
+      "The total volume is x + y = 200 + 100 = 300 milliliters."
+    ],
+    "hints": [
+      "How can you write x in terms of y using the word 'twice'?",
+      "After you substitute, what equation with only y do you get?",
+      "Does the question ask for x, for y, or for something else?"
+    ],
+    "wrong_reasons": {
+      "200": "Found the volume of the 12% solution only, not the total.",
+      "100": "Found the volume of the 30% solution only, not the total.",
+      "225": "Reversed the relationship, using y = 2x instead of x = 2y."
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nsol=solve([Rational(12,100)*x+Rational(30,100)*y-54, x-2*y],[x,y])\nresult=sol[x]+sol[y]"
+  },
+  {
+    "id": "alg-linear-eq-2var-022",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Which of the following equations has a graph in the xy-plane with a positive slope and a negative y-intercept?",
+    "choices": [
+      "3x − 5y = 10",
+      "3x + 5y = 10",
+      "−3x + 5y = 10",
+      "3x + 5y = −10"
+    ],
+    "answer": "3x − 5y = 10",
+    "explanation": [
+      "Solve each for y.",
+      "3x − 5y = 10 gives y = (3/5)x − 2: positive slope, negative y-intercept. ✓",
+      "3x + 5y = 10 gives y = −(3/5)x + 2; −3x + 5y = 10 gives y = (3/5)x + 2; 3x + 5y = −10 gives y = −(3/5)x − 2. None of these has both properties."
+    ],
+    "hints": [
+      "What form makes the slope and y-intercept easy to read?",
+      "When you divide by a negative coefficient of y, what happens to the signs?"
+    ],
+    "wrong_reasons": {
+      "3x + 5y = 10": "Made sign errors when moving the x-term and the constant, getting 5y = 3x − 10 instead of 5y = −3x + 10.",
+      "−3x + 5y = 10": "Found the positive slope correctly but missed that the y-intercept, 2, is positive.",
+      "3x + 5y = −10": "Found the negative y-intercept correctly but forgot that moving 3x to the other side makes the slope negative."
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT=standard_transformations+(implicit_multiplication_application,)\ndef E(s):\n    l,r=s.replace('\\u2212','-').replace(',','').split('=')\n    return parse_expr(l,transformations=T)-parse_expr(r,transformations=T)\nx,y=symbols('x y')\nch=['3x − 5y = 10','3x + 5y = 10','−3x + 5y = 10','3x + 5y = −10']\nok=[]\nfor c in ch:\n    f=solve(E(c),y)[0]\n    if diff(f,x)>0 and f.subs(x,0)<0: ok.append(c)\nresult=ok[0].replace('−','-') if len(ok)==1 else 'not unique'"
+  },
+  {
+    "id": "alg-linear-eq-2var-023",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the xy-plane, the graph of 4x + ky = 24, where k is a positive constant, has an x-intercept of (p, 0) and a y-intercept of (0, q). If p is 3 times q, what is the value of k?",
+    "answer": "12",
+    "explanation": [
+      "Let y = 0: 4x = 24, so p = 6.",
+      "Let x = 0: ky = 24, so q = 24/k.",
+      "p = 3q gives 6 = 3(24/k) = 72/k, so k = 12."
+    ],
+    "hints": [
+      "Which intercept can you find without knowing k?",
+      "How can you write q in terms of k, and what equation does 'p is 3 times q' give?"
+    ],
+    "check": "from sympy import *\nx,y,k=symbols('x y k',positive=True)\np=solve((4*x+k*y-24).subs(y,0),x)[0]\nq=solve((4*x+k*y-24).subs(x,0),y)[0]\nresult=solve(p-3*q,k)[0]"
+  },
+  {
+    "id": "alg-linear-eq-2var-024",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A fitness app awards 15 points for each minute of running and 6 points for each minute of walking. A user earned 450 points in one day, so 15r + 6w = 450, where r is minutes of running and w is minutes of walking. Which equation gives w in terms of r?",
+    "choices": [
+      "w = 75 − (5/2)r",
+      "w = 75 − (2/5)r",
+      "w = 450 − 15r",
+      "w = 30 − (5/2)r"
+    ],
+    "answer": "w = 75 − (5/2)r",
+    "explanation": [
+      "Subtract 15r from both sides: 6w = 450 − 15r.",
+      "Divide every term by 6: w = 75 − (15/6)r.",
+      "Simplify 15/6 to 5/2: w = 75 − (5/2)r."
+    ],
+    "hints": [
+      "What should you move to the other side first so that only the w-term is left?",
+      "When you divide by 6, which terms must be divided?"
+    ],
+    "wrong_reasons": {
+      "w = 75 − (2/5)r": "Inverted the fraction, dividing 6 by 15 instead of 15 by 6.",
+      "w = 450 − 15r": "Isolated 6w but forgot to divide by 6.",
+      "w = 30 − (5/2)r": "Divided 450 by 15 instead of by 6."
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT=standard_transformations+(implicit_multiplication_application,)\ndef E(s):\n    l,r=s.replace('\\u2212','-').replace(',','').split('=')\n    return parse_expr(l,transformations=T)-parse_expr(r,transformations=T)\nr,w=symbols('r w')\ntarget=solve(15*r+6*w-450,w)[0]\nch=['w = 75 − (5/2)r','w = 75 − (2/5)r','w = 450 − 15r','w = 30 − (5/2)r']\nok=[c for c in ch if simplify(solve(E(c),w)[0]-target)==0]\nresult=ok[0].replace('−','-') if len(ok)==1 else 'not unique'"
+  },
+  {
+    "id": "alg-linear-eq-2var-025",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of 2x + 5y = 40 in the xy-plane is a line. How many points on this line have an x-coordinate and a y-coordinate that are both positive integers?",
+    "choices": [
+      "3",
+      "4",
+      "5",
+      "20"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Solve for y: y = 8 − (2/5)x, so y is an integer only when x is a multiple of 5.",
+      "Try x = 5, 10, 15, 20: y = 6, 4, 2, 0.",
+      "y must be positive, so (20, 0) does not count. The points are (5, 6), (10, 4), and (15, 2): 3 points."
+    ],
+    "hints": [
+      "For y to be a whole number, what must be true about x?",
+      "Which of the possible points have a coordinate that is not positive?"
+    ],
+    "wrong_reasons": {
+      "4": "Included (20, 0), but 0 is not a positive integer.",
+      "5": "Included both intercepts, (0, 8) and (20, 0).",
+      "20": "Counted every positive integer x from 1 to 20 without checking that y is an integer."
+    },
+    "check": "from sympy import *\nresult=sum(1 for a in range(1,41) for b in range(1,41) if 2*a+5*b==40)"
+  },
+  {
+    "id": "alg-linear-eq-2var-026",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The line 3x − 2y = 12 in the xy-plane is shifted up 3 units. Which equation represents the new line?",
+    "choices": [
+      "3x − 2y = 18",
+      "3x − 2y = 9",
+      "3x − 2y = 6",
+      "3x − 2y = 15"
+    ],
+    "answer": "3x − 2y = 6",
+    "explanation": [
+      "Shifting up 3 units replaces y with y − 3: 3x − 2(y − 3) = 12.",
+      "Expand: 3x − 2y + 6 = 12.",
+      "Subtract 6: 3x − 2y = 6. Check: (0, −6) is on the original line, and (0, −3) is on the new line: 0 − 2(−3) = 6. ✓"
+    ],
+    "hints": [
+      "Where does the original line cross the y-axis, and where should the new line cross it?",
+      "Which choice passes through that new y-intercept?"
+    ],
+    "wrong_reasons": {
+      "3x − 2y = 18": "Replaced y with y + 3, which shifts the line down 3 units.",
+      "3x − 2y = 9": "Subtracted 3 from the constant without accounting for the coefficient −2 on y.",
+      "3x − 2y = 15": "Added 3 to the constant, treating the constant as the y-intercept."
+    },
+    "check": "from sympy import *\nfrom sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application\nT=standard_transformations+(implicit_multiplication_application,)\ndef E(s):\n    l,r=s.replace('\\u2212','-').replace(',','').split('=')\n    return parse_expr(l,transformations=T)-parse_expr(r,transformations=T)\nx,y=symbols('x y')\nnew=expand((3*x-2*y-12).subs(y,y-3))\nch=['3x − 2y = 6','3x − 2y = 18','3x − 2y = 9','3x − 2y = 15']\nok=[c for c in ch if simplify(E(c)-new)==0]\nresult=ok[0].replace('−','-') if len(ok)==1 else 'not unique'"
+  },
+  {
+    "id": "alg-linear-eq-2var-027",
+    "skill_id": "alg-linear-eq-2var",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Eli runs at 6 miles per hour and bikes at 15 miles per hour. On Saturday he spent exactly 3 hours exercising, which is modeled by x/6 + y/15 = 3, where x is the number of miles he ran and y is the number of miles he biked. If Eli biked 30 miles, how many miles did he run?",
+    "choices": [
+      "1",
+      "6",
+      "12",
+      "18"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Substitute y = 30: x/6 + 30/15 = 3.",
+      "30/15 = 2 hours of biking, so x/6 = 1.",
+      "Multiply by 6: x = 6 miles."
+    ],
+    "hints": [
+      "What does each term, such as y/15, measure: miles or hours?",
+      "How much of the 3 hours is left for running, and how far does he run in that time?"
+    ],
+    "wrong_reasons": {
+      "1": "Found the hours spent running but did not convert to miles.",
+      "12": "Multiplied the 2 hours of biking by the running speed of 6.",
+      "18": "Multiplied the full 3 hours by 6, ignoring the time spent biking."
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nresult=solve((x/6+y/15-3).subs(y,30),x)[0]"
+  }
+]
