@@ -2358,6 +2358,6 @@
       "(5, 30)": "Thought a high point raises the slope, but a point at the mean x-value shifts the line up without changing its slope",
       "(10, 21)": "Chose a point on the line, which leaves the line of best fit unchanged"
     },
-    "check": "import numpy as np\nxs=list(range(11))\nr=[1,-1,-1,1,0,0,0,1,-1,-1,1]\nys=[2*x+1+e for x,e in zip(xs,r)]\nm0=np.polyfit(xs,ys,1)[0]\nassert abs(m0-2)<1e-9\nch={'(0, 20)':(0,20),'(5, 30)':(5,30),'(10, 21)':(10,21),'(10, 40)':(10,40)}\nup=[k for k,(a,b) in ch.items() if np.polyfit(xs+[a],ys+[b],1)[0]>m0+1e-9]\nassert len(up)==1\nresult=up[0]"
+    "check": "from fractions import Fraction as F\ndef slope(xs, ys):\n    n = len(xs); mx = F(sum(xs), n); my = F(sum(ys), n)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\nxs=list(range(11))\nr=[1,-1,-1,1,0,0,0,1,-1,-1,1]\nys=[2*x+1+e for x,e in zip(xs,r)]\nm0=slope(xs,ys)\nassert m0==2\nch={'(0, 20)':(0,20),'(5, 30)':(5,30),'(10, 21)':(10,21),'(10, 40)':(10,40)}\nup=[k for k,(a,b) in ch.items() if slope(xs+[a],ys+[b])>m0]\nassert len(up)==1\nresult=up[0]"
   }
 ]
