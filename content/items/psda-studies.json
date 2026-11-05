@@ -37,8 +37,8 @@
     "stem": "A health website asked its readers how many hours they sleep each night and how many colds they had last year. Readers who reported sleeping at least 8 hours had fewer colds on average. Which statement is best supported by this study?",
     "choices": [
       "Sleeping at least 8 hours causes people to get fewer colds.",
-      "Among the readers who responded, more sleep was associated with fewer colds.",
       "Every reader who sleeps at least 8 hours had fewer colds than every reader who sleeps less.",
+      "Among the readers who responded, more sleep was associated with fewer colds.",
       "Sleeping more has no effect on how many colds a person gets."
     ],
     "answer": "Among the readers who responded, more sleep was associated with fewer colds.",
@@ -87,9 +87,9 @@
     "stem": "A researcher wants to know whether a new fitness app causes people to walk more steps per day. Which of the following is the main reason to randomly assign participants to use the app or not use it?",
     "choices": [
       "To make sure the results apply to every adult in the country",
+      "To make the two groups similar in other ways, so differences in steps can be attributed to the app",
       "To guarantee that the app group walks more steps",
-      "To make the study cheaper to run",
-      "To make the two groups similar in other ways, so differences in steps can be attributed to the app"
+      "To make the study cheaper to run"
     ],
     "answer": "To make the two groups similar in other ways, so differences in steps can be attributed to the app",
     "explanation": [
@@ -118,8 +118,8 @@
     "choices": [
       "The 20 chains that receive the coating",
       "All 40 chains",
-      "The 20 chains that receive no coating",
-      "Only the chains that rust"
+      "Only the chains that rust",
+      "The 20 chains that receive no coating"
     ],
     "answer": "The 20 chains that receive no coating",
     "explanation": [
@@ -326,8 +326,8 @@
     "type": "mc",
     "stem": "In a study of a new headache pill, half of the participants receive the pill and the other half receive a sugar pill that looks identical. Neither the participants nor the doctors recording their symptoms know who got which pill. What is the main reason for giving the second group a look-alike sugar pill?",
     "choices": [
-      "So that any difference between groups is not just due to participants' expectations of being treated",
       "So that the second group's headaches will get worse",
+      "So that any difference between groups is not just due to participants' expectations of being treated",
       "So that the results can be generalized to everyone who gets headaches",
       "So that the researchers need fewer participants"
     ],
@@ -356,8 +356,8 @@
     "type": "mc",
     "stem": "A high school offered two tutoring formats for algebra: online and in person. Each student chose one format. At the end of the term, students who chose in-person tutoring had higher average test scores. Which statement describes the most serious problem with concluding that in-person tutoring causes higher scores?",
     "choices": [
-      "The school should have used three formats instead of two.",
       "Students chose their own format, so the groups may differ in ways, such as motivation, that also affect scores.",
+      "The school should have used three formats instead of two.",
       "The average test score is not a valid way to compare two groups.",
       "Some students may have liked online tutoring better."
     ],
@@ -550,8 +550,8 @@
     "choices": [
       "Taking a 10-minute walk before an exam likely causes higher scores for all college students.",
       "Walking is associated with higher scores at this university, but the study cannot show cause and effect.",
-      "Taking a walk likely causes higher scores, but only for the 100 students who walked.",
-      "Taking a 10-minute walk before an exam likely causes higher scores for students at this university."
+      "Taking a 10-minute walk before an exam likely causes higher scores for students at this university.",
+      "Taking a walk likely causes higher scores, but only for the 100 students who walked."
     ],
     "answer": "Taking a 10-minute walk before an exam likely causes higher scores for students at this university.",
     "explanation": [
@@ -581,8 +581,8 @@
     "choices": [
       "The teacher should have used one class in each group instead of two.",
       "Quiz scores are not a good measure of learning.",
-      "Time of day is linked to which worksheet a class received, so it could explain the difference.",
-      "The new worksheets should have been given to all four classes."
+      "The new worksheets should have been given to all four classes.",
+      "Time of day is linked to which worksheet a class received, so it could explain the difference."
     ],
     "answer": "Time of day is linked to which worksheet a class received, so it could explain the difference.",
     "explanation": [
@@ -686,9 +686,9 @@
     "stem": "A school district wants to find out whether a new reading program causes better reading scores among its 3,000 fourth graders. Which plan would best support a conclusion about cause that applies to all of the district's fourth graders?",
     "choices": [
       "Let each fourth-grade teacher decide whether to use the new program, then compare scores.",
-      "Randomly select 200 fourth graders from the district, then randomly assign half to the new program and half to the current program.",
       "Use the new program with all 3,000 fourth graders and compare their scores with last year's fourth graders.",
-      "Randomly assign the 60 fourth graders at one school, chosen for convenience, to the two programs."
+      "Randomly assign the 60 fourth graders at one school, chosen for convenience, to the two programs.",
+      "Randomly select 200 fourth graders from the district, then randomly assign half to the new program and half to the current program."
     ],
     "answer": "Randomly select 200 fourth graders from the district, then randomly assign half to the new program and half to the current program.",
     "explanation": [
@@ -716,8 +716,8 @@
     "stem": "An article claims, \"Dog owners live longer than people without dogs, so getting a dog will add years to your life.\" The claim is based on records of 10,000 adults, some of whom owned dogs. Which statement is the most valid criticism of the claim?",
     "choices": [
       "10,000 adults is too few people to find any association.",
-      "The claim must be false because some dog owners die young.",
       "People who are healthy enough to care for a dog may already be likely to live longer, so the study cannot show that owning a dog causes longer life.",
+      "The claim must be false because some dog owners die young.",
       "The study should have included cat owners."
     ],
     "answer": "People who are healthy enough to care for a dog may already be likely to live longer, so the study cannot show that owning a dog causes longer life.",
@@ -787,5 +787,1484 @@
     },
     "check": null,
     "check_note": "Conceptual item: the answer is a judgment about study design, not a computed value."
+  },
+  {
+    "id": "psda-studies-028",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A sports-medicine researcher reviewed the clinic records of 900 hikers. For each hiker, she recorded whether the hiker used trekking poles and whether the hiker reported knee pain. Hikers who used trekking poles reported knee pain less often. Which statement best explains why this is an observational study rather than an experiment?",
+    "choices": [
+      "The researcher studied 900 hikers, which is too many people for an experiment.",
+      "The researcher found an association between using trekking poles and knee pain.",
+      "The hikers, not the researcher, decided whether to use trekking poles.",
+      "The hikers came from a clinic's records instead of being chosen at random."
+    ],
+    "answer": "The hikers, not the researcher, decided whether to use trekking poles.",
+    "explanation": [
+      "In an experiment, the researcher imposes the treatment, such as telling some hikers to use poles and others not to.",
+      "Here the researcher only recorded choices the hikers had already made on their own.",
+      "Because no treatment was imposed, this is an observational study."
+    ],
+    "hints": [
+      "Who decided whether each hiker used trekking poles?",
+      "What does a researcher do in an experiment that this researcher did not do?"
+    ],
+    "wrong_reasons": {
+      "The researcher studied 900 hikers, which is too many people for an experiment.": "Thought the number of subjects decides the type of study; experiments can be any size",
+      "The researcher found an association between using trekking poles and knee pain.": "Thought finding an association makes a study observational; experiments also look for associations",
+      "The hikers came from a clinic's records instead of being chosen at random.": "Confused random sampling (which affects generalization) with imposing a treatment (which makes a study an experiment)"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-029",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A local radio station asked listeners to call in and say whether they support building a new skate park in town. Of the 412 people who called, 78% said they oppose it. Which is the main reason this result may not reflect the opinions of all town residents?",
+    "choices": [
+      "A total of 412 callers is too few to give useful information about the whole town.",
+      "People who chose to call in may have stronger opinions than typical residents.",
+      "The callers were not randomly assigned to support or oppose the skate park.",
+      "The radio station did not survey every resident of the town."
+    ],
+    "answer": "People who chose to call in may have stronger opinions than typical residents.",
+    "explanation": [
+      "The callers selected themselves: only listeners who cared enough to call were counted.",
+      "People with strong feelings, especially strong objections, are the most likely to call.",
+      "So the callers are probably not representative of all residents (voluntary response bias)."
+    ],
+    "hints": [
+      "Who decided which people ended up among the 412 callers?",
+      "Which residents would be most motivated to pick up the phone and call?"
+    ],
+    "wrong_reasons": {
+      "The callers were not randomly assigned to support or oppose the skate park.": "Confused random assignment (used in experiments) with random selection; opinions cannot be assigned",
+      "The radio station did not survey every resident of the town.": "Thought only a census can describe a population; a well-chosen random sample could",
+      "A total of 412 callers is too few to give useful information about the whole town.": "Blamed sample size; the real problem is who chose to respond, and a larger group of self-selected callers would have the same problem"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-030",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A park ranger wants to estimate the average amount of litter at the 400 campsites in a state park. She randomly selects 50 of the campsites and weighs the litter found at each one. What is the population in this study?",
+    "choices": [
+      "The 50 campsites she selected",
+      "The weight of the litter at each selected campsite",
+      "All campsites in the state",
+      "The 400 campsites in the state park"
+    ],
+    "answer": "The 400 campsites in the state park",
+    "explanation": [
+      "The population is the entire group the ranger wants to draw a conclusion about.",
+      "She wants to know about all 400 campsites in the park; the 50 she measured are the sample.",
+      "So the population is the 400 campsites in the state park."
+    ],
+    "hints": [
+      "What group does the ranger want to learn about?",
+      "Is that the same group she actually measured?"
+    ],
+    "wrong_reasons": {
+      "The 50 campsites she selected": "Named the sample, the part of the population actually measured",
+      "The weight of the litter at each selected campsite": "Named the variable being measured rather than the group being studied",
+      "All campsites in the state": "Stretched the population beyond the group the ranger wants to learn about and sampled from"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-031",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A city council wants to survey residents about a proposal to add bike lanes to Main Street. Which of the following questions is least likely to push respondents toward a particular answer?",
+    "choices": [
+      "Do you support adding bike lanes to Main Street to make it safer for children?",
+      "Do you agree that bike lanes on Main Street would waste money that could fix potholes?",
+      "Do you support or oppose adding bike lanes to Main Street?",
+      "Most residents support bike lanes on Main Street. Do you?"
+    ],
+    "answer": "Do you support or oppose adding bike lanes to Main Street?",
+    "explanation": [
+      "A neutral question presents the choices evenly and gives no reason to favor one answer.",
+      "The other questions add a reason for one side or tell respondents what most people think.",
+      "Only \"Do you support or oppose adding bike lanes to Main Street?\" is neutral."
+    ],
+    "hints": [
+      "Does the question give a reason to choose one answer over the other?",
+      "Does the question mention both possible answers equally?"
+    ],
+    "wrong_reasons": {
+      "Do you support adding bike lanes to Main Street to make it safer for children?": "Missed that giving a reason only for one side nudges people toward yes",
+      "Do you agree that bike lanes on Main Street would waste money that could fix potholes?": "Missed that calling the plan a waste of money nudges people toward no",
+      "Most residents support bike lanes on Main Street. Do you?": "Missed that telling people what others think pressures them to agree"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-032",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A baker tests whether the length of time dough rests affects how tall a loaf rises. She randomly assigns 24 batches of the same dough to rest for 30, 60, or 90 minutes, then measures the height of each baked loaf. What is the response variable in this experiment?",
+    "choices": [
+      "The height of each baked loaf",
+      "The length of time the dough rests",
+      "The 24 batches of dough",
+      "The random assignment of the batches"
+    ],
+    "answer": "The height of each baked loaf",
+    "explanation": [
+      "The explanatory variable is what the baker changes on purpose: the resting time.",
+      "The response variable is the outcome she measures to see the effect: the loaf height.",
+      "So the response variable is the height of each baked loaf."
+    ],
+    "hints": [
+      "Which quantity does the baker change on purpose?",
+      "Which quantity does she measure to see whether that change made a difference?"
+    ],
+    "wrong_reasons": {
+      "The length of time the dough rests": "Chose the explanatory variable, the factor the baker changes on purpose",
+      "The 24 batches of dough": "Chose the experimental units, not a variable that is measured",
+      "The random assignment of the batches": "Chose part of the study's method rather than a measured outcome"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-033",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A researcher has 40 volunteers for a study comparing two keyboard layouts for typing speed. Which method randomly assigns the volunteers to the two layouts?",
+    "choices": [
+      "Give the new layout to the first 20 volunteers who arrive at the lab on the day of the study",
+      "Write each name on a card, shuffle the cards, and give the new layout to the first 20 names drawn",
+      "Let each volunteer choose the layout he or she prefers",
+      "Give the new layout to the 20 volunteers who type fastest on a pretest and the old layout to the other 20"
+    ],
+    "answer": "Write each name on a card, shuffle the cards, and give the new layout to the first 20 names drawn",
+    "explanation": [
+      "Random assignment means chance alone decides each person's group.",
+      "Shuffling the name cards and drawing 20 gives every volunteer the same chance to get the new layout.",
+      "Each other method lets something about the person (arrival time, preference, skill) decide the group."
+    ],
+    "hints": [
+      "In which method does chance alone decide each volunteer's group?",
+      "In the other methods, could something about a volunteer affect which group he or she is in?"
+    ],
+    "wrong_reasons": {
+      "Let each volunteer choose the layout he or she prefers": "Allowed self-selection, so people who choose a layout may already type differently",
+      "Give the new layout to the first 20 volunteers who arrive at the lab on the day of the study": "Treated arrival order as random; early arrivers may differ, for example by being more eager",
+      "Give the new layout to the 20 volunteers who type fastest on a pretest and the old layout to the other 20": "Created groups that differ in skill on purpose, which is the opposite of random assignment"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-034",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A school counselor notices that the students who meet with a math tutor most often tend to have the lowest math grades. Which is the most likely explanation?",
+    "choices": [
+      "Meeting with a tutor causes students' math grades to drop.",
+      "Students with low grades have less free time available to meet with a tutor.",
+      "Students who are struggling in math are more likely to seek out a tutor.",
+      "The pattern shows that tutoring and math grades are unrelated."
+    ],
+    "answer": "Students who are struggling in math are more likely to seek out a tutor.",
+    "explanation": [
+      "The association could run in either direction.",
+      "Low grades are a common reason for a student to start meeting with a tutor often.",
+      "So the low grades most likely lead to the tutoring, not the other way around."
+    ],
+    "hints": [
+      "Could the low grades have come before the tutoring?",
+      "Why might a student decide to start meeting with a tutor?"
+    ],
+    "wrong_reasons": {
+      "Meeting with a tutor causes students' math grades to drop.": "Assumed the association shows that tutoring causes the grades, ignoring that the direction could be reversed",
+      "The pattern shows that tutoring and math grades are unrelated.": "Thought an unexpected association means no relationship; the variables are clearly related",
+      "Students with low grades have less free time available to meet with a tutor.": "Gave a reason that would make low-scoring students meet less often, the opposite of what was observed"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-035",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In a study of a new eye drop for dry eyes, participants are randomly assigned to use either the new drop or a look-alike drop that contains no medicine. Which description would make the study double-blind?",
+    "choices": [
+      "The participants do not know which drop they used, but the eye doctors who evaluate them do know.",
+      "Neither the participants nor the eye doctors who evaluate them know which drop each participant used.",
+      "Each participant uses both drops, one in each eye.",
+      "Participants are randomly assigned to the two drops."
+    ],
+    "answer": "Neither the participants nor the eye doctors who evaluate them know which drop each participant used.",
+    "explanation": [
+      "\"Blind\" means a person in the study does not know which treatment a participant received.",
+      "Both participants (who report symptoms) and evaluators (who judge results) could be influenced by knowing.",
+      "A double-blind study keeps both of these groups unaware."
+    ],
+    "hints": [
+      "What does it mean for someone in a study to be \"blind\"?",
+      "Which two kinds of people in this study could be influenced by knowing who got which drop?"
+    ],
+    "wrong_reasons": {
+      "The participants do not know which drop they used, but the eye doctors who evaluate them do know.": "Described a single-blind study; the evaluators could still be influenced",
+      "Each participant uses both drops, one in each eye.": "Described a different design (each person as their own comparison), not blinding",
+      "Participants are randomly assigned to the two drops.": "Confused random assignment with blinding"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-036",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Priya wants to estimate the percent of the 1,100 students at her school who would buy a salad if the cafeteria offered one. She asks the 12 friends who sit at her lunch table. Which change would most improve her method?",
+    "choices": [
+      "Ask the same 12 friends the question again a week later",
+      "Survey every student who walks past the cafeteria salad bar during lunch on one day",
+      "Ask her friends to explain the reasons for their answers",
+      "Survey a random sample of students chosen from a list of all students at the school"
+    ],
+    "answer": "Survey a random sample of students chosen from a list of all students at the school",
+    "explanation": [
+      "Her friends are a convenience sample and probably have similar tastes.",
+      "A random sample from the full student list gives every student the same chance to be chosen.",
+      "That makes the sample likely to represent the whole school."
+    ],
+    "hints": [
+      "Would the friends at her lunch table be likely to have similar tastes?",
+      "Which method gives every student at the school a chance to be chosen?"
+    ],
+    "wrong_reasons": {
+      "Ask the same 12 friends the question again a week later": "Repeating the question with the same unrepresentative group does not fix the bias",
+      "Ask her friends to explain the reasons for their answers": "Collecting more detail from the same small group does not make it representative",
+      "Survey every student who walks past the cafeteria salad bar during lunch on one day": "Replaced one convenience sample with another; students near the salad bar may like salad more"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-037",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A food scientist wants to know whether bread made with a new flour tastes better than bread made with the usual flour. Judges taste slices of both breads but are not told which flour was used in each slice. What is the main reason the judges are not told?",
+    "choices": [
+      "So that the judges cannot tell the two breads apart by their taste or texture",
+      "So that the study counts as an observational study",
+      "So that the ratings can be applied to all bakeries and bread buyers in the country",
+      "So that the judges' expectations about the new flour do not influence their ratings"
+    ],
+    "answer": "So that the judges' expectations about the new flour do not influence their ratings",
+    "explanation": [
+      "If judges knew which slice used the new flour, their opinions about new products could affect their scores.",
+      "Keeping them unaware means a difference in ratings reflects the taste of the bread.",
+      "So the judges are not told in order to keep expectations from influencing the ratings."
+    ],
+    "hints": [
+      "How might a judge's rating change if the judge knew which slice used the new flour?",
+      "What should a difference in ratings reflect if the test is fair?"
+    ],
+    "wrong_reasons": {
+      "So that the study counts as an observational study": "The scientist still controls which bread is made with which flour; blinding does not change the type of study",
+      "So that the ratings can be applied to all bakeries and bread buyers in the country": "Confused blinding with how widely results can be generalized",
+      "So that the judges cannot tell the two breads apart by their taste or texture": "Thought blinding hides taste differences; it hides only which slice is which, so real taste differences still count"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-038",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Two gardeners each test whether a new plant food makes pepper plants produce more peppers. Gardener A randomly assigns 2 plants to get the plant food and 2 plants to get none. Gardener B randomly assigns 40 plants to get the plant food and 40 plants to get none. Why is Gardener B's experiment likely to give more convincing evidence?",
+    "choices": [
+      "With more plants per group, a difference is less likely to be due only to chance variation among plants.",
+      "Gardener B's plants will produce more peppers in total, so the difference will be easier to see.",
+      "Gardener B uses random assignment, but Gardener A does not.",
+      "With more plants, Gardener B no longer needs a comparison group of plants that get no plant food."
+    ],
+    "answer": "With more plants per group, a difference is less likely to be due only to chance variation among plants.",
+    "explanation": [
+      "Individual plants vary; with only 2 per group, one unusually strong plant could create a difference by itself.",
+      "With 40 plants per group, these chance differences tend to even out.",
+      "So a difference found by Gardener B is more convincing evidence of a real effect."
+    ],
+    "hints": [
+      "If there were only 2 plants per group, what could happen if one plant happened to be unusually healthy?",
+      "What do the two gardeners do in the same way?"
+    ],
+    "wrong_reasons": {
+      "Gardener B uses random assignment, but Gardener A does not.": "Missed that both gardeners randomly assigned their plants",
+      "With more plants, Gardener B no longer needs a comparison group of plants that get no plant food.": "Thought a large sample replaces the need for a comparison group",
+      "Gardener B's plants will produce more peppers in total, so the difference will be easier to see.": "Confused the total number of peppers with the strength of the comparison between groups"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-039",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A county mailed a survey about park services to 2,000 randomly selected households. Only 180 of the households returned the survey. What is the most serious concern about using the returned surveys to describe all households in the county?",
+    "choices": [
+      "The households were selected at random, so the results are biased.",
+      "The survey should have been sent to every household in the county.",
+      "Households that returned the survey may differ from those that did not, such as by caring more about parks.",
+      "Because the households were chosen at random, the low return rate does not affect how well the results represent the county."
+    ],
+    "answer": "Households that returned the survey may differ from those that did not, such as by caring more about parks.",
+    "explanation": [
+      "The 2,000 households were chosen at random, but only 180 responded.",
+      "The households themselves decided whether to respond, and those who care about parks are more likely to.",
+      "This nonresponse can make the returned surveys unrepresentative of the county."
+    ],
+    "hints": [
+      "Who decided whether each household's answers were counted?",
+      "Does starting with a random sample guarantee that the people who answer are representative?"
+    ],
+    "wrong_reasons": {
+      "The households were selected at random, so the results are biased.": "Thought random selection causes bias; it is what protects against bias",
+      "The survey should have been sent to every household in the county.": "Thought only a census is valid; the issue is who responded, not the sample design",
+      "Because the households were chosen at random, the low return rate does not affect how well the results represent the county.": "Assumed a random starting sample guarantees random responses, ignoring nonresponse"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-040",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A plant biologist designs an experiment to test 3 types of fertilizer at each of 4 watering levels. Every combination of a fertilizer type and a watering level will be given to 5 plants, and no plant receives more than one combination. How many plants does she need?",
+    "answer": "60",
+    "accept": [],
+    "explanation": [
+      "Number of combinations: 3 fertilizer types × 4 watering levels = 12.",
+      "Each combination gets 5 plants: 12 × 5 = 60.",
+      "She needs 60 plants."
+    ],
+    "hints": [
+      "If you listed every possible pairing of a fertilizer type with a watering level, how many pairings would there be?",
+      "Each pairing needs its own plants. How does that affect the total?"
+    ],
+    "check": "from sympy import *\nfertilizers=3; levels=4; per=5\nresult=fertilizers*levels*per"
+  },
+  {
+    "id": "psda-studies-041",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A museum emailed a visitor-satisfaction survey to 640 randomly chosen recent visitors, and 208 of them completed it. What percent of the visitors who were emailed completed the survey?",
+    "answer": "32.5",
+    "accept": [
+      "65/2"
+    ],
+    "explanation": [
+      "The whole is the 640 visitors who were emailed; the part is the 208 who completed the survey.",
+      "208 ÷ 640 = 0.325.",
+      "0.325 · 100 = 32.5, so 32.5% completed the survey."
+    ],
+    "hints": [
+      "Which number is the whole in this question?",
+      "How do you turn a fraction into a percent?"
+    ],
+    "check": "from sympy import *\nresult=Rational(208,640)*100"
+  },
+  {
+    "id": "psda-studies-042",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "To compare two sunscreens, a dermatologist recruited 5 pairs of identical twins. In each pair, a coin flip decided which twin used Sunscreen A; the other twin used Sunscreen B. The table shows each twin's redness score after an afternoon outdoors (higher scores mean more sunburn). What is the mean of the 5 differences found by subtracting the Sunscreen A score from the Sunscreen B score in each pair?",
+    "table": {
+      "headers": [
+        "Pair",
+        "Sunscreen A twin",
+        "Sunscreen B twin"
+      ],
+      "rows": [
+        [
+          "1",
+          "3",
+          "5"
+        ],
+        [
+          "2",
+          "4",
+          "4"
+        ],
+        [
+          "3",
+          "2",
+          "6"
+        ],
+        [
+          "4",
+          "5",
+          "7"
+        ],
+        [
+          "5",
+          "1",
+          "4"
+        ]
+      ]
+    },
+    "answer": "2.2",
+    "accept": [
+      "11/5"
+    ],
+    "explanation": [
+      "Differences (B − A): 5 − 3 = 2, 4 − 4 = 0, 6 − 2 = 4, 7 − 5 = 2, 4 − 1 = 3.",
+      "Sum of the differences: 2 + 0 + 4 + 2 + 3 = 11.",
+      "Mean difference: 11 ÷ 5 = 2.2."
+    ],
+    "hints": [
+      "Why does it make sense to compare each twin with his or her own sibling?",
+      "For each pair, what is B minus A, and how do you average those values?"
+    ],
+    "check": "from sympy import *\nA=[3,4,2,5,1]; B=[5,4,6,7,4]\nd=[b-a for a,b in zip(A,B)]\nresult=Rational(sum(d),len(d))"
+  },
+  {
+    "id": "psda-studies-043",
+    "skill_id": "psda-studies",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A baseball team randomly selected 200 of its 5,000 season-ticket holders and asked whether they would prefer earlier start times for weekday games. Of those selected, 46 said yes. Based on this survey, about how many of the 5,000 season-ticket holders would prefer earlier start times?",
+    "answer": "1150",
+    "accept": [
+      "1,150"
+    ],
+    "explanation": [
+      "Proportion of the sample who said yes: 46 ÷ 200 = 0.23.",
+      "The sample was chosen at random from all season-ticket holders, so it is reasonable to apply this proportion to them.",
+      "0.23 · 5,000 = 1,150."
+    ],
+    "hints": [
+      "What fraction of the sample said yes?",
+      "Why is it reasonable to apply that fraction to all of the season-ticket holders?"
+    ],
+    "check": "from sympy import *\nresult=Rational(46,200)*5000"
+  },
+  {
+    "id": "psda-studies-044",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A gaming website posted a poll asking visitors, \"Do you play video games more than 10 hours per week?\" More than 25,000 visitors answered, and 71% said yes. A blogger claims that about 71% of all teenagers in the country play video games more than 10 hours per week. Which statement best evaluates the claim?",
+    "choices": [
+      "The claim is not justified, because the respondents chose to answer a poll on a gaming website and likely play more than typical teenagers.",
+      "The claim is justified, because more than 25,000 responses is a very large sample, so chance error is very small.",
+      "The claim is justified, because the poll question was worded neutrally.",
+      "The claim is not justified, because an online poll can never be used to estimate a percent for any population, no matter how many people answer it."
+    ],
+    "answer": "The claim is not justified, because the respondents chose to answer a poll on a gaming website and likely play more than typical teenagers.",
+    "explanation": [
+      "Only visitors to a gaming website saw the poll, and they decided for themselves whether to answer.",
+      "These people are likely to play more video games than typical teenagers, and some may not even be teenagers.",
+      "A large sample does not fix this bias, so the claim is not justified."
+    ],
+    "hints": [
+      "Who could see this poll, and who decided whether to answer it?",
+      "Can a very large sample make up for a sample that is not representative?"
+    ],
+    "wrong_reasons": {
+      "The claim is justified, because the poll question was worded neutrally.": "Focused only on question wording and ignored how respondents were selected",
+      "The claim is justified, because more than 25,000 responses is a very large sample, so chance error is very small.": "Believed a large sample fixes bias; a huge unrepresentative sample is still unrepresentative",
+      "The claim is not justified, because an online poll can never be used to estimate a percent for any population, no matter how many people answer it.": "Rejected all polls; a random sample from the population could support such an estimate"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-045",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A transit agency wants to estimate the percent of a city's adults who would ride a new bus line. It randomly selects 1,000 names from the state's list of people with vehicles registered at addresses in the city and calls each one. Which statement best describes a problem with this plan?",
+    "choices": [
+      "Selecting the names at random makes the sample biased.",
+      "Calling 1,000 people is more than is needed for a survey.",
+      "The plan does not use random assignment, so no conclusion of any kind can be made about the city's adults from the calls.",
+      "City adults who do not own a vehicle, who may be the most likely to ride buses, have no chance of being selected."
+    ],
+    "answer": "City adults who do not own a vehicle, who may be the most likely to ride buses, have no chance of being selected.",
+    "explanation": [
+      "The sample can only include people on the vehicle-registration list.",
+      "Adults without vehicles are left out, and they are likely to be the people who most need buses.",
+      "So the sample will likely underestimate bus ridership (undercoverage)."
+    ],
+    "hints": [
+      "Which city adults have no chance of being on the list?",
+      "How might those adults' answers differ from the answers of people on the list?"
+    ],
+    "wrong_reasons": {
+      "Selecting the names at random makes the sample biased.": "Thought random selection causes bias; the problem is the list the names come from",
+      "Calling 1,000 people is more than is needed for a survey.": "Focused on cost or size, which does not affect whether the estimate is biased",
+      "The plan does not use random assignment, so no conclusion of any kind can be made about the city's adults from the calls.": "Confused random assignment (needed for cause and effect) with random sampling (needed for generalizing)"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-046",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A principal wants to know what percent of the 1,600 students at her school would join a weekend robotics club. She selects a random sample of 120 students from a list of the school's ninth graders, and 30% of them say they would join. She concludes that about 30% of all students at the school would join. Which statement best evaluates her conclusion?",
+    "choices": [
+      "It is justified, because the 120 students were chosen at random.",
+      "It is not justified, because a sample of 120 students is too small to estimate a percent for a school of 1,600 students.",
+      "It is not justified; only ninth graders could be selected, so the result applies only to the school's ninth graders.",
+      "It is justified, and the result also applies to all high school students in the district."
+    ],
+    "answer": "It is not justified; only ninth graders could be selected, so the result applies only to the school's ninth graders.",
+    "explanation": [
+      "A random sample represents the group it was drawn from.",
+      "Here that group was the school's ninth graders, who may differ from older students.",
+      "So the 30% estimate applies to ninth graders at the school, not to all students."
+    ],
+    "hints": [
+      "Which students had a chance to be in her sample?",
+      "Might older students feel differently about a weekend club than ninth graders?"
+    ],
+    "wrong_reasons": {
+      "It is justified, because the 120 students were chosen at random.": "Missed that the random sample was drawn only from ninth graders, not from the whole school",
+      "It is justified, and the result also applies to all high school students in the district.": "Generalized even further, beyond the group that was sampled",
+      "It is not justified, because a sample of 120 students is too small to estimate a percent for a school of 1,600 students.": "Blamed sample size when the real issue is which students could be selected"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-047",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A coach wants to compare two training plans for improving 5-kilometer race times. Her 60 runners include 20 experienced runners and 40 beginners. Instead of randomly assigning all 60 runners at once, she randomly assigns half of the experienced runners and half of the beginners to each plan. What is the main advantage of this approach?",
+    "choices": [
+      "It allows the results to be generalized to all runners in the country, not just to the coach's 60 runners.",
+      "It makes the study an observational study, which is easier to analyze because no one has to be assigned a plan.",
+      "Both plans are guaranteed the same mix of experienced runners and beginners, so experience cannot explain a difference.",
+      "It ensures that the experienced runners are given the better training plan, so the plans can be compared fairly."
+    ],
+    "answer": "Both plans are guaranteed the same mix of experienced runners and beginners, so experience cannot explain a difference.",
+    "explanation": [
+      "With a single random assignment, one plan could end up with more experienced runners just by chance.",
+      "Assigning randomly within each experience level puts 10 experienced runners and 20 beginners in each plan.",
+      "Then experience is balanced, so it cannot explain a difference in race times between plans."
+    ],
+    "hints": [
+      "If all 60 runners were assigned completely at random, could one plan end up with most of the experienced runners?",
+      "Why would that be a problem for comparing the plans?"
+    ],
+    "wrong_reasons": {
+      "It allows the results to be generalized to all runners in the country, not just to the coach's 60 runners.": "Confused the design of the assignment with how widely results can be generalized",
+      "It ensures that the experienced runners are given the better training plan, so the plans can be compared fairly.": "Missed that experienced runners are split equally between both plans",
+      "It makes the study an observational study, which is easier to analyze because no one has to be assigned a plan.": "The coach still assigns the plans, so the study is still an experiment"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-048",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In an experiment, 160 volunteers were randomly assigned in equal numbers to use a vocabulary app for 0, 10, 20, or 30 minutes per day for six weeks. Average vocabulary test scores increased steadily from the 0-minute group to the 30-minute group. Which conclusion is best supported?",
+    "choices": [
+      "Using the app for 2 hours per day would cause even higher scores than using it for 30 minutes, since the trend was steady.",
+      "For people like these volunteers, up to 30 minutes of daily app use likely causes higher scores; 2 hours per day was not tested.",
+      "Because the volunteers were not randomly selected, the study cannot show that the app causes higher scores.",
+      "Using the app increases vocabulary scores for all students in the country, because the groups were randomly assigned."
+    ],
+    "answer": "For people like these volunteers, up to 30 minutes of daily app use likely causes higher scores; 2 hours per day was not tested.",
+    "explanation": [
+      "Random assignment means the differences between groups can be attributed to app time.",
+      "The tested times were only 0 to 30 minutes per day, and the participants were volunteers.",
+      "So the causal conclusion applies to people like the volunteers and only within the tested range."
+    ],
+    "hints": [
+      "What range of daily app times did the study actually test?",
+      "What does random assignment let you conclude, and what does it not let you conclude?"
+    ],
+    "wrong_reasons": {
+      "Because the volunteers were not randomly selected, the study cannot show that the app causes higher scores.": "Confused random selection with random assignment; random assignment supports cause and effect",
+      "Using the app for 2 hours per day would cause even higher scores than using it for 30 minutes, since the trend was steady.": "Extended the trend far beyond the range of times that were actually tested",
+      "Using the app increases vocabulary scores for all students in the country, because the groups were randomly assigned.": "Generalized from volunteers to a population that was never sampled"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-049",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A company advertised a 12-week fitness program. Of the 200 people who enrolled, 70 quit before the end. The company reported that the 130 people who finished lost an average of 9 pounds. Which is the most likely problem with using this average to describe the program's effect on everyone who enrolls?",
+    "choices": [
+      "Those who were not losing weight may have been more likely to quit, so 9 pounds likely overstates the typical result.",
+      "An average from only 130 people is too few to say anything about the effect of the program.",
+      "The company should have reported the median instead of the mean.",
+      "Because people chose to enroll, the program cannot have caused any of the weight loss that the finishers reported."
+    ],
+    "answer": "Those who were not losing weight may have been more likely to quit, so 9 pounds likely overstates the typical result.",
+    "explanation": [
+      "The average includes only people who finished; the 70 who quit are left out.",
+      "People who see little progress are more likely to quit.",
+      "So the finishers are probably the more successful participants, and 9 pounds likely overstates the result for everyone who enrolls."
+    ],
+    "hints": [
+      "Who is included in the average, and who is left out?",
+      "Why might someone quit a weight-loss program partway through?"
+    ],
+    "wrong_reasons": {
+      "The company should have reported the median instead of the mean.": "Focused on the choice of average rather than on who was included",
+      "Because people chose to enroll, the program cannot have caused any of the weight loss that the finishers reported.": "Overstated the problem; self-selection limits conclusions but does not prove the program had no effect",
+      "An average from only 130 people is too few to say anything about the effect of the program.": "Blamed the sample size instead of noticing which people were left out of the average"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-050",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Researchers randomly assigned 80 volunteers with mild sleep trouble to drink either chamomile tea or a caffeine-free tea with no chamomile every evening for two weeks. The chamomile group fell asleep slightly faster on average, but the difference was small enough that it could easily have happened by chance. Which conclusion is most appropriate?",
+    "choices": [
+      "The study proves that chamomile tea has no effect at all on how quickly people fall asleep at night.",
+      "The study shows that chamomile tea causes people to fall asleep faster, because that group's average time was lower.",
+      "The study cannot say anything about cause, because it is an observational study.",
+      "The study does not give convincing evidence that chamomile tea helps people like these volunteers fall asleep faster."
+    ],
+    "answer": "The study does not give convincing evidence that chamomile tea helps people like these volunteers fall asleep faster.",
+    "explanation": [
+      "The difference could easily have been caused by chance in which volunteers went to which group.",
+      "So the study does not give convincing evidence that chamomile helps.",
+      "That is not the same as proving chamomile has no effect; a small real effect could exist."
+    ],
+    "hints": [
+      "What does it mean that the difference \"could easily have happened by chance\"?",
+      "Is failing to find convincing evidence of an effect the same as showing there is no effect?"
+    ],
+    "wrong_reasons": {
+      "The study cannot say anything about cause, because it is an observational study.": "Missed that the researchers randomly assigned the teas, so this is an experiment",
+      "The study proves that chamomile tea has no effect at all on how quickly people fall asleep at night.": "Treated a lack of convincing evidence as proof of no effect",
+      "The study shows that chamomile tea causes people to fall asleep faster, because that group's average time was lower.": "Ignored that the difference could easily be due to chance"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-051",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "To see whether a new express bus route shortens commutes, a city compared the average commute time of downtown workers in March of last year, before the route opened, with the average in March of this year, after it opened. This year's average was 6 minutes shorter. Which is the most serious weakness in concluding that the new route caused the shorter commutes?",
+    "choices": [
+      "The study should have compared March with a different month, such as July, when there is less traffic.",
+      "Other changes between the two years, such as road construction ending, could also have shortened commutes.",
+      "A 6-minute difference is too small to have been caused by a new bus route, so the route had no effect.",
+      "The workers were not asked whether they liked the new route or planned to keep riding it."
+    ],
+    "answer": "Other changes between the two years, such as road construction ending, could also have shortened commutes.",
+    "explanation": [
+      "The only comparison is before versus after, a year apart.",
+      "Many things besides the bus route can change in a year and affect commute times.",
+      "Without a comparison group measured at the same time, those changes cannot be ruled out."
+    ],
+    "hints": [
+      "Besides the bus route, what else could differ between March of last year and March of this year?",
+      "What kind of comparison would rule out those other changes?"
+    ],
+    "wrong_reasons": {
+      "The study should have compared March with a different month, such as July, when there is less traffic.": "Changing the month does not remove the problem of comparing two different time periods",
+      "A 6-minute difference is too small to have been caused by a new bus route, so the route had no effect.": "Judged the size of the effect instead of the design of the comparison; a small difference does not show the route had no effect",
+      "The workers were not asked whether they liked the new route or planned to keep riding it.": "Opinions about the route do not address whether it caused shorter commutes"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-052",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "An observational study of 120 city neighborhoods found that neighborhoods with more street trees had lower rates of childhood asthma. Which of the following is most likely to be a confounding variable that could help explain this association?",
+    "choices": [
+      "Whether the neighborhood has a volunteer tree-planting group",
+      "Distance from major highways and factories",
+      "Whether the children's parents have asthma",
+      "The day of the week on which the trees were counted"
+    ],
+    "answer": "Distance from major highways and factories",
+    "explanation": [
+      "A confounding variable must be related to both the number of trees and asthma rates.",
+      "Neighborhoods near highways and factories tend to have fewer trees and more air pollution, which can raise asthma rates.",
+      "So distance from highways and factories could explain the association."
+    ],
+    "hints": [
+      "A confounding variable would have to affect asthma rates. What else would it have to be connected to?",
+      "Which choice could plausibly lead to both fewer trees and more asthma?"
+    ],
+    "wrong_reasons": {
+      "Whether the neighborhood has a volunteer tree-planting group": "Chose a variable related to the number of trees but not clearly related to asthma",
+      "Whether the children's parents have asthma": "Chose a variable related to asthma but with no clear link to how many trees a neighborhood has",
+      "The day of the week on which the trees were counted": "Chose a variable related to neither trees nor asthma"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-053",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A utility company randomly assigned customers to receive one of three types of bill reminders. The table shows how many customers in each group paid on time and how many paid late. Which type of reminder had the greatest proportion of customers who paid on time?",
+    "table": {
+      "headers": [
+        "Reminder type",
+        "Paid on time",
+        "Paid late",
+        "Total"
+      ],
+      "rows": [
+        [
+          "Text message",
+          "414",
+          "46",
+          "460"
+        ],
+        [
+          "Email",
+          "576",
+          "144",
+          "720"
+        ],
+        [
+          "Phone call",
+          "255",
+          "45",
+          "300"
+        ]
+      ]
+    },
+    "choices": [
+      "Email",
+      "Phone call",
+      "Text message",
+      "It cannot be determined, because the groups are different sizes."
+    ],
+    "answer": "Text message",
+    "explanation": [
+      "Text message: 414 ÷ 460 = 0.90.",
+      "Email: 576 ÷ 720 = 0.80. Phone call: 255 ÷ 300 = 0.85.",
+      "The text-message group had the greatest proportion paying on time."
+    ],
+    "hints": [
+      "Are the three groups the same size?",
+      "For each group, what fraction of its own customers paid on time?"
+    ],
+    "wrong_reasons": {
+      "Email": "Compared counts of on-time payments (576 is the largest) instead of proportions of each group",
+      "Phone call": "Chose the group with the fewest late payments, ignoring that it was a smaller group",
+      "It cannot be determined, because the groups are different sizes.": "Thought different group sizes prevent comparison; proportions make the groups comparable"
+    },
+    "check": "from sympy import *\ng={'Text message':(414,46),'Email':(576,144),'Phone call':(255,45)}\nresult=max(g,key=lambda k: Rational(g[k][0],sum(g[k])))"
+  },
+  {
+    "id": "psda-studies-054",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A historian observed that most houses in a town that are more than 150 years old are in excellent structural condition. She concluded that houses built 150 years ago were built more sturdily than houses built today. Which is the most serious flaw in her reasoning?",
+    "choices": [
+      "Poorly built old houses are less likely to still be standing, so the surviving houses are not representative.",
+      "She should have studied only houses that are exactly 150 years old.",
+      "She should have inspected the houses in a different season.",
+      "Older houses are more likely to have been repaired over the years, which proves they were originally built poorly."
+    ],
+    "answer": "Poorly built old houses are less likely to still be standing, so the surviving houses are not representative.",
+    "explanation": [
+      "She can observe only the old houses that still exist.",
+      "Weaker houses from that time were more likely to have collapsed or been torn down.",
+      "So the surviving houses are a biased sample of all houses built 150 years ago."
+    ],
+    "hints": [
+      "Which houses built 150 years ago could she not observe today?",
+      "Why might those houses be missing?"
+    ],
+    "wrong_reasons": {
+      "She should have studied only houses that are exactly 150 years old.": "Focused on the exact age instead of which old houses are missing from her data",
+      "She should have inspected the houses in a different season.": "Suggested a change that does not address which houses were included",
+      "Older houses are more likely to have been repaired over the years, which proves they were originally built poorly.": "Replaced one unsupported conclusion with another; repairs do not prove how houses were built"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-055",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A health department surveyed a random sample of 500 restaurant workers in person and asked, \"Do you always wash your hands after using the restroom?\" Of those surveyed, 98% said yes. Which is the most likely reason this percent overstates how many of the workers actually always wash their hands?",
+    "choices": [
+      "The sample was selected at random, which makes the percent too high.",
+      "A sample of 500 workers is too small to estimate a percent for all restaurant workers.",
+      "The workers who were not surveyed probably never wash their hands.",
+      "Some workers may say yes because it is the expected answer, even if it is not true for them."
+    ],
+    "answer": "Some workers may say yes because it is the expected answer, even if it is not true for them.",
+    "explanation": [
+      "The sample was random, so the issue is not who was chosen.",
+      "Asked in person about a behavior that everyone is expected to do, some people will give the acceptable answer.",
+      "This response bias tends to make the reported percent too high."
+    ],
+    "hints": [
+      "Is there an answer most people would feel pressure to give?",
+      "Does the problem come from who was chosen or from how they answered?"
+    ],
+    "wrong_reasons": {
+      "The sample was selected at random, which makes the percent too high.": "Thought random selection causes bias; the problem is in how people answered",
+      "The workers who were not surveyed probably never wash their hands.": "Made an unsupported assumption about people outside the sample",
+      "A sample of 500 workers is too small to estimate a percent for all restaurant workers.": "Blamed sample size, which does not explain answers being pushed in one direction"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-056",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A high school has 450 ninth graders, 400 tenth graders, 350 eleventh graders, and 300 twelfth graders. A survey team will select a random sample of 90 students so that each grade makes up the same fraction of the sample as it does of the school. How many eleventh graders should be in the sample?",
+    "answer": "21",
+    "accept": [],
+    "explanation": [
+      "Total students: 450 + 400 + 350 + 300 = 1,500.",
+      "Eleventh graders are 350/1,500 = 7/30 of the school.",
+      "7/30 of 90 is 21."
+    ],
+    "hints": [
+      "What fraction of the school's students are eleventh graders?",
+      "How would you apply that fraction to a sample of 90 students?"
+    ],
+    "check": "from sympy import *\ng=[450,400,350,300]\nresult=Rational(g[2],sum(g))*90"
+  },
+  {
+    "id": "psda-studies-057",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In an experiment, students were randomly assigned to a new reading program or to the usual program. The table shows each group's mean reading score at the start and at the end of the school year. By how many points did the change in the new-program group's mean exceed the change in the usual-program group's mean?",
+    "table": {
+      "headers": [
+        "Group",
+        "Mean at start",
+        "Mean at end"
+      ],
+      "rows": [
+        [
+          "New program",
+          "61.2",
+          "74.0"
+        ],
+        [
+          "Usual program",
+          "60.8",
+          "66.1"
+        ]
+      ]
+    },
+    "answer": "7.5",
+    "accept": [
+      "15/2"
+    ],
+    "explanation": [
+      "New program change: 74.0 − 61.2 = 12.8 points.",
+      "Usual program change: 66.1 − 60.8 = 5.3 points.",
+      "Difference in changes: 12.8 − 5.3 = 7.5 points."
+    ],
+    "hints": [
+      "How much did each group's mean change from the start of the year to the end?",
+      "Why might comparing changes be better than comparing only end-of-year scores?"
+    ],
+    "check": "from sympy import *\nnew=(Rational('61.2'),Rational('74.0')); usual=(Rational('60.8'),Rational('66.1'))\nresult=(new[1]-new[0])-(usual[1]-usual[0])"
+  },
+  {
+    "id": "psda-studies-058",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A school district emailed a survey to 1,200 randomly selected parents. Of these parents, 336 responded, and 75% of those who responded said they favor a later school start time. The parents who said they favor a later start time make up what percent of the 1,200 parents who were emailed?",
+    "answer": "21",
+    "accept": [],
+    "explanation": [
+      "The 75% applies only to the 336 parents who responded: 0.75 · 336 = 252 parents.",
+      "As a percent of everyone emailed: 252 ÷ 1,200 = 0.21.",
+      "That is 21%."
+    ],
+    "hints": [
+      "Is the 75% a percent of all 1,200 parents or of a smaller group?",
+      "How many parents actually said they favor the change, and what is that out of 1,200?"
+    ],
+    "check": "from sympy import *\nresult=Rational(75,100)*336/1200*100"
+  },
+  {
+    "id": "psda-studies-059",
+    "skill_id": "psda-studies",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A researcher has 64 participants: 24 who smoke and 40 who do not. Within each of these two groups separately, she randomly assigns 1/4 of the participants to a control group and splits the rest equally between Treatment A and Treatment B. How many participants in all are assigned to Treatment A?",
+    "answer": "24",
+    "accept": [],
+    "explanation": [
+      "Smokers: 1/4 of 24 = 6 go to control; the other 18 split into 9 and 9, so 9 get Treatment A.",
+      "Nonsmokers: 1/4 of 40 = 10 go to control; the other 30 split into 15 and 15, so 15 get Treatment A.",
+      "Total in Treatment A: 9 + 15 = 24."
+    ],
+    "hints": [
+      "How many smokers are left after the control group is removed, and how are they split?",
+      "Do the same for the nonsmokers. How do you combine the two results?"
+    ],
+    "check": "from sympy import *\nblocks=[24,40]\nresult=sum((b-Rational(b,4))/2 for b in blocks)"
+  },
+  {
+    "id": "psda-studies-060",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Two studies looked at whether taking a daily vitamin D supplement reduces the number of sick days employees take at a large company. In Study 1, researchers randomly selected 500 employees from the payroll list and asked whether they take vitamin D; those who did had taken fewer sick days on average. In Study 2, researchers asked for volunteers; of the 300 who volunteered, 150 were randomly assigned to take vitamin D and 150 to take a look-alike placebo, and the vitamin D group took significantly fewer sick days. Which statement is most appropriate?",
+    "choices": [
+      "Study 1 shows that vitamin D reduces sick days for all employees at the company, because its sample was random.",
+      "Together, the studies show that vitamin D reduces sick days for all employees at the company.",
+      "Neither study supports any conclusion, because neither used both random selection and random assignment.",
+      "Only Study 2 supports the claim that vitamin D reduces sick days, and only for employees similar to the volunteers."
+    ],
+    "answer": "Only Study 2 supports the claim that vitamin D reduces sick days, and only for employees similar to the volunteers.",
+    "explanation": [
+      "Study 1 has random sampling but no random assignment: it shows an association among all employees, not cause.",
+      "Study 2 has random assignment, so it supports cause and effect, but its participants were volunteers.",
+      "The strengths of the two studies cannot be combined; only Study 2 supports the causal claim, for employees like the volunteers."
+    ],
+    "hints": [
+      "In which study did the researchers control who took vitamin D?",
+      "How were each study's participants chosen, and what group do they represent?",
+      "Can the strength of one study be added to the strength of a different study?"
+    ],
+    "wrong_reasons": {
+      "Study 1 shows that vitamin D reduces sick days for all employees at the company, because its sample was random.": "Thought random sampling supports a causal claim; employees chose whether to take vitamin D",
+      "Together, the studies show that vitamin D reduces sick days for all employees at the company.": "Combined the random sampling of one study with the random assignment of another; each conclusion must come from one study's own design",
+      "Neither study supports any conclusion, because neither used both random selection and random assignment.": "Thought both features are needed for any conclusion; each study supports a narrower conclusion"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-061",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In an experiment, 200 students were randomly assigned in equal numbers to four groups. Each group solved puzzles under one combination of two conditions: caffeinated or decaffeinated coffee, and working with or without background music. The table shows the mean number of puzzles solved by each group. Which statement is supported by the table?",
+    "table": {
+      "headers": [
+        "Coffee",
+        "No music",
+        "Music"
+      ],
+      "rows": [
+        [
+          "Decaffeinated",
+          "12",
+          "10"
+        ],
+        [
+          "Caffeinated",
+          "16",
+          "11"
+        ]
+      ]
+    },
+    "choices": [
+      "Caffeine increased the mean by the same amount for students working with music as for students working without music.",
+      "Caffeine increased the mean by more for students working without music than for students working with music.",
+      "Music lowered the mean by the same amount for both types of coffee.",
+      "The combination of caffeinated coffee and music produced the highest mean."
+    ],
+    "answer": "Caffeine increased the mean by more for students working without music than for students working with music.",
+    "explanation": [
+      "Effect of caffeine without music: 16 − 12 = 4 puzzles. With music: 11 − 10 = 1 puzzle.",
+      "So caffeine helped more when there was no music.",
+      "Music lowered the mean by 2 with decaffeinated coffee but by 5 with caffeinated coffee, and the highest mean (16) was caffeinated without music."
+    ],
+    "hints": [
+      "Within the no-music column, how much higher is the caffeinated mean than the decaffeinated mean? What about in the music column?",
+      "Does the effect of one condition depend on the other condition?"
+    ],
+    "wrong_reasons": {
+      "Music lowered the mean by the same amount for both types of coffee.": "Did not compute the music effect separately for each type of coffee (it is −2 for decaffeinated and −5 for caffeinated)",
+      "The combination of caffeinated coffee and music produced the highest mean.": "Combined the two factors without checking the table; caffeinated with no music had the highest mean",
+      "Caffeine increased the mean by the same amount for students working with music as for students working without music.": "Assumed the effect of one factor is the same at every level of the other without comparing the two differences"
+    },
+    "check": "from sympy import *\nm={('decaf','none'):12,('decaf','music'):10,('caf','none'):16,('caf','music'):11}\ncaf_none=m[('caf','none')]-m[('decaf','none')]; caf_music=m[('caf','music')]-m[('decaf','music')]\nmus_decaf=m[('decaf','music')]-m[('decaf','none')]; mus_caf=m[('caf','music')]-m[('caf','none')]\nbest=max(m,key=m.get)\nc=[\"Caffeine increased the mean by the same amount for students working with music as for students working without music.\", \"Caffeine increased the mean by more for students working without music than for students working with music.\", \"Music lowered the mean by the same amount for both types of coffee.\", \"The combination of caffeinated coffee and music produced the highest mean.\"]\ntruth=[caf_none==caf_music, caf_none>caf_music, mus_decaf==mus_caf, best==('caf','music')]\ntruth=[bool(t) for t in truth]\nassert sum(truth)==1\nresult=c[truth.index(True)]"
+  },
+  {
+    "id": "psda-studies-062",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "An observational study followed 40,000 adults for 10 years. Of the 20,000 who regularly used a certain hair product, 12 developed a rare skin condition. Of the 20,000 who did not use it, 6 developed the condition. A headline read, \"Hair product doubles your risk!\" Which statement best evaluates the headline?",
+    "choices": [
+      "Users were twice as likely to develop it, but the difference was only 0.03 percentage points, and the study does not show cause.",
+      "The headline is accurate: because users had twice the rate, the study shows that using the product causes the risk to double.",
+      "The headline understates the problem: users' risk was 6 percentage points higher than non-users' risk.",
+      "The headline is wrong: users were only half as likely to develop the condition."
+    ],
+    "answer": "Users were twice as likely to develop it, but the difference was only 0.03 percentage points, and the study does not show cause.",
+    "explanation": [
+      "Users: 12 ÷ 20,000 = 0.06%. Non-users: 6 ÷ 20,000 = 0.03%.",
+      "The ratio 0.06% ÷ 0.03% = 2, so users were twice as likely, but the absolute difference is only 0.03 percentage points.",
+      "People chose whether to use the product, so other differences between users and non-users could explain the result; the study does not show cause."
+    ],
+    "hints": [
+      "What percent of each group developed the condition?",
+      "Is \"twice as likely\" the same as \"much more likely\" when the risk is very small?",
+      "Who decided which adults used the product?"
+    ],
+    "wrong_reasons": {
+      "The headline is wrong: users were only half as likely to develop the condition.": "Divided the rates in the wrong order (6/12 instead of 12/6)",
+      "The headline is accurate: because users had twice the rate, the study shows that using the product causes the risk to double.": "Drew a causal conclusion from an observational study in which people chose whether to use the product",
+      "The headline understates the problem: users' risk was 6 percentage points higher than non-users' risk.": "Treated the difference in counts (12 − 6) as a difference in percentage points"
+    },
+    "check": "from sympy import *\nu=Rational(12,20000); n=Rational(6,20000)\nratio=u/n; diff_pp=(u-n)*100\nobservational=True\nc=[\"The headline is accurate: because users had twice the rate, the study shows that using the product causes the risk to double.\", \"The headline understates the problem: users' risk was 6 percentage points higher than non-users' risk.\", \"The headline is wrong: users were only half as likely to develop the condition.\", \"Users were twice as likely to develop it, but the difference was only 0.03 percentage points, and the study does not show cause.\"]\ntruth=[ratio==2 and not observational, diff_pp==6, ratio==Rational(1,2), ratio==2 and diff_pp==Rational(3,100) and observational]\ntruth=[bool(t) for t in truth]\nassert sum(truth)==1\nresult=c[truth.index(True)]"
+  },
+  {
+    "id": "psda-studies-063",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In an experiment, 300 adults with back pain were randomly assigned in equal numbers to three groups: a new pain pill, an identical-looking pill with no medicine, or no pill at all. The table shows how many people in each group reported less pain after one month. Based on the table, which is the best estimate of the effect of the medicine in the new pill?",
+    "table": {
+      "headers": [
+        "Group",
+        "Reported less pain",
+        "Total"
+      ],
+      "rows": [
+        [
+          "New pill",
+          "57",
+          "100"
+        ],
+        [
+          "Look-alike pill (no medicine)",
+          "51",
+          "100"
+        ],
+        [
+          "No pill",
+          "24",
+          "100"
+        ]
+      ]
+    },
+    "choices": [
+      "0 percentage points, because the look-alike pill group also improved",
+      "27 percentage points, because that is the difference between the look-alike pill group and the no-pill group",
+      "6 percentage points, because the look-alike pill group differs from the new-pill group only in the medicine",
+      "33 percentage points, because that is the difference between the new-pill group and the no-pill group"
+    ],
+    "answer": "6 percentage points, because the look-alike pill group differs from the new-pill group only in the medicine",
+    "explanation": [
+      "Rates: new pill 57%, look-alike pill 51%, no pill 24%.",
+      "The look-alike pill group differs from the new-pill group only in the medicine, so it isolates the medicine's effect: 57 − 51 = 6 percentage points.",
+      "The 27-point gap between the look-alike and no-pill groups reflects the effect of expecting treatment, not the medicine."
+    ],
+    "hints": [
+      "Which group is the same as the new-pill group in every way except the medicine?",
+      "What could make people who take a pill with no medicine feel better?"
+    ],
+    "wrong_reasons": {
+      "33 percentage points, because that is the difference between the new-pill group and the no-pill group": "Compared with the no-pill group, which also lacks the expectation of being treated, so placebo effects were counted as medicine effects",
+      "27 percentage points, because that is the difference between the look-alike pill group and the no-pill group": "Measured the placebo effect, not the effect of the medicine",
+      "0 percentage points, because the look-alike pill group also improved": "Thought any improvement in the placebo group cancels the medicine's effect, instead of subtracting it"
+    },
+    "check": "from sympy import *\nnew=Rational(57,100); plac=Rational(51,100); none_=Rational(24,100)\nc=[\"0 percentage points, because the look-alike pill group also improved\", \"6 percentage points, because the look-alike pill group differs from the new-pill group only in the medicine\", \"27 percentage points, because that is the difference between the look-alike pill group and the no-pill group\", \"33 percentage points, because that is the difference between the new-pill group and the no-pill group\"]\nclaimed=[0,6,27,33]\neffect=(new-plac)*100\nresult=c[claimed.index(effect)]"
+  },
+  {
+    "id": "psda-studies-064",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Data from 30 countries show that countries with higher average coffee consumption per person tend to have higher average life expectancy. Which conclusion is best supported by these data?",
+    "choices": [
+      "The data show a country-level association only; they do not show that coffee drinkers live longer or that coffee causes longer life.",
+      "Individuals who drink more coffee tend to live longer than individuals who drink less coffee, though coffee may not be the cause.",
+      "Drinking more coffee causes longer life, because the same pattern holds across all 30 of the countries that were studied.",
+      "There is no relationship between coffee and life expectancy, because the data describe countries rather than people."
+    ],
+    "answer": "The data show a country-level association only; they do not show that coffee drinkers live longer or that coffee causes longer life.",
+    "explanation": [
+      "The data are averages for whole countries, not measurements of individual people.",
+      "A country-level pattern does not show that the same pattern holds for individuals within countries.",
+      "The data are also observational; wealthier countries may have both more coffee drinking and better health care, so cause cannot be concluded."
+    ],
+    "hints": [
+      "Were the data collected about individual people or about whole countries?",
+      "What else might differ between countries with high and low coffee consumption?"
+    ],
+    "wrong_reasons": {
+      "There is no relationship between coffee and life expectancy, because the data describe countries rather than people.": "Overcorrected; there is an association at the country level even though it says little about individuals",
+      "Individuals who drink more coffee tend to live longer than individuals who drink less coffee, though coffee may not be the cause.": "Applied a pattern among country averages to individual people",
+      "Drinking more coffee causes longer life, because the same pattern holds across all 30 of the countries that were studied.": "Treated an association in observational data as cause, ignoring factors such as national wealth"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-065",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A job-training app advertises, \"82% of people who completed our program found a job within 6 months!\" Which additional information would be most useful in deciding whether the app helps people find jobs?",
+    "choices": [
+      "The total number of people who completed the program",
+      "The percent of similar job seekers who did not use the app who found a job within 6 months",
+      "The percent of program completers who found a job within 12 months instead of 6 months",
+      "The average number of hours completers spent using the app"
+    ],
+    "answer": "The percent of similar job seekers who did not use the app who found a job within 6 months",
+    "explanation": [
+      "To judge whether the app helps, compare people who used it with similar people who did not.",
+      "Many job seekers find jobs within 6 months without any app.",
+      "If similar non-users also found jobs at about 82%, the app may not help; the comparison group is what is missing."
+    ],
+    "hints": [
+      "If none of these people had used the app, would none of them have found jobs?",
+      "To judge the effect of something, what do you need to compare it with?"
+    ],
+    "wrong_reasons": {
+      "The total number of people who completed the program": "Thought a larger count of completers would show the app works; without a comparison, size does not show an effect",
+      "The average number of hours completers spent using the app": "Focused on how the app was used instead of on what would have happened without it",
+      "The percent of program completers who found a job within 12 months instead of 6 months": "Asked for more information about the same group, which still has nothing to compare it to"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-066",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A café owner wants to estimate the café's average daily sales for the year. She randomly picks one of the first 7 days of the year, then records sales on that day and on every 7th day after it, for a total of 52 days. Why is this method likely to give a poor estimate?",
+    "choices": [
+      "Fifty-two days is too few days to estimate an average.",
+      "The starting day was chosen at random, which makes the sample biased toward the start of the year.",
+      "She should record sales only on weekends, when the café is busiest.",
+      "All 52 recorded days fall on the same day of the week, and sales may differ by day of the week."
+    ],
+    "answer": "All 52 recorded days fall on the same day of the week, and sales may differ by day of the week.",
+    "explanation": [
+      "Days that are 7 apart always fall on the same day of the week.",
+      "So every recorded day is, say, a Tuesday.",
+      "Café sales usually differ between weekdays and weekends, so one day of the week does not represent the whole year."
+    ],
+    "hints": [
+      "If the first recorded day is a Tuesday, what day of the week is the next recorded day? The one after that?",
+      "Do cafés usually sell the same amount every day of the week?"
+    ],
+    "wrong_reasons": {
+      "Fifty-two days is too few days to estimate an average.": "Blamed the number of days rather than the pattern in which the days were chosen",
+      "She should record sales only on weekends, when the café is busiest.": "Suggested a method that would bias the estimate even more",
+      "The starting day was chosen at random, which makes the sample biased toward the start of the year.": "Thought the random start caused the problem; the problem is what happens after the start"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-067",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "To test new math software, a school randomly assigned 10 of its 20 algebra classes to use the software. Because the software takes time to set up, those 10 classes also received an extra 30 minutes of math class each week. At the end of the term, the software classes had higher average test scores. Which conclusion is most appropriate?",
+    "choices": [
+      "The software caused the higher scores, because the classes were randomly assigned to use it or not.",
+      "The extra class time, not the software, caused the higher scores.",
+      "The software plus extra time likely caused the higher scores, but the study cannot separate the two effects.",
+      "No conclusion about cause is possible, because whole classes rather than individual students were assigned."
+    ],
+    "answer": "The software plus extra time likely caused the higher scores, but the study cannot separate the two effects.",
+    "explanation": [
+      "Random assignment makes the two sets of classes similar except for what they were given.",
+      "But the software classes were given two things: the software and extra class time.",
+      "So the combination caused the difference, and the study cannot say how much is due to each part."
+    ],
+    "hints": [
+      "In what ways did the two sets of classes differ besides the software?",
+      "Random assignment balances the classes, but can it separate two things that were always given together?"
+    ],
+    "wrong_reasons": {
+      "The extra class time, not the software, caused the higher scores.": "Ruled out the software without any evidence; the two cannot be separated",
+      "No conclusion about cause is possible, because whole classes rather than individual students were assigned.": "Thought assigning whole classes at random prevents any causal conclusion",
+      "The software caused the higher scores, because the classes were randomly assigned to use it or not.": "Missed that the extra class time was always given along with the software"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-068",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Researchers compared 400 adults who regularly volunteer with 400 adults who do not. Each volunteer was matched with a non-volunteer of the same age, sex, and income. The volunteers reported higher life satisfaction on average. Which statement is most accurate?",
+    "choices": [
+      "It does not show that volunteering causes higher satisfaction; other differences, such as health, could explain the result.",
+      "Because the groups were matched on age, sex, and income, the study shows that volunteering causes higher life satisfaction.",
+      "Matching made this study an experiment, so its results can be used to draw conclusions about cause.",
+      "Age, sex, and income could still explain the difference in life satisfaction between the two groups."
+    ],
+    "answer": "It does not show that volunteering causes higher satisfaction; other differences, such as health, could explain the result.",
+    "explanation": [
+      "Matching makes the groups equal in age, sex, and income, so those cannot explain the difference.",
+      "But people chose whether to volunteer, and those who do may differ in other ways, such as health or outlook.",
+      "Only random assignment balances all such variables, so this observational study does not show cause."
+    ],
+    "hints": [
+      "Which variables did matching make equal between the two groups?",
+      "Who decided whether each adult volunteers?"
+    ],
+    "wrong_reasons": {
+      "Because the groups were matched on age, sex, and income, the study shows that volunteering causes higher life satisfaction.": "Assumed matching on a few variables balances all variables, as random assignment would",
+      "Matching made this study an experiment, so its results can be used to draw conclusions about cause.": "Missed that the adults themselves decided whether to volunteer; matching does not impose a treatment, so the study is still observational",
+      "Age, sex, and income could still explain the difference in life satisfaction between the two groups.": "Missed that matching made the groups equal on exactly these variables"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-069",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A random sample of 500 commuters in a city was asked how they usually get to work and whether they are satisfied with their commute. The results are shown in the table. Which statement is supported by the data?",
+    "table": {
+      "headers": [
+        "Usual commute",
+        "Satisfied",
+        "Not satisfied",
+        "Total"
+      ],
+      "rows": [
+        [
+          "Car",
+          "168",
+          "132",
+          "300"
+        ],
+        [
+          "Bus",
+          "54",
+          "66",
+          "120"
+        ],
+        [
+          "Bicycle",
+          "64",
+          "16",
+          "80"
+        ],
+        [
+          "Total",
+          "286",
+          "214",
+          "500"
+        ]
+      ]
+    },
+    "choices": [
+      "More bicycle commuters than car commuters were satisfied.",
+      "Switching from driving to biking would make the city's car commuters more satisfied with their commutes.",
+      "Among the sampled commuters, a greater proportion of bicycle commuters than of car commuters were satisfied.",
+      "Bicycle commuters made up 80% of the satisfied commuters in the sample of 500 commuters."
+    ],
+    "answer": "Among the sampled commuters, a greater proportion of bicycle commuters than of car commuters were satisfied.",
+    "explanation": [
+      "Satisfied proportions: car 168/300 = 0.56, bus 54/120 = 0.45, bicycle 64/80 = 0.80.",
+      "So a greater proportion of bicycle commuters than car commuters were satisfied, even though fewer bicycle commuters were satisfied in number.",
+      "Commuters chose their own mode, so the data do not show that biking causes satisfaction; and bicycle commuters are only 64/286 ≈ 22% of satisfied commuters."
+    ],
+    "hints": [
+      "Is each statement about a count, a proportion of a mode, or a proportion of the satisfied commuters?",
+      "Did the researchers assign commuters to their modes of travel?"
+    ],
+    "wrong_reasons": {
+      "More bicycle commuters than car commuters were satisfied.": "Compared proportions when the statement is about counts; 64 bicycle commuters versus 168 car commuters were satisfied",
+      "Bicycle commuters made up 80% of the satisfied commuters in the sample of 500 commuters.": "Confused the percent of bicycle commuters who were satisfied (64/80) with the percent of satisfied commuters who bike (64/286)",
+      "Switching from driving to biking would make the city's car commuters more satisfied with their commutes.": "Drew a causal conclusion from a survey in which commuters chose their own mode"
+    },
+    "check": "from sympy import *\nt={'car':(168,132),'bus':(54,66),'bike':(64,16)}\np=lambda k: Rational(t[k][0],sum(t[k]))\nsat=sum(v[0] for v in t.values())\nassigned=False\nc=[\"More bicycle commuters than car commuters were satisfied.\", \"Among the sampled commuters, a greater proportion of bicycle commuters than of car commuters were satisfied.\", \"Switching from driving to biking would make the city's car commuters more satisfied with their commutes.\", \"Bicycle commuters made up 80% of the satisfied commuters in the sample of 500 commuters.\"]\ntruth=[t['bike'][0]>t['car'][0], p('bike')>p('car'), assigned and p('bike')>p('car'), Rational(t['bike'][0],sat)==Rational(4,5)]\ntruth=[bool(t) for t in truth]\nassert sum(truth)==1\nresult=c[truth.index(True)]"
+  },
+  {
+    "id": "psda-studies-070",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A gym manager wants to estimate the average number of times per week that the gym's members visit. On 20 randomly chosen days, an employee stops members at random as they enter the gym and asks each one how many times per week he or she usually visits. How is the average from this survey most likely to compare with the true average for all members?",
+    "choices": [
+      "It is likely to be too high, because members who visit often are more likely to be at the gym on the survey days.",
+      "It is likely to be too low, because members who visit often are too busy to answer.",
+      "It is likely to be accurate, because both the days and the members were chosen at random.",
+      "It is likely to be accurate, because errors from frequent and infrequent visitors will cancel out."
+    ],
+    "answer": "It is likely to be too high, because members who visit often are more likely to be at the gym on the survey days.",
+    "explanation": [
+      "Only members who come in on a survey day can be asked.",
+      "A member who visits 6 times a week is far more likely to be there on a given day than one who visits once a week.",
+      "So frequent visitors are overrepresented, and the estimate is likely too high; members who rarely or never come are almost never asked."
+    ],
+    "hints": [
+      "Which members does the employee have a chance to meet on a given day?",
+      "Is a member who visits 6 times a week just as likely to be asked as a member who visits once a week?"
+    ],
+    "wrong_reasons": {
+      "It is likely to be too low, because members who visit often are too busy to answer.": "Invented a reason without support, and missed the much stronger effect of who is present to be asked",
+      "It is likely to be accurate, because both the days and the members were chosen at random.": "Missed that only members who happen to be at the gym can be chosen, and frequent visitors are there more often",
+      "It is likely to be accurate, because errors from frequent and infrequent visitors will cancel out.": "Assumed errors cancel, when the method consistently favors one kind of member"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
+  },
+  {
+    "id": "psda-studies-071",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A city mailed a survey to 800 randomly selected residents asking whether they support a new library tax. Only 300 residents responded, and 60% of those who responded said they support the tax. Assume each resident who did not respond would either support or oppose the tax. What is the minimum possible percent of the 800 selected residents who support the tax?",
+    "answer": "22.5",
+    "accept": [
+      "45/2"
+    ],
+    "explanation": [
+      "Supporters among respondents: 0.60 · 300 = 180.",
+      "The smallest possible total occurs if none of the 500 nonrespondents support the tax.",
+      "Minimum percent: 180 ÷ 800 = 0.225, or 22.5%."
+    ],
+    "hints": [
+      "How many of the respondents said they support the tax?",
+      "What would have to be true of the people who did not respond for the overall percent to be as small as possible?"
+    ],
+    "check": "from sympy import *\nsupport=Rational(60,100)*300\nnonresp_support=0\nresult=(support+nonresp_support)/800*100"
+  },
+  {
+    "id": "psda-studies-072",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Two clinics treat patients for the same knee injury. At Clinic P, 90% of 300 mild cases and 60% of 100 severe cases recovered fully. At Clinic Q, 95% of 100 mild cases and 70% of x severe cases recovered fully. For what value of x would the two clinics have the same overall recovery rate?",
+    "answer": "100",
+    "accept": [],
+    "explanation": [
+      "Clinic P overall: (0.90 · 300 + 0.60 · 100) ÷ 400 = 330 ÷ 400 = 0.825.",
+      "Clinic Q overall: (95 + 0.70x) ÷ (100 + x).",
+      "Set them equal: 95 + 0.70x = 0.825(100 + x), so 95 + 0.70x = 82.5 + 0.825x.",
+      "Then 12.5 = 0.125x, so x = 100. (Clinic Q has the higher rate for both kinds of cases, yet only ties overall because of its case mix.)"
+    ],
+    "hints": [
+      "What is Clinic P's overall recovery rate?",
+      "How can you write Clinic Q's overall recovery rate as an expression in x?",
+      "What equation says the two overall rates are equal?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nP=(Rational(90,100)*300+Rational(60,100)*100)/400\nQ=(Rational(95,100)*100+Rational(70,100)*x)/(100+x)\nresult=solve(Eq(P,Q),x)[0]"
+  },
+  {
+    "id": "psda-studies-073",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In an experiment, 240 participants were randomly assigned to a drug group, a placebo group, and a no-treatment group in the ratio 2 : 1 : 1. In all, 55% of the 240 participants improved, and 70% of the drug group improved. The percent of the placebo group who improved was 20 percentage points greater than the percent of the no-treatment group who improved. How many participants in the placebo group improved?",
+    "answer": "30",
+    "accept": [],
+    "explanation": [
+      "Group sizes: drug 120, placebo 60, no treatment 60.",
+      "Total improved: 0.55 · 240 = 132. Drug group improved: 0.70 · 120 = 84, so 48 improved in the other two groups.",
+      "Let p be the placebo improvement rate. Then 60p + 60(p − 0.20) = 48, so 120p = 60 and p = 0.50.",
+      "Placebo group improved: 0.50 · 60 = 30."
+    ],
+    "hints": [
+      "How many participants are in each group?",
+      "How many of the improvements must have come from the placebo and no-treatment groups together?",
+      "How can you write both groups' improvement counts using one unknown rate?"
+    ],
+    "check": "from sympy import *\np=symbols('p')\nn=240; d,pl,nt=[n*Rational(k,4) for k in (2,1,1)]\nrest=Rational(55,100)*n-Rational(70,100)*d\nsol=solve(Eq(pl*p+nt*(p-Rational(20,100)),rest),p)[0]\nresult=sol*pl"
+  },
+  {
+    "id": "psda-studies-074",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A county's adult population is 20% rural and 80% urban. A researcher surveyed a random sample of 100 rural adults and a separate random sample of 100 urban adults. Of the rural adults, 62% favored a proposed road project, compared with 38% of the urban adults. Based on these results, what is the best estimate of the percent of all adults in the county who favor the project?",
+    "answer": "42.8",
+    "accept": [
+      "214/5"
+    ],
+    "explanation": [
+      "The two samples are the same size, but rural adults are only 20% of the county, so the results must be weighted.",
+      "Weighted estimate: 0.20 · 62% + 0.80 · 38%.",
+      "12.4% + 30.4% = 42.8%."
+    ],
+    "hints": [
+      "If you simply averaged 62% and 38%, what would you be assuming about the county's population?",
+      "What share of the county's adults does each sample represent?"
+    ],
+    "check": "from sympy import *\nresult=Rational(20,100)*62+Rational(80,100)*38"
+  },
+  {
+    "id": "psda-studies-075",
+    "skill_id": "psda-studies",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A beverage company asked 50 randomly selected shoppers to taste two sports drinks. Every shopper tasted Drink X first and Drink Y second and then chose a favorite. Of the shoppers, 34 preferred Drink Y. Which is the most serious problem with concluding that shoppers like these prefer the taste of Drink Y?",
+    "choices": [
+      "The shoppers were randomly selected, so the results cannot be generalized to other shoppers like them.",
+      "Every shopper tasted Drink Y second, so the preference could be due to tasting order, not the drinks.",
+      "Each shopper should have tasted only one of the two drinks.",
+      "The shoppers were not randomly assigned to prefer Drink X or Drink Y before they tasted the drinks."
+    ],
+    "answer": "Every shopper tasted Drink Y second, so the preference could be due to tasting order, not the drinks.",
+    "explanation": [
+      "Besides the drinks themselves, the order was the same for every shopper.",
+      "People may tend to prefer whichever drink they taste last (or the first one may change how the second tastes).",
+      "Since the order was not randomized, the order is confounded with the drink, and the preference for Y cannot be credited to its taste."
+    ],
+    "hints": [
+      "What was the same for every shopper besides the two drinks?",
+      "How could the company change the procedure so that the order could not explain the result?"
+    ],
+    "wrong_reasons": {
+      "Each shopper should have tasted only one of the two drinks.": "Thought tasting both is a flaw; comparing both drinks within each person is a strength if the order is randomized",
+      "The shoppers were randomly selected, so the results cannot be generalized to other shoppers like them.": "Thought random selection limits generalization; it is what allows it",
+      "The shoppers were not randomly assigned to prefer Drink X or Drink Y before they tasted the drinks.": "Confused the treatment (the order of the drinks) with the outcome (the preference), which cannot be assigned"
+    },
+    "check": null,
+    "check_note": "Conceptual item: the answer is a judgment about study design or interpretation, not a computed value."
   }
 ]

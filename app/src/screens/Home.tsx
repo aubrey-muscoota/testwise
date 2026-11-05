@@ -176,6 +176,21 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
     return () => { window.removeEventListener("keydown", onKey); clearTimeout(t); };
   }, [sheetOpen]);
 
+  // After a placement quiz the next skill can be far down the path: bring it into view.
+  useEffect(() => {
+    if (!tree || cel?.newIds.length) return;
+    const all = tree.domains.flatMap((d) => d.skills);
+    const nx = all.find((sk) => sk.unlocked && !sk.mastered && !sk.tested_out);
+    if (!nx || !all.some((sk) => sk.tested_out)) return;
+    const t = setTimeout(() => {
+      const n = nodeY.current[nx.id];
+      if (!n) return;
+      const y = (domainY.current[n.domain] ?? 0) + n.y;
+      if (y + n.h > viewH.current - 40) scroll.current?.scrollTo({ y: Math.max(0, y - 160), animated: true });
+    }, 800);
+    return () => clearTimeout(t);
+  }, [tree, cel]);
+
   if (!tree) {
     return (
       <View style={s.center}>
@@ -187,7 +202,10 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
 
   const st = tree.stats;
   const allSkills = tree.domains.flatMap((d) => d.skills);
-  const next = allSkills.find((sk) => sk.unlocked && !sk.mastered);
+  // Skills skipped in the placement quiz stay open, but the path starts after them.
+  const next =
+    allSkills.find((sk) => sk.unlocked && !sk.mastered && !sk.tested_out) ??
+    allSkills.find((sk) => sk.unlocked && !sk.mastered);
   const newIds = new Set(cel?.newIds ?? []);
   const newSkill = cel?.newIds.length ? allSkills.find((sk) => sk.id === cel.newIds[0]) : undefined;
   const newCount = cel?.newIds.length ?? 0;
@@ -292,6 +310,7 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
                       <Text style={[s.skillName, !sk.unlocked && { color: color.disabledText }]} numberOfLines={2}>
                         {sk.name}
                       </Text>
+                      {sk.tested_out && !sk.mastered && <Text style={s.testedOut}>TESTED OUT</Text>}
                     </Pressable>
                   </Rise>
                 </View>
@@ -517,7 +536,7 @@ function Bubble({
         radius={FACE / 2}
         edge={pal.edge}
         style={{ marginTop: DEPTH }}
-        accessibilityLabel={`${skill.name}, ${state === "locked" ? "locked" : state === "done" ? "mastered" : `${skill.mastery}% mastery`}`}
+        accessibilityLabel={`${skill.name}, ${state === "locked" ? "locked" : state === "done" ? "mastered" : `${skill.mastery}% mastery`}${skill.tested_out && state !== "done" ? ", tested out" : ""}`}
         face={[s.face, { backgroundColor: pal.face }]}
       >
         {state !== "locked" && <View style={s.shine} />}
@@ -592,6 +611,7 @@ const s = StyleSheet.create({
     position: "absolute", bottom: 3, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderTopWidth: 6,
     borderLeftColor: "transparent", borderRightColor: "transparent", borderTopColor: "#fff",
   },
+  testedOut: { fontFamily: font.bold, fontSize: 11, letterSpacing: 0.8, color: color.green, textAlign: "center", marginTop: 2 },
   skillName: { fontFamily: font.semibold, fontSize: 14, color: color.text, marginTop: space(0.5), textAlign: "center", maxWidth: 180 },
   backdrop: { backgroundColor: "rgba(30,44,59,0.35)", zIndex: 10 },
   // The absolute wrapper only positions; the inner view carries the width cap so it centers.

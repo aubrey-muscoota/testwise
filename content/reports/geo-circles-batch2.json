@@ -1,0 +1,32 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "geo-circles-057",
+      "reason": "Distractor '6 : 10' was the same ratio as distractor '3 : 5' (two equivalent wrong choices); replaced with '√3 : √5' (took square roots instead of squaring)."
+    },
+    {
+      "id": "geo-circles-055",
+      "reason": "Wrong-reason for '36 − 9π' was muddled; now says the student treated 6 cm as the coaster's diameter (side 6, radius 3)."
+    },
+    {
+      "id": "geo-circles-064",
+      "reason": "Hint referred to 'radius CT', but no point C is named in the stem; hint now describes the radius from the center to T."
+    },
+    {
+      "id": "geo-circles-066",
+      "reason": "Hint 'Do doubling and halving cancel out here?' signalled that they don't, which gave away part of the reasoning; replaced with a neutral question about changing radius and angle separately."
+    },
+    {
+      "id": "geo-circles-074",
+      "reason": "Difficulty was 3, but this is a one-step use of the cyclic-quadrilateral rule followed by a linear equation; relabelled to 2."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "geo-circles-071",
+      "reason": "Near-duplicate of geo-circles-036 (a chord equal to the radius gives an equilateral triangle and a 60° central angle), with only an arc-length step added, and too easy for difficulty 3. Replaced with an original difficulty-3 MC item: a washer between concentric circles where a 24 mm chord of the outer circle is tangent to the inner one, so the area is 144π."
+    }
+  ],
+  "removed": []
+}

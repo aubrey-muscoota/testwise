@@ -1,0 +1,25 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "adv-nonlinear-func-035",
+      "reason": "Check picked the choice by index from the sign of the vertex; rewritten to compare (x + 5)² with the shifted form each choice describes and assert exactly one matches."
+    },
+    {
+      "id": "adv-nonlinear-func-043",
+      "reason": "Check hard-coded the answer index (i==1); rewritten to test each choice against f(t + 1) symbolically."
+    },
+    {
+      "id": "adv-nonlinear-func-063",
+      "reason": "Check returned L[0] directly; rewritten to test every choice on 300 random (a<0, c>0) quadratics and assert exactly one statement always holds."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "adv-nonlinear-func-065",
+      "reason": "Near-duplicate of original 021 (symmetric points plus vertex value, find f(0)) and overlapped new 045; replaced with an original hard SPR on g(a + 2) − g(a) = 64 for g(x) = 3x² − 2x + 7 (answer 14/3)."
+    }
+  ],
+  "removed": [],
+  "notes": "All 48 keys blind-solved and matched; no item had a second defensible choice. 036 (meaning of 25 in a vertex-form profit model) and original 009 share a context type but test different things (interpretation vs. computing the maximum), so both kept. 048, 062 and 068 all convert growth factors between time periods but in different directions (yearly to half-year form, 2-year to yearly percent, quarterly exponent to yearly percent), so all kept."
+}

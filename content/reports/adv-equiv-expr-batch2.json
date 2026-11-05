@@ -1,0 +1,15 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "adv-equiv-expr-030",
+      "reason": "wrong_reason for distractor '6xy(2x − 3y)' was muddled; reworded to state the actual error (common factor missing one x) and what the choice expands to."
+    },
+    {
+      "id": "adv-equiv-expr-075",
+      "reason": "wrong_reason for distractor '6V^(3/2)' was confusing ('as if s were √V and the surface area involved s³'); reworded to the real misconception (inverting the exponent 2/3 to 3/2)."
+    }
+  ],
+  "replaced": [],
+  "removed": []
+}

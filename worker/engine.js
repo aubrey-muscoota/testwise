@@ -187,3 +187,92 @@ export function isCorrect(item, response) {
     return v != null && Math.abs(v - r) <= 1e-4 * Math.max(1, Math.abs(v));
   });
 }
+
+// ─── Placement quiz ──────────────────────────────────────────────────────────
+// A short quiz for new learners: three questions per domain, from an early, a
+// middle and a late skill, at easy, medium and hard difficulty. A passed
+// question "tests out" that skill and everything it builds on, so the learner
+// skips ahead instead of starting at the very first skill.
+
+export const PLACEMENT_PER_DOMAIN = 3;
+export const PLACEMENT_RATING = 1.0; // starting rating for a tested-out skill
+
+// Longest prerequisite chain under each skill (roots are 0).
+export function skillDepths(skills) {
+  const byId = new Map(skills.map((s) => [s.id, s]));
+  const depth = new Map();
+  const visit = (id, stack = new Set()) => {
+    if (depth.has(id)) return depth.get(id);
+    if (stack.has(id)) return 0; // a cycle would be a content bug; don't loop forever
+    stack.add(id);
+    const pre = (byId.get(id)?.prereqs || []).filter((p) => byId.has(p));
+    const d = pre.length ? 1 + Math.max(...pre.map((p) => visit(p, stack))) : 0;
+    depth.set(id, d);
+    return d;
+  };
+  skills.forEach((s) => visit(s.id));
+  return depth;
+}
+
+/**
+ * Which skills to probe. Skills carry {id, domain_id, prereqs, position}.
+ * Returns probes ordered easy → hard (all easy ones first), so the quiz warms up.
+ * @returns {{skill_id:string, domain_id:string, difficulty:number, level:number}[]}
+ */
+export function pickPlacementProbes(skills) {
+  const depth = skillDepths(skills);
+  const domains = new Map();
+  for (const s of skills) {
+    if (!domains.has(s.domain_id)) domains.set(s.domain_id, []);
+    domains.get(s.domain_id).push(s);
+  }
+  const probes = [];
+  for (const [domainId, list] of domains) {
+    const sorted = [...list].sort((a, b) => depth.get(a.id) - depth.get(b.id) || a.position - b.position);
+    const n = Math.min(PLACEMENT_PER_DOMAIN, sorted.length);
+    const picks = n === 1 ? [0] : Array.from({ length: n }, (_, k) => Math.round((k * (sorted.length - 1)) / (n - 1)));
+    picks.forEach((idx, level) => {
+      probes.push({ skill_id: sorted[idx].id, domain_id: domainId, difficulty: Math.min(3, level + 1), level });
+    });
+  }
+  return probes.sort((a, b) => a.level - b.level);
+}
+
+/**
+ * Score a placement quiz. A probe counts as passed when it was answered
+ * correctly and, for the medium and hard probes, the learner also got an easier
+ * probe in the same domain right (one lucky guess shouldn't skip a domain).
+ * Passed skills and their prerequisites are tested out, except probes that
+ * were missed (and prerequisites reached only through them).
+ * @param {ReturnType<typeof pickPlacementProbes>} probes
+ * @param {Map<string, boolean>} correctBySkill  first-try result per probed skill
+ * @param {{id:string, prereqs:string[]}[]} skills
+ * @returns {string[]} skill ids to test out, in the order given by `skills`
+ */
+export function placementTestOut(probes, correctBySkill, skills) {
+  const byId = new Map(skills.map((s) => [s.id, s]));
+  const passed = [];
+  const byDomain = new Map();
+  for (const p of probes) {
+    if (!byDomain.has(p.domain_id)) byDomain.set(p.domain_id, []);
+    byDomain.get(p.domain_id).push(p);
+  }
+  for (const list of byDomain.values()) {
+    list.sort((a, b) => a.level - b.level);
+    list.forEach((p, i) => {
+      if (!correctBySkill.get(p.skill_id)) return;
+      if (i === 0 || list.slice(0, i).some((e) => correctBySkill.get(e.skill_id))) passed.push(p.skill_id);
+    });
+  }
+  // A probe the learner missed is never tested out, and neither is anything
+  // reached only through it.
+  const missed = new Set(probes.filter((p) => correctBySkill.has(p.skill_id) && !correctBySkill.get(p.skill_id)).map((p) => p.skill_id));
+  const out = new Set();
+  const add = (id) => {
+    if (out.has(id) || !byId.has(id) || missed.has(id)) return;
+    out.add(id);
+    (byId.get(id).prereqs || []).forEach(add);
+  };
+  passed.forEach(add);
+  return skills.filter((s) => out.has(s.id)).map((s) => s.id);
+}

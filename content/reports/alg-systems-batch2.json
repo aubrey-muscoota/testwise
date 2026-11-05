@@ -1,0 +1,16 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "alg-systems-050",
+      "reason": "Wrong-reason for the 64° distractor said it came from solving b + (2b − 12) = 180 without saying that 64 is the base angle from that wrong equation (the vertex angle would be 116°); reworded so the misconception produces the choice."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "alg-systems-052",
+      "reason": "Near-duplicate of 010 (and of the swapped-coefficient pattern already removed from 023): x + 2y = a, 2x + y = b, find x − y by subtracting. Replaced with a d2 MC: y = 2x + a and x + y = 3a, express y in terms of a (7a/3), with distractors for reporting x, dropping a, and a sign slip, plus new explanation, hints and check."
+    }
+  ],
+  "removed": []
+}

@@ -88,4 +88,39 @@ assert.equal((await call("/api/tree")).status, 401);
 learner = "' OR 1=1 --";
 assert.equal((await call("/api/tree")).status, 401);
 
+// Placement quiz: a new learner who gets everything right skips ahead.
+learner = (await call("/api/learners", {})).data.id;
+const pq = (await call("/api/lessons", { placement: true })).data;
+assert.equal(pq.placement, true);
+assert.equal(pq.items.length, 12);
+assert.equal(new Set(pq.items.map((i) => i.skill_id)).size, 12, "one question per probed skill");
+assert.ok(pq.items[0].difficulty <= pq.items[pq.items.length - 1].difficulty, "easy questions first");
+for (const it of pq.items) {
+  await call("/api/answers", { lesson_id: pq.lesson_id, item_id: it.id, response: it.answer, time_ms: 3000 });
+}
+const pf = (await call("/api/lessons/finish", { lesson_id: pq.lesson_id })).data;
+assert.equal(pf.correct, 12);
+assert.ok(pf.placement.tested_out.length >= 12, "probed skills and their prerequisites are tested out");
+assert.ok(pf.placement.next.length >= 1, "something is left to learn");
+tree = (await call("/api/tree")).data;
+const placed = tree.domains.flatMap((d) => d.skills);
+assert.ok(placed.find((s) => s.id === "adv-nonlinear-eq").unlocked, "a deep skill is open after placement");
+for (const n of pf.placement.next) assert.ok(placed.find((s) => s.id === n.id).unlocked, `${n.id} open`);
+assert.ok(placed.find((s) => s.id === "alg-linear-eq-1var").tested_out);
+assert.ok(!placed.find((s) => s.id === pf.placement.next[0].id).tested_out);
+// Finishing again changes nothing.
+assert.equal((await call("/api/lessons/finish", { lesson_id: pq.lesson_id })).data.placement.tested_out.length, pf.placement.tested_out.length);
+
+// A learner who misses everything stays at the start.
+learner = (await call("/api/learners", {})).data.id;
+const pq2 = (await call("/api/lessons", { placement: true })).data;
+for (const it of pq2.items) {
+  await call("/api/answers", { lesson_id: pq2.lesson_id, item_id: it.id, response: wrong(it), time_ms: 3000 });
+}
+const pf2 = (await call("/api/lessons/finish", { lesson_id: pq2.lesson_id })).data;
+assert.equal(pf2.placement.tested_out.length, 0);
+const after2 = (await call("/api/tree")).data.domains.flatMap((d) => d.skills);
+assert.ok(!after2.find((s) => s.id === "alg-linear-func").unlocked);
+assert.ok(after2.every((s) => s.attempts === 0 && !s.tested_out), "placement answers don't count as practice");
+
 console.log(`e2e ok (offline Socrates: ${s1.data.offline === true})`);

@@ -47,6 +47,10 @@ export const lines = {
     "New attempt, new insight.",
     "It's never the same river twice.",
   ],
+  placement: [
+    "Let's see what you already know. No pressure!",
+    "Show me what you've got. Guessing is fine.",
+  ],
   review: [
     "Let's revisit our past steps with fresh eyes.",
     "Review is the mother of memory.",

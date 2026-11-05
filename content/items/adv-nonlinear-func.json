@@ -143,8 +143,8 @@
     "type": "mc",
     "stem": "The function f is defined by f(x) = (x − 4)(x + 7). At which points does the graph of y = f(x) cross the x-axis in the xy-plane?",
     "choices": [
-      "(−4, 0) and (7, 0)",
       "(4, 0) and (−7, 0)",
+      "(−4, 0) and (7, 0)",
       "(4, 0) and (7, 0)",
       "(0, 4) and (0, −7)"
     ],
@@ -323,8 +323,8 @@
       ]
     },
     "choices": [
-      "f(x) = (x − 2)² + 3",
       "f(x) = (x + 2)² + 3",
+      "f(x) = (x − 2)² + 3",
       "f(x) = −3x + 7",
       "f(x) = 2(x − 2)² + 3"
     ],
@@ -739,5 +739,1359 @@
       "900": "Gave the maximum revenue instead of the price where it occurs"
     },
     "check": "from sympy import symbols, Rational, solve, diff\nx=symbols('x')\nR=lambda u:-Rational(1,2)*(u-40)**2+900\nS=R(x+10)\nresult=solve(diff(S,x),x)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-028",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The amount of money, in dollars, in Priya's savings account t years after she opened it is modeled by A(t) = 1,250(1.06)ᵗ. Which of the following is the best interpretation of 1,250 in this context?",
+    "choices": [
+      "The amount, in dollars, by which the account increases each year",
+      "The amount of money, in dollars, in the account 1 year after Priya opened it",
+      "The percent by which the account increases each year",
+      "The amount of money, in dollars, in the account when Priya opened it"
+    ],
+    "answer": "The amount of money, in dollars, in the account when Priya opened it",
+    "explanation": [
+      "In a model of the form a(b)ᵗ, the value at t = 0 is a(b)⁰ = a.",
+      "t = 0 is the moment Priya opened the account.",
+      "So A(0) = 1,250(1.06)⁰ = 1,250 is the amount in the account when it was opened."
+    ],
+    "hints": [
+      "What value of t describes the moment the account was opened?",
+      "What happens to (1.06)ᵗ for that value of t?"
+    ],
+    "wrong_reasons": {
+      "The amount, in dollars, by which the account increases each year": "Treated the exponential model as linear, as if a fixed amount were added each year",
+      "The amount of money, in dollars, in the account 1 year after Priya opened it": "Evaluated the model at t = 1 instead of t = 0; A(1) = 1,325",
+      "The percent by which the account increases each year": "Confused the initial value with the growth rate, which comes from 1.06"
+    },
+    "check": null,
+    "check_note": "Interpretation question: the answer is a statement about meaning (A(0) = 1,250), not a computed value."
+  },
+  {
+    "id": "adv-nonlinear-func-029",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = |x − 3| + 2. What is the value of f(−1)?",
+    "choices": [
+      "−2",
+      "2",
+      "4",
+      "6"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Substitute −1 for x: f(−1) = |−1 − 3| + 2.",
+      "−1 − 3 = −4, and the absolute value of −4 is 4.",
+      "So f(−1) = 4 + 2 = 6."
+    ],
+    "hints": [
+      "What is −1 − 3?",
+      "Can an absolute value ever be negative?"
+    ],
+    "wrong_reasons": {
+      "−2": "Ignored the absolute value and used −4 + 2",
+      "2": "Gave the minimum value of f, which occurs at x = 3, instead of evaluating at x = −1",
+      "4": "Made a sign error inside the absolute value, computing |−1 + 3| + 2"
+    },
+    "check": "f=lambda x: abs(x-3)+2\nresult=f(-1)"
+  },
+  {
+    "id": "adv-nonlinear-func-030",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The function g is defined by g(x) = 3√x − 1. What is the value of g(16)?",
+    "answer": "11",
+    "explanation": [
+      "Substitute 16 for x: g(16) = 3√16 − 1.",
+      "√16 = 4, so 3√16 = 12.",
+      "g(16) = 12 − 1 = 11."
+    ],
+    "hints": [
+      "What number multiplied by itself gives 16?",
+      "Should you multiply by 3 before or after taking the square root?"
+    ],
+    "check": "from sympy import sqrt\ng=lambda x: 3*sqrt(x)-1\nresult=g(16)"
+  },
+  {
+    "id": "adv-nonlinear-func-031",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following functions is decreasing for all values of x?",
+    "choices": [
+      "f(x) = 4(0.7)ˣ",
+      "f(x) = 0.2(1.5)ˣ",
+      "f(x) = 7(1.01)ˣ",
+      "f(x) = 0.9(3)ˣ"
+    ],
+    "answer": "f(x) = 4(0.7)ˣ",
+    "explanation": [
+      "A function of the form f(x) = a(b)ˣ with a > 0 decreases when 0 < b < 1 and increases when b > 1.",
+      "All four functions have a positive coefficient a, so only the base matters.",
+      "Only 4(0.7)ˣ has a base between 0 and 1, so it is the decreasing function."
+    ],
+    "hints": [
+      "When x increases by 1, what is f(x) multiplied by?",
+      "Multiplying a positive number by what kind of factor makes it smaller?"
+    ],
+    "wrong_reasons": {
+      "f(x) = 0.2(1.5)ˣ": "Looked at the coefficient 0.2 instead of the base 1.5",
+      "f(x) = 7(1.01)ˣ": "Thought a base close to 1 means the function decreases; 1.01 > 1, so it grows slowly",
+      "f(x) = 0.9(3)ˣ": "Looked at the coefficient 0.9, which is less than 1, instead of the base 3"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nL=['f(x) = 0.2(1.5)ˣ','f(x) = 7(1.01)ˣ','f(x) = 4(0.7)ˣ','f(x) = 0.9(3)ˣ']\nP=[(0.2,1.5),(7,1.01),(4,0.7),(0.9,3)]\nf=lambda a,b,x: a*b**x\nresult=pick(L, lambda i: all(f(*P[i],x+1)<f(*P[i],x) for x in range(-20,21)))"
+  },
+  {
+    "id": "adv-nonlinear-func-032",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The table shows four values of x and their corresponding values of f(x). Which of the following could define f?",
+    "table": {
+      "headers": [
+        "x",
+        "f(x)"
+      ],
+      "rows": [
+        [
+          "0",
+          "3"
+        ],
+        [
+          "1",
+          "6"
+        ],
+        [
+          "2",
+          "12"
+        ],
+        [
+          "3",
+          "24"
+        ]
+      ]
+    },
+    "choices": [
+      "f(x) = 2(3)ˣ",
+      "f(x) = 3(2)ˣ",
+      "f(x) = 3x + 3",
+      "f(x) = 3x² + 3"
+    ],
+    "answer": "f(x) = 3(2)ˣ",
+    "explanation": [
+      "Each time x increases by 1, f(x) doubles: 3, 6, 12, 24.",
+      "Repeated multiplication by the same factor means f is exponential with base 2.",
+      "f(0) = 3 gives the starting value, so f(x) = 3(2)ˣ, which matches every row."
+    ],
+    "hints": [
+      "Compare consecutive outputs: is the same number added each time, or is each output multiplied by the same number?",
+      "What is f(0), and where does it appear in an exponential function a(b)ˣ?"
+    ],
+    "wrong_reasons": {
+      "f(x) = 2(3)ˣ": "Swapped the initial value and the base",
+      "f(x) = 3x + 3": "Checked only the first two rows; the increases are not constant, so f is not linear",
+      "f(x) = 3x² + 3": "Checked only the first two rows; this gives 15, not 12, when x = 2"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nL=['f(x) = 3(2)ˣ','f(x) = 2(3)ˣ','f(x) = 3x + 3','f(x) = 3x² + 3']\nF=[lambda x:3*2**x,lambda x:2*3**x,lambda x:3*x+3,lambda x:3*x**2+3]\nD={0:3,1:6,2:12,3:24}\nresult=pick(L, lambda i: all(F[i](k)==v for k,v in D.items()))"
+  },
+  {
+    "id": "adv-nonlinear-func-033",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = (x + 2)(x − 5). What is the y-intercept of the graph of y = f(x) in the xy-plane?",
+    "choices": [
+      "(0, 10)",
+      "(0, −3)",
+      "(−2, 0)",
+      "(0, −10)"
+    ],
+    "answer": "(0, −10)",
+    "explanation": [
+      "The y-intercept is the point where x = 0.",
+      "f(0) = (0 + 2)(0 − 5) = (2)(−5) = −10.",
+      "So the y-intercept is (0, −10)."
+    ],
+    "hints": [
+      "What is the x-coordinate of every point on the y-axis?",
+      "What is the sign of a product of a positive number and a negative number?"
+    ],
+    "wrong_reasons": {
+      "(0, 10)": "Lost the negative sign when multiplying 2 and −5",
+      "(0, −3)": "Added the constants 2 and −5 instead of multiplying them",
+      "(−2, 0)": "Gave an x-intercept instead of the y-intercept"
+    },
+    "check": "f=lambda x:(x+2)*(x-5)\nresult=f'(0, {f(0)})'"
+  },
+  {
+    "id": "adv-nonlinear-func-034",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A stone is dropped from a bridge. Its height above the water, in feet, t seconds after it is dropped is modeled by h(t) = 144 − 16t². According to the model, how many seconds after it is dropped does the stone hit the water?",
+    "answer": "3",
+    "explanation": [
+      "The stone hits the water when its height is 0: 144 − 16t² = 0.",
+      "So 16t² = 144 and t² = 9.",
+      "t = 3 or t = −3, and time cannot be negative, so t = 3."
+    ],
+    "hints": [
+      "What is the stone's height at the moment it reaches the water?",
+      "After you solve for t², which solution makes sense for a time after the drop?"
+    ],
+    "check": "from sympy import symbols, solve\nt=symbols('t')\nresult=[s for s in solve(144-16*t**2,t) if s>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-func-035",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the xy-plane, the graph of y = (x + 5)² is the graph of y = x² shifted in which of the following ways?",
+    "choices": [
+      "5 units to the left",
+      "5 units to the right",
+      "5 units up",
+      "5 units down"
+    ],
+    "answer": "5 units to the left",
+    "explanation": [
+      "The vertex of y = x² is (0, 0).",
+      "y = (x + 5)² equals 0 when x = −5, so its vertex is (−5, 0).",
+      "Moving the vertex from (0, 0) to (−5, 0) is a shift of 5 units to the left."
+    ],
+    "hints": [
+      "What value of x makes (x + 5)² equal to 0?",
+      "Where is that point compared with the vertex of y = x²?"
+    ],
+    "wrong_reasons": {
+      "5 units to the right": "Assumed + 5 inside the parentheses moves the graph in the positive direction",
+      "5 units up": "Treated the change inside the parentheses as a vertical shift",
+      "5 units down": "Treated the change as vertical and also reversed its sign"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, expand\nx=symbols('x')\ng=(x+5)**2\nL=['5 units to the left','5 units to the right','5 units up','5 units down']\nS=[(x+5)**2,(x-5)**2,x**2+5,x**2-5]\nresult=pick(L, lambda i: expand(S[i]-g)==0)"
+  },
+  {
+    "id": "adv-nonlinear-func-036",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A theater estimates its nightly profit, in dollars, from a show with P(x) = −3(x − 25)² + 1,200, where x is the ticket price, in dollars. Which of the following is the best interpretation of 25 in this context?",
+    "choices": [
+      "The greatest estimated nightly profit, in dollars",
+      "The ticket price, in dollars, that gives the greatest estimated nightly profit",
+      "The number of tickets the theater sells each night",
+      "The amount, in dollars, by which the profit decreases for each $1 increase in ticket price"
+    ],
+    "answer": "The ticket price, in dollars, that gives the greatest estimated nightly profit",
+    "explanation": [
+      "P(x) = a(x − h)² + k with a < 0 has its maximum value k when x = h.",
+      "Here h = 25 and x is the ticket price.",
+      "So 25 is the ticket price that gives the greatest estimated profit; 1,200 is that greatest profit."
+    ],
+    "hints": [
+      "Is the leading coefficient positive or negative, and what does that say about the vertex?",
+      "In this model, what quantity does x stand for?"
+    ],
+    "wrong_reasons": {
+      "The greatest estimated nightly profit, in dollars": "Confused the x-coordinate of the vertex with the maximum value, which is 1,200",
+      "The number of tickets the theater sells each night": "Ignored the definition of x, which is the ticket price, not a number of tickets",
+      "The amount, in dollars, by which the profit decreases for each $1 increase in ticket price": "Treated the quadratic model as linear with a constant rate of change"
+    },
+    "check": null,
+    "check_note": "Interpretation question: the answer is a statement about the meaning of the vertex, not a computed value."
+  },
+  {
+    "id": "adv-nonlinear-func-037",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The number of users of a new app w weeks after it launched is modeled by U(w) = 150(2)ʷ. According to the model, how many weeks after launch will the app have 2,400 users?",
+    "choices": [
+      "4",
+      "8",
+      "16",
+      "2,250"
+    ],
+    "answer": "4",
+    "explanation": [
+      "Set U(w) = 2,400: 150(2)ʷ = 2,400.",
+      "Divide both sides by 150: 2ʷ = 16.",
+      "Since 2⁴ = 16, w = 4."
+    ],
+    "hints": [
+      "What can you divide both sides by to get the power of 2 by itself?",
+      "How many factors of 2 multiply to give that number?"
+    ],
+    "wrong_reasons": {
+      "8": "Divided 16 by 2 instead of finding the exponent",
+      "16": "Stopped at 2ʷ = 16 and gave 16 as the value of w",
+      "2,250": "Subtracted 150 from 2,400 as if the model were linear"
+    },
+    "check": "from sympy import symbols, solve\nw=symbols('w')\nresult=[s for s in solve(150*2**w-2400,w) if s.is_real][0]"
+  },
+  {
+    "id": "adv-nonlinear-func-038",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The function f is defined by f(x) = (x + 6)/(x − 3). For what value of x is f(x) undefined?",
+    "answer": "3",
+    "explanation": [
+      "A fraction is undefined when its denominator equals 0.",
+      "Set x − 3 = 0.",
+      "So f is undefined when x = 3."
+    ],
+    "hints": [
+      "Which part of a fraction can never equal 0?",
+      "What value of x makes that part equal 0?"
+    ],
+    "check": "from sympy import symbols, solve, fraction, together\nx=symbols('x')\nn,d=fraction(together((x+6)/(x-3)))\nresult=solve(d,x)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-039",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = 3x² + 1. Which of the following is equivalent to f(2a)?",
+    "choices": [
+      "6a² + 1",
+      "36a² + 1",
+      "12a² + 4",
+      "12a² + 1"
+    ],
+    "answer": "12a² + 1",
+    "explanation": [
+      "Replace x with 2a: f(2a) = 3(2a)² + 1.",
+      "(2a)² = 4a², so 3(2a)² = 12a².",
+      "f(2a) = 12a² + 1."
+    ],
+    "hints": [
+      "Every x in the rule gets replaced by what expression?",
+      "When you square 2a, what happens to the 2?"
+    ],
+    "wrong_reasons": {
+      "6a² + 1": "Squared only a, not 2a",
+      "36a² + 1": "Squared the coefficient 3 along with 2a",
+      "12a² + 4": "Multiplied the whole function by 4, including the constant term"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, expand\na=symbols('a')\nf=lambda x:3*x**2+1\nL=['6a² + 1','12a² + 1','36a² + 1','12a² + 4']\nE=[6*a**2+1,12*a**2+1,36*a**2+1,12*a**2+4]\nresult=pick(L, lambda i: expand(E[i]-f(2*a))==0)"
+  },
+  {
+    "id": "adv-nonlinear-func-040",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = √(x − 7). What is the least value of x for which f(x) is a real number?",
+    "choices": [
+      "−7",
+      "0",
+      "7",
+      "49"
+    ],
+    "answer": "7",
+    "explanation": [
+      "The square root of a negative number is not a real number.",
+      "So x − 7 must be at least 0: x − 7 ≥ 0.",
+      "x ≥ 7, so the least value of x is 7."
+    ],
+    "hints": [
+      "Which numbers can you take the square root of and still get a real number?",
+      "What inequality must x − 7 satisfy?"
+    ],
+    "wrong_reasons": {
+      "−7": "Made a sign error when solving x − 7 ≥ 0",
+      "0": "Assumed the input itself must be nonnegative instead of x − 7",
+      "49": "Squared 7, confusing the input with the output"
+    },
+    "check": "from sympy import symbols, solve_univariate_inequality, S\nx=symbols('x',real=True)\nresult=solve_univariate_inequality(x-7>=0,x,relational=False).inf"
+  },
+  {
+    "id": "adv-nonlinear-func-041",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The table shows several values of x and the corresponding values of the function f. What is the value of f(−1) − f(2)?",
+    "table": {
+      "headers": [
+        "x",
+        "f(x)"
+      ],
+      "rows": [
+        [
+          "−1",
+          "8"
+        ],
+        [
+          "0",
+          "3"
+        ],
+        [
+          "1",
+          "0"
+        ],
+        [
+          "2",
+          "−1"
+        ],
+        [
+          "3",
+          "0"
+        ]
+      ]
+    },
+    "answer": "9",
+    "explanation": [
+      "From the table, f(−1) = 8.",
+      "From the table, f(2) = −1.",
+      "f(−1) − f(2) = 8 − (−1) = 9."
+    ],
+    "hints": [
+      "Which row of the table has x = −1, and which has x = 2?",
+      "What happens when you subtract a negative number?"
+    ],
+    "check": "D={-1:8,0:3,1:0,2:-1,3:0}\nresult=D[-1]-D[2]"
+  },
+  {
+    "id": "adv-nonlinear-func-042",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of which of the following functions in the xy-plane opens downward and has a y-intercept of (0, 6)?",
+    "choices": [
+      "f(x) = x² + 6",
+      "f(x) = −x² + 6",
+      "f(x) = −x² − 6",
+      "f(x) = −6x²"
+    ],
+    "answer": "f(x) = −x² + 6",
+    "explanation": [
+      "A parabola y = ax² + bx + c opens downward when a < 0.",
+      "Its y-intercept is (0, c), since f(0) = c.",
+      "Only f(x) = −x² + 6 has a negative leading coefficient and f(0) = 6."
+    ],
+    "hints": [
+      "Which part of a quadratic tells you whether the parabola opens up or down?",
+      "What is f(0) for each choice?"
+    ],
+    "wrong_reasons": {
+      "f(x) = x² + 6": "Has the right y-intercept but opens upward because its leading coefficient is positive",
+      "f(x) = −x² − 6": "Opens downward but has a y-intercept of (0, −6)",
+      "f(x) = −6x²": "Put the 6 in the leading coefficient; the y-intercept of this graph is (0, 0)"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nL=['f(x) = −x² + 6','f(x) = x² + 6','f(x) = −x² − 6','f(x) = −6x²']\nC=[(-1,0,6),(1,0,6),(-1,0,-6),(-6,0,0)]\nresult=pick(L, lambda i: C[i][0]<0 and C[i][2]==6)"
+  },
+  {
+    "id": "adv-nonlinear-func-043",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The function f is defined by f(t) = 40(3)ᵗ. As t increases by 1, how does the value of f(t) change?",
+    "choices": [
+      "It increases by 3.",
+      "It increases by 40.",
+      "It is multiplied by 120.",
+      "It triples."
+    ],
+    "answer": "It triples.",
+    "explanation": [
+      "f(t + 1) = 40(3)ᵗ⁺¹ = 40(3)ᵗ · 3.",
+      "So f(t + 1) = 3 · f(t).",
+      "Each time t increases by 1, the value is multiplied by 3, so it triples."
+    ],
+    "hints": [
+      "Write f(t + 1) and compare it with f(t). What do you multiply f(t) by to get f(t + 1)?",
+      "Is the change the same added amount each time, or the same multiplying factor each time?"
+    ],
+    "wrong_reasons": {
+      "It increases by 3.": "Treated the base as an amount added each step, as in a linear function",
+      "It increases by 40.": "Treated the initial value as a constant amount added each step",
+      "It is multiplied by 120.": "Multiplied the coefficient and the base together as the growth factor"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, simplify\nt=symbols('t')\nf=lambda s:40*3**s\nL=['It increases by 3.','It triples.','It increases by 40.','It is multiplied by 120.']\nT=[lambda s:f(s)+3, lambda s:3*f(s), lambda s:f(s)+40, lambda s:120*f(s)]\nresult=pick(L, lambda i: simplify(f(t+1)-T[i](t))==0)"
+  },
+  {
+    "id": "adv-nonlinear-func-044",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function p is defined by p(x) = x³ + 2x² − 5x − 6. Which of the following is a factor of p(x)?",
+    "choices": [
+      "x + 3",
+      "x − 1",
+      "x + 2",
+      "x − 3"
+    ],
+    "answer": "x + 3",
+    "explanation": [
+      "x − r is a factor of p(x) exactly when p(r) = 0.",
+      "Test each choice: p(1) = −8, p(−2) = 4, p(3) = 24, and p(−3) = −27 + 18 + 15 − 6 = 0.",
+      "Since p(−3) = 0, x − (−3) = x + 3 is a factor."
+    ],
+    "hints": [
+      "If x + 3 were a factor, which input would make p(x) equal 0?",
+      "For each choice, what value of x makes that factor equal 0, and what is p at that value?"
+    ],
+    "wrong_reasons": {
+      "x − 1": "Found the zero x = −1 but wrote its factor with the wrong sign (the factor is x + 1)",
+      "x + 2": "Found the zero x = 2 but wrote its factor with the wrong sign (the factor is x − 2)",
+      "x − 3": "Found that p(−3) = 0 but wrote the factor as x − 3"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, rem\nx=symbols('x')\np=x**3+2*x**2-5*x-6\nL=['x − 1','x + 2','x − 3','x + 3']\nF=[x-1,x+2,x-3,x+3]\nresult=pick(L, lambda i: rem(p,F[i],x)==0)"
+  },
+  {
+    "id": "adv-nonlinear-func-045",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "For the quadratic function f, f(1) = 4 and f(9) = 4. The vertex of the graph of y = f(x) in the xy-plane is (h, −12). What is the value of h?",
+    "answer": "5",
+    "explanation": [
+      "A parabola is symmetric about the vertical line through its vertex.",
+      "Two points with the same y-value are the same distance from that line, so the line is halfway between x = 1 and x = 9.",
+      "h = (1 + 9)/2 = 5."
+    ],
+    "hints": [
+      "What does it mean about the graph that two different inputs give the same output?",
+      "Where is the axis of symmetry compared with x = 1 and x = 9?"
+    ],
+    "check": "from sympy import symbols, solve, Rational\na,h=symbols('a h')\nf=lambda x:a*(x-h)**2-12\nresult=[s[h] for s in solve([f(1)-4,f(9)-4],[a,h],dict=True)][0]"
+  },
+  {
+    "id": "adv-nonlinear-func-046",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the quadratic function f in the xy-plane has vertex (1, 4) and passes through the point (3, −4). What is the value of f(5)?",
+    "choices": [
+      "−28",
+      "−12",
+      "−4",
+      "36"
+    ],
+    "answer": "−28",
+    "explanation": [
+      "Use vertex form: f(x) = a(x − 1)² + 4.",
+      "Use (3, −4): −4 = a(3 − 1)² + 4, so 4a = −8 and a = −2.",
+      "f(5) = −2(5 − 1)² + 4 = −2(16) + 4 = −28."
+    ],
+    "hints": [
+      "What form of a quadratic lets you write in the vertex directly?",
+      "Which given point can you substitute to find the leading coefficient?"
+    ],
+    "wrong_reasons": {
+      "−12": "Forgot to square (x − 1), which gives a = −4 and f(5) = −4(4) + 4",
+      "−4": "Assumed f(5) = f(3); the point symmetric to (3, −4) is at x = −1, not x = 5",
+      "36": "Made a sign error and used a = 2"
+    },
+    "check": "from sympy import symbols, solve\na,x=symbols('a x')\nf=a*(x-1)**2+4\nav=solve(f.subs(x,3)+4,a)[0]\nresult=f.subs({a:av,x:5})"
+  },
+  {
+    "id": "adv-nonlinear-func-047",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = x² + 2x − 24. Which of the following is an equivalent form of f(x) that displays the minimum value of f as a constant or coefficient?",
+    "choices": [
+      "f(x) = (x + 6)(x − 4)",
+      "f(x) = (x + 1)² − 25",
+      "f(x) = (x − 1)² − 25",
+      "f(x) = x(x + 2) − 24"
+    ],
+    "answer": "f(x) = (x + 1)² − 25",
+    "explanation": [
+      "The minimum value of a parabola that opens upward is the y-coordinate of its vertex, shown in vertex form a(x − h)² + k.",
+      "Complete the square: x² + 2x − 24 = (x² + 2x + 1) − 1 − 24 = (x + 1)² − 25.",
+      "So the minimum value, −25, appears as the constant in (x + 1)² − 25. (x + 6)(x − 4) is equivalent but displays the zeros instead."
+    ],
+    "hints": [
+      "Which form of a quadratic shows the vertex directly?",
+      "When you complete the square on x² + 2x, what number do you add and subtract?"
+    ],
+    "wrong_reasons": {
+      "f(x) = (x + 6)(x − 4)": "This form is equivalent but displays the zeros, −6 and 4, not the minimum value",
+      "f(x) = (x − 1)² − 25": "Made a sign error when completing the square; this expands to x² − 2x − 24",
+      "f(x) = x(x + 2) − 24": "This form is equivalent, but −24 is the y-intercept, not the minimum value"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, expand, Integer\nx=symbols('x')\nf=x**2+2*x-24\nL=['f(x) = (x + 1)² − 25','f(x) = (x + 6)(x − 4)','f(x) = (x − 1)² − 25','f(x) = x(x + 2) − 24']\nE=[((x+1)**2,-25),((x+6)*(x-4),None),((x-1)**2,-25),(x*(x+2),-24)]\nfrom sympy import Rational\nm=min(f.subs(x,Rational(k,100)) for k in range(-1000,1000))\nresult=pick(L, lambda i: E[i][1] is not None and expand(E[i][0]+E[i][1]-f)==0 and E[i][0].is_Pow and E[i][1]==m)"
+  },
+  {
+    "id": "adv-nonlinear-func-048",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The number of visitors to a website t years after 2022 is modeled by f(t) = 500(1.44)ᵗ. Which of the following is an equivalent form of f(t) that shows, as a constant, the factor by which the number of visitors is multiplied every half-year?",
+    "choices": [
+      "f(t) = 500(0.72)^(2t)",
+      "f(t) = 500(1.44)^(2t)",
+      "f(t) = 500(1.2)^(2t)",
+      "f(t) = 500(1.22)^(2t)"
+    ],
+    "answer": "f(t) = 500(1.2)^(2t)",
+    "explanation": [
+      "In t years there are 2t half-years, so the model should look like 500(c)^(2t), where c is the half-year factor.",
+      "500(c)^(2t) = 500(c²)ᵗ, so c² must equal 1.44.",
+      "c = √1.44 = 1.2, so f(t) = 500(1.2)^(2t)."
+    ],
+    "hints": [
+      "How many half-years are in t years?",
+      "If a factor c is applied twice in one year, what single factor is applied for the whole year?"
+    ],
+    "wrong_reasons": {
+      "f(t) = 500(0.72)^(2t)": "Divided the yearly factor by 2 instead of taking its square root",
+      "f(t) = 500(1.44)^(2t)": "Changed the exponent without changing the base, which doubles the yearly growth",
+      "f(t) = 500(1.22)^(2t)": "Split the 44% yearly increase into two 22% increases, ignoring compounding"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nf=lambda t:500*1.44**t\nL=['f(t) = 500(1.2)^(2t)','f(t) = 500(0.72)^(2t)','f(t) = 500(1.44)^(2t)','f(t) = 500(1.22)^(2t)']\nB=[1.2,0.72,1.44,1.22]\nresult=pick(L, lambda i: all(abs(500*B[i]**(2*t)-f(t))<1e-6 for t in [0.5,1,1.7,3]))"
+  },
+  {
+    "id": "adv-nonlinear-func-049",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A new streaming channel had 5,000 subscribers at the start of January. The number of subscribers decreased by 20% each month after that. If this pattern continued, how many subscribers did the channel have at the start of April, 3 months later?",
+    "answer": "2560",
+    "accept": [
+      "2,560"
+    ],
+    "explanation": [
+      "Losing 20% each month means keeping 80%, so each month the number is multiplied by 0.8.",
+      "After 3 months: 5,000(0.8)³.",
+      "(0.8)³ = 0.512, and 5,000(0.512) = 2,560."
+    ],
+    "hints": [
+      "If 20% of the subscribers leave in a month, what fraction of them stay?",
+      "Is the 20% taken from the original 5,000 each month, or from the current number?"
+    ],
+    "check": "from sympy import Rational\nresult=5000*(1-Rational(20,100))**3"
+  },
+  {
+    "id": "adv-nonlinear-func-050",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following functions has a minimum value of 3?",
+    "choices": [
+      "f(x) = |x − 3|",
+      "f(x) = (x + 3)²",
+      "f(x) = −|x| + 3",
+      "f(x) = |x| + 3"
+    ],
+    "answer": "f(x) = |x| + 3",
+    "explanation": [
+      "|x| is never negative and equals 0 at x = 0, so |x| + 3 has minimum value 0 + 3 = 3.",
+      "|x − 3| and (x + 3)² both have minimum value 0.",
+      "−|x| + 3 has a maximum value of 3 and no minimum, since it decreases without bound."
+    ],
+    "hints": [
+      "What is the smallest value an absolute value or a square can have?",
+      "For each choice, does adding or subtracting a constant outside change the smallest output?"
+    ],
+    "wrong_reasons": {
+      "f(x) = |x − 3|": "The 3 inside shifts the graph right; the minimum value is still 0",
+      "f(x) = (x + 3)²": "The 3 inside shifts the graph left; the minimum value is 0",
+      "f(x) = −|x| + 3": "This graph opens downward, so 3 is its maximum value, not its minimum"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nL=['f(x) = |x − 3|','f(x) = |x| + 3','f(x) = (x + 3)²','f(x) = −|x| + 3']\nF=[lambda x:abs(x-3),lambda x:abs(x)+3,lambda x:(x+3)**2,lambda x:-abs(x)+3]\nG=[k/100 for k in range(-2000,2001)]\nresult=pick(L, lambda i: abs(min(F[i](g) for g in G)-3)<1e-9)"
+  },
+  {
+    "id": "adv-nonlinear-func-051",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = x² − 2x − 15. For which values of x is the graph of y = f(x) in the xy-plane below the x-axis?",
+    "choices": [
+      "x < −3 or x > 5",
+      "−3 < x < 5",
+      "−5 < x < 3",
+      "x < −5 or x > 3"
+    ],
+    "answer": "−3 < x < 5",
+    "explanation": [
+      "Factor: f(x) = (x + 3)(x − 5), so the graph crosses the x-axis at x = −3 and x = 5.",
+      "The leading coefficient is positive, so the parabola opens upward.",
+      "An upward parabola is below the x-axis between its zeros: −3 < x < 5."
+    ],
+    "hints": [
+      "Where does the graph cross the x-axis?",
+      "Does this parabola open up or down, and so which part of it dips below the x-axis?"
+    ],
+    "wrong_reasons": {
+      "x < −3 or x > 5": "Found the zeros correctly but gave where the graph is above the x-axis",
+      "−5 < x < 3": "Used the opposite signs for the zeros when factoring",
+      "x < −5 or x > 3": "Reversed the signs of the zeros and also chose the region above the x-axis"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, solve_univariate_inequality, Interval\nx=symbols('x',real=True)\nI=solve_univariate_inequality(x**2-2*x-15<0,x,relational=False)\nL=['x < −3 or x > 5','−3 < x < 5','−5 < x < 3','x < −5 or x > 3']\nR=[Interval.open(-float('inf'),-3)|Interval.open(5,float('inf')),Interval.open(-3,5),Interval.open(-5,3),Interval.open(-float('inf'),-5)|Interval.open(3,float('inf'))]\nresult=pick(L, lambda i: R[i]==I)"
+  },
+  {
+    "id": "adv-nonlinear-func-052",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The brightness reading B(d) on a light meter placed d meters from a lamp is modeled by B(d) = k/d², where k is a constant. If B(2) = 90, what is the value of B(6)?",
+    "answer": "10",
+    "explanation": [
+      "Use B(2) = 90 to find k: k/2² = 90, so k = 360.",
+      "Then B(6) = 360/6² = 360/36.",
+      "B(6) = 10."
+    ],
+    "hints": [
+      "What equation does B(2) = 90 give you for k?",
+      "When the distance is multiplied by 3, what happens to d²?"
+    ],
+    "check": "from sympy import symbols, solve\nk=symbols('k')\nB=lambda d,kk:kk/d**2\nkv=solve(B(2,k)-90,k)[0]\nresult=B(6,kv)"
+  },
+  {
+    "id": "adv-nonlinear-func-053",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = 2x² − 3x + 5. How many times does the graph of y = f(x) in the xy-plane intersect the x-axis?",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "answer": "0",
+    "explanation": [
+      "The number of x-intercepts equals the number of real solutions of 2x² − 3x + 5 = 0.",
+      "The discriminant is b² − 4ac = (−3)² − 4(2)(5) = 9 − 40 = −31.",
+      "A negative discriminant means no real solutions, so the graph never meets the x-axis."
+    ],
+    "hints": [
+      "What part of the quadratic formula tells you how many real solutions there are?",
+      "Is that quantity positive, zero, or negative here?"
+    ],
+    "wrong_reasons": {
+      "1": "Thought every parabola touches the x-axis exactly once at its vertex",
+      "2": "Assumed every quadratic has two x-intercepts without checking the discriminant",
+      "3": "Counted the number of terms in the expression"
+    },
+    "check": "from sympy import symbols, solve\nx=symbols('x')\nresult=len([s for s in solve(2*x**2-3*x+5,x) if s.is_real])"
+  },
+  {
+    "id": "adv-nonlinear-func-054",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function p is defined by p(x) = (x − 1)²(x + 2)(x − 4). At which value of x does the graph of y = p(x) in the xy-plane touch the x-axis without crossing it?",
+    "choices": [
+      "−2",
+      "−1",
+      "1",
+      "4"
+    ],
+    "answer": "1",
+    "explanation": [
+      "The zeros of p are 1, −2, and 4.",
+      "A factor raised to an odd power makes p change sign, so the graph crosses there; a factor raised to an even power does not change sign.",
+      "(x − 1) is squared, so the graph touches the x-axis at x = 1 without crossing."
+    ],
+    "hints": [
+      "What are the zeros of p?",
+      "Near each zero, does the sign of p(x) change? How does the exponent on each factor affect that?"
+    ],
+    "wrong_reasons": {
+      "−2": "Chose a zero with an odd power, where the graph crosses the x-axis",
+      "−1": "Took the zero of (x − 1)² with the wrong sign",
+      "4": "Chose a zero with an odd power, where the graph crosses the x-axis"
+    },
+    "check": "from sympy import symbols, roots\nx=symbols('x')\nR=roots((x-1)**2*(x+2)*(x-4),x)\nr=[k for k,m in R.items() if m%2==0]\nassert len(r)==1\nresult=r[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-055",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = a(x − 2)(x + 4), where a is a constant. In the xy-plane, the graph of y = f(x) passes through the point (0, 16). What is the value of a?",
+    "choices": [
+      "2",
+      "−8",
+      "−1/2",
+      "−2"
+    ],
+    "answer": "−2",
+    "explanation": [
+      "The point (0, 16) is on the graph, so f(0) = 16.",
+      "f(0) = a(0 − 2)(0 + 4) = a(−2)(4) = −8a.",
+      "−8a = 16, so a = −2."
+    ],
+    "hints": [
+      "What does it mean for the point (0, 16) to be on the graph of y = f(x)?",
+      "What is (0 − 2)(0 + 4), and how does a relate to it?"
+    ],
+    "wrong_reasons": {
+      "2": "Treated (0 − 2)(0 + 4) as 8 instead of −8, losing the negative sign",
+      "−8": "Gave the value of (0 − 2)(0 + 4) instead of solving for a",
+      "−1/2": "Divided −8 by 16 instead of dividing 16 by −8"
+    },
+    "check": "from sympy import *\na,x=symbols('a x')\nf=a*(x-2)*(x+4)\nresult=solve(Eq(f.subs(x,0),16),a)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-056",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A concert organizer estimates that if each ticket is priced at p dollars, 600 − 20p tickets will be sold. The revenue is the ticket price times the number of tickets sold. Based on this estimate, what ticket price, in dollars, gives the maximum revenue?",
+    "answer": "15",
+    "explanation": [
+      "Revenue R(p) = p(600 − 20p).",
+      "R(p) = 0 when p = 0 or p = 30.",
+      "The parabola opens downward, and its vertex is halfway between the zeros: p = (0 + 30)/2 = 15."
+    ],
+    "hints": [
+      "Write the revenue as a product of two expressions in p. What kind of function is it?",
+      "For which prices is the revenue 0, and where is the maximum of a parabola compared with its zeros?"
+    ],
+    "check": "from sympy import symbols, diff, solve\np=symbols('p')\nR=p*(600-20*p)\nresult=solve(diff(R,p),p)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-057",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The functions f and g are defined by f(x) = x² − 6x + 11 and g(x) = −f(x). What is the maximum value of g(x)?",
+    "choices": [
+      "−11",
+      "−2",
+      "2",
+      "3"
+    ],
+    "answer": "−2",
+    "explanation": [
+      "Complete the square: f(x) = (x − 3)² + 2, so f has minimum value 2 at x = 3.",
+      "g(x) = −f(x) = −(x − 3)² − 2 reflects the graph of f across the x-axis.",
+      "The minimum of f becomes the maximum of g, so the maximum value of g(x) is −2."
+    ],
+    "hints": [
+      "What is the vertex of the graph of f?",
+      "When you multiply every output by −1, what happens to the lowest point of the graph?"
+    ],
+    "wrong_reasons": {
+      "2": "Gave the minimum value of f instead of the maximum value of g",
+      "3": "Gave the x-coordinate of the vertex instead of the maximum value",
+      "−11": "Gave g(0), the y-intercept of the graph of g"
+    },
+    "check": "from sympy import symbols, diff, solve\nx=symbols('x')\ng=-(x**2-6*x+11)\nc=solve(diff(g,x),x)[0]\nassert diff(g,x,2)<0\nresult=g.subs(x,c)"
+  },
+  {
+    "id": "adv-nonlinear-func-058",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The speed v, in feet per second, of a wave in shallow water of depth d feet is modeled by v(d) = √(32d). According to the model, at what depth, in feet, does the wave travel at 16 feet per second?",
+    "answer": "8",
+    "explanation": [
+      "Set v(d) = 16: √(32d) = 16.",
+      "Square both sides: 32d = 256.",
+      "d = 256/32 = 8."
+    ],
+    "hints": [
+      "How can you undo a square root on one side of an equation?",
+      "After that step, what is left to solve?"
+    ],
+    "check": "from sympy import symbols, solve, sqrt\nd=symbols('d',positive=True)\nresult=solve(sqrt(32*d)-16,d)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-059",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The function p is defined by p(x) = 2x³ − 5x² + x + k, where k is a constant. When p(x) is divided by x − 2, the remainder is 3. What is the value of k?",
+    "choices": [
+      "2",
+      "3",
+      "5",
+      "41"
+    ],
+    "answer": "5",
+    "explanation": [
+      "By the remainder theorem, the remainder when p(x) is divided by x − 2 is p(2).",
+      "p(2) = 2(8) − 5(4) + 2 + k = −2 + k.",
+      "Set −2 + k = 3, so k = 5."
+    ],
+    "hints": [
+      "Without long division, what value of p tells you the remainder when dividing by x − 2?",
+      "What equation do you get when you set that value equal to the remainder?"
+    ],
+    "wrong_reasons": {
+      "2": "Set p(2) = 0, as if x − 2 were a factor, instead of setting p(2) = 3",
+      "3": "Assumed the constant term equals the remainder",
+      "41": "Evaluated p(−2) instead of p(2)"
+    },
+    "check": "from sympy import symbols, solve, rem\nx,k=symbols('x k')\np=2*x**3-5*x**2+x+k\nresult=solve(rem(p,x-2,x)-3,k)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-060",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = −2x² + 8x + 1. Which of the following describes all values of the constant k for which the equation f(x) = k has exactly two real solutions?",
+    "choices": [
+      "k > 9",
+      "k < 2",
+      "k < 1",
+      "k < 9"
+    ],
+    "answer": "k < 9",
+    "explanation": [
+      "The solutions of f(x) = k are where the horizontal line y = k meets the graph of f.",
+      "The vertex is at x = −8/(2(−2)) = 2, and f(2) = −8 + 16 + 1 = 9; the parabola opens downward, so 9 is the maximum value.",
+      "A horizontal line below the maximum meets the parabola twice, at the maximum it meets once, and above it not at all.",
+      "So f(x) = k has exactly two real solutions when k < 9."
+    ],
+    "hints": [
+      "Think of f(x) = k as a horizontal line crossing the graph. What is the highest point of this parabola?",
+      "Where must the line y = k be, compared with that point, to cross the graph twice?"
+    ],
+    "wrong_reasons": {
+      "k > 9": "Treated the parabola as opening upward, so the vertex was taken as a minimum",
+      "k < 2": "Used the x-coordinate of the vertex instead of the maximum value",
+      "k < 1": "Used the y-intercept, f(0) = 1, as the boundary value"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, discriminant, Rational\nx,K=symbols('x K')\nf=-2*x**2+8*x+1\nD=discriminant(f-K,x)\ndef two(k):\n    return D.subs(K,k)>0\nL=['k < 9','k > 9','k < 2','k < 1']\nT=[lambda k:k<9,lambda k:k>9,lambda k:k<2,lambda k:k<1]\nks=[Rational(i,4) for i in range(-80,81)]\nresult=pick(L, lambda i: all(T[i](k)==two(k) for k in ks))"
+  },
+  {
+    "id": "adv-nonlinear-func-061",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The function f is defined by f(x) = (x − 3)(x − a), where a is a constant. The minimum value of f(x) occurs when x = −1. What is the minimum value of f(x)?",
+    "answer": "−16",
+    "accept": [
+      "-16"
+    ],
+    "explanation": [
+      "The zeros of f are 3 and a, and the vertex is halfway between them: (3 + a)/2 = −1.",
+      "So 3 + a = −2 and a = −5, giving f(x) = (x − 3)(x + 5).",
+      "The minimum value is f(−1) = (−1 − 3)(−1 + 5) = (−4)(4) = −16."
+    ],
+    "hints": [
+      "Where is the x-coordinate of the vertex compared with the two zeros of a parabola?",
+      "Once you know a, which input gives the minimum value?"
+    ],
+    "check": "from sympy import symbols, solve, diff\nx,a=symbols('x a')\nf=(x-3)*(x-a)\nav=solve(diff(f,x).subs(x,-1),a)[0]\nresult=f.subs({a:av,x:-1})"
+  },
+  {
+    "id": "adv-nonlinear-func-062",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The value of a piece of factory equipment decreases by 19% every 2 years. If the value decreases by the same percent each year, by what percent does the value decrease each year?",
+    "choices": [
+      "9.5%",
+      "10%",
+      "19%",
+      "81%"
+    ],
+    "answer": "10%",
+    "explanation": [
+      "Every 2 years the value is multiplied by 1 − 0.19 = 0.81.",
+      "If the yearly factor is c, then two years multiply the value by c², so c² = 0.81.",
+      "c = √0.81 = 0.9, so each year the value keeps 90% and loses 10%."
+    ],
+    "hints": [
+      "Over 2 years, what fraction of the value remains?",
+      "If the same factor is applied in each of the 2 years, how is that 2-year factor related to the yearly factor?"
+    ],
+    "wrong_reasons": {
+      "9.5%": "Divided the 2-year percent by 2, ignoring that the decreases compound",
+      "19%": "Treated the 2-year decrease as the yearly decrease",
+      "81%": "Gave the percent of value that remains after 2 years"
+    },
+    "check": "from sympy import sqrt, Rational\nc=sqrt(1-Rational(19,100))\nresult=(1-c)*100"
+  },
+  {
+    "id": "adv-nonlinear-func-063",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = ax² + bx + c, where a, b, and c are constants with a < 0 and c > 0. Which of the following must be true about the graph of y = f(x) in the xy-plane?",
+    "choices": [
+      "It has two x-intercepts, one with a positive x-coordinate and one with a negative x-coordinate.",
+      "It has no x-intercepts.",
+      "Its vertex lies below the x-axis.",
+      "Both of its x-intercepts have positive x-coordinates."
+    ],
+    "answer": "It has two x-intercepts, one with a positive x-coordinate and one with a negative x-coordinate.",
+    "explanation": [
+      "The y-intercept is (0, c), which is above the x-axis since c > 0.",
+      "Since a < 0, the parabola opens downward, so starting above the x-axis it must come down and cross the x-axis on both sides of the y-axis.",
+      "Algebraically, the discriminant b² − 4ac is positive because −4ac > 0, and the product of the zeros, c/a, is negative.",
+      "So there are two x-intercepts, one with a positive x-coordinate and one with a negative x-coordinate."
+    ],
+    "hints": [
+      "Where is the y-intercept of the graph, above or below the x-axis?",
+      "If a parabola opens downward and has a point above the x-axis, what must happen to the graph to the left and right of that point?"
+    ],
+    "wrong_reasons": {
+      "It has no x-intercepts.": "Ignored that a downward parabola through a point above the x-axis must cross the x-axis",
+      "Its vertex lies below the x-axis.": "Forgot that a downward parabola's vertex is its highest point, which is at least as high as the y-intercept (0, c)",
+      "Both of its x-intercepts have positive x-coordinates.": "Missed that the product of the zeros, c/a, is negative, so the zeros have opposite signs"
+    },
+    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nimport random\nfrom sympy import symbols, Poly, real_roots\nx=symbols('x')\nrandom.seed(1)\nL=['It has two x-intercepts, one with a positive x-coordinate and one with a negative x-coordinate.','It has no x-intercepts.','Its vertex lies below the x-axis.','Both of its x-intercepts have positive x-coordinates.']\ncases=[(-random.randint(1,9),random.randint(-20,20),random.randint(1,30)) for _ in range(300)]\ndef holds(i,a,b,c):\n    r=real_roots(Poly(a*x**2+b*x+c,x))\n    vy=c-b*b/(4*a)\n    if i==0: return len(set(r))==2 and min(r)<0<max(r)\n    if i==1: return len(r)==0\n    if i==2: return vy<0\n    return len(set(r))==2 and min(r)>0\nresult=pick(L, lambda i: all(holds(i,*cs) for cs in cases))"
+  },
+  {
+    "id": "adv-nonlinear-func-064",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The functions f and g are defined by f(x) = 3 · 9ˣ and g(x) = 27^(x + 1). The graphs of y = f(x) and y = g(x) in the xy-plane intersect at exactly one point. What is the x-coordinate of that point?",
+    "choices": [
+      "−3",
+      "−2",
+      "0",
+      "2"
+    ],
+    "answer": "−2",
+    "explanation": [
+      "Write both functions as powers of 3: 3 · 9ˣ = 3 · 3^(2x) = 3^(2x + 1), and 27^(x + 1) = 3^(3(x + 1)) = 3^(3x + 3).",
+      "The graphs intersect where 3^(2x + 1) = 3^(3x + 3), so 2x + 1 = 3x + 3.",
+      "x = −2."
+    ],
+    "hints": [
+      "Can you write 3, 9, and 27 as powers of the same base?",
+      "If two powers of the same base are equal, what must be true about their exponents?"
+    ],
+    "wrong_reasons": {
+      "−3": "Ignored the factor 3 in f(x), solving 3^(2x) = 3^(3x + 3)",
+      "0": "Wrote 27^(x + 1) as 3^(3x + 1) without distributing the 3 over (x + 1)",
+      "2": "Made a sign error when solving 2x + 1 = 3x + 3"
+    },
+    "check": "from sympy import symbols, solve\nx=symbols('x')\nresult=[s for s in solve(3*9**x-27**(x+1),x) if s.is_real][0]"
+  },
+  {
+    "id": "adv-nonlinear-func-065",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The function g is defined by g(x) = 3x² − 2x + 7. For what value of a is g(a + 2) − g(a) = 64?",
+    "answer": "14/3",
+    "accept": [
+      "4.666",
+      "4.667"
+    ],
+    "explanation": [
+      "g(a + 2) = 3(a + 2)² − 2(a + 2) + 7 = 3a² + 12a + 12 − 2a − 4 + 7 = 3a² + 10a + 15.",
+      "g(a) = 3a² − 2a + 7.",
+      "g(a + 2) − g(a) = (3a² + 10a + 15) − (3a² − 2a + 7) = 12a + 8.",
+      "Set 12a + 8 = 64: 12a = 56, so a = 56/12 = 14/3."
+    ],
+    "hints": [
+      "What do you get when you replace every x in g(x) with a + 2?",
+      "When you subtract g(a), which terms cancel, and what kind of equation is left?"
+    ],
+    "check": "from sympy import symbols, solve, expand\nx,a=symbols('x a')\ng=lambda s:3*s**2-2*s+7\nS=solve(expand(g(a+2)-g(a))-64,a)\nassert len(S)==1\nresult=S[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-066",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The function p is defined by p(x) = (x² − 9)(x + k), where k is a positive constant. The graph of y = p(x) in the xy-plane has exactly two distinct x-intercepts. What is the value of k?",
+    "answer": "3",
+    "explanation": [
+      "x² − 9 = (x − 3)(x + 3), so the zeros of p are 3, −3, and −k.",
+      "For only two distinct x-intercepts, −k must equal 3 or −3.",
+      "−k = −3 gives k = 3, which is positive; −k = 3 gives k = −3, which is not allowed. So k = 3."
+    ],
+    "hints": [
+      "What are all the zeros of p, written in terms of k?",
+      "How can a cubic with three zeros listed have only two different x-intercepts?"
+    ],
+    "check": "from sympy import symbols, solve, Eq\nx,k=symbols('x k')\nz=solve(x**2-9,x)\nc=[s for r in z for s in solve(Eq(-k,r),k) if s>0]\nassert len(c)==1\nresult=c[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-067",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For the exponential function f, f(x) = a · bˣ, where a and b are positive constants. For all values of x, f(x + 3) = 8 · f(x). If f(0) = 5, what is the value of f(2)?",
+    "choices": [
+      "10",
+      "20",
+      "85/3",
+      "320"
+    ],
+    "answer": "20",
+    "explanation": [
+      "f(x + 3) = a · bˣ · b³ = b³ · f(x), so b³ = 8 and b = 2.",
+      "f(0) = a · b⁰ = a, so a = 5.",
+      "f(x) = 5 · 2ˣ, and f(2) = 5 · 4 = 20."
+    ],
+    "hints": [
+      "Write f(x + 3) using the rules of exponents. How does it compare with f(x)?",
+      "What does f(0) tell you about the constants?"
+    ],
+    "wrong_reasons": {
+      "10": "Found b = 2 and a = 5 but multiplied by the base only once, giving f(1)",
+      "85/3": "Assumed f changes linearly, interpolating between f(0) = 5 and f(3) = 40",
+      "320": "Treated 8 as the factor for each increase of 1 in x instead of each increase of 3"
+    },
+    "check": "from sympy import symbols, solve, simplify\nx,a,b=symbols('x a b',positive=True)\nf=lambda s:a*b**s\nbv=[s for s in solve(simplify(f(x+3)/f(x))-8,b) if s.is_real and s>0][0]\nav=solve(f(0).subs(b,bv)-5,a)[0]\nresult=f(2).subs({a:av,b:bv})"
+  },
+  {
+    "id": "adv-nonlinear-func-068",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The balance, in dollars, of a savings account t years after it was opened is modeled by A(t) = 2,000(1.03)^(4t). By approximately what percent does the balance increase each year?",
+    "choices": [
+      "3%",
+      "12%",
+      "12.6%",
+      "103%"
+    ],
+    "answer": "12.6%",
+    "explanation": [
+      "A(t) = 2,000(1.03)^(4t) = 2,000((1.03)⁴)ᵗ.",
+      "(1.03)⁴ ≈ 1.1255, so the balance is multiplied by about 1.1255 each year.",
+      "That is an increase of about 12.55%, or approximately 12.6% each year."
+    ],
+    "hints": [
+      "Can you rewrite the exponent 4t so that the yearly growth factor appears as the base?",
+      "If a quantity is multiplied by 1.03 four times, is that the same as an increase of 4 · 3%?"
+    ],
+    "wrong_reasons": {
+      "3%": "Gave the increase for each quarter of a year instead of for a full year",
+      "12%": "Added 3% four times, ignoring that the growth compounds",
+      "103%": "Converted the quarterly growth factor 1.03 directly to a percent"
+    },
+    "check": "r=(1.03**4-1)*100\nC=[3,12,12.6,103]\nresult=min(C,key=lambda c:abs(c-r))"
+  },
+  {
+    "id": "adv-nonlinear-func-069",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The functions f and g are defined by f(x) = x² − 4x and g(x) = x + 2. What are all values of x for which f(g(x)) = 0?",
+    "choices": [
+      "x = 0 and x = 4",
+      "x = 2 and x = 6",
+      "x = 2 only",
+      "x = −2 and x = 2"
+    ],
+    "answer": "x = −2 and x = 2",
+    "explanation": [
+      "f(u) = u(u − 4) = 0 when u = 0 or u = 4.",
+      "So f(g(x)) = 0 when g(x) = 0 or g(x) = 4.",
+      "x + 2 = 0 gives x = −2, and x + 2 = 4 gives x = 2."
+    ],
+    "hints": [
+      "For which inputs does f give an output of 0?",
+      "Those inputs must be values of g(x). What equations does that give you for x?"
+    ],
+    "wrong_reasons": {
+      "x = 0 and x = 4": "Gave the zeros of f, which are the needed values of g(x), not the values of x",
+      "x = 2 and x = 6": "Applied g to the zeros of f instead of solving g(x) = 0 and g(x) = 4",
+      "x = 2 only": "Simplified to x² = 4 but kept only the positive square root"
+    },
+    "check": "from sympy import symbols, solve\nx=symbols('x')\nf=lambda u:u**2-4*u\ng=lambda u:u+2\ns=sorted(solve(f(g(x)),x))\nresult=' and '.join('x = '+str(v) for v in s)"
+  },
+  {
+    "id": "adv-nonlinear-func-070",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the xy-plane, the line y = k, where k is a positive constant, intersects the graph of y = |2x − 8| at two points. The distance between these two points is 6. What is the value of k?",
+    "choices": [
+      "3",
+      "4",
+      "6",
+      "12"
+    ],
+    "answer": "6",
+    "explanation": [
+      "The intersections satisfy |2x − 8| = k, so 2x − 8 = k or 2x − 8 = −k.",
+      "x = 4 + k/2 or x = 4 − k/2.",
+      "Both points have y-coordinate k, so the distance between them is (4 + k/2) − (4 − k/2) = k.",
+      "Since the distance is 6, k = 6."
+    ],
+    "hints": [
+      "What two linear equations come from |2x − 8| = k?",
+      "The two points are on the same horizontal line. How do you find the distance between them from their x-coordinates?"
+    ],
+    "wrong_reasons": {
+      "3": "Ignored the coefficient 2 and used y = |x − 4|, whose intersections are 2k apart",
+      "4": "Gave the x-coordinate of the vertex of the graph",
+      "12": "Thought the distance between the points was k/2"
+    },
+    "check": "from sympy import symbols, solve, Abs\nx=symbols('x',real=True)\nk=symbols('k',positive=True)\nx1=solve(2*x-8-k,x)[0]\nx2=solve(2*x-8+k,x)[0]\nresult=solve(x1-x2-6,k)[0]"
+  },
+  {
+    "id": "adv-nonlinear-func-071",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function f is defined by f(x) = √(x + a) + b, where a and b are constants. The graph of y = f(x) in the xy-plane passes through the points (−3, 1) and (6, 4). What is the value of f(13)?",
+    "choices": [
+      "5",
+      "19/3",
+      "16",
+      "√13 + 1"
+    ],
+    "answer": "5",
+    "explanation": [
+      "From the points: √(a − 3) + b = 1 and √(a + 6) + b = 4.",
+      "Subtracting: √(a + 6) − √(a − 3) = 3. Let √(a − 3) = u ≥ 0; then √(u² + 9) = u + 3.",
+      "Squaring: u² + 9 = u² + 6u + 9, so u = 0. Then a = 3 and b = 1.",
+      "f(13) = √(13 + 3) + 1 = 4 + 1 = 5."
+    ],
+    "hints": [
+      "What two equations do the given points give you?",
+      "Subtracting the equations removes b. How can you handle the two square roots that remain?"
+    ],
+    "wrong_reasons": {
+      "19/3": "Treated f as linear, extending the line through the two points to x = 13",
+      "16": "Found a correctly but forgot to take the square root, computing 13 + 3",
+      "√13 + 1": "Found b correctly but left out a inside the square root"
+    },
+    "check": "from sympy import symbols, solve, sqrt\na,b=symbols('a b',real=True)\nS=solve([sqrt(-3+a)+b-1,sqrt(6+a)+b-4],[a,b],dict=True)\nassert len(S)==1\nresult=(sqrt(13+a)+b).subs(S[0])"
+  },
+  {
+    "id": "adv-nonlinear-func-072",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A ball is thrown upward from the top of a building. Its height above the ground, in feet, t seconds after it is thrown is modeled by h(t) = −16t² + bt + c, where b and c are constants. The ball reaches its maximum height 2 seconds after it is thrown and hits the ground 5 seconds after it is thrown. From what height, in feet, was the ball thrown?",
+    "choices": [
+      "0",
+      "64",
+      "80",
+      "144"
+    ],
+    "answer": "80",
+    "explanation": [
+      "The vertex is at t = 2, so the parabola is symmetric about t = 2.",
+      "One zero is t = 5, which is 3 units from 2, so the other zero is t = 2 − 3 = −1.",
+      "h(t) = −16(t − 5)(t + 1).",
+      "The ball was thrown at t = 0: h(0) = −16(−5)(1) = 80 feet."
+    ],
+    "hints": [
+      "What time t corresponds to the moment the ball is thrown?",
+      "The zeros of h are symmetric about the time of maximum height. If one zero is t = 5, where is the other?"
+    ],
+    "wrong_reasons": {
+      "0": "Assumed the ball was thrown from the ground, though it starts on a building",
+      "64": "Gave the value of b instead of h(0)",
+      "144": "Gave the maximum height, h(2), instead of the starting height"
+    },
+    "check": "from sympy import symbols, solve, diff\nt,b,c=symbols('t b c')\nh=-16*t**2+b*t+c\ns=solve([diff(h,t).subs(t,2),h.subs(t,5)],[b,c],dict=True)[0]\nresult=h.subs(s).subs(t,0)"
+  },
+  {
+    "id": "adv-nonlinear-func-073",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The table shows three values of x and the corresponding values of the quadratic function f. What is the minimum value of f(x)?",
+    "table": {
+      "headers": [
+        "x",
+        "f(x)"
+      ],
+      "rows": [
+        [
+          "0",
+          "6"
+        ],
+        [
+          "1",
+          "3"
+        ],
+        [
+          "2",
+          "4"
+        ]
+      ]
+    },
+    "choices": [
+      "5/4",
+      "23/8",
+      "3",
+      "6"
+    ],
+    "answer": "23/8",
+    "explanation": [
+      "Let f(x) = ax² + bx + c. From f(0) = 6, c = 6.",
+      "f(1) = 3 gives a + b = −3, and f(2) = 4 gives 4a + 2b = −2, so 2a + b = −1.",
+      "Subtracting: a = 2, then b = −5, so f(x) = 2x² − 5x + 6.",
+      "The vertex is at x = 5/4, and f(5/4) = 2(25/16) − 25/4 + 6 = 23/8."
+    ],
+    "hints": [
+      "Which row gives you the constant term right away?",
+      "With the other two rows, what system of equations do you get for a and b?",
+      "Is the smallest value in the table necessarily the minimum of the function?"
+    ],
+    "wrong_reasons": {
+      "5/4": "Gave the x-coordinate of the vertex instead of the minimum value",
+      "3": "Took the smallest value in the table as the minimum; the vertex is between x = 1 and x = 2",
+      "6": "Gave the y-intercept, f(0)"
+    },
+    "check": "from sympy import symbols, solve, diff\nx,a,b,c=symbols('x a b c')\nf=a*x**2+b*x+c\ns=solve([f.subs(x,0)-6,f.subs(x,1)-3,f.subs(x,2)-4],[a,b,c],dict=True)[0]\nF=f.subs(s)\nresult=F.subs(x,solve(diff(F,x),x)[0])"
+  },
+  {
+    "id": "adv-nonlinear-func-074",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The function p is defined by p(x) = −(x + 1)(x − 2)²(x − 5). For how many integer values of x is p(x) > 0?",
+    "choices": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "answer": "4",
+    "explanation": [
+      "The zeros are −1, 2, and 5. For large x, p(x) is negative, since the leading term is −x⁴.",
+      "p changes sign at −1 and 5 (odd powers) but not at 2 (even power).",
+      "So p(x) < 0 for x < −1, p(x) > 0 for −1 < x < 5 except at x = 2, where p(2) = 0, and p(x) < 0 for x > 5.",
+      "The integers with p(x) > 0 are 0, 1, 3, and 4, so there are 4."
+    ],
+    "hints": [
+      "What is the sign of p(x) for very large values of x?",
+      "At which zeros does the sign of p change, and at which does it stay the same?",
+      "Is p(x) > 0 at the zeros themselves?"
+    ],
+    "wrong_reasons": {
+      "5": "Counted x = 2, where p(x) = 0, not greater than 0",
+      "6": "Counted the zeros −1 and 5, where p(x) = 0, and left out 2",
+      "7": "Counted every integer from −1 to 5, including all three zeros"
+    },
+    "check": "p=lambda x: -(x+1)*(x-2)**2*(x-5)\nresult=sum(1 for x in range(-1000,1001) if p(x)>0)"
+  },
+  {
+    "id": "adv-nonlinear-func-075",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The functions f and g are defined by f(x) = 3ˣ and g(x) = f(x + 2) − f(x). For all values of x, g(x) = c · f(x), where c is a constant. What is the value of c?",
+    "choices": [
+      "2",
+      "6",
+      "8",
+      "9"
+    ],
+    "answer": "8",
+    "explanation": [
+      "f(x + 2) = 3^(x + 2) = 3² · 3ˣ = 9 · 3ˣ.",
+      "g(x) = 9 · 3ˣ − 3ˣ = (9 − 1) · 3ˣ.",
+      "g(x) = 8 · f(x), so c = 8."
+    ],
+    "hints": [
+      "How can you rewrite 3^(x + 2) as a number times 3ˣ?",
+      "Once both terms of g(x) are multiples of 3ˣ, how do you combine them?"
+    ],
+    "wrong_reasons": {
+      "2": "Subtracted the exponents, (x + 2) − x, instead of the function values",
+      "6": "Multiplied the base by the shift, 3 · 2, instead of raising 3 to the power 2",
+      "9": "Found f(x + 2) = 9 · f(x) but forgot to subtract f(x)"
+    },
+    "check": "from sympy import symbols, simplify\nx=symbols('x')\nf=lambda s:3**s\nresult=simplify((f(x+2)-f(x))/f(x))"
   }
 ]

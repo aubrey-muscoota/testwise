@@ -1,0 +1,24 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "alg-inequalities-050",
+      "reason": "Distractor 8 was not produced by its stated misconception (the sign slip gives 13, not 8); replaced with 10, which lies in the range of 1 + 3x (−5 to 13) from dropping the negative sign, and updated wrong_reasons and check."
+    },
+    {
+      "id": "alg-inequalities-063",
+      "reason": "Single-bound correct/incorrect scoring problem was a routine medium item mislabelled as difficulty 3; changed to a two-sided score condition (80 ≤ score < 100) asking how many numbers of correct answers are possible, key now 5, with new explanation, hints and check."
+    },
+    {
+      "id": "alg-inequalities-067",
+      "reason": "Second hint asked which value of a makes the two sides identical, which pointed straight at the answer a = 3; reworded to ask whether “expression > itself” can ever be true."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "alg-inequalities-055",
+      "reason": "Near-duplicate of 027 and 042 (a quantity decreasing at a constant rate must stay at or above a threshold; answer 0 ≤ t ≤ bound). Replaced with an original difficulty-2 MC markup item: selling price at least 25% and at most 60% above a 6 cost, key 45 ≤ p ≤ 57.6."
+    }
+  ],
+  "removed": []
+}

@@ -6,8 +6,8 @@
     "type": "mc",
     "stem": "If x² − 9 = 40, which of the following is a possible value of x?",
     "choices": [
-      "7",
       "49",
+      "7",
       "√31",
       "24.5"
     ],
@@ -35,9 +35,9 @@
     "type": "mc",
     "stem": "Which of the following gives all the solutions to the equation (x − 4)(x + 6) = 0?",
     "choices": [
+      "x = 4 and x = −6",
       "x = −4 and x = 6",
       "x = 4 and x = 6",
-      "x = 4 and x = −6",
       "x = −24"
     ],
     "answer": "x = 4 and x = −6",
@@ -114,8 +114,8 @@
     "stem": "y = x²\ny = 2x + 3\nWhich of the following ordered pairs (x, y) is a solution to the system of equations above?",
     "choices": [
       "(3, 6)",
-      "(3, 9)",
       "(−3, 9)",
+      "(3, 9)",
       "(1, 5)"
     ],
     "answer": "(3, 9)",
@@ -224,8 +224,8 @@
     "choices": [
       "8",
       "8.5",
-      "5",
-      "√37"
+      "√37",
+      "5"
     ],
     "answer": "5",
     "explanation": [
@@ -363,8 +363,8 @@
     "choices": [
       "7",
       "9",
-      "√7",
-      "3"
+      "3",
+      "√7"
     ],
     "answer": "3",
     "explanation": [
@@ -732,5 +732,1319 @@
       "6": "Added the two times instead of finding the difference"
     },
     "check": "from sympy import *\nx,y,t,p,w,k,a=symbols('x y t p w k a')\ns=sorted(solve(-5*t**2+30*t+35-75,t))\nresult=s[1]-s[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-028",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If 3^(x − 1) = 81, what is the value of x?",
+    "choices": [
+      "4",
+      "5",
+      "27",
+      "28"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Write 81 as a power of 3: 81 = 3⁴.",
+      "So 3^(x − 1) = 3⁴, which means x − 1 = 4.",
+      "Add 1 to both sides: x = 5."
+    ],
+    "hints": [
+      "Can you write 81 as 3 raised to some power?",
+      "If two powers of the same base are equal, what must be true about their exponents?"
+    ],
+    "wrong_reasons": {
+      "4": "Found that x − 1 = 4 but stopped before adding 1",
+      "27": "Treated 3^(x − 1) as 3(x − 1), found x − 1 = 27, and forgot to add 1",
+      "28": "Treated 3^(x − 1) as 3(x − 1) and solved 3(x − 1) = 81"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=[r for r in solve(Eq(3**(x-1),81),x) if r.is_real]\nassert len(s)==1\nresult=s[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-029",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "What value of x satisfies the equation 5x³ = 40?",
+    "answer": "2",
+    "explanation": [
+      "Divide both sides by 5: x³ = 8.",
+      "Take the cube root of both sides: x = 2.",
+      "Check: 5(2)³ = 5 · 8 = 40. ✓"
+    ],
+    "hints": [
+      "What should you do first to get x³ by itself?",
+      "What number, multiplied by itself three times, gives the result you found?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=[r for r in solve(5*x**3-40,x) if r.is_real]\nassert len(s)==1\nresult=s[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-030",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following gives all the solutions to the equation x² = 3x?",
+    "choices": [
+      "x = 0 and x = 3",
+      "x = 3 only",
+      "x = −3 and x = 3",
+      "x = 0 and x = −3"
+    ],
+    "answer": "x = 0 and x = 3",
+    "explanation": [
+      "Subtract 3x from both sides: x² − 3x = 0.",
+      "Factor out x: x(x − 3) = 0.",
+      "So x = 0 or x − 3 = 0, giving x = 0 and x = 3."
+    ],
+    "hints": [
+      "Is it safe to divide both sides by x, or could that throw something away?",
+      "If you move every term to one side, what common factor do the terms share?"
+    ],
+    "wrong_reasons": {
+      "x = 3 only": "Divided both sides by x, which loses the solution x = 0",
+      "x = −3 and x = 3": "Treated the equation like x² = 9 and took plus or minus the square root",
+      "x = 0 and x = −3": "Made a sign error when solving x − 3 = 0"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=sorted(solve(x**2-3*x,x))\nresult=f'x = {s[0]} and x = {s[1]}'"
+  },
+  {
+    "id": "adv-nonlinear-eq-031",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The product of two consecutive positive integers is 132. What is the smaller of the two integers?",
+    "choices": [
+      "12",
+      "66",
+      "√132",
+      "11"
+    ],
+    "answer": "11",
+    "explanation": [
+      "Let the integers be n and n + 1, so n(n + 1) = 132.",
+      "Rearrange: n² + n − 132 = 0.",
+      "Factor: (n + 12)(n − 11) = 0, so n = 11 or n = −12.",
+      "The integers are positive, so the smaller one is 11."
+    ],
+    "hints": [
+      "If the smaller integer is n, how can you write the next integer?",
+      "After moving 132 to one side, how could you factor the quadratic you get?"
+    ],
+    "wrong_reasons": {
+      "12": "Gave the larger of the two integers",
+      "66": "Divided 132 by 2 as if the two integers were added rather than multiplied",
+      "√132": "Wrote the product as n² = 132, treating both integers as the same number"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nn=symbols('n')\nresult=[r for r in solve(n*(n+1)-132,n) if r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-032",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "What value of x satisfies the equation 3√x = 12?",
+    "answer": "16",
+    "explanation": [
+      "Divide both sides by 3: √x = 4.",
+      "Square both sides: x = 16.",
+      "Check: 3√16 = 3 · 4 = 12. ✓"
+    ],
+    "hints": [
+      "What could you do first so that the square root is by itself?",
+      "Which operation undoes taking a square root?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=solve(Eq(3*sqrt(x),12),x)\nassert len(s)==1\nresult=s[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-033",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If 4/x = x/9 and x > 0, what is the value of x?",
+    "choices": [
+      "2.25",
+      "6",
+      "13",
+      "36"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Cross-multiply: x · x = 4 · 9.",
+      "So x² = 36.",
+      "x = 6 or x = −6; since x > 0, x = 6."
+    ],
+    "hints": [
+      "When two fractions are equal, how can you get rid of both denominators at once?",
+      "Once you know x², which value of x fits the condition x > 0?"
+    ],
+    "wrong_reasons": {
+      "13": "Added 4 and 9 instead of multiplying them",
+      "36": "Found x² = 36 but forgot to take the square root",
+      "2.25": "Divided 9 by 4 instead of cross-multiplying"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=[r for r in solve(Eq(4/x,x/9),x) if r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-034",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A square tile's side length is increased by 3 centimeters. The area of the larger square is 64 square centimeters. What was the original side length, in centimeters?",
+    "choices": [
+      "8",
+      "11",
+      "5",
+      "√55"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Let s be the original side; the new side is s + 3.",
+      "So (s + 3)² = 64.",
+      "Then s + 3 = 8 (a length can't be −8), so s = 5."
+    ],
+    "hints": [
+      "If the original side is s, what is the side of the larger square?",
+      "Which value of s + 3 makes sense for a length?"
+    ],
+    "wrong_reasons": {
+      "8": "Gave the side length of the larger square instead of the original",
+      "11": "Added 3 to 8 instead of subtracting",
+      "√55": "Expanded (s + 3)² as s² + 9"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=[r for r in solve((s+3)**2-64,s) if r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-035",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "y = 3x\nxy = 27\nIf (x, y) is a solution to the system of equations above and x > 0, what is the value of y?",
+    "choices": [
+      "3",
+      "9",
+      "27",
+      "81"
+    ],
+    "answer": "9",
+    "explanation": [
+      "Substitute y = 3x into xy = 27: x(3x) = 27.",
+      "So 3x² = 27 and x² = 9.",
+      "Since x > 0, x = 3.",
+      "Then y = 3(3) = 9."
+    ],
+    "hints": [
+      "Which equation lets you replace y with an expression in x?",
+      "After you find x, which equation gives y most quickly?"
+    ],
+    "wrong_reasons": {
+      "3": "Gave the value of x instead of y",
+      "27": "Found 3x² = 27 and gave 27 without solving further",
+      "81": "Substituted x = y/3 to get y²/3 = 27, so y² = 81, and forgot to take the square root"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nS=[d for d in solve([y-3*x,x*y-27],[x,y],dict=True) if d[x]>0]\nassert len(S)==1\nresult=S[0][y]"
+  },
+  {
+    "id": "adv-nonlinear-eq-036",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "How many solutions does the equation |x + 2| + 6 = 3 have?",
+    "choices": [
+      "Zero",
+      "Exactly one",
+      "Exactly two",
+      "Infinitely many"
+    ],
+    "answer": "Zero",
+    "explanation": [
+      "Subtract 6 from both sides: |x + 2| = −3.",
+      "An absolute value is a distance, so it is never negative.",
+      "No value of x makes |x + 2| equal −3, so there are zero solutions."
+    ],
+    "hints": [
+      "What do you get when you isolate the absolute value?",
+      "Can an absolute value ever be less than 0?"
+    ],
+    "wrong_reasons": {
+      "Exactly one": "Solved only x + 2 = −3 and got x = −5 without checking it",
+      "Exactly two": "Split into x + 2 = −3 and x + 2 = 3 without noticing the absolute value equals a negative number",
+      "Infinitely many": "Thought an equation with no unique answer must have infinitely many solutions"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nxr=symbols('xr',real=True)\nn=len(solve(Abs(xr+2)+6-3,xr))\nresult={0:'Zero',1:'Exactly one',2:'Exactly two'}[n]"
+  },
+  {
+    "id": "adv-nonlinear-eq-037",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "What value of x satisfies the equation 12/(x − 1) = 4?",
+    "answer": "4",
+    "explanation": [
+      "Multiply both sides by x − 1: 12 = 4(x − 1).",
+      "Divide both sides by 4: 3 = x − 1.",
+      "Add 1: x = 4. (Check: 12/3 = 4 ✓.)"
+    ],
+    "hints": [
+      "How can you get the expression x − 1 out of the denominator?",
+      "After clearing the fraction, what number must x − 1 equal?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=solve(Eq(12/(x-1),4),x)\nassert len(s)==1\nresult=s[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-038",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The kinetic energy E, in joules, of an object with mass m kilograms moving at speed v meters per second is given by E = ½mv². A 4-kilogram cart has a kinetic energy of 200 joules. What is the cart's speed, in meters per second?",
+    "choices": [
+      "5",
+      "10",
+      "50",
+      "100"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Substitute: 200 = ½(4)v².",
+      "Simplify: 200 = 2v², so v² = 100.",
+      "A speed is not negative, so v = 10."
+    ],
+    "hints": [
+      "Which values in the formula do you know, and which one are you solving for?",
+      "After you find v², what is one more step to get v?"
+    ],
+    "wrong_reasons": {
+      "5": "Multiplied 4 by 2 instead of by ½, getting 8v² = 200, so v² = 25 and v = 5",
+      "50": "Ignored the ½ and the square and divided 200 by 4",
+      "100": "Found v² = 100 but forgot to take the square root"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nm,E=4,200\nresult=[r for r in solve(Rational(1,2)*m*v**2-E,v) if r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-039",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "What value of x satisfies the equation ∛(x − 2) + 5 = 2?",
+    "answer": "−25",
+    "explanation": [
+      "Subtract 5 from both sides: ∛(x − 2) = −3.",
+      "A cube root can be negative, so cube both sides: x − 2 = (−3)³ = −27.",
+      "Add 2: x = −25. Check: ∛(−27) + 5 = −3 + 5 = 2. ✓"
+    ],
+    "hints": [
+      "What should you do first so that the cube root is by itself?",
+      "Unlike a square root, can a cube root equal a negative number? What undoes a cube root?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=solve(Eq(x-2,(2-5)**3),x)\nassert len(s)==1 and real_root(s[0]-2,3)+5==2\nresult=s[0]",
+    "accept": [
+      "-25"
+    ]
+  },
+  {
+    "id": "adv-nonlinear-eq-040",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "What is the solution to the equation x² + 10x + 25 = 0?",
+    "choices": [
+      "x = 5",
+      "x = −10",
+      "x = −5",
+      "x = −25"
+    ],
+    "answer": "x = −5",
+    "explanation": [
+      "Notice that x² + 10x + 25 is a perfect square: (x + 5)².",
+      "So (x + 5)² = 0, which means x + 5 = 0.",
+      "The only solution is x = −5."
+    ],
+    "hints": [
+      "Is the left side the square of a simpler expression?",
+      "If a squared quantity equals 0, what must the quantity itself equal?"
+    ],
+    "wrong_reasons": {
+      "x = 5": "Factored as (x − 5)² or dropped the sign when solving x + 5 = 0",
+      "x = −10": "Used the coefficient of x as the solution",
+      "x = −25": "Moved the constant to the other side and treated it as the solution"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=solve(x**2+10*x+25,x)\nassert len(s)==1\nresult=f'x = {s[0]}'"
+  },
+  {
+    "id": "adv-nonlinear-eq-041",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "If x² = 7, what is the value of x⁴?",
+    "choices": [
+      "14",
+      "28",
+      "49",
+      "2,401"
+    ],
+    "answer": "49",
+    "explanation": [
+      "x⁴ = (x²)².",
+      "Substitute x² = 7: x⁴ = 7².",
+      "So x⁴ = 49."
+    ],
+    "hints": [
+      "How could you write x⁴ using x²?",
+      "Do you need to find x itself, or can you use x² directly?"
+    ],
+    "wrong_reasons": {
+      "14": "Doubled 7 instead of squaring it",
+      "28": "Multiplied 7 by 4 because of the exponent 4",
+      "2,401": "Raised 7 to the fourth power instead of squaring x²"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=list(set(simplify(r**4) for r in solve(x**2-7,x)))\nassert len(result)==1\nresult=result[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-042",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A solar array is made of 4 identical square panels. The total area of the 4 panels is 36 square meters. If s is the side length of each panel, in meters, then 4s² = 36. What is the value of s?",
+    "choices": [
+      "3",
+      "9",
+      "6",
+      "4.5"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Divide both sides of 4s² = 36 by 4: s² = 9.",
+      "A side length is positive, so s = √9 = 3."
+    ],
+    "hints": [
+      "What should you do first to get s² by itself?",
+      "Once you know s², what operation gives s?"
+    ],
+    "wrong_reasons": {
+      "9": "Found s² = 9 but did not take the square root",
+      "6": "Took the square root of 36 without first dividing by 4",
+      "4.5": "Divided 36 by 4 and then by 2, treating squaring as doubling"
+    },
+    "check": "from sympy import *\ns=symbols('s',positive=True)\nresult=solve(Eq(4*s**2,36),s)[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-043",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The volume V of a cube with edge length s is given by V = s³. A cube-shaped storage box has a volume of 125 cubic inches. What is the total surface area of the box, in square inches?",
+    "choices": [
+      "25",
+      "30",
+      "150",
+      "750"
+    ],
+    "answer": "150",
+    "explanation": [
+      "Set s³ = 125 and take the cube root: s = 5.",
+      "A cube has 6 square faces, each with area s² = 25.",
+      "The total surface area is 6 · 25 = 150 square inches."
+    ],
+    "hints": [
+      "What edge length, used three times as a factor, gives the volume?",
+      "How many faces does a cube have, and what shape is each face?"
+    ],
+    "wrong_reasons": {
+      "25": "Found the area of only one face",
+      "30": "Multiplied the edge length by 6 instead of the face area",
+      "750": "Multiplied the volume by 6 instead of the face area"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nV=125\nE=[r for r in solve(s**3-V,s) if r.is_real]\nassert len(E)==1\nresult=6*E[0]**2"
+  },
+  {
+    "id": "adv-nonlinear-eq-044",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What are the solutions to the equation x² − 4x − 1 = 0?",
+    "choices": [
+      "x = 2 ± √3",
+      "x = −2 ± √5",
+      "x = 4 ± √20",
+      "x = 2 ± √5"
+    ],
+    "answer": "x = 2 ± √5",
+    "explanation": [
+      "Use the quadratic formula with a = 1, b = −4, c = −1.",
+      "The discriminant is (−4)² − 4(1)(−1) = 16 + 4 = 20.",
+      "x = (4 ± √20)/2 = (4 ± 2√5)/2.",
+      "So x = 2 ± √5."
+    ],
+    "hints": [
+      "Does this quadratic factor nicely, or do you need another method?",
+      "When c is negative, what is the sign of −4ac?",
+      "After you use the formula, can the radical be simplified so that every term can be divided by 2?"
+    ],
+    "wrong_reasons": {
+      "x = 2 ± √3": "Computed the discriminant as 16 − 4 = 12, mishandling the sign of c",
+      "x = −2 ± √5": "Used b instead of −b in the formula",
+      "x = 4 ± √20": "Forgot to divide by 2a"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nr=solve(x**2-4*x-1,x)\nm=simplify((r[0]+r[1])/2); q=simplify(((r[0]-r[1])/2)**2)\nresult=f'x = {m} ± √{q}'"
+  },
+  {
+    "id": "adv-nonlinear-eq-045",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following equations is equivalent to x² + 8x = 9?",
+    "choices": [
+      "(x + 4)² = 9",
+      "(x + 8)² = 73",
+      "(x + 4)² = −7",
+      "(x + 4)² = 25"
+    ],
+    "answer": "(x + 4)² = 25",
+    "explanation": [
+      "To complete the square, add (8/2)² = 16 to both sides.",
+      "x² + 8x + 16 = 9 + 16.",
+      "So (x + 4)² = 25.",
+      "(This gives x + 4 = ±5, so x = 1 or x = −9.)"
+    ],
+    "hints": [
+      "What number must you add to x² + 8x to make it a perfect square?",
+      "If you add a number to one side, what must you do to the other side?"
+    ],
+    "wrong_reasons": {
+      "(x + 4)² = 9": "Completed the square on the left but didn't add 16 to the right side",
+      "(x + 8)² = 73": "Added 8² = 64 instead of (8/2)², and used x + 8",
+      "(x + 4)² = −7": "Subtracted 16 from the right side instead of adding it"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nC={'(x + 4)² = 9':(x+4)**2-9,'(x + 4)² = 25':(x+4)**2-25,'(x + 8)² = 73':(x+8)**2-73,'(x + 4)² = −7':(x+4)**2+7}\nok=[q for q,e in C.items() if expand(e)==expand(x**2+8*x-9)]\nassert len(ok)==1\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-046",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "What value of x satisfies the equation 9ˣ = 27^(x − 1)?",
+    "answer": "3",
+    "explanation": [
+      "Write both sides as powers of 3: 9ˣ = (3²)ˣ = 3^(2x) and 27^(x − 1) = (3³)^(x − 1) = 3^(3x − 3).",
+      "So 2x = 3x − 3.",
+      "Solve: x = 3."
+    ],
+    "hints": [
+      "Is there one base that both 9 and 27 are powers of?",
+      "When you raise a power to a power, what happens to the exponents?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nxr=symbols('xr',real=True)\ns=solve(Eq(9**xr,27**(xr-1)),xr)\nassert len(s)==1\nresult=simplify(s[0])"
+  },
+  {
+    "id": "adv-nonlinear-eq-047",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "If x^(2/3) = 9 and x > 0, what is the value of x?",
+    "choices": [
+      "6",
+      "13.5",
+      "27",
+      "81"
+    ],
+    "answer": "27",
+    "explanation": [
+      "x^(2/3) = (x^(1/3))², so (x^(1/3))² = 9.",
+      "Since x > 0, x^(1/3) = 3.",
+      "Cube both sides: x = 3³ = 27.",
+      "Check: 27^(2/3) = (∛27)² = 3² = 9. ✓"
+    ],
+    "hints": [
+      "How can you rewrite x^(2/3) using a cube root and a square?",
+      "What power should you raise both sides to so that the exponent on x becomes 1?"
+    ],
+    "wrong_reasons": {
+      "6": "Multiplied 9 by 2/3 instead of raising to a power",
+      "13.5": "Divided 9 by 2/3, treating the exponent like a coefficient",
+      "81": "Squared 9 instead of raising it to the 3/2 power"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=[r for r in solve(x**Rational(2,3)-9,x) if r.is_real and r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-048",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Working alone, Pipe A fills a tank in x hours, and Pipe B fills the same tank in x + 3 hours. Working together, the two pipes fill the tank in 2 hours. What is the value of x?",
+    "choices": [
+      "0.5",
+      "1",
+      "3",
+      "6"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Pipe A fills 1/x of the tank per hour and Pipe B fills 1/(x + 3).",
+      "Together: 1/x + 1/(x + 3) = 1/2.",
+      "Multiply by 2x(x + 3): 2(x + 3) + 2x = x(x + 3), so x² − x − 6 = 0.",
+      "Factor: (x − 3)(x + 2) = 0. Time is positive, so x = 3."
+    ],
+    "hints": [
+      "What fraction of the tank does each pipe fill in one hour?",
+      "How do the hourly rates combine when the pipes work together?",
+      "After clearing fractions, which root makes sense for a time?"
+    ],
+    "wrong_reasons": {
+      "0.5": "Assumed the combined time is the average of the two times, (2x + 3)/2 = 2",
+      "1": "Cleared fractions incorrectly, writing 2 + 2 = x(x + 3)",
+      "6": "Gave Pipe B's time, x + 3, instead of x"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=[r for r in solve(Eq(1/x+1/(x+3),Rational(1,2)),x) if r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-049",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "How many real solutions does the equation |x² − 5| = 4 have?",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": "4",
+    "explanation": [
+      "The inside must equal 4 or −4.",
+      "x² − 5 = 4 gives x² = 9, so x = 3 or x = −3.",
+      "x² − 5 = −4 gives x² = 1, so x = 1 or x = −1.",
+      "That is 4 real solutions."
+    ],
+    "hints": [
+      "What two equations come from removing the absolute value bars?",
+      "How many values of x can each of those equations give?"
+    ],
+    "wrong_reasons": {
+      "1": "Solved only x² − 5 = 4 and kept only the positive root",
+      "2": "Solved only x² − 5 = 4 and missed the case x² − 5 = −4",
+      "3": "Found both cases but counted x = ±1 as a single solution"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nxr=symbols('xr',real=True)\nresult=len(solve(Abs(xr**2-5)-4,xr))"
+  },
+  {
+    "id": "adv-nonlinear-eq-050",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "What is the sum of the solutions to the equation 3x² − 12x + 5 = 0?",
+    "answer": "4",
+    "explanation": [
+      "The discriminant is 144 − 60 = 84 > 0, so there are two real solutions.",
+      "By the quadratic formula, the solutions are (12 + √84)/6 and (12 − √84)/6.",
+      "The √84 parts cancel when added: 24/6 = 4.",
+      "(Shortcut: the sum of the solutions of ax² + bx + c = 0 is −b/a = 12/3 = 4.)"
+    ],
+    "hints": [
+      "Do you actually need each solution, or just their total?",
+      "In the quadratic formula, what happens to the ± part when you add the two solutions?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=sum(solve(3*x**2-12*x+5,x))"
+  },
+  {
+    "id": "adv-nonlinear-eq-051",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "One leg of a right triangle is 7 centimeters longer than the other leg. The hypotenuse is 13 centimeters long. What is the length, in centimeters, of the shorter leg?",
+    "choices": [
+      "5",
+      "3",
+      "√60",
+      "12"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Let the shorter leg be x, so the longer leg is x + 7.",
+      "Pythagorean theorem: x² + (x + 7)² = 13².",
+      "Expand: 2x² + 14x + 49 = 169, so x² + 7x − 60 = 0.",
+      "Factor: (x + 12)(x − 5) = 0. A length is positive, so x = 5."
+    ],
+    "hints": [
+      "Which theorem relates the legs and hypotenuse of a right triangle?",
+      "If the shorter leg is x, how would you write the longer one?",
+      "Which root makes sense for a length?"
+    ],
+    "wrong_reasons": {
+      "3": "Assumed the legs add up to the hypotenuse: x + (x + 7) = 13",
+      "√60": "Wrote (x + 7)² as x² + 49, getting 2x² = 120",
+      "12": "Gave the longer leg instead of the shorter one"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=[r for r in solve(x**2+(x+7)**2-169,x) if r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-052",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "y = x² − 3\ny = −x² + 5\nIf (a, b) is a solution to the system of equations above, what is the value of b?",
+    "answer": "1",
+    "explanation": [
+      "Set the expressions for y equal: x² − 3 = −x² + 5.",
+      "So 2x² = 8, x² = 4, and x = 2 or x = −2.",
+      "For either value, y = 4 − 3 = 1.",
+      "So b = 1."
+    ],
+    "hints": [
+      "At a solution, what must be true about the two expressions for y?",
+      "Once you know x², do you even need the sign of x to find y?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nS=solve([y-(x**2-3),y-(-x**2+5)],[x,y],dict=True)\nB=set(d[y] for d in S)\nassert len(B)==1\nresult=B.pop()"
+  },
+  {
+    "id": "adv-nonlinear-eq-053",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Ines rode her bike 60 miles. If her average speed had been 5 miles per hour faster, the trip would have taken 1 hour less. What was Ines's average speed, in miles per hour?",
+    "choices": [
+      "12",
+      "15",
+      "20",
+      "25"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Her time at speed v is 60/v; at v + 5 it is 60/(v + 5).",
+      "60/v − 60/(v + 5) = 1.",
+      "Multiply by v(v + 5): 60(v + 5) − 60v = v(v + 5), so v² + 5v − 300 = 0.",
+      "Factor: (v + 20)(v − 15) = 0. Speed is positive, so v = 15."
+    ],
+    "hints": [
+      "How do you find travel time from distance and speed?",
+      "Which of the two times is longer, and by how much?",
+      "After clearing fractions, which root makes sense for a speed?"
+    ],
+    "wrong_reasons": {
+      "12": "Divided 60 by 5",
+      "20": "Gave the faster speed, v + 5",
+      "25": "Took the root −20 as 20 and then added 5"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=[r for r in solve(Eq(60/v-60/(v+5),1),v) if r>0][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-054",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "What is the sum of all solutions to the equation (x − 3)² − 5(x − 3) + 6 = 0?",
+    "choices": [
+      "−1",
+      "5",
+      "6",
+      "11"
+    ],
+    "answer": "11",
+    "explanation": [
+      "Let u = x − 3. The equation becomes u² − 5u + 6 = 0.",
+      "Factor: (u − 2)(u − 3) = 0, so u = 2 or u = 3.",
+      "Then x − 3 = 2 gives x = 5, and x − 3 = 3 gives x = 6.",
+      "The sum is 5 + 6 = 11."
+    ],
+    "hints": [
+      "What expression appears more than once? What if you called it a single letter?",
+      "Once you know the possible values of that expression, how do you get back to x?"
+    ],
+    "wrong_reasons": {
+      "−1": "Found u = 2 and u = 3, then subtracted 3 instead of adding to get x",
+      "5": "Added the values of u instead of the values of x",
+      "6": "Multiplied the values of u"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=sum(solve((x-3)**2-5*(x-3)+6,x))"
+  },
+  {
+    "id": "adv-nonlinear-eq-055",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "What is the sum of all solutions to the equation x³ + 2x² − 9x − 18 = 0?",
+    "answer": "−2",
+    "accept": [
+      "-2"
+    ],
+    "explanation": [
+      "Group the terms: x²(x + 2) − 9(x + 2) = 0.",
+      "Factor out x + 2: (x + 2)(x² − 9) = 0.",
+      "Factor again: (x + 2)(x − 3)(x + 3) = 0, so x = −2, 3, or −3.",
+      "The sum is −2 + 3 + (−3) = −2."
+    ],
+    "hints": [
+      "Can you factor something from the first two terms and something from the last two terms?",
+      "Is x² − 9 a special kind of product you can factor further?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=sum(solve(x**3+2*x**2-9*x-18,x))"
+  },
+  {
+    "id": "adv-nonlinear-eq-056",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "What value of x satisfies the equation (x + 2)/(x − 1) = (x − 4)/(x − 3)?",
+    "answer": "5/2",
+    "accept": [
+      "2.5"
+    ],
+    "explanation": [
+      "Cross-multiply: (x + 2)(x − 3) = (x − 4)(x − 1).",
+      "Expand: x² − x − 6 = x² − 5x + 4.",
+      "The x² terms cancel: 4x = 10, so x = 5/2.",
+      "x = 5/2 doesn't make either denominator 0, so it is the solution."
+    ],
+    "hints": [
+      "How can you clear both denominators at the same time?",
+      "After expanding both sides, what happens to the x² terms?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=[r for r in solve(Eq((x+2)/(x-1),(x-4)/(x-3)),x) if r not in (1,3)]\nassert len(s)==1\nresult=s[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-057",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "If a² − b² = 48 and a + b = 8, what is the value of a?",
+    "choices": [
+      "1",
+      "6",
+      "7",
+      "8"
+    ],
+    "answer": "7",
+    "explanation": [
+      "Factor: a² − b² = (a + b)(a − b).",
+      "So 8(a − b) = 48, which gives a − b = 6.",
+      "Add the equations a + b = 8 and a − b = 6: 2a = 14.",
+      "So a = 7."
+    ],
+    "hints": [
+      "Is there a way to factor a² − b² that uses a + b?",
+      "Once you have two linear equations in a and b, how can you eliminate b?"
+    ],
+    "wrong_reasons": {
+      "1": "Found b instead of a",
+      "6": "Found a − b = 6 and stopped",
+      "8": "Assumed b = 0 since a + b = 8"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nS=solve([a**2-b**2-48,a+b-8],[a,b],dict=True)\nassert len(S)==1\nresult=S[0][a]"
+  },
+  {
+    "id": "adv-nonlinear-eq-058",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The period T, in seconds, of a simple pendulum of length L meters is given by T = 2π√(L/g), where g is a positive constant. Which of the following expresses L in terms of T and g?",
+    "choices": [
+      "L = gT²/(4π²)",
+      "L = gT/(2π)",
+      "L = T²/(4π²g)",
+      "L = 4π²g/T²"
+    ],
+    "answer": "L = gT²/(4π²)",
+    "explanation": [
+      "Divide both sides by 2π: T/(2π) = √(L/g).",
+      "Square both sides: T²/(4π²) = L/g.",
+      "Multiply both sides by g: L = gT²/(4π²)."
+    ],
+    "hints": [
+      "What should you undo first so the square root is alone?",
+      "When you square T/(2π), what happens to the 2 and the π?",
+      "How do you get L out of the fraction L/g?"
+    ],
+    "wrong_reasons": {
+      "L = gT/(2π)": "Forgot to square both sides to remove the square root",
+      "L = T²/(4π²g)": "Divided by g instead of multiplying by g in the last step",
+      "L = 4π²g/T²": "Flipped the fraction when solving"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nL,g,T=symbols('L g T',positive=True)\nsol=solve(Eq(T,2*pi*sqrt(L/g)),L)\nassert len(sol)==1\nC={'L = gT/(2π)':g*T/(2*pi),'L = gT²/(4π²)':g*T**2/(4*pi**2),'L = T²/(4π²g)':T**2/(4*pi**2*g),'L = 4π²g/T²':4*pi**2*g/T**2}\nok=[q for q,e in C.items() if simplify(e-sol[0])==0]\nassert len(ok)==1\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-059",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "How many real solutions does the equation 3x² + 5 = 2x have?",
+    "choices": [
+      "Zero",
+      "Exactly one",
+      "Exactly two",
+      "Infinitely many"
+    ],
+    "answer": "Zero",
+    "explanation": [
+      "Rewrite in standard form: 3x² − 2x + 5 = 0.",
+      "The discriminant is (−2)² − 4(3)(5) = 4 − 60 = −56.",
+      "A negative discriminant means there are no real solutions."
+    ],
+    "hints": [
+      "Before using any formula, what form should the equation be in?",
+      "What part of the quadratic formula tells you how many real solutions there are, and what is its sign here?"
+    ],
+    "wrong_reasons": {
+      "Exactly one": "Thought a quadratic always has at least one real solution",
+      "Exactly two": "Assumed every quadratic has two real solutions without checking the discriminant",
+      "Infinitely many": "Confused a quadratic with an identity that is true for all x"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nn=len([r for r in solve(3*x**2+5-2*x,x) if r.is_real])\nresult={0:'Zero',1:'Exactly one',2:'Exactly two'}[n]"
+  },
+  {
+    "id": "adv-nonlinear-eq-060",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation x² + bx + 12 = 0, b is a positive constant. If the equation has two different integer solutions, how many possible values of b are there?",
+    "choices": [
+      "2",
+      "3",
+      "6",
+      "12"
+    ],
+    "answer": "3",
+    "explanation": [
+      "If the integer solutions are r and s, then x² + bx + 12 = (x − r)(x − s), so rs = 12 and r + s = −b.",
+      "Since b > 0, r + s < 0; with rs = 12 > 0, both solutions must be negative.",
+      "The pairs of different negative integers with product 12 are (−1, −12), (−2, −6), and (−3, −4).",
+      "These give b = 13, 8, and 7, so there are 3 possible values."
+    ],
+    "hints": [
+      "If the solutions are r and s, how are r and s related to the 12 and to b?",
+      "If b is positive, what must be true about the signs of the two solutions?"
+    ],
+    "wrong_reasons": {
+      "2": "Left out the pair (−1, −12), forgetting 1 as a factor",
+      "6": "Counted both positive and negative factor pairs, ignoring that b must be positive",
+      "12": "Used the constant term 12 as the number of possibilities"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nvals=set()\nfor B in range(1,200):\n    r=solve(x**2+B*x+12,x)\n    if len(r)==2 and all(q.is_integer for q in r): vals.add(B)\nresult=len(vals)"
+  },
+  {
+    "id": "adv-nonlinear-eq-061",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The equations x² − 7x + c = 0 and (x − a)(x − 4) = 0 have exactly the same solutions, where a and c are constants. What is the value of c?",
+    "choices": [
+      "−12",
+      "3",
+      "12",
+      "28"
+    ],
+    "answer": "12",
+    "explanation": [
+      "Expand: (x − a)(x − 4) = x² − (a + 4)x + 4a.",
+      "For the same solutions with the same leading coefficient 1, the coefficients must match: a + 4 = 7 and 4a = c.",
+      "So a = 3 and c = 4(3) = 12.",
+      "Check: x² − 7x + 12 = (x − 3)(x − 4). ✓"
+    ],
+    "hints": [
+      "What do you get when you expand (x − a)(x − 4)?",
+      "If two quadratics with leading coefficient 1 have the same solutions, how must their other coefficients compare?"
+    ],
+    "wrong_reasons": {
+      "−12": "Expanded (x − a)(x − 4) with the constant term −4a",
+      "3": "Found a = 3 and gave a instead of c",
+      "28": "Multiplied 7 by 4, assuming a = 7"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nS=solve([a+4-7,4*a-c],[a,c],dict=True)[0]\nassert expand((x-S[a])*(x-4))==expand(x**2-7*x+S[c])\nresult=S[c]"
+  },
+  {
+    "id": "adv-nonlinear-eq-062",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the equation 2x² − 12x + c = 0, c is a constant. The two solutions of the equation differ by 4. What is the value of c?",
+    "answer": "10",
+    "explanation": [
+      "Divide by 2: x² − 6x + c/2 = 0. The solutions r and s satisfy r + s = 6 and rs = c/2.",
+      "With r − s = 4 and r + s = 6, r = 5 and s = 1.",
+      "So c/2 = 5 · 1 = 5, which gives c = 10.",
+      "Check: 2x² − 12x + 10 = 2(x − 1)(x − 5). ✓"
+    ],
+    "hints": [
+      "What is the sum of the two solutions of this quadratic, and how can you find it from the coefficients?",
+      "If you know both the sum and the difference of two numbers, how can you find the numbers?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nr=solve(2*x**2-12*x+c,x)\nC=solve(Eq((r[0]-r[1])**2,16),c)\nassert len(C)==1\nresult=C[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-063",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation x² − 2kx + k² − 9 = 0, k is a positive constant. What is the positive difference between the two solutions of the equation?",
+    "choices": [
+      "3",
+      "9",
+      "2k",
+      "6"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Notice that x² − 2kx + k² = (x − k)², so the equation is (x − k)² − 9 = 0.",
+      "Then (x − k)² = 9, so x − k = 3 or x − k = −3.",
+      "The solutions are x = k + 3 and x = k − 3.",
+      "Their difference is (k + 3) − (k − 3) = 6, no matter what k is."
+    ],
+    "hints": [
+      "Do the first three terms remind you of a perfect square?",
+      "Once the equation looks like (something)² = number, how do you solve it?"
+    ],
+    "wrong_reasons": {
+      "3": "Found x − k = ±3 and gave 3 as the difference",
+      "9": "Gave the constant 9 without taking a square root",
+      "2k": "Found the sum of the solutions instead of the difference"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nkk=symbols('kk',positive=True)\nr=solve(x**2-2*kk*x+kk**2-9,x)\nresult=simplify(Abs(r[0]-r[1]))"
+  },
+  {
+    "id": "adv-nonlinear-eq-064",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "What is the sum of all solutions to the equation 4ˣ − 6 · 2ˣ + 8 = 0?",
+    "choices": [
+      "2",
+      "3",
+      "6",
+      "8"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Since 4ˣ = (2ˣ)², let u = 2ˣ. The equation becomes u² − 6u + 8 = 0.",
+      "Factor: (u − 2)(u − 4) = 0, so 2ˣ = 2 or 2ˣ = 4.",
+      "So x = 1 or x = 2.",
+      "The sum of the solutions is 1 + 2 = 3."
+    ],
+    "hints": [
+      "How can 4ˣ be written using 2ˣ?",
+      "If you replace 2ˣ with a single letter, what kind of equation do you get?",
+      "After finding the values of that letter, what is the last step to get x?"
+    ],
+    "wrong_reasons": {
+      "2": "Multiplied the solutions 1 and 2 instead of adding them",
+      "6": "Added the values of 2ˣ (2 + 4) instead of the values of x",
+      "8": "Multiplied the values of 2ˣ"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nS=solve(u**2-6*u+8,u)\nX=[log(q,2) for q in S]\nassert all(simplify(4**q-6*2**q+8)==0 for q in X)\nresult=simplify(sum(X))"
+  },
+  {
+    "id": "adv-nonlinear-eq-065",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "2ˣ · 4ʸ = 1,024\n7ˣ ÷ 7ʸ = 7\nIf (x, y) satisfies the system of equations above, what is the value of x + y?",
+    "choices": [
+      "4",
+      "7",
+      "10",
+      "12"
+    ],
+    "answer": "7",
+    "explanation": [
+      "Write the first equation with base 2: 2ˣ · 2^(2y) = 2¹⁰, so x + 2y = 10.",
+      "The second equation gives 7^(x − y) = 7¹, so x − y = 1.",
+      "Subtract: 3y = 9, so y = 3 and x = 4.",
+      "So x + y = 7."
+    ],
+    "hints": [
+      "Can you write 4ʸ and 1,024 as powers of 2?",
+      "What happens to the exponents when you multiply or divide powers with the same base?",
+      "Once you have two linear equations, how can you solve them?"
+    ],
+    "wrong_reasons": {
+      "10": "Treated 4ʸ as 2ʸ, which gives x + y = 10",
+      "12": "Multiplied x = 4 and y = 3 instead of adding them",
+      "4": "Found x = 4 and y = 3 but gave only the value of x"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nS=solve([x+2*y-10,x-y-1],[x,y])\nassert 2**S[x]*4**S[y]==1024 and 7**S[x]/7**S[y]==7\nresult=S[x]+S[y]"
+  },
+  {
+    "id": "adv-nonlinear-eq-066",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "What are all the solutions to the equation √x − 2/√x = 1?",
+    "choices": [
+      "4",
+      "1",
+      "2",
+      "1 and 4"
+    ],
+    "answer": "4",
+    "explanation": [
+      "Multiply both sides by √x (which is positive): x − 2 = √x.",
+      "Square both sides: x² − 4x + 4 = x, so x² − 5x + 4 = 0.",
+      "Factor: (x − 1)(x − 4) = 0, so x = 1 or x = 4.",
+      "Check x = 1: √1 − 2/√1 = −1, not 1, so it is extraneous. Check x = 4: 2 − 1 = 1 ✓.",
+      "The only solution is 4."
+    ],
+    "hints": [
+      "What could you multiply both sides by to clear the fraction?",
+      "Squaring can introduce answers that don't work. How will you test each one?"
+    ],
+    "wrong_reasons": {
+      "1": "Kept the extraneous solution and rejected the real one",
+      "2": "Found √x = 2 and gave that as x",
+      "1 and 4": "Squared both sides but didn't check for extraneous solutions"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nc=solve(x**2-5*x+4,x)\nok=[q for q in c if simplify(sqrt(q)-2/sqrt(q)-1)==0]\nassert len(ok)==1\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-067",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "What is the solution to the equation x/(x − 3) = 9/(x² − 3x)?",
+    "answer": "−3",
+    "accept": [
+      "-3"
+    ],
+    "explanation": [
+      "Note that x² − 3x = x(x − 3), so x cannot be 0 or 3.",
+      "Multiply both sides by x(x − 3): x · x = 9, so x² = 9.",
+      "So x = 3 or x = −3, but x = 3 makes a denominator 0.",
+      "Check x = −3: (−3)/(−6) = 1/2 and 9/(9 + 9) = 1/2 ✓. The solution is −3."
+    ],
+    "hints": [
+      "Can you factor the denominator on the right side?",
+      "Which values of x are not allowed in the original equation?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\ns=[r for r in solve(Eq(x/(x-3),9/(x**2-3*x)),x) if r not in (0,3)]\nassert len(s)==1\nresult=s[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-068",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "y = |x|\ny = x² − 6\nHow many solutions (x, y) does the system of equations above have?",
+    "choices": [
+      "0",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": "2",
+    "explanation": [
+      "Set the expressions equal: |x| = x² − 6.",
+      "If x ≥ 0: x = x² − 6, so x² − x − 6 = 0 and x = 3 or x = −2. Only x = 3 fits x ≥ 0.",
+      "If x < 0: −x = x² − 6, so x² + x − 6 = 0 and x = −3 or x = 2. Only x = −3 fits x < 0.",
+      "The solutions are (3, 3) and (−3, 3), so there are 2."
+    ],
+    "hints": [
+      "How can you handle |x| — what does it equal when x is positive, and when x is negative?",
+      "In each case, do both roots actually satisfy the condition for that case?"
+    ],
+    "wrong_reasons": {
+      "0": "Thought a V-shaped graph and a parabola opening up can't cross",
+      "3": "Counted the vertex of y = |x|, (0, 0), as an intersection point",
+      "4": "Kept all four roots without checking each against its case's condition"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nxr=symbols('xr',real=True)\nn=len(solve(Abs(xr)-(xr**2-6),xr))\nresult=n"
+  },
+  {
+    "id": "adv-nonlinear-eq-069",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A rectangular garden plot has an area of 60 square meters, and its diagonal is 13 meters long. What is the perimeter of the plot, in meters?",
+    "answer": "34",
+    "explanation": [
+      "Let the length and width be l and w: lw = 60 and l² + w² = 13² = 169.",
+      "(l + w)² = l² + 2lw + w² = 169 + 120 = 289.",
+      "Since l + w > 0, l + w = 17.",
+      "The perimeter is 2(l + w) = 34. (The sides are 12 and 5.)"
+    ],
+    "hints": [
+      "Which equation does the diagonal give you, and which does the area give you?",
+      "How is (l + w)² related to l² + w² and lw?"
+    ],
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nl,wd=symbols('l wd',positive=True)\nS=solve([l*wd-60,l**2+wd**2-169],[l,wd],dict=True)\nP=set(2*(d[l]+d[wd]) for d in S)\nassert len(P)==1\nresult=P.pop()"
+  },
+  {
+    "id": "adv-nonlinear-eq-070",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "What is the solution to the equation √(x + 9) − √x = 1?",
+    "choices": [
+      "4",
+      "16",
+      "25",
+      "64"
+    ],
+    "answer": "16",
+    "explanation": [
+      "Isolate one radical: √(x + 9) = 1 + √x.",
+      "Square both sides: x + 9 = 1 + 2√x + x.",
+      "Simplify: 8 = 2√x, so √x = 4.",
+      "So x = 16. Check: √25 − √16 = 5 − 4 = 1 ✓."
+    ],
+    "hints": [
+      "Which radical should be by itself before you square?",
+      "When you square 1 + √x, what middle term appears?"
+    ],
+    "wrong_reasons": {
+      "4": "Found √x = 4 and gave that as x",
+      "25": "Gave the value of x + 9 instead of x",
+      "64": "Dropped the 2 in the middle term 2√x, getting √x = 8"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nc=solve(Eq(x+9,(1+sqrt(x))**2),x)\nok=[q for q in c if simplify(sqrt(q+9)-sqrt(q)-1)==0]\nassert len(ok)==1\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-071",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "√(2x + k) = x − 3\nIn the equation above, k is a constant. If x = 7 is a solution to the equation, which of the following is true about the equation's other possible solutions?",
+    "choices": [
+      "x = 1 is also a solution.",
+      "x = −1 is also a solution.",
+      "x = 3 is also a solution.",
+      "x = 7 is the only solution."
+    ],
+    "answer": "x = 7 is the only solution.",
+    "explanation": [
+      "Substitute x = 7: √(14 + k) = 4, so 14 + k = 16 and k = 2.",
+      "Square both sides of √(2x + 2) = x − 3: 2x + 2 = x² − 6x + 9.",
+      "Rearrange: x² − 8x + 7 = 0, so (x − 1)(x − 7) = 0.",
+      "Check x = 1: √4 = 2, but 1 − 3 = −2, so x = 1 is extraneous.",
+      "So x = 7 is the only solution."
+    ],
+    "hints": [
+      "What does knowing one solution tell you about k?",
+      "Once you know k, what equation do you get after squaring both sides?",
+      "Can a square root ever equal a negative number?"
+    ],
+    "wrong_reasons": {
+      "x = 1 is also a solution.": "Solved the squared equation but didn't check the root in the original equation",
+      "x = −1 is also a solution.": "Made a sign error factoring x² − 8x + 7",
+      "x = 3 is also a solution.": "Set the right side, x − 3, equal to 0 instead of solving the equation"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nK=solve(Eq(2*7+k,(7-3)**2),k)[0]\nc=solve(Eq(2*x+K,(x-3)**2),x)\nok=[q for q in c if simplify(sqrt(2*q+K)-(q-3))==0]\nresult='x = 7 is the only solution.' if ok==[7] else 'x = %s is also a solution.'%[q for q in ok if q!=7][0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-072",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A rectangular sheet of cardboard is 20 centimeters long and 14 centimeters wide. A square with side length x centimeters is cut from each corner, and the sides are folded up to make an open box. The base of the box has an area of 112 square centimeters. What is the value of x?",
+    "choices": [
+      "3",
+      "6",
+      "8",
+      "14"
+    ],
+    "answer": "3",
+    "explanation": [
+      "Cutting x from each end of each side leaves a base of (20 − 2x) by (14 − 2x).",
+      "So (20 − 2x)(14 − 2x) = 112, which expands to 4x² − 68x + 280 = 112.",
+      "Simplify: 4x² − 68x + 168 = 0, or x² − 17x + 42 = 0, so (x − 3)(x − 14) = 0.",
+      "x = 14 would make 14 − 2x negative, so it is impossible. x = 3."
+    ],
+    "hints": [
+      "How much does cutting a square from both ends shorten each side?",
+      "Both roots are positive — what other condition must x meet for the box to exist?"
+    ],
+    "wrong_reasons": {
+      "6": "Subtracted x only once from each dimension: (20 − x)(14 − x) = 112",
+      "8": "Gave the width of the base, 14 − 2(3)",
+      "14": "Kept the root that makes the base's width negative"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nr=solve((20-2*x)*(14-2*x)-112,x)\nok=[q for q in r if q>0 and 14-2*q>0]\nassert len(ok)==1\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-073",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation ax² + bx + c = 0, a, b, and c are constants with a > 0 and c < 0. Which of the following must be true about the equation's real solutions?",
+    "choices": [
+      "It has no real solutions.",
+      "It has exactly one real solution.",
+      "The number of real solutions depends on the value of b.",
+      "It has exactly two real solutions."
+    ],
+    "answer": "It has exactly two real solutions.",
+    "explanation": [
+      "The number of real solutions depends on the sign of the discriminant, b² − 4ac.",
+      "Since a > 0 and c < 0, the product ac is negative, so −4ac is positive.",
+      "b² is never negative, so b² − 4ac = b² + (a positive number) > 0.",
+      "A positive discriminant means exactly two real solutions."
+    ],
+    "hints": [
+      "Which expression decides how many real solutions a quadratic has?",
+      "What is the sign of ac when a and c have opposite signs?",
+      "Can b² ever be negative?"
+    ],
+    "wrong_reasons": {
+      "It has no real solutions.": "Thought a negative c makes the discriminant negative",
+      "It has exactly one real solution.": "Assumed opposite signs make the discriminant 0",
+      "The number of real solutions depends on the value of b.": "Didn't notice that −4ac is already positive, so b² can only increase the discriminant"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nA=symbols('A',positive=True); Cn=symbols('Cn',negative=True); B=symbols('B',real=True)\nDd=B**2-4*A*Cn\nn=2 if Dd.is_positive else 1 if Dd.is_zero else 0 if Dd.is_negative else None\nresult={0:'It has no real solutions.',1:'It has exactly one real solution.',2:'It has exactly two real solutions.',None:'The number of real solutions depends on the value of b.'}[n]"
+  },
+  {
+    "id": "adv-nonlinear-eq-074",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the equation 1/(x + a) = x − a, a is a positive constant. Which of the following is the positive solution to the equation?",
+    "choices": [
+      "a + 1",
+      "a² + 1",
+      "√(a² + 1)",
+      "√(a² − 1)"
+    ],
+    "answer": "√(a² + 1)",
+    "explanation": [
+      "Multiply both sides by x + a: 1 = (x − a)(x + a).",
+      "So 1 = x² − a², which gives x² = a² + 1.",
+      "The positive solution is x = √(a² + 1).",
+      "It doesn't make x + a equal 0, so it is valid."
+    ],
+    "hints": [
+      "How can you clear the fraction?",
+      "What special product is (x − a)(x + a)?"
+    ],
+    "wrong_reasons": {
+      "a + 1": "Took the square root of a² + 1 term by term",
+      "a² + 1": "Found x² = a² + 1 but forgot to take the square root",
+      "√(a² − 1)": "Made a sign error moving a² to the other side, getting x² = a² − 1 instead of x² = a² + 1"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nA=symbols('A',positive=True)\nr=[q for q in solve(Eq(1/(x+A),x-A),x) if q.is_positive]\nassert len(r)==1\nC={'a + 1':A+1,'a² + 1':A**2+1,'√(a² − 1)':sqrt(A**2-1),'√(a² + 1)':sqrt(A**2+1)}\nok=[q for q,e in C.items() if simplify(e-r[0])==0]\nassert len(ok)==1\nresult=ok[0]"
+  },
+  {
+    "id": "adv-nonlinear-eq-075",
+    "skill_id": "adv-nonlinear-eq",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "x² + y² = 16\ny = x² − 4\nHow many solutions (x, y) does the system of equations above have?",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": "3",
+    "explanation": [
+      "From the second equation, x² = y + 4. Substitute: (y + 4) + y² = 16.",
+      "So y² + y − 12 = 0, which factors as (y + 4)(y − 3) = 0.",
+      "If y = 3, then x² = 7, giving x = √7 and x = −√7: two solutions.",
+      "If y = −4, then x² = 0, giving only x = 0: one solution.",
+      "In total there are 3 solutions."
+    ],
+    "hints": [
+      "Instead of solving for y, what could you replace x² with in the first equation?",
+      "For each y-value you find, how many x-values go with it?"
+    ],
+    "wrong_reasons": {
+      "1": "Kept only one y-value and one x for it",
+      "2": "Found the two y-values and counted one solution for each",
+      "4": "Assumed each y-value gives two x-values, missing that x² = 0 has only one solution"
+    },
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nresult=len(solve([x**2+y**2-16,y-(x**2-4)],[x,y],dict=True))"
   }
 ]

@@ -1,0 +1,152 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "alg-linear-func-028",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-030",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-031",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-033",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-034",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-036",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-037",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-038",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-039",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-040",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-042",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-043",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-045",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-047",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-048",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-050",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-052",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-053",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-054",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-055",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-056",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-057",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-059",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-060",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-061",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-062",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-065",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-068",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-070",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-071",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-072",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-073",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-074",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-075",
+      "reason": "Reordered choices to remove answer-position bias (32 of 36 new mc keys were choice A); numeric choices now ascending, others spread across A–D."
+    },
+    {
+      "id": "alg-linear-func-069",
+      "reason": "Difficulty changed from 3 to 2 (substituting one linear expression into another is medium level); choices also reordered to remove answer-position bias."
+    }
+  ],
+  "replaced": [
+    {
+      "id": "alg-linear-func-044",
+      "reason": "Near-duplicate of 032 (rate × change in input, 'by how much does the output increase') and too easy for difficulty 2; replaced with an original item: f(x) = 6x − 4, f(p) = 2, find f(p + 3)."
+    }
+  ],
+  "removed": []
+}

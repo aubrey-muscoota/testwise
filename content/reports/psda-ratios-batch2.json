@@ -1,0 +1,11 @@
+{
+  "reviewed": 48,
+  "fixed": [
+    {
+      "id": "psda-ratios-068",
+      "reason": "Labelled difficulty 3 but was a single multiply-and-convert chain (70 × 72 × 60 ÷ 1,000), easier than similar difficulty-1 items; added a step comparing the hourly volume with a 5-liter blood supply (answer now 60), with choices, wrong_reasons, explanation, hints and check rewritten."
+    }
+  ],
+  "replaced": [],
+  "removed": []
+}

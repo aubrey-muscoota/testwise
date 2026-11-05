@@ -25,6 +25,7 @@ export type Skill = {
   attempts: number;
   mastery: number;
   mastered: boolean;
+  tested_out?: boolean;
   unlocked: boolean;
 };
 
@@ -34,7 +35,9 @@ export type Stats = { xp: number; streak: number; lessons_today: number; xp_toda
 
 export type Tree = { exam: { id: string; name: string }; domains: Domain[]; stats: Stats };
 
-export type Lesson = { lesson_id: string; skill_id: string | null; items: Item[] };
+export type Lesson = { lesson_id: string; skill_id: string | null; placement?: boolean; items: Item[] };
+
+export type Placement = { tested_out: { id: string; name: string }[]; next: { id: string; name: string }[]; total_skills: number };
 
 export type TutorTurn = { role: "student" | "socrates"; content: string };
 
@@ -104,8 +107,9 @@ export const api = {
   startLesson: (skillId: string | null) => call<Lesson>("/api/lessons", { method: "POST", body: { skill_id: skillId } }),
   answer: (b: { lesson_id: string; item_id: string; response: string; time_ms: number }) =>
     call<{ correct: boolean; answer: string; mastery: number; xp: number }>("/api/answers", { method: "POST", body: b }),
+  startPlacement: () => call<Lesson>("/api/lessons", { method: "POST", body: { placement: true } }),
   finish: (lessonId: string) =>
-    call<{ correct: number; total: number; xp: number; stats: Stats }>("/api/lessons/finish", { method: "POST", body: { lesson_id: lessonId } }),
+    call<{ correct: number; total: number; xp: number; stats: Stats; placement?: Placement }>("/api/lessons/finish", { method: "POST", body: { lesson_id: lessonId } }),
   socrates: (b: { item_id: string; response: string; history: TutorTurn[] }) =>
     call<{ reply: string; offline?: boolean; done?: boolean; error?: string; remaining_today?: number }>("/api/socrates", { method: "POST", body: b }),
   report: (itemId: string, note: string) => call<{ ok: boolean }>("/api/reports", { method: "POST", body: { item_id: itemId, note } }),
