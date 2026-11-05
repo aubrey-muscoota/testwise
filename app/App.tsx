@@ -3,7 +3,8 @@ import { ActivityIndicator, Animated, Easing, Platform, SafeAreaView, StatusBar,
 import {
   useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold,
 } from "@expo-google-fonts/nunito";
-import { createLearner, forgetLearner, loadLearner, Skill } from "./src/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { api, createLearner, forgetLearner, loadLearner, Skill } from "./src/api";
 import { Welcome } from "./src/screens/Welcome";
 import { Home } from "./src/screens/Home";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
@@ -31,10 +32,22 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    loadLearner().then((id) => setScreen(id ? { name: "home", key: 0 } : { name: "welcome" }));
+    loadLearner().then(async (id) => {
+      if (!id) return setScreen({ name: "welcome" });
+      // A new learner who left before choosing still gets the placement offer.
+      if (!(await placementSettled(id))) {
+        try {
+          const t = await api.tree();
+          if (t.stats.xp === 0) return setScreen({ name: "placement" });
+          await settlePlacement();
+        } catch {}
+      }
+      setScreen({ name: "home", key: 0 });
+    });
   }, []);
 
   const goHome = useCallback(() => setScreen({ name: "home", key: Math.random() }), []);
+  const skipPlacement = useCallback(() => { settlePlacement(); goHome(); }, [goHome]);
   const reset = useCallback(() => {
     forgetLearner().then(() => setScreen({ name: "welcome" }));
   }, []);
@@ -50,13 +63,24 @@ export default function App() {
       </View>
     );
   } else if (screen.name === "welcome") {
-    body = <Welcome onStart={async () => { await createLearner(); setScreen({ name: "placement" }); }} />;
+    body = <Welcome onStart={async () => { currentLearner = await createLearner(); setScreen({ name: "placement" }); }} />;
   } else if (screen.name === "placement") {
-    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: true })} onSkip={goHome} />;
+    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: true })} onSkip={skipPlacement} />;
   } else if (screen.name === "home") {
     body = <Home key={screen.key} onStartLesson={(skill) => setScreen({ name: "lesson", skill })} onReset={reset} />;
   } else if (screen.name === "lesson") {
-    body = <Lesson skill={screen.skill} placement={screen.placement} onQuit={goHome} onDone={(result) => setScreen({ name: "complete", result })} />;
+    // Leaving the placement quiz goes back to its intro, where "Start from the beginning" is one tap.
+    body = (
+      <Lesson
+        skill={screen.skill}
+        placement={screen.placement}
+        onQuit={screen.placement ? () => setScreen({ name: "placement" }) : goHome}
+        onDone={(result) => {
+          if (result.placement) settlePlacement();
+          setScreen({ name: "complete", result });
+        }}
+      />
+    );
   } else {
     body = <Complete result={screen.result} onContinue={goHome} />;
   }
@@ -67,6 +91,24 @@ export default function App() {
       <ScreenTransition key={screenId}>{body}</ScreenTransition>
     </SafeAreaView>
   );
+}
+
+// Remembers (per learner) that the placement offer was taken or declined.
+let currentLearner: string | null = null;
+const placementKey = (id: string | null) => `testwise.placementDone.${id ?? "anon"}`;
+async function placementSettled(id: string) {
+  currentLearner = id;
+  try {
+    return (await AsyncStorage.getItem(placementKey(id))) === "1";
+  } catch {
+    return false;
+  }
+}
+async function settlePlacement() {
+  try {
+    const id = currentLearner ?? (await loadLearner());
+    await AsyncStorage.setItem(placementKey(id), "1");
+  } catch {}
 }
 
 // Each screen fades in while sliding up 16px. Remounted per screen via `key`.

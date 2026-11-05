@@ -229,15 +229,15 @@ async function applyPlacement(env, learnerId, lessonId) {
   return out;
 }
 
-async function placementSummary(env, learnerId, testedOut) {
+async function placementSummary(env, learnerId) {
   const skills = await allSkills(env);
   const mastery = await masteryMap(env, learnerId);
-  const set = new Set(testedOut);
   const name = (s) => ({ id: s.id, name: s.name });
+  const m = (s) => mastery[s.id] || { rating: 0, attempts: 0 };
   return {
-    tested_out: skills.filter((s) => set.has(s.id)).map(name),
-    // The skills that are now open to start on.
-    next: skills.filter((s) => !mastery[s.id]?.tested_out && !(mastery[s.id]?.attempts >= E.UNLOCK_ATTEMPTS) && E.isUnlocked(s, mastery)).map(name),
+    tested_out: skills.filter((s) => m(s).tested_out).map(name),
+    // Open skills to work on next, in path order (the app's START picks the first).
+    next: skills.filter((s) => !m(s).tested_out && !E.isMastered(m(s).rating, m(s).attempts) && E.isUnlocked(s, mastery)).map(name),
     total_skills: skills.length,
   };
 }
@@ -250,6 +250,20 @@ async function answer(env, request, learnerId, b) {
   const item = parseItem(row);
   const response = b.response == null ? "" : String(b.response).slice(0, 200);
   const correct = E.isCorrect(item, response);
+
+  // Placement answers are only recorded for scoring: they don't move ratings,
+  // progress or the review queue (most probe skills aren't open yet).
+  const lesson = b.lesson_id
+    ? await env.DB.prepare("SELECT kind FROM lessons WHERE id = ? AND learner_id = ?").bind(String(b.lesson_id), learnerId).first()
+    : null;
+  if (lesson?.kind === "placement") {
+    await env.DB.prepare(
+      `INSERT INTO attempts (learner_id, item_id, skill_id, lesson_id, correct, response, time_ms, is_review, answered_at, local_day)
+       VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?, ?)`,
+    ).bind(learnerId, item.id, item.skill_id, String(b.lesson_id), correct ? 1 : 0, response,
+      Number.isFinite(b.time_ms) ? Math.round(b.time_ms) : null, now, today).run();
+    return json({ correct, answer: item.answer, mastery: 0, xp: correct ? E.XP_CORRECT : 0 });
+  }
 
   const m = await env.DB.prepare(
     "SELECT rating, attempts, correct FROM skill_mastery WHERE learner_id = ? AND skill_id = ?",
@@ -321,7 +335,8 @@ async function finishLesson(env, request, learnerId, b) {
   const today = E.localDay(Date.now(), tzOffset(request));
   const extra = {};
   if (lesson.kind === "placement") {
-    extra.placement = await placementSummary(env, learnerId, await applyPlacement(env, learnerId, lesson.id));
+    if (!lesson.completed_at) await applyPlacement(env, learnerId, lesson.id);
+    extra.placement = await placementSummary(env, learnerId);
   }
   return json({ ...done, ...extra, stats: await stats(env, learnerId, today) });
 }

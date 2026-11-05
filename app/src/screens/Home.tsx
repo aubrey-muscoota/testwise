@@ -310,6 +310,7 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
                       <Text style={[s.skillName, !sk.unlocked && { color: color.disabledText }]} numberOfLines={2}>
                         {sk.name}
                       </Text>
+                      {sk.tested_out && !sk.mastered && <Text style={s.testedOut}>TESTED OUT</Text>}
                     </Pressable>
                   </Rise>
                 </View>
@@ -535,7 +536,7 @@ function Bubble({
         radius={FACE / 2}
         edge={pal.edge}
         style={{ marginTop: DEPTH }}
-        accessibilityLabel={`${skill.name}, ${state === "locked" ? "locked" : state === "done" ? "mastered" : `${skill.mastery}% mastery`}`}
+        accessibilityLabel={`${skill.name}, ${state === "locked" ? "locked" : state === "done" ? "mastered" : `${skill.mastery}% mastery`}${skill.tested_out && state !== "done" ? ", tested out" : ""}`}
         face={[s.face, { backgroundColor: pal.face }]}
       >
         {state !== "locked" && <View style={s.shine} />}
@@ -610,6 +611,7 @@ const s = StyleSheet.create({
     position: "absolute", bottom: 3, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderTopWidth: 6,
     borderLeftColor: "transparent", borderRightColor: "transparent", borderTopColor: "#fff",
   },
+  testedOut: { fontFamily: font.bold, fontSize: 11, letterSpacing: 0.8, color: color.green, textAlign: "center", marginTop: 2 },
   skillName: { fontFamily: font.semibold, fontSize: 14, color: color.text, marginTop: space(0.5), textAlign: "center", maxWidth: 180 },
   backdrop: { backgroundColor: "rgba(30,44,59,0.35)", zIndex: 10 },
   // The absolute wrapper only positions; the inner view carries the width cap so it centers.

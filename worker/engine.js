@@ -242,7 +242,8 @@ export function pickPlacementProbes(skills) {
  * Score a placement quiz. A probe counts as passed when it was answered
  * correctly and, for the medium and hard probes, the learner also got an easier
  * probe in the same domain right (one lucky guess shouldn't skip a domain).
- * Passed skills and all their prerequisites are tested out.
+ * Passed skills and their prerequisites are tested out, except probes that
+ * were missed (and prerequisites reached only through them).
  * @param {ReturnType<typeof pickPlacementProbes>} probes
  * @param {Map<string, boolean>} correctBySkill  first-try result per probed skill
  * @param {{id:string, prereqs:string[]}[]} skills
@@ -263,9 +264,12 @@ export function placementTestOut(probes, correctBySkill, skills) {
       if (i === 0 || list.slice(0, i).some((e) => correctBySkill.get(e.skill_id))) passed.push(p.skill_id);
     });
   }
+  // A probe the learner missed is never tested out, and neither is anything
+  // reached only through it.
+  const missed = new Set(probes.filter((p) => correctBySkill.has(p.skill_id) && !correctBySkill.get(p.skill_id)).map((p) => p.skill_id));
   const out = new Set();
   const add = (id) => {
-    if (out.has(id) || !byId.has(id)) return;
+    if (out.has(id) || !byId.has(id) || missed.has(id)) return;
     out.add(id);
     (byId.get(id).prereqs || []).forEach(add);
   };

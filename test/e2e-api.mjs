@@ -119,6 +119,8 @@ for (const it of pq2.items) {
 }
 const pf2 = (await call("/api/lessons/finish", { lesson_id: pq2.lesson_id })).data;
 assert.equal(pf2.placement.tested_out.length, 0);
-assert.ok(!(await call("/api/tree")).data.domains.flatMap((d) => d.skills).find((s) => s.id === "alg-linear-func").unlocked);
+const after2 = (await call("/api/tree")).data.domains.flatMap((d) => d.skills);
+assert.ok(!after2.find((s) => s.id === "alg-linear-func").unlocked);
+assert.ok(after2.every((s) => s.attempts === 0 && !s.tested_out), "placement answers don't count as practice");
 
 console.log(`e2e ok (offline Socrates: ${s1.data.offline === true})`);

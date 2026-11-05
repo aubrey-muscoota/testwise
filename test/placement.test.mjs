@@ -59,3 +59,13 @@ test("an easy pass tests out just that root skill", () => {
   const easy = probes.find((p) => p.domain_id === "geo" && p.level === 0);
   assert.deepEqual(placementTestOut(probes, new Map([[easy.skill_id, true]]), skills), [easy.skill_id]);
 });
+
+test("a missed probe is never tested out, even as a prerequisite", () => {
+  const correct = all(true);
+  const mid = probes.find((p) => p.domain_id === "alg" && p.level === 1);
+  correct.set(mid.skill_id, false);
+  const out = placementTestOut(probes, correct, skills);
+  assert.ok(!out.includes(mid.skill_id));
+  const hard = probes.find((p) => p.domain_id === "alg" && p.level === 2);
+  assert.ok(out.includes(hard.skill_id), "the hard probe still counts (an easier one was right)");
+});

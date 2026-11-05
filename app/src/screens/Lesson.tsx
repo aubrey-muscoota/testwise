@@ -641,12 +641,12 @@ function QuitSheet({ placement, onStay, onLeave }: { placement: boolean; onStay:
           <Mascot size={88} float={false} mood="sad" />
           <Text style={[type.h3, { fontFamily: font.black, textAlign: "center", marginTop: space(1.5) }]}>Wait, don't go!</Text>
           <Text style={[type.body, { textAlign: "center", color: color.textSoft, marginTop: space(0.5), marginBottom: space(3) }]}>
-            {placement ? "If you end now, you'll start from the first skills." : "If you end now, you won't get XP for this lesson."}
+            {placement ? "If you end now, nothing is skipped. You can start from the first skills instead." : "If you end now, you won't get XP for this lesson."}
           </Text>
         </View>
         <Button title={placement ? "Keep going" : "Keep learning"} onPress={onStay} />
-        <Pressable onPress={onLeave} accessibilityRole="button" accessibilityLabel={placement ? "Skip the quiz" : "End lesson"} style={s.endBtn} hitSlop={8}>
-          <Text style={s.endText}>{placement ? "Skip the quiz" : "End lesson"}</Text>
+        <Pressable onPress={onLeave} accessibilityRole="button" accessibilityLabel={placement ? "End the quiz" : "End lesson"} style={s.endBtn} hitSlop={8}>
+          <Text style={s.endText}>{placement ? "End the quiz" : "End lesson"}</Text>
         </Pressable>
       </SlideUp>
     </View>
@@ -656,18 +656,46 @@ function QuitSheet({ placement, onStay, onLeave }: { placement: boolean; onStay:
 // ─── Data table ──────────────────────────────────────────────────────────────
 
 function DataTable({ table }: { table: NonNullable<Item["table"]> }) {
+  const n = Math.max(table.headers.length, ...table.rows.map((r) => r.length));
+  const cols = Array.from({ length: n }, (_, ci) => ci);
+  const cell = (r: (string | number)[], ci: number) => (r[ci] == null ? "" : String(r[ci]));
+
+  // Up to 4 columns: fit the screen width. Every row shares the same column
+  // widths (sized by the longest body value, so headers wrap instead of numbers).
+  if (n <= 4) {
+    // A header word never breaks mid-word, so its longest word sets a floor too.
+    const longestWord = (t: string) => Math.max(0, ...t.split(/\s+/).map((w) => w.length));
+    const weight = cols.map((ci) => Math.max(5, longestWord(table.headers[ci] ?? "") + 1, ...table.rows.map((r) => cell(r, ci).length)));
+    const small = n >= 4;
+    const row = (vals: string[], header: boolean, last: boolean, key: React.Key) => (
+      <View key={key} style={[s.tr, !last && s.trRule, header && { backgroundColor: color.azureSoft }]}>
+        {cols.map((ci) => (
+          <View key={ci} style={[s.tdCell, small && { paddingHorizontal: space(0.5) }, ci < n - 1 && s.tdRule, { flex: weight[ci] }]}>
+            <Text style={[s.tdFit, small && s.tdSmall, header && { fontFamily: font.bold }]}>{vals[ci] ?? ""}</Text>
+          </View>
+        ))}
+      </View>
+    );
+    return (
+      <View style={[s.table, { marginBottom: space(2) }]}>
+        {row(table.headers, true, table.rows.length === 0, "h")}
+        {table.rows.map((r, ri) => row(cols.map((ci) => cell(r, ci)), false, ri === table.rows.length - 1, ri))}
+      </View>
+    );
+  }
+
+  // Wider tables scroll sideways. Laid out by column so a header and its cells
+  // share one width; cells stay on one line so rows line up.
   return (
     <ScrollView horizontal style={{ marginBottom: space(2) }} contentContainerStyle={s.table}>
-      <View>
-        <View style={[s.tr, { backgroundColor: color.azureSoft }]}>
-          {table.headers.map((h, i) => (
-            <Text key={i} style={[s.td, { fontFamily: font.bold }]}>{h}</Text>
-          ))}
-        </View>
-        {table.rows.map((r, ri) => (
-          <View key={ri} style={s.tr}>
-            {r.map((c, ci) => (
-              <Text key={ci} style={s.td}>{String(c)}</Text>
+      <View style={{ flexDirection: "row" }}>
+        {cols.map((ci) => (
+          <View key={ci} style={{ flexGrow: 1 }}>
+            <Text numberOfLines={1} style={[s.td, s.th, ci === n - 1 && s.tdLast]}>{table.headers[ci] ?? ""}</Text>
+            {table.rows.map((r, ri) => (
+              <Text key={ri} numberOfLines={1} style={[s.td, ci === n - 1 && s.tdLast, ri === table.rows.length - 1 && s.tdBottom]}>
+                {cell(r, ci)}
+              </Text>
             ))}
           </View>
         ))}
@@ -944,8 +972,16 @@ const s = StyleSheet.create({
   },
   toastText: { fontFamily: font.black, fontSize: 18, color: "#F08A24" },
   table: { borderWidth: 1, borderColor: color.line, borderRadius: 8, overflow: "hidden" },
-  tr: { flexDirection: "row" },
-  td: { ...type.body, minWidth: 84, paddingHorizontal: space(1.5), paddingVertical: space(1), borderRightWidth: 1, borderBottomWidth: 1, borderColor: color.line, textAlign: "center" },
+  th: { fontFamily: font.bold, backgroundColor: color.azureSoft },
+  tr: { flexDirection: "row", alignItems: "stretch" },
+  trRule: { borderBottomWidth: 1, borderColor: color.line },
+  tdCell: { justifyContent: "center", paddingHorizontal: space(1), paddingVertical: space(1) },
+  tdFit: { ...type.body, textAlign: "center" },
+  tdSmall: { fontSize: 14, lineHeight: 19 },
+  tdRule: { borderRightWidth: 1, borderColor: color.line },
+  tdLast: { borderRightWidth: 0 },
+  tdBottom: { borderBottomWidth: 0 },
+  td: { ...type.body, minWidth: 64, paddingHorizontal: space(1.5), paddingVertical: space(1), borderRightWidth: 1, borderBottomWidth: 1, borderColor: color.line, textAlign: "center" },
   overlay: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0, justifyContent: "flex-end", zIndex: 30 },
   scrim: { backgroundColor: "rgba(30,44,59,0.35)" },
   sheet: {
