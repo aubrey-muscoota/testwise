@@ -1328,15 +1328,15 @@
     "stem": "In the xy-plane, line ℓ passes through the origin and rises from left to right, making a 60° angle with the positive x-axis. Which equation could define line ℓ?",
     "choices": [
       "y = (√3/3)x",
-      "y = √3x",
+      "y = x√3",
       "y = (√3/2)x",
       "y = (1/2)x"
     ],
-    "answer": "y = √3x",
+    "answer": "y = x√3",
     "explanation": [
       "Pick any point on ℓ in the first quadrant. The run, the rise, and the segment to the origin form a right triangle with a 60° angle at the origin.",
       "The slope is rise/run, which is the tangent of the 60° angle.",
-      "tan 60° = √3, so the line is y = √3x."
+      "tan 60° = √3, so the line is y = x√3."
     ],
     "hints": [
       "In the right triangle formed by the run and the rise, which trigonometric ratio equals rise/run?",
@@ -1347,7 +1347,7 @@
       "y = (√3/2)x": "Used sin 60° as the slope instead of tan 60°",
       "y = (1/2)x": "Used cos 60° as the slope instead of tan 60°"
     },
-    "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0].replace('−','-')\nslope=tan(rad(60))\nresult=pick([('y = √3x',sqrt(3)),('y = (√3/3)x',sqrt(3)/3),('y = (√3/2)x',sqrt(3)/2),('y = (1/2)x',Rational(1,2))], slope)"
+    "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0].replace('−','-')\nslope=tan(rad(60))\nresult=pick([('y = x√3',sqrt(3)),('y = (√3/3)x',sqrt(3)/3),('y = (√3/2)x',sqrt(3)/2),('y = (1/2)x',Rational(1,2))], slope)"
   },
   {
     "id": "geo-right-trig-052",
@@ -1839,7 +1839,7 @@
       "BD = AB − AD = 12 − 3 = 9."
     ],
     "hints": [
-      "Which two triangles in the figure share angle A, and why are they similar?",
+      "Altitude CD splits triangle ABC into two smaller right triangles. Which of them shares angle A with triangle ABC, and why are those two triangles similar?",
       "In those similar triangles, which side corresponds to AD and which corresponds to AC?"
     ],
     "wrong_reasons": {

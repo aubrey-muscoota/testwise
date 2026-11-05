@@ -824,29 +824,29 @@
     "skill_id": "geo-circles",
     "difficulty": 1,
     "type": "mc",
-    "stem": "A window is shaped like a semicircle. Its straight bottom edge is 4 feet long. What is the area of the window, in square feet?",
+    "stem": "A round cake has a radius of 12 centimeters. A slice is cut from the center of the cake, and the top of the slice is a sector with a central angle of 30°. What is the area of the top of the slice, in square centimeters?",
     "choices": [
-      "4π",
-      "8π",
-      "16π",
-      "2π"
+      "2π",
+      "24π",
+      "144π",
+      "12π"
     ],
-    "answer": "2π",
+    "answer": "12π",
     "explanation": [
-      "The straight edge is a diameter, so the radius is 2 feet.",
-      "A full circle of radius 2 has area π(2)² = 4π.",
-      "A semicircle is half of that: 2π."
+      "The whole top of the cake is a circle with area π(12)² = 144π.",
+      "A 30° sector is 30/360 = 1/12 of the full circle.",
+      "So the area of the slice's top is 144π ÷ 12 = 12π square centimeters."
     ],
     "hints": [
-      "Which part of the circle is the straight bottom edge?",
-      "What fraction of a full circle is the window?"
+      "What fraction of a full 360° turn is a 30° angle?",
+      "What is the area of the whole top of the cake?"
     ],
     "wrong_reasons": {
-      "4π": "Found the area of the full circle and forgot to take half",
-      "8π": "Used 4 as the radius, then took half",
-      "16π": "Used 4 as the radius and did not take half"
+      "2π": "Found the length of the slice's curved edge (the arc) instead of its area",
+      "24π": "Used the circumference of the whole cake instead of a part of its area",
+      "144π": "Found the area of the whole top of the cake and did not take 1/12 of it"
     },
-    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=Rational(4,2)\nresult=pif(pi*r**2/2)"
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c/pi)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=12\ntheta=rad(30)\nresult=pif(Rational(1,2)*r**2*theta)"
   },
   {
     "id": "geo-circles-033",

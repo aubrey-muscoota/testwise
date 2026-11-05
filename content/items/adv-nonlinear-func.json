@@ -1508,29 +1508,29 @@
     "skill_id": "adv-nonlinear-func",
     "difficulty": 2,
     "type": "mc",
-    "stem": "An open box is made from a square sheet of metal that is 20 centimeters on each side. A square with side length x centimeters is cut from each corner of the sheet, and the sides are folded up. Which of the following functions gives the volume V(x), in cubic centimeters, of the box?",
+    "stem": "The function f is defined by f(x) = a(x − 2)(x + 4), where a is a constant. In the xy-plane, the graph of y = f(x) passes through the point (0, 16). What is the value of a?",
     "choices": [
-      "V(x) = x(20 − x)²",
-      "V(x) = (20 − 2x)²",
-      "V(x) = 4x(20 − 2x)",
-      "V(x) = x(20 − 2x)²"
+      "2",
+      "−8",
+      "−1/2",
+      "−2"
     ],
-    "answer": "V(x) = x(20 − 2x)²",
+    "answer": "−2",
     "explanation": [
-      "Cutting a square of side x from both ends of each edge leaves a base that is 20 − 2x centimeters on each side.",
-      "Folding up the sides makes the box x centimeters tall.",
-      "Volume = (base area)(height) = (20 − 2x)² · x, so V(x) = x(20 − 2x)²."
+      "The point (0, 16) is on the graph, so f(0) = 16.",
+      "f(0) = a(0 − 2)(0 + 4) = a(−2)(4) = −8a.",
+      "−8a = 16, so a = −2."
     ],
     "hints": [
-      "After cutting from both corners along one edge, how much of that 20-centimeter edge is left?",
-      "Which measurement of the box comes from the folded-up flaps?"
+      "What does it mean for the point (0, 16) to be on the graph of y = f(x)?",
+      "What is (0 − 2)(0 + 4), and how does a relate to it?"
     ],
     "wrong_reasons": {
-      "V(x) = x(20 − x)²": "Subtracted the cut only once from each edge, though a square is cut at both ends",
-      "V(x) = (20 − 2x)²": "Gave the area of the base and left out the height",
-      "V(x) = 4x(20 − 2x)": "Gave the total area of the four side walls instead of the volume"
+      "2": "Treated (0 − 2)(0 + 4) as 8 instead of −8, losing the negative sign",
+      "−8": "Gave the value of (0 − 2)(0 + 4) instead of solving for a",
+      "−1/2": "Divided −8 by 16 instead of dividing 16 by −8"
     },
-    "check": "def pick(L, ok):\n    r=[L[i] for i in range(len(L)) if ok(i)]\n    assert len(r)==1, r\n    return r[0].replace('−','-')\nfrom sympy import symbols, expand\nx=symbols('x')\nside=20-2*x\nheight=x\nV=side*side*height\nL=['V(x) = x(20 − 2x)²','V(x) = x(20 − x)²','V(x) = (20 − 2x)²','V(x) = 4x(20 − 2x)']\nE=[x*(20-2*x)**2,x*(20-x)**2,(20-2*x)**2,4*x*(20-2*x)]\nresult=pick(L, lambda i: expand(E[i]-V)==0)"
+    "check": "from sympy import *\na,x=symbols('a x')\nf=a*(x-2)*(x+4)\nresult=solve(Eq(f.subs(x,0),16),a)[0]"
   },
   {
     "id": "adv-nonlinear-func-056",

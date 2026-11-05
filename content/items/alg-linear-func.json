@@ -1532,29 +1532,29 @@
     "skill_id": "alg-linear-func",
     "difficulty": 2,
     "type": "mc",
-    "stem": "In the xy-plane, the graph of y = f(x), where f(x) = −2x − 5, does NOT pass through which quadrant?",
+    "stem": "For the linear function g, g(−1) = 8 and g(3) = −4. At what x-value does the graph of y = g(x) in the xy-plane cross the x-axis?",
     "choices": [
-      "Quadrant I",
-      "Quadrant II",
-      "Quadrant III",
-      "Quadrant IV"
+      "5/3",
+      "5",
+      "−5/3",
+      "3/5"
     ],
-    "answer": "Quadrant I",
+    "answer": "5/3",
     "explanation": [
-      "The y-intercept is (0, −5) and the x-intercept is (−2.5, 0).",
-      "The slope is negative, so the line falls from upper left to lower right through (−2.5, 0) and (0, −5).",
-      "It passes through Quadrants II, III and IV; for x > 0, f(x) < −5, so it never enters Quadrant I."
+      "The slope is (−4 − 8)/(3 − (−1)) = −12/4 = −3.",
+      "Using g(−1) = 8: 8 = −3(−1) + b, so b = 5 and g(x) = −3x + 5.",
+      "The graph crosses the x-axis where g(x) = 0: −3x + 5 = 0, so x = 5/3."
     ],
     "hints": [
-      "Where does the line cross each axis?",
-      "Moving from left to right, does the line rise or fall? Which regions does that take it through?"
+      "How much does g(x) change when x increases from −1 to 3?",
+      "Once you have an equation for g, what is the value of g(x) at the point where the graph meets the x-axis?"
     ],
     "wrong_reasons": {
-      "Quadrant II": "For x < −2.5, f(x) > 0, so the line does reach Quadrant II",
-      "Quadrant III": "Between x = −2.5 and x = 0, both coordinates are negative, so the line passes through Quadrant III",
-      "Quadrant IV": "Thought a negative slope keeps the line out of Quadrant IV; for x > 0, y is negative, which is Quadrant IV"
+      "5": "Gave the y-intercept, b = 5, instead of the x-intercept",
+      "−5/3": "Made a sign error when solving −3x + 5 = 0",
+      "3/5": "Solved −3x + 5 = 0 but inverted the fraction, dividing 3 by 5 instead of 5 by 3"
     },
-    "check": "f=lambda x:-2*x-5\nxs=[i/100 for i in range(-10000,10001)]\nhit={'Quadrant I':any(x>0 and f(x)>0 for x in xs),'Quadrant II':any(x<0 and f(x)>0 for x in xs),'Quadrant III':any(x<0 and f(x)<0 for x in xs),'Quadrant IV':any(x>0 and f(x)<0 for x in xs)}\nmiss=[k for k,v in hit.items() if not v]\nassert len(miss)==1\nresult=miss[0]"
+    "check": "from sympy import *\nx,m,b=symbols('x m b')\ns=solve([Eq(m*(-1)+b,8),Eq(m*3+b,-4)],[m,b])\nresult=solve(s[m]*x+s[b],x)[0]"
   },
   {
     "id": "alg-linear-func-055",
@@ -1852,18 +1852,20 @@
     "skill_id": "alg-linear-func",
     "difficulty": 3,
     "type": "spr",
-    "stem": "In the xy-plane, the line y = −2x + k, where k is a positive constant, and the x- and y-axes form a triangle with an area of 36 square units. What is the value of k?",
-    "answer": "12",
+    "stem": "For the linear function h, h(4) = 2 · h(1) and h(6) = 24. What is the value of h(0)?",
+    "answer": "6",
     "explanation": [
-      "The line crosses the y-axis at (0, k) and the x-axis at (k/2, 0).",
-      "The triangle's legs are k and k/2, so its area is (1/2)(k)(k/2) = k²/4.",
-      "k²/4 = 36 gives k² = 144, so k = 12 (k is positive)."
+      "Write h(x) = mx + b. Then h(4) = 4m + b and h(1) = m + b.",
+      "h(4) = 2 · h(1) gives 4m + b = 2m + 2b, so b = 2m.",
+      "h(6) = 24 gives 6m + b = 24, so 6m + 2m = 24 and m = 3.",
+      "Then b = 2(3) = 6, so h(0) = b = 6."
     ],
     "hints": [
-      "Where does the line cross each axis, written in terms of k?",
-      "What kind of triangle do the axes and the line form, and how do you find its area?"
+      "If h(x) = mx + b, how can you write h(4) and h(1) in terms of m and b?",
+      "What does the first condition tell you about how b and m are related?",
+      "Which part of mx + b is equal to h(0)?"
     ],
-    "check": "from sympy import *\nk=symbols('k',positive=True)\nx=symbols('x')\nxi=solve(-2*x+k,x)[0]\nresult=solve(Rational(1,2)*k*xi-36,k)[0]"
+    "check": "from sympy import *\nm,b,x=symbols('m b x')\nh=lambda t:m*t+b\ns=solve([Eq(h(4),2*h(1)),Eq(h(6),24)],[m,b])\nresult=h(0).subs(s)"
   },
   {
     "id": "alg-linear-func-067",

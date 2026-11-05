@@ -1105,29 +1105,28 @@
     "skill_id": "adv-nonlinear-eq",
     "difficulty": 1,
     "type": "mc",
-    "stem": "A circular rug has an area of 49π square feet. What is the radius of the rug, in feet?",
+    "stem": "A solar array is made of 4 identical square panels. The total area of the 4 panels is 36 square meters. If s is the side length of each panel, in meters, then 4s² = 36. What is the value of s?",
     "choices": [
-      "7",
-      "14",
-      "24.5",
-      "49"
+      "3",
+      "9",
+      "6",
+      "4.5"
     ],
-    "answer": "7",
+    "answer": "3",
     "explanation": [
-      "The area of a circle is πr², so πr² = 49π.",
-      "Divide both sides by π: r² = 49.",
-      "A radius is positive, so r = 7."
+      "Divide both sides of 4s² = 36 by 4: s² = 9.",
+      "A side length is positive, so s = √9 = 3."
     ],
     "hints": [
-      "What formula connects a circle's area and its radius?",
-      "After dividing out π, what operation gives r?"
+      "What should you do first to get s² by itself?",
+      "Once you know s², what operation gives s?"
     ],
     "wrong_reasons": {
-      "14": "Gave the diameter instead of the radius",
-      "24.5": "Used the formula 2r = 49, confusing area with circumference",
-      "49": "Found r² = 49 but forgot to take the square root"
+      "9": "Found s² = 9 but did not take the square root",
+      "6": "Took the square root of 36 without first dividing by 4",
+      "4.5": "Divided 36 by 4 and then by 2, treating squaring as doubling"
     },
-    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nr=symbols('r')\nresult=[q for q in solve(pi*r**2-49*pi,r) if q>0][0]"
+    "check": "from sympy import *\ns=symbols('s',positive=True)\nresult=solve(Eq(4*s**2,36),s)[0]"
   },
   {
     "id": "adv-nonlinear-eq-043",

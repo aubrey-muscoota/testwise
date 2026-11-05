@@ -1338,7 +1338,7 @@
       "PQ = 4 + 12 = 16, so PR² = 4 · 16 = 64 and PR = 8."
     ],
     "hints": [
-      "Which two triangles in the figure share angle P, and what else do they have in common?",
+      "Segment RS splits triangle PQR into two smaller right triangles. Which of them shares angle P with triangle PQR, and what else do the two triangles have in common?",
       "In those triangles, which sides correspond to PS and to PR?"
     ],
     "wrong_reasons": {
