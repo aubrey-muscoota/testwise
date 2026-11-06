@@ -10,12 +10,15 @@ import { Home } from "./src/screens/Home";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
 import { Complete } from "./src/screens/Complete";
 import { PlacementIntro } from "./src/screens/PlacementIntro";
+import { AgeGate, TooYoung } from "./src/screens/AgeGate";
 import { initFeedback, preloadSounds } from "./src/motion/feedback";
 import { color } from "./src/theme";
 
 type Screen =
   | { name: "boot" }
   | { name: "welcome" }
+  | { name: "age"; existing: boolean }
+  | { name: "tooYoung" }
   | { name: "home"; key: number }
   | { name: "placement" }
   | { name: "lesson"; skill: Skill | null; placement?: boolean }
@@ -31,20 +34,46 @@ export default function App() {
     preloadSounds();
   }, []);
 
-  useEffect(() => {
-    loadLearner().then(async (id) => {
-      if (!id) return setScreen({ name: "welcome" });
-      // A new learner who left before choosing still gets the placement offer.
-      if (!(await placementSettled(id))) {
-        try {
-          const t = await api.tree();
-          if (t.stats.xp === 0) return setScreen({ name: "placement" });
-          await settlePlacement();
-        } catch {}
-      }
-      setScreen({ name: "home", key: 0 });
-    });
+  // Where a returning learner lands: the placement offer if they never chose, else Home.
+  const resume = useCallback(async (id: string) => {
+    if (!(await placementSettled(id))) {
+      try {
+        const t = await api.tree();
+        if (t.stats.xp === 0) return setScreen({ name: "placement" });
+        await settlePlacement();
+      } catch {}
+    }
+    setScreen({ name: "home", key: 0 });
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (await ageBlocked()) return setScreen({ name: "tooYoung" });
+      const id = await loadLearner();
+      if (!id) return setScreen({ name: "welcome" });
+      // Learners from before the age question answer it once.
+      try {
+        const t = await api.tree();
+        if (t.learner && !t.learner.age_confirmed) return setScreen({ name: "age", existing: true });
+      } catch {}
+      await resume(id);
+    })();
+  }, [resume]);
+
+  const answerAge = useCallback(async (existing: boolean, ok: boolean) => {
+    if (!ok) {
+      await blockAge();
+      if (existing) await api.deleteMe().catch(() => forgetLearner());
+      return setScreen({ name: "tooYoung" });
+    }
+    if (existing) {
+      await api.setConsent({ age_13_plus: true }).catch(() => {});
+      const id = await loadLearner();
+      return id ? resume(id) : setScreen({ name: "welcome" });
+    }
+    currentLearner = await createLearner();
+    setScreen({ name: "placement" });
+  }, [resume]);
 
   const goHome = useCallback(() => setScreen({ name: "home", key: Math.random() }), []);
   const skipPlacement = useCallback(() => { settlePlacement(); goHome(); }, [goHome]);
@@ -63,7 +92,12 @@ export default function App() {
       </View>
     );
   } else if (screen.name === "welcome") {
-    body = <Welcome onStart={async () => { currentLearner = await createLearner(); setScreen({ name: "placement" }); }} />;
+    body = <Welcome onStart={async () => setScreen({ name: "age", existing: false })} />;
+  } else if (screen.name === "age") {
+    const existing = screen.existing;
+    body = <AgeGate onAnswer={(ok) => answerAge(existing, ok)} />;
+  } else if (screen.name === "tooYoung") {
+    body = <TooYoung />;
   } else if (screen.name === "placement") {
     body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: true })} onSkip={skipPlacement} />;
   } else if (screen.name === "home") {
@@ -108,6 +142,23 @@ async function settlePlacement() {
   try {
     const id = currentLearner ?? (await loadLearner());
     await AsyncStorage.setItem(placementKey(id), "1");
+  } catch {}
+}
+
+// After an under-13 answer, the age question stays closed on this device for a day,
+// so it can't simply be retried with a different year.
+const AGE_BLOCK_KEY = "testwise.ageBlockedAt";
+async function ageBlocked() {
+  try {
+    const t = Number(await AsyncStorage.getItem(AGE_BLOCK_KEY));
+    return t > 0 && Date.now() - t < 24 * 3600 * 1000;
+  } catch {
+    return false;
+  }
+}
+async function blockAge() {
+  try {
+    await AsyncStorage.setItem(AGE_BLOCK_KEY, String(Date.now()));
   } catch {}
 }
 

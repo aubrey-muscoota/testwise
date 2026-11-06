@@ -1,0 +1,12 @@
+:root { --text: #1E2C3B; --soft: #5B6B7C; --azure: #3E8AE6; --bg: #FAFCFF; --line: #E4EAF1; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-size: 28px; margin: 0 0 4px; }
+h2 { font-size: 19px; margin: 32px 0 8px; }
+p, li { color: var(--text); }
+.meta { color: var(--soft); font-size: 14px; margin-bottom: 24px; }
+a { color: var(--azure); }
+ul { padding-left: 20px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 8px; border-bottom: 1px solid var(--line); }

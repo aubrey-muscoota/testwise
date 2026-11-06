@@ -33,7 +33,9 @@ export type Domain = { id: string; name: string; skills: Skill[] };
 
 export type Stats = { xp: number; streak: number; lessons_today: number; xp_today: number; reviews_due: number };
 
-export type Tree = { exam: { id: string; name: string }; domains: Domain[]; stats: Stats };
+export type Consent = { age_confirmed: boolean; ai_consent: boolean };
+
+export type Tree = { exam: { id: string; name: string }; domains: Domain[]; stats: Stats; learner?: Consent };
 
 export type Lesson = { lesson_id: string; skill_id: string | null; placement?: boolean; items: Item[] };
 
@@ -84,8 +86,10 @@ export async function loadLearner(): Promise<string | null> {
   return learnerId;
 }
 
+// Only called after the age question says 13 or older.
 export async function createLearner(): Promise<string> {
-  const { id } = await call<{ id: string }>("/api/learners", { method: "POST" });
+  const { id } = await call<{ id: string }>("/api/learners", { method: "POST", body: { age_13_plus: true } });
+  consent = { age_confirmed: true, ai_consent: false };
   learnerId = id;
   try {
     await AsyncStorage.setItem(KEY, id);
@@ -97,13 +101,35 @@ export async function createLearner(): Promise<string> {
 
 export async function forgetLearner() {
   learnerId = null;
+  consent = null;
   try {
     await AsyncStorage.removeItem(KEY);
   } catch {}
 }
 
+// Last known consent state, refreshed by every tree load.
+let consent: Consent | null = null;
+export const getConsent = () => consent;
+
+export function legalUrl(page: "privacy" | "terms") {
+  // On web the pages sit next to the app; native builds use the hosted copy.
+  return `${Platform.OS === "web" ? base() : "https://testwise.aubrey-9f5.workers.dev"}/${page}.html`;
+}
+
 export const api = {
-  tree: () => call<Tree>("/api/tree"),
+  tree: async () => {
+    const t = await call<Tree>("/api/tree");
+    if (t.learner) consent = t.learner;
+    return t;
+  },
+  setConsent: async (b: { age_13_plus?: true; ai?: boolean }) => {
+    consent = await call<Consent>("/api/consent", { method: "POST", body: b });
+    return consent;
+  },
+  deleteMe: async () => {
+    await call<{ ok: boolean }>("/api/learner/delete", { method: "POST", body: {} });
+    await forgetLearner();
+  },
   startLesson: (skillId: string | null) => call<Lesson>("/api/lessons", { method: "POST", body: { skill_id: skillId } }),
   answer: (b: { lesson_id: string; item_id: string; response: string; time_ms: number }) =>
     call<{ correct: boolean; answer: string; mastery: number; xp: number }>("/api/answers", { method: "POST", body: b }),

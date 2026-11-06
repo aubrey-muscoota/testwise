@@ -16,7 +16,7 @@ Goal: a student can prepare for the whole digital SAT, not just Math, and their 
 - [ ] Math rendering (TeX subset) and figure support (SVG from code, stored in R2, with alt text).
 - [ ] Regenerate figures for SAT Math skills that need them (geometry, graphs of functions, scatterplots), adding about 300 figure items.
 - [ ] SAT Reading and Writing: all four domains and their skills, about 1,600 items, with passages of the right length and one question per passage.
-- [ ] Accounts: Sign in with Apple, Google and email link; anonymous progress carries over; settings with data export and delete. Age gate at sign-up (no accounts under 13), the AI-consent screen before the first Socrates turn (existing learners see it once too), and privacy policy and terms pages. Acceptance: no account can be created under 13, and Socrates is unreachable before consent.
+- [ ] Accounts: Sign in with Apple, Google and email link; anonymous progress carries over; settings with data export and delete. Age gate at sign-up (no accounts under 13), the AI-consent screen before the first Socrates turn (existing learners see it once too), and privacy policy and terms pages. Acceptance: no account can be created under 13, and Socrates is unreachable before consent. (Done so far: age question, AI consent, delete-my-data, privacy and terms pages. Still to do: sign-in and cross-device progress.)
 - [ ] Analytics (PostHog) and error tracking (Sentry); the event set in the Quality section.
 - [ ] Placement quiz covers both SAT sections.
 - [ ] Pilot with 20 to 50 students for two weeks.

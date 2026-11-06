@@ -13,7 +13,9 @@ const call = async (path, body) => {
   return { status: res.status, data: await res.json() };
 };
 
-learner = (await call("/api/learners", {})).data.id;
+assert.equal((await call("/api/learners", {})).status, 403, "no learner without the age answer");
+assert.equal((await call("/api/learners", { age_13_plus: false })).status, 403);
+learner = (await call("/api/learners", { age_13_plus: true })).data.id;
 assert.match(learner, /^[a-f0-9]{32}$/);
 
 assert.equal((await call("/api/tree")).status, 200);
@@ -69,6 +71,9 @@ assert.ok(l2.items.every((i) => !seen.has(i.id)), "no repeats while unseen quest
 
 // Socrates: opening message, a reply, and the daily cap.
 const it = l1.items[0];
+assert.equal((await call("/api/socrates", { item_id: it.id, response: wrong(it), history: [] })).status, 403, "Socrates needs AI consent first");
+assert.equal((await call("/api/tree")).data.learner.ai_consent, false);
+assert.deepEqual((await call("/api/consent", { ai: true })).data, { age_confirmed: true, ai_consent: true });
 const s1 = await call("/api/socrates", { item_id: it.id, response: wrong(it), history: [] });
 assert.equal(s1.status, 200);
 assert.ok(s1.data.reply.length > 10);
@@ -89,7 +94,7 @@ learner = "' OR 1=1 --";
 assert.equal((await call("/api/tree")).status, 401);
 
 // Placement quiz: a new learner who gets everything right skips ahead.
-learner = (await call("/api/learners", {})).data.id;
+learner = (await call("/api/learners", { age_13_plus: true })).data.id;
 const pq = (await call("/api/lessons", { placement: true })).data;
 assert.equal(pq.placement, true);
 assert.equal(pq.items.length, 12);
@@ -112,7 +117,7 @@ assert.ok(!placed.find((s) => s.id === pf.placement.next[0].id).tested_out);
 assert.equal((await call("/api/lessons/finish", { lesson_id: pq.lesson_id })).data.placement.tested_out.length, pf.placement.tested_out.length);
 
 // A learner who misses everything stays at the start.
-learner = (await call("/api/learners", {})).data.id;
+learner = (await call("/api/learners", { age_13_plus: true })).data.id;
 const pq2 = (await call("/api/lessons", { placement: true })).data;
 for (const it of pq2.items) {
   await call("/api/answers", { lesson_id: pq2.lesson_id, item_id: it.id, response: wrong(it), time_ms: 3000 });
@@ -122,5 +127,9 @@ assert.equal(pf2.placement.tested_out.length, 0);
 const after2 = (await call("/api/tree")).data.domains.flatMap((d) => d.skills);
 assert.ok(!after2.find((s) => s.id === "alg-linear-func").unlocked);
 assert.ok(after2.every((s) => s.attempts === 0 && !s.tested_out), "placement answers don't count as practice");
+
+// Deleting a learner removes them.
+assert.equal((await call("/api/learner/delete", {})).status, 200);
+assert.equal((await call("/api/tree")).status, 401, "deleted learner is gone");
 
 console.log(`e2e ok (offline Socrates: ${s1.data.offline === true})`);

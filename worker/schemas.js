@@ -28,3 +28,6 @@ export const Socrates = z.object({
 }).catch({ response: "", history: [] });
 
 export const Report = z.object({ item_id: optString, note: optString }).catch({});
+
+const optBool = z.boolean().optional().catch(undefined);
+export const Consent = z.object({ age_13_plus: optBool, ai: optBool }).catch({});
