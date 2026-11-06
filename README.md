@@ -28,9 +28,9 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 
 ## How questions are made
 
-1. A writer drafts questions per skill in even thirds of easy, medium and hard (75 per skill, 1,425 in all), each with a worked solution, Socratic hints, the misconception behind every wrong choice, and Python code that computes the answer independently.
-2. `check_items.py` runs that code and rejects any question whose code doesn't reproduce the key.
-3. A separate reviewer solves every question blind, without seeing the key, and fixes or removes any that are wrong, ambiguous, or off-level.
+1. A writer drafts questions per skill in even thirds of easy, medium and hard, each with a worked solution, Socratic hints and the misconception behind every wrong choice. Math questions (1,725: 75 per skill plus 300 with figures) also carry Python code that computes the answer independently. Reading and Writing has 1,600 (160 per skill), one question per passage.
+2. `check_items.py` runs that code and rejects any Math question whose code doesn't reproduce the key. It also checks figure specs, passage lengths, markup and that every wrong choice has a reason.
+3. A separate reviewer solves every question blind, without seeing the key, and fixes or removes any that are wrong, ambiguous, or off-level. The figure and Reading and Writing questions then got a second, adversarial review that looks for a defensible second answer, data that doesn't match, and factual errors.
 4. In the app, students can report a question. Reports are stored in `item_checks`.
 
 All questions are original. Testwise is not affiliated with College Board.

@@ -31,7 +31,8 @@ const CORAL_TEXT = "#C94A45";
 const CORAL_EDGE = "#E5605B";
 
 // `placement` runs the placement quiz instead: one try per question, no tutor.
-export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Skill | null; placement?: boolean; onDone: (r: LessonResult) => void; onQuit: () => void }) {
+export function Lesson({ skill, placementSection, onDone, onQuit }: { skill: Skill | null; placementSection?: string; onDone: (r: LessonResult) => void; onQuit: () => void }) {
+  const placement = !!placementSection;
   const [lesson, setLesson] = useState<LessonT | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [queue, setQueue] = useState<{ item: Item; retry: boolean }[]>([]);
@@ -70,14 +71,14 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
   const wasTutorOpen = useRef(false);
 
   useEffect(() => {
-    (placement ? api.startPlacement() : api.startLesson(skill?.id ?? null))
+    (placementSection ? api.startPlacement(placementSection) : api.startLesson(skill?.id ?? null))
       .then((l) => {
         setLesson(l);
         setQueue(l.items.map((item) => ({ item, retry: false })));
         started.current = Date.now();
       })
       .catch(() => setError(placement ? "Couldn't start the placement quiz." : "Couldn't start the lesson."));
-  }, [skill, placement]);
+  }, [skill, placementSection]);
 
   const total = lesson?.items.length || 1;
   const current = queue[0];

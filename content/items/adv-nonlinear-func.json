@@ -2093,5 +2093,4009 @@
       "9": "Found f(x + 2) = 9 · f(x) but forgot to subtract f(x)"
     },
     "check": "from sympy import symbols, simplify\nx=symbols('x')\nf=lambda s:3**s\nresult=simplify((f(x+2)-f(x))/f(x))"
+  },
+  {
+    "id": "adv-nonlinear-func-f001",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. What is the maximum value of f(x)?",
+    "choices": [
+      "−1",
+      "1",
+      "3",
+      "4"
+    ],
+    "answer": "4",
+    "explanation": [
+      "The maximum value of f is the y-coordinate of the highest point on the graph.",
+      "The highest point (the vertex) is (1, 4).",
+      "So the maximum value of f(x) is 4."
+    ],
+    "hints": [
+      "Is the maximum value an x-value or a y-value?",
+      "Which point on the graph is higher than every other point?"
+    ],
+    "wrong_reasons": {
+      "1": "Gave the x-coordinate of the vertex instead of the y-coordinate",
+      "3": "Gave the y-intercept instead of the highest point",
+      "−1": "Gave an x-intercept"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nf=-(x-1)**2+4\nxv=solve(diff(f,x),x)[0]\nresult=f.subs(x,xv)",
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 6 and y from −5 to 6, grid lines every 1 unit. A parabola opens downward. Its highest point, the vertex, is at (1, 4). It crosses the x-axis at (−1, 0) and (3, 0) and crosses the y-axis at (0, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -4,
+          6
+        ],
+        "y": [
+          -5,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-(x-1)^2+4",
+          "domain": [
+            -2,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            4
+          ],
+          "label": "(1, 4)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            0
+          ],
+          "label": "(−1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f002",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. Which of the following defines f?",
+    "choices": [
+      "f(x) = (1/2)(x + 4)(x − 2)",
+      "f(x) = (1/2)(x − 4)(x + 2)",
+      "f(x) = (x + 4)(x − 2)",
+      "f(x) = 2(x + 4)(x − 2)"
+    ],
+    "answer": "f(x) = (1/2)(x + 4)(x − 2)",
+    "explanation": [
+      "Zeros at x = −4 and x = 2 mean f(x) = a(x + 4)(x − 2) for some constant a.",
+      "The graph passes through (0, −4), so a(0 + 4)(0 − 2) = −4.",
+      "−8a = −4, so a = 1/2.",
+      "So f(x) = (1/2)(x + 4)(x − 2)."
+    ],
+    "hints": [
+      "If x = −4 is a zero, what factor must f(x) have?",
+      "Two parabolas can share the same zeros. Which other point on the graph tells them apart?"
+    ],
+    "wrong_reasons": {
+      "f(x) = (1/2)(x − 4)(x + 2)": "Used the signs of the zeros in the factors instead of their opposites",
+      "f(x) = (x + 4)(x − 2)": "Assumed the leading coefficient is 1; this graph would cross the y-axis at −8",
+      "f(x) = 2(x + 4)(x − 2)": "Solved −8a = −4 as a = 2 instead of a = 1/2"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nc={'f(x) = (1/2)(x + 4)(x - 2)':Rational(1,2)*(x+4)*(x-2),'f(x) = (1/2)(x - 4)(x + 2)':Rational(1,2)*(x-4)*(x+2),'f(x) = (x + 4)(x - 2)':(x+4)*(x-2),'f(x) = 2(x + 4)(x - 2)':2*(x+4)*(x-2)}\npts=[(-4,0),(2,0),(0,-4)]\nresult=[k for k,e in c.items() if all(e.subs(x,a)==b for a,b in pts)][0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −6 to 4 and y from −6 to 5, grid lines every 1 unit. A parabola opens upward. It crosses the x-axis at (−4, 0) and (2, 0) and crosses the y-axis at (0, −4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          4
+        ],
+        "y": [
+          -6,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "0.5*(x+4)*(x-2)",
+          "domain": [
+            -5.3,
+            3.3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            0
+          ],
+          "label": "(−4, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -4
+          ],
+          "label": "(0, −4)",
+          "labelPos": "se"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f003",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The graph of the exponential function y = f(x) is shown, where f(x) = a·bˣ and a and b are positive constants. What is the value of f(−3)?",
+    "answer": "1/9",
+    "accept": [
+      "0.1111",
+      ".1111",
+      "0.111",
+      ".111"
+    ],
+    "explanation": [
+      "The graph crosses the y-axis at (0, 3), so a = 3.",
+      "From x = 0 to x = 1 the output goes from 3 to 9, so b = 3. Check: f(−1) = 3·3⁻¹ = 1.",
+      "f(x) = 3·3ˣ, so f(−3) = 3·3⁻³ = 3/27.",
+      "f(−3) = 1/9."
+    ],
+    "hints": [
+      "Which point on the graph gives you the value of a directly?",
+      "By what factor does the output change each time x increases by 1?",
+      "What does a negative exponent do to a number?"
+    ],
+    "check": "from sympy import *\na,b=symbols('a b',positive=True)\ns=solve([a*b**(-1)-1,a*b-9],[a,b],dict=True)[0]\nresult=s[a]*s[b]**(-3)",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 3 and y from −1 to 11, grid lines every 1 unit. An increasing exponential curve rises from left to right, staying above the x-axis. It passes through the points (−1, 1), (0, 3) and (1, 9).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          3
+        ],
+        "y": [
+          -1,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "3*3^x",
+          "domain": [
+            -3,
+            1.15
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            1
+          ],
+          "label": "(−1, 1)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            9
+          ],
+          "label": "(1, 9)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f004",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of y = g(x) is shown. What is the y-intercept of the graph?",
+    "choices": [
+      "(0, 1)",
+      "(0, 3)",
+      "(2, 1)",
+      "(3, 0)"
+    ],
+    "answer": "(0, 3)",
+    "explanation": [
+      "The y-intercept is where the graph crosses the y-axis, where x = 0.",
+      "The graph crosses the y-axis at (0, 3).",
+      "So the y-intercept is (0, 3)."
+    ],
+    "hints": [
+      "On which axis does a y-intercept lie?",
+      "What is the x-coordinate of every point on the y-axis?"
+    ],
+    "wrong_reasons": {
+      "(0, 1)": "Used the y-coordinate of the vertex as the y-intercept",
+      "(2, 1)": "Gave the vertex, the lowest point, instead of the y-axis crossing",
+      "(3, 0)": "Reversed the coordinates of the y-intercept"
+    },
+    "check": "x=0\nresult='('+str(x)+', '+str(abs(x-2)+1)+')'",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 7 and y from −2 to 7, grid lines every 1 unit. A V-shaped graph opens upward with its lowest point, the vertex, at (2, 1). It crosses the y-axis at (0, 3) and passes through (4, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          7
+        ],
+        "y": [
+          -2,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "abs(x-2)+1",
+          "domain": [
+            -3,
+            7
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            1
+          ],
+          "label": "(2, 1)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            3
+          ],
+          "label": "(4, 3)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f005",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The graph of y = f(x) is shown, where f(x) = x² + bx + c and b and c are constants. What is the value of b + c?",
+    "answer": "−1",
+    "accept": [
+      "-1"
+    ],
+    "explanation": [
+      "The zeros are x = 1 and x = 5, and the leading coefficient is 1, so f(x) = (x − 1)(x − 5).",
+      "Expand: f(x) = x² − 6x + 5, so b = −6 and c = 5. (The y-intercept (0, 5) confirms c = 5.)",
+      "b + c = −6 + 5 = −1."
+    ],
+    "hints": [
+      "The x-intercepts are 1 and 5. What factors does f(x) have?",
+      "When you expand those factors, which number is b and which is c?"
+    ],
+    "check": "from sympy import *\nx,b,c=symbols('x b c')\ns=solve([(1+b+c),(25+5*b+c)],[b,c])\nresult=s[b]+s[c]",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 8 and y from −5 to 7, grid lines every 1 unit. A parabola opens upward with its vertex, the lowest point, at (3, −4). It crosses the x-axis at (1, 0) and (5, 0) and crosses the y-axis at (0, 5).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          8
+        ],
+        "y": [
+          -5,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x-3)^2-4",
+          "domain": [
+            -0.3,
+            6.3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            -4
+          ],
+          "label": "(3, −4)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            0
+          ],
+          "label": "(5, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            5
+          ],
+          "label": "(0, 5)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f006",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of the polynomial function y = f(x) is shown for −2.5 ≤ x ≤ 3.7. Which of the following could define f?",
+    "choices": [
+      "f(x) = (x − 2)(x + 1)(x + 3)",
+      "f(x) = −(x + 2)(x − 1)(x − 3)",
+      "f(x) = (x + 2)(x − 1)(x − 3)",
+      "f(x) = 2(x + 2)(x − 1)(x − 3)"
+    ],
+    "answer": "f(x) = (x + 2)(x − 1)(x − 3)",
+    "explanation": [
+      "The x-intercepts −2, 1 and 3 mean f(x) has factors (x + 2), (x − 1) and (x − 3).",
+      "Check the y-intercept: (0 + 2)(0 − 1)(0 − 3) = 6, which matches the point (0, 6).",
+      "−(x + 2)(x − 1)(x − 3) gives −6 and 2(x + 2)(x − 1)(x − 3) gives 12, so neither fits.",
+      "So f(x) = (x + 2)(x − 1)(x − 3)."
+    ],
+    "hints": [
+      "If the graph crosses the x-axis at x = −2, what factor must f(x) have?",
+      "Several choices may share the same zeros. What does each give when x = 0?"
+    ],
+    "wrong_reasons": {
+      "f(x) = (x − 2)(x + 1)(x + 3)": "Wrote each factor using the zero's own sign, which gives zeros at 2, −1 and −3",
+      "f(x) = −(x + 2)(x − 1)(x − 3)": "Matched the zeros but not the y-intercept; this function gives f(0) = −6 and falls to the right",
+      "f(x) = 2(x + 2)(x − 1)(x − 3)": "Matched the zeros but ignored the y-intercept; this function gives f(0) = 12"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nc={'f(x) = (x + 2)(x - 1)(x - 3)':(x+2)*(x-1)*(x-3),'f(x) = (x - 2)(x + 1)(x + 3)':(x-2)*(x+1)*(x+3),'f(x) = -(x + 2)(x - 1)(x - 3)':-(x+2)*(x-1)*(x-3),'f(x) = 2(x + 2)(x - 1)(x - 3)':2*(x+2)*(x-1)*(x-3)}\npts=[(-2,0),(1,0),(3,0),(0,6)]\nresult=[k for k,e in c.items() if all(e.subs(x,a)==b for a,b in pts)][0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 5 and y from −12 to 12, grid lines every 1 unit and axis labels every 2 units. A cubic curve comes up from the lower left, crosses the x-axis at (−2, 0), rises through the y-axis at (0, 6), turns downward and crosses the x-axis at (1, 0), turns back upward below the x-axis, and crosses the x-axis at (3, 0), rising to the upper right.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -4,
+          5
+        ],
+        "y": [
+          -12,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x+2)*(x-1)*(x-3)",
+          "domain": [
+            -2.5,
+            3.7
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            0
+          ],
+          "label": "(−2, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            6
+          ],
+          "label": "(0, 6)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "nw"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f007",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the exponential function y = f(x) is shown. Which of the following defines f?",
+    "choices": [
+      "f(x) = 8(1/2)ˣ",
+      "f(x) = 16(2)ˣ",
+      "f(x) = 16(1/2)ˣ",
+      "f(x) = 16 − 8x"
+    ],
+    "answer": "f(x) = 16(1/2)ˣ",
+    "explanation": [
+      "The y-intercept is (0, 16), so the initial value is 16.",
+      "Each time x increases by 1, the output is halved: 16, 8, 4, 2.",
+      "So f(x) = 16(1/2)ˣ."
+    ],
+    "hints": [
+      "What is the output when x = 0?",
+      "Is the output changing by the same amount each step, or by the same factor?"
+    ],
+    "wrong_reasons": {
+      "f(x) = 8(1/2)ˣ": "Used f(1) as the initial value instead of f(0)",
+      "f(x) = 16(2)ˣ": "Used a growth factor of 2 even though the graph is decreasing",
+      "f(x) = 16 − 8x": "Used only the first two points and assumed a constant decrease; this line gives 0, not 4, at x = 2"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nc={'f(x) = 16(1/2)ˣ':16*Rational(1,2)**x,'f(x) = 8(1/2)ˣ':8*Rational(1,2)**x,'f(x) = 16(2)ˣ':16*2**x,'f(x) = 16 - 8x':16-8*x}\npts=[(0,16),(1,8),(2,4),(3,2)]\nresult=[k for k,e in c.items() if all(e.subs(x,a)==b for a,b in pts)][0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −1 to 6 and y from −1 to 18, grid lines every 1 unit and axis labels every 2 units. A decreasing exponential curve falls from left to right, getting closer to the x-axis without touching it. It passes through (0, 16), (1, 8), (2, 4) and (3, 2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -1,
+          6
+        ],
+        "y": [
+          -1,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "16*(1/2)^x",
+          "domain": [
+            -0.1,
+            6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            16
+          ],
+          "label": "(0, 16)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            8
+          ],
+          "label": "(1, 8)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            4
+          ],
+          "label": "(2, 4)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            2
+          ],
+          "label": "(3, 2)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f008",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of y = x² − 2x − 3 is shown. Which of the following is an x-intercept of the graph?",
+    "choices": [
+      "(0, −3)",
+      "(3, 0)",
+      "(−3, 0)",
+      "(1, −4)"
+    ],
+    "answer": "(3, 0)",
+    "explanation": [
+      "An x-intercept is a point where the graph crosses the x-axis, where y = 0.",
+      "The graph crosses the x-axis at (−1, 0) and (3, 0).",
+      "Of the choices, only (3, 0) is an x-intercept."
+    ],
+    "hints": [
+      "What is the y-coordinate of every point on the x-axis?",
+      "Where does the curve touch or cross the horizontal axis?"
+    ],
+    "wrong_reasons": {
+      "(0, −3)": "Gave the y-intercept instead of an x-intercept",
+      "(−3, 0)": "Took the constant term −3 as a zero, or flipped the sign of the zero 3",
+      "(1, −4)": "Gave the vertex instead of an x-intercept"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nr=[v for v in solve(x**2-2*x-3,x) if v in (-3,0,1,3)]\nresult='('+str(r[0])+', 0)'",
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 6 and y from −5 to 6, grid lines every 1 unit. A parabola opens upward with its vertex at (1, −4). It crosses the x-axis at (−1, 0) and (3, 0) and crosses the y-axis at (0, −3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -4,
+          6
+        ],
+        "y": [
+          -5,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "x^2-2*x-3",
+          "domain": [
+            -2.1,
+            4.1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            -4
+          ],
+          "label": "(1, −4)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            0
+          ],
+          "label": "(−1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -3
+          ],
+          "label": "(0, −3)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f009",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown, where f(x) = ax² + bx + c and a, b and c are constants. What is the value of a + b + c?",
+    "choices": [
+      "−4",
+      "1/2",
+      "3",
+      "5"
+    ],
+    "answer": "1/2",
+    "explanation": [
+      "a + b + c = a(1)² + b(1) + c = f(1).",
+      "The vertex is (−2, 5), so f(x) = a(x + 2)² + 5.",
+      "The graph passes through (0, 3): 4a + 5 = 3, so a = −1/2.",
+      "f(1) = −(1/2)(3)² + 5 = −9/2 + 5 = 1/2."
+    ],
+    "hints": [
+      "What value of x turns ax² + bx + c into a + b + c?",
+      "How can you use the vertex to write an equation for f?",
+      "Which labeled point lets you find a?"
+    ],
+    "wrong_reasons": {
+      "−4": "Assumed a = −1 instead of solving for a from a point on the graph",
+      "3": "Gave only c, the y-intercept, instead of a + b + c",
+      "5": "Gave the maximum value of f instead of f(1)"
+    },
+    "check": "from sympy import *\nx,a,b,c=symbols('x a b c')\nf=a*x**2+b*x+c\ns=solve([f.subs(x,-2)-5,f.subs(x,0)-3,f.subs(x,2)+3],[a,b,c])\nresult=s[a]+s[b]+s[c]",
+    "figure": {
+      "alt": "A coordinate plane with x from −6 to 4 and y from −5 to 6, grid lines every 1 unit. A parabola opens downward with its vertex, the highest point, at (−2, 5). It passes through (−4, 3), crosses the y-axis at (0, 3), and passes through (2, −3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          4
+        ],
+        "y": [
+          -5,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-0.5*(x+2)^2+5",
+          "domain": [
+            -6,
+            2.4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            5
+          ],
+          "label": "(−2, 5)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            3
+          ],
+          "label": "(−4, 3)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -3
+          ],
+          "label": "(2, −3)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f010",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the exponential function y = f(x) is shown. What is the value of f(2)?",
+    "choices": [
+      "2",
+      "6",
+      "9",
+      "12"
+    ],
+    "answer": "12",
+    "explanation": [
+      "f(2) is the y-coordinate of the point on the graph where x = 2.",
+      "The graph passes through (2, 12).",
+      "So f(2) = 12."
+    ],
+    "hints": [
+      "Does f(2) tell you the x-value or the y-value of a point?",
+      "Find x = 2 on the horizontal axis. How high is the curve there?"
+    ],
+    "wrong_reasons": {
+      "2": "Gave the x-value instead of the output",
+      "6": "Read the point where x = 1 instead of x = 2",
+      "9": "Assumed the output grows by 3 each step (3, 6, 9) instead of doubling"
+    },
+    "check": "from sympy import *\na,b=symbols('a b',positive=True)\ns=solve([a-3,a*b-6],[a,b],dict=True)[0]\nresult=s[a]*s[b]**2",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 4 and y from −1 to 14, grid lines every 1 unit and axis labels every 2 units. An increasing exponential curve rises from left to right, staying above the x-axis. It passes through (0, 3), (1, 6) and (2, 12).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          4
+        ],
+        "y": [
+          -1,
+          14
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "3*2^x",
+          "domain": [
+            -3,
+            2.2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            6
+          ],
+          "label": "(1, 6)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            12
+          ],
+          "label": "(2, 12)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f011",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of y = g(x) is shown. Which of the following defines g?",
+    "choices": [
+      "g(x) = |x + 1| − 2",
+      "g(x) = |x − 1| − 2",
+      "g(x) = |x + 1| + 2",
+      "g(x) = |x − 2| − 1"
+    ],
+    "answer": "g(x) = |x + 1| − 2",
+    "explanation": [
+      "The graph is the graph of y = |x| moved so its vertex is at (−1, −2).",
+      "A vertex at (h, k) gives y = |x − h| + k.",
+      "With h = −1 and k = −2: g(x) = |x + 1| − 2. Check: g(1) = 2 − 2 = 0."
+    ],
+    "hints": [
+      "Where is the vertex of y = |x|, and where is this graph's vertex?",
+      "Does a shift to the left use x + 1 or x − 1 inside the absolute value?"
+    ],
+    "wrong_reasons": {
+      "g(x) = |x − 1| − 2": "Used x − 1 for a shift to the left; this vertex would be at (1, −2)",
+      "g(x) = |x + 1| + 2": "Shifted up instead of down; this vertex would be at (−1, 2)",
+      "g(x) = |x − 2| − 1": "Swapped the roles of the vertex coordinates; this vertex would be at (2, −1), not (−1, −2)"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nc={'g(x) = |x + 1| - 2':Abs(x+1)-2,'g(x) = |x - 1| - 2':Abs(x-1)-2,'g(x) = |x + 1| + 2':Abs(x+1)+2,'g(x) = |x - 2| - 1':Abs(x-2)-1}\npts=[(-1,-2),(-3,0),(1,0),(0,-1)]\nresult=[k for k,e in c.items() if all(e.subs(x,a)==b for a,b in pts)][0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −5 to 4 and y from −3 to 5, grid lines every 1 unit. A V-shaped graph opens upward with its vertex, the lowest point, at (−1, −2). It crosses the x-axis at (−3, 0) and (1, 0) and crosses the y-axis at (0, −1).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          4
+        ],
+        "y": [
+          -3,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "abs(x+1)-2",
+          "domain": [
+            -5,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            -2
+          ],
+          "label": "(−1, −2)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            0
+          ],
+          "label": "(−3, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -1
+          ],
+          "label": "(0, −1)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f012",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. What is the value of f(−3)?",
+    "choices": [
+      "−6",
+      "10",
+      "17",
+      "42"
+    ],
+    "answer": "42",
+    "explanation": [
+      "The vertex is (2, −8), so f(x) = a(x − 2)² − 8.",
+      "The graph passes through (0, 0): 4a − 8 = 0, so a = 2.",
+      "f(x) = 2(x − 2)² − 8.",
+      "f(−3) = 2(−5)² − 8 = 50 − 8 = 42."
+    ],
+    "hints": [
+      "x = −3 is near the edge of the graph. What equation could you write for f instead?",
+      "How does the vertex help you write that equation?",
+      "Which point lets you find the leading coefficient?"
+    ],
+    "wrong_reasons": {
+      "−6": "Wrote the vertex form with (x + 2) instead of (x − 2), evaluating 2(−1)² − 8",
+      "10": "Ignored the horizontal shift and evaluated 2(−3)² − 8",
+      "17": "Assumed a = 1 instead of finding a from a point, evaluating (−5)² − 8"
+    },
+    "check": "from sympy import *\nx,a,b,c=symbols('x a b c')\nf=a*x**2+b*x+c\ns=solve([f.subs(x,0),f.subs(x,4),f.subs(x,2)+8],[a,b,c])\nresult=f.subs(s).subs(x,-3)",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 7 and y from −9 to 6, grid lines every 1 unit. A parabola opens upward with its vertex, the lowest point, at (2, −8). It crosses the x-axis at (0, 0) and (4, 0), and it passes through (1, −6) and (3, −6).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          7
+        ],
+        "y": [
+          -9,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "2*(x-2)^2-8",
+          "domain": [
+            -0.6,
+            4.6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -8
+          ],
+          "label": "(2, −8)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "(0, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            0
+          ],
+          "label": "(4, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            -6
+          ],
+          "label": "(1, −6)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            -6
+          ],
+          "label": "(3, −6)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f013",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A ball is thrown upward from the ground. The graph shows the height h, in meters, of the ball t seconds after it is thrown, until it lands. How many seconds after it is thrown does the ball land on the ground?",
+    "answer": "6",
+    "explanation": [
+      "The ball is on the ground when its height h is 0.",
+      "The graph has h = 0 at t = 0 (when it is thrown) and at t = 6.",
+      "So the ball lands 6 seconds after it is thrown."
+    ],
+    "hints": [
+      "What is the ball's height when it is on the ground?",
+      "The graph touches h = 0 twice. Which time is the landing?"
+    ],
+    "check": "from sympy import *\nt=symbols('t')\nresult=max(solve(-t**2+6*t,t))",
+    "figure": {
+      "alt": "A coordinate plane with horizontal axis t (seconds) from −1 to 7 and vertical axis h (meters) from −1 to 10, grid lines every 1 unit. A downward-opening parabola drawn for 0 ≤ t ≤ 6 starts at (0, 0), rises to its highest point at (3, 9), and comes back down to the t-axis at (6, 0).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "t",
+        "ylabel": "h"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-x^2+6*x",
+          "domain": [
+            0,
+            6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "(0, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            9
+          ],
+          "label": "(3, 9)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            0
+          ],
+          "label": "(6, 0)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f014",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The graph of the exponential function y = f(x) is shown, where f(x) = a·bˣ and a and b are positive constants. For what value of x is f(x) = 1/64?",
+    "answer": "10",
+    "explanation": [
+      "The graph passes through (0, 16), so a = 16.",
+      "It passes through (2, 4), so 16b² = 4, b² = 1/4 and b = 1/2.",
+      "Solve 16(1/2)ˣ = 1/64: (1/2)ˣ = 1/1,024 = (1/2)¹⁰.",
+      "So x = 10."
+    ],
+    "hints": [
+      "Which point gives you a right away?",
+      "From x = 0 to x = 2 the output is multiplied by 1/4. What is it multiplied by each time x increases by 1?",
+      "Can you write 1/64 ÷ 16 as a power of 1/2?"
+    ],
+    "check": "from sympy import *\na,b,x=symbols('a b x',positive=True)\ns=solve([a-16,a*b**2-4],[a,b],dict=True)[0]\nresult=solve(s[a]*s[b]**x-Rational(1,64),x)[0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −1 to 7 and y from −1 to 18, grid lines every 1 unit and axis labels every 2 units. A decreasing exponential curve falls from left to right, getting closer to the x-axis without touching it. It passes through (0, 16) and (2, 4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "16*(1/2)^x",
+          "domain": [
+            -0.1,
+            7
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            16
+          ],
+          "label": "(0, 16)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            4
+          ],
+          "label": "(2, 4)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f015",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. The function g is defined by g(x) = f(x − 3). What are the zeros of g?",
+    "choices": [
+      "x = 4 and x = 6",
+      "x = −2 and x = 0",
+      "x = 1 and x = 3",
+      "x = 2 and x = 4"
+    ],
+    "answer": "x = 4 and x = 6",
+    "explanation": [
+      "From the graph, f(x) = 0 when x = 1 and when x = 3.",
+      "g(x) = f(x − 3) = 0 when x − 3 = 1 or x − 3 = 3.",
+      "So x = 4 or x = 6: the graph of g is the graph of f moved 3 units to the right."
+    ],
+    "hints": [
+      "What are the zeros of f, read from the graph?",
+      "For g(x) = 0, what must x − 3 equal?"
+    ],
+    "wrong_reasons": {
+      "x = −2 and x = 0": "Shifted the zeros 3 units left instead of right",
+      "x = 1 and x = 3": "Gave the zeros of f instead of g",
+      "x = 2 and x = 4": "Shifted the zeros only 1 unit to the right instead of 3"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nf=lambda u:(u-2)**2-1\nz=sorted(solve(f(x-3),x))\nresult='x = '+str(z[0])+' and x = '+str(z[1])",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 6 and y from −2 to 6, grid lines every 1 unit. A parabola opens upward with its vertex at (2, −1). It crosses the x-axis at (1, 0) and (3, 0) and crosses the y-axis at (0, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          6
+        ],
+        "y": [
+          -2,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x-2)^2-1",
+          "domain": [
+            -0.6,
+            4.6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -1
+          ],
+          "label": "(2, −1)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f016",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of y = g(x) is shown. For what value of x does g(x) reach its minimum value?",
+    "choices": [
+      "−3",
+      "−1",
+      "2",
+      "5"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The minimum value of g is reached at the lowest point of the graph.",
+      "The lowest point of the V-shaped graph is (2, −3).",
+      "The question asks for the x-value, so the answer is x = 2."
+    ],
+    "hints": [
+      "Which point on the graph is lower than all the others?",
+      "Does the question ask for the x-coordinate or the y-coordinate of that point?"
+    ],
+    "wrong_reasons": {
+      "−3": "Gave the minimum value (the y-coordinate of the lowest point) instead of the x-value",
+      "−1": "Gave an x-intercept instead of the lowest point",
+      "5": "Gave the other x-intercept instead of the lowest point"
+    },
+    "check": "from sympy import *\nx=symbols('x')\ng=Abs(x-2)-3\nxs=[Rational(k,4) for k in range(-12,29)]\nresult=min(xs,key=lambda v:g.subs(x,v))",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 7 and y from −5 to 5, grid lines every 1 unit. The graph is V-shaped and opens upward. Its lowest point is at (2, −3). The graph crosses the x-axis at (−1, 0) and (5, 0) and crosses the y-axis at (0, −1).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          7
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "abs(x-2)-3",
+          "domain": [
+            -3,
+            7
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            0
+          ],
+          "label": "(−1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            0
+          ],
+          "label": "(5, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -1
+          ],
+          "label": "(0, −1)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f017",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of y = g(x) is shown. Which of the following defines g?",
+    "choices": [
+      "g(x) = −2|x + 1| + 4",
+      "g(x) = −2|x − 1| + 4",
+      "g(x) = 2|x − 1| + 4",
+      "g(x) = −|x − 1| + 4"
+    ],
+    "answer": "g(x) = −2|x − 1| + 4",
+    "explanation": [
+      "The highest point (1, 4) is the vertex, so g(x) = a|x − 1| + 4.",
+      "The graph opens downward, so a is negative.",
+      "From (1, 4) to (3, 0), y drops 4 while x increases 2, so a = −4/2 = −2.",
+      "So g(x) = −2|x − 1| + 4. Check: g(0) = −2 + 4 = 2."
+    ],
+    "hints": [
+      "Which point on the graph is the vertex, and how does it appear in a|x − h| + k?",
+      "As you move right from the vertex, how much does y change for each 1-unit step in x?"
+    ],
+    "wrong_reasons": {
+      "g(x) = −2|x + 1| + 4": "Used the wrong sign for the horizontal shift: a vertex at x = 1 means |x − 1|",
+      "g(x) = 2|x − 1| + 4": "Missed that the graph opens downward, so a must be negative",
+      "g(x) = −|x − 1| + 4": "Assumed the slope of each side is ±1 instead of reading it from the graph"
+    },
+    "check": "from sympy import *\nh,k=1,4\nx1,y1=3,0\na=Rational(y1-k,abs(x1-h))\nresult=f'g(x)={a}|x-{h}|+{k}'",
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 6 and y from −5 to 6, grid lines every 1 unit. The graph is an upside-down V shape. Its highest point is at (1, 4). It crosses the x-axis at (−1, 0) and (3, 0) and crosses the y-axis at (0, 2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -4,
+          6
+        ],
+        "y": [
+          -5,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-2*abs(x-1)+4",
+          "domain": [
+            -3.2,
+            5.2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            4
+          ],
+          "label": "(1, 4)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            0
+          ],
+          "label": "(−1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ],
+          "label": "(0, 2)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f018",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The graph of the quadratic function y = f(x) is shown. What is the value of f(6)?",
+    "answer": "28",
+    "explanation": [
+      "The vertex is (−2, −4), so f(x) = a(x + 2)² − 4.",
+      "The graph passes through (0, −2): −2 = a(2)² − 4, so 4a = 2 and a = 1/2.",
+      "Check with (2, 4): (1/2)(4)² − 4 = 8 − 4 = 4. ✓",
+      "f(6) = (1/2)(8)² − 4 = 32 − 4 = 28."
+    ],
+    "hints": [
+      "Which form of a quadratic uses the vertex directly?",
+      "Once you know the vertex, which other point lets you find the leading coefficient?",
+      "How far is x = 6 from the axis of symmetry?"
+    ],
+    "check": "from sympy import *\nx,a,b,c=symbols('x a b c')\nf=a*x**2+b*x+c\ns=solve([f.subs(x,-2)+4,f.subs(x,0)+2,f.subs(x,2)-4],[a,b,c])\nresult=f.subs(s).subs(x,6)",
+    "figure": {
+      "alt": "A coordinate plane with x from −7 to 5 and y from −6 to 8, grid lines every 1 unit. A parabola opens upward. Its vertex is at (−2, −4). It passes through (0, −2) and (2, 4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -7,
+          5
+        ],
+        "y": [
+          -6,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "0.5*(x+2)^2-4",
+          "domain": [
+            -6.8,
+            2.8
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            -4
+          ],
+          "label": "(−2, −4)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ],
+          "label": "(0, −2)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            4
+          ],
+          "label": "(2, 4)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f019",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the polynomial function y = f(x) is shown. What is the least value of x for which f(x) = 0?",
+    "choices": [
+      "−2",
+      "1",
+      "3",
+      "6"
+    ],
+    "answer": "−2",
+    "explanation": [
+      "f(x) = 0 exactly where the graph meets the x-axis.",
+      "The graph crosses the x-axis at x = −2, x = 1 and x = 3.",
+      "The least of these is −2."
+    ],
+    "hints": [
+      "Where on the graph is the y-value equal to 0?",
+      "Of the x-values you found, which is farthest to the left?"
+    ],
+    "wrong_reasons": {
+      "1": "Gave the smallest positive zero instead of the least zero",
+      "3": "Gave the greatest zero instead of the least",
+      "6": "Gave the y-intercept, the value of f(0), instead of a zero"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nf=(x+2)*(x-1)*(x-3)\nresult=min(solve(f,x))",
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 5 and y from −8 to 10, grid lines every 1 unit and axis labels every 2 units. A curve rises from the lower left, crosses the x-axis at (−2, 0), passes through (0, 6), reaches a high point, falls to cross the x-axis at (1, 0), reaches a low point, and rises to cross the x-axis again at (3, 0).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -4,
+          5
+        ],
+        "y": [
+          -8,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x+2)*(x-1)*(x-3)",
+          "domain": [
+            -2.4,
+            3.6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            6
+          ],
+          "label": "(0, 6)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f020",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The graph shows the value V of an investment, in hundreds of dollars, t years after it was purchased, where V(t) = a·bᵗ and a and b are positive constants. According to the model, what is the value of the investment, in dollars, 3 years after it was purchased?",
+    "answer": "1350",
+    "accept": [
+      "1,350"
+    ],
+    "explanation": [
+      "At t = 0, V = 4, so a = 4.",
+      "From t = 0 to t = 1, V goes from 4 to 6, so b = 6/4 = 1.5. (Check: 6 · 1.5 = 9 at t = 2.)",
+      "V(3) = 4(1.5)³ = 4 · 3.375 = 13.5 hundred dollars.",
+      "13.5 hundred dollars is 13.5 · 100 = 1,350 dollars."
+    ],
+    "hints": [
+      "What is the value of V when t = 0, and what does that tell you about a?",
+      "By what factor does V grow each year?",
+      "The graph is in hundreds of dollars. What does the question ask for?"
+    ],
+    "check": "from sympy import *\na=4\nb=Rational(6,4)\nresult=a*b**3*100",
+    "figure": {
+      "alt": "A coordinate plane with horizontal axis t from 0 to 5 and vertical axis V from −1 to 16, grid lines every 1 unit and axis labels every 2 units. An increasing curve passes through the points (0, 4), (1, 6) and (2, 9) and continues to rise more and more steeply.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -0.5,
+          5
+        ],
+        "y": [
+          -1,
+          16
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "t",
+        "ylabel": "V"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "4*1.5^x",
+          "domain": [
+            0,
+            2.6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ],
+          "label": "(0, 4)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            6
+          ],
+          "label": "(1, 6)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            9
+          ],
+          "label": "(2, 9)",
+          "labelPos": "nw"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f021",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of y = f(x) is shown, where f(x) = ax² + bx + c and a, b, and c are constants. Which of the following must be true?",
+    "choices": [
+      "a > 0 and c > 0",
+      "a < 0 and b < 0",
+      "b < 0 and c < 0",
+      "a < 0 and b > 0"
+    ],
+    "answer": "a < 0 and b > 0",
+    "explanation": [
+      "The parabola opens downward, so a < 0.",
+      "The y-intercept is (0, −3), so c = −3 < 0.",
+      "The axis of symmetry is x = −b/(2a) = 2. Since a < 0, −b/(2a) > 0 means b > 0.",
+      "So a < 0 and b > 0 must be true; each other choice contains a false part."
+    ],
+    "hints": [
+      "Which way the parabola opens tells you the sign of which constant?",
+      "What is f(0) in terms of a, b and c?",
+      "The vertex has x-coordinate −b/(2a). If that is positive and a is negative, what sign is b?"
+    ],
+    "wrong_reasons": {
+      "a > 0 and c > 0": "Took the positive vertex height as the y-intercept and ignored that the parabola opens downward",
+      "a < 0 and b < 0": "Assumed b has the same sign as a, missing that the vertex lies to the right of the y-axis",
+      "b < 0 and c < 0": "Got c right but treated −b/(2a) > 0 as meaning b < 0, forgetting that a is negative"
+    },
+    "check": "from sympy import *\nx,a,b,c=symbols('x a b c')\nf=a*x**2+b*x+c\ns=solve([f.subs(x,1),f.subs(x,3),f.subs(x,0)+3],[a,b,c])\nA,B,C=s[a],s[b],s[c]\nopts={'a > 0 and c > 0':A>0 and C>0,'a < 0 and b > 0':A<0 and B>0,'a < 0 and b < 0':A<0 and B<0,'b < 0 and c < 0':B<0 and C<0}\nresult=[k for k,v in opts.items() if v][0].replace(' ','')",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 5 and y from −5 to 3, grid lines every 1 unit. A parabola opens downward. Its vertex is at (2, 1). It crosses the x-axis at (1, 0) and (3, 0) and crosses the y-axis at (0, −3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          5
+        ],
+        "y": [
+          -5,
+          3
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-(x-1)*(x-3)",
+          "domain": [
+            -0.3,
+            4.3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            1
+          ],
+          "label": "(2, 1)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -3
+          ],
+          "label": "(0, −3)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f022",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. What are the coordinates of the vertex of the graph?",
+    "choices": [
+      "(3, −4)",
+      "(−4, 3)",
+      "(0, 5)",
+      "(1, 0)"
+    ],
+    "answer": "(3, −4)",
+    "explanation": [
+      "The vertex of a parabola that opens upward is its lowest point.",
+      "The lowest point is 3 units right of the y-axis and 4 units below the x-axis.",
+      "So the vertex is (3, −4). It is also halfway between the zeros 1 and 5."
+    ],
+    "hints": [
+      "Is the vertex of this parabola its highest point or its lowest point?",
+      "Which coordinate do you write first in an ordered pair?"
+    ],
+    "wrong_reasons": {
+      "(−4, 3)": "Reversed the x- and y-coordinates",
+      "(0, 5)": "Gave the y-intercept instead of the vertex",
+      "(1, 0)": "Gave an x-intercept instead of the vertex"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nf=(x-1)*(x-5)\nxv=solve(diff(f,x),x)[0]\nresult=f'({xv},{f.subs(x,xv)})'",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 8 and y from −6 to 8, grid lines every 1 unit. A parabola opens upward. Its lowest point is at (3, −4). It crosses the x-axis at (1, 0) and (5, 0) and crosses the y-axis at (0, 5).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          8
+        ],
+        "y": [
+          -6,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x-3)^2-4",
+          "domain": [
+            -0.3,
+            6.3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            -4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            0
+          ],
+          "label": "(5, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            5
+          ],
+          "label": "(0, 5)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f023",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of y = f(x) is shown. Which of the following could be the equation of the graph?",
+    "choices": [
+      "y = (x + 4)(x − 2)",
+      "y = −(x + 4)(x − 2)",
+      "y = −(x − 4)(x + 2)",
+      "y = (x − 4)(x + 2)"
+    ],
+    "answer": "y = −(x + 4)(x − 2)",
+    "explanation": [
+      "The zeros are x = −4 and x = 2, so the factors are (x + 4) and (x − 2).",
+      "The parabola opens downward, so the leading coefficient is negative.",
+      "Check the y-intercept: −(0 + 4)(0 − 2) = −(−8) = 8. ✓",
+      "So y = −(x + 4)(x − 2)."
+    ],
+    "hints": [
+      "If x = −4 makes y equal 0, which factor must be in the equation?",
+      "Does the parabola open up or down, and what does that say about the sign in front?"
+    ],
+    "wrong_reasons": {
+      "y = (x + 4)(x − 2)": "Used the right zeros but missed that the parabola opens downward",
+      "y = −(x − 4)(x + 2)": "Used the zeros' values directly in the factors, giving zeros at 4 and −2",
+      "y = (x − 4)(x + 2)": "Reversed the signs in the factors and also missed the downward opening"
+    },
+    "check": "from sympy import *\nx,a=symbols('x a')\nr1,r2=-4,2\nav=solve(a*(0-r1)*(0-r2)-8,a)[0]\nsign='-' if av==-1 else ('' if av==1 else str(av))\nresult=f'y={sign}(x+{-r1})(x-{r2})'",
+    "figure": {
+      "alt": "A coordinate plane with x from −6 to 4 and y from −4 to 10, grid lines every 1 unit. A parabola opens downward. It crosses the x-axis at (−4, 0) and (2, 0) and crosses the y-axis at (0, 8). Its highest point is at (−1, 9).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          4
+        ],
+        "y": [
+          -4,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-(x+4)*(x-2)",
+          "domain": [
+            -4.6,
+            2.6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            0
+          ],
+          "label": "(−4, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            8
+          ],
+          "label": "(0, 8)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            9
+          ]
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f024",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The graph of y = f(x) is shown, where f(x) = a·bˣ + c and a, b, and c are constants with b > 0. The dashed line y = −2 is a horizontal asymptote of the graph. What is the value of f(3)?",
+    "answer": "22",
+    "explanation": [
+      "As x decreases, a·bˣ approaches 0, so the asymptote y = −2 gives c = −2.",
+      "At (0, 1): a·b⁰ − 2 = 1, so a = 3.",
+      "At (1, 4): 3b − 2 = 4, so b = 2.",
+      "f(3) = 3(2)³ − 2 = 24 − 2 = 22."
+    ],
+    "hints": [
+      "What value does a·bˣ approach far to the left, and what does that tell you about c?",
+      "What is b⁰, and how does that help you use the point (0, 1)?",
+      "Once you know a and c, which point gives you b?"
+    ],
+    "check": "from sympy import *\na,b=symbols('a b',positive=True)\nc=-2\nav=1-c\nbv=solve(av*b+c-4,b)[0]\nresult=av*bv**3+c",
+    "figure": {
+      "alt": "A coordinate plane with x from −5 to 3 and y from −4 to 8, grid lines every 1 unit. A dashed horizontal line labeled y = −2 is drawn. An increasing curve approaches the dashed line from above on the far left, passes through (0, 1) and (1, 4), and rises steeply to the right.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          3
+        ],
+        "y": [
+          -4,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -5,
+              -2
+            ],
+            [
+              3,
+              -2
+            ]
+          ],
+          "dash": true,
+          "label": "y = −2"
+        },
+        {
+          "type": "function",
+          "expr": "3*2^x-2",
+          "domain": [
+            -5,
+            1.4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            1
+          ],
+          "label": "(0, 1)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            4
+          ],
+          "label": "(1, 4)",
+          "labelPos": "nw"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f025",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A shop models its weekly profit P, in hundreds of dollars, from selling a product at a price of x dollars. The graph of P is shown. At what price, in dollars, is the shop's profit greatest?",
+    "choices": [
+      "2",
+      "6",
+      "10",
+      "16"
+    ],
+    "answer": "6",
+    "explanation": [
+      "The profit is greatest at the highest point of the graph.",
+      "The highest point is (6, 16).",
+      "The price is the x-coordinate, so the profit is greatest at a price of 6 dollars."
+    ],
+    "hints": [
+      "Which point on the graph has the greatest P-value?",
+      "Which axis shows the price?"
+    ],
+    "wrong_reasons": {
+      "2": "Gave a price where the profit is zero",
+      "10": "Gave the other price where the profit is zero",
+      "16": "Gave the greatest profit (in hundreds of dollars) instead of the price"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nP=-(x-2)*(x-10)\nresult=solve(diff(P,x),x)[0]",
+    "figure": {
+      "alt": "A coordinate plane with horizontal axis x (price, in dollars) from −1 to 12 and vertical axis P (profit, in hundreds of dollars) from −6 to 18, grid lines every 1 unit and axis labels every 2 units. A parabola opens downward. It crosses the x-axis at (2, 0) and (10, 0). Its highest point is at (6, 16).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -1,
+          12
+        ],
+        "y": [
+          -6,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "P"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-(x-6)^2+16",
+          "domain": [
+            1.6,
+            10.4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            16
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            10,
+            0
+          ],
+          "label": "(10, 0)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f026",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. For which of the following values of k does the equation f(x) = k have no real solutions?",
+    "choices": [
+      "−3",
+      "−2",
+      "0",
+      "2"
+    ],
+    "answer": "−3",
+    "explanation": [
+      "The solutions of f(x) = k are the x-values where the horizontal line y = k meets the graph.",
+      "The parabola opens upward with lowest point (−1, −2), so f(x) is never less than −2.",
+      "A line y = k below y = −2 misses the graph. Of the choices, only k = −3 is below −2.",
+      "(k = −2 gives one solution; k = 0 and k = 2 give two.)"
+    ],
+    "hints": [
+      "What is the smallest value that f(x) ever takes?",
+      "Picture a horizontal line y = k. Where must it be to miss the graph completely?"
+    ],
+    "wrong_reasons": {
+      "−2": "Chose the minimum value itself, where the equation has exactly one solution",
+      "0": "Thought f(x) = 0 has no solutions because the vertex is not on the x-axis, but the graph crosses the x-axis twice",
+      "2": "Chose a value the graph reaches twice, at (1, 2) and (−3, 2), so f(x) = 2 has two solutions"
+    },
+    "check": "from sympy import *\nx=symbols('x',real=True)\nf=(x+1)**2-2\nresult=[k for k in [-3,-2,0,2] if len(solve(f-k,x))==0][0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −5 to 3 and y from −4 to 6, grid lines every 1 unit. A parabola opens upward. Its vertex, the lowest point, is at (−1, −2). It passes through (0, −1) and (1, 2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          3
+        ],
+        "y": [
+          -4,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x+1)^2-2",
+          "domain": [
+            -3.8,
+            1.8
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            -2
+          ],
+          "label": "(−1, −2)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -1
+          ],
+          "label": "(0, −1)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            2
+          ],
+          "label": "(1, 2)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f027",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of y = f(x) is shown, where f(x) = x³ − 3x. The function g is defined by g(x) = f(x) − 2. How many distinct real zeros does g have?",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "answer": "2",
+    "explanation": [
+      "g(x) = 0 means f(x) = 2, so count where the horizontal line y = 2 meets the graph of f.",
+      "The high point of the graph on the left is (−1, 2), so the line y = 2 just touches the graph there.",
+      "To the right of the low point (1, −2), the graph rises past y = 2, meeting it again at x = 2, since 2³ − 3(2) = 2.",
+      "So g has exactly 2 distinct real zeros: x = −1 and x = 2."
+    ],
+    "hints": [
+      "What equation in f is the same as g(x) = 0?",
+      "Draw the line y = 2. Where does it touch or cross the graph?",
+      "Does the line cross the graph at the high point (−1, 2), or only touch it?"
+    ],
+    "wrong_reasons": {
+      "0": "Thought subtracting 2 moves the whole graph off the x-axis, but a cubic always has at least one real zero",
+      "1": "Counted only the crossing on the right and missed the point where the shifted graph touches the x-axis",
+      "3": "Assumed a cubic always has three zeros, missing that y = 2 is tangent at the high point"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nf=x**3-3*x\nresult=len(set(real_roots(f-2)))",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 3 and y from −4 to 4, grid lines every 1 unit. A curve rises from the lower left to a high point at (−1, 2), falls through the origin (0, 0) to a low point at (1, −2), then rises steeply to the upper right, passing through (2, 2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          3
+        ],
+        "y": [
+          -4,
+          4
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "x^3-3*x",
+          "domain": [
+            -2.2,
+            2.2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            2
+          ],
+          "label": "(−1, 2)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "(0, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            -2
+          ],
+          "label": "(1, −2)",
+          "labelPos": "s"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f028",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph shows the mass M, in grams, of a radioactive substance t days after it was first measured. Which of the following equations could model M?",
+    "choices": [
+      "M = 16(1/2)^(2t)",
+      "M = 16(1/2)^t",
+      "M = 8(1/2)^(t/2)",
+      "M = 16(1/2)^(t/2)"
+    ],
+    "answer": "M = 16(1/2)^(t/2)",
+    "explanation": [
+      "At t = 0 the mass is 16 grams, so the initial value is 16.",
+      "Every 2 days the mass halves: 16 → 8 → 4 → 2.",
+      "Halving once every 2 days means the exponent is t/2.",
+      "So M = 16(1/2)^(t/2). Check: t = 4 gives 16(1/2)² = 4. ✓"
+    ],
+    "hints": [
+      "What is the mass when t = 0?",
+      "How many days does it take for the mass to be cut in half?",
+      "If the mass halves every 2 days, how many times has it halved after t days?"
+    ],
+    "wrong_reasons": {
+      "M = 16(1/2)^(2t)": "Multiplied t by 2 instead of dividing, which makes the mass halve every half day",
+      "M = 16(1/2)^t": "Assumed the mass halves every day",
+      "M = 8(1/2)^(t/2)": "Used the mass at t = 2 as the initial value"
+    },
+    "check": "from sympy import *\nM0=16\npts={0:16,2:8,4:4,6:2}\nhalf=min(k for k,v in pts.items() if v==Rational(M0,2))\nresult=f'M={M0}(1/2)^(t/{half})'",
+    "figure": {
+      "alt": "A coordinate plane with horizontal axis t (days) from −1 to 9 and vertical axis M (grams) from −1 to 18, grid lines every 1 unit and axis labels every 2 units. A decreasing curve passes through (0, 16), (2, 8), (4, 4) and (6, 2), flattening out toward the t-axis.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -1,
+          9
+        ],
+        "y": [
+          -1,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "t",
+        "ylabel": "M"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "16*0.5^(x/2)",
+          "domain": [
+            0,
+            9
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            16
+          ],
+          "label": "(0, 16)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            8
+          ],
+          "label": "(2, 8)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            4
+          ],
+          "label": "(4, 4)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            2
+          ],
+          "label": "(6, 2)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f029",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The graph of the exponential function y = f(x) is shown, where f(x) = a·bˣ and a and b are positive constants. What is the value of f(5)?",
+    "answer": "48",
+    "explanation": [
+      "From the points: a·b = 3 and a·b³ = 12.",
+      "Divide: b² = 12/3 = 4, so b = 2 (b is positive).",
+      "Then a = 3/2.",
+      "f(5) = (3/2)(2)⁵ = (3/2)(32) = 48."
+    ],
+    "hints": [
+      "Write an equation for each labeled point. What happens if you divide one by the other?",
+      "Once you know b, how can you get from f(3) to f(5) without finding a?"
+    ],
+    "check": "from sympy import *\na,b=symbols('a b',positive=True)\ns=solve([a*b-3,a*b**3-12],[a,b],dict=True)[0]\nresult=s[a]*s[b]**5",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 4 and y from −1 to 14, grid lines every 1 unit and axis labels every 2 units. An increasing curve stays above the x-axis, rising slowly on the left, and passes through the points (1, 3) and (3, 12).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          4
+        ],
+        "y": [
+          -1,
+          14
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "1.5*2^x",
+          "domain": [
+            -3,
+            3.2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            3
+          ],
+          "label": "(1, 3)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            12
+          ],
+          "label": "(3, 12)",
+          "labelPos": "nw"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f030",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. Which of the following is the equation of the axis of symmetry of the graph?",
+    "choices": [
+      "x = 3",
+      "x = −4",
+      "x = −3",
+      "y = −3"
+    ],
+    "answer": "x = −3",
+    "explanation": [
+      "The axis of symmetry is the vertical line through the vertex.",
+      "The vertex is halfway between the zeros −5 and −1: (−5 + (−1))/2 = −3.",
+      "So the axis of symmetry is x = −3."
+    ],
+    "hints": [
+      "Is the axis of symmetry a vertical line or a horizontal line?",
+      "What x-value is exactly halfway between the two x-intercepts?"
+    ],
+    "wrong_reasons": {
+      "x = 3": "Dropped the negative sign of the vertex's x-coordinate",
+      "x = −4": "Used the y-coordinate of the vertex instead of the x-coordinate",
+      "y = −3": "Wrote the axis as a horizontal line instead of a vertical one"
+    },
+    "check": "from sympy import *\nr1,r2=-5,-1\nresult=f'x={Rational(r1+r2,2)}'",
+    "figure": {
+      "alt": "A coordinate plane with x from −7 to 2 and y from −5 to 7, grid lines every 1 unit. A parabola opens upward. It crosses the x-axis at (−5, 0) and (−1, 0) and crosses the y-axis at (0, 5). Its lowest point is at (−3, −4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -7,
+          2
+        ],
+        "y": [
+          -5,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x+3)^2-4",
+          "domain": [
+            -6.2,
+            0.2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -5,
+            0
+          ],
+          "label": "(−5, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            0
+          ],
+          "label": "(−1, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            5
+          ],
+          "label": "(0, 5)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            -4
+          ]
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f031",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of y = g(x) is shown, where g is an absolute value function. What are the coordinates of the vertex of the graph?",
+    "choices": [
+      "(−1, −3)",
+      "(1, −3)",
+      "(−3, −1)",
+      "(−4, 0)"
+    ],
+    "answer": "(−1, −3)",
+    "explanation": [
+      "The vertex of a V-shaped graph is the point where the graph changes direction.",
+      "Here the lowest point of the V is at x = −1, y = −3.",
+      "So the vertex is (−1, −3)."
+    ],
+    "hints": [
+      "Which point on the V is lower than all the others?",
+      "Which coordinate comes first in an ordered pair?"
+    ],
+    "wrong_reasons": {
+      "(1, −3)": "Misread the sign of the vertex's x-coordinate (the vertex is left of the y-axis)",
+      "(−3, −1)": "Reversed the x- and y-coordinates",
+      "(−4, 0)": "Gave an x-intercept instead of the turning point"
+    },
+    "check": "from sympy import *\nx=symbols('x')\ng=Abs(x+1)-3\nxs=[Rational(k,2) for k in range(-12,9)]\nxv=min(xs,key=lambda v:g.subs(x,v))\nresult='('+str(xv)+','+str(g.subs(x,xv))+')'",
+    "figure": {
+      "alt": "A coordinate plane with x from −6 to 4 and y from −5 to 4, grid lines every 1 unit. A V-shaped graph opens upward. Its lowest point, the vertex, is at (−1, −3). The graph crosses the x-axis at (−4, 0) and (2, 0) and crosses the y-axis at (0, −2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          4
+        ],
+        "y": [
+          -5,
+          4
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "abs(x+1)-3",
+          "domain": [
+            -6,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            -3
+          ],
+          "label": "(−1, −3)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            0
+          ],
+          "label": "(−4, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ],
+          "label": "(0, −2)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f032",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the exponential function y = f(x) is shown. For each increase of 1 in the value of x, the value of f(x) decreases by what percent?",
+    "choices": [
+      "4%",
+      "25%",
+      "33⅓%",
+      "75%"
+    ],
+    "answer": "25%",
+    "explanation": [
+      "From x = 0 to x = 1, f(x) goes from 16 to 12, a decrease of 4.",
+      "As a percent of the starting value: 4/16 = 0.25 = 25%.",
+      "Check: from x = 1 to x = 2, f(x) goes from 12 to 9, and 3/12 = 25% as well.",
+      "So f(x) decreases by 25% for each increase of 1 in x."
+    ],
+    "hints": [
+      "By what factor is f(x) multiplied each time x goes up by 1?",
+      "If a quantity keeps 3/4 of its value, what fraction of it is lost?"
+    ],
+    "wrong_reasons": {
+      "4%": "Used the drop of 4 units as if it were a percent",
+      "33⅓%": "Divided the decrease by the new value 12 instead of the starting value 16",
+      "75%": "Gave the percent that remains (the factor 3/4) instead of the percent lost"
+    },
+    "check": "from sympy import *\nb=Rational(12,16)\nassert Rational(9,12)==b\nresult=(1-b)*100",
+    "figure": {
+      "alt": "A coordinate plane with x from −1 to 5 and y from −1 to 18, grid lines every 1 unit and axis labels every 2 units. A decreasing exponential curve falls from left to right and stays above the x-axis. It passes through the points (0, 16), (1, 12) and (2, 9).",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          -1,
+          5
+        ],
+        "y": [
+          -1,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "16*0.75^x",
+          "domain": [
+            -0.3,
+            5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            16
+          ],
+          "label": "(0, 16)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            12
+          ],
+          "label": "(1, 12)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            9
+          ],
+          "label": "(2, 9)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f033",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The graph of the quadratic function y = f(x) is shown. What is the value of f(3)?",
+    "answer": "24",
+    "explanation": [
+      "The zeros are −3 and 1, so f(x) = a(x + 3)(x − 1) for some constant a.",
+      "The graph passes through (0, −6): a(3)(−1) = −6, so a = 2.",
+      "f(x) = 2(x + 3)(x − 1).",
+      "f(3) = 2(6)(2) = 24."
+    ],
+    "hints": [
+      "What form of a quadratic uses its x-intercepts directly?",
+      "Which other labeled point can you use to find the leading coefficient?",
+      "Once you have the equation, what do you substitute?"
+    ],
+    "check": "from sympy import *\nx,a=symbols('x a')\nf=a*(x+3)*(x-1)\nav=solve(f.subs(x,0)+6,a)[0]\nresult=f.subs(a,av).subs(x,3)",
+    "figure": {
+      "alt": "A coordinate plane with x from −5 to 3 and y from −9 to 4, grid lines every 1 unit. A parabola opens upward. It crosses the x-axis at (−3, 0) and (1, 0) and crosses the y-axis at (0, −6). The point where x = 3 is above the top of the window and is not shown.",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          -5,
+          3
+        ],
+        "y": [
+          -9,
+          4
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "2*(x+3)*(x-1)",
+          "domain": [
+            -3.4,
+            1.4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            0
+          ],
+          "label": "(−3, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -6
+          ],
+          "label": "(0, −6)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f034",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The graph of the quadratic function y = f(x) is shown. For what value of x does f(x) reach its minimum value?",
+    "answer": "2",
+    "explanation": [
+      "The minimum value of f occurs at the lowest point of the graph, the vertex.",
+      "The vertex is (2, −3).",
+      "The question asks for the x-value, so the answer is 2."
+    ],
+    "hints": [
+      "Which point on the graph is the lowest?",
+      "Does the question ask for the minimum value itself or where it happens?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nf=(x-2)**2-3\nresult=solve(diff(f,x),x)[0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 6 and y from −4 to 6, grid lines every 1 unit. A parabola opens upward. Its lowest point, the vertex, is at (2, −3). The graph also passes through (0, 1) and (4, 1).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          6
+        ],
+        "y": [
+          -4,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x-2)^2-3",
+          "domain": [
+            -1,
+            5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -3
+          ],
+          "label": "(2, −3)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            1
+          ],
+          "label": "(0, 1)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            1
+          ],
+          "label": "(4, 1)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f035",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the polynomial function y = f(x) is shown for −2.4 ≤ x ≤ 3.6. Which of the following could define f?",
+    "choices": [
+      "f(x) = (x − 2)(x + 1)(x + 3)",
+      "f(x) = (x + 2)(x + 1)(x − 3)",
+      "f(x) = (x − 2)(x − 1)(x + 3)",
+      "f(x) = (x + 2)(x − 1)(x − 3)"
+    ],
+    "answer": "f(x) = (x + 2)(x − 1)(x − 3)",
+    "explanation": [
+      "The graph crosses the x-axis at x = −2, x = 1 and x = 3, so f has zeros −2, 1 and 3.",
+      "A zero at x = r comes from a factor (x − r): the factors are (x + 2), (x − 1) and (x − 3).",
+      "Check the y-intercept: (0 + 2)(0 − 1)(0 − 3) = 6, which matches (0, 6).",
+      "So f(x) = (x + 2)(x − 1)(x − 3)."
+    ],
+    "hints": [
+      "Where does the graph cross the x-axis?",
+      "If f(−2) = 0, which factor must f have: (x + 2) or (x − 2)?"
+    ],
+    "wrong_reasons": {
+      "f(x) = (x − 2)(x + 1)(x + 3)": "Used factors (x + r) for each zero r, which gives zeros 2, −1 and −3",
+      "f(x) = (x + 2)(x + 1)(x − 3)": "Switched the sign of the factor for the zero at x = 1",
+      "f(x) = (x − 2)(x − 1)(x + 3)": "Switched the signs of the factors for the zeros at −2 and 3"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nc=[('(x+2)(x-1)(x-3)', '(x+2)*(x-1)*(x-3)'), ('(x-2)(x+1)(x+3)', '(x-2)*(x+1)*(x+3)'), ('(x+2)(x+1)(x-3)', '(x+2)*(x+1)*(x-3)'), ('(x-2)(x-1)(x+3)', '(x-2)*(x-1)*(x+3)')]\nok=[s for s,e in c if set(solve(sympify(e),x))=={-2,1,3} and sympify(e).subs(x,0)==6]\nassert len(ok)==1\nresult='f(x)='+ok[0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 5 and y from −8 to 10, grid lines every 1 unit and axis labels every 2 units. A curve rises from the lower left, crosses the x-axis at (−2, 0), crosses the y-axis at (0, 6), reaches a high point between x = −1 and x = 0, falls to cross the x-axis at (1, 0), reaches a low point between x = 2 and x = 3, and rises to cross the x-axis again at (3, 0), continuing upward to the right.",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          -4,
+          5
+        ],
+        "y": [
+          -8,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x+2)*(x-1)*(x-3)",
+          "domain": [
+            -2.4,
+            3.6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            0
+          ],
+          "label": "(−2, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "(1, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            6
+          ],
+          "label": "(0, 6)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f036",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of the exponential function y = f(x) is shown, where f(x) = a·bˣ and a and b are positive constants. The graph passes through the points (−1, 2) and (1, 18). Which of the following defines f?",
+    "choices": [
+      "f(x) = 2(3)ˣ",
+      "f(x) = 2(9)ˣ",
+      "f(x) = 6(3)ˣ",
+      "f(x) = 6(9)ˣ"
+    ],
+    "answer": "f(x) = 6(3)ˣ",
+    "explanation": [
+      "f(−1) = a·b⁻¹ = 2 and f(1) = a·b = 18.",
+      "Divide: (a·b)/(a·b⁻¹) = b² = 18/2 = 9, so b = 3 (b is positive).",
+      "Then a·3 = 18, so a = 6.",
+      "So f(x) = 6(3)ˣ."
+    ],
+    "hints": [
+      "Write two equations using the two marked points.",
+      "What do you get if you divide f(1) by f(−1)?",
+      "After you find b, how do you get a?"
+    ],
+    "wrong_reasons": {
+      "f(x) = 2(3)ˣ": "Used the value at x = −1 as the initial value a instead of the value at x = 0",
+      "f(x) = 2(9)ˣ": "Treated f(−1) as a and the ratio 18/2 = 9 as the growth factor per 1 unit, although the points are 2 units apart",
+      "f(x) = 6(9)ˣ": "Found a correctly but used b² = 9 as the base instead of b"
+    },
+    "check": "from sympy import *\na,b=symbols('a b',positive=True)\ns=solve([a/b-2,a*b-18],[a,b],dict=True)[0]\nresult='f(x)='+str(s[a])+'('+str(s[b])+')ˣ'",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 2 and y from −2 to 20, grid lines every 1 unit and axis labels every 2 units. An increasing exponential curve rises from left to right and stays above the x-axis. Two points on it are marked: (−1, 2) and (1, 18).",
+      "aspect": 0.7,
+      "plane": {
+        "x": [
+          -3,
+          2
+        ],
+        "y": [
+          -2,
+          20
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "6*3^x",
+          "domain": [
+            -3,
+            1.08
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            2
+          ],
+          "label": "(−1, 2)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            18
+          ],
+          "label": "(1, 18)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f037",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the exponential function y = f(x) is shown. For what value of x is f(x) = 16?",
+    "choices": [
+      "2",
+      "3",
+      "4",
+      "8"
+    ],
+    "answer": "3",
+    "explanation": [
+      "f(x) = 16 means the y-coordinate on the graph is 16.",
+      "The graph reaches y = 16 at the point (3, 16).",
+      "So x = 3."
+    ],
+    "hints": [
+      "Is 16 an input (x) or an output (y) here?",
+      "Which marked point has a y-coordinate of 16?"
+    ],
+    "wrong_reasons": {
+      "2": "Stopped at the point (2, 8), one step too early",
+      "4": "Counted doublings starting from 1 instead of the y-intercept 2 (1 → 16 takes four doublings)",
+      "8": "Gave half of 16, confusing f(x) with a linear rule"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(2*2**x-16,x)[0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 4 and y from −1 to 18, grid lines every 1 unit and axis labels every 2 units. An increasing exponential curve rises from left to right and stays above the x-axis. It passes through the points (0, 2), (1, 4), (2, 8) and (3, 16).",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          -2,
+          4
+        ],
+        "y": [
+          -1,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "2*2^x",
+          "domain": [
+            -2,
+            3.1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ],
+          "label": "(0, 2)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            4
+          ],
+          "label": "(1, 4)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            8
+          ],
+          "label": "(2, 8)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            16
+          ],
+          "label": "(3, 16)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f038",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of y = f(x) is shown. Which of the following defines f?",
+    "choices": [
+      "f(x) = −|x − 1| + 4",
+      "f(x) = −|x + 1| + 4",
+      "f(x) = |x − 1| + 4",
+      "f(x) = −|x − 4| + 1"
+    ],
+    "answer": "f(x) = −|x − 1| + 4",
+    "explanation": [
+      "The graph is an upside-down V, so f(x) = −|x − h| + k.",
+      "The vertex (h, k) is (1, 4).",
+      "So f(x) = −|x − 1| + 4. Check: f(5) = −4 + 4 = 0 and f(0) = −1 + 4 = 3."
+    ],
+    "hints": [
+      "Does the V open up or down? What sign does that put in front of the absolute value?",
+      "How do the coordinates of the vertex show up in y = −|x − h| + k?"
+    ],
+    "wrong_reasons": {
+      "f(x) = −|x + 1| + 4": "Used x + 1 for a vertex at x = 1, getting the sign of the horizontal shift backward",
+      "f(x) = |x − 1| + 4": "Missed the negative sign, so this V would open upward",
+      "f(x) = −|x − 4| + 1": "Swapped the coordinates of the vertex"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nc=[('-|x-1|+4', '-Abs(x-1)+4'), ('-|x+1|+4', '-Abs(x+1)+4'), ('|x-1|+4', 'Abs(x-1)+4'), ('-|x-4|+1', '-Abs(x-4)+1')]\npts=[(1,4),(0,3),(-3,0),(5,0)]\nok=[s for s,e in c if all(sympify(e).subs(x,p)==q for p,q in pts)]\nassert len(ok)==1\nresult='f(x)='+ok[0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −5 to 7 and y from −4 to 6, grid lines every 1 unit. An upside-down V-shaped graph has its highest point, the vertex, at (1, 4). It crosses the y-axis at (0, 3) and crosses the x-axis at (−3, 0) and (5, 0). Each side is a straight line with slope 1 or −1.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          7
+        ],
+        "y": [
+          -4,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-abs(x-1)+4",
+          "domain": [
+            -5,
+            7
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            4
+          ],
+          "label": "(1, 4)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            0
+          ],
+          "label": "(−3, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            0
+          ],
+          "label": "(5, 0)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f039",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown, where f(x) = ax² + bx + c and a, b and c are constants. What is the value of b?",
+    "choices": [
+      "−12",
+      "−6",
+      "12",
+      "16"
+    ],
+    "answer": "−12",
+    "explanation": [
+      "With vertex (3, −2), f(x) = a(x − 3)² − 2.",
+      "Use (1, 6): a(1 − 3)² − 2 = 6, so 4a = 8 and a = 2.",
+      "Expand: 2(x − 3)² − 2 = 2(x² − 6x + 9) − 2 = 2x² − 12x + 16.",
+      "So b = −12."
+    ],
+    "hints": [
+      "Which form of a quadratic uses the vertex directly?",
+      "Which other point can you use to find a?",
+      "After you expand, which coefficient is b?"
+    ],
+    "wrong_reasons": {
+      "−6": "Expanded (x − 3)² correctly but forgot to multiply by a = 2",
+      "12": "Used (x + 3)² for a vertex at x = 3, which flips the sign of b",
+      "16": "Gave the constant term c instead of b"
+    },
+    "check": "from sympy import *\nx,a=symbols('x a')\nf=a*(x-3)**2-2\nav=solve(f.subs(x,1)-6,a)[0]\nresult=Poly(expand(f.subs(a,av)),x).coeff_monomial(x)",
+    "figure": {
+      "alt": "A coordinate plane with x from −1 to 7 and y from −4 to 10, grid lines every 1 unit and axis labels every 2 units. A parabola opens upward. Its lowest point, the vertex, is at (3, −2). The graph also passes through (1, 6) and (5, 6).",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -4,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "2*(x-3)^2-2",
+          "domain": [
+            0.6,
+            5.4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            -2
+          ],
+          "label": "(3, −2)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            6
+          ],
+          "label": "(1, 6)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            6
+          ],
+          "label": "(5, 6)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f040",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. On which of the following intervals is f increasing?",
+    "choices": [
+      "x < 1",
+      "x > −4",
+      "x > 1",
+      "−1 < x < 3"
+    ],
+    "answer": "x > 1",
+    "explanation": [
+      "A function is increasing where its graph rises as you move to the right.",
+      "The graph falls until the vertex at x = 1 and rises after it.",
+      "So f is increasing for x > 1."
+    ],
+    "hints": [
+      "As you move left to right, where does the graph stop going down and start going up?",
+      "Is that turning point described by its x-coordinate or its y-coordinate?"
+    ],
+    "wrong_reasons": {
+      "x < 1": "Chose the interval where the graph falls instead of rises",
+      "x > −4": "Used the y-coordinate of the vertex as the boundary",
+      "−1 < x < 3": "Gave the interval between the x-intercepts, where f is negative"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nf=(x-1)**2-4\nxv=solve(diff(f,x),x)[0]\nassert diff(f,x).subs(x,xv+1)>0\nresult='x>'+str(xv)",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 5 and y from −5 to 5, grid lines every 1 unit. A parabola opens upward. Its lowest point, the vertex, is at (1, −4). It crosses the x-axis at (−1, 0) and (3, 0) and crosses the y-axis at (0, −3). The graph falls to the left of the vertex and rises to the right of it.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "(x-1)^2-4",
+          "domain": [
+            -2,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            -4
+          ],
+          "label": "(1, −4)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            0
+          ],
+          "label": "(−1, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -3
+          ],
+          "label": "(0, −3)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f041",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A ball is launched upward from the ground. The graph shows the height h, in feet, of the ball t seconds after it is launched, until it lands. For how many seconds is the height of the ball at least 12 feet?",
+    "answer": "4",
+    "explanation": [
+      "The height is 12 feet at t = 2 and again at t = 6.",
+      "Between those times the graph is above h = 12, so the height is at least 12 feet from t = 2 to t = 6.",
+      "That lasts 6 − 2 = 4 seconds."
+    ],
+    "hints": [
+      "At which two times is the height exactly 12 feet?",
+      "Is the ball higher or lower than 12 feet between those times?"
+    ],
+    "check": "from sympy import *\nt=symbols('t')\nr=sorted(solve(-t**2+8*t-12,t))\nresult=r[1]-r[0]",
+    "figure": {
+      "alt": "A coordinate plane with horizontal axis t (seconds) from −1 to 9 and vertical axis h (feet) from −1 to 18, grid lines every 1 unit and axis labels every 2 units. A downward-opening parabola drawn for 0 ≤ t ≤ 8 starts at (0, 0), passes through (2, 12), reaches its highest point at (4, 16), passes through (6, 12), and comes back down to the t-axis at (8, 0).",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          -1,
+          9
+        ],
+        "y": [
+          -1,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "t",
+        "ylabel": "h"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "-x^2+8*x",
+          "domain": [
+            0,
+            8
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "(0, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            12
+          ],
+          "label": "(2, 12)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            16
+          ],
+          "label": "(4, 16)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            12
+          ],
+          "label": "(6, 12)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            0
+          ],
+          "label": "(8, 0)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f042",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The graph of the absolute value function y = f(x) is shown. The line y = (1/3)x + 2 (not shown) intersects the graph of f at two points. What is the sum of the x-coordinates of these two points?",
+    "answer": "6",
+    "explanation": [
+      "The vertex is (2, 0) and the sides have slopes ±1, so f(x) = |x − 2|.",
+      "Right side (x ≥ 2): x − 2 = (1/3)x + 2 gives (2/3)x = 4, so x = 6.",
+      "Left side (x < 2): −(x − 2) = (1/3)x + 2 gives (4/3)x = 0, so x = 0.",
+      "The sum of the x-coordinates is 6 + 0 = 6."
+    ],
+    "hints": [
+      "What equation defines f, based on the vertex and the slopes of its sides?",
+      "An absolute value equation splits into two cases. What are they?",
+      "Does each solution land on the correct side of the vertex?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',real=True)\nsols=solve(Abs(x-2)-(Rational(1,3)*x+2),x)\nassert len(sols)==2\nresult=sum(sols)",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 8 and y from −2 to 8, grid lines every 1 unit. A V-shaped graph opens upward with its lowest point, the vertex, at (2, 0). It passes through (0, 2) and (5, 3). The left side falls with slope −1 and the right side rises with slope 1.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          8
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "abs(x-2)",
+          "domain": [
+            -2,
+            8
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ],
+          "label": "(0, 2)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            3
+          ],
+          "label": "(5, 3)",
+          "labelPos": "se"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f043",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. What is the value of f(4)?",
+    "choices": [
+      "−4",
+      "0",
+      "2",
+      "4"
+    ],
+    "answer": "−4",
+    "explanation": [
+      "f(4) is the y-coordinate of the point on the graph where x = 4.",
+      "The graph passes through (4, −4).",
+      "So f(4) = −4."
+    ],
+    "hints": [
+      "Is 4 the input or the output of f?",
+      "Find x = 4 on the horizontal axis. How high or low is the graph there?"
+    ],
+    "wrong_reasons": {
+      "0": "Assumed the graph crosses the x-axis at x = 4",
+      "2": "Read the value at x = 2 instead of x = 4",
+      "4": "Gave the maximum value (the y-intercept) instead of the value at x = 4"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nf=4-Rational(1,2)*x**2\nresult=f.subs(x,4)",
+    "figure": {
+      "alt": "A coordinate plane with x from −5 to 5 and y from −5 to 5, grid lines every 1 unit. A parabola opens downward. Its highest point, the vertex, is at (0, 4). It passes through (−2, 2), (2, 2), (−4, −4) and (4, −4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "4-0.5*x^2",
+          "domain": [
+            -4.4,
+            4.4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ],
+          "label": "(0, 4)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            2
+          ],
+          "label": "(−2, 2)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            2
+          ],
+          "label": "(2, 2)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            -4
+          ],
+          "label": "(−4, −4)",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            -4
+          ],
+          "label": "(4, −4)",
+          "labelPos": "e"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f044",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. For what value of k does the equation f(x) = k have exactly one real solution?",
+    "choices": [
+      "−4",
+      "0",
+      "2",
+      "4"
+    ],
+    "answer": "−4",
+    "explanation": [
+      "The solutions of f(x) = k are the x-values where the horizontal line y = k meets the graph.",
+      "A horizontal line above the vertex meets the parabola twice; one below it misses the parabola.",
+      "Only the line through the vertex, y = −4, meets the graph exactly once.",
+      "So k = −4."
+    ],
+    "hints": [
+      "What does the equation f(x) = k look like as a line on the graph?",
+      "How many times does a horizontal line meet an upward parabola, depending on its height?"
+    ],
+    "wrong_reasons": {
+      "0": "Chose the height of the x-intercepts, where y = 0 meets the graph twice",
+      "2": "Gave the x-coordinate of the vertex instead of its y-coordinate",
+      "4": "Gave the x-coordinate of an x-intercept"
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nf=x**2-4*x\nks=solve(discriminant(f-k,x),k)\nresult=ks[0]",
+    "figure": {
+      "alt": "A coordinate plane with x from −2 to 6 and y from −5 to 6, grid lines every 1 unit. A parabola opens upward. Its lowest point, the vertex, is at (2, −4). It crosses the x-axis at (0, 0) and (4, 0).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          6
+        ],
+        "y": [
+          -5,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "x^2-4*x",
+          "domain": [
+            -1.1,
+            5.1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -4
+          ],
+          "label": "(2, −4)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "(0, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            0
+          ],
+          "label": "(4, 0)",
+          "labelPos": "ne"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "adv-nonlinear-func-f045",
+    "skill_id": "adv-nonlinear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of the quadratic function y = f(x) is shown. What is the minimum value of f(x)?",
+    "choices": [
+      "−9",
+      "−9/2",
+      "−4",
+      "−1"
+    ],
+    "answer": "−9/2",
+    "explanation": [
+      "The zeros are −4 and 2, so f(x) = a(x + 4)(x − 2).",
+      "Use (0, −4): a(4)(−2) = −4, so a = 1/2.",
+      "The vertex is halfway between the zeros, at x = (−4 + 2)/2 = −1.",
+      "f(−1) = (1/2)(3)(−3) = −9/2, so the minimum value is −9/2."
+    ],
+    "hints": [
+      "Where is the x-coordinate of the vertex, compared with the two x-intercepts?",
+      "Can you write an equation for f using its zeros and one more point?",
+      "Is the answer the x- or the y-coordinate of the vertex?"
+    ],
+    "wrong_reasons": {
+      "−9": "Wrote f(x) = (x + 4)(x − 2) without finding the leading coefficient 1/2",
+      "−4": "Took the y-intercept (0, −4) to be the lowest point",
+      "−1": "Gave the x-coordinate of the vertex instead of the minimum value"
+    },
+    "check": "from sympy import *\nx,a=symbols('x a')\nf=a*(x+4)*(x-2)\nf=f.subs(a,solve(f.subs(x,0)+4,a)[0])\nxv=solve(diff(f,x),x)[0]\nresult=f.subs(x,xv)",
+    "figure": {
+      "alt": "A coordinate plane with x from −6 to 4 and y from −6 to 6, grid lines every 1 unit. A parabola opens upward. It crosses the x-axis at (−4, 0) and (2, 0), crosses the y-axis at (0, −4), and also passes through (−2, −4). The lowest point of the graph is between the grid lines y = −4 and y = −5 and is not labeled.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          4
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "0.5*(x+4)*(x-2)",
+          "domain": [
+            -5.5,
+            3.5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            0
+          ],
+          "label": "(−4, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -4
+          ],
+          "label": "(0, −4)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            -4
+          ],
+          "label": "(−2, −4)",
+          "labelPos": "w"
+        }
+      ]
+    },
+    "table": null
   }
 ]
