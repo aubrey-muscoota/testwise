@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
-  AccessibilityInfo, ActivityIndicator, Animated, Easing, KeyboardAvoidingView, Platform, Pressable, ScrollView, ScrollViewInstance, StyleSheet, Text, TextInput, View,
+  AccessibilityInfo, ActivityIndicator, Animated, Easing, KeyboardAvoidingView, Linking, Platform, Pressable, ScrollView, ScrollViewInstance, StyleSheet, Text, TextInput, View,
 } from "react-native";
-import { api, Item, Lesson as LessonT, Placement, Skill, Stats, TutorTurn } from "../api";
+import { api, getConsent, Item, legalUrl, Lesson as LessonT, Placement, Skill, Stats, TutorTurn } from "../api";
 import {
   Burst, Button, FloatUp, Mascot, Mood, PopIn, Press3D, ProgressBar, Rise, SlideIn, SlideUp, Speech, usePop, useShake,
 } from "../components/ui";
@@ -51,6 +51,7 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
   const [bannerH, setBannerH] = useState(0);
   const [rightTitle, setRightTitle] = useState(RIGHT_TITLES[0]);
   const [quitOpen, setQuitOpen] = useState(false);
+  const [consentOpen, setConsentOpen] = useState(false);
   const answeredAny = useRef(false);
   const started = useRef(Date.now());
   const areaShake = useShake();
@@ -219,7 +220,7 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
   // While a sheet is open the lesson behind it is inert (no Tab stops, hidden from
   // screen readers). Focus goes back to "Ask Socrates" when the tutor closes.
   useEffect(() => {
-    const modal = tutorOpen || quitOpen;
+    const modal = tutorOpen || quitOpen || consentOpen;
     if (Platform.OS === "web") {
       const node = contentRef.current as any;
       if (node?.setAttribute) {
@@ -232,7 +233,16 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
       }
     }
     wasTutorOpen.current = tutorOpen;
-  }, [tutorOpen, quitOpen]);
+  }, [tutorOpen, quitOpen, consentOpen]);
+
+  // Socrates needs a one-time OK, because it sends the question and the
+  // student's messages to Anthropic (App Store Guideline 5.1.2(i)).
+  function askSocrates() {
+    if (getConsent()?.ai_consent) {
+      setTutorStarted(true);
+      setTutorOpen(true);
+    } else setConsentOpen(true);
+  }
 
   function requestQuit() {
     if (!answeredAny.current) onQuit();
@@ -266,7 +276,7 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
   // The bar moves on Check whenever this answer will count as done on Continue.
   const counts = phase === "right" || (phase === "wrong" && (current.retry || placement));
   const liveText = phase === "right" ? "Correct!" : phase === "wrong" ? `Not quite. Correct answer: ${item.answer}` : "";
-  const modalOpen = tutorOpen || quitOpen;
+  const modalOpen = tutorOpen || quitOpen || consentOpen;
   const mood: Mood = phase === "answering" ? (busy ? "think" : "idle") : phase === "right" ? (cheer ? "cheer" : "happy") : "sad";
 
   return (
@@ -460,7 +470,7 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
             ) : (
               <View style={{ gap: space(1.5) }}>
                 <View style={{ flexDirection: "row", gap: space(1.5) }}>
-                  {!placement && <Button title="Ask Socrates" kind="special" onPress={() => { setTutorStarted(true); setTutorOpen(true); }} style={{ flex: 1 }} small />}
+                  {!placement && <Button title="Ask Socrates" kind="special" onPress={askSocrates} style={{ flex: 1 }} small />}
                   {!showSolution && <Button title="Solution" kind="secondary" onPress={openSolution} style={{ flex: 1 }} small />}
                 </View>
                 <Button title="Continue" kind="danger" onPress={next} disabled={busy} />
@@ -482,6 +492,21 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
 
       {tutorStarted && <Tutor key={qKey} visible={tutorOpen} item={item} response={response || ""} onClose={() => setTutorOpen(false)} onSolution={() => { openSolution(); setTutorOpen(false); }} />}
 
+      {consentOpen && (
+        <ConsentSheet
+          onAgree={async () => {
+            try {
+              await api.setConsent({ ai: true });
+              setConsentOpen(false);
+              setTutorStarted(true);
+              setTutorOpen(true);
+            } catch {
+              setConsentOpen(false);
+            }
+          }}
+          onDecline={() => setConsentOpen(false)}
+        />
+      )}
       {quitOpen && <QuitSheet placement={placement} onStay={() => setQuitOpen(false)} onLeave={onQuit} />}
     </KeyboardAvoidingView>
   );
@@ -632,6 +657,35 @@ function Backdrop({ onPress, visible = true }: { onPress?: () => void; visible?:
   );
 }
 
+function ConsentSheet({ onAgree, onDecline }: { onAgree: () => void; onDecline: () => void }) {
+  const [busy, setBusy] = useState(false);
+  return (
+    <View style={s.overlay}>
+      <Backdrop onPress={onDecline} />
+      <SlideUp distance={320} style={s.sheet}>
+        <View accessibilityRole="alert" style={{ alignItems: "center" }}>
+          <Mascot size={88} float={false} mood="talk" />
+          <Text style={[type.h3, { fontFamily: font.black, textAlign: "center", marginTop: space(1.5) }]}>Before we talk</Text>
+          <Text style={[type.body, { color: color.textSoft, marginTop: space(1) }]}>
+            Socrates is an AI tutor powered by Claude, made by Anthropic. When you chat with him, this question, your answer and what you type are sent to Anthropic to write his replies.
+          </Text>
+          <Text style={[type.body, { color: color.textSoft, marginTop: space(1), marginBottom: space(1) }]}>
+            Please don't share personal details like your name, school or contact info. Socrates can make mistakes; the worked solution is always checked.
+          </Text>
+          <Text style={[type.caption, { marginBottom: space(2.5) }]}>
+            Details are in our{" "}
+            <Text style={s.legalLink} accessibilityRole="link" onPress={() => Linking.openURL(legalUrl("privacy"))}>Privacy Policy</Text>. You can turn this off any time from Home.
+          </Text>
+        </View>
+        <Button title="I agree, ask Socrates" kind="special" disabled={busy} onPress={() => { setBusy(true); onAgree(); }} />
+        <Pressable onPress={onDecline} accessibilityRole="button" accessibilityLabel="Not now" style={s.endBtn} hitSlop={8}>
+          <Text style={s.endText}>Not now</Text>
+        </Pressable>
+      </SlideUp>
+    </View>
+  );
+}
+
 function QuitSheet({ placement, onStay, onLeave }: { placement: boolean; onStay: () => void; onLeave: () => void }) {
   return (
     <View style={s.overlay}>
@@ -778,8 +832,9 @@ function Tutor({ item, response, visible, onClose, onSolution }: { item: Item; r
       if (r.offline) setNote("Socrates is using his notes right now.");
       else if (r.remaining_today != null && r.remaining_today <= 1)
         setNote(r.remaining_today === 0 ? "That's your last Socrates chat for today." : "One Socrates chat left today.");
-    } catch {
-      setTurns([...history, { role: "socrates", content: "The Oracle is silent for a moment. Let's look at the solution instead." }]);
+    } catch (e) {
+      const needsOk = (e as { status?: number })?.status === 403;
+      setTurns([...history, { role: "socrates", content: needsOk ? "I need your OK before we chat. Close this and tap Ask Socrates again." : "The Oracle is silent for a moment. Let's look at the solution instead." }]);
       setEnded(true);
     } finally {
       setWaiting(false);
@@ -995,6 +1050,7 @@ const s = StyleSheet.create({
     alignSelf: "center",
   },
   endBtn: { alignSelf: "center", marginTop: space(1.5), paddingVertical: space(1), paddingHorizontal: space(2) },
+  legalLink: { color: color.azureDark, fontFamily: font.bold, textDecorationLine: "underline" },
   endText: { fontFamily: font.black, fontSize: 15, letterSpacing: 0.8, textTransform: "uppercase", color: CORAL_TEXT },
   tutor: { backgroundColor: color.bg, borderTopLeftRadius: radius.card, borderTopRightRadius: radius.card, height: "82%", maxWidth: 640, width: "100%", alignSelf: "center" },
   tutorHead: { flexDirection: "row", alignItems: "center", padding: space(2), borderBottomWidth: 2, borderBottomColor: color.line },

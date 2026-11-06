@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
-  ActivityIndicator, Animated, Easing, Image, type LayoutChangeEvent, Platform, Pressable, RefreshControl, ScrollView, type ScrollViewInstance, type StyleProp, StyleSheet, Text, View, type ViewStyle,
+  ActivityIndicator, Alert, Animated, Easing, Image, Linking, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type ScrollViewInstance, type StyleProp, type ViewStyle,
 } from "react-native";
-import { api, Skill, Tree } from "../api";
+import { api, legalUrl, Skill, Tree } from "../api";
 import { Burst, Button, Card, Mascot, MuteToggle, Pill, PopIn, Press3D, ProgressBar, Pulse, Rise, SlideUp, Speech, logo } from "../components/ui";
 import { lines, pick } from "../copy";
 import { feedback } from "../motion/feedback";
@@ -322,6 +322,7 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
         <Text style={[type.caption, { textAlign: "center", marginTop: space(4) }]}>
           Testwise is not affiliated with College Board. SAT is a trademark of College Board.
         </Text>
+        <FooterLinks aiConsent={!!tree.learner?.ai_consent} onChanged={load} onDeleted={onReset} />
         <View style={{ height: selected ? 220 : space(4) }} />
       </ScrollView>
 
@@ -619,4 +620,43 @@ const s = StyleSheet.create({
   sheetInner: { width: "100%", maxWidth: 528 },
   sheetFocus: { outlineStyle: "none" } as unknown as ViewStyle,
   sheetRow: { flexDirection: "row", alignItems: "center", marginTop: space(2) },
+});
+
+// Privacy, terms, the Socrates AI switch and data deletion.
+function FooterLinks({ aiConsent, onChanged, onDeleted }: { aiConsent: boolean; onChanged: () => void; onDeleted: () => void }) {
+  const confirm = (msg: string, yes: () => void) => {
+    if (Platform.OS === "web") {
+      if ((globalThis as any).confirm?.(msg)) yes();
+    } else {
+      Alert.alert("Are you sure?", msg, [{ text: "Cancel", style: "cancel" }, { text: "Yes", style: "destructive", onPress: yes }]);
+    }
+  };
+  const link = (label: string, onPress: () => void) => (
+    <Text style={f.link} accessibilityRole="link" onPress={onPress}>{label}</Text>
+  );
+  return (
+    <View style={f.row}>
+      {link("Privacy", () => Linking.openURL(legalUrl("privacy")))}
+      <Text style={f.dot}>·</Text>
+      {link("Terms", () => Linking.openURL(legalUrl("terms")))}
+      {aiConsent && (
+        <>
+          <Text style={f.dot}>·</Text>
+          {link("Turn off Socrates AI", () => confirm("Socrates will stop sending your chats to Anthropic. You can turn him back on from any lesson.", () => {
+            api.setConsent({ ai: false }).then(onChanged, () => {});
+          }))}
+        </>
+      )}
+      <Text style={f.dot}>·</Text>
+      {link("Delete my data", () => confirm("This permanently deletes your progress, streak and Socrates chats on Testwise.", () => {
+        api.deleteMe().then(onDeleted, () => {});
+      }))}
+    </View>
+  );
+}
+
+const f = StyleSheet.create({
+  row: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center", marginTop: space(1.5), gap: space(0.75) },
+  link: { ...type.caption, color: color.azureDark, fontFamily: font.bold, textDecorationLine: "underline" },
+  dot: { ...type.caption },
 });

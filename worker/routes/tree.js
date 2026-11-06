@@ -1,14 +1,16 @@
 import * as E from "../engine.js";
 import { json, masteryMap, stats, today } from "../lib/http.js";
+import { consentState } from "./learners.js";
 
 export async function tree(env, request, learnerId) {
-  const [exam, domains, skills, counts, mastery, st] = await Promise.all([
+  const [exam, domains, skills, counts, mastery, st, consent] = await Promise.all([
     env.DB.prepare("SELECT id, name FROM exams LIMIT 1").first(),
     env.DB.prepare("SELECT id, name FROM domains ORDER BY position").all(),
     env.DB.prepare("SELECT id, domain_id, name, prereqs FROM skills ORDER BY position").all(),
     env.DB.prepare("SELECT skill_id, COUNT(*) AS n FROM items WHERE status = 'live' GROUP BY skill_id").all(),
     masteryMap(env, learnerId),
     stats(env, learnerId, today(request)),
+    consentState(env, learnerId),
   ]);
   const itemCount = Object.fromEntries(counts.results.map((r) => [r.skill_id, r.n]));
   const out = domains.results.map((d) => ({
@@ -32,5 +34,5 @@ export async function tree(env, request, learnerId) {
         };
       }),
   }));
-  return json({ exam, domains: out, stats: st });
+  return json({ exam, domains: out, stats: st, learner: consent });
 }

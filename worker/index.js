@@ -12,6 +12,7 @@ import { startLesson, startPlacement, finishLesson } from "./routes/lessons.js";
 import { answer } from "./routes/answers.js";
 import { socrates } from "./routes/socrates.js";
 import { report } from "./routes/reports.js";
+import { createLearner, consentState, setConsent, deleteLearner } from "./routes/learners.js";
 
 async function readBody(request) {
   try {
@@ -25,11 +26,7 @@ const api = new Hono().basePath("/api");
 
 api.get("/health", () => json({ ok: true }));
 
-api.post("/learners", async (c) => {
-  const id = crypto.randomUUID().replace(/-/g, "");
-  await c.env.DB.prepare("INSERT INTO learners (id, created_at) VALUES (?, ?)").bind(id, Date.now()).run();
-  return json({ id });
-});
+api.post("/learners", async (c) => createLearner(c.env, S.Consent.parse(await readBody(c.req.raw))));
 
 // Everything else needs a known learner id, from the header, query or body.
 api.use("*", async (c, next) => {
@@ -49,12 +46,19 @@ const route = (schema, handler) => (c) => {
 };
 
 api.get("/tree", route(null, (env, request, learnerId) => tree(env, request, learnerId)));
+api.post("/consent", route(S.Consent, (env, request, learnerId, b) => setConsent(env, learnerId, b)));
+api.post("/learner/delete", route(null, (env, request, learnerId) => deleteLearner(env, learnerId)));
 api.post("/lessons", route(S.LessonStart, (env, request, learnerId, b) => b.placement
   ? startPlacement(env, request, learnerId)
   : startLesson(env, request, learnerId, b.skill_id || null)));
 api.post("/answers", route(S.Answer, answer));
 api.post("/lessons/finish", route(S.Finish, finishLesson));
-api.post("/socrates", route(S.Socrates, socrates));
+// Socrates sends the question and the student's messages to Anthropic, so it
+// needs the learner's explicit OK first (App Store Guideline 5.1.2(i)).
+api.post("/socrates", route(S.Socrates, async (env, request, learnerId, b) => {
+  if (!(await consentState(env, learnerId)).ai_consent) return fail(403, "consent_required");
+  return socrates(env, request, learnerId, b);
+}));
 api.post("/reports", route(S.Report, (env, request, learnerId, b) => report(env, learnerId, b)));
 
 api.notFound(() => fail(404, "not found"));
