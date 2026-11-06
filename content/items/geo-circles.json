@@ -1974,5 +1974,5247 @@
       "6": "Gave the sum of the two possible radii"
     },
     "check": "from sympy import *\nr=symbols('r',positive=True)\nresult=[s for s in solve((2-r)**2+(1-r)**2-r**2,r) if s in [sqrt(5),3,5,6]][0]"
+  },
+  {
+    "id": "geo-circles-f001",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The circle shown in the xy-plane has its center at a point with integer coordinates. Which of the following is an equation of the circle?",
+    "choices": [
+      "(x − 2)² + (y + 1)² = 9",
+      "(x + 2)² + (y − 1)² = 9",
+      "(x − 2)² + (y + 1)² = 3",
+      "(x + 2)² + (y − 1)² = 3"
+    ],
+    "answer": "(x − 2)² + (y + 1)² = 9",
+    "explanation": [
+      "From the graph, the center is at (2, −1).",
+      "The circle passes through (5, −1), which is 3 units to the right of the center, so the radius is 3.",
+      "Standard form is (x − h)² + (y − k)² = r², so the equation is (x − 2)² + (y + 1)² = 3² = 9."
+    ],
+    "hints": [
+      "Which grid point is at the center of the circle?",
+      "How far is the center from the point where the circle crosses the horizontal line through the center?",
+      "In standard form, is the right side the radius or the radius squared?"
+    ],
+    "wrong_reasons": {
+      "(x + 2)² + (y − 1)² = 9": "Used the signs of the center's coordinates directly instead of subtracting them",
+      "(x − 2)² + (y + 1)² = 3": "Wrote the radius on the right side instead of the radius squared",
+      "(x + 2)² + (y − 1)² = 3": "Flipped the signs of the center and also used r instead of r²"
+    },
+    "check": "h,k,r=2,-1,3\ndef term(v,c):\n    return '('+v+('-' if c>0 else '+')+str(abs(c))+')²'\nresult=term('x',h)+'+'+term('y',k)+'='+str(r**2)",
+    "figure": {
+      "alt": "A coordinate plane from −3 to 7 on the x-axis and −6 to 4 on the y-axis, with grid lines every 1 unit. A circle is drawn with its center marked at the point (2, −1). The circle passes through the grid points (5, −1), (−1, −1), (2, 2), and (2, −4), so its radius is 3.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -3,
+          7
+        ],
+        "y": [
+          -6,
+          4
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            2,
+            -1
+          ],
+          "r": 3
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f002",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle, OA = 10, and the measure of central angle AOB is 72°. What is the length of minor arc AB?",
+    "choices": [
+      "2π",
+      "8π",
+      "4π",
+      "20π"
+    ],
+    "answer": "4π",
+    "explanation": [
+      "Arc length = (central angle ÷ 360°) × circumference.",
+      "The circumference is 2π · 10 = 20π.",
+      "72/360 = 1/5, so the arc length is (1/5)(20π) = 4π."
+    ],
+    "hints": [
+      "What fraction of a full turn is 72°?",
+      "What is the circumference of the whole circle?"
+    ],
+    "wrong_reasons": {
+      "2π": "Used πr (half the circumference) instead of 2πr",
+      "8π": "Used 2πr with the arc as 2/5 of the circle, doubling the fraction",
+      "20π": "Gave the circumference of the whole circle"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=10\nangle=72\nresult=pif(Rational(angle,360)*2*pi*r/pi)",
+    "figure": {
+      "alt": "A circle with center O. Radii OA and OB are drawn. Point A is to the right of O and slightly above it; point B is almost directly above O. Radius OA is labeled 10, and the angle AOB between the two radii is labeled 72°. Minor arc AB is the part of the circle between A and B.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.759,
+            1.368
+          ],
+          "label": "10"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -0.14,
+            3.998
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            3.759,
+            1.368
+          ],
+          "to": [
+            -0.14,
+            3.998
+          ],
+          "label": "72°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.759,
+            1.368
+          ],
+          "label": "A",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -0.14,
+            3.998
+          ],
+          "label": "B",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f003",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In the figure, points A, B, and C lie on the circle with center O. The measure of central angle AOB is 124°. What is the measure, in degrees, of inscribed angle ACB?",
+    "answer": "62",
+    "accept": [
+      "62°"
+    ],
+    "explanation": [
+      "Central angle AOB and inscribed angle ACB intercept the same arc, minor arc AB.",
+      "An inscribed angle is half the central angle that intercepts the same arc.",
+      "124 ÷ 2 = 62, so angle ACB measures 62°."
+    ],
+    "hints": [
+      "Which arc do both angle AOB and angle ACB open onto?",
+      "How does an inscribed angle compare with a central angle on the same arc?"
+    ],
+    "check": "from sympy import *\ncentral=124\nresult=Rational(central,2)",
+    "figure": {
+      "alt": "A circle with center O. Points A and B are on the lower part of the circle, A at the lower left and B at the lower right, and point C is at the top of the circle. Radii OA and OB are drawn, and the angle AOB at the center is labeled 124°. Chords CA and CB are drawn, forming inscribed angle ACB at the top of the circle.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -3.532,
+            -1.878
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.532,
+            -1.878
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0.0,
+            4.0
+          ],
+          "to": [
+            -3.532,
+            -1.878
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0.0,
+            4.0
+          ],
+          "to": [
+            3.532,
+            -1.878
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            3.532,
+            -1.878
+          ],
+          "to": [
+            -3.532,
+            -1.878
+          ],
+          "label": "124°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0.0,
+            4.0
+          ],
+          "from": [
+            -3.532,
+            -1.878
+          ],
+          "to": [
+            3.532,
+            -1.878
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3.532,
+            -1.878
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.532,
+            -1.878
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0.0,
+            4.0
+          ],
+          "label": "C",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f004",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, segment PA is tangent to the circle with center O at point A. If OA = 5 and OP = 13, what is the length of PA?",
+    "choices": [
+      "8",
+      "12",
+      "18",
+      "√194"
+    ],
+    "answer": "12",
+    "explanation": [
+      "A tangent is perpendicular to the radius drawn to the point of tangency, so angle OAP is a right angle.",
+      "Triangle OAP is a right triangle with hypotenuse OP = 13 and leg OA = 5.",
+      "PA = √(13² − 5²) = √(169 − 25) = √144 = 12."
+    ],
+    "hints": [
+      "What angle does a tangent make with the radius at the point of tangency?",
+      "In right triangle OAP, which side is the hypotenuse?"
+    ],
+    "wrong_reasons": {
+      "8": "Subtracted the lengths, 13 − 5, instead of using the Pythagorean theorem",
+      "18": "Added the lengths, 13 + 5",
+      "√194": "Added the squares (13² + 5²) as if OP were a leg"
+    },
+    "check": "from sympy import *\nresult=sqrt(13**2-5**2)",
+    "figure": {
+      "alt": "A circle with center O and radius OA, where A is at the top of the circle directly above O. Segment PA runs horizontally from A to point P, which lies outside the circle to the right, and touches the circle only at A. A right-angle mark is at A between OA and AP. Segment OP is drawn. OA is labeled 5 and OP is labeled 13.",
+      "aspect": 1.375,
+      "plane": {
+        "x": [
+          -7,
+          15
+        ],
+        "y": [
+          -7,
+          9
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 5
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            5
+          ],
+          "label": "5"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            5
+          ],
+          "to": [
+            12,
+            5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            12,
+            5
+          ],
+          "label": "13"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            5
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            12,
+            5
+          ],
+          "right": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            5
+          ],
+          "label": "A",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            12,
+            5
+          ],
+          "label": "P",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f005",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle, the radius is 6, and the shaded sector has a central angle of 150°. What is the area of the shaded sector?",
+    "choices": [
+      "5π",
+      "21π",
+      "36π",
+      "15π"
+    ],
+    "answer": "15π",
+    "explanation": [
+      "Sector area = (central angle ÷ 360°) × πr².",
+      "The whole circle has area π · 6² = 36π.",
+      "150/360 = 5/12, so the sector's area is (5/12)(36π) = 15π."
+    ],
+    "hints": [
+      "What fraction of the full 360° does the sector's angle cover?",
+      "What is the area of the entire circle?"
+    ],
+    "wrong_reasons": {
+      "5π": "Found the arc length of the sector, (5/12)(2π · 6), instead of its area",
+      "21π": "Found the area of the unshaded part of the circle",
+      "36π": "Gave the area of the whole circle"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=6\nangle=150\nresult=pif(Rational(angle,360)*pi*r**2/pi)",
+    "figure": {
+      "alt": "A circle with center O and radius 6. Two radii are drawn: one points to the left from O, along a horizontal line, and the other points up and to the right at 30° above the horizontal. The shaded sector is the region between these radii that includes the top of the circle, and its central angle is labeled 150°. The radius pointing up and to the right is labeled 6.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -8,
+          8
+        ],
+        "y": [
+          -8,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5.196,
+              3.0
+            ],
+            [
+              4.915,
+              3.441
+            ],
+            [
+              4.596,
+              3.857
+            ],
+            [
+              4.243,
+              4.243
+            ],
+            [
+              3.857,
+              4.596
+            ],
+            [
+              3.441,
+              4.915
+            ],
+            [
+              3.0,
+              5.196
+            ],
+            [
+              2.536,
+              5.438
+            ],
+            [
+              2.052,
+              5.638
+            ],
+            [
+              1.553,
+              5.796
+            ],
+            [
+              1.042,
+              5.909
+            ],
+            [
+              0.523,
+              5.977
+            ],
+            [
+              0.0,
+              6.0
+            ],
+            [
+              -0.523,
+              5.977
+            ],
+            [
+              -1.042,
+              5.909
+            ],
+            [
+              -1.553,
+              5.796
+            ],
+            [
+              -2.052,
+              5.638
+            ],
+            [
+              -2.536,
+              5.438
+            ],
+            [
+              -3.0,
+              5.196
+            ],
+            [
+              -3.441,
+              4.915
+            ],
+            [
+              -3.857,
+              4.596
+            ],
+            [
+              -4.243,
+              4.243
+            ],
+            [
+              -4.596,
+              3.857
+            ],
+            [
+              -4.915,
+              3.441
+            ],
+            [
+              -5.196,
+              3.0
+            ],
+            [
+              -5.438,
+              2.536
+            ],
+            [
+              -5.638,
+              2.052
+            ],
+            [
+              -5.796,
+              1.553
+            ],
+            [
+              -5.909,
+              1.042
+            ],
+            [
+              -5.977,
+              0.523
+            ],
+            [
+              -6.0,
+              0.0
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 6
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5.196,
+            3.0
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -6,
+            0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            5.196,
+            3.0
+          ],
+          "to": [
+            -6,
+            0
+          ],
+          "label": "150°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f006",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane shown, points A and B are the endpoints of a diameter of the circle. What is the area of the circle?",
+    "choices": [
+      "10π",
+      "100π",
+      "25π",
+      "50π"
+    ],
+    "answer": "25π",
+    "explanation": [
+      "From the graph, A = (−3, 2) and B = (5, −4).",
+      "The diameter is AB = √((5 − (−3))² + (−4 − 2)²) = √(64 + 36) = √100 = 10.",
+      "So the radius is 5 and the area is π · 5² = 25π."
+    ],
+    "hints": [
+      "What are the coordinates of A and B?",
+      "How can you find the distance between two points?",
+      "Does the area formula use the diameter or the radius?"
+    ],
+    "wrong_reasons": {
+      "10π": "Found the circumference, π · 10, instead of the area",
+      "100π": "Used the diameter, 10, as the radius",
+      "50π": "Multiplied the radius by 2 instead of squaring it: π · 5 · 10"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nA=Point(-3,2)\nB=Point(5,-4)\nr=A.distance(B)/2\nresult=pif(pi*r**2/pi)",
+    "figure": {
+      "alt": "A coordinate plane from −6 to 8 on the x-axis and −8 to 6 on the y-axis, with grid lines every 1 unit. A circle is drawn, and segment AB is a diameter. Point A is at (−3, 2) and point B is at (5, −4). The center of the circle is at (1, −1).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          8
+        ],
+        "y": [
+          -8,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            1,
+            -1
+          ],
+          "r": 5
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3,
+            2
+          ],
+          "to": [
+            5,
+            -4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            2
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            -4
+          ],
+          "label": "B",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f007",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the figure, O is the center of the circle and chord AB has length 16. Segment OM is perpendicular to AB at M, and OA = 10. What is the length of OM?",
+    "answer": "6",
+    "explanation": [
+      "A perpendicular from the center to a chord bisects the chord, so AM = 16 ÷ 2 = 8.",
+      "Triangle OMA is a right triangle with hypotenuse OA = 10 and leg AM = 8.",
+      "OM = √(10² − 8²) = √36 = 6."
+    ],
+    "hints": [
+      "What does a perpendicular from the center do to a chord?",
+      "Which right triangle contains OM, OA, and part of AB?"
+    ],
+    "check": "from sympy import *\nr=10\nchord=16\nresult=sqrt(r**2-(Rational(chord,2))**2)",
+    "figure": {
+      "alt": "A circle with center O. Horizontal chord AB lies below the center, with A on the left and B on the right; it is labeled 16. Radius OA is drawn and labeled 10. Segment OM goes straight down from O to point M on AB, with a right-angle mark at M.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -13,
+          13
+        ],
+        "y": [
+          -13,
+          13
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 10
+        },
+        {
+          "type": "segment",
+          "from": [
+            -8,
+            -6
+          ],
+          "to": [
+            8,
+            -6
+          ],
+          "label": "16"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -8,
+            -6
+          ],
+          "label": "10"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            -6
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            -6
+          ],
+          "from": [
+            8,
+            -6
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            -8,
+            -6
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            -6
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -6
+          ],
+          "label": "M",
+          "labelPos": "s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f008",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The circle shown in the xy-plane has an equation of the form x² + y² + ax + by + c = 0, where a, b, and c are constants. What is the value of c?",
+    "choices": [
+      "−16",
+      "−3",
+      "3",
+      "13"
+    ],
+    "answer": "−3",
+    "explanation": [
+      "From the graph, the center is (−2, 3) and the circle passes through (2, 3), so the radius is 4.",
+      "In standard form the equation is (x + 2)² + (y − 3)² = 16.",
+      "Expanding: x² + 4x + 4 + y² − 6y + 9 = 16, so x² + y² + 4x − 6y − 3 = 0.",
+      "So c = −3."
+    ],
+    "hints": [
+      "Can you write the equation in standard form first from the center and radius?",
+      "After you expand the squares, what constant terms are left on the left side?"
+    ],
+    "wrong_reasons": {
+      "3": "Moved 16 to the wrong side, getting 16 − 13",
+      "−16": "Took c to be −r² and ignored the constants from expanding the squares",
+      "13": "Added h² + k² but forgot to subtract r²"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nh,k,r=-2,3,4\neq=expand((x-h)**2+(y-k)**2-r**2)\nresult=eq.subs({x:0,y:0})",
+    "figure": {
+      "alt": "A coordinate plane from −8 to 4 on the x-axis and −3 to 9 on the y-axis, with grid lines every 1 unit. A circle is drawn with its center marked at (−2, 3). The circle passes through the grid points (2, 3), (−6, 3), (−2, 7), and (−2, −1), so its radius is 4.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -8,
+          4
+        ],
+        "y": [
+          -3,
+          9
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            -2,
+            3
+          ],
+          "r": 4
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f009",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the figure, segments PA and PB are tangent to the circle at points A and B, and point C lies on the circle. The measure of angle APB is 50°. What is the value of x?",
+    "answer": "65",
+    "explanation": [
+      "Draw radii OA and OB from the center O. Each is perpendicular to its tangent, so angles OAP and OBP are 90°.",
+      "The angles of quadrilateral OAPB sum to 360°, so angle AOB = 360 − 90 − 90 − 50 = 130°.",
+      "Angle ACB is an inscribed angle that intercepts minor arc AB, so it is half of 130°: x = 65."
+    ],
+    "hints": [
+      "What angle does each tangent make with the radius to its point of tangency?",
+      "If you draw radii OA and OB, what are the angles of quadrilateral OAPB?",
+      "How is an inscribed angle related to the central angle on the same arc?"
+    ],
+    "check": "from sympy import *\napb=50\naob=360-90-90-apb\nresult=Rational(aob,2)",
+    "figure": {
+      "alt": "A circle with center O. Point P lies outside the circle to the right. Segments PA and PB are tangent to the circle, touching it at A on the upper right and B on the lower right. The angle APB at P is labeled 50°. Point C is on the far left of the circle, and chords CA and CB are drawn; the angle ACB at C is labeled x°.",
+      "aspect": 1.444,
+      "plane": {
+        "x": [
+          -4.5,
+          8.5
+        ],
+        "y": [
+          -4.5,
+          4.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 3
+        },
+        {
+          "type": "segment",
+          "from": [
+            7.099,
+            0
+          ],
+          "to": [
+            1.268,
+            2.719
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            7.099,
+            0
+          ],
+          "to": [
+            1.268,
+            -2.719
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3,
+            0
+          ],
+          "to": [
+            1.268,
+            2.719
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3,
+            0
+          ],
+          "to": [
+            1.268,
+            -2.719
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            7.099,
+            0
+          ],
+          "from": [
+            1.268,
+            2.719
+          ],
+          "to": [
+            1.268,
+            -2.719
+          ],
+          "label": "50°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            -3,
+            0
+          ],
+          "from": [
+            1.268,
+            -2.719
+          ],
+          "to": [
+            1.268,
+            2.719
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            1.268,
+            2.719
+          ],
+          "label": "A",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            1.268,
+            -2.719
+          ],
+          "label": "B",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            7.099,
+            0
+          ],
+          "label": "P",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            0
+          ],
+          "label": "C",
+          "labelPos": "w"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f010",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle, OA = 6, and the measure of angle AOB is 60°. The shaded region is bounded by chord AB and minor arc AB. What is the area of the shaded region?",
+    "choices": [
+      "6π − 9√3",
+      "6π − 18√3",
+      "12π − 9√3",
+      "6π − 36"
+    ],
+    "answer": "6π − 9√3",
+    "explanation": [
+      "The sector AOB has area (60/360) · π · 6² = 6π.",
+      "Triangle AOB has OA = OB = 6 and a 60° angle between them, so it is equilateral with side 6; its area is (√3/4) · 6² = 9√3.",
+      "The shaded region is the sector minus the triangle: 6π − 9√3."
+    ],
+    "hints": [
+      "What region do you get if you add triangle AOB to the shaded region?",
+      "What kind of triangle has two sides of 6 and a 60° angle between them?"
+    ],
+    "wrong_reasons": {
+      "6π − 18√3": "Used (√3/2)s² for the triangle's area, forgetting the factor of 1/2",
+      "12π − 9√3": "Found the sector area with 60/180 instead of 60/360",
+      "6π − 36": "Used 6 · 6 for the triangle's area instead of the equilateral triangle formula"
+    },
+    "check": "from sympy import *\nr=6\nang=60\nsector=Rational(ang,360)*pi*r**2\ntri=Rational(1,2)*r*r*sin(pi*ang/180)\na=sector/pi\nb=nsimplify(tri/sqrt(3))\nresult=str(a)+'π-'+str(b)+'√3'",
+    "figure": {
+      "alt": "A circle with center O and radius 6. Radius OB points to the right horizontally and radius OA points up and to the right, 60° above OB. Radius OA is labeled 6, and angle AOB is labeled 60°. Chord AB is drawn, and the region between chord AB and the minor arc AB is shaded.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -8,
+          8
+        ],
+        "y": [
+          -8,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              6.0,
+              0.0
+            ],
+            [
+              5.977,
+              0.523
+            ],
+            [
+              5.909,
+              1.042
+            ],
+            [
+              5.796,
+              1.553
+            ],
+            [
+              5.638,
+              2.052
+            ],
+            [
+              5.438,
+              2.536
+            ],
+            [
+              5.196,
+              3.0
+            ],
+            [
+              4.915,
+              3.441
+            ],
+            [
+              4.596,
+              3.857
+            ],
+            [
+              4.243,
+              4.243
+            ],
+            [
+              3.857,
+              4.596
+            ],
+            [
+              3.441,
+              4.915
+            ],
+            [
+              3.0,
+              5.196
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 6
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.0,
+            5.196
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.0,
+            5.196
+          ],
+          "to": [
+            6,
+            0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            3.0,
+            5.196
+          ],
+          "label": "60°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.0,
+            5.196
+          ],
+          "label": "A",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            0
+          ],
+          "label": "B",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f011",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The xy-plane shows a circle with center C and point P on the circle. Line ℓ (not shown) is tangent to the circle at P. What is the slope of line ℓ?",
+    "choices": [
+      "−4/3",
+      "−3/4",
+      "3/4",
+      "4/3"
+    ],
+    "answer": "−3/4",
+    "explanation": [
+      "From the graph, C = (1, 2) and P = (4, 6).",
+      "The slope of radius CP is (6 − 2)/(4 − 1) = 4/3.",
+      "A tangent line is perpendicular to the radius at the point of tangency, so its slope is the negative reciprocal: −3/4."
+    ],
+    "hints": [
+      "What are the coordinates of C and P?",
+      "How is a tangent line related to the radius drawn to the point of tangency?",
+      "What is true about the slopes of perpendicular lines?"
+    ],
+    "wrong_reasons": {
+      "3/4": "Took the reciprocal of the radius's slope but forgot to change the sign",
+      "4/3": "Gave the slope of radius CP instead of the tangent line",
+      "−4/3": "Changed the sign of the radius's slope but did not take the reciprocal"
+    },
+    "check": "from sympy import *\nC=(1,2)\nPt=(4,6)\nm=Rational(Pt[1]-C[1],Pt[0]-C[0])\nresult=-1/m",
+    "figure": {
+      "alt": "A coordinate plane from −6 to 8 on the x-axis and −5 to 9 on the y-axis, with grid lines every 1 unit. A circle has center C at (1, 2) and radius 5. Point P on the circle is at (4, 6). Radius CP is drawn.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          8
+        ],
+        "y": [
+          -5,
+          9
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            1,
+            2
+          ],
+          "r": 5
+        },
+        {
+          "type": "segment",
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            4,
+            6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            2
+          ],
+          "label": "C",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            6
+          ],
+          "label": "P",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f012",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, segment AB is a diameter of the circle with center O, and point C lies on the circle. The measure of angle CAB is 34°. What is the measure of angle ABC?",
+    "choices": [
+      "34°",
+      "56°",
+      "68°",
+      "146°"
+    ],
+    "answer": "56°",
+    "explanation": [
+      "Angle ACB is inscribed in a semicircle (it intercepts the diameter's 180° arc), so it measures 90°.",
+      "The angles of triangle ABC sum to 180°.",
+      "Angle ABC = 180° − 90° − 34° = 56°."
+    ],
+    "hints": [
+      "What is special about an angle whose sides meet the ends of a diameter?",
+      "What do the three angles of triangle ABC add up to?"
+    ],
+    "wrong_reasons": {
+      "34°": "Assumed triangle ABC is isosceles with equal base angles",
+      "68°": "Gave central angle COB, which is twice angle CAB",
+      "146°": "Subtracted 34° from 180° without accounting for the right angle at C"
+    },
+    "check": "from sympy import *\ncab=34\nacb=Rational(180,2)\nresult=180-acb-cab",
+    "figure": {
+      "alt": "A circle with center O. Diameter AB is horizontal, with A on the left and B on the right. Point C is on the upper part of the circle, to the right of O. Chords AC and BC are drawn, forming triangle ABC. The angle at A, angle CAB, is labeled 34°, and the angle at B, angle ABC, is marked with a question mark.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -7,
+          7
+        ],
+        "y": [
+          -7,
+          7
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 5
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              -5,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1.873,
+              4.636
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            -5,
+            0
+          ],
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            1.873,
+            4.636
+          ],
+          "label": "34°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5,
+            0
+          ],
+          "from": [
+            1.873,
+            4.636
+          ],
+          "to": [
+            -5,
+            0
+          ],
+          "label": "?"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f013",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The circle shown in the xy-plane has the equation (x − h)² + (y − k)² = r², where h, k, and r are constants and r > 0. What is the value of r²?",
+    "answer": "16",
+    "explanation": [
+      "From the graph, the center is (−1, 2).",
+      "The circle passes through (3, 2), which is 4 units to the right of the center, so r = 4.",
+      "r² = 4² = 16."
+    ],
+    "hints": [
+      "Where is the center of the circle?",
+      "How far is it from the center to any point on the circle?"
+    ],
+    "check": "from sympy import *\ncenter=Point(-1,2)\non=Point(3,2)\nresult=center.distance(on)**2",
+    "figure": {
+      "alt": "A coordinate plane from −7 to 5 on the x-axis and −4 to 8 on the y-axis, with grid lines every 1 unit. A circle is drawn with its center marked at (−1, 2). The circle passes through the grid points (3, 2), (−5, 2), (−1, 6), and (−1, −2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -7,
+          5
+        ],
+        "y": [
+          -4,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            -1,
+            2
+          ],
+          "r": 4
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f014",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle and the measure of central angle AOB is 120°. The length of minor arc AB is 8π. What is the circumference of the circle?",
+    "choices": [
+      "16π",
+      "12π",
+      "48π",
+      "24π"
+    ],
+    "answer": "24π",
+    "explanation": [
+      "120° is 120/360 = 1/3 of the full circle.",
+      "So the arc's length is 1/3 of the circumference: (1/3)C = 8π.",
+      "C = 3 · 8π = 24π."
+    ],
+    "hints": [
+      "What fraction of the full circle does a 120° central angle cut off?",
+      "If 8π is that fraction of the circumference, how do you find the whole?"
+    ],
+    "wrong_reasons": {
+      "16π": "Doubled the arc length, treating 120° as half the circle",
+      "12π": "Found the radius, 12, and wrote it as 12π",
+      "48π": "Found the radius, 12, and then used 4πr"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\narc=8\nang=120\nresult=pif(arc*Rational(360,ang))",
+    "figure": {
+      "alt": "A circle with center O. Radii OA and OB are drawn: A is on the upper right of the circle and B is on the upper left, and the angle AOB between them is labeled 120°. The minor arc AB across the top of the circle is labeled 8π.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.464,
+            2.0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -3.464,
+            2.0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            3.464,
+            2.0
+          ],
+          "to": [
+            -3.464,
+            2.0
+          ],
+          "label": "120°"
+        },
+        {
+          "type": "arc",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4,
+          "start": 30,
+          "end": 150,
+          "label": "8π"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.464,
+            2.0
+          ],
+          "label": "A",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3.464,
+            2.0
+          ],
+          "label": "B",
+          "labelPos": "w"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f015",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, the two circles have the same center, O. Chord AB of the larger circle is tangent to the smaller circle at point T, and AB = 24. What is the area of the region inside the larger circle and outside the smaller circle?",
+    "choices": [
+      "144π",
+      "576π",
+      "24π",
+      "72π"
+    ],
+    "answer": "144π",
+    "explanation": [
+      "Let R and r be the radii of the larger and smaller circles. OT = r, and OT ⟂ AB because AB is tangent to the smaller circle at T.",
+      "The perpendicular from O bisects chord AB, so AT = 12, and in right triangle OTA, OA = R. So R² − r² = 12² = 144.",
+      "The region's area is πR² − πr² = π(R² − r²) = 144π."
+    ],
+    "hints": [
+      "What angle does the tangent AB make with radius OT?",
+      "In right triangle OTA, how are R, r, and AT related?",
+      "Can you write the area of the ring in terms of R² − r²?"
+    ],
+    "wrong_reasons": {
+      "576π": "Used the whole chord, 24, as the leg instead of half of it",
+      "24π": "Used the chord length in place of R² − r²",
+      "72π": "Took R² − r² to be half of AT², computing 12² ÷ 2 = 72"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nAB=24\nhalf=Rational(AB,2)\nresult=pif(pi*half**2/pi)",
+    "figure": {
+      "alt": "Two circles share the center O. Horizontal chord AB of the larger circle lies below O, with A on the left and B on the right, and touches the smaller circle at a single point T directly below O. Segment OT is drawn with a right-angle mark at T, and radius OA of the larger circle is drawn. The radii of the circles are not labeled; the stem gives AB = 24.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -15,
+          15
+        ],
+        "y": [
+          -15,
+          15
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 13
+        },
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 5
+        },
+        {
+          "type": "segment",
+          "from": [
+            -12,
+            -5
+          ],
+          "to": [
+            12,
+            -5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            -5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -12,
+            -5
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            -5
+          ],
+          "from": [
+            12,
+            -5
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            -12,
+            -5
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            12,
+            -5
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -5
+          ],
+          "label": "T",
+          "labelPos": "s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f016",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which equation represents the circle shown in the xy-plane?",
+    "choices": [
+      "(x − 2)² + (y + 1)² = 9",
+      "(x + 2)² + (y − 1)² = 9",
+      "(x − 2)² + (y + 1)² = 3",
+      "(x + 2)² + (y − 1)² = 3"
+    ],
+    "answer": "(x − 2)² + (y + 1)² = 9",
+    "explanation": [
+      "The center of the circle is at the grid point (2, −1).",
+      "The circle passes through (5, −1), which is 3 units to the right of the center, so r = 3.",
+      "Standard form (x − h)² + (y − k)² = r² gives (x − 2)² + (y + 1)² = 9."
+    ],
+    "hints": [
+      "Which grid point is the center of the circle?",
+      "How far is the center from the rightmost point of the circle, and how does that distance appear in the equation?"
+    ],
+    "wrong_reasons": {
+      "(x + 2)² + (y − 1)² = 9": "Used the signs of the center's coordinates inside the parentheses instead of their opposites",
+      "(x − 2)² + (y + 1)² = 3": "Put the radius on the right side instead of the radius squared",
+      "(x + 2)² + (y − 1)² = 3": "Reversed the signs of the center and used r instead of r²"
+    },
+    "check": "from sympy import *\ndef eq(h,k,r2):\n    def t(v,n):\n        return n if v==0 else '('+n+('-' if v>0 else '+')+str(abs(v))+')'\n    return t(h,'x')+'²+'+t(k,'y')+'²='+str(r2)\nh,k=2,-1\nright=(5,-1)\nr=right[0]-h\nresult=eq(h,k,r**2)",
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 8 and y from −7 to 5, grid lines every 1 unit. A circle is drawn with its center marked at the point (2, −1). The circle passes through the grid points (−1, −1), (5, −1), (2, 2), and (2, −4).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -4,
+          8
+        ],
+        "y": [
+          -7,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            2,
+            -1
+          ],
+          "r": 3
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f017",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle, OA = 6, and angle AOB measures 120°. What is the area of sector AOB, the region bounded by segments OA and OB and minor arc AB?",
+    "choices": [
+      "4π",
+      "24π",
+      "12π",
+      "36π"
+    ],
+    "answer": "12π",
+    "explanation": [
+      "The sector is 120/360 = 1/3 of the whole circle.",
+      "The area of the whole circle is π(6)² = 36π.",
+      "The sector's area is (1/3)(36π) = 12π."
+    ],
+    "hints": [
+      "What fraction of a full turn is a 120° angle?",
+      "What is the area of the entire circle with radius 6?"
+    ],
+    "wrong_reasons": {
+      "4π": "Found the length of arc AB, (1/3)(2π · 6), instead of the sector's area",
+      "24π": "Found the area of the larger sector, which uses the 240° angle",
+      "36π": "Found the area of the whole circle and did not take the fraction for 120°"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=6\ntheta=120\nresult=pif(Rational(theta,360)*pi*r**2/pi)",
+    "figure": {
+      "alt": "A circle with center O. Radii OA and OB are drawn, with A on the upper right and B on the upper left of the circle. Segment OA is labeled 6, and angle AOB, which opens upward, is labeled 120°.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -8,
+          8
+        ],
+        "y": [
+          -8,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 6
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5.196,
+            3.0
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -5.196,
+            3.0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            5.196,
+            3.0
+          ],
+          "to": [
+            -5.196,
+            3.0
+          ],
+          "label": "120°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            5.196,
+            3.0
+          ],
+          "label": "A",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            -5.196,
+            3.0
+          ],
+          "label": "B",
+          "labelPos": "nw"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f018",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Points A, B, and C lie on the circle with center O shown, and OA = 9. Angle ACB measures 35°. The length of minor arc AB is kπ, where k is a constant. What is the value of k?",
+    "answer": "7/2",
+    "accept": [
+      "3.5"
+    ],
+    "explanation": [
+      "Angle ACB is an inscribed angle that intercepts minor arc AB, so the central angle AOB measures 2 · 35° = 70°.",
+      "The circumference is 2π(9) = 18π.",
+      "Arc AB is 70/360 of the circumference: (70/360)(18π) = 3.5π, so k = 7/2."
+    ],
+    "hints": [
+      "How does an inscribed angle compare with the central angle that intercepts the same arc?",
+      "What fraction of the full 360° does the central angle represent?"
+    ],
+    "check": "from sympy import *\nr=9\ninscribed=35\ncentral=2*inscribed\nresult=Rational(central,360)*2*r",
+    "figure": {
+      "alt": "A circle with center O. Point C is at the top of the circle, and points A and B are on the lower part of the circle, A to the lower left and B to the lower right. Chords CA and CB are drawn, and angle ACB is labeled 35°. Radius OA is drawn and labeled 9. Minor arc AB is the short arc along the bottom of the circle between A and B.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -11,
+          11
+        ],
+        "y": [
+          -11,
+          11
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 9
+        },
+        {
+          "type": "segment",
+          "from": [
+            0.0,
+            9.0
+          ],
+          "to": [
+            -5.162,
+            -7.372
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0.0,
+            9.0
+          ],
+          "to": [
+            5.162,
+            -7.372
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -5.162,
+            -7.372
+          ],
+          "label": "9"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0.0,
+            9.0
+          ],
+          "from": [
+            -5.162,
+            -7.372
+          ],
+          "to": [
+            5.162,
+            -7.372
+          ],
+          "label": "35°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -5.162,
+            -7.372
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5.162,
+            -7.372
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0.0,
+            9.0
+          ],
+          "label": "C",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f019",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, AB is a diameter of the circle with center O, and point C lies on the circle. Angle CAB measures 28°. What is the measure of angle ABC?",
+    "choices": [
+      "28°",
+      "56°",
+      "62°",
+      "152°"
+    ],
+    "answer": "62°",
+    "explanation": [
+      "An angle inscribed in a semicircle is a right angle, so angle ACB = 90°.",
+      "The angles of triangle ABC add to 180°, so angle ABC = 180° − 90° − 28° = 62°."
+    ],
+    "hints": [
+      "What is special about an angle whose sides meet the endpoints of a diameter?",
+      "What do the three angles of triangle ABC add up to?"
+    ],
+    "wrong_reasons": {
+      "28°": "Assumed triangle ABC is isosceles with equal angles at A and B",
+      "56°": "Doubled the 28° angle as if finding a central angle",
+      "152°": "Subtracted 28° from 180° without accounting for the angle at C"
+    },
+    "check": "from sympy import *\nangle_C=90\nresult=180-angle_C-28",
+    "figure": {
+      "alt": "A circle with center O. Diameter AB is horizontal through O, with A on the left and B on the right. Point C is on the upper right part of the circle. Triangle ABC is drawn, and angle CAB, at vertex A, is labeled 28°. Angle ABC, at vertex B, is unlabeled.",
+      "aspect": 1.167,
+      "plane": {
+        "x": [
+          -7,
+          7
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 5
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              -5,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              2.796,
+              4.145
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            -5,
+            0
+          ],
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            2.796,
+            4.145
+          ],
+          "label": "28°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f020",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the circle with center O shown, OB = 10. Segment OM is perpendicular to chord AB at point M, and OM = 6. What is the length of chord AB?",
+    "choices": [
+      "4",
+      "16",
+      "8",
+      "4√34"
+    ],
+    "answer": "16",
+    "explanation": [
+      "Triangle OMB is a right triangle with hypotenuse OB = 10 and leg OM = 6.",
+      "MB = √(10² − 6²) = √64 = 8.",
+      "A segment from the center perpendicular to a chord bisects the chord, so AB = 2 · 8 = 16."
+    ],
+    "hints": [
+      "Which right triangle in the figure has OB as its hypotenuse?",
+      "Once you know MB, how does it compare with AM?"
+    ],
+    "wrong_reasons": {
+      "4": "Subtracted the lengths, 10 − 6, instead of using the Pythagorean theorem",
+      "8": "Found MB, which is only half of chord AB",
+      "4√34": "Added the squares, √(10² + 6²), as if MB were the hypotenuse, then doubled"
+    },
+    "check": "from sympy import *\nr=10\nd=6\nresult=2*sqrt(r**2-d**2)",
+    "figure": {
+      "alt": "A circle with center O. Horizontal chord AB lies below the center, with A on the left and B on the right. Segment OM goes straight down from O to point M on chord AB and is labeled 6, with a right-angle mark at M. Radius OB is drawn and labeled 10.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -12,
+          12
+        ],
+        "y": [
+          -12,
+          12
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 10
+        },
+        {
+          "type": "segment",
+          "from": [
+            -8,
+            -6
+          ],
+          "to": [
+            8,
+            -6
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            -6
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8,
+            -6
+          ],
+          "label": "10"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            -6
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8,
+            -6
+          ],
+          "right": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            -8,
+            -6
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            -6
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -6
+          ],
+          "label": "M",
+          "labelPos": "s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f021",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph shows a circle in the xy-plane and point P on the circle. Line ℓ (not shown) is tangent to the circle at P. What is the slope of line ℓ?",
+    "choices": [
+      "−4/3",
+      "−3/4",
+      "3/4",
+      "4/3"
+    ],
+    "answer": "−4/3",
+    "explanation": [
+      "From the graph, the center of the circle is (3, 2) and P is (7, 5).",
+      "The radius to P has slope (5 − 2)/(7 − 3) = 3/4.",
+      "A tangent line is perpendicular to the radius at the point of tangency, so its slope is the negative reciprocal: −4/3."
+    ],
+    "hints": [
+      "How is a tangent line related to the radius drawn to the point of tangency?",
+      "What is the slope of the segment from the center to P?"
+    ],
+    "wrong_reasons": {
+      "−3/4": "Changed only the sign of the radius's slope instead of taking the negative reciprocal",
+      "3/4": "Gave the slope of the radius to P rather than the tangent line",
+      "4/3": "Took the reciprocal of the radius's slope but forgot to change its sign"
+    },
+    "check": "from sympy import *\nh,k=3,2\npx,py=7,5\nm_radius=Rational(py-k,px-h)\nresult=-1/m_radius",
+    "figure": {
+      "alt": "A coordinate plane with x from −3 to 10 and y from −5 to 8, grid lines every 1 unit. A circle has its center marked at (3, 2) and radius 5; it passes through (8, 2), (3, 7), (−2, 2), and (3, −3). Point P is marked on the circle at (7, 5).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -3,
+          10
+        ],
+        "y": [
+          -5,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            3,
+            2
+          ],
+          "r": 5
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            7,
+            5
+          ],
+          "label": "P",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f022",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "Points A, B, and C lie on the circle with center O shown. Angle ACB measures 40°, and angle AOB measures x°. What is the value of x?",
+    "answer": "80",
+    "explanation": [
+      "Angle ACB is an inscribed angle and angle AOB is a central angle, and both intercept arc AB.",
+      "A central angle is twice an inscribed angle that intercepts the same arc, so x = 2 · 40 = 80."
+    ],
+    "hints": [
+      "Which arc do angle ACB and angle AOB both intercept?",
+      "Which is larger, an inscribed angle or the central angle on the same arc, and by what factor?"
+    ],
+    "check": "from sympy import *\ninscribed=40\nresult=2*inscribed",
+    "figure": {
+      "alt": "A circle with center O. Point C is on the upper right of the circle, point A is on the left side slightly below center, and point B is near the bottom. Chords CA and CB form angle ACB, labeled 40°. Radii OA and OB form angle AOB, labeled x°. Both angles open toward arc AB on the lower left of the circle.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -8,
+          8
+        ],
+        "y": [
+          -8,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 6
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.0,
+            5.196
+          ],
+          "to": [
+            -5.638,
+            -2.052
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.0,
+            5.196
+          ],
+          "to": [
+            1.042,
+            -5.909
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -5.638,
+            -2.052
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            1.042,
+            -5.909
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.0,
+            5.196
+          ],
+          "from": [
+            -5.638,
+            -2.052
+          ],
+          "to": [
+            1.042,
+            -5.909
+          ],
+          "label": "40°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            -5.638,
+            -2.052
+          ],
+          "to": [
+            1.042,
+            -5.909
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            -5.638,
+            -2.052
+          ],
+          "label": "A",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            1.042,
+            -5.909
+          ],
+          "label": "B",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.0,
+            5.196
+          ],
+          "label": "C",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f023",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the xy-plane shown, segment AB is a diameter of the circle. Which equation represents the circle?",
+    "choices": [
+      "(x + 1)² + (y + 4)² = 25",
+      "(x − 4)² + (y − 1)² = 25",
+      "(x − 1)² + (y − 4)² = 100",
+      "(x − 1)² + (y − 4)² = 25"
+    ],
+    "answer": "(x − 1)² + (y − 4)² = 25",
+    "explanation": [
+      "From the graph, A = (−3, 1) and B = (5, 7).",
+      "The center is the midpoint: ((−3 + 5)/2, (1 + 7)/2) = (1, 4).",
+      "The diameter is √(8² + 6²) = 10, so r = 5 and r² = 25.",
+      "The equation is (x − 1)² + (y − 4)² = 25."
+    ],
+    "hints": [
+      "Where is the center of a circle located on one of its diameters?",
+      "How can the distance formula give the length of AB, and how is that related to r?"
+    ],
+    "wrong_reasons": {
+      "(x + 1)² + (y + 4)² = 25": "Used the center's coordinates with the wrong signs inside the parentheses",
+      "(x − 4)² + (y − 1)² = 25": "Swapped the x- and y-coordinates of the center",
+      "(x − 1)² + (y − 4)² = 100": "Squared the diameter instead of the radius"
+    },
+    "check": "from sympy import *\ndef eq(h,k,r2):\n    def t(v,n):\n        return n if v==0 else '('+n+('-' if v>0 else '+')+str(abs(v))+')'\n    return t(h,'x')+'²+'+t(k,'y')+'²='+str(r2)\nax,ay=-3,1\nbx,by=5,7\nh,k=Rational(ax+bx,2),Rational(ay+by,2)\nr2=((bx-ax)**2+(by-ay)**2)/Integer(4)\nresult=eq(h,k,r2)",
+    "figure": {
+      "alt": "A coordinate plane with x from −6 to 8 and y from −3 to 11, grid lines every 1 unit. A circle is drawn with diameter AB. Point A is at (−3, 1) and point B is at (5, 7). The circle passes through (−4, 4), (6, 4), (1, 9), and (1, −1).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          8
+        ],
+        "y": [
+          -3,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            1,
+            4
+          ],
+          "r": 5
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3,
+            1
+          ],
+          "to": [
+            5,
+            7
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            1
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            7
+          ],
+          "label": "B",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f024",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the circle with center O shown, OA = 8 and the length of minor arc AB is 6π. What is the measure, in radians, of angle AOB?",
+    "choices": [
+      "3/4",
+      "3π/4",
+      "3π/8",
+      "4π/3"
+    ],
+    "answer": "3π/4",
+    "explanation": [
+      "For a central angle θ in radians, arc length s = rθ.",
+      "So θ = s/r = 6π/8 = 3π/4 radians."
+    ],
+    "hints": [
+      "What formula connects arc length, radius, and a central angle measured in radians?",
+      "If s = rθ, how do you isolate θ?"
+    ],
+    "wrong_reasons": {
+      "3/4": "Divided 6π by 8 but dropped the π",
+      "3π/8": "Divided the arc length by the diameter, 16, instead of the radius",
+      "4π/3": "Found 3π/4 correctly but then flipped the fraction to 4/3 while keeping π"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\ns=6*pi\nr=8\nresult=pif(s/r/pi)",
+    "figure": {
+      "alt": "A circle with center O. Radii OA and OB are drawn: A is on the right side of the circle slightly above center, and B is on the upper left. Radius OA is labeled 8. Minor arc AB, the arc over the top of the circle from A to B, is labeled 6π. Angle AOB is marked but not labeled.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -10,
+          10
+        ],
+        "y": [
+          -9.5,
+          10.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 8
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            7.518,
+            2.736
+          ],
+          "label": "8"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -7.25,
+            3.381
+          ]
+        },
+        {
+          "type": "arc",
+          "center": [
+            0,
+            0
+          ],
+          "r": 8,
+          "start": 20,
+          "end": 155,
+          "label": "6π"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            7.518,
+            2.736
+          ],
+          "to": [
+            -7.25,
+            3.381
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            7.518,
+            2.736
+          ],
+          "label": "A",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            -7.25,
+            3.381
+          ],
+          "label": "B",
+          "labelPos": "nw"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f025",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In the figure, line PT is tangent at point T to the circle with center O. If OT = 5 and PT = 12, what is the length of OP?",
+    "answer": "13",
+    "explanation": [
+      "A tangent line is perpendicular to the radius at the point of tangency, so angle OTP = 90°.",
+      "Triangle OTP is a right triangle with hypotenuse OP.",
+      "OP = √(5² + 12²) = √169 = 13."
+    ],
+    "hints": [
+      "What angle does a tangent line make with the radius drawn to the point of tangency?",
+      "In triangle OTP, which side is the hypotenuse?"
+    ],
+    "check": "from sympy import *\nresult=sqrt(5**2+12**2)",
+    "figure": {
+      "alt": "A circle with center O. Point T is at the top of the circle, and a horizontal line through T touches the circle only at T. Point P is on this tangent line to the right of the circle. Radius OT is labeled 5, segment TP is labeled 12, and segment OP is drawn without a label.",
+      "aspect": 1.4,
+      "plane": {
+        "x": [
+          -7,
+          14
+        ],
+        "y": [
+          -7,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 5
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              5
+            ],
+            [
+              12,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            5
+          ],
+          "label": "5"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            5
+          ],
+          "to": [
+            12,
+            5
+          ],
+          "label": "12"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            12,
+            5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            5
+          ],
+          "label": "T",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            12,
+            5
+          ],
+          "label": "P",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f026",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the circle with center O shown, OA = 12 and angle AOB measures 150°. What is the length of minor arc AB?",
+    "choices": [
+      "5π",
+      "14π",
+      "60π",
+      "10π"
+    ],
+    "answer": "10π",
+    "explanation": [
+      "The circumference is 2π(12) = 24π.",
+      "Minor arc AB is 150/360 = 5/12 of the circle.",
+      "Its length is (5/12)(24π) = 10π."
+    ],
+    "hints": [
+      "What is the circumference of the whole circle?",
+      "What fraction of 360° is 150°?"
+    ],
+    "wrong_reasons": {
+      "5π": "Used 12 as the diameter, finding (5/12)(12π)",
+      "14π": "Found the major arc, which corresponds to 210°",
+      "60π": "Found the area of the sector, (5/12)(144π), instead of the arc length"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr=12\ntheta=150\nresult=pif(Rational(theta,360)*2*pi*r/pi)",
+    "figure": {
+      "alt": "A circle with center O. Radius OA goes to the right side of the circle slightly above center and is labeled 12. Radius OB goes to the left side slightly above center. Angle AOB, which opens upward, is labeled 150°. Minor arc AB is the arc over the top of the circle from A to B.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -15,
+          15
+        ],
+        "y": [
+          -14,
+          16
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 12
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            11.591,
+            3.106
+          ],
+          "label": "12"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -11.591,
+            3.106
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            11.591,
+            3.106
+          ],
+          "to": [
+            -11.591,
+            3.106
+          ],
+          "label": "150°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            11.591,
+            3.106
+          ],
+          "label": "A",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -11.591,
+            3.106
+          ],
+          "label": "B",
+          "labelPos": "w"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f027",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the circle shown, chords AB and CD intersect at point E. AE = 4, EB = 9, and CD = 15. If CE < ED, what is the length of CE?",
+    "answer": "3",
+    "explanation": [
+      "For two chords that intersect inside a circle, AE · EB = CE · ED.",
+      "Let CE = x, so ED = 15 − x. Then x(15 − x) = 4 · 9 = 36.",
+      "This gives x² − 15x + 36 = 0, or (x − 3)(x − 12) = 0, so x = 3 or x = 12.",
+      "Since CE < ED, CE = 3."
+    ],
+    "hints": [
+      "What relationship holds between the four pieces of two chords that cross inside a circle?",
+      "If CE = x, how can you write ED in terms of x?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nsols=solve(x*(15-x)-4*9,x)\nresult=min(s for s in sols if s<15-s)",
+    "figure": {
+      "alt": "A circle with two chords that cross inside it. Chord AB is horizontal in the upper part of the circle, with A on the left and B on the right. Chord CD runs from C near the top of the circle down to D near the bottom. The chords intersect at point E. Segment AE is labeled 4 and segment EB is labeled 9. In the drawing, CE is the short piece above E and ED is the long piece below E.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -9.5,
+          9.5
+        ],
+        "y": [
+          -9.5,
+          9.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 7.632
+        },
+        {
+          "type": "segment",
+          "from": [
+            -6.5,
+            4
+          ],
+          "to": [
+            -2.5,
+            4.0
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            -2.5,
+            4.0
+          ],
+          "to": [
+            6.5,
+            4
+          ],
+          "label": "9"
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3.254,
+            6.904
+          ],
+          "to": [
+            0.517,
+            -7.615
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -6.5,
+            4
+          ],
+          "label": "A",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            6.5,
+            4
+          ],
+          "label": "B",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3.254,
+            6.904
+          ],
+          "label": "C",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            0.517,
+            -7.615
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2.5,
+            4.0
+          ],
+          "label": "E",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f028",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The circle shown in the xy-plane has its center at (−1, 2) and passes through point P. What is the area of the circle?",
+    "choices": [
+      "4π",
+      "16π",
+      "8π",
+      "64π"
+    ],
+    "answer": "16π",
+    "explanation": [
+      "From the graph, P = (3, 2), which is 4 units to the right of the center (−1, 2), so r = 4.",
+      "The area is πr² = π(4)² = 16π."
+    ],
+    "hints": [
+      "How far is point P from the center of the circle?",
+      "Which formula gives the area of a circle from its radius?"
+    ],
+    "wrong_reasons": {
+      "4π": "Multiplied π by the radius instead of the radius squared",
+      "8π": "Found the circumference, 2πr, instead of the area",
+      "64π": "Squared the diameter, 8, instead of the radius"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nh,k=-1,2\npx,py=3,2\nr=sqrt((px-h)**2+(py-k)**2)\nresult=pif(r**2)",
+    "figure": {
+      "alt": "A coordinate plane with x from −7 to 5 and y from −4 to 8, grid lines every 1 unit. A circle has its center marked and labeled (−1, 2). Point P is on the circle at (3, 2), directly to the right of the center. The circle also passes through (−5, 2), (−1, 6), and (−1, −2).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -7,
+          5
+        ],
+        "y": [
+          -4,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            -1,
+            2
+          ],
+          "r": 4
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            2
+          ],
+          "label": "(−1, 2)",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            2
+          ],
+          "label": "P",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f029",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, segments PA and PB are tangent to the circle with center O at points A and B, respectively. Angle APB measures 50°. What is the measure of minor arc AB?",
+    "choices": [
+      "50°",
+      "100°",
+      "130°",
+      "230°"
+    ],
+    "answer": "130°",
+    "explanation": [
+      "Each radius is perpendicular to its tangent, so angles OAP and OBP each measure 90°.",
+      "The angles of quadrilateral OAPB add to 360°, so angle AOB = 360° − 90° − 90° − 50° = 130°.",
+      "A minor arc has the same measure as its central angle, so arc AB measures 130°."
+    ],
+    "hints": [
+      "What angle does each tangent segment make with the radius drawn to its point of tangency?",
+      "What do the four angles of quadrilateral OAPB add up to?"
+    ],
+    "wrong_reasons": {
+      "50°": "Assumed the arc has the same measure as angle APB",
+      "100°": "Doubled angle APB as if it were an inscribed angle",
+      "230°": "Found the measure of the major arc AB instead of the minor arc"
+    },
+    "check": "from sympy import *\nangle_P=50\ncentral=360-90-90-angle_P\nresult=central",
+    "figure": {
+      "alt": "A circle with center O and a point P outside the circle to its right. Tangent segments PA and PB touch the circle at A, on the upper right of the circle, and at B, on the lower right. Radii OA and OB are drawn. Angle APB is labeled 50°. Minor arc AB is the arc on the right side of the circle between A and B, facing P.",
+      "aspect": 1.214,
+      "plane": {
+        "x": [
+          -6,
+          11
+        ],
+        "y": [
+          -7,
+          7
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            9.465,
+            0
+          ],
+          "to": [
+            1.69,
+            3.625
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            9.465,
+            0
+          ],
+          "to": [
+            1.69,
+            -3.625
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            1.69,
+            3.625
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            1.69,
+            -3.625
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            9.465,
+            0
+          ],
+          "from": [
+            1.69,
+            3.625
+          ],
+          "to": [
+            1.69,
+            -3.625
+          ],
+          "label": "50°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            1.69,
+            3.625
+          ],
+          "label": "A",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            1.69,
+            -3.625
+          ],
+          "label": "B",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            9.465,
+            0
+          ],
+          "label": "P",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f030",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "An equation of the circle shown in the xy-plane can be written in the form x² + y² + ax + by + c = 0, where a, b, and c are constants. What is the value of c?",
+    "choices": [
+      "−29",
+      "−3",
+      "3",
+      "13"
+    ],
+    "answer": "−3",
+    "explanation": [
+      "From the graph, the center is (−2, 3) and the circle passes through (2, 3), so r = 4.",
+      "In standard form: (x + 2)² + (y − 3)² = 16.",
+      "Expanding: x² + 4x + 4 + y² − 6y + 9 = 16, so x² + y² + 4x − 6y − 3 = 0.",
+      "So c = 4 + 9 − 16 = −3."
+    ],
+    "hints": [
+      "What are the center and radius of the circle shown?",
+      "After expanding the standard form, what constant is left on the left side once 16 is moved over?"
+    ],
+    "wrong_reasons": {
+      "−29": "Subtracted all three numbers, −(4 + 9 + 16), instead of computing 4 + 9 − 16",
+      "3": "Moved r² to the wrong side, getting 16 − 4 − 9",
+      "13": "Expanded the squares but forgot to subtract r² = 16"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nh,k=-2,3\nedge=(2,3)\nr=edge[0]-h\nexpr=expand((x-h)**2+(y-k)**2-r**2)\nresult=expr.subs({x:0,y:0})",
+    "figure": {
+      "alt": "A coordinate plane with x from −8 to 4 and y from −3 to 9, grid lines every 1 unit. A circle has its center marked at (−2, 3) and radius 4. It passes through the grid points (2, 3), (−6, 3), (−2, 7), and (−2, −1).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -8,
+          4
+        ],
+        "y": [
+          -3,
+          9
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            -2,
+            3
+          ],
+          "r": 4
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f031",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The circle shown in the xy-plane has its center at a point with integer coordinates. Which of the following points lies on the circle?",
+    "choices": [
+      "(1, 2)",
+      "(1, 6)",
+      "(−7, −2)",
+      "(−3, 4)"
+    ],
+    "answer": "(1, 2)",
+    "explanation": [
+      "From the graph, the center is at (−3, 2) and the circle passes through (−3, 6), 4 units above the center, so the radius is 4.",
+      "A point lies on the circle exactly when its distance from the center is 4.",
+      "(1, 2) is 4 units to the right of (−3, 2), so it lies on the circle."
+    ],
+    "hints": [
+      "Which grid point is the center, and how far is it from the top of the circle?",
+      "Which choice is exactly one radius away from the center?"
+    ],
+    "wrong_reasons": {
+      "(1, 6)": "Moved 4 units right and 4 units up, which is about 5.7 units from the center, not 4",
+      "(−7, −2)": "Moved 4 units left and 4 units down, which is about 5.7 units from the center, not 4",
+      "(−3, 4)": "Picked a point directly above the center, but it is only 2 units away, so it is inside the circle"
+    },
+    "check": "from sympy import *\nh,k,r=-3,2,4\npts=[(1,2),(1,6),(-7,-2),(-3,4)]\non=[p for p in pts if (p[0]-h)**2+(p[1]-k)**2==r**2]\nassert len(on)==1\nresult='(%d,%d)'%on[0]",
+    "figure": {
+      "alt": "A coordinate plane from −8 to 3 on the x-axis and −4 to 7 on the y-axis, with grid lines every 1 unit. A circle is drawn with its center marked at the point (−3, 2). The circle passes through the grid points (1, 2), (−7, 2), (−3, 6), and (−3, −2), so its radius is 4.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -8,
+          3
+        ],
+        "y": [
+          -4,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            -3,
+            2
+          ],
+          "r": 4
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f032",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, quadrilateral ABCD is inscribed in the circle. The measure of angle DAB is 108°. What is the measure of angle BCD?",
+    "choices": [
+      "54°",
+      "72°",
+      "108°",
+      "144°"
+    ],
+    "answer": "72°",
+    "explanation": [
+      "Angle DAB is an inscribed angle that intercepts arc BCD, so arc BCD measures 2 · 108° = 216°.",
+      "Angle BCD intercepts the rest of the circle, arc DAB, which measures 360° − 216° = 144°.",
+      "So angle BCD = 144° ÷ 2 = 72°. (Opposite angles of an inscribed quadrilateral are supplementary.)"
+    ],
+    "hints": [
+      "Which arc does angle DAB intercept, and how is the arc related to the angle?",
+      "Together, the arcs intercepted by angles A and C make up how many degrees?"
+    ],
+    "wrong_reasons": {
+      "54°": "Took half of 108° instead of using the supplementary relationship",
+      "108°": "Assumed opposite angles of an inscribed quadrilateral are equal",
+      "144°": "Found the measure of arc DAB but did not halve it to get the inscribed angle"
+    },
+    "check": "from sympy import *\nA=108\narcBCD=2*A\narcDAB=360-arcBCD\nresult=Rational(arcDAB,2)",
+    "figure": {
+      "alt": "A circle with quadrilateral ABCD inscribed in it, so all four vertices lie on the circle. Going counterclockwise around the circle the vertices are D at the upper right, A near the top, B at the far left, and C at the lower right. The angle at vertex A, between sides AB and AD, is labeled 108°.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              -1.368,
+              3.759
+            ],
+            [
+              -4.0,
+              0.0
+            ],
+            [
+              2.0,
+              -3.464
+            ],
+            [
+              3.236,
+              2.351
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            -1.368,
+            3.759
+          ],
+          "from": [
+            -4.0,
+            0.0
+          ],
+          "to": [
+            3.236,
+            2.351
+          ],
+          "label": "108°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f033",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle, OA = 9, and the measure of central angle AOB is 40°. What is the area of sector AOB?",
+    "choices": [
+      "2π",
+      "18π",
+      "9π",
+      "81π"
+    ],
+    "answer": "9π",
+    "explanation": [
+      "The sector is 40/360 = 1/9 of the whole circle.",
+      "The area of the whole circle is π · 9² = 81π.",
+      "So the sector's area is (1/9)(81π) = 9π."
+    ],
+    "hints": [
+      "What fraction of a full turn is 40°?",
+      "What is the area of the entire circle?"
+    ],
+    "wrong_reasons": {
+      "2π": "Found the length of arc AB, (40/360)(2π · 9), instead of the sector's area",
+      "18π": "Divided by 180 instead of 360 when finding the fraction of the circle",
+      "81π": "Found the area of the whole circle and did not take 40/360 of it"
+    },
+    "check": "from sympy import *\nr,th=9,40\nc=Rational(th,360)*r**2\nresult=str(c)+'π' if c!=1 else 'π'",
+    "figure": {
+      "alt": "A circle with center O. Radii OA and OB are drawn, forming sector AOB in the upper right part of the circle. Point A is to the right of O and a little above it; point B is up and to the right of O. Radius OA is labeled 9, and the central angle AOB is labeled 40°.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.759,
+            1.368
+          ],
+          "label": "9"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.0,
+            3.464
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            3.759,
+            1.368
+          ],
+          "to": [
+            2.0,
+            3.464
+          ],
+          "label": "40°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.759,
+            1.368
+          ],
+          "label": "A",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.0,
+            3.464
+          ],
+          "label": "B",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f034",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In the figure, segment PA is tangent to the circle with center O at point A. The measure of angle APO is 35°. What is the measure, in degrees, of angle AOP?",
+    "answer": "55",
+    "accept": [
+      "55°"
+    ],
+    "explanation": [
+      "A tangent is perpendicular to the radius at the point of tangency, so angle OAP = 90°.",
+      "The angles of triangle OAP sum to 180°, so angle AOP = 180° − 90° − 35° = 55°."
+    ],
+    "hints": [
+      "What is the measure of the angle between a tangent and the radius drawn to the point of tangency?",
+      "What do the three angles of triangle OAP add up to?"
+    ],
+    "check": "from sympy import *\nresult=180-90-35",
+    "figure": {
+      "alt": "A circle with center O. Point A is at the top of the circle, directly above O, and radius OA is drawn. Segment PA runs horizontally from A to point P outside the circle on the right and touches the circle only at A. A right-angle mark is at A between OA and AP. Segment OP is drawn, forming triangle OAP. The angle at P, angle APO, is labeled 35°.",
+      "aspect": 1.182,
+      "plane": {
+        "x": [
+          -5,
+          8
+        ],
+        "y": [
+          -5,
+          6
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            4
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            4
+          ],
+          "to": [
+            5.713,
+            4
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5.713,
+            4
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            4
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5.713,
+            4
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5.713,
+            4
+          ],
+          "from": [
+            0,
+            4
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "35°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ],
+          "label": "A",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            5.713,
+            4
+          ],
+          "label": "P",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f035",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The circle shown in the xy-plane has its center at a point with integer coordinates. Which of the following is an equation of the circle?",
+    "choices": [
+      "x² + y² + 6x − 4y − 12 = 0",
+      "x² + y² − 6x + 4y + 8 = 0",
+      "x² + y² − 6x + 4y − 25 = 0",
+      "x² + y² − 6x + 4y − 12 = 0"
+    ],
+    "answer": "x² + y² − 6x + 4y − 12 = 0",
+    "explanation": [
+      "From the graph, the center is (3, −2) and the circle passes through (8, −2), 5 units to the right, so the radius is 5.",
+      "In standard form the equation is (x − 3)² + (y + 2)² = 25.",
+      "Expanding: x² − 6x + 9 + y² + 4y + 4 = 25, so x² + y² − 6x + 4y − 12 = 0."
+    ],
+    "hints": [
+      "What are the center and radius you can read from the graph?",
+      "Write the equation in standard form first. What do you get when you expand (x − 3)² and (y + 2)²?"
+    ],
+    "wrong_reasons": {
+      "x² + y² + 6x − 4y − 12 = 0": "Used a center of (−3, 2) by flipping the signs of the center's coordinates",
+      "x² + y² − 6x + 4y + 8 = 0": "Used the radius 5 on the right side instead of 25 before expanding",
+      "x² + y² − 6x + 4y − 25 = 0": "Expanded the squares but dropped the constants 9 and 4"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\nh,k,r=3,-2,5\ne=expand((x-h)**2+(y-k)**2-r**2)\np=Poly(e,x,y)\na=p.coeff_monomial(x); b=p.coeff_monomial(y); c=p.coeff_monomial(1)\nf=lambda v,s: ('-' if v<0 else '+')+str(abs(v))+s\nresult='x²+y²'+f(a,'x')+f(b,'y')+f(c,'')+'=0'",
+    "figure": {
+      "alt": "A coordinate plane from −3 to 9 on the x-axis and −8 to 4 on the y-axis, with grid lines every 1 unit. A circle is drawn with its center marked at the point (3, −2). The circle passes through the grid points (8, −2), (−2, −2), (3, 3), and (3, −7), and also through (0, 2), (6, 2), (0, −6), and (6, −6), so its radius is 5.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -3,
+          9
+        ],
+        "y": [
+          -8,
+          4
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            3,
+            -2
+          ],
+          "r": 5
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f036",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle, which has radius 13. Chords AB and CD are parallel and lie on opposite sides of O. If AB = 24 and CD = 10, what is the distance between the two chords?",
+    "choices": [
+      "7",
+      "14",
+      "17",
+      "26"
+    ],
+    "answer": "17",
+    "explanation": [
+      "The perpendicular from O to a chord bisects the chord, which forms right triangles with the radius as hypotenuse.",
+      "For AB: half the chord is 12, so the distance from O is √(13² − 12²) = 5.",
+      "For CD: half the chord is 5, so the distance from O is √(13² − 5²) = 12.",
+      "The chords are on opposite sides of O, so the distance between them is 5 + 12 = 17."
+    ],
+    "hints": [
+      "If you drop a perpendicular from O to chord AB, what happens to AB?",
+      "What right triangle connects the radius, half of a chord, and the chord's distance from O?",
+      "Should you add or subtract the two distances?"
+    ],
+    "wrong_reasons": {
+      "7": "Subtracted the distances (12 − 5), as if the chords were on the same side of O",
+      "14": "Subtracted the chord lengths, 24 − 10, instead of finding each chord's distance from O",
+      "26": "Used the diameter, assuming the chords are at opposite ends of the circle"
+    },
+    "check": "from sympy import *\nr=13\nd1=sqrt(r**2-(24/Integer(2))**2)\nd2=sqrt(r**2-(10/Integer(2))**2)\nresult=d1+d2",
+    "figure": {
+      "alt": "A circle with center O and radius 13. A horizontal chord AB lies above O, with A on the left and B on the right, and is labeled 24. A shorter horizontal chord CD lies below O, near the bottom of the circle, with C on the left and D on the right, and is labeled 10. Radius OB is drawn and labeled 13. A dashed vertical segment runs from the midpoint of AB through O to the midpoint of CD.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -16,
+          16
+        ],
+        "y": [
+          -16,
+          16
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 13
+        },
+        {
+          "type": "segment",
+          "from": [
+            -12,
+            5
+          ],
+          "to": [
+            12,
+            5
+          ],
+          "label": "24"
+        },
+        {
+          "type": "segment",
+          "from": [
+            -5,
+            -12
+          ],
+          "to": [
+            5,
+            -12
+          ],
+          "label": "10"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            12,
+            5
+          ],
+          "label": "13"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            5
+          ],
+          "to": [
+            0,
+            -12
+          ],
+          "dash": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            -12,
+            5
+          ],
+          "label": "A",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            12,
+            5
+          ],
+          "label": "B",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -5,
+            -12
+          ],
+          "label": "C",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            -12
+          ],
+          "label": "D",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f037",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the figure, O is the center of the circle, OA = 6, and the measure of central angle AOB is 5π/6 radians. The length of minor arc AB is kπ, where k is a constant. What is the value of k?",
+    "answer": "5",
+    "explanation": [
+      "When the central angle θ is in radians, arc length = rθ.",
+      "Arc AB = 6 · (5π/6) = 5π, so k = 5."
+    ],
+    "hints": [
+      "Which arc length formula works directly with an angle in radians?",
+      "What is 6 times 5π/6?"
+    ],
+    "check": "from sympy import *\nr=6\nth=5*pi/6\nresult=simplify(r*th/pi)",
+    "figure": {
+      "alt": "A circle with center O; the lower part of the circle is cut off by the edge of the drawing. Radii OA and OB are drawn. Point A is to the right of O and slightly above it, and point B is to the left of O and slightly above it, so the angle between the radii opens upward. Radius OA is labeled 6, and central angle AOB is labeled 5π/6. Minor arc AB is the upper arc from A to B.",
+      "aspect": 1.294,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -3,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.864,
+            1.035
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -3.864,
+            1.035
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            3.864,
+            1.035
+          ],
+          "to": [
+            -3.864,
+            1.035
+          ],
+          "label": "5π/6"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.864,
+            1.035
+          ],
+          "label": "A",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3.864,
+            1.035
+          ],
+          "label": "B",
+          "labelPos": "w"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f038",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the figure, segments PA and PB are tangent to the circle with center O at points A and B. The radius of the circle is 8, and OP = 17. What is the area of quadrilateral OAPB?",
+    "answer": "120",
+    "explanation": [
+      "Each tangent is perpendicular to the radius at its point of tangency, so triangles OAP and OBP are right triangles with hypotenuse OP = 17.",
+      "PA = √(17² − 8²) = √225 = 15, and likewise PB = 15.",
+      "Each right triangle has area (1/2)(8)(15) = 60, so the quadrilateral has area 2 · 60 = 120."
+    ],
+    "hints": [
+      "What angle does each tangent make with the radius at its point of tangency?",
+      "Segment OP splits the quadrilateral into two triangles. What are their legs?"
+    ],
+    "check": "from sympy import *\nr,op=8,17\npa=sqrt(op**2-r**2)\nresult=2*Rational(1,2)*r*pa",
+    "figure": {
+      "alt": "A circle with center O and a point P outside the circle to the right of O. Segments PA and PB are tangent to the circle at A, on the upper right of the circle, and B, on the lower right, forming quadrilateral OAPB with radii OA and OB. Right-angle marks are at A and at B. Radius OA is labeled 8, and segment OP, drawn from O to P, is labeled 17.",
+      "aspect": 1.45,
+      "plane": {
+        "x": [
+          -10,
+          19
+        ],
+        "y": [
+          -10,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 8
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.765,
+            7.059
+          ],
+          "label": "8"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.765,
+            -7.059
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.765,
+            7.059
+          ],
+          "to": [
+            17,
+            0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.765,
+            -7.059
+          ],
+          "to": [
+            17,
+            0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            17,
+            0
+          ],
+          "label": "17"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.765,
+            7.059
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            17,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.765,
+            -7.059
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            17,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.765,
+            7.059
+          ],
+          "label": "A",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.765,
+            -7.059
+          ],
+          "label": "B",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            17,
+            0
+          ],
+          "label": "P",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f039",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, segment AB is a diameter of the circle, and point C lies on the circle. If AC = 6 and BC = 8, what is the radius of the circle?",
+    "choices": [
+      "5",
+      "7",
+      "10",
+      "14"
+    ],
+    "answer": "5",
+    "explanation": [
+      "An angle inscribed in a semicircle is a right angle, so angle ACB = 90°.",
+      "By the Pythagorean theorem, AB = √(6² + 8²) = √100 = 10.",
+      "AB is a diameter, so the radius is 10 ÷ 2 = 5."
+    ],
+    "hints": [
+      "What is special about an angle whose sides meet the endpoints of a diameter?",
+      "Once you know AB, how is the radius related to it?"
+    ],
+    "wrong_reasons": {
+      "7": "Averaged the two given lengths, 6 and 8",
+      "10": "Found the diameter AB but did not halve it to get the radius",
+      "14": "Added AC and BC instead of using the Pythagorean theorem"
+    },
+    "check": "from sympy import *\nresult=sqrt(6**2+8**2)/2",
+    "figure": {
+      "alt": "A circle with diameter AB drawn horizontally through the center, with A on the left and B on the right. Point C is on the upper part of the circle, a little left of center. Triangle ABC is drawn. Side AC is labeled 6 and side BC is labeled 8.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6.5,
+          6.5
+        ],
+        "y": [
+          -6.5,
+          6.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 5
+        },
+        {
+          "type": "segment",
+          "from": [
+            -5,
+            0
+          ],
+          "to": [
+            5,
+            0
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              -5,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              -1.4,
+              4.8
+            ]
+          ],
+          "sideLabels": [
+            "",
+            "8",
+            "6"
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -5,
+            0
+          ],
+          "label": "A",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            0
+          ],
+          "label": "B",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1.4,
+            4.8
+          ],
+          "label": "C",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f040",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The xy-plane shows a circle with center C and point A on the circle. Both points have integer coordinates. If segment AB is a diameter of the circle, what are the coordinates of point B?",
+    "choices": [
+      "(2.5, 3)",
+      "(−2, −3)",
+      "(−4, −5)",
+      "(7, 9)"
+    ],
+    "answer": "(−2, −3)",
+    "explanation": [
+      "From the graph, C = (1, 1) and A = (4, 5).",
+      "C is the midpoint of diameter AB. Going from A to C changes x by −3 and y by −4.",
+      "Making the same move from C gives B = (1 − 3, 1 − 4) = (−2, −3)."
+    ],
+    "hints": [
+      "Where does the center of a circle lie on any diameter?",
+      "How do you get from A to C? What happens if you repeat that move starting at C?"
+    ],
+    "wrong_reasons": {
+      "(2.5, 3)": "Found the midpoint of A and C instead of extending past C",
+      "(−4, −5)": "Took the opposite of A's coordinates, which works only when the center is the origin",
+      "(7, 9)": "Moved from C toward A and continued past A instead of going the other way"
+    },
+    "check": "from sympy import *\nC=(1,1); A=(4,5)\nB=(2*C[0]-A[0],2*C[1]-A[1])\nresult='(%d,%d)'%B",
+    "figure": {
+      "alt": "A coordinate plane from −5 to 7 on both axes, with grid lines every 1 unit. A circle is drawn with center C marked at the point (1, 1). Point A is marked on the circle at (4, 5). The circle also passes through grid points such as (6, 1), (1, 6), (−4, 1), and (1, −4), so its radius is 5.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          7
+        ],
+        "y": [
+          -5,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            1,
+            1
+          ],
+          "r": 5
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            1
+          ],
+          "label": "C",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            5
+          ],
+          "label": "A",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f041",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, O is the center of the circle, chord AB has length 10, and the measure of central angle AOB is 60°. What is the perimeter of the region bounded by chord AB and minor arc AB?",
+    "choices": [
+      "10π/3",
+      "10 + 5π/3",
+      "20 + 10π/3",
+      "10 + 10π/3"
+    ],
+    "answer": "10 + 10π/3",
+    "explanation": [
+      "OA = OB because both are radii, so triangle AOB is isosceles with a 60° vertex angle. Its base angles are also 60°, so it is equilateral.",
+      "So the radius is 10.",
+      "Minor arc AB = (60/360)(2π · 10) = 10π/3.",
+      "The region's perimeter is the chord plus the arc: 10 + 10π/3."
+    ],
+    "hints": [
+      "What kind of triangle is AOB, given that OA and OB are radii and the angle between them is 60°?",
+      "Which two pieces make up the boundary of the region?"
+    ],
+    "wrong_reasons": {
+      "10π/3": "Found only the arc length and left out chord AB",
+      "10 + 5π/3": "Treated 10 as the diameter, using a radius of 5 for the arc",
+      "20 + 10π/3": "Added the two radii OA and OB, giving the perimeter of the sector instead of the region bounded by the chord"
+    },
+    "check": "from sympy import *\nchord,th=10,60\nr=chord/(2*sin(rad(th)/2))\nr=nsimplify(r)\narc=nsimplify(Rational(th,360)*2*r)\nresult=str(chord)+'+'+str(arc.p)+'π/'+str(arc.q)",
+    "figure": {
+      "alt": "A circle with center O. Radii OA and OB are drawn, with A up and to the right of O and B directly above O. The central angle AOB is labeled 60°. Chord AB connects A and B and is labeled 10. The region in question lies between chord AB and the minor arc from A to B.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.464,
+            2.0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0.0,
+            4.0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.464,
+            2.0
+          ],
+          "to": [
+            0.0,
+            4.0
+          ],
+          "label": "10"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            3.464,
+            2.0
+          ],
+          "to": [
+            0.0,
+            4.0
+          ],
+          "label": "60°"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.464,
+            2.0
+          ],
+          "label": "A",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            0.0,
+            4.0
+          ],
+          "label": "B",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f042",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the figure, points A, B, C, and D lie on the circle, and chords AC and BD intersect at point E inside the circle. Arc AD, which does not contain B or C, measures 100°, and arc BC, which does not contain A or D, measures 40°. What is the measure, in degrees, of angle AED?",
+    "answer": "70",
+    "accept": [
+      "70°"
+    ],
+    "explanation": [
+      "Draw chord AB. Inscribed angle ABD intercepts arc AD, so it measures 100° ÷ 2 = 50°.",
+      "Inscribed angle BAC intercepts arc BC, so it measures 40° ÷ 2 = 20°.",
+      "Angle AED is an exterior angle of triangle ABE, so it equals 50° + 20° = 70°. (In general, the angle equals half the sum of the two intercepted arcs.)"
+    ],
+    "hints": [
+      "If you draw chord AB, which inscribed angles intercept arcs AD and BC?",
+      "How is angle AED related to the two angles of triangle ABE at A and B?"
+    ],
+    "check": "from sympy import *\narcAD,arcBC=100,40\nresult=Rational(arcAD+arcBC,2)",
+    "figure": {
+      "alt": "A circle with four points on it. A is at the upper left, B is at the upper right, C is on the right a little above center level, and D is at the lower left. Chord AC and chord BD cross at point E inside the circle. The arc from A down to D on the left side of the circle, which does not contain B or C, is labeled 100°. The short arc from B to C on the right side, which does not contain A or D, is labeled 40°.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            -2.571,
+            3.064
+          ],
+          "to": [
+            3.939,
+            0.695
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.571,
+            3.064
+          ],
+          "to": [
+            -2.571,
+            -3.064
+          ]
+        },
+        {
+          "type": "arc",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4.4,
+          "start": 130,
+          "end": 230,
+          "label": "100°"
+        },
+        {
+          "type": "arc",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4.4,
+          "start": 10,
+          "end": 50,
+          "label": "40°"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2.571,
+            3.064
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.571,
+            3.064
+          ],
+          "label": "B",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.939,
+            0.695
+          ],
+          "label": "C",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2.571,
+            -3.064
+          ],
+          "label": "D",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1.368,
+            1.631
+          ],
+          "label": "E",
+          "labelPos": "s"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f043",
+    "skill_id": "geo-circles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, points A, B, C, and D lie on the circle. The measure of angle ACB is (3x + 4)°, and the measure of angle ADB is (5x − 12)°. What is the measure of angle ADB?",
+    "choices": [
+      "8°",
+      "14°",
+      "28°",
+      "56°"
+    ],
+    "answer": "28°",
+    "explanation": [
+      "Angles ACB and ADB are inscribed angles that intercept the same arc, AB, so they are equal.",
+      "3x + 4 = 5x − 12 gives 16 = 2x, so x = 8.",
+      "Angle ADB = 5(8) − 12 = 28°."
+    ],
+    "hints": [
+      "Which arc does each of the two angles intercept?",
+      "What can you say about two inscribed angles that intercept the same arc?"
+    ],
+    "wrong_reasons": {
+      "8°": "Solved for x but did not substitute it back to find the angle",
+      "14°": "Took half of the angle, as if an inscribed angle were half of another inscribed angle on the same arc",
+      "56°": "Found the measure of arc AB, which is twice the inscribed angle"
+    },
+    "check": "from sympy import *\nx=symbols('x')\ns=solve(Eq(3*x+4,5*x-12),x)[0]\nresult=5*s-12",
+    "figure": {
+      "alt": "A circle with points A and B near the bottom, A slightly left of B, and points C and D on the upper part of the circle, C at the upper left and D at the upper right. Segments CA and CB are drawn, and segments DA and DB are drawn. The angle at C, angle ACB, is labeled (3x + 4)°. The angle at D, angle ADB, is labeled (5x − 12)°. Both angles open toward the arc AB at the bottom of the circle.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5.5,
+          5.5
+        ],
+        "y": [
+          -5.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            0,
+            0
+          ],
+          "r": 4
+        },
+        {
+          "type": "segment",
+          "from": [
+            -2.294,
+            3.277
+          ],
+          "to": [
+            -1.878,
+            -3.532
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -2.294,
+            3.277
+          ],
+          "to": [
+            1.878,
+            -3.532
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.0,
+            3.464
+          ],
+          "to": [
+            -1.878,
+            -3.532
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.0,
+            3.464
+          ],
+          "to": [
+            1.878,
+            -3.532
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            -2.294,
+            3.277
+          ],
+          "from": [
+            -1.878,
+            -3.532
+          ],
+          "to": [
+            1.878,
+            -3.532
+          ],
+          "label": "(3x + 4)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.0,
+            3.464
+          ],
+          "from": [
+            -1.878,
+            -3.532
+          ],
+          "to": [
+            1.878,
+            -3.532
+          ],
+          "label": "(5x − 12)°"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1.878,
+            -3.532
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1.878,
+            -3.532
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2.294,
+            3.277
+          ],
+          "label": "C",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.0,
+            3.464
+          ],
+          "label": "D",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f044",
+    "skill_id": "geo-circles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The circle shown in the xy-plane has its center at a point with integer coordinates. What is the circumference of the circle?",
+    "choices": [
+      "3π",
+      "6π",
+      "9π",
+      "12π"
+    ],
+    "answer": "6π",
+    "explanation": [
+      "From the graph, the center is (1, −2) and the circle passes through (4, −2), 3 units to the right, so the radius is 3.",
+      "Circumference = 2πr = 2π · 3 = 6π."
+    ],
+    "hints": [
+      "How far is the center from the point where the circle crosses the horizontal line through the center?",
+      "Which formula gives the distance around a circle?"
+    ],
+    "wrong_reasons": {
+      "3π": "Used πr, leaving out the factor of 2",
+      "9π": "Found the area πr² instead of the circumference",
+      "12π": "Used the diameter 6 in place of the radius in 2πr"
+    },
+    "check": "from sympy import *\nr=3\nc=2*pi*r/pi\nresult=str(c)+'π'",
+    "figure": {
+      "alt": "A coordinate plane from −4 to 6 on the x-axis and −6 to 4 on the y-axis, with grid lines every 1 unit. A circle is drawn with its center marked at the point (1, −2). The circle passes through the grid points (4, −2), (−2, −2), (1, 1), and (1, −5), so its radius is 3.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -4,
+          6
+        ],
+        "y": [
+          -6,
+          4
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            1,
+            -2
+          ],
+          "r": 3
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-circles-f045",
+    "skill_id": "geo-circles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The xy-plane shows a circle whose center has integer coordinates, and a point P outside the circle. What is the shortest distance from P to any point on the circle?",
+    "choices": [
+      "4",
+      "7",
+      "10",
+      "13"
+    ],
+    "answer": "7",
+    "explanation": [
+      "From the graph, the center is (−1, 1), the radius is 3, and P = (5, 9).",
+      "The distance from P to the center is √((5 − (−1))² + (9 − 1)²) = √(36 + 64) = 10.",
+      "The closest point on the circle lies on the segment from P to the center, one radius from the center, so the shortest distance is 10 − 3 = 7."
+    ],
+    "hints": [
+      "Where on the circle is the point closest to P? Think about the line through P and the center.",
+      "How far is P from the center?"
+    ],
+    "wrong_reasons": {
+      "4": "Subtracted the diameter, 6, instead of the radius from the distance to the center",
+      "10": "Found the distance from P to the center of the circle, not to the circle itself",
+      "13": "Added the radius, which gives the farthest point on the circle from P"
+    },
+    "check": "from sympy import *\nh,k,r=-1,1,3\npx,py=5,9\nresult=sqrt((px-h)**2+(py-k)**2)-r",
+    "figure": {
+      "alt": "A coordinate plane from −5 to 7 on the x-axis and −3 to 10 on the y-axis, with grid lines every 1 unit. A circle is drawn with its center marked at the point (−1, 1). The circle passes through the grid points (2, 1), (−4, 1), (−1, 4), and (−1, −2), so its radius is 3. Point P is marked at (5, 9), outside the circle to the upper right.",
+      "aspect": 0.923,
+      "plane": {
+        "x": [
+          -5,
+          7
+        ],
+        "y": [
+          -3,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "circle",
+          "center": [
+            -1,
+            1
+          ],
+          "r": 3
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            9
+          ],
+          "label": "P",
+          "labelPos": "ne"
+        }
+      ]
+    }
   }
 ]

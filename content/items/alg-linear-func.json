@@ -2136,5 +2136,2313 @@
       "48": "Found when Kendra's fund reaches $0"
     },
     "check": "from sympy import *\nw=symbols('w')\nresult=solve((960-20*w)-3*(120+10*w),w)[0]"
+  },
+  {
+    "id": "alg-linear-func-f001",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane passes through two marked points with integer coordinates. What is the slope of the line?",
+    "choices": [
+      "−2",
+      "1/2",
+      "2",
+      "3"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The line passes through (0, 3) and (1, 5).",
+      "Slope = (5 − 3)/(1 − 0) = 2/1.",
+      "So the slope is 2."
+    ],
+    "hints": [
+      "As you move 1 unit to the right along the line, how far up or down do you move?",
+      "Is the line rising or falling from left to right, and what does that say about the sign?"
+    ],
+    "wrong_reasons": {
+      "−2": "Got the sign wrong even though the line rises from left to right",
+      "1/2": "Divided the run by the rise instead of the rise by the run",
+      "3": "Gave the y-intercept instead of the slope"
+    },
+    "check": "from sympy import Rational\nx1,y1,x2,y2=0,3,1,5\nresult=Rational(y2-y1,x2-x1)",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It passes through the marked points (0, 3) and (1, 5); it also passes through (−1, 1) and (−2, −1).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f002",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is an equation of the line shown in the xy-plane?",
+    "choices": [
+      "y = (3/2)x − 2",
+      "y = −(2/3)x − 2",
+      "y = (2/3)x + 3",
+      "y = (2/3)x − 2"
+    ],
+    "answer": "y = (2/3)x − 2",
+    "explanation": [
+      "The y-intercept is (0, −2), so b = −2.",
+      "From (0, −2) to (3, 0), the line rises 2 while it runs 3, so the slope is 2/3.",
+      "So the equation is y = (2/3)x − 2."
+    ],
+    "hints": [
+      "Where does the line cross the y-axis?",
+      "Between the two intercepts, what is the rise and what is the run?"
+    ],
+    "wrong_reasons": {
+      "y = (3/2)x − 2": "Computed run over rise instead of rise over run",
+      "y = −(2/3)x − 2": "Gave the slope the wrong sign although the line rises",
+      "y = (2/3)x + 3": "Used the x-intercept, 3, as the constant term"
+    },
+    "check": "from sympy import Rational\nm=Rational(0-(-2),3-0)\nb=-2\nresult='y=('+str(m)+')x'+('-' if b<0 else '+')+str(abs(b))",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It crosses the y-axis at the marked point (0, −2) and the x-axis at the marked point (3, 0). It also passes through (−3, −4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -2
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f003",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The line shown in the xy-plane is the graph of y = f(x). Line g is perpendicular to the graph of f and passes through the x-intercept of the graph of f. What is the y-coordinate of the y-intercept of line g?",
+    "answer": "−12",
+    "accept": [
+      "-12"
+    ],
+    "explanation": [
+      "From (−4, 1) to (2, 4), the slope of f is 3/6 = 1/2, and the graph crosses the y-axis at 3, so f(x) = (1/2)x + 3.",
+      "The x-intercept of f: 0 = (1/2)x + 3 gives x = −6, so the point is (−6, 0).",
+      "A line perpendicular to f has slope −2 (the negative reciprocal of 1/2).",
+      "Line g: y = −2(x + 6) = −2x − 12, so its y-intercept is at y = −12."
+    ],
+    "hints": [
+      "What are the slope and the x-intercept of the graph of f?",
+      "How is the slope of a perpendicular line related to the slope of f?",
+      "Once you have a slope and a point for g, what is y when x = 0?"
+    ],
+    "check": "from sympy import Rational, symbols, solve\nx=symbols('x')\nm=Rational(4-1,2-(-4))\nb=1-m*(-4)\nx0=solve(m*x+b,x)[0]\nmg=-1/m\nresult=mg*(0-x0)",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −7 to 5 on the x-axis and −3 to 7 on the y-axis, with grid lines every 1 unit. A straight line, the graph of y = f(x), rises from left to right. It passes through the marked points (−4, 1) and (2, 4); it also passes through (−6, 0), (−2, 2), and (0, 3).",
+      "aspect": 1.2,
+      "plane": {
+        "x": [
+          -7,
+          5
+        ],
+        "y": [
+          -3,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              1
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f004",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A candle burns at a constant rate. The graph shows the height h, in centimeters, of the candle t hours after it was lit, until it burned out. According to the graph, what was the height of the candle, in centimeters, 4 hours after it was lit?",
+    "answer": "6",
+    "explanation": [
+      "The candle starts at 12 cm and burns out at 8 hours, so it loses 12/8 = 1.5 cm per hour.",
+      "After 4 hours it has lost 4 · 1.5 = 6 cm.",
+      "12 − 6 = 6, which matches the graph at t = 4."
+    ],
+    "hints": [
+      "What was the height at t = 0, and when did it reach 0?",
+      "How many centimeters does the candle lose each hour?"
+    ],
+    "check": "h0,tend=12,8\nrate=h0/tend\nresult=h0-rate*4",
+    "table": null,
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Time (hours), from 0 to 10, and vertical axis labeled Height (cm), from 0 to 14, with grid lines every 1 unit and axis labels every 2 units. A line segment goes from the marked point (0, 12) down to the marked point (8, 0). It passes through the grid points (2, 9), (4, 6), and (6, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          14
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "Time (hours)",
+        "ylabel": "Height (cm)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            12
+          ],
+          "to": [
+            8,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            12
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f005",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph shows the total cost C, in dollars, of a monthly phone plan that includes m minutes of international calls. According to the graph, how much does each additional minute of international calls add to the monthly cost?",
+    "choices": [
+      "$0.20",
+      "$0.25",
+      "$0.45",
+      "$4.00"
+    ],
+    "answer": "$0.25",
+    "explanation": [
+      "Use two points on the line: (0, 20) and (100, 45).",
+      "Slope = (45 − 20)/(100 − 0) = 25/100 = 0.25.",
+      "Each additional minute adds $0.25 to the cost."
+    ],
+    "hints": [
+      "Which quantity on the graph is the cost per minute: an intercept or the slope?",
+      "Between two marked points, how much does the cost change, and over how many minutes?"
+    ],
+    "wrong_reasons": {
+      "$0.20": "Divided the starting cost, 20, by 100 minutes",
+      "$0.45": "Divided the cost at 100 minutes by 100 without subtracting the $20 starting cost",
+      "$4.00": "Divided the change in minutes by the change in cost"
+    },
+    "check": "from sympy import Rational\nresult=Rational(45-20,100-0)",
+    "table": null,
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Minutes, from 0 to 120, and vertical axis labeled Cost (dollars), from 0 to 60, with grid lines every 5 units and axis labels every 10 units. A straight line starts at the marked point (0, 20) and rises to the right, passing through the marked points (40, 30) and (100, 45) and ending at (120, 50).",
+      "aspect": 1.2,
+      "plane": {
+        "x": [
+          0,
+          120
+        ],
+        "y": [
+          0,
+          60
+        ],
+        "grid": 5,
+        "axes": true,
+        "ticks": 10,
+        "xlabel": "Minutes",
+        "ylabel": "Cost (dollars)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            20
+          ],
+          "to": [
+            120,
+            50
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            20
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            40,
+            30
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            100,
+            45
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f006",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane is the graph of y = f(x). For what value of k is f(k) = 2k?",
+    "choices": [
+      "−6",
+      "−3/2",
+      "3/2",
+      "3"
+    ],
+    "answer": "−3/2",
+    "explanation": [
+      "From (−3, −4) to (3, 0), the slope is 4/6 = 2/3, and the line crosses the y-axis at −2, so f(x) = (2/3)x − 2.",
+      "Set f(k) = 2k: (2/3)k − 2 = 2k.",
+      "Then −2 = (4/3)k, so k = −3/2."
+    ],
+    "hints": [
+      "What equation defines f, based on its slope and y-intercept?",
+      "How can you write f(k) = 2k as an equation in k alone?"
+    ],
+    "wrong_reasons": {
+      "−6": "Solved f(k) = k instead of f(k) = 2k",
+      "3/2": "Made a sign error when moving −2 to the other side",
+      "3": "Gave the x-intercept of the graph, where f(k) = 0"
+    },
+    "check": "from sympy import Rational, symbols, solve\nk=symbols('k')\nm=Rational(0-(-4),3-(-3))\nb=0-m*3\nresult=solve(m*k+b-2*k,k)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line, the graph of y = f(x), rises from left to right. It passes through the marked points (−3, −4) and (3, 0); it also passes through (0, −2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -3,
+              -4
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            -4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f007",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "What is the y-intercept of the line shown in the xy-plane?",
+    "choices": [
+      "(0, −3)",
+      "(−3, 0)",
+      "(0, 3)",
+      "(3/2, 0)"
+    ],
+    "answer": "(0, −3)",
+    "explanation": [
+      "The y-intercept is the point where the line crosses the y-axis, where x = 0.",
+      "The line crosses the y-axis at y = −3.",
+      "So the y-intercept is (0, −3)."
+    ],
+    "hints": [
+      "On which axis does a y-intercept lie?",
+      "What is the x-coordinate of every point on the y-axis?"
+    ],
+    "wrong_reasons": {
+      "(−3, 0)": "Switched the coordinates, placing the point on the x-axis",
+      "(0, 3)": "Misread the intercept as above the origin instead of below",
+      "(3/2, 0)": "Gave the x-intercept instead of the y-intercept"
+    },
+    "check": "x1,y1,x2,y2=0,-3,2,1\nm=(y2-y1)/(x2-x1)\nb=int(y1-m*x1)\nresult='(0,'+str(b)+')'",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It passes through the marked points (0, −3) and (2, 1); it also passes through (1, −1) and (3, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -3
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f008",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The line shown in the xy-plane passes through two marked points with integer coordinates. What is the slope of the line?",
+    "answer": "−3/2",
+    "accept": [
+      "-3/2",
+      "-1.5"
+    ],
+    "explanation": [
+      "Use the marked points (−2, 5) and (4, −4).",
+      "Slope = (−4 − 5)/(4 − (−2)) = −9/6.",
+      "So the slope is −3/2."
+    ],
+    "hints": [
+      "Does the line rise or fall from left to right?",
+      "Between the two marked points, what is the change in y and the change in x?"
+    ],
+    "check": "from sympy import Rational\nresult=Rational(-4-5,4-(-2))",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on the x-axis and −5 to 6 on the y-axis, with grid lines every 1 unit. A straight line falls from left to right. It passes through the marked points (−2, 5) and (4, −4); it also passes through (0, 2) and (2, −1).",
+      "aspect": 0.9090909090909091,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              5
+            ],
+            [
+              4,
+              -4
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            -4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f009",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Tank A drains at a constant rate. The graph shows the volume V, in gallons, of water in Tank A t minutes after it starts draining. Tank B starts draining at the same time with 60 gallons of water and drains at a constant rate that is twice Tank A's rate. After how many minutes will the two tanks contain the same volume of water?",
+    "choices": [
+      "5/3",
+      "5",
+      "10",
+      "15"
+    ],
+    "answer": "5",
+    "explanation": [
+      "From the graph, Tank A starts at 45 gallons and is empty at 15 minutes, so it drains 45/15 = 3 gallons per minute: V = 45 − 3t.",
+      "Tank B drains 2 · 3 = 6 gallons per minute: V = 60 − 6t.",
+      "Set them equal: 45 − 3t = 60 − 6t, so 3t = 15 and t = 5."
+    ],
+    "hints": [
+      "What are Tank A's starting volume and draining rate, from the graph?",
+      "Can you write an expression for each tank's volume after t minutes?",
+      "When are those two expressions equal?"
+    ],
+    "wrong_reasons": {
+      "5/3": "Added the two draining rates instead of subtracting them",
+      "10": "Found when Tank B is empty instead of when the volumes match",
+      "15": "Read when Tank A is empty from the graph"
+    },
+    "check": "from sympy import symbols, solve, Rational\nt=symbols('t')\nrA=Rational(45,15)\nresult=solve((45-rA*t)-(60-2*rA*t),t)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Time (minutes), from 0 to 16, and vertical axis labeled Volume (gallons), from 0 to 50, with grid lines and axis labels every 5 units. A line segment, labeled Tank A, goes from the marked point (0, 45) down to the marked point (15, 0). It passes through the grid points (5, 30) and (10, 15).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          16
+        ],
+        "y": [
+          0,
+          50
+        ],
+        "grid": 5,
+        "axes": true,
+        "ticks": 5,
+        "xlabel": "Time (minutes)",
+        "ylabel": "Volume (gallons)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            45
+          ],
+          "to": [
+            15,
+            0
+          ],
+          "label": "Tank A"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            45
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            15,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f010",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A plant grows at a constant rate. The graph shows the height h, in inches, of the plant w weeks after it was first measured. According to the graph, by how many inches did the plant's height increase each week?",
+    "choices": [
+      "2",
+      "4",
+      "12",
+      "16"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The height goes from 4 inches at week 0 to 16 inches at week 6.",
+      "That is an increase of 16 − 4 = 12 inches over 6 weeks.",
+      "12/6 = 2, so the height increased by 2 inches each week."
+    ],
+    "hints": [
+      "What was the height at week 0, and what was it at week 6?",
+      "How do you turn a total increase into an increase per week?"
+    ],
+    "wrong_reasons": {
+      "4": "Gave the starting height instead of the weekly increase",
+      "12": "Gave the total increase over 6 weeks without dividing by 6",
+      "16": "Gave the height at week 6"
+    },
+    "check": "result=(16-4)/(6-0)",
+    "table": null,
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Week, from 0 to 10, and vertical axis labeled Height (inches), from 0 to 26, with grid lines every 1 unit and axis labels every 2 units. A line segment goes from the marked point (0, 4) up to (10, 24). It passes through the marked point (6, 16) and the grid points (2, 8) and (4, 12).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          26
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "Week",
+        "ylabel": "Height (inches)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            4
+          ],
+          "to": [
+            10,
+            24
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            16
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f011",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is an equation of the line shown in the xy-plane?",
+    "choices": [
+      "3x − 2y = −6",
+      "2x + 3y = 6",
+      "2x − 3y = −6",
+      "2x − 3y = 6"
+    ],
+    "answer": "2x − 3y = −6",
+    "explanation": [
+      "The slope from (−3, 0) to (0, 2) is 2/3 and the y-intercept is 2, so y = (2/3)x + 2.",
+      "Multiply by 3: 3y = 2x + 6.",
+      "Rearrange: 2x − 3y = −6. Check (−3, 0): 2(−3) − 0 = −6. ✓"
+    ],
+    "hints": [
+      "What are the slope and y-intercept of the line?",
+      "Which choice is still true when you substitute both intercepts, (−3, 0) and (0, 2)?"
+    ],
+    "wrong_reasons": {
+      "3x − 2y = −6": "Used a slope of 3/2 by computing run over rise",
+      "2x + 3y = 6": "Gave the line a negative slope, so (−3, 0) is not on it",
+      "2x − 3y = 6": "Sign error on the constant; this line crosses the y-axis at −2"
+    },
+    "check": "from sympy import symbols, Rational, expand\nx,y=symbols('x y')\nm=Rational(2-0,0-(-3))\nb=2\n# write y=mx+b as a x + c y = d with integer coefficients\na,c,d=m*3,-3,-b*3\nassert a*(-3)+c*0==d and a*0+c*2==d\nresult=str(a)+'x'+('-' if c<0 else '+')+str(abs(c))+'y='+str(d)",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It crosses the x-axis at the marked point (−3, 0) and the y-axis at the marked point (0, 2). It also passes through (3, 4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -3,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f012",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The line shown in the xy-plane is the graph of y = ax + b, where a and b are constants. At what x-coordinate does the graph of y = bx + a cross the x-axis?",
+    "answer": "1/2",
+    "accept": [
+      "0.5",
+      ".5"
+    ],
+    "explanation": [
+      "From (1, −2) to (3, 2), the slope is 4/2 = 2, so a = 2.",
+      "The line crosses the y-axis at −4, so b = −4.",
+      "The new line is y = −4x + 2. Setting y = 0 gives 4x = 2, so x = 1/2."
+    ],
+    "hints": [
+      "What are a and b for the line in the graph?",
+      "After you swap a and b, what equation must x satisfy when y = 0?"
+    ],
+    "check": "from sympy import Rational, symbols, solve\nx=symbols('x')\na=Rational(2-(-2),3-1)\nb=-2-a*1\nresult=solve(b*x+a,x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises steeply from left to right. It passes through the marked points (1, −2) and (3, 2); it also passes through (0, −4) and (2, 0).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              1,
+              -2
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            -2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f013",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A hiker walks at a constant speed. The graph shows the remaining distance d, in miles, to the end of the trail t hours after the hike begins. Which equation represents d in terms of t?",
+    "choices": [
+      "d = 12 − 3t",
+      "d = 4 − 12t",
+      "d = 12 + 4t",
+      "d = 12 − 4t"
+    ],
+    "answer": "d = 12 − 4t",
+    "explanation": [
+      "At t = 0 the remaining distance is 12 miles, so the d-intercept is 12.",
+      "The distance drops 12 miles in 3 hours, so the slope is −12/3 = −4.",
+      "So d = 12 − 4t."
+    ],
+    "hints": [
+      "What is the remaining distance when the hike begins?",
+      "Is the remaining distance increasing or decreasing, and by how much each hour?"
+    ],
+    "wrong_reasons": {
+      "d = 12 − 3t": "Used the trip time, 3, as the rate instead of the speed",
+      "d = 4 − 12t": "Swapped the starting distance and the speed",
+      "d = 12 + 4t": "Missed that the remaining distance decreases, so the slope must be negative"
+    },
+    "check": "d0,tend=12,3\nrate=d0//tend\nresult='d='+str(d0)+'-'+str(rate)+'t'",
+    "table": null,
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Time (hours), from 0 to 4, and vertical axis labeled Distance remaining (miles), from 0 to 14, with grid lines and axis labels every 1 unit. A line segment goes from the marked point (0, 12) down to the marked point (3, 0). It passes through the grid points (1, 8) and (2, 4).",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          0,
+          4
+        ],
+        "y": [
+          0,
+          14
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Time (hours)",
+        "ylabel": "Distance remaining (miles)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            12
+          ],
+          "to": [
+            3,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            12
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f014",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane is the graph of y = f(x). What is the value of f(6)?",
+    "choices": [
+      "3",
+      "4",
+      "6",
+      "10"
+    ],
+    "answer": "4",
+    "explanation": [
+      "f(6) is the y-value of the graph when x = 6.",
+      "The line passes through the point (6, 4).",
+      "So f(6) = 4."
+    ],
+    "hints": [
+      "Which coordinate does the input 6 tell you to find on the graph?",
+      "Where is the point on the line directly above x = 6?"
+    ],
+    "wrong_reasons": {
+      "3": "Read the y-value at x = 4 instead of x = 6",
+      "6": "Gave the input instead of the output",
+      "10": "Found the x-value where f(x) = 6 instead of evaluating f(6)"
+    },
+    "check": "from sympy import Rational\nm=Rational(4-(-1),6-(-4))\nb=-1-m*(-4)\nresult=m*6+b",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 8 on both axes, with grid lines every 1 unit. A straight line, the graph of y = f(x), rises from left to right. It passes through the marked points (−4, −1) and (6, 4); it also passes through (−2, 0), (0, 1), (2, 2), and (4, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          8
+        ],
+        "y": [
+          -6,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              -1
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            -1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f015",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane is the graph of y = f(x). Line g is parallel to the graph of f and passes through the point (2, 5). What is the x-coordinate of the x-intercept of line g?",
+    "choices": [
+      "−4/3",
+      "16/3",
+      "8",
+      "19/2"
+    ],
+    "answer": "16/3",
+    "explanation": [
+      "From (−2, 6) to (4, −3), the slope of f is −9/6 = −3/2.",
+      "Line g has the same slope and passes through (2, 5): y − 5 = −(3/2)(x − 2), so y = −(3/2)x + 8.",
+      "Set y = 0: (3/2)x = 8, so x = 16/3."
+    ],
+    "hints": [
+      "What is the slope of the graph of f, and what does parallel tell you about g's slope?",
+      "Using that slope and the point (2, 5), what is an equation of g?",
+      "What is y at an x-intercept?"
+    ],
+    "wrong_reasons": {
+      "−4/3": "Used the slope 3/2 instead of −3/2",
+      "8": "Gave the y-intercept of g instead of its x-intercept",
+      "19/2": "Used the reciprocal slope −2/3 instead of −3/2"
+    },
+    "check": "from sympy import Rational, symbols, solve\nx=symbols('x')\nm=Rational(-3-6,4-(-2))\nresult=solve(m*(x-2)+5,x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 7 on the x-axis and −5 to 7 on the y-axis, with grid lines every 1 unit. A straight line, the graph of y = f(x), falls from left to right. It passes through the marked points (−2, 6) and (4, −3); it also passes through (0, 3) and (2, 0).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          7
+        ],
+        "y": [
+          -5,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              6
+            ],
+            [
+              4,
+              -3
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            -3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f016",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane crosses the x-axis at the point (a, 0). What is the value of a?",
+    "choices": [
+      "−4",
+      "−2",
+      "2",
+      "4"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The x-intercept is where the line meets the x-axis, where y = 0.",
+      "The line meets the x-axis at the marked point (2, 0).",
+      "So a = 2."
+    ],
+    "hints": [
+      "Which axis are you looking for the line to touch?",
+      "What is the y-coordinate of every point on the x-axis?"
+    ],
+    "wrong_reasons": {
+      "−4": "Gave the y-intercept (0, −4) instead of the x-intercept",
+      "−2": "Mixed up the sign of the x-intercept",
+      "4": "Used the distance from the y-intercept to the x-axis, 4 units, as the x-intercept"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nm=Rational(0-(-4),2-0)\nresult=solve(m*x-4,x)[0]",
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It passes through the marked points (0, −4) and (2, 0); it also passes through (1, −2) and (3, 2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -4
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -4
+          ],
+          "label": "(0, −4)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f017",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is an equation of the line shown in the xy-plane?",
+    "choices": [
+      "y = −(3/2)x + 2",
+      "y = −(2/3)x + 2",
+      "y = (3/2)x + 2",
+      "y = −(3/2)x − 1"
+    ],
+    "answer": "y = −(3/2)x + 2",
+    "explanation": [
+      "The line crosses the y-axis at (0, 2), so b = 2.",
+      "From (0, 2) to (2, −1), y changes by −3 while x changes by 2, so the slope is −3/2.",
+      "So the equation is y = −(3/2)x + 2."
+    ],
+    "hints": [
+      "Where does the line cross the y-axis?",
+      "Moving from one marked point to the other, how far does the line go down, and how far does it go across?"
+    ],
+    "wrong_reasons": {
+      "y = −(2/3)x + 2": "Computed run over rise instead of rise over run",
+      "y = (3/2)x + 2": "Missed that the line falls from left to right, so the slope is negative",
+      "y = −(3/2)x − 1": "Used the y-coordinate of (2, −1) as the y-intercept"
+    },
+    "check": "from sympy import *\nm=Rational(-1-2,2-0)\nb=2-m*0\nresult='y=-(%d/%d)x+%d'%(-m.p,m.q,b)",
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. A straight line falls from left to right. It passes through the marked points (0, 2) and (2, −1); it also passes through (−2, 5) and (4, −4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              -1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ],
+          "label": "(0, 2)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -1
+          ],
+          "label": "(2, −1)",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f018",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph shows the total cost C, in dollars, of playing g games at Arcade A, including a one-time fee for a game card. Arcade B charges no card fee and 3.50 dollars per game. For what number of games g is the total cost at the two arcades the same?",
+    "choices": [
+      "12/7",
+      "7/3",
+      "3",
+      "4"
+    ],
+    "answer": "4",
+    "explanation": [
+      "From (0, 6) to (6, 18), the cost rises 12 dollars over 6 games, so Arcade A charges 2 dollars per game plus a 6-dollar card fee.",
+      "Arcade A: C = 2g + 6. Arcade B: C = 3.5g.",
+      "Set them equal: 2g + 6 = 3.5g, so 1.5g = 6.",
+      "So g = 4."
+    ],
+    "hints": [
+      "What do the starting value and the steepness of the graph tell you about Arcade A's prices?",
+      "Can you write each arcade's cost as an expression in g and set them equal?"
+    ],
+    "wrong_reasons": {
+      "12/7": "Divided the card fee by Arcade B's price per game, 6 ÷ 3.5, instead of by the difference in prices",
+      "7/3": "Divided Arcade B's price by the difference in prices, 3.5 ÷ 1.5",
+      "3": "Divided the card fee by Arcade A's price per game, 6 ÷ 2"
+    },
+    "check": "from sympy import *\ng=symbols('g')\nrate=Rational(18-6,6-0)\nresult=solve(rate*g+6-Rational(7,2)*g,g)[0]",
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Games, from 0 to 14, and vertical axis labeled Cost (dollars), from 0 to 40, with grid lines every 2 units and axis labels every 4 units. A line segment labeled Arcade A starts at the marked point (0, 6) and rises to the right through the marked point (6, 18), ending at (14, 34). It also passes through the grid points (2, 10), (4, 14), and (10, 26).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          14
+        ],
+        "y": [
+          0,
+          40
+        ],
+        "grid": 2,
+        "axes": true,
+        "ticks": 4,
+        "xlabel": "Games",
+        "ylabel": "Cost (dollars)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            6
+          ],
+          "to": [
+            14,
+            34
+          ],
+          "label": "Arcade A"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            6
+          ],
+          "label": "(0, 6)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            18
+          ],
+          "label": "(6, 18)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f019",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The line shown in the xy-plane passes through the two marked points. The line crosses the y-axis at the point (0, b). What is the value of b?",
+    "answer": "9/4",
+    "accept": [
+      "2.25"
+    ],
+    "explanation": [
+      "From (−3, 0) to (1, 3), y rises 3 while x increases 4, so the slope is 3/4.",
+      "Go from (−3, 0) to x = 0: that is 3 units right, so y rises (3/4)(3) = 9/4.",
+      "So b = 9/4."
+    ],
+    "hints": [
+      "The y-intercept isn't on a grid point, so how could you find it from the two points you can read exactly?",
+      "What is the slope, and how far is x = 0 from one of the marked points?"
+    ],
+    "check": "from sympy import *\nm=Rational(3-0,1-(-3))\nresult=3-m*1",
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It passes through the marked points (−3, 0) and (1, 3). It crosses the y-axis between y = 2 and y = 3, at a point that is not on a grid intersection.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -3,
+              0
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            0
+          ],
+          "label": "(−3, 0)",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            3
+          ],
+          "label": "(1, 3)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f020",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Water flows into an empty tank at a constant rate. The graph shows the volume V, in gallons, of water in the tank t minutes after the water starts flowing. At what rate, in gallons per minute, does water flow into the tank?",
+    "choices": [
+      "1/3",
+      "2",
+      "3",
+      "6"
+    ],
+    "answer": "3",
+    "explanation": [
+      "The rate is the slope of the line: change in volume divided by change in time.",
+      "From (0, 0) to (2, 6), the volume rises 6 gallons in 2 minutes.",
+      "6 ÷ 2 = 3 gallons per minute."
+    ],
+    "hints": [
+      "Which feature of a line graph measures how fast the quantity on the vertical axis changes?",
+      "How many gallons are added during the first 2 minutes?"
+    ],
+    "wrong_reasons": {
+      "1/3": "Divided time by volume (run over rise) instead of volume by time",
+      "2": "Gave the time coordinate of the marked point",
+      "6": "Gave the volume after 2 minutes instead of the volume added per minute"
+    },
+    "check": "result = (6-0)/(2-0)",
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Time (minutes), from 0 to 10, and vertical axis labeled Volume (gallons), from 0 to 30, with grid lines every 1 unit and axis labels every 2 units. A line segment starts at the origin, the marked point (0, 0), and rises to the right through the marked point (2, 6), ending at (9, 27). It also passes through (4, 12) and (6, 18).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          30
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "Time (minutes)",
+        "ylabel": "Volume (gallons)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            9,
+            27
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            6
+          ],
+          "label": "(2, 6)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f021",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane is the graph of y = f(x). The function g is defined by g(x) = f(2x) + 1. What is the value of g(3)?",
+    "choices": [
+      "7/2",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": "5",
+    "explanation": [
+      "From (−4, −1) to (2, 2), y rises 3 while x increases 6, so the slope is 1/2. The line crosses the y-axis at (0, 1), so f(x) = (1/2)x + 1.",
+      "g(3) = f(2 · 3) + 1 = f(6) + 1.",
+      "f(6) = (1/2)(6) + 1 = 4, so g(3) = 4 + 1 = 5."
+    ],
+    "hints": [
+      "Before using the graph, what input does g(3) actually send to f?",
+      "Once you know which input to use, what is f at that input, and what does g do to it next?"
+    ],
+    "wrong_reasons": {
+      "7/2": "Evaluated f(3) + 1 instead of f(6) + 1, ignoring the 2 inside f(2x)",
+      "4": "Found f(6) but forgot to add 1",
+      "6": "Computed 2·f(3) + 1, multiplying the output by 2 instead of the input"
+    },
+    "check": "from sympy import *\nm=Rational(2-(-1),2-(-4))\nf=lambda t: m*(t-2)+2\nresult=f(2*3)+1",
+    "figure": {
+      "alt": "A coordinate plane from −7 to 7 on both axes, with grid lines every 1 unit. A straight line, the graph of y = f(x), rises from left to right. It passes through the marked points (−4, −1) and (2, 2); it also passes through (−2, 0), (0, 1), (4, 3), and (6, 4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -7,
+          7
+        ],
+        "y": [
+          -7,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              -1
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            -1
+          ],
+          "label": "(−4, −1)",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            2
+          ],
+          "label": "(2, 2)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f022",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The graph shows the battery charge B, as a percent of full charge, of a laptop t hours after it is unplugged. The charge decreases at a constant rate. What is the battery charge, in percent, 5 hours after the laptop is unplugged?",
+    "answer": "60",
+    "explanation": [
+      "The charge drops from 80% to 40% in 10 hours, which is 4 percentage points per hour.",
+      "After 5 hours, the charge has dropped 4 · 5 = 20 points.",
+      "80 − 20 = 60, which matches the grid point (5, 60) on the graph."
+    ],
+    "hints": [
+      "Find t = 5 on the horizontal axis. Where is the line directly above it?",
+      "How much charge does the laptop lose each hour?"
+    ],
+    "check": "rate = (40-80)/(10-0)\nresult = 80 + rate*5",
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Time (hours), from 0 to 25, and vertical axis labeled Charge (%), from 0 to 100, with grid lines every 5 units and axis labels every 10 units. A line segment starts at the marked point (0, 80) and falls to the right through the marked point (10, 40), ending at (20, 0). It passes through the grid points (5, 60) and (15, 20).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          25
+        ],
+        "y": [
+          0,
+          100
+        ],
+        "grid": 5,
+        "axes": true,
+        "ticks": 10,
+        "xlabel": "Time (hours)",
+        "ylabel": "Charge (%)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            80
+          ],
+          "to": [
+            20,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            80
+          ],
+          "label": "(0, 80)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            10,
+            40
+          ],
+          "label": "(10, 40)",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f023",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Which of the following is an equation of the line shown in the xy-plane?",
+    "choices": [
+      "3x − 2y = 6",
+      "2x − 3y = 6",
+      "2x + 3y = 6",
+      "3x + 2y = −6"
+    ],
+    "answer": "2x − 3y = 6",
+    "explanation": [
+      "The slope from (0, −2) to (3, 0) is 2/3, so y = (2/3)x − 2.",
+      "Multiply both sides by 3: 3y = 2x − 6.",
+      "Rearrange: 2x − 3y = 6."
+    ],
+    "hints": [
+      "Can you test each choice by plugging in the two marked points?",
+      "Which choice is true at both (0, −2) and (3, 0)?"
+    ],
+    "wrong_reasons": {
+      "3x − 2y = 6": "Swapped the intercepts; this line crosses the axes at (2, 0) and (0, −3)",
+      "2x + 3y = 6": "Got the sign of y wrong; this line has a negative slope and crosses the y-axis at (0, 2)",
+      "3x + 2y = −6": "Swapped the intercepts and the slope sign; this line crosses the axes at (−2, 0) and (0, −3)"
+    },
+    "check": "from sympy import *\na,b=3,-2\n# intercept form x/a + y/b = 1, cleared by the lcm\nL=ilcm(abs(a),abs(b))\nA,B=L//a,L//b\nresult='%dx%s%dy=%d'%(A,'-' if B<0 else '+',abs(B),L)",
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It crosses the y-axis at the marked point (0, −2) and the x-axis at the marked point (3, 0); it also passes through (−3, −4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -2
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ],
+          "label": "(0, −2)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f024",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane is the graph of y = f(x). The graph of y = f(x) + c, where c is a constant, passes through the point (6, 1). What is the value of c?",
+    "choices": [
+      "−3",
+      "1",
+      "3",
+      "8"
+    ],
+    "answer": "3",
+    "explanation": [
+      "From (−3, 4) to (3, 0), y falls 4 while x increases 6, so the slope is −2/3; the y-intercept is 2. So f(x) = −(2/3)x + 2.",
+      "f(6) = −(2/3)(6) + 2 = −2.",
+      "The shifted graph passes through (6, 1), so f(6) + c = 1, which gives −2 + c = 1.",
+      "So c = 3."
+    ],
+    "hints": [
+      "What is f(6)? You may need to extend the line or use its slope.",
+      "Adding c moves every point of the graph up by c. How far up must (6, f(6)) move to reach (6, 1)?"
+    ],
+    "wrong_reasons": {
+      "−3": "Subtracted in the wrong order, computing f(6) − 1",
+      "1": "Used x = 3, where f(3) = 0, instead of x = 6",
+      "8": "Used −3/2 as the slope (run over rise), getting f(6) = −7"
+    },
+    "check": "from sympy import *\nm=Rational(0-4,3-(-3))\nf=lambda t: m*(t-3)\nresult=1-f(6)",
+    "figure": {
+      "alt": "A coordinate plane from −7 to 7 on both axes, with grid lines every 1 unit. A straight line, the graph of y = f(x), falls from left to right. It passes through the marked points (−3, 4) and (3, 0); it also passes through (0, 2) and (6, −2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -7,
+          7
+        ],
+        "y": [
+          -7,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -3,
+              4
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            4
+          ],
+          "label": "(−3, 4)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "(3, 0)",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f025",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Which of the following points lies on the line shown in the xy-plane?",
+    "choices": [
+      "(2, 5)",
+      "(3, 6)",
+      "(5, 2)",
+      "(−2, −5)"
+    ],
+    "answer": "(2, 5)",
+    "explanation": [
+      "From (−1, −1) to (1, 3), y rises 4 while x increases 2, so the slope is 2 and the line is y = 2x + 1.",
+      "Check (2, 5): 2(2) + 1 = 5. It works.",
+      "So (2, 5) lies on the line."
+    ],
+    "hints": [
+      "Starting at (1, 3), where does the line go when you move 1 unit to the right?",
+      "How much does y change for each 1-unit step in x?"
+    ],
+    "wrong_reasons": {
+      "(3, 6)": "Used y = 2x and forgot the y-intercept of 1; the line passes through (3, 7), not (3, 6)",
+      "(5, 2)": "Reversed the coordinates of (2, 5)",
+      "(−2, −5)": "Forgot the y-intercept and also stepped the wrong way; the line passes through (−2, −3), not (−2, −5)"
+    },
+    "check": "cands=[(2,5),(3,6),(5,2),(-2,-5)]\nm=(3-(-1))/(1-(-1))\nb=3-m*1\nok=[p for p in cands if p[1]==m*p[0]+b]\nresult='(%d, %d)'%ok[0]",
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. A straight line rises from left to right. It passes through the marked points (−1, −1) and (1, 3); it also passes through (0, 1), (2, 5), and (−2, −3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -1,
+              -1
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            -1
+          ],
+          "label": "(−1, −1)",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            3
+          ],
+          "label": "(1, 3)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f026",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Water drains from a tank at a constant rate. The graph shows the volume V, in liters, of water in the tank t minutes after draining begins. How many minutes after draining begins will the volume of water be 1/3 of the starting volume?",
+    "answer": "32/3",
+    "accept": [
+      "10.66",
+      "10.67"
+    ],
+    "explanation": [
+      "The starting volume is 48 liters, and from (0, 48) to (6, 30) the volume falls 18 liters in 6 minutes: 3 liters per minute.",
+      "So V = 48 − 3t.",
+      "One third of the starting volume is 48/3 = 16 liters. Solve 48 − 3t = 16: 3t = 32.",
+      "So t = 32/3 minutes (about 10.67)."
+    ],
+    "hints": [
+      "What is the starting volume, and how fast is it dropping?",
+      "One third of the starting volume is how many liters, and when does the line reach that height?"
+    ],
+    "check": "from sympy import *\nt=symbols('t')\nrate=Rational(30-48,6-0)\nresult=solve(48+rate*t-Rational(48,3),t)[0]",
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Time (minutes), from 0 to 18, and vertical axis labeled Volume (liters), from 0 to 50, with grid lines every 2 units and axis labels every 6 units. A line segment starts at the marked point (0, 48) and falls to the right through the marked point (6, 30), ending at (16, 0). It also passes through the grid points (2, 42) and (10, 18).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          18
+        ],
+        "y": [
+          0,
+          50
+        ],
+        "grid": 2,
+        "axes": true,
+        "ticks": 6,
+        "xlabel": "Time (minutes)",
+        "ylabel": "Volume (liters)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            48
+          ],
+          "to": [
+            16,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            48
+          ],
+          "label": "(0, 48)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            30
+          ],
+          "label": "(6, 30)",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f027",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph shows the total fare F, in dollars, for a taxi ride of d miles. According to the graph, by how much does the fare increase for each additional mile?",
+    "choices": [
+      "$2.50",
+      "$3.00",
+      "$3.25",
+      "$13.00"
+    ],
+    "answer": "$2.50",
+    "explanation": [
+      "The increase per mile is the slope of the line.",
+      "From (0, 3) to (4, 13), the fare rises 10 dollars over 4 miles.",
+      "10 ÷ 4 = 2.50 dollars per mile."
+    ],
+    "hints": [
+      "What does the fare for 0 miles represent, and should it count toward the per-mile cost?",
+      "How much does the fare rise between the two marked points, and over how many miles?"
+    ],
+    "wrong_reasons": {
+      "$3.00": "Gave the starting fare (the y-intercept) instead of the increase per mile",
+      "$3.25": "Divided the total fare at 4 miles by 4, 13 ÷ 4, without first removing the starting fare",
+      "$13.00": "Gave the total fare for a 4-mile ride"
+    },
+    "check": "result = (13-3)/(4-0)",
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Distance (miles), from 0 to 10, and vertical axis labeled Fare (dollars), from 0 to 30, with grid lines every 1 unit and axis labels every 2 units. A line segment starts at the marked point (0, 3) and rises to the right through the marked point (4, 13), ending at (10, 28). It also passes through the grid points (2, 8) and (8, 23).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          30
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "Distance (miles)",
+        "ylabel": "Fare (dollars)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            10,
+            28
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ],
+          "label": "(0, 3)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            13
+          ],
+          "label": "(4, 13)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f028",
+    "skill_id": "alg-linear-func",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane passes through the two marked points. If x increases by 6, by how much does y increase?",
+    "choices": [
+      "1/2",
+      "3",
+      "6",
+      "12"
+    ],
+    "answer": "3",
+    "explanation": [
+      "From (−2, −4) to (4, −1), y rises 3 while x increases 6, so the slope is 3/6 = 1/2.",
+      "For a line, y always changes by (slope) × (change in x).",
+      "(1/2)(6) = 3."
+    ],
+    "hints": [
+      "The slope tells you how much y changes for a 1-unit increase in x. What is it here?",
+      "What happens to the change in y when x increases by 6 instead of 1?"
+    ],
+    "wrong_reasons": {
+      "1/2": "Gave the slope (the change in y per 1 unit of x) instead of the change for 6 units",
+      "6": "Assumed y increases by the same amount as x",
+      "12": "Used run over rise, 2, as the slope and multiplied by 6"
+    },
+    "check": "from sympy import *\nm=Rational(-1-(-4),4-(-2))\nresult=m*6",
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. A straight line rises gently from left to right. It passes through the marked points (−2, −4) and (4, −1); it also passes through (0, −3) and (2, −2).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              -4
+            ],
+            [
+              4,
+              -1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            -4
+          ],
+          "label": "(−2, −4)",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            -1
+          ],
+          "label": "(4, −1)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f029",
+    "skill_id": "alg-linear-func",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A plant grows at a constant rate. The graph shows the height h, in centimeters, of the plant w weeks after it was first measured. How many centimeters does the plant grow each week?",
+    "answer": "2",
+    "explanation": [
+      "The growth per week is the slope of the line.",
+      "From (0, 4) to (3, 10), the height increases 6 cm in 3 weeks.",
+      "6 ÷ 3 = 2 cm per week."
+    ],
+    "hints": [
+      "How tall was the plant at the start, and how tall was it after 3 weeks?",
+      "How much did it grow in those 3 weeks, and how much is that per week?"
+    ],
+    "check": "result = (10-4)/(3-0)",
+    "figure": {
+      "alt": "A graph with horizontal axis labeled Time (weeks), from 0 to 8, and vertical axis labeled Height (cm), from 0 to 20, with grid lines every 1 unit and axis labels every 2 units. A line segment starts at the marked point (0, 4) and rises to the right through the marked point (3, 10), ending at (8, 20). It also passes through the grid points (1, 6), (2, 8), and (5, 14).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          8
+        ],
+        "y": [
+          0,
+          20
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "Time (weeks)",
+        "ylabel": "Height (cm)"
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            4
+          ],
+          "to": [
+            8,
+            20
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ],
+          "label": "(0, 4)",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            10
+          ],
+          "label": "(3, 10)",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-linear-func-f030",
+    "skill_id": "alg-linear-func",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane is the graph of y = f(x). For what value of a is f(a) = 2a − 14?",
+    "choices": [
+      "−4",
+      "4",
+      "21/4",
+      "28"
+    ],
+    "answer": "4",
+    "explanation": [
+      "From (−4, 6) to (2, −3), y falls 9 while x increases 6, so the slope is −3/2. The line passes through (0, 0), so f(x) = −(3/2)x.",
+      "Set −(3/2)a = 2a − 14.",
+      "Add (3/2)a and 14 to both sides: 14 = (7/2)a.",
+      "So a = 4."
+    ],
+    "hints": [
+      "What is the equation of the line? Notice where it crosses the y-axis.",
+      "Once you have f(a) in terms of a, can you set it equal to 2a − 14 and solve?"
+    ],
+    "wrong_reasons": {
+      "−4": "Made a sign error and solved −(3/2)a = 2a + 14",
+      "21/4": "Used run over rise, −2/3, as the slope",
+      "28": "Missed that the line falls, using +3/2 as the slope"
+    },
+    "check": "from sympy import *\na=symbols('a')\nm=Rational(-3-6,2-(-4))\nb=6-m*(-4)\nresult=solve(m*a+b-(2*a-14),a)[0]",
+    "figure": {
+      "alt": "A coordinate plane from −7 to 7 on both axes, with grid lines every 1 unit. A straight line, the graph of y = f(x), falls from left to right and passes through the origin. It passes through the marked points (−4, 6) and (2, −3); it also passes through (−2, 3), (0, 0), and (4, −6).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -7,
+          7
+        ],
+        "y": [
+          -7,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              6
+            ],
+            [
+              2,
+              -3
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            6
+          ],
+          "label": "(−4, 6)",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -3
+          ],
+          "label": "(2, −3)",
+          "labelPos": "ne"
+        }
+      ]
+    }
   }
 ]

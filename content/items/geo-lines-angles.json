@@ -1991,5 +1991,6703 @@
       "It cannot be determined from the information given.": "Did not realize the angle conditions force the triangle to be equilateral"
     },
     "check": "from sympy import *\nk=symbols('k')\ns=solve(Eq((k+30)+2*k+(3*k-30),180),k)[0]\nA,B,C=s+30,2*s,3*s-30\nc=12\na=c*sin(rad(A))/sin(rad(C)); b=c*sin(rad(B))/sin(rad(C))\nresult=simplify(a+b+c)"
+  },
+  {
+    "id": "geo-lines-angles-f001",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m, and line t crosses both. What is the value of x?",
+    "choices": [
+      "25",
+      "65",
+      "115",
+      "125"
+    ],
+    "answer": "115",
+    "explanation": [
+      "The 65° angle and the x° angle are both between ℓ and m and on the same side (right) of t, so they are same-side interior angles.",
+      "Same-side interior angles formed by parallel lines are supplementary.",
+      "x = 180 − 65 = 115."
+    ],
+    "hints": [
+      "Are the two marked angles on the same side of t or on opposite sides?",
+      "When parallel lines are cut by a transversal, what do two interior angles on the same side add up to?"
+    ],
+    "wrong_reasons": {
+      "25": "Used 90° (complementary) instead of 180°",
+      "65": "Treated the angles as alternate interior angles, which are equal",
+      "125": "Subtraction error: 180 − 65 computed as 125"
+    },
+    "check": "result=180-65",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below, are crossed by line t, which rises from lower left to upper right. At the point where t meets m, the angle above m and to the right of t measures 65°. At the point where t meets ℓ, the angle below ℓ and to the right of t is labeled x°.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1.5,
+          4.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              2,
+              0
+            ],
+            [
+              3.399,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            3.399,
+            3
+          ],
+          "label": "65°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.399,
+            3
+          ],
+          "from": [
+            6,
+            3
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            3.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            0.25
+          ],
+          "text": "m"
+        },
+        {
+          "type": "text",
+          "at": [
+            3.991,
+            4.269
+          ],
+          "text": "t"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f002",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, point D lies on the extension of side BC of triangle ABC. The measure of angle BAC is (2x)°, the measure of angle ABC is (x + 10)°, and the measure of exterior angle ACD is 130°. What is the measure of angle ABC?",
+    "choices": [
+      "40°",
+      "50°",
+      "80°",
+      "130°"
+    ],
+    "answer": "50°",
+    "explanation": [
+      "An exterior angle of a triangle equals the sum of the two remote interior angles.",
+      "So 2x + (x + 10) = 130, which gives 3x = 120 and x = 40.",
+      "Angle ABC = x + 10 = 40 + 10 = 50°."
+    ],
+    "hints": [
+      "Which two interior angles of the triangle are not next to the 130° angle?",
+      "How is an exterior angle related to those two angles?",
+      "After finding x, which expression gives angle ABC?"
+    ],
+    "wrong_reasons": {
+      "40°": "Found x but did not substitute it into x + 10",
+      "80°": "Found angle BAC (2x) instead of angle ABC",
+      "130°": "Assumed angle ABC equals the exterior angle"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nxv=solve(Eq(2*x+(x+10),130),x)[0]\nresult=xv+10",
+    "figure": {
+      "alt": "Triangle ABC with B at the lower left, C at the lower right, and A at the top. Side BC is extended to the right past C to point D. Angle A is labeled (2x)°, angle B is labeled (x + 10)°, and the exterior angle ACD, between CA and CD, is labeled 130°.",
+      "aspect": 2.0,
+      "plane": {
+        "x": [
+          -1,
+          9
+        ],
+        "y": [
+          -1,
+          4
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2.5,
+              2.979
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            8,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.5,
+            2.979
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5,
+            0
+          ],
+          "label": "(2x)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            2.5,
+            2.979
+          ],
+          "label": "(x + 10)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5,
+            0
+          ],
+          "from": [
+            8,
+            0
+          ],
+          "to": [
+            2.5,
+            2.979
+          ],
+          "label": "130°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f003",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In triangle ABC, AB = AC and the measure of angle BAC is 36°. Segment BD bisects angle ABC, with point D on side AC. What is the measure, in degrees, of angle BDC?",
+    "answer": "72",
+    "accept": [
+      "72°"
+    ],
+    "explanation": [
+      "Because AB = AC, the base angles are equal: angle ABC = angle ACB = (180 − 36)/2 = 72°.",
+      "BD bisects angle ABC, so angle ABD = 72/2 = 36°.",
+      "Angle BDC is an exterior angle of triangle ABD, so it equals angle BAD + angle ABD = 36 + 36 = 72°."
+    ],
+    "hints": [
+      "Which two angles of triangle ABC must be equal, and what is each one?",
+      "What is the measure of angle ABD after the bisection?",
+      "Angle BDC is outside triangle ABD. Which two angles of that triangle does it equal the sum of?"
+    ],
+    "check": "A=36\nB=(180-A)/2\nABD=B/2\nresult=A+ABD",
+    "figure": {
+      "alt": "Isosceles triangle ABC with apex A at the top, B at the lower left and C at the lower right. Sides AB and AC have matching tick marks, showing AB = AC. Angle A is labeled 36°. A segment runs from B to point D on side AC, splitting angle ABC into two equal angles, each marked with one arc. Angle BDC, at D between DB and DC, is marked with a question mark.",
+      "aspect": 0.75,
+      "plane": {
+        "x": [
+          -1,
+          5
+        ],
+        "y": [
+          -0.9,
+          7.1
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2,
+              6.155
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.236,
+            2.351
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3.236,
+            2.351
+          ],
+          "label": "D",
+          "labelPos": "e"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              6.155
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              6.155
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            6.155
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "label": "36°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            3.236,
+            2.351
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            3.236,
+            2.351
+          ],
+          "to": [
+            2,
+            6.155
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.236,
+            2.351
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f004",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In triangle ABC, AB = AC and the measure of angle BAC is 40°. What is the value of x?",
+    "choices": [
+      "40",
+      "70",
+      "80",
+      "140"
+    ],
+    "answer": "70",
+    "explanation": [
+      "Since AB = AC, the angles opposite those sides, angles B and C, are equal.",
+      "The two base angles share 180 − 40 = 140 degrees.",
+      "Each base angle is 140/2 = 70, so x = 70."
+    ],
+    "hints": [
+      "Which angles are opposite the two equal sides?",
+      "How many degrees are left for the two base angles together?"
+    ],
+    "wrong_reasons": {
+      "40": "Assumed all three angles are equal to the given angle",
+      "80": "Doubled the vertex angle instead of using the angle sum",
+      "140": "Found the sum of both base angles and did not divide by 2"
+    },
+    "check": "result=(180-40)/2",
+    "figure": {
+      "alt": "Triangle ABC with A at the top, B at the lower left and C at the lower right. Sides AB and AC have matching tick marks, showing they are equal. Angle A is labeled 40°, and angle B is labeled x°.",
+      "aspect": 0.857,
+      "plane": {
+        "x": [
+          -1,
+          5
+        ],
+        "y": [
+          -0.8,
+          6.2
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2,
+              5.495
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              5.495
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              5.495
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            5.495
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "label": "40°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            2,
+            5.495
+          ],
+          "label": "x°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f005",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m. Point P lies between the two lines. What is the value of x?",
+    "choices": [
+      "47",
+      "85",
+      "95",
+      "133"
+    ],
+    "answer": "85",
+    "explanation": [
+      "Draw a line through P parallel to ℓ and m. It splits the x° angle into two parts.",
+      "The upper part is an alternate interior angle with the 38° angle, so it is 38°; the lower part is an alternate interior angle with the 47° angle, so it is 47°.",
+      "x = 38 + 47 = 85."
+    ],
+    "hints": [
+      "What happens if you draw a third line through P, parallel to ℓ and m?",
+      "Which angle pairs does that new line create with the 38° and 47° angles?"
+    ],
+    "wrong_reasons": {
+      "47": "Used only one of the two given angles",
+      "95": "Subtracted the sum from 180 as if the angles formed a triangle with x",
+      "133": "Found 180 − 47, treating x as supplementary to one angle"
+    },
+    "check": "result=38+47",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below. Point P is between them, to the right. A segment goes from point A on ℓ down and to the right to P; the angle at A between ℓ (to the right of A) and segment AP is 38°. A segment goes from point B on m up and to the right to P; the angle at B between m (to the right of B) and segment BP is 47°. The angle at P between PA and PB, opening to the left, is labeled x°.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1,
+          5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.44,
+            4
+          ],
+          "to": [
+            4,
+            2
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.135,
+            0
+          ],
+          "to": [
+            4,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1.44,
+            4
+          ],
+          "label": "A",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.135,
+            0
+          ],
+          "label": "B",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            2
+          ],
+          "label": "P",
+          "labelPos": "e"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            1.44,
+            4
+          ],
+          "from": [
+            6,
+            4
+          ],
+          "to": [
+            4,
+            2
+          ],
+          "label": "38°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.135,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            4,
+            2
+          ],
+          "label": "47°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            2
+          ],
+          "from": [
+            1.44,
+            4
+          ],
+          "to": [
+            2.135,
+            0
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            4.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            0.25
+          ],
+          "text": "m"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f006",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, point D lies on side AB, point E lies on side AC, and segment DE is parallel to side BC. The lengths are AD = 6, DB = 3, AE = 4, EC = 2, and DE = 5. What is the perimeter of quadrilateral DBCE?",
+    "choices": [
+      "12.5",
+      "17.5",
+      "18",
+      "22.5"
+    ],
+    "answer": "17.5",
+    "explanation": [
+      "Because DE ∥ BC, triangle ADE is similar to triangle ABC.",
+      "The scale factor from ADE to ABC is AB/AD = (6 + 3)/6 = 3/2.",
+      "So BC = (3/2)(5) = 7.5.",
+      "Perimeter of DBCE = DB + BC + CE + ED = 3 + 7.5 + 2 + 5 = 17.5."
+    ],
+    "hints": [
+      "What does DE ∥ BC tell you about triangles ADE and ABC?",
+      "Which side of the big triangle corresponds to AD, and how long is it?",
+      "Which four segments make up the boundary of DBCE?"
+    ],
+    "wrong_reasons": {
+      "12.5": "Used DB/AD instead of AB/AD as the scale factor, getting BC = 2.5",
+      "18": "Assumed BC = DE + DB = 8 instead of using similar triangles",
+      "22.5": "Found the perimeter of triangle ABC instead of quadrilateral DBCE"
+    },
+    "check": "from sympy import Rational\nAD,DB,AE,EC,DE=6,3,4,2,5\nBC=DE*Rational(AD+DB,AD)\nresult=DB+BC+EC+DE",
+    "figure": {
+      "alt": "Triangle ABC with B at the lower left, C at the lower right, and A at the top, to the right of center. Point D is on side AB and point E is on side AC, and segment DE is parallel to BC. The labels are AD = 6, DB = 3, AE = 4, EC = 2, and DE = 5. Side BC has no label.",
+      "aspect": 1.188,
+      "plane": {
+        "x": [
+          -1,
+          8.5
+        ],
+        "y": [
+          -1,
+          7
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              6.75,
+              5.953
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              7.5,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.25,
+            1.984
+          ],
+          "to": [
+            7.25,
+            1.984
+          ],
+          "label": "5"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.25,
+            1.984
+          ],
+          "label": "D",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            7.25,
+            1.984
+          ],
+          "label": "E",
+          "labelPos": "e"
+        },
+        {
+          "type": "segment",
+          "from": [
+            6.75,
+            5.953
+          ],
+          "to": [
+            2.25,
+            1.984
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.25,
+            1.984
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "3"
+        },
+        {
+          "type": "segment",
+          "from": [
+            6.75,
+            5.953
+          ],
+          "to": [
+            7.25,
+            1.984
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            7.25,
+            1.984
+          ],
+          "to": [
+            7.5,
+            0
+          ],
+          "label": "2"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f007",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In the figure, points A, O, and B lie on a line. What is the value of x?",
+    "answer": "65",
+    "explanation": [
+      "Angles that together make a straight line add to 180°.",
+      "48 + x + 67 = 180, so x + 115 = 180.",
+      "x = 65."
+    ],
+    "hints": [
+      "What is the total measure of the angles that fill a straight line?",
+      "How much of that total do the two known angles use?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(48+x+67,180),x)[0]",
+    "figure": {
+      "alt": "A horizontal line through points A on the left, O in the middle, and B on the right. Two rays start at O and go upward, dividing the space above the line into three angles. From right to left: the angle between OB and the first ray is 48°, the angle between the two rays is x°, and the angle between the second ray and OA is 67°.",
+      "aspect": 1.818,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -1,
+          4.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            0
+          ],
+          "label": "A",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            0
+          ],
+          "label": "B",
+          "labelPos": "s"
+        },
+        {
+          "type": "ray",
+          "from": [
+            0,
+            0
+          ],
+          "through": [
+            2.543,
+            2.824
+          ]
+        },
+        {
+          "type": "ray",
+          "from": [
+            0,
+            0
+          ],
+          "through": [
+            -1.485,
+            3.498
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            2.543,
+            2.824
+          ],
+          "label": "48°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            2.543,
+            2.824
+          ],
+          "to": [
+            -1.485,
+            3.498
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            -1.485,
+            3.498
+          ],
+          "to": [
+            -4,
+            0
+          ],
+          "label": "67°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f008",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m. What is the measure, in degrees, of the angle labeled (3x + 15)°?",
+    "choices": [
+      "20",
+      "30",
+      "75",
+      "105"
+    ],
+    "answer": "75",
+    "explanation": [
+      "The two labeled angles are on opposite sides of the transversal and between ℓ and m, so they are alternate interior angles.",
+      "Alternate interior angles formed by parallel lines are equal: 3x + 15 = 5x − 25.",
+      "40 = 2x, so x = 20.",
+      "The angle measures 3(20) + 15 = 75°."
+    ],
+    "hints": [
+      "Are the two labeled angles inside or outside the parallel lines, and on the same or opposite sides of the transversal?",
+      "What equation relates two alternate interior angles?",
+      "Once you have x, which expression gives the angle the question asks for?"
+    ],
+    "wrong_reasons": {
+      "20": "Gave the value of x instead of the angle measure",
+      "30": "Sign error solving 3x + 15 = 5x − 25 (got x = 5)",
+      "105": "Treated the angles as supplementary or gave the supplement of the answer"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nxv=solve(Eq(3*x+15,5*x-25),x)[0]\nresult=3*xv+15",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below, are crossed by a transversal rising steeply from lower left to upper right. At the lower intersection, the angle above m and to the right of the transversal is labeled (3x + 15)°. At the upper intersection, the angle below ℓ and to the left of the transversal is labeled (5x − 25)°.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1.5,
+          4.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              2,
+              0
+            ],
+            [
+              2.804,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            2.804,
+            3
+          ],
+          "label": "(3x + 15)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.804,
+            3
+          ],
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "label": "(5x − 25)°"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            3.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            0.25
+          ],
+          "text": "m"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f009",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, points A, B, and D lie on one ray, and point C lies on a second ray from A. The measure of angle CAB is 25°, and AB = BC = CD. What is the measure of angle BCD?",
+    "choices": [
+      "50°",
+      "75°",
+      "80°",
+      "130°"
+    ],
+    "answer": "80°",
+    "explanation": [
+      "Triangle ABC has BA = BC, so angle BCA = angle BAC = 25°.",
+      "Angle CBD is an exterior angle of triangle ABC, so it equals 25 + 25 = 50°.",
+      "Triangle BCD has CB = CD, so angle CDB = angle CBD = 50°.",
+      "Angle BCD = 180 − 50 − 50 = 80°."
+    ],
+    "hints": [
+      "In triangle ABC, which two sides are equal, and which angles are opposite them?",
+      "How can the exterior-angle rule give you angle CBD?",
+      "In triangle BCD, which two angles must be equal?"
+    ],
+    "wrong_reasons": {
+      "50°": "Gave angle CBD (or CDB) instead of angle BCD",
+      "75°": "Found the exterior angle at C of triangle ACD (25 + 50) instead of angle BCD",
+      "130°": "Found 180 − 50, the angle ABC, instead of the angle at C"
+    },
+    "check": "A=25\nCBD=A+A\nCDB=CBD\nresult=180-CBD-CDB",
+    "figure": {
+      "alt": "Two rays start at point A: one goes straight to the right and the other rises to the right at a 25° angle (labeled 25° at A). Points B and then D lie on the horizontal ray, with B closer to A. Point C lies on the rising ray. Segments BC and CD are drawn. Segments AB, BC and CD each carry one tick mark, showing they are equal. Angle BCD, at C between CB and CD, is marked with a question mark.",
+      "aspect": 2.0,
+      "plane": {
+        "x": [
+          -0.6,
+          7.4
+        ],
+        "y": [
+          -0.8,
+          3.2
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "ray",
+          "from": [
+            0,
+            0
+          ],
+          "through": [
+            7,
+            0
+          ]
+        },
+        {
+          "type": "ray",
+          "from": [
+            0,
+            0
+          ],
+          "through": [
+            6.344,
+            2.958
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.5,
+            0
+          ],
+          "to": [
+            4.107,
+            1.915
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            4.107,
+            1.915
+          ],
+          "to": [
+            5.714,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "A",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.5,
+            0
+          ],
+          "label": "B",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            4.107,
+            1.915
+          ],
+          "label": "C",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            5.714,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              0,
+              0
+            ],
+            [
+              2.5,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2.5,
+              0
+            ],
+            [
+              4.107,
+              1.915
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              4.107,
+              1.915
+            ],
+            [
+              5.714,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            7,
+            0
+          ],
+          "to": [
+            4.107,
+            1.915
+          ],
+          "label": "25°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4.107,
+            1.915
+          ],
+          "from": [
+            2.5,
+            0
+          ],
+          "to": [
+            5.714,
+            0
+          ],
+          "label": "?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f010",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, point D lies on the extension of side BC of triangle ABC. What is the value of x?",
+    "choices": [
+      "75",
+      "105",
+      "110",
+      "145"
+    ],
+    "answer": "105",
+    "explanation": [
+      "The exterior angle at C equals the sum of the two interior angles not next to it.",
+      "Those angles are 35° and 70°.",
+      "x = 35 + 70 = 105."
+    ],
+    "hints": [
+      "Which two angles of the triangle are farthest from the x° angle?",
+      "How does an exterior angle compare with those two angles?"
+    ],
+    "wrong_reasons": {
+      "75": "Found the interior angle at C (180 − 105) instead of the exterior angle",
+      "110": "Used 180 − 70, ignoring the 35° angle",
+      "145": "Used 180 − 35, ignoring the 70° angle"
+    },
+    "check": "result=35+70",
+    "figure": {
+      "alt": "Triangle ABC with B at the lower left, C at the lower right, and A at the top. Side BC is extended to the right past C to point D. Angle A is labeled 35°, angle B is labeled 70°, and the exterior angle ACD, between CA and CD, is labeled x°.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -1,
+          9
+        ],
+        "y": [
+          -1,
+          9
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2.88,
+              7.912
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            8,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.88,
+            7.912
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5,
+            0
+          ],
+          "label": "35°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            2.88,
+            7.912
+          ],
+          "label": "70°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5,
+            0
+          ],
+          "from": [
+            8,
+            0
+          ],
+          "to": [
+            2.88,
+            7.912
+          ],
+          "label": "x°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f011",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the figure, segments AC and BD intersect at point E, and segment AB is parallel to segment CD. If AE = 6, EC = 9, and AB = 8, what is the length of CD?",
+    "answer": "12",
+    "accept": [
+      "12.0"
+    ],
+    "explanation": [
+      "Because AB ∥ CD, angle BAE = angle DCE (alternate interior angles), and angles AEB and CED are vertical angles.",
+      "So triangle ABE is similar to triangle CDE, with AE corresponding to CE and AB corresponding to CD.",
+      "CD/AB = CE/AE = 9/6 = 3/2, so CD = (3/2)(8) = 12."
+    ],
+    "hints": [
+      "Which pairs of angles in the two triangles are equal, and why?",
+      "Which side of triangle CDE matches AE, and which matches AB?"
+    ],
+    "check": "from sympy import Rational\nresult=8*Rational(9,6)",
+    "figure": {
+      "alt": "Two segments, AC and BD, cross at point E, forming two triangles that meet at E. A is at the upper left and B at the upper right, with AB horizontal on top; C is at the lower right and D at the lower left, with DC horizontal on the bottom, so AB is parallel to DC. Labels: AE = 6, EC = 9, AB = 8. Segment CD has no label.",
+      "aspect": 1.632,
+      "plane": {
+        "x": [
+          -6.5,
+          9
+        ],
+        "y": [
+          -5.5,
+          4
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            -5.196,
+            3.0
+          ],
+          "to": [
+            7.794,
+            -4.5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.804,
+            3.0
+          ],
+          "to": [
+            -4.206,
+            -4.5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -5.196,
+            3.0
+          ],
+          "to": [
+            2.804,
+            3.0
+          ],
+          "label": "8"
+        },
+        {
+          "type": "segment",
+          "from": [
+            -4.206,
+            -4.5
+          ],
+          "to": [
+            7.794,
+            -4.5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -5.196,
+            3.0
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            7.794,
+            -4.5
+          ],
+          "label": "9"
+        },
+        {
+          "type": "point",
+          "at": [
+            -5.196,
+            3.0
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.804,
+            3.0
+          ],
+          "label": "B",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            7.794,
+            -4.5
+          ],
+          "label": "C",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            -4.206,
+            -4.5
+          ],
+          "label": "D",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "E",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f012",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In triangle ABC, the measure of angle BAC is 52°. Segment BI bisects angle ABC and segment CI bisects angle ACB, and the two segments meet at point I inside the triangle. What is the measure, in degrees, of angle BIC?",
+    "answer": "116",
+    "accept": [
+      "116°"
+    ],
+    "explanation": [
+      "Angles B and C of the triangle together measure 180 − 52 = 128°.",
+      "The bisectors take half of each, so angle IBC + angle ICB = 128/2 = 64°.",
+      "In triangle BIC, angle BIC = 180 − 64 = 116°."
+    ],
+    "hints": [
+      "You don't know angles B and C separately. What do you know about their sum?",
+      "What fraction of that sum is used by angles IBC and ICB?",
+      "What are the three angles of triangle BIC?"
+    ],
+    "check": "A=52\nBC_sum=180-A\nresult=180-BC_sum/2",
+    "figure": {
+      "alt": "Triangle ABC with B at the lower left, C at the lower right, and A at the top. Angle A is labeled 52°. Segments from B and from C meet at point I inside the triangle. Segment BI splits angle B into two equal parts, each marked with one arc, and segment CI splits angle C into two equal parts, each marked with two arcs. Angle BIC, at I between IB and IC, is marked with a question mark.",
+      "aspect": 1.067,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1,
+          6.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2.208,
+              6.068
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.651,
+            1.856
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            2.651,
+            1.856
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.651,
+            1.856
+          ],
+          "label": "I",
+          "labelPos": "n"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.208,
+            6.068
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "label": "52°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            2.651,
+            1.856
+          ],
+          "label": "·"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            2.651,
+            1.856
+          ],
+          "to": [
+            2.208,
+            6.068
+          ],
+          "label": "·"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            2.651,
+            1.856
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "··"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            2.208,
+            6.068
+          ],
+          "to": [
+            2.651,
+            1.856
+          ],
+          "label": "··"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.651,
+            1.856
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f013",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, two lines intersect at point O. What is the value of x?",
+    "choices": [
+      "30",
+      "35",
+      "40",
+      "50"
+    ],
+    "answer": "30",
+    "explanation": [
+      "The angles labeled 70° and (2x + 10)° are opposite each other, so they are vertical angles.",
+      "Vertical angles are equal: 2x + 10 = 70.",
+      "2x = 60, so x = 30."
+    ],
+    "hints": [
+      "Do the two labeled angles share a side, or are they across from each other?",
+      "What is true about angles across from each other when two lines cross?"
+    ],
+    "wrong_reasons": {
+      "35": "Solved 2x = 70, forgetting the + 10",
+      "40": "Set 2x + 10 equal to 90, as if the angles were complementary",
+      "50": "Set 2x + 10 equal to 110, treating the angles as supplementary"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(2*x+10,70),x)[0]",
+    "figure": {
+      "alt": "Two lines cross at point O: one is horizontal, and the other rises from lower left to upper right. The angle above the horizontal line and to the right of the slanted line is labeled 70°. The angle directly opposite it, below the horizontal line and to the left of the slanted line, is labeled (2x + 10)°.",
+      "aspect": 1.25,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -4,
+          4
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              -1.368,
+              -3.759
+            ],
+            [
+              1.368,
+              3.759
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "O",
+          "labelPos": "se"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            1.368,
+            3.759
+          ],
+          "label": "70°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            -4,
+            0
+          ],
+          "to": [
+            -1.368,
+            -3.759
+          ],
+          "label": "(2x + 10)°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f014",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, AB = AC, and point D lies on the extension of side BC. The measure of exterior angle ACD is 115°. What is the measure of angle BAC?",
+    "choices": [
+      "50°",
+      "65°",
+      "115°",
+      "130°"
+    ],
+    "answer": "50°",
+    "explanation": [
+      "Angle ACB and angle ACD form a straight line, so angle ACB = 180 − 115 = 65°.",
+      "Because AB = AC, angle ABC = angle ACB = 65°.",
+      "Angle BAC = 180 − 65 − 65 = 50°."
+    ],
+    "hints": [
+      "What angle inside the triangle sits next to the 115° angle on the straight line?",
+      "Which angle must equal angle ACB, and why?",
+      "What is left of 180° for the angle at A?"
+    ],
+    "wrong_reasons": {
+      "65°": "Found a base angle instead of the vertex angle",
+      "115°": "Assumed the vertex angle equals the exterior angle",
+      "130°": "Found the sum of the two base angles instead of the remaining angle"
+    },
+    "check": "ACB=180-115\nABC=ACB\nresult=180-ABC-ACB",
+    "figure": {
+      "alt": "Triangle ABC with apex A at the top, B at the lower left and C at the lower right. Sides AB and AC have matching tick marks, showing AB = AC. Side BC is extended to the right past C to point D, and the exterior angle ACD, between CA and CD, is labeled 115°. Angle BAC is marked with a question mark.",
+      "aspect": 1.417,
+      "plane": {
+        "x": [
+          -1,
+          7.5
+        ],
+        "y": [
+          -0.8,
+          5.2
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2,
+              4.289
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            6.5,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6.5,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              4.289
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              4.289
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            0
+          ],
+          "from": [
+            6.5,
+            0
+          ],
+          "to": [
+            2,
+            4.289
+          ],
+          "label": "115°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            4.289
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "label": "?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f015",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, angle ACB is a right angle, and segment CD is perpendicular to side AB, with D on AB. If AD = 4 and DB = 9, what is the length of CD?",
+    "choices": [
+      "√13",
+      "6.5",
+      "36",
+      "6"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Angle ACD = 90° − angle A = angle B, so right triangles ADC and CDB have the same angles and are similar.",
+      "Matching sides: AD/CD = CD/DB.",
+      "So CD² = AD · DB = 4 · 9 = 36.",
+      "CD = 6."
+    ],
+    "hints": [
+      "Both small triangles share an angle with the big triangle. What does that tell you about the two small triangles?",
+      "In triangles ADC and CDB, which side plays the same role as AD?",
+      "How can you write a proportion that has CD in it twice?"
+    ],
+    "wrong_reasons": {
+      "√13": "Took the square root of AD + DB instead of AD · DB",
+      "6.5": "Took half of AB = 13 instead of using similar triangles",
+      "36": "Found CD² and forgot to take the square root"
+    },
+    "check": "from sympy import sqrt\nresult=sqrt(4*9)",
+    "figure": {
+      "alt": "Right triangle ABC with A at the lower left, B at the lower right, and C at the top, with a right-angle mark at C. Segment CD drops straight down from C to point D on AB, with a right-angle mark at D. D is closer to A. Labels: AD = 4 and DB = 9. Segment CD has no label.",
+      "aspect": 1.765,
+      "plane": {
+        "x": [
+          -1,
+          14
+        ],
+        "y": [
+          -1,
+          7.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            4,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            13,
+            0
+          ],
+          "label": "9"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            6
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            13,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            0
+          ],
+          "from": [
+            13,
+            0
+          ],
+          "to": [
+            4,
+            6
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-lines-angles-f016",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m, and line t crosses both lines. What is the value of x?",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below, are crossed by line t, which slants up to the right. Where t meets m, the angle between m to the right of the intersection and t going up is labeled 64°. Where t meets ℓ, the angle between ℓ to the right of the intersection and t going down is labeled x°. Both labeled angles lie between the parallel lines on the same side (the right side) of t.",
+      "aspect": 1.5,
+      "plane": {
+        "x": [
+          -4,
+          5
+        ],
+        "y": [
+          -1.5,
+          4.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1.463,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "at": [
+            -3.6,
+            0.35
+          ],
+          "text": "m"
+        },
+        {
+          "type": "text",
+          "at": [
+            -3.6,
+            3.35
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            2.165,
+            4.438
+          ],
+          "text": "t"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            1,
+            0
+          ],
+          "to": [
+            0.438,
+            0.899
+          ],
+          "label": "64°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            1.463,
+            3
+          ],
+          "from": [
+            2.463,
+            3
+          ],
+          "to": [
+            1.025,
+            2.101
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "26",
+      "64",
+      "116",
+      "126"
+    ],
+    "answer": "116",
+    "explanation": [
+      "The 64° angle and the x° angle are both between the parallel lines and on the same side of t, so they are same-side interior angles.",
+      "Same-side interior angles formed by parallel lines are supplementary: x + 64 = 180.",
+      "x = 180 − 64 = 116."
+    ],
+    "hints": [
+      "Are the two marked angles between the parallel lines or outside them? Are they on the same side of t?",
+      "When two interior angles sit on the same side of a transversal, what do they add up to?"
+    ],
+    "wrong_reasons": {
+      "26": "Subtracted 64 from 90, treating the angles as complementary",
+      "64": "Treated the angles as congruent (corresponding or alternate) instead of same-side interior",
+      "126": "Arithmetic slip when subtracting 64 from 180"
+    },
+    "check": "result=180-64"
+  },
+  {
+    "id": "geo-lines-angles-f017",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, side AC of triangle ABC is extended through C to point D. The measure of angle A is (2x)°, the measure of angle ABC is (x + 17)°, and the measure of angle BCD is 128°. What is the value of x?",
+    "figure": {
+      "alt": "Triangle ABC with base AB horizontal and C at the top. Side AC is extended past C to point D. Angle A, at the lower left, is labeled (2x)°. Angle ABC, at the lower right, is labeled (x + 17)°. The exterior angle BCD, between side CB and the extension CD, is labeled 128°.",
+      "aspect": 0.762,
+      "plane": {
+        "x": [
+          -1.0,
+          7.0
+        ],
+        "y": [
+          -1.0,
+          9.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              1.698,
+              5.921
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.698,
+            5.921
+          ],
+          "to": [
+            2.304,
+            8.036
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.304,
+            8.036
+          ],
+          "label": "D",
+          "labelPos": "ne"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            1.698,
+            5.921
+          ],
+          "label": "(2x)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            1.698,
+            5.921
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "(x + 17)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            1.698,
+            5.921
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            2.304,
+            8.036
+          ],
+          "label": "128°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "37",
+      "52",
+      "54",
+      "74"
+    ],
+    "answer": "37",
+    "explanation": [
+      "Angle BCD is an exterior angle of triangle ABC, so it equals the sum of the two remote interior angles, A and B.",
+      "2x + (x + 17) = 128.",
+      "3x + 17 = 128, so 3x = 111.",
+      "x = 37."
+    ],
+    "hints": [
+      "Which two angles of the triangle are not next to the 128° angle?",
+      "How does an exterior angle of a triangle compare with the two interior angles that are farthest from it?"
+    ],
+    "wrong_reasons": {
+      "52": "Found the measure of angle ACB (180° − 128°) instead of x",
+      "54": "Found the measure of angle ABC, x + 17, instead of x",
+      "74": "Found the measure of angle A, 2x, instead of x"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(2*x+(x+17),128),x)[0]"
+  },
+  {
+    "id": "geo-lines-angles-f018",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, AB = AC. Point D lies on side AC so that AD = BD = BC, as shown. What is the measure of angle BAC?",
+    "figure": {
+      "alt": "Triangle ABC with base BC horizontal and vertex A at the top; AB = AC. Point D lies on side AC, closer to C than to A, and segment BD is drawn. Single tick marks show that segments AD, BD, and BC are all the same length.",
+      "aspect": 0.769,
+      "plane": {
+        "x": [
+          -1.0,
+          4.0
+        ],
+        "y": [
+          -1.0,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              1.5,
+              4.617
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.427,
+            1.763
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.427,
+            1.763
+          ],
+          "label": "D",
+          "labelPos": "e"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              1.5,
+              4.617
+            ],
+            [
+              2.427,
+              1.763
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              0,
+              0
+            ],
+            [
+              2.427,
+              1.763
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "count": 1
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "30°",
+      "36°",
+      "45°",
+      "72°"
+    ],
+    "answer": "36°",
+    "explanation": [
+      "Let angle BAC = a. Since AD = BD, triangle ABD is isosceles, so angle ABD = a.",
+      "Angle BDC is an exterior angle of triangle ABD, so angle BDC = 2a.",
+      "Since BD = BC, triangle BDC is isosceles, so angle C = angle BDC = 2a.",
+      "Since AB = AC, angle ABC = angle C = 2a.",
+      "In triangle ABC: a + 2a + 2a = 180, so a = 36."
+    ],
+    "hints": [
+      "If you call angle BAC a, which other angle in triangle ABD must also equal a?",
+      "How can you write angle BDC in terms of a, and which isosceles triangle does that angle belong to?",
+      "Once you know angles B and C of the big triangle in terms of a, what equation does the triangle angle sum give?"
+    ],
+    "wrong_reasons": {
+      "30°": "Guessed a standard angle without setting up the isosceles relationships",
+      "45°": "Assumed angle C is twice angle A but then treated the triangle as having angles a, a, 2a",
+      "72°": "Found a base angle (angle ABC or angle C) instead of angle BAC"
+    },
+    "check": "from sympy import *\na=symbols('a')\n# ABD isosceles: ABD=a; ext angle BDC=2a; BDC isosceles: C=2a; ABC=C=2a\nresult=solve(Eq(a+2*a+2*a,180),a)[0]"
+  },
+  {
+    "id": "geo-lines-angles-f019",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the figure, line ℓ is parallel to line m. Two segments meet at a point between the lines, forming a bend. What is the value of x?",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below. A segment goes down and to the right from a point on ℓ to a point midway between the lines, and a second segment goes from that point down and to the left to a point on m, forming a bend that points to the right. At the top point, the angle between ℓ (to the right) and the first segment is labeled 38°. At the bottom point, the angle between m (to the right) and the second segment is labeled 47°. The angle at the bend, between the two segments, is labeled x°.",
+      "aspect": 1.143,
+      "plane": {
+        "x": [
+          -2,
+          6
+        ],
+        "y": [
+          -1.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "at": [
+            -1.7,
+            4.35
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            -1.7,
+            0.35
+          ],
+          "text": "m"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            4
+          ],
+          "to": [
+            2.56,
+            2.0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.56,
+            2.0
+          ],
+          "to": [
+            0.695,
+            0.0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.56,
+            2.0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0.695,
+            0.0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            4
+          ],
+          "from": [
+            1.5,
+            4
+          ],
+          "to": [
+            2.56,
+            2.0
+          ],
+          "label": "38°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0.695,
+            0.0
+          ],
+          "from": [
+            2.195,
+            0
+          ],
+          "to": [
+            2.56,
+            2.0
+          ],
+          "label": "47°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.56,
+            2.0
+          ],
+          "from": [
+            0,
+            4
+          ],
+          "to": [
+            0.695,
+            0.0
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": null,
+    "answer": "85",
+    "explanation": [
+      "Draw a line through the bend parallel to ℓ and m; it splits the x° angle into two parts.",
+      "The upper part is an alternate interior angle with the 38° angle, so it measures 38°.",
+      "The lower part is an alternate interior angle with the 47° angle, so it measures 47°.",
+      "x = 38 + 47 = 85."
+    ],
+    "hints": [
+      "What happens if you draw a third line through the bend, parallel to ℓ and m?",
+      "Which pairs of angles are alternate interior angles once that extra line is drawn?"
+    ],
+    "wrong_reasons": {},
+    "check": "result=38+47"
+  },
+  {
+    "id": "geo-lines-angles-f020",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A triangular garden bed is shown. Two of its angles measure 48° and 67°. What is the value of x?",
+    "figure": {
+      "alt": "A triangle with a horizontal base. The angle at the lower left is labeled 48°, the angle at the lower right is labeled 67°, and the angle at the top vertex is labeled x°.",
+      "aspect": 1.143,
+      "plane": {
+        "x": [
+          -1.0,
+          7.0
+        ],
+        "y": [
+          -1.0,
+          6.0
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              4.078,
+              4.529
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            4.078,
+            4.529
+          ],
+          "label": "48°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            4.078,
+            4.529
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "67°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4.078,
+            4.529
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "42",
+      "65",
+      "113",
+      "115"
+    ],
+    "answer": "65",
+    "explanation": [
+      "The three angles of a triangle add to 180°.",
+      "48 + 67 = 115.",
+      "x = 180 − 115 = 65."
+    ],
+    "hints": [
+      "What do the three angles of any triangle add up to?",
+      "How much of that total do the two known angles already use?"
+    ],
+    "wrong_reasons": {
+      "42": "Treated the triangle as a right triangle and computed 90 − 48",
+      "113": "Subtracted only the 67° angle from 180",
+      "115": "Added the two known angles and stopped; 115° is the exterior angle at the top, not x"
+    },
+    "check": "result=180-(48+67)"
+  },
+  {
+    "id": "geo-lines-angles-f021",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, point D lies on side AB and point E lies on side AC, and segment DE is parallel to side BC. If AD = 6, DB = 4, DE = 9, and EC = 5, what is the perimeter of triangle ABC?",
+    "figure": {
+      "alt": "Triangle ABC with base BC horizontal and vertex A at the top. Point D is on side AB and point E is on side AC, and segment DE is parallel to BC. Labels: AD = 6, DB = 4, DE = 9, EC = 5.",
+      "aspect": 1.636,
+      "plane": {
+        "x": [
+          -1.5,
+          16.5
+        ],
+        "y": [
+          -1.5,
+          9.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              5.625,
+              8.268
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.25,
+            3.307
+          ],
+          "to": [
+            11.25,
+            3.307
+          ],
+          "label": "9"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.25,
+            3.307
+          ],
+          "label": "D",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            11.25,
+            3.307
+          ],
+          "label": "E",
+          "labelPos": "e"
+        },
+        {
+          "type": "segment",
+          "from": [
+            5.625,
+            8.268
+          ],
+          "to": [
+            2.25,
+            3.307
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.25,
+            3.307
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            11.25,
+            3.307
+          ],
+          "to": [
+            15,
+            0
+          ],
+          "label": "5"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "24",
+      "35.5",
+      "36",
+      "37.5"
+    ],
+    "answer": "37.5",
+    "explanation": [
+      "Because DE ∥ BC, triangle ADE is similar to triangle ABC, with scale factor AB/AD = 10/6 = 5/3.",
+      "BC = (5/3)(9) = 15.",
+      "EC is the part of AC not in AE, so EC/AC = DB/AB = 4/10, giving AC = 5 ÷ 0.4 = 12.5.",
+      "Perimeter = AB + BC + AC = 10 + 15 + 12.5 = 37.5."
+    ],
+    "hints": [
+      "Why are triangles ADE and ABC similar, and what is the ratio AB : AD?",
+      "What fraction of side AC does segment EC make up, given what DB is of AB?"
+    ],
+    "wrong_reasons": {
+      "24": "Added the four labeled lengths instead of finding the sides of triangle ABC",
+      "35.5": "Took BC = DE + DB = 13 instead of using the scale factor",
+      "36": "Assumed AE = AD = 6, so AC = 11, instead of using proportional sides"
+    },
+    "check": "from sympy import *\nAD,DB,DE,EC=6,4,9,5\nAB=AD+DB\nk=Rational(AB,AD)\nBC=k*DE\nAC=EC*Rational(AB,DB)\nresult=AB+BC+AC"
+  },
+  {
+    "id": "geo-lines-angles-f022",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, two rays start at a point on a straight line and lie on the same side of the line. What is the value of x?",
+    "figure": {
+      "alt": "A horizontal straight line with a point on it. Two rays rise from that point above the line, splitting the straight angle into three adjacent angles. From right to left, the angles are labeled 50°, x°, and 75°.",
+      "aspect": 2,
+      "plane": {
+        "x": [
+          -4,
+          4
+        ],
+        "y": [
+          -0.8,
+          3.2
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "ray",
+          "from": [
+            0,
+            0
+          ],
+          "through": [
+            1.928,
+            2.298
+          ]
+        },
+        {
+          "type": "ray",
+          "from": [
+            0,
+            0
+          ],
+          "through": [
+            -0.776,
+            2.898
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            1,
+            0
+          ],
+          "to": [
+            1.928,
+            2.298
+          ],
+          "label": "50°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            1.928,
+            2.298
+          ],
+          "to": [
+            -0.776,
+            2.898
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            -0.776,
+            2.898
+          ],
+          "to": [
+            -1,
+            0
+          ],
+          "label": "75°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "55",
+      "105",
+      "125",
+      "235"
+    ],
+    "answer": "55",
+    "explanation": [
+      "The three adjacent angles together form a straight angle, which is 180°.",
+      "50 + x + 75 = 180.",
+      "x = 180 − 125 = 55."
+    ],
+    "hints": [
+      "What is the measure of a straight angle?",
+      "How much of that straight angle do the 50° and 75° angles already take up?"
+    ],
+    "wrong_reasons": {
+      "105": "Subtracted only 75 from 180, ignoring the 50° angle",
+      "125": "Added the two given angles instead of subtracting their sum from 180",
+      "235": "Used 360° (a full turn) instead of 180° for angles on a line"
+    },
+    "check": "result=180-(50+75)"
+  },
+  {
+    "id": "geo-lines-angles-f023",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the figure, line ℓ is parallel to line m. Point P lies on ℓ, and points Q and R lie on m. What is the measure, in degrees, of angle PQR?",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below. Point P is on ℓ; points Q and R are on m, with Q to the left of R. Segments PQ, PR, and QR form triangle PQR. At P, the angle between line ℓ extending to the left and segment PQ is labeled (3x + 4)°. The angle QPR inside the triangle is labeled (5x − 2)°. Angle PRQ, at R, is labeled (2x + 8)°. Angle PQR, at Q, is not labeled.",
+      "aspect": 1.375,
+      "plane": {
+        "x": [
+          -5,
+          6
+        ],
+        "y": [
+          -1.5,
+          6.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "at": [
+            -4.6,
+            4.35
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            -4.6,
+            0.35
+          ],
+          "text": "m"
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              4
+            ],
+            [
+              -2.801,
+              0
+            ],
+            [
+              4.442,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "P",
+            "Q",
+            "R"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            4
+          ],
+          "from": [
+            -1.5,
+            4
+          ],
+          "to": [
+            -2.801,
+            0
+          ],
+          "label": "(3x + 4)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            4
+          ],
+          "from": [
+            -2.801,
+            0
+          ],
+          "to": [
+            4.442,
+            0
+          ],
+          "label": "(5x − 2)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4.442,
+            0
+          ],
+          "from": [
+            -2.801,
+            0
+          ],
+          "to": [
+            0,
+            4
+          ],
+          "label": "(2x + 8)°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": null,
+    "answer": "55",
+    "explanation": [
+      "The (3x + 4)° angle and angle PQR are alternate interior angles for the parallel lines and transversal PQ, so angle PQR = (3x + 4)°.",
+      "The angles of triangle PQR add to 180: (3x + 4) + (5x − 2) + (2x + 8) = 180.",
+      "10x + 10 = 180, so x = 17.",
+      "Angle PQR = 3(17) + 4 = 55°."
+    ],
+    "hints": [
+      "Segment PQ crosses both parallel lines. Which angle at Q pairs with the (3x + 4)° angle at P?",
+      "Once angle PQR is written in terms of x, which three angles must add to 180°?",
+      "After solving for x, which expression gives the angle you were asked for?"
+    ],
+    "wrong_reasons": {},
+    "check": "from sympy import *\nx=symbols('x')\nxs=solve(Eq((3*x+4)+(5*x-2)+(2*x+8),180),x)[0]\nresult=3*xs+4"
+  },
+  {
+    "id": "geo-lines-angles-f024",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, AB = AC, and side BC of triangle ABC is extended through C to point D. If angle ACD measures 112°, what is the measure of angle BAC?",
+    "figure": {
+      "alt": "Isosceles triangle ABC with base BC horizontal and vertex A at the top. Tick marks show AB = AC. The base is extended to the right past C to point D. The exterior angle ACD, between CD and CA, is labeled 112°.",
+      "aspect": 1.214,
+      "plane": {
+        "x": [
+          -1.0,
+          7.5
+        ],
+        "y": [
+          -1.0,
+          6.0
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2,
+              4.95
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            6.5,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6.5,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              4.95
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              4.95
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            0
+          ],
+          "from": [
+            6.5,
+            0
+          ],
+          "to": [
+            2,
+            4.95
+          ],
+          "label": "112°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "44°",
+      "56°",
+      "68°",
+      "112°"
+    ],
+    "answer": "44°",
+    "explanation": [
+      "Angle ACB and angle ACD form a linear pair, so angle ACB = 180° − 112° = 68°.",
+      "Since AB = AC, the base angles are equal: angle ABC = 68°.",
+      "Angle BAC = 180° − 68° − 68° = 44°."
+    ],
+    "hints": [
+      "What is the relationship between angle ACD and angle ACB?",
+      "In a triangle with two equal sides, which two angles are equal?"
+    ],
+    "wrong_reasons": {
+      "56°": "Treated 68° as the vertex angle and split the remaining 112° between two base angles",
+      "68°": "Found a base angle instead of the vertex angle BAC",
+      "112°": "Assumed the exterior angle equals the vertex angle"
+    },
+    "check": "base=180-112\nresult=180-2*base"
+  },
+  {
+    "id": "geo-lines-angles-f025",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, line p is parallel to line q, and a horizontal line crosses both of them. What is the value of x?",
+    "figure": {
+      "alt": "Two parallel lines, p on the left and q on the right, both slant up to the right. A horizontal line crosses both. At p, the angle above the horizontal line and to the right of p (between the horizontal line toward q and line p going up) is labeled 71°. At q, the angle below the horizontal line and to the left of q (between the horizontal line toward p and line q going down) is labeled x°. Both angles lie between the parallel lines, on opposite sides of the horizontal line.",
+      "aspect": 1.607,
+      "plane": {
+        "x": [
+          -2.5,
+          6.5
+        ],
+        "y": [
+          -2.8,
+          2.8
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              0.326,
+              0.946
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              4,
+              0
+            ],
+            [
+              4.326,
+              0.946
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "at": [
+            1.031,
+            2.269
+          ],
+          "text": "p"
+        },
+        {
+          "type": "text",
+          "at": [
+            5.031,
+            2.269
+          ],
+          "text": "q"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            1,
+            0
+          ],
+          "to": [
+            0.326,
+            0.946
+          ],
+          "label": "71°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            0
+          ],
+          "from": [
+            3,
+            0
+          ],
+          "to": [
+            3.674,
+            -0.946
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "19",
+      "71",
+      "109",
+      "142"
+    ],
+    "answer": "71",
+    "explanation": [
+      "The 71° angle and the x° angle are between the parallel lines and on opposite sides of the transversal, so they are alternate interior angles.",
+      "Alternate interior angles formed by parallel lines are congruent.",
+      "x = 71."
+    ],
+    "hints": [
+      "Are the two marked angles inside or outside the parallel lines, and on the same or opposite sides of the transversal?",
+      "What is true about alternate interior angles when the lines are parallel?"
+    ],
+    "wrong_reasons": {
+      "19": "Treated the angles as complementary (90 − 71)",
+      "109": "Treated the angles as supplementary, as if they were same-side interior angles",
+      "142": "Doubled the given angle"
+    },
+    "check": "result=71"
+  },
+  {
+    "id": "geo-lines-angles-f026",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In triangle ABC, angle ABC measures 64° and angle ACB measures 40°. Segment AD bisects angle BAC, with D on side BC. What is the measure, in degrees, of angle ADC?",
+    "figure": {
+      "alt": "Triangle ABC with base BC horizontal, B at the left, C at the right, and A at the top. Angle B is labeled 64° and angle C is labeled 40°. Segment AD goes from A to point D on BC, and two equal arcs at A show that AD splits angle BAC into two equal angles.",
+      "aspect": 1.455,
+      "plane": {
+        "x": [
+          -1.0,
+          7.0
+        ],
+        "y": [
+          -1.0,
+          4.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              1.742,
+              3.573
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.742,
+            3.573
+          ],
+          "to": [
+            2.502,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.502,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            1.742,
+            3.573
+          ],
+          "label": "64°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            1.742,
+            3.573
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "40°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            1.742,
+            3.573
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.502,
+            0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            1.742,
+            3.573
+          ],
+          "from": [
+            2.502,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ]
+        }
+      ]
+    },
+    "table": null,
+    "choices": null,
+    "answer": "102",
+    "explanation": [
+      "Angle BAC = 180° − 64° − 40° = 76°.",
+      "AD bisects it, so angle BAD = angle DAC = 38°.",
+      "In triangle ADC: angle ADC = 180° − 38° − 40° = 102°."
+    ],
+    "hints": [
+      "What is the measure of angle BAC?",
+      "After AD bisects angle BAC, which triangle contains angle ADC, and what are its other two angles?"
+    ],
+    "wrong_reasons": {},
+    "check": "A=180-64-40\nresult=180-A/2-40"
+  },
+  {
+    "id": "geo-lines-angles-f027",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, segments AE and BD intersect at point C, and segment AB is parallel to segment DE. If AC = 6, CE = 9, AB = 8, and BD = 20, what is the length of CD?",
+    "figure": {
+      "alt": "Segments AE and BD cross at point C, forming two triangles that share vertex C: triangle ABC above and triangle EDC below. A and B are at the top, with A on the left; D and E are at the bottom, with D on the left. Segment AB is parallel to segment DE. Labels: AC = 6, CE = 9, AB = 8. The full segment BD, from B through C to D, has length 20 (stated in the question).",
+      "aspect": 0.737,
+      "plane": {
+        "x": [
+          -8.0,
+          6.0
+        ],
+        "y": [
+          -11.0,
+          8.0
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            -3.355,
+            4.974
+          ],
+          "to": [
+            4.471,
+            6.634
+          ],
+          "label": "8"
+        },
+        {
+          "type": "segment",
+          "from": [
+            -6.706,
+            -9.951
+          ],
+          "to": [
+            5.033,
+            -7.461
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3.355,
+            4.974
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5.033,
+            -7.461
+          ],
+          "label": "9"
+        },
+        {
+          "type": "segment",
+          "from": [
+            4.471,
+            6.634
+          ],
+          "to": [
+            -6.706,
+            -9.951
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3.355,
+            4.974
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            4.471,
+            6.634
+          ],
+          "label": "B",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "C",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            -6.706,
+            -9.951
+          ],
+          "label": "D",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            5.033,
+            -7.461
+          ],
+          "label": "E",
+          "labelPos": "se"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "8",
+      "10",
+      "12",
+      "40/3"
+    ],
+    "answer": "12",
+    "explanation": [
+      "Since AB ∥ DE, angle BAC = angle DEC (alternate interior), and angles ACB and ECD are vertical angles, so triangle ABC ~ triangle EDC.",
+      "The scale factor from triangle ABC to triangle EDC is CE/AC = 9/6 = 3/2, so CD = (3/2)·BC.",
+      "BC + CD = 20, so BC + (3/2)BC = 20, giving BC = 8.",
+      "CD = 20 − 8 = 12."
+    ],
+    "hints": [
+      "Which angles show that triangle ABC and triangle EDC are similar?",
+      "Which side of triangle EDC corresponds to BC, and what is the ratio between them?",
+      "How can you use BC + CD = 20 once you know that ratio?"
+    ],
+    "wrong_reasons": {
+      "8": "Found BC instead of CD",
+      "10": "Assumed C is the midpoint of BD",
+      "40/3": "Took CD as 2/3 of 20 (scale factor applied to the whole segment) instead of splitting 20 in the ratio 2 : 3"
+    },
+    "check": "from sympy import *\nb=symbols('b')\nk=Rational(9,6)\nbc=solve(Eq(b+k*b,20),b)[0]\nresult=20-bc"
+  },
+  {
+    "id": "geo-lines-angles-f028",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, line a is parallel to line b, and a transversal crosses both lines. What is the value of x?",
+    "figure": {
+      "alt": "Two horizontal parallel lines, a on top and b below, crossed by a transversal that slants up to the right. At line b, the angle between b to the right of the intersection and the transversal going up is labeled (5x − 20)°. At line a, the angle between a to the left of the intersection and the transversal going down is labeled (3x + 16)°. The two angles are between the parallel lines on opposite sides of the transversal.",
+      "aspect": 1.5,
+      "plane": {
+        "x": [
+          -4,
+          5
+        ],
+        "y": [
+          -1.5,
+          4.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              1.092,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "at": [
+            -3.6,
+            0.35
+          ],
+          "text": "b"
+        },
+        {
+          "type": "text",
+          "at": [
+            -3.6,
+            3.35
+          ],
+          "text": "a"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            1,
+            0
+          ],
+          "to": [
+            0.342,
+            0.94
+          ],
+          "label": "(5x − 20)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            1.092,
+            3
+          ],
+          "from": [
+            0.092,
+            3
+          ],
+          "to": [
+            0.75,
+            2.06
+          ],
+          "label": "(3x + 16)°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "18",
+      "23",
+      "70",
+      "110"
+    ],
+    "answer": "18",
+    "explanation": [
+      "The two labeled angles are alternate interior angles, so they are congruent.",
+      "5x − 20 = 3x + 16.",
+      "2x = 36, so x = 18."
+    ],
+    "hints": [
+      "Where are the two angles relative to the parallel lines and the transversal?",
+      "Should the two expressions be set equal or add to 180°?"
+    ],
+    "wrong_reasons": {
+      "23": "Set the angles supplementary (5x − 20 + 3x + 16 = 180) instead of equal",
+      "70": "Found the angle measure, 5(18) − 20, instead of x",
+      "110": "Found the supplement of the angle measure instead of x"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(5*x-20,3*x+16),x)[0]"
+  },
+  {
+    "id": "geo-lines-angles-f029",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The triangle shown has two sides of equal length, marked with tick marks. The angle between the two equal sides measures 50°. What is the value of x?",
+    "figure": {
+      "alt": "A triangle with a horizontal base and a top vertex. Tick marks show that the two sides meeting at the top vertex are equal. The angle at the top vertex is labeled 50°. The angle at the lower right vertex is labeled x°.",
+      "aspect": 0.923,
+      "plane": {
+        "x": [
+          -1.0,
+          5.0
+        ],
+        "y": [
+          -1.0,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2,
+              4.289
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              4.289
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              4.289
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            4.289
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "label": "50°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            0
+          ],
+          "from": [
+            2,
+            4.289
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": [
+      "50",
+      "65",
+      "80",
+      "130"
+    ],
+    "answer": "65",
+    "explanation": [
+      "The angles opposite the two equal sides are equal, so both base angles measure x°.",
+      "x + x + 50 = 180.",
+      "2x = 130, so x = 65."
+    ],
+    "hints": [
+      "In a triangle with two equal sides, which angles must be equal?",
+      "If both base angles are x°, what equation do the three angles give?"
+    ],
+    "wrong_reasons": {
+      "50": "Assumed the base angle equals the vertex angle",
+      "80": "Computed 180 − 2·50, treating 50° as a base angle",
+      "130": "Found 180 − 50, the sum of both base angles, and did not split it in half"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(2*x+50,180),x)[0]"
+  },
+  {
+    "id": "geo-lines-angles-f030",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In triangle ABC, point D lies on side BC so that AB = AD = DC, as shown. If angle ACB measures 32°, what is the measure, in degrees, of angle BAC?",
+    "figure": {
+      "alt": "Triangle ABC with base BC horizontal, B at the left, C at the right, and A at the top, closer to B. Point D lies on BC between B and C, and segment AD is drawn. Single tick marks show AB = AD = DC. Angle C is labeled 32°.",
+      "aspect": 1.6,
+      "plane": {
+        "x": [
+          -1.0,
+          7.0
+        ],
+        "y": [
+          -1.0,
+          4.0
+        ],
+        "grid": 0,
+        "axes": false,
+        "ticks": 0
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              1.401,
+              2.873
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.401,
+            2.873
+          ],
+          "to": [
+            2.803,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.803,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              1.401,
+              2.873
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              1.401,
+              2.873
+            ],
+            [
+              2.803,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2.803,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            1.401,
+            2.873
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "32°"
+        }
+      ]
+    },
+    "table": null,
+    "choices": null,
+    "answer": "84",
+    "explanation": [
+      "Since AD = DC, triangle ADC is isosceles, so angle DAC = angle C = 32°.",
+      "Angle ADB is an exterior angle of triangle ADC: 32° + 32° = 64°.",
+      "Since AB = AD, angle ABD = angle ADB = 64°, so angle BAD = 180° − 64° − 64° = 52°.",
+      "Angle BAC = angle BAD + angle DAC = 52° + 32° = 84°."
+    ],
+    "hints": [
+      "Which two angles of triangle ADC are equal, and why?",
+      "How does angle ADB relate to the angles of triangle ADC?",
+      "Angle BAC is made of two smaller angles at A. What is each one?"
+    ],
+    "wrong_reasons": {},
+    "check": "c=32\ndac=c\nadb=dac+c\nbad=180-2*adb\nresult=bad+dac"
+  },
+  {
+    "id": "geo-lines-angles-f031",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m, and line t crosses both lines. What is the value of x?",
+    "choices": [
+      "28",
+      "62",
+      "118",
+      "242"
+    ],
+    "answer": "118",
+    "explanation": [
+      "The 118° angle (at ℓ) and the x° angle (at m) are both above their line and to the left of t.",
+      "Angles in matching positions at the two crossings are corresponding angles.",
+      "Corresponding angles formed by parallel lines are equal, so x = 118."
+    ],
+    "hints": [
+      "Where does each marked angle sit relative to its own line and to t?",
+      "What is true about two angles in the same position at two crossings of parallel lines?"
+    ],
+    "wrong_reasons": {
+      "28": "Subtracted 90° from 118° as if the angles were complementary",
+      "62": "Treated the angles as same-side angles, which are supplementary, instead of corresponding angles",
+      "242": "Subtracted 118° from 360° as if the angles went all the way around a point"
+    },
+    "check": "result=118",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below, are crossed by line t, which rises from lower left to upper right. Where t meets ℓ, the angle above ℓ and to the left of t measures 118°. Where t meets m, the angle above m and to the left of t is labeled x°.",
+      "aspect": 1.231,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1.5,
+          5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              2,
+              0
+            ],
+            [
+              3.595,
+              3.0
+            ]
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.595,
+            3.0
+          ],
+          "from": [
+            4.158,
+            4.06
+          ],
+          "to": [
+            2.395,
+            3
+          ],
+          "label": "118°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            0
+          ],
+          "from": [
+            2.563,
+            1.06
+          ],
+          "to": [
+            0.8,
+            0
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            3.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            0.25
+          ],
+          "text": "m"
+        },
+        {
+          "type": "text",
+          "at": [
+            4.299,
+            4.324
+          ],
+          "text": "t"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f032",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the figure, side BC of triangle ABC is extended through C to point D. What is the value of x?",
+    "answer": "35",
+    "accept": [
+      "35.0"
+    ],
+    "explanation": [
+      "An exterior angle of a triangle equals the sum of the two remote interior angles.",
+      "So 2x + (x + 15) = 120.",
+      "3x + 15 = 120, so 3x = 105.",
+      "x = 35."
+    ],
+    "hints": [
+      "Which two interior angles of the triangle are not next to the 120° angle?",
+      "How is an exterior angle related to those two angles?"
+    ],
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(2*x+(x+15),120),x)[0]",
+    "figure": {
+      "alt": "Triangle ABC with B at the lower left, C at the lower right, and A at the top. Side BC is extended to the right past C to point D. The angle at A is labeled 2x°, the angle at B is labeled (x + 15)°, and the exterior angle ACD, between CD and CA, is labeled 120°.",
+      "aspect": 1.615,
+      "plane": {
+        "x": [
+          -1,
+          9.5
+        ],
+        "y": [
+          -1,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              3.554,
+              4.236
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            8.5,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            8.5,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.554,
+            4.236
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "label": "2x°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            3.554,
+            4.236
+          ],
+          "label": "(x + 15)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            8.5,
+            0
+          ],
+          "to": [
+            3.554,
+            4.236
+          ],
+          "label": "120°"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f033",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, the measure of angle BAC is 50°. Side AB is extended through B to point P, and side AC is extended through C to point Q. The bisector of angle CBP and the bisector of angle BCQ meet at point E, as shown. What is the measure of angle BEC?",
+    "choices": [
+      "25°",
+      "65°",
+      "115°",
+      "130°"
+    ],
+    "answer": "65°",
+    "explanation": [
+      "Let the interior angles at B and C be b and c; then b + c = 180° − 50° = 130°.",
+      "Angle CBP = 180° − b, so angle EBC = (180° − b)/2. Likewise angle ECB = (180° − c)/2.",
+      "In triangle BEC: angle BEC = 180° − (180° − b)/2 − (180° − c)/2 = (b + c)/2.",
+      "(b + c)/2 = 130°/2 = 65°."
+    ],
+    "hints": [
+      "What do the interior angles at B and C add up to?",
+      "Write angle EBC and angle ECB in terms of the interior angles at B and C.",
+      "Then use the angle sum in triangle BEC."
+    ],
+    "wrong_reasons": {
+      "25°": "Took half of angle BAC without finding the angles at E",
+      "115°": "Used the result for interior angle bisectors (90° + 25°) instead of exterior ones",
+      "130°": "Subtracted 50° from 180° and stopped; that is the sum of angles B and C"
+    },
+    "check": "from sympy import *\nb=symbols('b')\nc=180-50-b\nresult=simplify(180-(180-b)/2-(180-c)/2)",
+    "figure": {
+      "alt": "Triangle ABC with B at the left end and C at the right end of a horizontal base, and A above. Angle BAC is labeled 50°. Side AB continues past B down to point P, and side AC continues past C down to point Q. A segment from B bisects angle CBP and a segment from C bisects angle BCQ; the two segments meet at point E below side BC. Angle BEC is marked with a question mark.",
+      "aspect": 0.786,
+      "plane": {
+        "x": [
+          -2.5,
+          8.5
+        ],
+        "y": [
+          -6.2,
+          7.8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              3.68,
+              6.374
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            -1.1,
+            -1.905
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            6.752,
+            -2.067
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1.1,
+            -1.905
+          ],
+          "label": "P",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            6.752,
+            -2.067
+          ],
+          "label": "Q",
+          "labelPos": "e"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.712,
+            -4.696
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            2.712,
+            -4.696
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.712,
+            -4.696
+          ],
+          "label": "E",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.68,
+            6.374
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "label": "50°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.712,
+            -4.696
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "?"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f034",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In triangle ABC, AB = AC, as marked, and the measure of angle ABC is 72°. What is the value of x?",
+    "choices": [
+      "36",
+      "54",
+      "72",
+      "108"
+    ],
+    "answer": "36",
+    "explanation": [
+      "Because AB = AC, the angles opposite those sides are equal: angle ACB = angle ABC = 72°.",
+      "The angles of a triangle add to 180°.",
+      "x = 180 − 72 − 72 = 36."
+    ],
+    "hints": [
+      "Which two angles of an isosceles triangle are equal?",
+      "Once you know two angles, how do you find the third?"
+    ],
+    "wrong_reasons": {
+      "54": "Treated 72° as the angle between the equal sides and split the remaining 108° between the base angles",
+      "72": "Assumed all three angles are equal",
+      "108": "Subtracted only one 72° angle from 180°"
+    },
+    "check": "result=180-2*72",
+    "figure": {
+      "alt": "Isosceles triangle ABC with A at the top and base BC horizontal. Sides AB and AC each carry one tick mark, showing they are equal. The angle at B is labeled 72°, and the angle at A is labeled x°.",
+      "aspect": 0.769,
+      "plane": {
+        "x": [
+          -1,
+          5
+        ],
+        "y": [
+          -0.8,
+          7
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2,
+              6.155
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              6.155
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              2,
+              6.155
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            2,
+            6.155
+          ],
+          "label": "72°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2,
+            6.155
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f035",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In triangle ABC, point D lies on side AB and point E lies on side AC. Angle ADE has the same measure as angle ACB, as marked. If AD = 3, AE = 4, and AB = 8, what is the length of AC?",
+    "answer": "6",
+    "accept": [
+      "6.0"
+    ],
+    "explanation": [
+      "Triangles ADE and ACB share angle A, and angle ADE = angle ACB, so triangle ADE is similar to triangle ACB (angle-angle).",
+      "The correspondence is A↔A, D↔C, E↔B, so AD/AC = AE/AB.",
+      "3/AC = 4/8 = 1/2.",
+      "AC = 6."
+    ],
+    "hints": [
+      "Which angle do triangles ADE and ACB share?",
+      "In the matching, which vertex of the big triangle goes with D? Which goes with E?",
+      "Be careful: is DE parallel to BC here?"
+    ],
+    "check": "from sympy import *\nac=symbols('ac',positive=True)\nresult=solve(Eq(Rational(3)/ac,Rational(4,8)),ac)[0]",
+    "figure": {
+      "alt": "Triangle ABC with A at the lower left, B at the lower right, and C at the top. Point D is on side AB and point E is on side AC, and segment DE is drawn. AD is labeled 3 and AE is labeled 4. Angle ADE (at D, between DA and DE) and angle ACB (at C, between CA and CB) carry matching arc marks. DE is not parallel to BC.",
+      "aspect": 1.389,
+      "plane": {
+        "x": [
+          -1,
+          9
+        ],
+        "y": [
+          -1,
+          6.2
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              3.0,
+              5.196
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            0
+          ],
+          "to": [
+            2.0,
+            3.464
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            2.0,
+            3.464
+          ],
+          "label": "E",
+          "labelPos": "nw"
+        },
+        {
+          "type": "text",
+          "at": [
+            1.5,
+            -0.45
+          ],
+          "text": "3"
+        },
+        {
+          "type": "text",
+          "at": [
+            0.65,
+            1.9
+          ],
+          "text": "4"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.0,
+            3.464
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.0,
+            5.196
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8,
+            0
+          ]
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f036",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m. Vertex A of triangle ABC lies on ℓ, vertices B and C lie on m, and AB = AC. What is the value of x?",
+    "choices": [
+      "50",
+      "65",
+      "80",
+      "130"
+    ],
+    "answer": "80",
+    "explanation": [
+      "The 50° angle and angle ABC are alternate interior angles for the parallel lines ℓ and m with transversal AB, so angle ABC = 50°.",
+      "Because AB = AC, angle ACB = angle ABC = 50°.",
+      "x = 180 − 50 − 50 = 80."
+    ],
+    "hints": [
+      "Which angle inside the triangle forms a Z shape with the 50° angle along segment AB?",
+      "What does AB = AC tell you about angles B and C?"
+    ],
+    "wrong_reasons": {
+      "50": "Assumed the angle at A equals the 50° angle",
+      "65": "Treated 50° as the angle between the equal sides and split 130° between the other two angles",
+      "130": "Subtracted only one 50° angle from 180°"
+    },
+    "check": "b=50\nresult=180-2*b",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below. Point A is on ℓ, and points B and C are on m, forming triangle ABC with B on the left. Sides AB and AC each have one tick mark. At A, the angle between line ℓ to the left of A and segment AB, outside the triangle, is labeled 50°. The angle BAC inside the triangle is labeled x°.",
+      "aspect": 1.5,
+      "plane": {
+        "x": [
+          -1.5,
+          7.5
+        ],
+        "y": [
+          -1,
+          5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              3,
+              4
+            ],
+            [
+              -0.356,
+              0
+            ],
+            [
+              6.356,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              3,
+              4
+            ],
+            [
+              -0.356,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              3,
+              4
+            ],
+            [
+              6.356,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3,
+            4
+          ],
+          "from": [
+            1.5,
+            4
+          ],
+          "to": [
+            -0.356,
+            0
+          ],
+          "label": "50°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3,
+            4
+          ],
+          "from": [
+            -0.356,
+            0
+          ],
+          "to": [
+            6.356,
+            0
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "text",
+          "at": [
+            7.1,
+            4.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            7.1,
+            0.25
+          ],
+          "text": "m"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f037",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, lines p, q, and r are parallel. Two transversals cross all three lines, and the lengths of the segments between the parallel lines are as labeled. What is the value of x?",
+    "choices": [
+      "10/3",
+      "7",
+      "15/2",
+      "9"
+    ],
+    "answer": "15/2",
+    "explanation": [
+      "Parallel lines cut any two transversals into proportional segments.",
+      "So 4/6 = 5/x.",
+      "4x = 30.",
+      "x = 30/4 = 15/2."
+    ],
+    "hints": [
+      "On the left transversal, how does the top piece compare to the bottom piece?",
+      "Should the pieces on the right transversal be in the same ratio?"
+    ],
+    "wrong_reasons": {
+      "10/3": "Set up the ratio upside down: 4/6 = x/5",
+      "7": "Assumed the right side grows by the same amount (5 is 1 more than 4, so 6 + 1)",
+      "9": "Added the two labels 4 and 5 instead of setting up a proportion"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nresult=solve(Eq(Rational(4,6),5/x),x)[0]",
+    "figure": {
+      "alt": "Three horizontal parallel lines: p on top, q in the middle, and r at the bottom. Two transversals cross all three. On the left transversal, the piece from p to q is labeled 4 and the piece from q to r is labeled 6. On the right transversal, the piece from p to q is labeled 5 and the piece from q to r is labeled x.",
+      "aspect": 1.286,
+      "plane": {
+        "x": [
+          -0.5,
+          8.5
+        ],
+        "y": [
+          -1,
+          6
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              5
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              8,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              1.0,
+              0
+            ],
+            [
+              2.5,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              6.5,
+              0
+            ],
+            [
+              4.5,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.5,
+            5
+          ],
+          "to": [
+            1.9,
+            3
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.9,
+            3
+          ],
+          "to": [
+            1.0,
+            0
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            4.5,
+            5
+          ],
+          "to": [
+            5.3,
+            3
+          ],
+          "label": "5"
+        },
+        {
+          "type": "segment",
+          "from": [
+            5.3,
+            3
+          ],
+          "to": [
+            6.5,
+            0
+          ],
+          "label": "x"
+        },
+        {
+          "type": "text",
+          "at": [
+            8.1,
+            5.25
+          ],
+          "text": "p"
+        },
+        {
+          "type": "text",
+          "at": [
+            8.1,
+            3.25
+          ],
+          "text": "q"
+        },
+        {
+          "type": "text",
+          "at": [
+            8.1,
+            0.25
+          ],
+          "text": "r"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f038",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In right triangle ABC, angle C is a right angle, and side CB is extended through B to point D. What is the value of x?",
+    "answer": "50",
+    "explanation": [
+      "Angle ABD is an exterior angle of the triangle, so it equals the sum of the two remote interior angles, angle A and angle C.",
+      "140 = x + 90.",
+      "x = 50."
+    ],
+    "hints": [
+      "Which two interior angles are not next to the 140° angle?",
+      "What is the measure of angle C?"
+    ],
+    "check": "result=140-90",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C in the lower left, A directly above C, and B to the right of C. Side CB is extended to the right past B to point D. The exterior angle ABD, between BD and BA, is labeled 140°. The angle at A is labeled x°. A right-angle mark is at C.",
+      "aspect": 1.484,
+      "plane": {
+        "x": [
+          -1,
+          8.5
+        ],
+        "y": [
+          -1,
+          5.4
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              4.195
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            7.5,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            7.5,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            0,
+            4.195
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5,
+            0
+          ],
+          "from": [
+            7.5,
+            0
+          ],
+          "to": [
+            0,
+            4.195
+          ],
+          "label": "140°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            4.195
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5,
+            0
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f039",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, point D lies inside triangle ABC, and segments BD and CD are drawn. What is the value of x?",
+    "choices": [
+      "53",
+      "79",
+      "101",
+      "132"
+    ],
+    "answer": "101",
+    "explanation": [
+      "In triangle ABC, angle ABC + angle ACB = 180° − 48° = 132°.",
+      "Angle DBC = angle ABC − 22° and angle DCB = angle ACB − 31°, so angle DBC + angle DCB = 132° − 22° − 31° = 79°.",
+      "In triangle DBC, x = 180 − 79 = 101.",
+      "(Equivalently, x = 48 + 22 + 31.)"
+    ],
+    "hints": [
+      "What do angles ABC and ACB add up to together?",
+      "How much of that sum is left for angles DBC and DCB?",
+      "Then use the angle sum in triangle DBC."
+    ],
+    "wrong_reasons": {
+      "53": "Added 22° and 31° only",
+      "79": "Found angle DBC + angle DCB and stopped",
+      "132": "Found the sum of angles ABC and ACB and stopped"
+    },
+    "check": "from sympy import *\nb=symbols('b')\nc=180-48-b\nresult=simplify(180-((b-22)+(c-31)))",
+    "figure": {
+      "alt": "Triangle ABC with B at the lower left, C at the lower right, and A at the top. Point D is inside the triangle, joined to B and to C. The angle at A is labeled 48°. At B, the angle between BA and BD is labeled 22°. At C, the angle between CA and CD is labeled 31°. Angle BDC, at D, is labeled x°.",
+      "aspect": 0.938,
+      "plane": {
+        "x": [
+          -1,
+          8
+        ],
+        "y": [
+          -1,
+          8.6
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2.845,
+              7.815
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.458,
+            2.729
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            7,
+            0
+          ],
+          "to": [
+            2.458,
+            2.729
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.458,
+            2.729
+          ],
+          "label": "D",
+          "labelPos": "n"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.845,
+            7.815
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            7,
+            0
+          ],
+          "label": "48°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            2.845,
+            7.815
+          ],
+          "to": [
+            2.458,
+            2.729
+          ],
+          "label": "22°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            7,
+            0
+          ],
+          "from": [
+            2.845,
+            7.815
+          ],
+          "to": [
+            2.458,
+            2.729
+          ],
+          "label": "31°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.458,
+            2.729
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            7,
+            0
+          ],
+          "label": "x°"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f040",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m, and line t crosses both lines. What is the value of y?",
+    "choices": [
+      "20",
+      "70",
+      "110",
+      "140"
+    ],
+    "answer": "110",
+    "explanation": [
+      "The (3x + 10)° and (5x − 30)° angles are alternate interior angles, so they are equal.",
+      "3x + 10 = 5x − 30 gives 2x = 40, so x = 20, and each angle measures 70°.",
+      "The y° angle and the (5x − 30)° angle form a linear pair on m, so y = 180 − 70 = 110."
+    ],
+    "hints": [
+      "Are the two angles with expressions on the same side of t or on opposite sides?",
+      "After you find x, how is the y° angle related to the angle next to it on line m?"
+    ],
+    "wrong_reasons": {
+      "20": "Gave the value of x instead of y",
+      "70": "Gave the measure of the alternate interior angles instead of y",
+      "140": "Doubled 70° instead of subtracting it from 180°"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nxv=solve(Eq(3*x+10,5*x-30),x)[0]\nresult=180-(5*xv-30)",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below, are crossed by line t, which rises from lower left to upper right. Where t meets ℓ, the angle below ℓ and to the left of t is labeled (3x + 10)°. Where t meets m, the angle above m and to the right of t is labeled (5x − 30)°, and the angle above m and to the left of t is labeled y°.",
+      "aspect": 1.067,
+      "plane": {
+        "x": [
+          -1,
+          7
+        ],
+        "y": [
+          -1.5,
+          6
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              2.5,
+              0
+            ],
+            [
+              3.956,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3.956,
+            4
+          ],
+          "from": [
+            2.756,
+            4
+          ],
+          "to": [
+            2.5,
+            0
+          ],
+          "label": "(3x + 10)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.5,
+            0
+          ],
+          "from": [
+            3.7,
+            0
+          ],
+          "to": [
+            3.956,
+            4
+          ],
+          "label": "(5x − 30)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.5,
+            0
+          ],
+          "from": [
+            1.3,
+            0
+          ],
+          "to": [
+            3.956,
+            4
+          ],
+          "label": "y°"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            4.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            6.5,
+            0.25
+          ],
+          "text": "m"
+        },
+        {
+          "type": "text",
+          "at": [
+            4.401,
+            5.222
+          ],
+          "text": "t"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f041",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, side BC of triangle ABC is extended through C to point D. What is the value of x?",
+    "choices": [
+      "59",
+      "73",
+      "107",
+      "169"
+    ],
+    "answer": "73",
+    "explanation": [
+      "The exterior angle ACD equals the sum of the two remote interior angles, angle A and angle B.",
+      "121 = 48 + x.",
+      "x = 121 − 48 = 73."
+    ],
+    "hints": [
+      "Which interior angles of the triangle are not next to the 121° angle?",
+      "How does an exterior angle compare with those two angles?"
+    ],
+    "wrong_reasons": {
+      "59": "Found the interior angle at C (180° − 121°) instead of angle B",
+      "107": "Added 48° and the interior angle at C (59°), which gives the exterior angle at B, not angle B",
+      "169": "Added 48° and 121°"
+    },
+    "check": "result=121-48",
+    "figure": {
+      "alt": "Triangle ABC with B at the lower left, C at the lower right, and A at the top. Side BC is extended to the right past C to point D. The angle at A is labeled 48°, the angle at B is labeled x°, and the exterior angle ACD, between CD and CA, is labeled 121°.",
+      "aspect": 1.28,
+      "plane": {
+        "x": [
+          -1,
+          9.5
+        ],
+        "y": [
+          -1,
+          7.2
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2.023,
+              6.618
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            8.5,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            8.5,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            2.023,
+            6.618
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "label": "48°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            6,
+            0
+          ],
+          "to": [
+            2.023,
+            6.618
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            8.5,
+            0
+          ],
+          "to": [
+            2.023,
+            6.618
+          ],
+          "label": "121°"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f042",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, line ℓ is parallel to line m, and line t meets ℓ at A and m at B. Segment AP bisects the angle that is below ℓ and to the right of t, and segment BP bisects the 64° angle. What is the measure of angle APB?",
+    "choices": [
+      "58°",
+      "64°",
+      "90°",
+      "116°"
+    ],
+    "answer": "90°",
+    "explanation": [
+      "The angle below ℓ and right of t and the 64° angle are same-side interior angles, so the angle at A measures 180° − 64° = 116°.",
+      "The bisectors split these into angle PAB = 58° and angle PBA = 32°.",
+      "In triangle APB: angle APB = 180° − 58° − 32° = 90°."
+    ],
+    "hints": [
+      "How are the two angles between ℓ and m on the right side of t related?",
+      "After bisecting, what are angles PAB and PBA?",
+      "What does the angle sum in triangle APB give?"
+    ],
+    "wrong_reasons": {
+      "58°": "Gave angle PAB, half of the 116° angle, instead of angle APB",
+      "64°": "Assumed angle APB equals the given 64° angle",
+      "116°": "Gave the full interior angle at A instead of angle APB"
+    },
+    "check": "from sympy import *\nb=Integer(64)\na=180-b\nresult=180-a/2-b/2",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below, are crossed by line t, which rises to the right and meets ℓ at A and m at B. At B, the angle above m and to the right of t is labeled 64°. Point P lies between the lines to the right of t. Segment AP bisects the angle below ℓ to the right of t, and segment BP bisects the 64° angle. Angle APB is marked with a question mark.",
+      "aspect": 1.357,
+      "plane": {
+        "x": [
+          -1,
+          8.5
+        ],
+        "y": [
+          -1.5,
+          5.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              1,
+              0
+            ],
+            [
+              2.951,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.951,
+            4
+          ],
+          "to": [
+            4.201,
+            2.0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            1,
+            0
+          ],
+          "to": [
+            4.201,
+            2.0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2.951,
+            4
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            4.201,
+            2.0
+          ],
+          "label": "P",
+          "labelPos": "e"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            1,
+            0
+          ],
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            2.951,
+            4
+          ],
+          "label": "64°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4.201,
+            2.0
+          ],
+          "from": [
+            2.951,
+            4
+          ],
+          "to": [
+            1,
+            0
+          ],
+          "label": "?"
+        },
+        {
+          "type": "text",
+          "at": [
+            8,
+            4.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            8,
+            0.25
+          ],
+          "text": "m"
+        },
+        {
+          "type": "text",
+          "at": [
+            3.521,
+            5.168
+          ],
+          "text": "t"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f043",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In the figure, triangle ABC is similar to triangle DEF, with A corresponding to D, B to E, and C to F. What is the value of x?",
+    "choices": [
+      "16/3",
+      "11",
+      "12",
+      "27/2"
+    ],
+    "answer": "12",
+    "explanation": [
+      "Corresponding sides of similar triangles are proportional.",
+      "DE/AB = 9/6 = 3/2, so every side of DEF is 3/2 times the matching side of ABC.",
+      "EF matches BC, so x = (3/2) · 8 = 12."
+    ],
+    "hints": [
+      "Which side of triangle ABC matches side DE? Which matches EF?",
+      "By what factor is triangle DEF larger than triangle ABC?"
+    ],
+    "wrong_reasons": {
+      "16/3": "Used the scale factor upside down: 8 · 6/9",
+      "11": "Added 3 to 8 because 9 is 3 more than 6, instead of multiplying",
+      "27/2": "Multiplied 9 by the scale factor 3/2 instead of multiplying 8"
+    },
+    "check": "from sympy import *\nresult=Rational(9,6)*8",
+    "figure": {
+      "alt": "Two triangles side by side. Triangle ABC on the left has B at the lower left, C to the right of B, and A above B; side AB is labeled 6 and side BC is labeled 8. Triangle DEF on the right is a larger copy with E at the lower left, F to the right, and D above E; side DE is labeled 9 and side EF is labeled x.",
+      "aspect": 2.059,
+      "plane": {
+        "x": [
+          -1,
+          13
+        ],
+        "y": [
+          -1.2,
+          5.6
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.776,
+              2.898
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "6",
+            "8",
+            ""
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              7.165,
+              4.347
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              12,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "D",
+            "E",
+            "F"
+          ],
+          "sideLabels": [
+            "9",
+            "x",
+            ""
+          ]
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f044",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In the figure, line ℓ is parallel to line m. Point P lies on ℓ, and points Q and R lie on m. What is the value of x?",
+    "answer": "60",
+    "accept": [
+      "60.0"
+    ],
+    "explanation": [
+      "The 55° angle and angle PQR are alternate interior angles, so angle PQR = 55°.",
+      "The 115° angle and angle PRQ form a linear pair on m, so angle PRQ = 180° − 115° = 65°.",
+      "In triangle PQR: x = 180 − 55 − 65 = 60."
+    ],
+    "hints": [
+      "Which angle inside triangle PQR forms a Z shape with the 55° angle?",
+      "What is the interior angle at R if the angle next to it on line m is 115°?"
+    ],
+    "check": "q=55\nr=180-115\nresult=180-q-r",
+    "figure": {
+      "alt": "Two horizontal parallel lines, ℓ on top and m below. Point P is on ℓ; points Q (left) and R (right) are on m, forming triangle PQR. At P, the angle between line ℓ to the left of P and segment PQ, outside the triangle, is labeled 55°. At R, the angle between line m to the right of R and segment RP, outside the triangle, is labeled 115°. Angle QPR is labeled x°.",
+      "aspect": 1.583,
+      "plane": {
+        "x": [
+          -0.5,
+          9
+        ],
+        "y": [
+          -1,
+          5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              4,
+              4
+            ],
+            [
+              1.199,
+              0
+            ],
+            [
+              5.865,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "P",
+            "Q",
+            "R"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            4
+          ],
+          "from": [
+            2,
+            4
+          ],
+          "to": [
+            1.199,
+            0
+          ],
+          "label": "55°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5.865,
+            0
+          ],
+          "from": [
+            7.5,
+            0
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "label": "115°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            4
+          ],
+          "from": [
+            1.199,
+            0
+          ],
+          "to": [
+            5.865,
+            0
+          ],
+          "label": "x°"
+        },
+        {
+          "type": "text",
+          "at": [
+            8.5,
+            4.25
+          ],
+          "text": "ℓ"
+        },
+        {
+          "type": "text",
+          "at": [
+            8.5,
+            0.25
+          ],
+          "text": "m"
+        }
+      ]
+    },
+    "table": null
+  },
+  {
+    "id": "geo-lines-angles-f045",
+    "skill_id": "geo-lines-angles",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC, AB = AC and the measure of angle BAC is 40°. Point D lies on AB and point E lies on AC so that segment DE is parallel to BC, and segment BE bisects angle ABC. What is the measure of angle DEB?",
+    "choices": [
+      "35°",
+      "40°",
+      "55°",
+      "70°"
+    ],
+    "answer": "35°",
+    "explanation": [
+      "Because AB = AC, angles ABC and ACB are equal: each is (180° − 40°)/2 = 70°.",
+      "BE bisects angle ABC, so angle EBC = 35°.",
+      "DE ∥ BC, so angle DEB and angle EBC are alternate interior angles: angle DEB = 35°."
+    ],
+    "hints": [
+      "What are the base angles of the isosceles triangle?",
+      "How big is each half of angle ABC?",
+      "Segment BE crosses the parallel segments DE and BC. Which angle at B pairs with angle DEB?"
+    ],
+    "wrong_reasons": {
+      "40°": "Assumed angle DEB equals the vertex angle",
+      "55°": "Found (180° − 70°)/2 instead of halving the base angle",
+      "70°": "Used the whole base angle, forgetting that BE bisects it"
+    },
+    "check": "from sympy import *\nbase=Rational(180-40,2)\nresult=base/2",
+    "figure": {
+      "alt": "Isosceles triangle ABC with A at the top and base BC horizontal; sides AB and AC each have one tick mark. The angle at A is labeled 40°. Point D is on AB and point E is on AC, with segment DE horizontal, parallel to BC. Segment BE is drawn from B to E, splitting angle ABC into two equal parts. Angle DEB, at E between ED and EB, is marked with a question mark.",
+      "aspect": 0.882,
+      "plane": {
+        "x": [
+          -1.5,
+          7.5
+        ],
+        "y": [
+          -1,
+          9.2
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              3,
+              8.242
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              3,
+              8.242
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              3,
+              8.242
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.219,
+            3.348
+          ],
+          "to": [
+            4.781,
+            3.348
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            4.781,
+            3.348
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1.219,
+            3.348
+          ],
+          "label": "D",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            4.781,
+            3.348
+          ],
+          "label": "E",
+          "labelPos": "e"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3,
+            8.242
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "label": "40°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4.781,
+            3.348
+          ],
+          "from": [
+            1.219,
+            3.348
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "?"
+        }
+      ]
+    },
+    "table": null
   }
 ]

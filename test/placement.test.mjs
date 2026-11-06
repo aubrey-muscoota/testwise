@@ -71,3 +71,16 @@ test("a missed probe is never tested out, even as a prerequisite", () => {
   const hard = probes.find((p) => p.domain_id === "alg" && p.level === 2);
   assert.ok(out.includes(hard.skill_id), "the hard probe still counts (an easier one was right)");
 });
+
+test("Reading and Writing placement probes every domain, easy first", () => {
+  const rw = content.exams.find((e) => e.id === "sat").sections.find((s) => s.id === "sat-rw");
+  let p = 0;
+  const rwSkills = rw.domains.flatMap((d) => d.skills.map((s) => ({ ...s, domain_id: d.id, position: p++ })));
+  const rwProbes = pickPlacementProbes(rwSkills);
+  assert.deepEqual(new Set(rwProbes.map((x) => x.domain_id)), new Set(rw.domains.map((d) => d.id)));
+  assert.equal(rwProbes.length, rw.domains.reduce((n, d) => n + Math.min(3, d.skills.length), 0));
+  assert.ok(rwProbes.every((x, i) => i === 0 || rwProbes[i - 1].level <= x.level), "sorted easy to hard");
+  // All right tests out every skill in the section.
+  const out = placementTestOut(rwProbes, new Map(rwProbes.map((x) => [x.skill_id, true])), rwSkills);
+  assert.equal(out.length, rwSkills.length);
+});

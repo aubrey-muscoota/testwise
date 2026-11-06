@@ -1983,5 +1983,3287 @@
       "1": "Assumed triangles with equal hypotenuses have equal areas"
     },
     "check": "from sympy import *\ndef pick(opts, target):\n    m=[s for s,e in opts if abs(N(e-target))<1e-9]\n    assert len(m)==1, m\n    return m[0].replace('−','-')\nh=symbols('h',positive=True)\nA1=(h*sin(pi/6))*(h*cos(pi/6))/2\nA2=(h*cos(pi/4))**2/2\nr=simplify(A1/A2)\nresult=pick([('√3/2',sqrt(3)/2),('2√3/3',2*sqrt(3)/3),('√3/4',sqrt(3)/4),('1',1)], r)"
+  },
+  {
+    "id": "geo-right-trig-f001",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In right triangle PQR shown, what is the length of side PR?",
+    "choices": [
+      "15",
+      "21",
+      "3√7",
+      "225"
+    ],
+    "answer": "15",
+    "explanation": [
+      "Angle Q is the right angle, so PR, across from it, is the hypotenuse.",
+      "PR² = 9² + 12² = 81 + 144 = 225.",
+      "PR = √225 = 15."
+    ],
+    "hints": [
+      "Which side is across from the right angle?",
+      "After adding the squares of the two legs, what last step gives a length?"
+    ],
+    "wrong_reasons": {
+      "21": "Added the two leg lengths instead of using the Pythagorean theorem",
+      "3√7": "Subtracted the squares (12² − 9²) as if PR were a leg",
+      "225": "Forgot to take the square root of 9² + 12²"
+    },
+    "check": "from sympy import *\nresult=sqrt(9**2+12**2)",
+    "figure": {
+      "alt": "Right triangle PQR with the right angle at Q. Vertex P is directly above Q and vertex R is to the right of Q. Leg PQ is labeled 9, leg QR is labeled 12, and the hypotenuse PR is unlabeled.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -3,
+          15
+        ],
+        "y": [
+          -2.5,
+          11
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              9
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "P",
+            "Q",
+            "R"
+          ],
+          "sideLabels": [
+            "9",
+            "12",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            9
+          ],
+          "to": [
+            12,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f002",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In triangle ABC shown, what is the value of tan B?",
+    "choices": [
+      "28/53",
+      "28/45",
+      "45/53",
+      "45/28"
+    ],
+    "answer": "28/45",
+    "explanation": [
+      "Angle C is the right angle, so AB = 53 is the hypotenuse.",
+      "BC² = 53² − 28² = 2809 − 784 = 2025, so BC = 45.",
+      "tan B = opposite/adjacent = AC/BC = 28/45."
+    ],
+    "hints": [
+      "Which side length is missing, and how can you find it from the other two?",
+      "From angle B, which leg is opposite and which is adjacent?"
+    ],
+    "wrong_reasons": {
+      "45/28": "Used adjacent ÷ opposite (that is tan A)",
+      "28/53": "Used opposite ÷ hypotenuse (that is sin B)",
+      "45/53": "Used adjacent ÷ hypotenuse (that is cos B)"
+    },
+    "check": "from sympy import *\nAC,AB=28,53\nBC=sqrt(AB**2-AC**2)\nresult=Rational(AC)/BC",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. Vertex A is directly above C and vertex B is to the right of C. Leg AC is labeled 28 and hypotenuse AB is labeled 53. Leg BC is unlabeled.",
+      "aspect": 1.526,
+      "plane": {
+        "x": [
+          -6,
+          52
+        ],
+        "y": [
+          -5,
+          33
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              28
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              45,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "C",
+            "B"
+          ],
+          "sideLabels": [
+            "28",
+            "",
+            "53"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            28
+          ],
+          "to": [
+            45,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f003",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the figure shown, angle ACB is a right angle, and segment CD is perpendicular to AB. If AD = 4 and DB = 9, what is the area of triangle ABC?",
+    "answer": "39",
+    "accept": [
+      "39.0"
+    ],
+    "explanation": [
+      "Triangles ADC and CDB are similar (each shares an acute angle with the big right triangle).",
+      "So AD/CD = CD/DB, which gives CD² = 4 · 9 = 36 and CD = 6.",
+      "AB = 4 + 9 = 13, and CD is the height to AB.",
+      "Area = (1/2)(13)(6) = 39."
+    ],
+    "hints": [
+      "Which two smaller triangles in the figure are similar, and which sides correspond?",
+      "Once you know CD, which side can serve as the base with CD as the height?"
+    ],
+    "check": "from sympy import *\nh=symbols('h',positive=True)\nAD,DB=4,9\n# right angle at C: vectors CA.CB=0 with C=(0,h), A=(-AD,0), B=(DB,0)\nh=solve(Eq((-AD)*DB+h**2,0),h)[0]\nresult=Rational(1,2)*(AD+DB)*h",
+    "figure": {
+      "alt": "Triangle ABC with base AB horizontal, A on the left and B on the right, and vertex C above. Angle ACB is marked as a right angle. Segment CD is drawn from C straight down to point D on AB, with a right-angle mark at D. AD is labeled 4 and DB is labeled 9.",
+      "aspect": 1.7,
+      "plane": {
+        "x": [
+          -6,
+          11
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              -4,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            6
+          ],
+          "to": [
+            0,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "segment",
+          "from": [
+            -4,
+            0
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "label": "9"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            6
+          ],
+          "from": [
+            -4,
+            0
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            9,
+            0
+          ],
+          "to": [
+            0,
+            6
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f004",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In right triangle ABC shown, what is the length of BC?",
+    "choices": [
+      "5√3",
+      "10√3",
+      "20",
+      "5"
+    ],
+    "answer": "5",
+    "explanation": [
+      "Angle A is 30° and angle C is 90°, so this is a 30°-60°-90° triangle.",
+      "The leg opposite the 30° angle is half the hypotenuse.",
+      "BC is opposite angle A, so BC = 10/2 = 5."
+    ],
+    "hints": [
+      "Which side is across from the 30° angle?",
+      "In a 30°-60°-90° triangle, how does the shortest side compare with the hypotenuse?"
+    ],
+    "wrong_reasons": {
+      "5√3": "Found AC, the leg opposite the 60° angle",
+      "10√3": "Multiplied the hypotenuse by √3 instead of halving it",
+      "20": "Doubled the hypotenuse instead of halving it"
+    },
+    "check": "from sympy import *\nresult=10*sin(rad(30))",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. Side AC is horizontal with A on the left; B is directly above C. Angle A is labeled 30°. Hypotenuse AB is labeled 10. Leg BC is unlabeled.",
+      "aspect": 1.5,
+      "plane": {
+        "x": [
+          -1.5,
+          10.5
+        ],
+        "y": [
+          -1.5,
+          6.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8.66,
+              0
+            ],
+            [
+              8.66,
+              5
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "C",
+            "B"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "10"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            8.66,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8.66,
+            5
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            8.66,
+            0
+          ],
+          "to": [
+            8.66,
+            5
+          ],
+          "label": "30°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f005",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In right triangle ABC shown, cos x° = 0.8. What is the length of BC?",
+    "choices": [
+      "6",
+      "18",
+      "24",
+      "37.5"
+    ],
+    "answer": "18",
+    "explanation": [
+      "cos x° = adjacent/hypotenuse = AC/30 = 0.8, so AC = 24.",
+      "BC² = 30² − 24² = 900 − 576 = 324.",
+      "BC = 18."
+    ],
+    "hints": [
+      "From the x° angle, which side does cosine compare with the hypotenuse?",
+      "Once you know two sides of the right triangle, how do you get the third?"
+    ],
+    "wrong_reasons": {
+      "24": "Found AC, the side adjacent to the x° angle",
+      "6": "Subtracted AC from the hypotenuse instead of using the Pythagorean theorem",
+      "37.5": "Divided the hypotenuse by 0.8 instead of multiplying"
+    },
+    "check": "from sympy import *\nhyp=30\nAC=hyp*Rational(8,10)\nresult=sqrt(hyp**2-AC**2)",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. Side AC is horizontal with A on the left; B is directly above C. The angle at A is labeled x°. Hypotenuse AB is labeled 30. Legs AC and BC are unlabeled.",
+      "aspect": 1.292,
+      "plane": {
+        "x": [
+          -3,
+          28
+        ],
+        "y": [
+          -3,
+          21
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              24,
+              0
+            ],
+            [
+              24,
+              18
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "C",
+            "B"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "30"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            24,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            24,
+            18
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            24,
+            0
+          ],
+          "to": [
+            24,
+            18
+          ],
+          "label": "x°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f006",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure shown, points B, D, and C lie on a line, and AB is perpendicular to BC. What is the length of DC?",
+    "choices": [
+      "6",
+      "6√2 − 6",
+      "6√3 − 6",
+      "6√3"
+    ],
+    "answer": "6√3 − 6",
+    "explanation": [
+      "In right triangle ABD, angle ADB = 45°, so it is isosceles and BD = AB = 6.",
+      "In right triangle ABC, angle ACB = 30°, so AB is the shorter leg and BC = AB·√3 = 6√3.",
+      "DC = BC − BD = 6√3 − 6."
+    ],
+    "hints": [
+      "In triangle ABD, what does the 45° angle tell you about its legs?",
+      "In triangle ABC, which leg is across from the 30° angle, and how long is the other leg?",
+      "How do BD and DC combine to make BC?"
+    ],
+    "wrong_reasons": {
+      "6": "Subtracted BD from the hypotenuse AC = 12 instead of from BC",
+      "6√2 − 6": "Subtracted AB from AD instead of finding BC − BD",
+      "6√3": "Found BC and forgot to subtract BD"
+    },
+    "check": "from sympy import *\nAB=6\nBD=AB/tan(rad(45))\nBC=AB/tan(rad(30))\nt=simplify(BC-BD)\nch={'6√3 − 6':6*sqrt(3)-6,'6':6,'6√2 − 6':6*sqrt(2)-6,'6√3':6*sqrt(3)}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at B. A is directly above B, and C is to the right of B. Point D lies on BC between B and C, and segment AD is drawn. AB is labeled 6. Angle ADB measures 45° and angle ACB measures 30°.",
+      "aspect": 1.5,
+      "plane": {
+        "x": [
+          -1.5,
+          12
+        ],
+        "y": [
+          -1.5,
+          7.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              10.392,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "6",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            6
+          ],
+          "to": [
+            6,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            6
+          ],
+          "to": [
+            10.392,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            6
+          ],
+          "label": "45°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            10.392,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            6
+          ],
+          "label": "30°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f007",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In right triangle DEF shown, what is the value of cos F?",
+    "choices": [
+      "7/25",
+      "7/24",
+      "24/25",
+      "24/7"
+    ],
+    "answer": "7/25",
+    "explanation": [
+      "Cosine is adjacent ÷ hypotenuse.",
+      "From angle F, the adjacent leg is EF = 7 and the hypotenuse is DF = 25.",
+      "cos F = 7/25."
+    ],
+    "hints": [
+      "Which side is the hypotenuse?",
+      "Which leg touches angle F?"
+    ],
+    "wrong_reasons": {
+      "24/25": "Used the side opposite F (that is sin F)",
+      "7/24": "Used adjacent ÷ opposite (that is 1/tan F)",
+      "24/7": "Used opposite ÷ adjacent (that is tan F)"
+    },
+    "check": "from sympy import *\nfrom sympy.geometry import Point, Triangle\nE=Point(0,0); D=Point(24,0); F=Point(0,7)\nassert D.distance(F)==25\nresult=simplify(cos(Triangle(D,E,F).angles[F]))",
+    "figure": {
+      "alt": "Right triangle DEF with the right angle at E. Side ED is horizontal with D to the right of E, and F is directly above E. EF is labeled 7, ED is labeled 24, and hypotenuse DF is labeled 25.",
+      "aspect": 2.4,
+      "plane": {
+        "x": [
+          -3,
+          27
+        ],
+        "y": [
+          -2.5,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              24,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "F",
+            "E",
+            "D"
+          ],
+          "sideLabels": [
+            "7",
+            "24",
+            "25"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            7
+          ],
+          "to": [
+            24,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f008",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In square ABCD shown, diagonal AC has length 12. What is the area of the square?",
+    "choices": [
+      "36",
+      "144",
+      "72",
+      "6√2"
+    ],
+    "answer": "72",
+    "explanation": [
+      "The diagonal splits the square into two 45°-45°-90° triangles, with AC as the hypotenuse.",
+      "Each side is 12/√2 = 6√2.",
+      "Area = (6√2)² = 36 · 2 = 72."
+    ],
+    "hints": [
+      "What kind of triangle does a diagonal cut a square into?",
+      "How is a leg of that triangle related to its hypotenuse?"
+    ],
+    "wrong_reasons": {
+      "144": "Squared the diagonal instead of a side",
+      "36": "Took the side to be half the diagonal, 6",
+      "6√2": "Found the side length but did not square it for the area"
+    },
+    "check": "from sympy import *\ns=symbols('s',positive=True)\nside=solve(Eq(2*s**2,12**2),s)[0]\nresult=side**2",
+    "figure": {
+      "alt": "Square ABCD with A at the bottom left, B at the bottom right, C at the top right, and D at the top left. Diagonal AC is drawn from A to C and is labeled 12. Right-angle marks are shown at the corners.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -1.5,
+          10
+        ],
+        "y": [
+          -1.5,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8.485,
+              0
+            ],
+            [
+              8.485,
+              8.485
+            ],
+            [
+              0,
+              8.485
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8.485,
+            8.485
+          ],
+          "label": "12"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            8.485,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8.485,
+            8.485
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            8.485
+          ],
+          "from": [
+            8.485,
+            8.485
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f009",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In right triangle ABC shown, BC = x, AC = x + 7, and AB = 13. What is the value of tan A?",
+    "choices": [
+      "5/13",
+      "5/12",
+      "12/13",
+      "12/5"
+    ],
+    "answer": "5/12",
+    "explanation": [
+      "By the Pythagorean theorem, x² + (x + 7)² = 13², so 2x² + 14x + 49 = 169.",
+      "That gives x² + 7x − 60 = 0, or (x + 12)(x − 5) = 0, so x = 5 (a length is positive).",
+      "BC = 5 and AC = 12, so tan A = opposite/adjacent = BC/AC = 5/12."
+    ],
+    "hints": [
+      "What equation do the three side lengths satisfy?",
+      "After you solve for x, which leg is opposite angle A and which is adjacent?"
+    ],
+    "wrong_reasons": {
+      "12/5": "Used adjacent ÷ opposite (that is tan B)",
+      "5/13": "Used opposite ÷ hypotenuse (that is sin A)",
+      "12/13": "Used adjacent ÷ hypotenuse (that is cos A)"
+    },
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nxv=solve(Eq(x**2+(x+7)**2,13**2),x)[0]\nresult=xv/(xv+7)",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. Side CA is horizontal with A to the right of C, and B is directly above C. Leg BC is labeled x, leg AC is labeled x + 7, and hypotenuse AB is labeled 13.",
+      "aspect": 1.895,
+      "plane": {
+        "x": [
+          -3,
+          15
+        ],
+        "y": [
+          -2,
+          7.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "B",
+            "C",
+            "A"
+          ],
+          "sideLabels": [
+            "x",
+            "x + 7",
+            "13"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            5
+          ],
+          "to": [
+            12,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f010",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In right triangle ABC shown, what is the value of x?",
+    "answer": "24",
+    "explanation": [
+      "AB = 26 is across from the right angle, so it is the hypotenuse.",
+      "x² + 10² = 26², so x² = 676 − 100 = 576.",
+      "x = 24."
+    ],
+    "hints": [
+      "Is x a leg or the hypotenuse?",
+      "Should you add or subtract the squares to find a leg?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nresult=solve(Eq(x**2+10**2,26**2),x)[0]",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. A is directly above C and B is to the right of C. Leg AC is labeled 10, hypotenuse AB is labeled 26, and leg CB is labeled x.",
+      "aspect": 1.938,
+      "plane": {
+        "x": [
+          -4,
+          27
+        ],
+        "y": [
+          -3,
+          13
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              10
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              24,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "C",
+            "B"
+          ],
+          "sideLabels": [
+            "10",
+            "x",
+            "26"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            10
+          ],
+          "to": [
+            24,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f011",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In right triangle ABC shown, which expression gives the length of BC?",
+    "choices": [
+      "50 cos 40°",
+      "50 tan 40°",
+      "50/sin 40°",
+      "50 sin 40°"
+    ],
+    "answer": "50 sin 40°",
+    "explanation": [
+      "BC is the leg opposite the 40° angle, and AB = 50 is the hypotenuse.",
+      "sin 40° = opposite/hypotenuse = BC/50.",
+      "So BC = 50 sin 40°."
+    ],
+    "hints": [
+      "From the 40° angle, is BC opposite or adjacent?",
+      "Which trig ratio links the opposite side with the hypotenuse?"
+    ],
+    "wrong_reasons": {
+      "50 cos 40°": "Used cosine, which gives the adjacent leg AC",
+      "50 tan 40°": "Used tangent, which would need the adjacent leg to be 50",
+      "50/sin 40°": "Divided by sin 40° instead of multiplying, treating 50 as the opposite side"
+    },
+    "check": "from sympy import *\nAB=50\nang=rad(40)\nB=Point(AB*cos(ang),AB*sin(ang)); C=Point(AB*cos(ang),0)\nt=B.distance(C)\nch={'50 sin 40°':50*sin(rad(40)),'50 cos 40°':50*cos(rad(40)),'50 tan 40°':50*tan(rad(40)),'50/sin 40°':50/sin(rad(40))}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. Side AC is horizontal with A on the left, and B is directly above C. The angle at A is labeled 40°, and hypotenuse AB is labeled 50.",
+      "aspect": 1.222,
+      "plane": {
+        "x": [
+          -1.5,
+          9.5
+        ],
+        "y": [
+          -1.5,
+          7.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              7.66,
+              0
+            ],
+            [
+              7.66,
+              6.428
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "C",
+            "B"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "50"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            7.66,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            7.66,
+            6.428
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            7.66,
+            0
+          ],
+          "to": [
+            7.66,
+            6.428
+          ],
+          "label": "40°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f012",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In quadrilateral ABCD shown, angle ABC and angle ACD are right angles. AB = 3, BC = 4, and CD = 12. What is the perimeter of ABCD?",
+    "answer": "32",
+    "accept": [
+      "32.0"
+    ],
+    "explanation": [
+      "In right triangle ABC, AC² = 3² + 4² = 25, so AC = 5.",
+      "In right triangle ACD, AC and CD are the legs, so AD² = 5² + 12² = 169 and AD = 13.",
+      "Perimeter = AB + BC + CD + DA = 3 + 4 + 12 + 13 = 32."
+    ],
+    "hints": [
+      "Which segment is shared by the two right triangles?",
+      "Is the diagonal AC part of the perimeter?"
+    ],
+    "check": "from sympy import *\nAB,BC,CD=3,4,12\nAC=sqrt(AB**2+BC**2)\nAD=sqrt(AC**2+CD**2)\nresult=AB+BC+CD+AD",
+    "figure": {
+      "alt": "Quadrilateral ABCD with diagonal AC drawn. B is at the bottom left, A is directly above B, C is to the right of B, and D is far up and to the right of C. Angle ABC is a right angle and angle ACD is a right angle. AB is labeled 3, BC is labeled 4, and CD is labeled 12. AD is unlabeled.",
+      "aspect": 1.2,
+      "plane": {
+        "x": [
+          -2,
+          13
+        ],
+        "y": [
+          -1.5,
+          11
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              11.2,
+              9.6
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "3",
+            "4",
+            "12",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            4,
+            0
+          ],
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            11.2,
+            9.6
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f013",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In triangle ABC shown, AB = BC = 7. What is the length of AC?",
+    "choices": [
+      "14",
+      "7√3",
+      "49",
+      "7√2"
+    ],
+    "answer": "7√2",
+    "explanation": [
+      "The legs are equal, so this is a 45°-45°-90° triangle.",
+      "The hypotenuse is a leg times √2.",
+      "AC = 7√2."
+    ],
+    "hints": [
+      "What kind of right triangle has two equal legs?",
+      "How do you find the hypotenuse from a leg in that triangle?"
+    ],
+    "wrong_reasons": {
+      "14": "Added the two legs instead of using the Pythagorean theorem",
+      "7√3": "Used the 30°-60°-90° ratio instead of the 45°-45°-90° ratio",
+      "49": "Computed 7² instead of √(7² + 7²)"
+    },
+    "check": "from sympy import *\nt=sqrt(7**2+7**2)\nch={'7√2':7*sqrt(2),'14':14,'7√3':7*sqrt(3),'49':49}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at B. A is directly above B and C is to the right of B. Legs AB and BC are each labeled 7 and carry matching tick marks. Hypotenuse AC is unlabeled.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -2,
+          9
+        ],
+        "y": [
+          -2,
+          9
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "7",
+            "7",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            7
+          ],
+          "to": [
+            7,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ]
+          ],
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f014",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In right triangle PQR shown, which of the following is equal to sin P?",
+    "choices": [
+      "cos Q",
+      "sin Q",
+      "tan Q",
+      "cos P"
+    ],
+    "answer": "cos Q",
+    "explanation": [
+      "sin P = opposite/hypotenuse = QR/PQ = 21/29.",
+      "From angle Q, QR is the adjacent leg, so cos Q = QR/PQ = 21/29.",
+      "So sin P = cos Q (P and Q are complementary)."
+    ],
+    "hints": [
+      "Which side is opposite angle P?",
+      "For angle Q, is that same side opposite or adjacent?"
+    ],
+    "wrong_reasons": {
+      "sin Q": "sin Q = 20/29 uses PR, the side adjacent to P",
+      "tan Q": "tan Q = 20/21 divides by a leg, not the hypotenuse",
+      "cos P": "cos P = 20/29 uses the side adjacent to P, not the opposite side"
+    },
+    "check": "from sympy import *\nfrom sympy.geometry import Point, Triangle\nR=Point(0,0); P_=Point(0,20); Q=Point(21,0)\nT=Triangle(P_,Q,R); a=T.angles\nassert P_.distance(Q)==29\nt=sin(a[P_])\nch={'cos Q':cos(a[Q]),'sin Q':sin(a[Q]),'tan Q':tan(a[Q]),'cos P':cos(a[P_])}\nresult=[k for k,v in ch.items() if simplify(v-t)==0]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Right triangle PQR with the right angle at R. P is directly above R and Q is to the right of R. Leg PR is labeled 20, leg RQ is labeled 21, and hypotenuse PQ is labeled 29.",
+      "aspect": 1.077,
+      "plane": {
+        "x": [
+          -4,
+          24
+        ],
+        "y": [
+          -3,
+          23
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              20
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              21,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "P",
+            "R",
+            "Q"
+          ],
+          "sideLabels": [
+            "20",
+            "21",
+            "29"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            20
+          ],
+          "to": [
+            21,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f015",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A vertical tower TH stands on level ground, with base T and top H. Points P and Q are on the ground in line with T, as shown. The angle of elevation of H is 60° from P and 30° from Q, and PQ = 20 meters. What is the distance x, in meters, from P to T?",
+    "answer": "10",
+    "accept": [
+      "10.0"
+    ],
+    "explanation": [
+      "Let h be the tower's height. From P: tan 60° = h/x, so h = x√3.",
+      "From Q: tan 30° = h/(x + 20), so h = (x + 20)/√3.",
+      "Set them equal: x√3 = (x + 20)/√3, so 3x = x + 20.",
+      "2x = 20, so x = 10."
+    ],
+    "hints": [
+      "Can you write the tower's height two ways, once from each point?",
+      "From Q, how far is it to the base of the tower in terms of x?"
+    ],
+    "check": "from sympy import *\nx,h=symbols('x h',positive=True)\nsol=solve([Eq(tan(rad(60)),h/x),Eq(tan(rad(30)),h/(x+20))],[x,h],dict=True)[0]\nresult=sol[x]",
+    "figure": {
+      "alt": "A vertical tower TH with base T on level ground and top H above it, with a right angle at T. Points P and Q are on the ground to the right of T, with P between T and Q. Segment TP is labeled x and segment PQ is labeled 20. Segments HP and HQ are drawn. The angle at P between PT and PH is labeled 60°, and the angle at Q between QT and QH is labeled 30°.",
+      "aspect": 1.583,
+      "plane": {
+        "x": [
+          -4,
+          34
+        ],
+        "y": [
+          -3,
+          21
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            17.321
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            10,
+            0
+          ],
+          "label": "x"
+        },
+        {
+          "type": "segment",
+          "from": [
+            10,
+            0
+          ],
+          "to": [
+            30,
+            0
+          ],
+          "label": "20"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            17.321
+          ],
+          "to": [
+            10,
+            0
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            17.321
+          ],
+          "to": [
+            30,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "T",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            17.321
+          ],
+          "label": "H",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            10,
+            0
+          ],
+          "label": "P",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            30,
+            0
+          ],
+          "label": "Q",
+          "labelPos": "se"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            17.321
+          ],
+          "to": [
+            10,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            10,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            17.321
+          ],
+          "label": "60°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            30,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            17.321
+          ],
+          "label": "30°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f016",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In right triangle ABC shown, what is the length of BC?",
+    "choices": [
+      "7",
+      "7√3",
+      "7√2",
+      "14√3"
+    ],
+    "answer": "7√3",
+    "explanation": [
+      "Angle C is the right angle and angle A is 60°, so this is a 30°-60°-90° triangle with hypotenuse AB = 14.",
+      "The side opposite the 30° angle (AC) is half the hypotenuse: 7.",
+      "The side opposite the 60° angle (BC) is √3 times the short leg: 7√3."
+    ],
+    "hints": [
+      "Which side is the hypotenuse, and what are the three angles of the triangle?",
+      "In a 30°-60°-90° triangle, which leg is across from the 60° angle, and how does it compare with the shortest side?"
+    ],
+    "wrong_reasons": {
+      "7": "Found AC, the side opposite the 30° angle, instead of BC",
+      "7√2": "Used the 45°-45°-90° ratio instead of the 30°-60°-90° ratio",
+      "14√3": "Multiplied the hypotenuse, not the short leg, by √3"
+    },
+    "check": "from sympy import *\nAB=14\nt=AB*sin(rad(60))\nch={'7√3':7*sqrt(3), '7':7, '7√2':7*sqrt(2), '14√3':14*sqrt(3)}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. C is at the lower left, A is to the right of C, and B is directly above C. Angle A is labeled 60°. The hypotenuse AB is labeled 14. Sides AC and BC are unlabeled.",
+      "aspect": 0.812,
+      "plane": {
+        "x": [
+          -3,
+          10
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              0,
+              12.124
+            ]
+          ],
+          "vertexLabels": [
+            "C",
+            "A",
+            "B"
+          ],
+          "sideLabels": [
+            "",
+            "14",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            7,
+            0
+          ],
+          "to": [
+            0,
+            12.124
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            7,
+            0
+          ],
+          "from": [
+            0,
+            12.124
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "60°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f017",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In right triangle XYZ shown, what is the value of sin X?",
+    "choices": [
+      "3/5",
+      "3/4",
+      "4/5",
+      "4/3"
+    ],
+    "answer": "4/5",
+    "explanation": [
+      "Sine is opposite side ÷ hypotenuse.",
+      "The side opposite angle X is YZ = 16, and the hypotenuse is XZ = 20.",
+      "sin X = 16/20 = 4/5."
+    ],
+    "hints": [
+      "Which side is across the triangle from angle X?",
+      "Which side is across from the right angle?"
+    ],
+    "wrong_reasons": {
+      "3/5": "Used the side adjacent to X (that is cos X)",
+      "3/4": "Used adjacent ÷ opposite (that is 1/tan X)",
+      "4/3": "Used opposite ÷ adjacent (that is tan X)"
+    },
+    "check": "from sympy import *\nXY,YZ,XZ=12,16,20\nassert XY**2+YZ**2==XZ**2\nresult=Rational(YZ,XZ)",
+    "figure": {
+      "alt": "Right triangle XYZ with the right angle at Y. X is directly above Y, and Z is to the right of Y. Side XY is labeled 12, side YZ is labeled 16, and the hypotenuse XZ is labeled 20.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -3,
+          19
+        ],
+        "y": [
+          -2.5,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              12
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              16,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "X",
+            "Y",
+            "Z"
+          ],
+          "sideLabels": [
+            "12",
+            "16",
+            "20"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            12
+          ],
+          "to": [
+            16,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f018",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In trapezoid ABCD shown, AB is parallel to DC, AB = 10, and the height of the trapezoid is 6. Angle D measures 45° and angle C measures 60°. What is the length of DC?",
+    "choices": [
+      "10 + 2√3",
+      "22",
+      "16 + 6√3",
+      "16 + 2√3"
+    ],
+    "answer": "16 + 2√3",
+    "explanation": [
+      "Drop perpendiculars from A and B to DC. They cut DC into three parts: a left piece, a middle piece equal to AB = 10, and a right piece.",
+      "Left triangle: 45°-45°-90° with height 6, so its base is 6.",
+      "Right triangle: 30°-60°-90° with the 60° angle at C and height 6, so its base is 6/√3 = 2√3.",
+      "DC = 6 + 10 + 2√3 = 16 + 2√3."
+    ],
+    "hints": [
+      "If you drop a perpendicular from B to DC, what kind of right triangle do you get at C?",
+      "In that triangle, the height 6 is opposite which angle? Is the base longer or shorter than 6?"
+    ],
+    "wrong_reasons": {
+      "10 + 2√3": "Left out the 6-unit piece of DC under the 45° side",
+      "22": "Treated the 60° corner like the 45° corner, adding 6 on both sides",
+      "16 + 6√3": "Multiplied the height by √3 for the 60° corner instead of dividing"
+    },
+    "check": "from sympy import *\nh,AB=6,10\nt=h/tan(rad(45))+AB+h/tan(rad(60))\nch={'16 + 2√3':16+2*sqrt(3), '16 + 6√3':16+6*sqrt(3), '22':22, '10 + 2√3':10+2*sqrt(3)}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Trapezoid ABCD with the longer base DC along the bottom and the shorter base AB along the top, parallel to DC. D is at the lower left and C at the lower right; A is above and to the right of D, and B is above and to the left of C. AB is labeled 10. A dashed vertical segment from A down to DC, marked with a right angle, is labeled 6. The angle at D is labeled 45° and the angle at C is labeled 60°.",
+      "aspect": 2.286,
+      "plane": {
+        "x": [
+          -2,
+          22
+        ],
+        "y": [
+          -2,
+          8.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              19.464,
+              0
+            ],
+            [
+              16,
+              6
+            ],
+            [
+              6,
+              6
+            ]
+          ],
+          "vertexLabels": [
+            "D",
+            "C",
+            "B",
+            "A"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "10",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            6
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dash": true,
+          "label": "6"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            6,
+            6
+          ],
+          "to": [
+            19.464,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            19.464,
+            0
+          ],
+          "to": [
+            6,
+            6
+          ],
+          "label": "45°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            19.464,
+            0
+          ],
+          "from": [
+            16,
+            6
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "60°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f019",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "In right triangle ABC shown, what is the value of x?",
+    "answer": "15",
+    "explanation": [
+      "Angle B is the right angle, so AC = 17 is the hypotenuse.",
+      "x² + 8² = 17², so x² = 289 − 64 = 225.",
+      "x = 15."
+    ],
+    "hints": [
+      "Which side is across from the right angle?",
+      "If you know the hypotenuse and one leg, how do you rearrange a² + b² = c²?"
+    ],
+    "check": "from sympy import *\nx=symbols('x',positive=True)\nresult=solve(Eq(x**2+8**2,17**2),x)[0]",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at B. A is directly above B, and C is to the right of B. Leg AB is labeled 8, leg BC is labeled x, and the hypotenuse AC is labeled 17.",
+      "aspect": 1.68,
+      "plane": {
+        "x": [
+          -3,
+          18
+        ],
+        "y": [
+          -2.5,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "8",
+            "x",
+            "17"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            8
+          ],
+          "to": [
+            15,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f020",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In right triangle PQR shown, the measure of angle P is (3k + 8)° and the measure of angle R is (5k − 6)°. What is the value of k?",
+    "choices": [
+      "7",
+      "11",
+      "22.25",
+      "41"
+    ],
+    "answer": "11",
+    "explanation": [
+      "Angle Q is 90°, so the two acute angles add to 90°.",
+      "(3k + 8) + (5k − 6) = 90, so 8k + 2 = 90.",
+      "8k = 88, so k = 11."
+    ],
+    "hints": [
+      "What do the three angles of any triangle add to, and how much of that is used by angle Q?",
+      "Can you write one equation using only the two labeled angles?"
+    ],
+    "wrong_reasons": {
+      "7": "Set the two acute angles equal to each other",
+      "22.25": "Set the two acute angles' sum equal to 180 instead of 90",
+      "41": "Found the measure of angle P instead of k"
+    },
+    "check": "from sympy import *\nk=symbols('k')\nresult=solve(Eq((3*k+8)+(5*k-6)+90,180),k)[0]",
+    "figure": {
+      "alt": "Right triangle PQR with the right angle at Q. P is directly above Q, and R is to the right of Q. The angle at P is labeled (3k + 8)° and the angle at R is labeled (5k − 6)°. No side lengths are given.",
+      "aspect": 1.036,
+      "plane": {
+        "x": [
+          -3,
+          11.5
+        ],
+        "y": [
+          -2,
+          12
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              10
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              8.693,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "P",
+            "Q",
+            "R"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            10
+          ],
+          "to": [
+            8.693,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            10
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8.693,
+            0
+          ],
+          "label": "(3k + 8)°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            8.693,
+            0
+          ],
+          "from": [
+            0,
+            10
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "(5k − 6)°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f021",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A 25-foot ladder leans against a vertical wall on level ground, as shown. At first, the top of the ladder is 24 feet above the ground. The top then slides 4 feet down the wall (dashed position). How many feet farther from the wall is the bottom of the ladder after it slides?",
+    "choices": [
+      "4",
+      "8",
+      "15",
+      "22"
+    ],
+    "answer": "8",
+    "explanation": [
+      "First position: base² + 24² = 25², so the base is √(625 − 576) = 7 feet from the wall.",
+      "Second position: the top is 24 − 4 = 20 feet high, so base² + 20² = 25², and the base is √(625 − 400) = 15 feet from the wall.",
+      "The bottom moved 15 − 7 = 8 feet farther from the wall."
+    ],
+    "hints": [
+      "The ladder's length stays 25 feet. How far is the bottom from the wall in each position?",
+      "Does the bottom have to move the same distance as the top?"
+    ],
+    "wrong_reasons": {
+      "4": "Assumed the bottom moves the same distance as the top",
+      "15": "Gave the bottom's final distance from the wall, not how far it moved",
+      "22": "Added the two distances from the wall instead of subtracting"
+    },
+    "check": "from sympy import *\nL,h1,drop=25,24,4\nb1=sqrt(L**2-h1**2)\nb2=sqrt(L**2-(h1-drop)**2)\nresult=b2-b1",
+    "figure": {
+      "alt": "A vertical wall meets level ground at a right angle. A solid segment, the ladder in its first position, runs from a point on the ground to a point on the wall labeled 24 ft above the ground; the ladder is labeled 25 ft. A dashed segment, the ladder after sliding, runs from a point farther out on the ground to a lower point on the wall; it is also 25 ft long, and the top is 4 ft lower than before.",
+      "aspect": 0.767,
+      "plane": {
+        "x": [
+          -5,
+          18
+        ],
+        "y": [
+          -3,
+          27
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            26.5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -1,
+            0
+          ],
+          "to": [
+            17.5,
+            0
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            24
+          ],
+          "to": [
+            15,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            24
+          ],
+          "to": [
+            7,
+            0
+          ],
+          "label": "25 ft"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            20
+          ],
+          "to": [
+            15,
+            0
+          ],
+          "dash": true,
+          "label": "25 ft"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            24
+          ],
+          "label": "24 ft",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            20
+          ],
+          "label": "20 ft",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            7,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            15,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f022",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In right triangle LMN shown, what is the value of cos N?",
+    "choices": [
+      "5/13",
+      "5/12",
+      "12/13",
+      "12/5"
+    ],
+    "answer": "12/13",
+    "explanation": [
+      "Cosine is adjacent side ÷ hypotenuse.",
+      "For angle N, the adjacent leg is MN = 48 and the hypotenuse is LN = 52.",
+      "cos N = 48/52 = 12/13."
+    ],
+    "hints": [
+      "Which leg touches angle N (other than the hypotenuse)?",
+      "Which side is across from the right angle?"
+    ],
+    "wrong_reasons": {
+      "5/13": "Used the side opposite N (that is sin N)",
+      "5/12": "Used opposite ÷ adjacent (that is tan N)",
+      "12/5": "Used adjacent ÷ opposite (that is 1/tan N)"
+    },
+    "check": "from sympy import *\nLM,MN,LN=20,48,52\nassert LM**2+MN**2==LN**2\nresult=Rational(MN,LN)",
+    "figure": {
+      "alt": "Right triangle LMN with the right angle at M. L is directly above M, and N is to the right of M. Leg LM is labeled 20, leg MN is labeled 48, and the hypotenuse LN is labeled 52.",
+      "aspect": 2.036,
+      "plane": {
+        "x": [
+          -5,
+          52
+        ],
+        "y": [
+          -4,
+          24
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              20
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              48,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "L",
+            "M",
+            "N"
+          ],
+          "sideLabels": [
+            "20",
+            "48",
+            "52"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            20
+          ],
+          "to": [
+            48,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f023",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "In right triangle ABC shown, AC = 12 and tan B = 3/4. What is the area of triangle ABC?",
+    "answer": "96",
+    "explanation": [
+      "Angle C is the right angle, so tan B = AC/BC (opposite ÷ adjacent).",
+      "12/BC = 3/4, so BC = 16.",
+      "Area = (1/2)(12)(16) = 96."
+    ],
+    "hints": [
+      "For angle B, which leg is opposite and which is adjacent?",
+      "Once you know both legs, how do you find the area of a right triangle?"
+    ],
+    "check": "from sympy import *\nBC=symbols('BC',positive=True)\nAC=12\nbc=solve(Eq(Rational(AC)/BC,Rational(3,4)),BC)[0]\nresult=Rational(1,2)*AC*bc",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. A is directly above C, and B is to the right of C. Leg AC is labeled 12. Legs BC and hypotenuse AB are unlabeled.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -3,
+          19
+        ],
+        "y": [
+          -2.5,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              12
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              16,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "C",
+            "B"
+          ],
+          "sideLabels": [
+            "12",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            0,
+            12
+          ],
+          "to": [
+            16,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f024",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC shown, angle A measures 45°, angle B measures 30°, and AC = 6√2. Segment CD is perpendicular to AB. What is the length of AB?",
+    "choices": [
+      "6 + 6√3",
+      "12",
+      "6 + 2√3",
+      "6√2 + 6√3"
+    ],
+    "answer": "6 + 6√3",
+    "explanation": [
+      "Triangle ADC is a 45°-45°-90° triangle with hypotenuse AC = 6√2, so AD = CD = 6.",
+      "Triangle CDB is a 30°-60°-90° triangle; CD = 6 is opposite the 30° angle at B.",
+      "So DB = 6√3 (the leg opposite 60°).",
+      "AB = AD + DB = 6 + 6√3."
+    ],
+    "hints": [
+      "What kind of right triangle is ADC, and how do its legs compare to AC?",
+      "In triangle CDB, which angle is CD across from, and how long is the leg next to angle B?"
+    ],
+    "wrong_reasons": {
+      "12": "Treated triangle CDB like a 45°-45°-90° triangle, so DB = 6",
+      "6 + 2√3": "Divided CD by √3 instead of multiplying, mixing up which leg is opposite 30°",
+      "6√2 + 6√3": "Used AC = 6√2 as AD instead of finding the leg AD = 6"
+    },
+    "check": "from sympy import *\nAC=6*sqrt(2)\nCD=AC*sin(rad(45)); AD=AC*cos(rad(45))\nDB=CD/tan(rad(30))\nt=simplify(AD+DB)\nch={'6 + 6√3':6+6*sqrt(3), '6 + 2√3':6+2*sqrt(3), '12':12, '6√2 + 6√3':6*sqrt(2)+6*sqrt(3)}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Triangle ABC with side AB along the bottom, A at the left and B at the right, and C above AB, closer to A. A dashed segment from C meets AB at D at a right angle. The angle at A is labeled 45°, the angle at B is labeled 30°, and side AC is labeled 6√2.",
+      "aspect": 2.05,
+      "plane": {
+        "x": [
+          -2,
+          18.5
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              16.392,
+              0
+            ],
+            [
+              6,
+              6
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "6√2"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            6
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            6,
+            6
+          ],
+          "to": [
+            16.392,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            16.392,
+            0
+          ],
+          "to": [
+            6,
+            6
+          ],
+          "label": "45°"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            16.392,
+            0
+          ],
+          "from": [
+            6,
+            6
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "30°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f025",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Triangle ABC shown is equilateral with side length 12. Segment CD is the altitude from C to AB. What is the length of CD?",
+    "choices": [
+      "6√3",
+      "6",
+      "6√2",
+      "12√3"
+    ],
+    "answer": "6√3",
+    "explanation": [
+      "The altitude of an equilateral triangle bisects the base, so AD = 6.",
+      "Triangle ADC is a right triangle with hypotenuse AC = 12 and leg AD = 6.",
+      "CD = √(12² − 6²) = √108 = 6√3."
+    ],
+    "hints": [
+      "Where does the altitude meet AB, and how long is AD?",
+      "Which side of triangle ADC is its hypotenuse?"
+    ],
+    "wrong_reasons": {
+      "6": "Gave AD, half the base, instead of the altitude",
+      "6√2": "Used the 45°-45°-90° ratio instead of the 30°-60°-90° ratio",
+      "12√3": "Multiplied the full side, not half of it, by √3"
+    },
+    "check": "from sympy import *\ns=12\nt=sqrt(s**2-(Rational(s,2))**2)\nch={'6√3':6*sqrt(3), '6':6, '6√2':6*sqrt(2), '12√3':12*sqrt(3)}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Equilateral triangle ABC with base AB along the bottom, A at the left, B at the right, and C at the top. All three sides are labeled 12. A dashed segment from C meets AB at its midpoint D at a right angle.",
+      "aspect": 1.143,
+      "plane": {
+        "x": [
+          -2,
+          14
+        ],
+        "y": [
+          -2,
+          12
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              6,
+              10.392
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "12",
+            "12",
+            "12"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            10.392
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            6,
+            10.392
+          ],
+          "to": [
+            12,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f026",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In right triangle ABC shown, what is the length of BC?",
+    "choices": [
+      "9√2",
+      "9√2/2",
+      "18",
+      "9"
+    ],
+    "answer": "9",
+    "explanation": [
+      "Angle C is 90° and angle A is 45°, so angle B is also 45°.",
+      "A right triangle with two 45° angles is isosceles, so its legs are equal.",
+      "BC = AC = 9."
+    ],
+    "hints": [
+      "What is the measure of angle B?",
+      "If two angles of a triangle are equal, what is true about the sides across from them?"
+    ],
+    "wrong_reasons": {
+      "9√2": "Found the hypotenuse AB instead of leg BC",
+      "9√2/2": "Treated AC as the hypotenuse and divided by √2",
+      "18": "Doubled the leg, confusing it with a 30°-60°-90° ratio"
+    },
+    "check": "from sympy import *\nAC=9\nresult=AC*tan(rad(45))",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. C is at the lower left, A is to the right of C, and B is directly above C. Angle A is labeled 45°. Leg AC is labeled 9. Leg BC and hypotenuse AB are unlabeled.",
+      "aspect": 1.111,
+      "plane": {
+        "x": [
+          -3,
+          12
+        ],
+        "y": [
+          -2.5,
+          11
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              0,
+              9
+            ]
+          ],
+          "vertexLabels": [
+            "C",
+            "A",
+            "B"
+          ],
+          "sideLabels": [
+            "9",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            9,
+            0
+          ],
+          "to": [
+            0,
+            9
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            9,
+            0
+          ],
+          "from": [
+            0,
+            9
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "45°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f027",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In right triangle ABC shown, tan A = 8/15, and the perimeter of the triangle is 80. What is the length of AB?",
+    "answer": "34",
+    "explanation": [
+      "Angle C is the right angle, so tan A = BC/AC = 8/15. Let BC = 8k and AC = 15k.",
+      "Then AB = √((8k)² + (15k)²) = √(289k²) = 17k.",
+      "Perimeter: 8k + 15k + 17k = 40k = 80, so k = 2.",
+      "AB = 17 · 2 = 34."
+    ],
+    "hints": [
+      "If tan A = 8/15, could BC and AC be 8 and 15 exactly, or just in that ratio?",
+      "Writing the legs as 8k and 15k, what is the hypotenuse in terms of k?"
+    ],
+    "check": "from sympy import *\nk=symbols('k',positive=True)\nBC,AC=8*k,15*k\nAB=sqrt(BC**2+AC**2)\nkv=solve(Eq(BC+AC+AB,80),k)[0]\nresult=AB.subs(k,kv)",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. C is at the lower left, A is to the right of C, and B is directly above C. No side lengths are labeled. Side BC is opposite angle A and side AC is adjacent to angle A.",
+      "aspect": 1.727,
+      "plane": {
+        "x": [
+          -4,
+          34
+        ],
+        "y": [
+          -3,
+          19
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              30,
+              0
+            ],
+            [
+              0,
+              16
+            ]
+          ],
+          "vertexLabels": [
+            "C",
+            "A",
+            "B"
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            30,
+            0
+          ],
+          "to": [
+            0,
+            16
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f028",
+    "skill_id": "geo-right-trig",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In right triangle ABC shown, which expression gives the length of AC?",
+    "choices": [
+      "18 sin 35°",
+      "18 cos 35°",
+      "18 tan 35°",
+      "18/tan 35°"
+    ],
+    "answer": "18 tan 35°",
+    "explanation": [
+      "For angle B, AC is the opposite leg and BC = 18 is the adjacent leg.",
+      "tan 35° = AC/18.",
+      "So AC = 18 tan 35°."
+    ],
+    "hints": [
+      "Relative to the 35° angle, is AC opposite, adjacent, or the hypotenuse? What about BC?",
+      "Which trig ratio uses exactly those two sides?"
+    ],
+    "wrong_reasons": {
+      "18 sin 35°": "Used sine, which would need the hypotenuse, as if 18 were the hypotenuse",
+      "18 cos 35°": "Used cosine with 18 as the hypotenuse",
+      "18/tan 35°": "Set up tan 35° as adjacent ÷ opposite"
+    },
+    "check": "from sympy import *\nBC=18\nB=Point(BC,0); C=Point(0,0)\nA=Point(0,BC*tan(rad(35)))\nassert abs(N(Triangle(A,B,C).angles[B]-rad(35)))<1e-12\nt=A.distance(C)\nch={'18 tan 35°':18*tan(rad(35)), '18 sin 35°':18*sin(rad(35)), '18 cos 35°':18*cos(rad(35)), '18/tan 35°':18/tan(rad(35))}\nresult=[k for k,v in ch.items() if abs(N(v)-N(t))<1e-9]\nassert len(result)==1\nresult=result[0].replace('−','-')",
+    "figure": {
+      "alt": "Right triangle ABC with the right angle at C. C is at the lower left, B is to the right of C, and A is directly above C. Angle B is labeled 35°. Leg BC is labeled 18. Leg AC and hypotenuse AB are unlabeled.",
+      "aspect": 1.371,
+      "plane": {
+        "x": [
+          -3,
+          21
+        ],
+        "y": [
+          -2.5,
+          15
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              18,
+              0
+            ],
+            [
+              0,
+              12.604
+            ]
+          ],
+          "vertexLabels": [
+            "C",
+            "B",
+            "A"
+          ],
+          "sideLabels": [
+            "18",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            18,
+            0
+          ],
+          "to": [
+            0,
+            12.604
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            18,
+            0
+          ],
+          "from": [
+            0,
+            12.604
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "35°"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f029",
+    "skill_id": "geo-right-trig",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the figure shown, angle ACB is a right angle and segment CD is perpendicular to AB. If AC = 15 and cos A = 3/5, what is the length of BD?",
+    "answer": "16",
+    "explanation": [
+      "In right triangle ABC, cos A = AC/AB, so 15/AB = 3/5 and AB = 25.",
+      "In right triangle ADC, cos A = AD/AC, so AD = 15 · 3/5 = 9.",
+      "BD = AB − AD = 25 − 9 = 16."
+    ],
+    "hints": [
+      "Angle A belongs to two right triangles here. In each one, which side is the hypotenuse?",
+      "Can you find AB and AD separately, then subtract?"
+    ],
+    "check": "from sympy import *\nAC=15; c=Rational(3,5)\nAB=AC/c\nAD=AC*c\nresult=AB-AD",
+    "figure": {
+      "alt": "Triangle ABC with side AB along the bottom, A at the left and B at the right, and C above AB, closer to A. The angle at C is marked as a right angle. A dashed segment from C meets AB at point D at a right angle. Side AC is labeled 15. No other lengths are labeled.",
+      "aspect": 1.812,
+      "plane": {
+        "x": [
+          -2,
+          27
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              25,
+              0
+            ],
+            [
+              9,
+              12
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "15"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            9,
+            12
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "point",
+          "at": [
+            9,
+            0
+          ],
+          "label": "D",
+          "labelPos": "s"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            9,
+            0
+          ],
+          "from": [
+            9,
+            12
+          ],
+          "to": [
+            25,
+            0
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            9,
+            12
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            25,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-right-trig-f030",
+    "skill_id": "geo-right-trig",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "Rectangle ABCD is shown with diagonal AC. AB = 30 and BC = 16. What is the length of AC?",
+    "choices": [
+      "34",
+      "2√161",
+      "46",
+      "1,156"
+    ],
+    "answer": "34",
+    "explanation": [
+      "Angle B of the rectangle is a right angle, so triangle ABC is a right triangle with hypotenuse AC.",
+      "AC² = 30² + 16² = 900 + 256 = 1,156.",
+      "AC = √1,156 = 34."
+    ],
+    "hints": [
+      "Which angle of triangle ABC is a right angle?",
+      "After adding the squares of the legs, what last step gives a length?"
+    ],
+    "wrong_reasons": {
+      "2√161": "Subtracted the squares (30² − 16²) as if AC were a leg",
+      "46": "Added the side lengths instead of using the Pythagorean theorem",
+      "1,156": "Forgot to take the square root of 30² + 16²"
+    },
+    "check": "from sympy import *\nresult=sqrt(30**2+16**2)",
+    "figure": {
+      "alt": "Rectangle ABCD with A at the lower left, B at the lower right, C at the upper right, and D at the upper left. Side AB is labeled 30 and side BC is labeled 16. Diagonal AC is drawn and unlabeled.",
+      "aspect": 1.636,
+      "plane": {
+        "x": [
+          -3,
+          33
+        ],
+        "y": [
+          -3,
+          19
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              30,
+              0
+            ],
+            [
+              30,
+              16
+            ],
+            [
+              0,
+              16
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "30",
+            "16",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            30,
+            16
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            30,
+            0
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            30,
+            16
+          ],
+          "right": true
+        }
+      ]
+    }
   }
 ]

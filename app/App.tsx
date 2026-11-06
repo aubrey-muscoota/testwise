@@ -4,7 +4,7 @@ import {
   useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold,
 } from "@expo-google-fonts/nunito";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api, createLearner, forgetLearner, loadLearner, Skill } from "./src/api";
+import { api, createLearner, forgetLearner, loadLearner, placementKey, Skill } from "./src/api";
 import { Welcome } from "./src/screens/Welcome";
 import { Home } from "./src/screens/Home";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
@@ -21,7 +21,7 @@ type Screen =
   | { name: "tooYoung" }
   | { name: "home"; key: number }
   | { name: "placement" }
-  | { name: "lesson"; skill: Skill | null; placement?: boolean }
+  | { name: "lesson"; skill: Skill | null; placement?: string }
   | { name: "complete"; result: LessonResult };
 
 export default function App() {
@@ -99,18 +99,25 @@ export default function App() {
   } else if (screen.name === "tooYoung") {
     body = <TooYoung />;
   } else if (screen.name === "placement") {
-    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: true })} onSkip={skipPlacement} />;
+    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: "sat-math" })} onSkip={skipPlacement} />;
   } else if (screen.name === "home") {
-    body = <Home key={screen.key} onStartLesson={(skill) => setScreen({ name: "lesson", skill })} onReset={reset} />;
+    body = (
+      <Home
+        key={screen.key}
+        onStartLesson={(skill) => setScreen({ name: "lesson", skill })}
+        onStartPlacement={(section) => setScreen({ name: "lesson", skill: null, placement: section })}
+        onReset={reset}
+      />
+    );
   } else if (screen.name === "lesson") {
     // Leaving the placement quiz goes back to its intro, where "Start from the beginning" is one tap.
     body = (
       <Lesson
         skill={screen.skill}
-        placement={screen.placement}
-        onQuit={screen.placement ? () => setScreen({ name: "placement" }) : goHome}
+        placementSection={screen.placement}
+        onQuit={screen.placement === "sat-math" ? () => setScreen({ name: "placement" }) : goHome}
         onDone={(result) => {
-          if (result.placement) settlePlacement();
+          if (result.placement) settlePlacement(screen.placement);
           setScreen({ name: "complete", result });
         }}
       />
@@ -127,9 +134,10 @@ export default function App() {
   );
 }
 
-// Remembers (per learner) that the placement offer was taken or declined.
+// Remembers (per learner and section) that the placement offer was taken or declined.
+// SAT Math keeps the original key so existing learners aren't asked again.
 let currentLearner: string | null = null;
-const placementKey = (id: string | null) => `testwise.placementDone.${id ?? "anon"}`;
+
 async function placementSettled(id: string) {
   currentLearner = id;
   try {
@@ -138,10 +146,10 @@ async function placementSettled(id: string) {
     return false;
   }
 }
-async function settlePlacement() {
+async function settlePlacement(section = "sat-math") {
   try {
     const id = currentLearner ?? (await loadLearner());
-    await AsyncStorage.setItem(placementKey(id), "1");
+    await AsyncStorage.setItem(placementKey(id, section), "1");
   } catch {}
 }
 

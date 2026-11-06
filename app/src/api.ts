@@ -113,6 +113,12 @@ export async function forgetLearner() {
   } catch {}
 }
 
+// AsyncStorage key remembering that a learner took or declined a section's placement quiz.
+// SAT Math keeps the original key so existing learners aren't asked again.
+export const placementKey = (id: string | null, section = "sat-math") =>
+  `testwise.placementDone.${id ?? "anon"}${section === "sat-math" ? "" : `.${section}`}`;
+export const currentLearnerId = () => learnerId;
+
 // Last known consent state, refreshed by every tree load.
 let consent: Consent | null = null;
 export const getConsent = () => consent;
@@ -139,7 +145,7 @@ export const api = {
   startLesson: (skillId: string | null) => call<Lesson>("/api/lessons", { method: "POST", body: { skill_id: skillId } }),
   answer: (b: { lesson_id: string; item_id: string; response: string; time_ms: number }) =>
     call<{ correct: boolean; answer: string; mastery: number; xp: number }>("/api/answers", { method: "POST", body: b }),
-  startPlacement: () => call<Lesson>("/api/lessons", { method: "POST", body: { placement: true } }),
+  startPlacement: (section = "sat-math") => call<Lesson>("/api/lessons", { method: "POST", body: { placement: true, section } }),
   finish: (lessonId: string) =>
     call<{ correct: number; total: number; xp: number; stats: Stats; placement?: Placement }>("/api/lessons/finish", { method: "POST", body: { lesson_id: lessonId } }),
   socrates: (b: { item_id: string; response: string; history: TutorTurn[] }) =>

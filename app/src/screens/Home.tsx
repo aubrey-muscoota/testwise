@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator, Alert, Animated, Easing, Image, Linking, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type ScrollViewInstance, type StyleProp, type ViewStyle,
 } from "react-native";
-import { api, legalUrl, Skill, Tree } from "../api";
+import { api, currentLearnerId, legalUrl, placementKey, Skill, Tree } from "../api";
 import { Burst, Button, Card, Mascot, MuteToggle, Pill, PopIn, Press3D, ProgressBar, Pulse, Rise, SlideUp, Speech, logo } from "../components/ui";
 import { lines, pick } from "../copy";
 import { feedback } from "../motion/feedback";
@@ -64,7 +64,7 @@ function diff(t: Tree, prev: Prev): Celebration {
   };
 }
 
-export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill | null) => void; onReset: () => void }) {
+export function Home({ onStartLesson, onStartPlacement, onReset }: { onStartLesson: (skill: Skill | null) => void; onStartPlacement: (section: string) => void; onReset: () => void }) {
   const [tree, setTree] = useState<Tree | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<Skill | null>(null);
@@ -73,6 +73,16 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
   useEffect(() => {
     AsyncStorage.getItem(SECTION_KEY).then((v) => v && setSection(v), () => {});
   }, []);
+  // Sections whose placement offer was taken or declined (SAT Math is offered at sign-up).
+  const [placed, setPlaced] = useState<Record<string, boolean>>({ "sat-math": true });
+  useEffect(() => {
+    const id = currentLearnerId();
+    AsyncStorage.getItem(placementKey(id, "sat-rw")).then((v) => v === "1" && setPlaced((p) => ({ ...p, "sat-rw": true })), () => {});
+  }, []);
+  const settleOffer = (sec: string) => {
+    setPlaced((p) => ({ ...p, [sec]: true }));
+    AsyncStorage.setItem(placementKey(currentLearnerId(), sec), "1").catch(() => {});
+  };
   const pickSection = (id: string) => {
     setSection(id);
     setSelected(null);
@@ -304,6 +314,21 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
               );
             })}
           </View>
+        )}
+
+        {sec && !placed[sec.id] && allSkills.every((sk) => sk.attempts === 0 && !sk.tested_out) && (
+          <Rise delay={120}>
+            <Card style={s.offer}>
+              <Text style={type.h3}>New to {sec.name}?</Text>
+              <Text style={[type.body, { color: color.textSoft, marginTop: space(0.5), marginBottom: space(2) }]}>
+                Take a short quiz (about 10 questions) and Socrates will skip you past what you already know.
+              </Text>
+              <View style={{ flexDirection: "row", gap: space(1.5) }}>
+                <Button title="Find my level" small style={{ flex: 1 }} onPress={() => onStartPlacement(sec.id)} />
+                <Button title="Not now" kind="secondary" small style={{ flex: 1 }} onPress={() => settleOffer(sec.id)} />
+              </View>
+            </Card>
+          </Rise>
         )}
 
         {domains.map((d) => (
@@ -609,6 +634,7 @@ function domainsOf(tree: Tree, sectionId: string | null) {
 }
 
 const s = StyleSheet.create({
+  offer: { marginBottom: space(2), borderLeftWidth: 6, borderLeftColor: color.azure },
   tabs: { flexDirection: "row", backgroundColor: color.locked, borderRadius: 14, padding: 4, gap: 4, marginBottom: space(1) },
   tab: { flex: 1, paddingVertical: space(1), borderRadius: 11, alignItems: "center" },
   tabOn: { backgroundColor: color.azure },

@@ -2359,5 +2359,4537 @@
       "(10, 21)": "Chose a point on the line, which leaves the line of best fit unchanged"
     },
     "check": "from fractions import Fraction as F\ndef slope(xs, ys):\n    n = len(xs); mx = F(sum(xs), n); my = F(sum(ys), n)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\nxs=list(range(11))\nr=[1,-1,-1,1,0,0,0,1,-1,-1,1]\nys=[2*x+1+e for x,e in zip(xs,r)]\nm0=slope(xs,ys)\nassert m0==2\nch={'(0, 20)':(0,20),'(5, 30)':(5,30),'(10, 21)':(10,21),'(10, 40)':(10,40)}\nup=[k for k,(a,b) in ch.items() if slope(xs+[a],ys+[b])>m0]\nassert len(up)==1\nresult=up[0]"
+  },
+  {
+    "id": "psda-two-var-data-f001",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A gardener measured the height of 9 seedlings of different ages. The scatterplot shows each seedling's age x, in days, and height y, in centimeters, along with a line of best fit for the data. According to the line of best fit, what is the predicted height, in centimeters, of a seedling that is 7 days old?",
+    "choices": [
+      "14",
+      "16",
+      "18",
+      "19"
+    ],
+    "answer": "18",
+    "explanation": [
+      "Find x = 7 on the horizontal axis and move up to the line of best fit (not to the data point).",
+      "The line passes through (5, 14) and (10, 24), so it rises 2 centimeters per day; at x = 7 it is at 14 + 2 · 2 = 18.",
+      "So the predicted height is 18 centimeters."
+    ],
+    "hints": [
+      "Is the question asking about the data point at x = 7 or about the line?",
+      "Where does the line cross the vertical grid line at x = 7?"
+    ],
+    "wrong_reasons": {
+      "14": "Multiplied 2 by 7 but left out the line's starting value of 4",
+      "16": "Read the line at x = 6 instead of x = 7",
+      "19": "Read the actual data point at x = 7 instead of the line of best fit"
+    },
+    "check": "x1,y1,x2,y2=0,4,10,24\nm=(y2-y1)/(x2-x1)\nresult=y1+m*(7-x1)",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, age in days, from 0 to 10 and y, height in centimeters, from 0 to 24, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 7), (2, 7), (3, 10), (4, 14), (5, 13), (6, 15), (7, 19), (8, 18), (9, 23). A line of best fit passes through (0, 4), (5, 14) and (10, 24), so it rises 2 centimeters per day; at x = 7 the line is at y = 18.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          24
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              4,
+              14
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              6,
+              15
+            ],
+            [
+              7,
+              19
+            ],
+            [
+              8,
+              18
+            ],
+            [
+              9,
+              23
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "2*x + 4",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f002",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows the population y, in thousands, of a town x years after 2010, along with a line of best fit for the data. Which of the following is the best interpretation of the slope of the line of best fit in this context?",
+    "choices": [
+      "Each year, the predicted population increases by about 2 thousand people.",
+      "Each year, the predicted population increases by about 6 thousand people.",
+      "Each year, the predicted population increases by about 0.5 thousand people.",
+      "The predicted population in 2010 is about 2 thousand people."
+    ],
+    "answer": "Each year, the predicted population increases by about 2 thousand people.",
+    "explanation": [
+      "The line passes through (0, 6) and (8, 22).",
+      "Slope = (22 − 6)/(8 − 0) = 16/8 = 2.",
+      "The units are thousands of people per year, so the predicted population increases by about 2 thousand people each year."
+    ],
+    "hints": [
+      "Pick two points where the line crosses grid intersections. What is the rise over the run?",
+      "What are the units of y and of x, so what are the units of the slope?"
+    ],
+    "wrong_reasons": {
+      "Each year, the predicted population increases by about 6 thousand people.": "Used the y-intercept, 6, as the rate of change",
+      "Each year, the predicted population increases by about 0.5 thousand people.": "Divided the run by the rise instead of the rise by the run",
+      "The predicted population in 2010 is about 2 thousand people.": "Treated the slope as the starting value; the line gives about 6 thousand in 2010"
+    },
+    "check": "from sympy import Rational\nm=Rational(22-6,8-0)\nresult=f'Each year, the predicted population increases by about {m} thousand people.'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, years after 2010, from 0 to 10 and y, population in thousands, from 0 to 26, with grid lines every 1 unit and axis labels every 2 units. The data points are (0, 6), (1, 9), (2, 9), (3, 13), (4, 14), (5, 15), (6, 19), (7, 19), (8, 22), (9, 24). A line of best fit passes through (0, 6), (4, 14) and (8, 22).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          26
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              4,
+              14
+            ],
+            [
+              5,
+              15
+            ],
+            [
+              6,
+              19
+            ],
+            [
+              7,
+              19
+            ],
+            [
+              8,
+              22
+            ],
+            [
+              9,
+              24
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "2*x + 6",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f003",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The scatterplot shows 11 data points and a line of best fit. The residual of a data point is its actual y-value minus the y-value predicted by the line of best fit. What is the residual of data point P?",
+    "answer": "−3.5",
+    "accept": [
+      "-3.5",
+      "-7/2",
+      "−7/2"
+    ],
+    "explanation": [
+      "The line passes through (0, 2) and (4, 5), so its slope is 3/4 and its equation is y = 0.75x + 2.",
+      "Point P is (10, 6), so the predicted value is 0.75 · 10 + 2 = 9.5.",
+      "Residual = 6 − 9.5 = −3.5."
+    ],
+    "hints": [
+      "Which two grid intersections does the line pass through, and what equation do they give?",
+      "Is P above or below the line? What sign should its residual have?"
+    ],
+    "check": "from sympy import Rational\nm=Rational(5-2,4-0)\nb=2\nresult=6-(m*10+b)",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x from 0 to 12 and y from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 3), (2, 4), (3, 4), (4, 6), (5, 6), (6, 7), (7, 7), (8, 9), (9, 9), (11, 10), and point P at (10, 6). A line of best fit passes through (0, 2), (4, 5), (8, 8) and (12, 11). Point P lies below the line.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              11,
+              10
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.75*x + 2",
+          "domain": [
+            0,
+            12
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            10,
+            6
+          ],
+          "label": "P",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f004",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A coach recorded the number of practice hours x and the number of goals y for 10 players. The scatterplot shows the data and a line of best fit. How many of the data points lie above the line of best fit?",
+    "choices": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": "4",
+    "explanation": [
+      "The line passes through (0, 1) and (10, 11), so at each x it is 1 unit above x.",
+      "Compare each point with the line: (1, 3), (3, 5), (6, 8) and (8, 10) are above it; the other 6 points are below it.",
+      "So 4 data points lie above the line."
+    ],
+    "hints": [
+      "For a given x, a point is above the line when its y-value is greater than the line's y-value. Where is the line at x = 1?",
+      "Did you check every point, one x-value at a time?"
+    ],
+    "wrong_reasons": {
+      "3": "Missed one of the points just above the line",
+      "5": "Counted a point just below the line as above it",
+      "6": "Counted the points below the line instead of above it"
+    },
+    "check": "pts=[(1,3),(2,2),(3,5),(4,4),(5,5),(6,8),(7,7),(8,10),(9,9),(10,10)]\nresult=sum(1 for x,y in pts if y>x+1)",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, practice hours, from 0 to 10 and y, goals, from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 3), (2, 2), (3, 5), (4, 4), (5, 5), (6, 8), (7, 7), (8, 10), (9, 9), (10, 10). A line of best fit passes through (0, 1), (5, 6) and (10, 11). The points (1, 3), (3, 5), (6, 8) and (8, 10) are above the line; the other 6 points are below it.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              10,
+              10
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "x + 1",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f005",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A store tracked its weekly advertising spending x, in hundreds of dollars, and its weekly sales y, in thousands of dollars. The scatterplot shows the data and a line of best fit. According to the line of best fit, an increase of 5 hundred dollars in weekly advertising spending corresponds to a predicted increase of how many thousand dollars in weekly sales?",
+    "choices": [
+      "1.5",
+      "5",
+      "7.5",
+      "10.5"
+    ],
+    "answer": "7.5",
+    "explanation": [
+      "The line passes through (0, 3) and (4, 9), so its slope is 6/4 = 1.5 thousand dollars per hundred dollars.",
+      "An increase of 5 in x gives a predicted increase of 5 · 1.5 = 7.5 in y.",
+      "So predicted sales increase by 7.5 thousand dollars."
+    ],
+    "hints": [
+      "What is the slope of the line, and what does it tell you about a 1-unit increase in x?",
+      "Is the question asking for a predicted value of y, or for a change in y?"
+    ],
+    "wrong_reasons": {
+      "1.5": "Gave the increase for a 1-unit (100-dollar) increase, not a 5-unit increase",
+      "5": "Gave the change in x instead of the predicted change in y",
+      "10.5": "Gave the predicted sales at x = 5 instead of the increase in sales"
+    },
+    "check": "from sympy import Rational\nm=Rational(9-3,4-0)\nresult=5*m",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, advertising in hundreds of dollars, from 0 to 10 and y, sales in thousands of dollars, from 0 to 18, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 5), (2, 5), (3, 8), (4, 10), (5, 10), (6, 11), (7, 14), (8, 16), (9, 16). A line of best fit passes through (0, 3), (2, 6), (4, 9), (6, 12), (8, 15) and (10, 18).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              7,
+              14
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              9,
+              16
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "1.5*x + 3",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f006",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A biologist measured the area y, in square millimeters, of a mold colony x hours after the start of an experiment. The scatterplot shows the data. Which of the following equations best models the data?",
+    "choices": [
+      "y = 2(2)^x",
+      "y = 0.5x + 2",
+      "y = 4(2)^(x/4)",
+      "y = 2(2)^(x/4)"
+    ],
+    "answer": "y = 2(2)^(x/4)",
+    "explanation": [
+      "The x-values go up by 4 each time, and the y-values 2, 4, 8, 16, 32 double each time, so the data grow exponentially, not linearly.",
+      "The starting value at x = 0 is 2, and the area doubles every 4 hours.",
+      "An equation with these features is y = 2(2)^(x/4); for example, at x = 12 it gives 2(2)³ = 16."
+    ],
+    "hints": [
+      "As x increases by 4, do the y-values go up by the same amount or by the same factor?",
+      "In y = a(b)^(x/k), what do a, b and k each represent?"
+    ],
+    "wrong_reasons": {
+      "y = 2(2)^x": "Assumed the area doubles every hour; it doubles every 4 hours",
+      "y = 0.5x + 2": "Used a linear model from the first two points; the later points grow by a constant factor, not a constant amount",
+      "y = 4(2)^(x/4)": "Used the second y-value, 4, as the starting value instead of the value 2 at x = 0"
+    },
+    "check": "from sympy import symbols, Rational, simplify\nx=symbols('x')\npts=[(0,2),(4,4),(8,8),(12,16),(16,32)]\ncands={'y = 2(2)^(x/4)':2*2**(x/4),'y = 2(2)^x':2*2**x,'y = 0.5x + 2':Rational(1,2)*x+2,'y = 4(2)^(x/4)':4*2**(x/4)}\nresult=[k for k,f in cands.items() if all(simplify(f.subs(x,a)-b)==0 for a,b in pts)][0]",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, time in hours, from 0 to 20 and y, area in square millimeters, from 0 to 36, with grid lines every 2 units and axis labels every 4 units. The data points are (0, 2), (4, 4), (8, 8), (12, 16), (16, 32). The points curve upward more and more steeply.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          20
+        ],
+        "y": [
+          0,
+          36
+        ],
+        "grid": 2,
+        "axes": true,
+        "ticks": 4,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              12,
+              16
+            ],
+            [
+              16,
+              32
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f007",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A café recorded the outdoor temperature x, in tens of degrees Fahrenheit, and the number of hot drinks sold y, in dozens, on 9 days. The scatterplot shows the data. Which of the following best describes the association between x and y?",
+    "choices": [
+      "A strong negative linear association",
+      "A strong positive linear association",
+      "A weak negative linear association",
+      "An exponential growth association"
+    ],
+    "answer": "A strong negative linear association",
+    "explanation": [
+      "As x increases from left to right, the y-values decrease, so the association is negative.",
+      "The points lie close to a straight line, so the association is strong and linear.",
+      "So the data show a strong negative linear association."
+    ],
+    "hints": [
+      "Moving from left to right, do the points tend to rise or fall?",
+      "Do the points cluster close to a straight line or spread out widely?"
+    ],
+    "wrong_reasons": {
+      "A strong positive linear association": "Mixed up the direction: points that fall from left to right show a negative association",
+      "A weak negative linear association": "Did not notice how closely the points follow a line, which makes the association strong",
+      "An exponential growth association": "The y-values decrease, and by about the same amount each step, so the pattern is neither growth nor exponential"
+    },
+    "check": "pts=[(1,10),(2,8),(3,8),(4,7),(5,5),(6,5),(7,4),(8,2),(9,2)]\nn=len(pts)\nmx=sum(p[0] for p in pts)/n\nmy=sum(p[1] for p in pts)/n\nsxy=sum((a-mx)*(b-my) for a,b in pts)\nsxx=sum((a-mx)**2 for a,b in pts)\nsyy=sum((b-my)**2 for a,b in pts)\nr=sxy/(sxx*syy)**0.5\nresult=('A strong ' if abs(r)>0.8 else 'A weak ')+('negative' if r<0 else 'positive')+' linear association'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, temperature in tens of degrees Fahrenheit, from 0 to 10 and y, hot drinks sold in dozens, from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 10), (2, 8), (3, 8), (4, 7), (5, 5), (6, 5), (7, 4), (8, 2), (9, 2). The points fall from upper left to lower right and lie close to a straight line.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              9,
+              2
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f008",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows 7 data points, 4 of which are labeled A, B, C and D, along with a line of best fit. The residual of a data point is its actual y-value minus the y-value predicted by the line of best fit. Which labeled point has a residual of −2?",
+    "choices": [
+      "Point A",
+      "Point B",
+      "Point C",
+      "Point D"
+    ],
+    "answer": "Point B",
+    "explanation": [
+      "The line passes through (0, 1) and (4, 9), so its equation is y = 2x + 1.",
+      "Predicted values: A (x = 1) is 3, B (x = 3) is 7, C (x = 5) is 11, D (x = 7) is 15.",
+      "Residuals: A is 5 − 3 = 2, B is 5 − 7 = −2, C is 12 − 11 = 1, D is 16 − 15 = 1. So point B has a residual of −2."
+    ],
+    "hints": [
+      "Does a point with a negative residual lie above or below the line?",
+      "For each labeled point, how far is it vertically from the line?"
+    ],
+    "wrong_reasons": {
+      "Point A": "Found the point 2 units from the line but got the sign backwards: A is above the line, so its residual is +2",
+      "Point C": "C is above the line, so its residual is positive (1)",
+      "Point D": "D is above the line, so its residual is positive (1)"
+    },
+    "check": "pts={'A':(1,5),'B':(3,5),'C':(5,12),'D':(7,16)}\nm=(9-1)/(4-0)\nb=1\nresult=['Point '+k for k,(x,y) in pts.items() if abs(y-(m*x+b)+2)<1e-9][0]",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x from 0 to 8 and y from 0 to 18, with grid lines every 1 unit and axis labels every 2 units. A line of best fit passes through (0, 1), (4, 9) and (8, 17). Labeled points: A at (1, 5), B at (3, 5), C at (5, 12) and D at (7, 16). Unlabeled points: (2, 4), (4, 10), (6, 12). Points A, C and D lie above the line, and point B lies below it.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          8
+        ],
+        "y": [
+          0,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              6,
+              12
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "2*x + 1",
+          "domain": [
+            0,
+            8
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            5
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            5
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            12
+          ],
+          "label": "C",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            7,
+            16
+          ],
+          "label": "D",
+          "labelPos": "nw"
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f009",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A reservoir's water level was recorded each week during a dry season. The scatterplot shows the water level y, in meters above a marker, x weeks after the recording began, along with a line of best fit. If the trend shown by the line of best fit continues, how many weeks after the recording began will the predicted water level be 0 meters above the marker?",
+    "answer": "27",
+    "explanation": [
+      "The line passes through (0, 18) and (6, 14), so its slope is (14 − 18)/6 = −2/3.",
+      "The equation of the line is y = −(2/3)x + 18.",
+      "Set y = 0: (2/3)x = 18, so x = 27 weeks."
+    ],
+    "hints": [
+      "Which two grid intersections does the line pass through?",
+      "Once you have the equation, what value of x makes y equal to 0?"
+    ],
+    "check": "from sympy import Rational, symbols, solve\nx=symbols('x')\nm=Rational(14-18,6-0)\nresult=solve(m*x+18,x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, weeks, from 0 to 12 and y, water level in meters, from 0 to 20, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 18), (2, 16), (3, 16), (4, 15), (5, 15), (6, 13), (7, 14), (8, 12), (9, 12), (10, 12), (11, 10). A line of best fit falls from left to right through (0, 18), (3, 16), (6, 14), (9, 12) and (12, 10).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          0,
+          20
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              18
+            ],
+            [
+              2,
+              16
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              4,
+              15
+            ],
+            [
+              5,
+              15
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              14
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              10,
+              12
+            ],
+            [
+              11,
+              10
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "-2/3*x + 18",
+          "domain": [
+            0,
+            12
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f010",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A theater began selling tickets for a show. The scatterplot shows the total number of tickets sold y, in hundreds, x days after tickets went on sale, along with a line of best fit. According to the line of best fit, how many days after tickets went on sale is the predicted total 20 hundred tickets?",
+    "answer": "6",
+    "explanation": [
+      "Find y = 20 on the vertical axis and move across to the line of best fit.",
+      "The line passes through (6, 20), so it reaches 20 at x = 6.",
+      "Check with the line's equation y = 3x + 2: 3 · 6 + 2 = 20."
+    ],
+    "hints": [
+      "Should you start from the horizontal axis or the vertical axis?",
+      "Where does the line cross the horizontal grid line y = 20?"
+    ],
+    "check": "from sympy import symbols, solve\nx=symbols('x')\nm=(8-2)/(2-0)\nresult=solve(m*x+2-20,x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, days, from 0 to 8 and y, tickets sold in hundreds, from 0 to 26, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 6), (2, 7), (3, 12), (4, 13), (5, 17), (6, 19), (7, 24). A line of best fit passes through (0, 2), (2, 8), (4, 14), (6, 20) and (8, 26).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          8
+        ],
+        "y": [
+          0,
+          26
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              4,
+              13
+            ],
+            [
+              5,
+              17
+            ],
+            [
+              6,
+              19
+            ],
+            [
+              7,
+              24
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "3*x + 2",
+          "domain": [
+            0,
+            8
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f011",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A dealer recorded the age x, in years, and the value y, in thousands of dollars, of 10 used cars of the same model. The scatterplot shows the data and a line of best fit. Which of the following is the best interpretation of the y-intercept of the line of best fit?",
+    "choices": [
+      "The predicted value of a car decreases by 24 thousand dollars each year.",
+      "The predicted value of a car decreases by 2 thousand dollars each year.",
+      "A car is predicted to be worth 0 dollars when it is 24 years old.",
+      "The predicted value of a car that is 0 years old is 24 thousand dollars."
+    ],
+    "answer": "The predicted value of a car that is 0 years old is 24 thousand dollars.",
+    "explanation": [
+      "The line crosses the y-axis at (0, 24).",
+      "x = 0 means a car that is 0 years old, and y is in thousands of dollars.",
+      "So the line predicts that a car that is 0 years old is worth 24 thousand dollars."
+    ],
+    "hints": [
+      "What is the value of x at the y-intercept, and what does that mean for a car's age?",
+      "What are the units of y?"
+    ],
+    "wrong_reasons": {
+      "The predicted value of a car decreases by 24 thousand dollars each year.": "Treated the y-intercept as a rate of change",
+      "The predicted value of a car decreases by 2 thousand dollars each year.": "Described the slope, not the y-intercept",
+      "A car is predicted to be worth 0 dollars when it is 24 years old.": "Confused the y-intercept with the x-intercept; the line reaches 0 at 12 years, not 24"
+    },
+    "check": "pts=[(0,24),(8,8)]\nm=(pts[1][1]-pts[0][1])/(pts[1][0]-pts[0][0])\nb=pts[0][1]-m*pts[0][0]\nresult=f'The predicted value of a car that is 0 years old is {int(b)} thousand dollars.'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, age in years, from 0 to 10 and y, value in thousands of dollars, from 0 to 26, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 23), (2, 19), (3, 19), (4, 15), (5, 14), (6, 13), (7, 9), (8, 8), (9, 7), (10, 3). A line of best fit falls from left to right through (0, 24), (4, 16), (8, 8) and (10, 4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          26
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              23
+            ],
+            [
+              2,
+              19
+            ],
+            [
+              3,
+              19
+            ],
+            [
+              4,
+              15
+            ],
+            [
+              5,
+              14
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              9
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              9,
+              7
+            ],
+            [
+              10,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "-2*x + 24",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f012",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "For 11 garden plots, the scatterplot shows the area x, in square meters, and the tomato harvest y, in kilograms, along with a line of best fit. The actual harvest from plot P is what percent greater than the harvest predicted for plot P by the line of best fit?",
+    "choices": [
+      "2%",
+      "20%",
+      "25%",
+      "80%"
+    ],
+    "answer": "25%",
+    "explanation": [
+      "The line passes through (0, 4) and (2, 5), so its equation is y = 0.5x + 4.",
+      "Plot P is at (8, 10), so the predicted harvest is 0.5 · 8 + 4 = 8 kilograms.",
+      "The actual harvest is 10 kilograms, which is 2 kilograms more than predicted: 2/8 = 0.25, or 25% greater."
+    ],
+    "hints": [
+      "What harvest does the line predict at x = 8?",
+      "When you find a percent greater than the prediction, which value goes in the denominator?"
+    ],
+    "wrong_reasons": {
+      "2%": "Gave the difference in kilograms (2) as a percent",
+      "20%": "Divided the difference by the actual harvest (10) instead of the predicted harvest (8)",
+      "80%": "Found the predicted harvest as a percent of the actual harvest"
+    },
+    "check": "from sympy import Rational\nm=Rational(5-4,2-0)\npred=m*8+4\nresult=(10-pred)/pred*100",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, area in square meters, from 0 to 12 and y, harvest in kilograms, from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 5), (2, 4), (3, 6), (4, 5), (5, 7), (6, 6), (7, 8), (9, 8), (10, 9), (11, 9), and point P at (8, 10). A line of best fit passes through (0, 4), (2, 5), (8, 8) and (12, 10). Point P lies 2 units above the line.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              11,
+              9
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.5*x + 4",
+          "domain": [
+            0,
+            12
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            10
+          ],
+          "label": "P",
+          "labelPos": "nw"
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f013",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A vendor tried different prices for a snack. The scatterplot shows the price x, in dollars, and the number sold per day y, in hundreds, along with a line of best fit. Which equation represents the line of best fit?",
+    "choices": [
+      "y = −(3/4)x + 5",
+      "y = (3/4)x + 5",
+      "y = −(4/3)x + 5",
+      "y = −3x + 5"
+    ],
+    "answer": "y = −(3/4)x + 5",
+    "explanation": [
+      "The line crosses the y-axis at (0, 5), so the y-intercept is 5.",
+      "The line also passes through (4, 2), so the slope is (2 − 5)/(4 − 0) = −3/4.",
+      "So the line of best fit is y = −(3/4)x + 5."
+    ],
+    "hints": [
+      "Where does the line cross the y-axis?",
+      "Find a second grid intersection on the line. Is the slope positive or negative, and what is rise over run?"
+    ],
+    "wrong_reasons": {
+      "y = (3/4)x + 5": "Missed the negative sign; the line falls from left to right",
+      "y = −(4/3)x + 5": "Divided the run by the rise instead of the rise by the run",
+      "y = −3x + 5": "Used the rise of 3 but forgot to divide by the run of 4"
+    },
+    "check": "from sympy import Rational\nm=Rational(2-5,4-0)\nb=5\nresult=f'y = -({abs(m.p)}/{m.q})x + {b}' if m<0 else f'y = ({m.p}/{m.q})x + {b}'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, price in dollars, from 0 to 8 and y, number sold in hundreds, from 0 to 6, with grid lines and axis labels every 1 unit. The data points are (1, 4), (2, 4), (3, 3), (4, 2), (5, 1), (6, 0). A line of best fit falls from left to right through (0, 5) and (4, 2).",
+      "aspect": 1.25,
+      "plane": {
+        "x": [
+          0,
+          8
+        ],
+        "y": [
+          0,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "-0.75*x + 5",
+          "domain": [
+            0,
+            6.6
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f014",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A nurse measured the amount y, in milligrams, of a medicine in a patient's bloodstream x hours after a dose. The scatterplot shows the data. Which type of model best fits the data?",
+    "choices": [
+      "A linear model with a negative slope",
+      "An exponential decay model",
+      "An exponential growth model",
+      "A linear model with a positive slope"
+    ],
+    "answer": "An exponential decay model",
+    "explanation": [
+      "Every 2 hours the amount goes from 32 to 16 to 8 to 4 to 2, so it is cut in half each time.",
+      "Decreasing by the same factor over equal time intervals is exponential decay.",
+      "A linear model would need the amount to drop by the same number of milligrams each time, which it does not."
+    ],
+    "hints": [
+      "As x goes up by 2, does y drop by the same amount or by the same factor?",
+      "Is the amount increasing or decreasing over time?"
+    ],
+    "wrong_reasons": {
+      "A linear model with a negative slope": "Noticed the amount decreases but missed that it drops by a constant factor, not a constant amount",
+      "An exponential growth model": "Saw the curved pattern but missed that the amount decreases",
+      "A linear model with a positive slope": "Misread the direction; the amount decreases over time, and not at a constant rate"
+    },
+    "check": "pts=[(0,32),(2,16),(4,8),(6,4),(8,2)]\nr=[pts[i+1][1]/pts[i][1] for i in range(len(pts)-1)]\nd=[pts[i+1][1]-pts[i][1] for i in range(len(pts)-1)]\nif len(set(d))==1:\n    result='A linear model with a '+('negative' if d[0]<0 else 'positive')+' slope'\nelse:\n    result='An exponential '+('decay' if r[0]<1 else 'growth')+' model'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, time in hours, from 0 to 10 and y, medicine in milligrams, from 0 to 36, with grid lines every 2 units and axis labels every 4 units. The data points are (0, 32), (2, 16), (4, 8), (6, 4), (8, 2). The points fall steeply at first and then level off.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          36
+        ],
+        "grid": 2,
+        "axes": true,
+        "ticks": 4,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              32
+            ],
+            [
+              2,
+              16
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f015",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The scatterplot shows 9 data points and a line of best fit. The residual of a data point is its actual y-value minus the y-value predicted by the line of best fit. A new data point, not shown, has an x-value of 14 and a residual of 3. What is the y-value of this new data point?",
+    "answer": "26",
+    "explanation": [
+      "The line passes through (0, 2) and (4, 8), so its slope is 6/4 = 1.5 and its equation is y = 1.5x + 2.",
+      "At x = 14 the predicted value is 1.5 · 14 + 2 = 23.",
+      "Residual = actual − predicted, so 3 = y − 23 and y = 26."
+    ],
+    "hints": [
+      "What equation does the line of best fit have?",
+      "If the residual is positive, is the actual value above or below the predicted value?"
+    ],
+    "check": "from sympy import Rational\nm=Rational(8-2,4-0)\npred=m*14+2\nresult=pred+3",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x from 0 to 10 and y from 0 to 18, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 4), (2, 4), (3, 7), (4, 9), (5, 9), (6, 11), (7, 13), (8, 13), (9, 16). A line of best fit passes through (0, 2), (4, 8), (8, 14) and (10, 17).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              8,
+              13
+            ],
+            [
+              9,
+              16
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "1.5*x + 2",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f016",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The scatterplot shows the height of a sunflower seedling, in centimeters, measured once a day for 10 days, along with a line of best fit for the data. According to the line of best fit, what is the predicted height, in centimeters, of the seedling on day 10?",
+    "choices": [
+      "5",
+      "8",
+      "9",
+      "10"
+    ],
+    "answer": "9",
+    "explanation": [
+      "Read two points on the line of best fit: it passes through (0, 1) and (5, 5).",
+      "Going from day 5 to day 10 is another 5 days, so the line rises another 5 − 1 = 4 centimeters.",
+      "At x = 10 the line is at 5 + 4 = 9, so the predicted height is 9 centimeters."
+    ],
+    "hints": [
+      "Are you being asked about the data point at day 10 or about the line?",
+      "Find x = 10 on the horizontal axis. How high is the line there?"
+    ],
+    "wrong_reasons": {
+      "8": "Read the actual data point for day 10 instead of the line of best fit",
+      "10": "Gave the day number instead of the height",
+      "5": "Read the line at day 5 instead of day 10"
+    },
+    "check": "from sympy import Rational\nm=Rational(5-1,5-0)\nb=1\nresult=m*10+b",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Day (0 to 11) on the horizontal axis and Height (cm) (0 to 11) on the vertical axis, grid lines every 1 unit. Data points: (1, 2), (2, 3), (3, 3), (4, 4), (5, 5), (6, 6), (7, 6), (8, 7), (9, 9), (10, 8). A line of best fit rises from left to right through (0, 1), (5, 5) and (10, 9).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Day",
+        "ylabel": "Height (cm)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              10,
+              8
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.8*x + 1",
+          "domain": [
+            0,
+            11
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f017",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows the height y, in centimeters, of a candle x hours after it was lit, measured every hour for 10 hours, along with a line of best fit. Which of the following is the best interpretation of the slope of the line of best fit?",
+    "choices": [
+      "The candle's height is predicted to decrease by 0.75 centimeter for each hour it burns.",
+      "The candle's height is predicted to decrease by 1.33 centimeters for each hour it burns.",
+      "The candle's height is predicted to decrease by 3 centimeters for each hour it burns.",
+      "The candle's height when it was lit is predicted to be 10 centimeters."
+    ],
+    "answer": "The candle's height is predicted to decrease by 0.75 centimeter for each hour it burns.",
+    "explanation": [
+      "The line of best fit passes through (0, 10) and (8, 4).",
+      "Slope = (4 − 10)/(8 − 0) = −6/8 = −0.75.",
+      "The slope is height per hour, so the predicted height drops 0.75 centimeter for each hour the candle burns."
+    ],
+    "hints": [
+      "Find two points where the line crosses grid intersections. What is the rise over the run?",
+      "What are the units of the slope: centimeters per hour or hours per centimeter?"
+    ],
+    "wrong_reasons": {
+      "The candle's height is predicted to decrease by 1.33 centimeters for each hour it burns.": "Divided the run by the rise (8/6) instead of the rise by the run",
+      "The candle's height is predicted to decrease by 3 centimeters for each hour it burns.": "Read the drop of 3 centimeters between x = 0 and x = 4 without dividing by the 4 hours",
+      "The candle's height when it was lit is predicted to be 10 centimeters.": "Interpreted the y-intercept instead of the slope"
+    },
+    "check": "from sympy import Rational\ns=Rational(4-10,8-0)\nresult=f\"The candle's height is predicted to decrease by {float(-s)} centimeter for each hour it burns.\"",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Hours (0 to 11) on the horizontal axis and Height (cm) (0 to 11) on the vertical axis, grid lines every 1 unit. Data points: (0, 10), (1, 9), (2, 9), (3, 8), (4, 7), (5, 6), (6, 6), (7, 5), (8, 4), (9, 3), (10, 3). A line of best fit falls from left to right through (0, 10), (4, 7) and (8, 4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Hours",
+        "ylabel": "Height (cm)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              10
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              10,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "10 - 0.75*x",
+          "domain": [
+            0,
+            11
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f018",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The scatterplot shows 11 data points and a line of best fit. Three of the data points are labeled A, B and C. A residual is the actual y-value of a data point minus the y-value predicted by the line of best fit. What is the sum of the residuals for points A, B and C?",
+    "choices": [
+      "−3.5",
+      "−1",
+      "1",
+      "6"
+    ],
+    "answer": "−1",
+    "explanation": [
+      "The line passes through (0, 3) and (10, 8), so its slope is 5/10 = 0.5 and its equation is y = 0.5x + 3.",
+      "A(1, 6): predicted 3.5, residual 6 − 3.5 = 2.5.",
+      "B(3, 3): predicted 4.5, residual 3 − 4.5 = −1.5.",
+      "C(6, 4): predicted 6, residual 4 − 6 = −2.",
+      "Sum: 2.5 − 1.5 − 2 = −1."
+    ],
+    "hints": [
+      "What is the equation of the line? Find two grid intersections it passes through.",
+      "For a point below the line, is the residual positive or negative?"
+    ],
+    "wrong_reasons": {
+      "1": "Computed predicted minus actual instead of actual minus predicted",
+      "6": "Added the sizes of the residuals and ignored their signs",
+      "−3.5": "Added only the residuals of the points below the line and left out point A"
+    },
+    "check": "from sympy import Rational\nm=Rational(8-3,10-0)\nb=3\nf=lambda x:m*x+b\nresult=sum(y-f(x) for x,y in [(1,6),(3,3),(6,4)])",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with x from 0 to 11 and y from 0 to 11, grid lines every 1 unit. Unlabeled data points: (0, 3), (2, 4), (4, 5), (5, 6), (7, 6), (8, 7), (9, 8), (10, 8). Labeled points: A at (1, 6), B at (3, 3) and C at (6, 4). A line of best fit rises from left to right through (0, 3), (2, 4), (4, 5), (6, 6), (8, 7) and (10, 8).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              10,
+              8
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.5*x + 3",
+          "domain": [
+            0,
+            11
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            6
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            3
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            4
+          ],
+          "label": "C",
+          "labelPos": "se"
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f019",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The scatterplot shows the number of users y, in thousands, of a new app x days after it launched. Which type of function best models the data?",
+    "choices": [
+      "A decreasing linear function",
+      "An increasing linear function",
+      "A decreasing exponential function",
+      "An increasing exponential function"
+    ],
+    "answer": "An increasing exponential function",
+    "explanation": [
+      "The y-values increase as x increases, so the model is increasing.",
+      "Every 2 days the number of users doubles: 1, 2, 4, 8, 16, 32.",
+      "Growth by the same factor over equal steps is exponential, not linear, so an increasing exponential function fits best."
+    ],
+    "hints": [
+      "As x increases, does the number of users go up or down?",
+      "Over each 2-day step, does the number of users go up by the same amount or by the same factor?"
+    ],
+    "wrong_reasons": {
+      "A decreasing linear function": "Misread the direction and the shape of the data",
+      "An increasing linear function": "Saw that the data increase but did not notice that the increases keep getting larger",
+      "A decreasing exponential function": "Recognized the curved shape but misread the direction of change"
+    },
+    "check": "from sympy import Rational\npts=[(0,1),(2,2),(4,4),(6,8),(8,16),(10,32)]\nratios={Rational(b[1],a[1]) for a,b in zip(pts,pts[1:])}\ndiffs={b[1]-a[1] for a,b in zip(pts,pts[1:])}\nr=ratios.pop() if len(ratios)==1 else None\nresult=('An increasing exponential function' if r>1 else 'A decreasing exponential function') if (r is not None and len(diffs)>1) else 'linear'",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Days (0 to 11) on the horizontal axis and Users (thousands) (0 to 34) on the vertical axis, grid lines every 1 unit and axis labels every 2 units. Data points: (0, 1), (2, 2), (4, 4), (6, 8), (8, 16), (10, 32). The points rise slowly at first and then more and more steeply, doubling every 2 days.",
+      "aspect": 0.75,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          34
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "Days",
+        "ylabel": "Users (thousands)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              32
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f020",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The scatterplot shows the number of books y, in thousands, in a town library x years after it opened, along with a line of best fit. According to the line of best fit, what is the predicted number of books, in thousands, in the library 20 years after it opened?",
+    "choices": null,
+    "answer": "17",
+    "accept": [
+      "17.0"
+    ],
+    "explanation": [
+      "The line passes through (0, 2) and (4, 5), so its slope is 3/4 = 0.75.",
+      "The y-intercept is 2, so the line is y = 0.75x + 2.",
+      "At x = 20: y = 0.75 · 20 + 2 = 15 + 2 = 17 thousand books."
+    ],
+    "hints": [
+      "x = 20 is off the graph. What equation describes the line?",
+      "Which two grid intersections on the line make the slope easy to find?"
+    ],
+    "check": "from sympy import Rational\nm=Rational(5-2,4-0)\nb=2\nresult=m*20+b",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Years (0 to 13) on the horizontal axis and Books (thousands) (0 to 13) on the vertical axis, grid lines every 1 unit. Data points: (1, 3), (2, 3), (3, 5), (4, 5), (5, 6), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10), (11, 10), (12, 11). A line of best fit rises from left to right through (0, 2), (4, 5), (8, 8) and (12, 11).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          13
+        ],
+        "y": [
+          0,
+          13
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Years",
+        "ylabel": "Books (thousands)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              11,
+              10
+            ],
+            [
+              12,
+              11
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.75*x + 2",
+          "domain": [
+            0,
+            13
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f021",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A gardener measured the heights, in inches, of two kinds of plants each week for 8 weeks. The scatterplot shows the data for plant A (solid dots) and plant B (hollow dots) with a line of best fit for each. If the trends shown continue, according to the lines of best fit, how many weeks after the first measurement will the two plants have the same predicted height?",
+    "choices": [
+      "4",
+      "8",
+      "10",
+      "20"
+    ],
+    "answer": "10",
+    "explanation": [
+      "Line A passes through (0, 2) and (5, 5): y = 0.6x + 2.",
+      "Line B passes through (0, 6) and (5, 7): y = 0.2x + 6.",
+      "Set them equal: 0.6x + 2 = 0.2x + 6, so 0.4x = 4.",
+      "x = 10 weeks (both are predicted to be 8 inches tall then)."
+    ],
+    "hints": [
+      "The lines do not meet on the graph. Can you write an equation for each line?",
+      "Plant A starts 4 inches shorter. How much does it gain on plant B each week?"
+    ],
+    "wrong_reasons": {
+      "4": "Found the difference in starting heights but did not divide by the difference in growth rates",
+      "8": "Gave the shared predicted height instead of the number of weeks",
+      "20": "Divided the 4-inch gap by plant B's growth rate instead of by the difference in growth rates"
+    },
+    "check": "from sympy import symbols, solve, Rational\nx=symbols('x')\nA=Rational(5-2,5)*x+2\nB=Rational(7-6,5)*x+6\nresult=solve(A-B,x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Weeks (0 to 9) on the horizontal axis and Height (in) (0 to 11) on the vertical axis, grid lines every 1 unit. Plant A data (solid dots): (0, 2), (1, 3), (2, 3), (3, 4), (4, 4), (5, 5), (6, 6), (7, 6), (8, 7). Plant A's line of best fit passes through (0, 2) and (5, 5). Plant B data (hollow dots): (0, 6), (1, 6), (2, 7), (3, 6), (4, 7), (5, 7), (6, 7), (7, 8), (8, 8). Plant B's dashed line of best fit passes through (0, 6) and (5, 7). The two lines do not meet within the graph.",
+      "aspect": 0.82,
+      "plane": {
+        "x": [
+          0,
+          9
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Weeks",
+        "ylabel": "Height (in)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              7
+            ]
+          ]
+        },
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              8
+            ]
+          ],
+          "hollow": true
+        },
+        {
+          "type": "function",
+          "expr": "0.6*x + 2",
+          "domain": [
+            0,
+            9
+          ],
+          "label": "A",
+          "labelAt": [
+            8.5,
+            6.3
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.2*x + 6",
+          "domain": [
+            0,
+            9
+          ],
+          "dash": true,
+          "label": "B",
+          "labelAt": [
+            8.5,
+            8.5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f022",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A theater charged a different ticket price, in dollars, each week for 9 weeks. The scatterplot shows the ticket price x and the number of tickets sold y, in hundreds, for each week, along with a line of best fit. According to the line of best fit, at what ticket price, in dollars, would the theater sell 700 tickets?",
+    "choices": [
+      "3.25",
+      "4",
+      "7",
+      "12"
+    ],
+    "answer": "4",
+    "explanation": [
+      "700 tickets is 7 hundred, so look for y = 7.",
+      "Go across from 7 on the vertical axis to the line of best fit.",
+      "The line is at height 7 when x = 4, so the price is 4 dollars."
+    ],
+    "hints": [
+      "The vertical axis is in hundreds. What y-value stands for 700 tickets?",
+      "Where does the horizontal line at that y-value meet the line of best fit?"
+    ],
+    "wrong_reasons": {
+      "3.25": "Used 7 as the price and found the predicted sales instead",
+      "7": "Gave the number of hundreds of tickets instead of the price",
+      "12": "Read the y-intercept of the line"
+    },
+    "check": "from sympy import symbols, solve, Rational\nx=symbols('x')\nm=Rational(2-12,8-0)\nresult=solve(m*x+12-7,x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Price (dollars) (0 to 11) on the horizontal axis and Tickets (hundreds) (0 to 13) on the vertical axis, grid lines every 1 unit. Data points: (1, 11), (2, 9), (3, 8), (4, 7), (5, 6), (6, 4), (7, 3), (8, 2), (9, 1). A line of best fit falls from left to right through (0, 12), (4, 7) and (8, 2).",
+      "aspect": 0.85,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          13
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Price (dollars)",
+        "ylabel": "Tickets (hundreds)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              11
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              9,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "12 - 1.25*x",
+          "domain": [
+            0,
+            11
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f023",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows the water depth y, in meters, at points x kilometers from the shore of a lake, along with a line of best fit. Which equation best represents the line of best fit?",
+    "choices": [
+      "y = (2/3)x",
+      "y = −(2/3)x + 1",
+      "y = (3/2)x + 1",
+      "y = (2/3)x + 1"
+    ],
+    "answer": "y = (2/3)x + 1",
+    "explanation": [
+      "The line crosses the y-axis at (0, 1), so the y-intercept is 1.",
+      "It also passes through (3, 3) and (6, 5).",
+      "Slope = (5 − 1)/(6 − 0) = 4/6 = 2/3.",
+      "So the line is y = (2/3)x + 1."
+    ],
+    "hints": [
+      "Where does the line cross the vertical axis?",
+      "Pick two grid intersections on the line. How far up does it go for each step to the right?"
+    ],
+    "wrong_reasons": {
+      "y = (2/3)x": "Found the slope but left out the y-intercept, as if the line passed through the origin",
+      "y = −(2/3)x + 1": "Gave the slope a negative sign even though the line rises from left to right",
+      "y = (3/2)x + 1": "Divided the run by the rise instead of the rise by the run"
+    },
+    "check": "from sympy import Rational\ns=Rational(5-1,6-0)\nb=1\nresult=f'y = ({s})x + {b}'",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Distance (km) (0 to 11) on the horizontal axis and Depth (m) (0 to 11) on the vertical axis, grid lines every 1 unit. Data points: (1, 2), (2, 2), (3, 3), (4, 4), (5, 4), (6, 5), (7, 6), (8, 6), (9, 7), (10, 8). A line of best fit rises from left to right through (0, 1), (3, 3), (6, 5) and (9, 7).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Distance (km)",
+        "ylabel": "Depth (m)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              9,
+              7
+            ],
+            [
+              10,
+              8
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "(2/3)*x + 1",
+          "domain": [
+            0,
+            11
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f024",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The scatterplot shows the number of visitors y, in hundreds, to a new website x weeks after it launched, along with an exponential curve of best fit of the form y = a·bˣ, where a and b are positive constants. According to the curve of best fit, what is the predicted number of visitors, in hundreds, 4 weeks after the website launched?",
+    "choices": null,
+    "answer": "20.25",
+    "accept": [
+      "81/4"
+    ],
+    "explanation": [
+      "At x = 0 the curve is at 4, so a = 4.",
+      "At x = 1 the curve is at 6, so b = 6/4 = 1.5 (check: at x = 2 it is 4 · 1.5² = 9).",
+      "At x = 4: y = 4 · 1.5⁴ = 4 · 5.0625 = 20.25 hundred visitors."
+    ],
+    "hints": [
+      "What does the curve's value at x = 0 tell you about a?",
+      "By what factor does the curve grow from x = 0 to x = 1? Does the same factor work from x = 1 to x = 2?"
+    ],
+    "check": "from sympy import Rational\na=4\nb=Rational(6,4)\nresult=a*b**4",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Weeks (0 to 4.5) on the horizontal axis and Visitors (hundreds) (0 to 17) on the vertical axis, grid lines every 1 unit. Data points: (0, 4), (1, 5), (1, 7), (2, 8), (2, 10), (3, 13), (3, 14). An exponential curve of best fit rises more and more steeply, passing through (0, 4), (1, 6) and (2, 9); it leaves the top of the graph before x = 4.",
+      "aspect": 0.75,
+      "plane": {
+        "x": [
+          0,
+          4.5
+        ],
+        "y": [
+          0,
+          17
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Weeks",
+        "ylabel": "Visitors (hundreds)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              3,
+              14
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "4*1.5^x",
+          "domain": [
+            0,
+            4.5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f025",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The scatterplot shows the height y, in feet, of a young tree x years after it was planted, along with a line of best fit. Which of the following is the best interpretation of the y-intercept of the line of best fit?",
+    "choices": [
+      "The tree's predicted height when it was planted was 3 feet.",
+      "The tree's predicted height increases by 3 feet each year.",
+      "The tree's predicted height increases by 0.5 foot each year.",
+      "The tree is predicted to be 3 years old when its height is 0 feet."
+    ],
+    "answer": "The tree's predicted height when it was planted was 3 feet.",
+    "explanation": [
+      "The line crosses the vertical axis at (0, 3), so the y-intercept is 3.",
+      "x = 0 means 0 years after planting, that is, when the tree was planted.",
+      "So the line predicts a height of 3 feet when the tree was planted."
+    ],
+    "hints": [
+      "What is the value of x at the y-intercept, and what does that x-value mean here?",
+      "Is the y-intercept a rate of change or a starting value?"
+    ],
+    "wrong_reasons": {
+      "The tree's predicted height increases by 3 feet each year.": "Treated the y-intercept as a rate of change",
+      "The tree's predicted height increases by 0.5 foot each year.": "Interpreted the slope instead of the y-intercept",
+      "The tree is predicted to be 3 years old when its height is 0 feet.": "Mixed up the roles of the two variables"
+    },
+    "check": "b=3\nresult=f\"The tree's predicted height when it was planted was {b} feet.\"",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Years (0 to 11) on the horizontal axis and Height (ft) (0 to 11) on the vertical axis, grid lines every 1 unit. Data points: (1, 4), (2, 4), (3, 4), (4, 5), (5, 6), (6, 6), (7, 6), (8, 7), (9, 8), (10, 8). A line of best fit rises from left to right through (0, 3), (4, 5), (8, 7) and (10, 8).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Years",
+        "ylabel": "Height (ft)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              10,
+              8
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.5*x + 3",
+          "domain": [
+            0,
+            11
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f026",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows the age x, in years, and the resale value y, in hundreds of dollars, of 9 used laptops, along with a line of best fit. The laptop represented by point P is 6 years old. What is the residual (actual value minus predicted value), in hundreds of dollars, for point P?",
+    "choices": [
+      "−2",
+      "2",
+      "5",
+      "7"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The line passes through (0, 8) and (10, 3), so it falls 0.5 for each year.",
+      "At x = 6 the line is at 8 − 0.5 · 6 = 5.",
+      "Point P is at (6, 7), so the residual is 7 − 5 = 2."
+    ],
+    "hints": [
+      "What value does the line predict for a 6-year-old laptop?",
+      "Is point P above or below the line? What sign should its residual have?"
+    ],
+    "wrong_reasons": {
+      "−2": "Subtracted actual from predicted instead of predicted from actual",
+      "5": "Gave the predicted value instead of the residual",
+      "7": "Gave the actual value instead of the residual"
+    },
+    "check": "from sympy import Rational\nm=Rational(3-8,10-0)\nresult=7-(m*6+8)",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Age (years) (0 to 11) on the horizontal axis and Value (hundreds of dollars) (0 to 11) on the vertical axis, grid lines every 1 unit. Data points: (1, 8), (2, 7), (3, 6), (4, 6), (5, 5), (7, 4), (8, 4), (9, 3), plus point P at (6, 7). A line of best fit falls from left to right through (0, 8), (2, 7), (6, 5) and (10, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Age (years)",
+        "ylabel": "Value ($100s)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "8 - 0.5*x",
+          "domain": [
+            0,
+            11
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            7
+          ],
+          "label": "P",
+          "labelPos": "ne"
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f027",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The scatterplot shows the mass y, in grams, of a substance remaining x days after an experiment began, along with an exponential curve of best fit of the form y = a·bˣ. According to the curve of best fit, by what percent does the predicted mass decrease each day?",
+    "choices": [
+      "4%",
+      "25%",
+      "43.75%",
+      "75%"
+    ],
+    "answer": "25%",
+    "explanation": [
+      "The curve passes through (0, 16), (1, 12) and (2, 9).",
+      "From day 0 to day 1 the predicted mass is multiplied by 12/16 = 0.75 (and 9/12 = 0.75 from day 1 to day 2).",
+      "Multiplying by 0.75 means losing 1 − 0.75 = 0.25 of the mass each day.",
+      "So the predicted mass decreases by 25% each day."
+    ],
+    "hints": [
+      "Read the curve at x = 0, 1 and 2. What factor takes you from one value to the next?",
+      "If 75% of the mass is left, what percent was lost?"
+    ],
+    "wrong_reasons": {
+      "4%": "Used the 4-gram drop in the first day as the percent",
+      "43.75%": "Found the percent decrease over 2 days instead of 1 day",
+      "75%": "Gave the percent remaining each day instead of the percent lost"
+    },
+    "check": "from sympy import Rational\nb=Rational(12,16)\nresult=(1-b)*100",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Days (0 to 7) on the horizontal axis and Mass (g) (0 to 18) on the vertical axis, grid lines every 1 unit. Data points: (0, 15), (1, 12), (1, 13), (2, 9), (2, 8), (3, 7), (4, 5), (5, 4), (6, 3), (6, 2). A decreasing exponential curve of best fit falls more and more gently, passing through (0, 16), (1, 12) and (2, 9).",
+      "aspect": 0.75,
+      "plane": {
+        "x": [
+          0,
+          7
+        ],
+        "y": [
+          0,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Days",
+        "ylabel": "Mass (g)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              15
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              1,
+              13
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "16*0.75^x",
+          "domain": [
+            0,
+            7
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f028",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The scatterplot shows the number of people x in each of 12 hiking groups and the total amount of water y, in liters, that each group carried, along with a line of best fit. According to the line of best fit, how many liters of water would a group of 6 people be predicted to carry?",
+    "choices": null,
+    "answer": "10",
+    "accept": [
+      "10.0"
+    ],
+    "explanation": [
+      "Find x = 6 on the horizontal axis.",
+      "Go up to the line of best fit (not to the data point at (6, 11)).",
+      "The line is at y = 10 there, so the prediction is 10 liters."
+    ],
+    "hints": [
+      "Should you read the data point or the line?",
+      "The line passes through (2, 4) and (4, 7). Where is it at x = 6?"
+    ],
+    "check": "from sympy import Rational\nm=Rational(4-1,2-0)\nresult=m*6+1",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with People (0 to 8) on the horizontal axis and Water (L) (0 to 13) on the vertical axis, grid lines every 1 unit. Data points: (1, 2), (2, 4), (2, 3), (3, 6), (3, 5), (4, 7), (4, 6), (5, 8), (5, 9), (6, 11), (7, 11), (7, 12). A line of best fit rises from left to right through (0, 1), (2, 4), (4, 7) and (6, 10).",
+      "aspect": 0.8,
+      "plane": {
+        "x": [
+          0,
+          8
+        ],
+        "y": [
+          0,
+          13
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "People",
+        "ylabel": "Water (L)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              7,
+              12
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "1.5*x + 1",
+          "domain": [
+            0,
+            8
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f029",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows the distance x, in miles, and the fare y, in dollars, for 10 taxi rides, along with a line of best fit. According to the line of best fit, how much greater, in dollars, is the predicted fare for a 9-mile ride than for a 5-mile ride?",
+    "choices": [
+      "1.5",
+      "4",
+      "6",
+      "16.5"
+    ],
+    "answer": "6",
+    "explanation": [
+      "The line passes through (0, 3) and (4, 9), so its slope is 6/4 = 1.5 dollars per mile.",
+      "A 9-mile ride is 4 miles longer than a 5-mile ride.",
+      "The predicted difference is 1.5 · 4 = 6 dollars."
+    ],
+    "hints": [
+      "How much does the predicted fare go up for each extra mile?",
+      "How many extra miles is the longer ride?"
+    ],
+    "wrong_reasons": {
+      "1.5": "Gave the increase for 1 mile instead of 4 miles",
+      "4": "Gave the difference in miles instead of in dollars",
+      "16.5": "Gave the predicted fare for a 9-mile ride instead of the difference"
+    },
+    "check": "from sympy import Rational\nm=Rational(9-3,4-0)\nf=lambda x:m*x+3\nresult=f(9)-f(5)",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Distance (miles) (0 to 11) on the horizontal axis and Fare (dollars) (0 to 19) on the vertical axis, grid lines every 1 unit. Data points: (1, 5), (2, 6), (3, 7), (4, 9), (5, 11), (6, 12), (7, 13), (8, 15), (9, 17), (10, 18). A line of best fit rises from left to right through (0, 3), (2, 6), (4, 9), (6, 12), (8, 15) and (10, 18).",
+      "aspect": 0.75,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          19
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Distance (mi)",
+        "ylabel": "Fare ($)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              5,
+              11
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              8,
+              15
+            ],
+            [
+              9,
+              17
+            ],
+            [
+              10,
+              18
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "1.5*x + 3",
+          "domain": [
+            0,
+            11
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f030",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The scatterplot shows the amount x a store spent on advertising and its sales y in each of 11 months, both in thousands of dollars, along with a line of best fit. For the month represented by point P, the actual sales were p% greater than the sales predicted by the line of best fit. What is the value of p?",
+    "choices": null,
+    "answer": "60",
+    "accept": [
+      "60.0"
+    ],
+    "explanation": [
+      "The line passes through (0, 2) and (4, 4), so its slope is 0.5 and its equation is y = 0.5x + 2.",
+      "Point P is at (6, 8). The predicted sales at x = 6 are 0.5 · 6 + 2 = 5.",
+      "Actual minus predicted is 8 − 5 = 3.",
+      "3 is 3/5 = 60% of the predicted value, so p = 60."
+    ],
+    "hints": [
+      "What does the line predict at P's x-value?",
+      "Percent greater is measured relative to which value: the actual or the predicted one?"
+    ],
+    "check": "from sympy import Rational\nm=Rational(4-2,4-0)\npred=m*6+2\nresult=(8-pred)/pred*100",
+    "table": null,
+    "figure": {
+      "alt": "Scatterplot with Advertising (thousands of dollars) (0 to 11) on the horizontal axis and Sales (thousands of dollars) (0 to 11) on the vertical axis, grid lines every 1 unit. Data points: (0, 2), (1, 3), (2, 3), (3, 3), (4, 3), (5, 5), (7, 5), (8, 6), (9, 6), (10, 7), plus point P at (6, 8). A line of best fit rises from left to right through (0, 2), (4, 4), (6, 5), (8, 6) and (10, 7).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          11
+        ],
+        "y": [
+          0,
+          11
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "Ads ($1000s)",
+        "ylabel": "Sales ($1000s)"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              9,
+              6
+            ],
+            [
+              10,
+              7
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.5*x + 2",
+          "domain": [
+            0,
+            11
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            8
+          ],
+          "label": "P",
+          "labelPos": "nw"
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f031",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A snack stand recorded the number of hours of sunshine x and the number of frozen treats sold y, in dozens, on 10 days. The scatterplot shows the data and a line of best fit. According to the line of best fit, how many dozen frozen treats are predicted to be sold on a day with 8 hours of sunshine?",
+    "choices": [
+      "12",
+      "14",
+      "15",
+      "17"
+    ],
+    "answer": "14",
+    "explanation": [
+      "Find x = 8 on the horizontal axis and move straight up to the line of best fit, not to the data point.",
+      "The line passes through the grid point (8, 14).",
+      "So the line predicts 14 dozen frozen treats."
+    ],
+    "hints": [
+      "Is the question about the data point at x = 8 or about the line?",
+      "Where does the line cross the vertical grid line at x = 8?"
+    ],
+    "wrong_reasons": {
+      "12": "Multiplied the slope 1.5 by 8 but left out the line's starting value of 2",
+      "15": "Read the actual data point at x = 8 instead of the line of best fit",
+      "17": "Read the line at x = 10 instead of x = 8"
+    },
+    "check": "x1,y1,x2,y2=0,2,8,14\nm=(y2-y1)/(x2-x1)\nresult=y1+m*(8-x1)",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, hours of sunshine, from 0 to 10 and y, dozens of frozen treats sold, from 0 to 20, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 4), (2, 4), (3, 7), (4, 9), (5, 9), (6, 12), (7, 12), (8, 15), (9, 15), (10, 16). A line of best fit passes through (0, 2), (2, 5), (4, 8), (6, 11), (8, 14) and (10, 17), so it rises 1.5 dozen per hour of sunshine.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          20
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              7,
+              12
+            ],
+            [
+              8,
+              15
+            ],
+            [
+              9,
+              15
+            ],
+            [
+              10,
+              16
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "1.5*x + 2",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f032",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "On a road trip, a driver recorded the distance driven x, in tens of miles, and the fuel remaining in the tank y, in gallons, at 11 stops. The scatterplot shows the data and a line of best fit. Which of the following is the best interpretation of the slope of the line of best fit in this context?",
+    "choices": [
+      "The predicted fuel remaining decreases by 0.5 gallon for each additional 10 miles driven.",
+      "The predicted fuel remaining decreases by 2 gallons for each additional 10 miles driven.",
+      "The predicted fuel remaining decreases by 0.5 gallon for each additional mile driven.",
+      "The fuel tank held about 12 gallons when the trip began."
+    ],
+    "answer": "The predicted fuel remaining decreases by 0.5 gallon for each additional 10 miles driven.",
+    "explanation": [
+      "The line passes through (0, 12) and (8, 8), so its slope is (8 − 12)/(8 − 0) = −0.5.",
+      "x is measured in tens of miles, so an increase of 1 in x means 10 more miles.",
+      "So the predicted fuel remaining drops by 0.5 gallon for every additional 10 miles driven."
+    ],
+    "hints": [
+      "Which two grid points does the line pass through exactly?",
+      "What does an increase of 1 in x mean in miles?"
+    ],
+    "wrong_reasons": {
+      "The predicted fuel remaining decreases by 2 gallons for each additional 10 miles driven.": "Found change in x over change in y (the reciprocal of the slope)",
+      "The predicted fuel remaining decreases by 0.5 gallon for each additional mile driven.": "Forgot that x is measured in tens of miles",
+      "The fuel tank held about 12 gallons when the trip began.": "Interpreted the y-intercept instead of the slope"
+    },
+    "check": "x1,y1,x2,y2=0,12,8,8\nm=(y2-y1)/(x2-x1)\nresult=f'The predicted fuel remaining decreases by {abs(m)} gallon for each additional 10 miles driven.'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, distance driven in tens of miles, from 0 to 16 and y, fuel remaining in gallons, from 0 to 14, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 11), (2, 11), (3, 10), (5, 9), (6, 9), (7, 8), (9, 7), (10, 7), (11, 6), (13, 6), (14, 5). A line of best fit falls from left to right through (0, 12), (4, 10), (8, 8), (12, 6) and (16, 4).",
+      "aspect": 1.15,
+      "plane": {
+        "x": [
+          0,
+          16
+        ],
+        "y": [
+          0,
+          14
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              11
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              9,
+              7
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              13,
+              6
+            ],
+            [
+              14,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "12 - 0.5*x",
+          "domain": [
+            0,
+            16
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f033",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The scatterplot shows 11 data points and a line of best fit. Point A is labeled. The residual of a data point is its actual y-value minus the y-value predicted by the line of best fit. A new data point with x-coordinate 12 is added, and its residual is the opposite of the residual of point A. What is the y-coordinate of the new data point?",
+    "answer": "7",
+    "explanation": [
+      "The line passes through (0, 3) and (10, 8), so it is y = 0.5x + 3.",
+      "At x = 4 the line predicts 5, so point A's residual is 7 − 5 = 2.",
+      "The new point's residual is −2. At x = 12 the line predicts 0.5 · 12 + 3 = 9.",
+      "So the new point's y-coordinate is 9 + (−2) = 7."
+    ],
+    "hints": [
+      "What is the equation of the line through (0, 3) and (10, 8)?",
+      "How far above or below the line is point A?",
+      "If a residual is negative, is the point above or below the line?"
+    ],
+    "check": "m=(8-3)/(10-0)\nb=3\nrA=7-(m*4+b)\nresult=(m*12+b)-rA",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x from 0 to 12 and y from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 4), (2, 3), (3, 5), (4, 7), (5, 5), (6, 6), (7, 6), (8, 7), (9, 8), (10, 7), (11, 9); the point (4, 7) is labeled A. A line of best fit passes through (0, 3), (2, 4), (4, 5), (6, 6), (8, 7) and (10, 8), so it rises 1 unit for every 2 units to the right.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              11,
+              9
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.5*x + 3",
+          "domain": [
+            0,
+            12
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            7
+          ],
+          "label": "A",
+          "labelPos": "nw"
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f034",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows the amount y, in hundreds of dollars, in a student's savings account x months after the account was opened. Which of the following equations best models the data?",
+    "choices": [
+      "y = 3x + 2",
+      "y = 3(2)^x",
+      "y = 2x + 3",
+      "y = 3 − 2x"
+    ],
+    "answer": "y = 2x + 3",
+    "explanation": [
+      "The points rise by about the same amount each month, so a linear model fits; an exponential model would rise faster and faster.",
+      "The data start near y = 3 at x = 0 and reach about 19 at x = 8, a rise of about 16 over 8 months, or 2 per month.",
+      "So y = 2x + 3 is the best model."
+    ],
+    "hints": [
+      "Do the points rise by about the same amount each month, or does the rise keep getting bigger?",
+      "About where would the data be at x = 0, and how much do they rise per month?"
+    ],
+    "wrong_reasons": {
+      "y = 3x + 2": "Swapped the slope and the y-intercept",
+      "y = 3(2)^x": "Chose an exponential model even though the points rise by a nearly constant amount",
+      "y = 3 − 2x": "Used a negative slope even though the points rise from left to right"
+    },
+    "check": "from sympy import Rational\nP=[(0,3),(1,6),(2,7),(3,9),(4,11),(5,13),(6,16),(7,17),(8,19)]\nC={'y=2x+3':lambda x:2*x+3,'y=3x+2':lambda x:3*x+2,'y=3(2)^x':lambda x:3*2**x,'y=3-2x':lambda x:3-2*x}\nresult=min(C,key=lambda k:sum((C[k](x)-y)**2 for x,y in P))",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, months, from 0 to 9 and y, hundreds of dollars, from 0 to 20, with grid lines every 1 unit and axis labels every 2 units. The data points are (0, 3), (1, 6), (2, 7), (3, 9), (4, 11), (5, 13), (6, 16), (7, 17), (8, 19). The points rise at a nearly constant rate of about 2 per month, starting near 3.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          9
+        ],
+        "y": [
+          0,
+          20
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              9
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              7,
+              17
+            ],
+            [
+              8,
+              19
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f035",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A basketball coach recorded the number of hours x that each of 10 players practiced shooting in a week and the number of free throws y, out of 20 attempts, that each player then made. The scatterplot shows the data and a line of best fit. According to the line of best fit, how many hours of practice correspond to a predicted 14 free throws made?",
+    "choices": [
+      "4",
+      "6",
+      "9",
+      "14"
+    ],
+    "answer": "6",
+    "explanation": [
+      "Find y = 14 on the vertical axis and move across to the line of best fit.",
+      "The line passes through the grid point (6, 14).",
+      "So the line predicts 14 free throws for 6 hours of practice."
+    ],
+    "hints": [
+      "Which axis shows the number of free throws made?",
+      "Where does the line cross the horizontal grid line at y = 14?"
+    ],
+    "wrong_reasons": {
+      "4": "Used the data point (4, 14) instead of the line of best fit",
+      "9": "Subtracted the y-intercept 5 from 14 but did not divide by the slope",
+      "14": "Gave the number of free throws instead of the number of hours"
+    },
+    "check": "from sympy import symbols, solve\nx=symbols('x')\nm=(8-5)/(2-0)\nresult=solve(m*x+5-14,x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, hours of practice, from 0 to 10 and y, free throws made, from 0 to 20, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 6), (2, 8), (3, 10), (4, 14), (5, 12), (6, 13), (7, 16), (8, 17), (9, 18), (10, 19). A line of best fit passes through (0, 5), (2, 8), (4, 11), (6, 14), (8, 17) and (10, 20).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          20
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              4,
+              14
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              16
+            ],
+            [
+              8,
+              17
+            ],
+            [
+              9,
+              18
+            ],
+            [
+              10,
+              19
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "1.5*x + 5",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f036",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A farmer tested different amounts of fertilizer on 11 fields of equal size. The scatterplot shows the amount of fertilizer x, in tens of kilograms, and the crop yield y, in hundreds of kilograms, for each field, along with a line of best fit. According to the line of best fit, an increase of 50 kilograms of fertilizer is associated with an increase of how many kilograms in predicted crop yield?",
+    "choices": [
+      "25",
+      "250",
+      "900",
+      "1,000"
+    ],
+    "answer": "250",
+    "explanation": [
+      "The line passes through (0, 4) and (10, 9), so its slope is 5/10 = 0.5: each increase of 1 in x adds 0.5 to the predicted y.",
+      "50 kilograms of fertilizer is 5 tens of kilograms, so x increases by 5 and the predicted y increases by 5 · 0.5 = 2.5.",
+      "y is in hundreds of kilograms, so 2.5 hundred kilograms is 250 kilograms."
+    ],
+    "hints": [
+      "What is the slope of the line, and what units does it have?",
+      "How many units of x is 50 kilograms of fertilizer?",
+      "How do you change hundreds of kilograms into kilograms?"
+    ],
+    "wrong_reasons": {
+      "25": "Multiplied the slope 0.5 by 50 without converting either axis's units",
+      "900": "Read the predicted yield at x = 10 (9 hundred kilograms) instead of finding a change",
+      "1,000": "Used the reciprocal of the slope, 2, so got 5 · 2 = 10 hundred kilograms"
+    },
+    "check": "m=(9-4)/(10-0)\ndx=50/10\nresult=m*dx*100",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, fertilizer in tens of kilograms, from 0 to 12 and y, crop yield in hundreds of kilograms, from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 5), (2, 4), (3, 6), (4, 6), (5, 6), (6, 7), (7, 8), (8, 8), (9, 8), (10, 9), (11, 10). A line of best fit passes through (0, 4), (2, 5), (4, 6), (6, 7), (8, 8), (10, 9) and (12, 10).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              11,
+              10
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.5*x + 4",
+          "domain": [
+            0,
+            12
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f037",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A candle's height y, in centimeters, was measured x hours after it was lit. The scatterplot shows the data and a line of best fit. According to the line of best fit, what is the predicted height of the candle, in centimeters, 3 hours after it was lit?",
+    "choices": [
+      "6",
+      "14",
+      "15",
+      "17"
+    ],
+    "answer": "14",
+    "explanation": [
+      "Find x = 3 on the horizontal axis and move up to the line of best fit.",
+      "The line passes through the grid point (3, 14).",
+      "So the predicted height is 14 centimeters."
+    ],
+    "hints": [
+      "Should you use the data point at x = 3 or the line?",
+      "Where does the line cross the vertical grid line at x = 3?"
+    ],
+    "wrong_reasons": {
+      "6": "Found only the amount the candle burned down (2 · 3) instead of the height left",
+      "15": "Read the actual data point at x = 3 instead of the line of best fit",
+      "17": "Subtracted 3 from 20 without multiplying by the rate of 2 centimeters per hour"
+    },
+    "check": "x1,y1,x2,y2=0,20,10,0\nm=(y2-y1)/(x2-x1)\nresult=y1+m*3",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, hours after lighting, from 0 to 10 and y, height in centimeters, from 0 to 22, with grid lines every 1 unit and axis labels every 2 units. The data points are (1, 18), (2, 17), (3, 15), (4, 12), (5, 10), (6, 9), (7, 6), (8, 4), (9, 3). A line of best fit falls from (0, 20) through (3, 14), (5, 10) and (8, 4) to (10, 0), so it drops 2 centimeters per hour.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          22
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              18
+            ],
+            [
+              2,
+              17
+            ],
+            [
+              3,
+              15
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "20 - 2*x",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f038",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A bakery opened in a new neighborhood. The scatterplot shows the number of customers y, in hundreds, that the bakery had in week x after it opened, for the first 9 weeks, along with a line of best fit. If the trend shown by the line of best fit continues, how many customers is the bakery predicted to have in week 20?",
+    "answer": "1700",
+    "accept": [
+      "1,700"
+    ],
+    "explanation": [
+      "The line passes through (0, 2) and (4, 5), so its slope is 3/4 = 0.75 and its equation is y = 0.75x + 2.",
+      "At x = 20, y = 0.75 · 20 + 2 = 17.",
+      "y is in hundreds, so the prediction is 17 · 100 = 1,700 customers."
+    ],
+    "hints": [
+      "Which grid points does the line pass through exactly?",
+      "Once you have the line's equation, what do you substitute for x?",
+      "What units is y measured in?"
+    ],
+    "check": "m=(5-2)/(4-0)\nresult=(m*20+2)*100",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, week number, from 0 to 10 and y, customers in hundreds, from 0 to 10, with grid lines and axis labels every 1 unit. The data points are (1, 3), (2, 3), (3, 5), (4, 4), (5, 6), (6, 7), (7, 8), (8, 7), (9, 9). A line of best fit passes through (0, 2), (4, 5) and (8, 8).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              9,
+              9
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.75*x + 2",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f039",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The scatterplot shows the number of hours of sunlight per day x and the weekly growth y, in centimeters, for 8 tomato plants, along with a line of best fit. The residual of a data point is its actual y-value minus the y-value predicted by the line of best fit. A ninth plant that received 6 hours of sunlight per day has a residual of −3. What was this plant's weekly growth, in centimeters?",
+    "choices": [
+      "3",
+      "5",
+      "8",
+      "11"
+    ],
+    "answer": "5",
+    "explanation": [
+      "At x = 6, the line of best fit passes through (6, 8), so the predicted growth is 8 centimeters.",
+      "Residual = actual − predicted, so actual = predicted + residual.",
+      "Actual = 8 + (−3) = 5 centimeters."
+    ],
+    "hints": [
+      "What does the line predict at x = 6?",
+      "If the residual is negative, is the actual value above or below the line?"
+    ],
+    "wrong_reasons": {
+      "3": "Used the size of the residual as the growth",
+      "8": "Gave the predicted value without using the residual",
+      "11": "Subtracted in the wrong order, treating the residual as predicted − actual"
+    },
+    "check": "pred=(4-2)/(2-0)*6+2\nresult=pred+(-3)",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, hours of sunlight per day, from 0 to 10 and y, weekly growth in centimeters, from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 4), (2, 3), (3, 6), (4, 5), (5, 8), (7, 8), (8, 11), (9, 10). A line of best fit passes through (0, 2), (2, 4), (4, 6), (6, 8) and (8, 10), rising 1 centimeter per hour.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              11
+            ],
+            [
+              9,
+              10
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "x + 2",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f040",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "A scientist measured the number of bacteria y, in thousands, in a sample x hours after the start of an experiment. The scatterplot shows the data along with an exponential curve of best fit. According to the curve, the predicted number of bacteria doubles every 2 hours. If this trend continues, what is the predicted number of bacteria, in thousands, 10 hours after the start of the experiment?",
+    "answer": "64",
+    "explanation": [
+      "The curve passes through (0, 2), (2, 4), (4, 8), (6, 16) and (8, 32): the value doubles every 2 hours.",
+      "From x = 8 to x = 10 is another 2 hours, so the predicted value doubles again.",
+      "32 · 2 = 64 thousand bacteria."
+    ],
+    "hints": [
+      "What is the curve's value at x = 8?",
+      "How many 2-hour periods are there between x = 8 and x = 10?"
+    ],
+    "check": "a=2\nresult=a*2**(10/2)",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, hours, from 0 to 10 and y, bacteria in thousands, from 0 to 36, with grid lines every 2 units and axis labels every 4 units. The data points are (0, 2), (1, 3), (2, 4), (3, 6), (4, 8), (5, 11), (6, 16), (7, 22), (8, 31). An exponential curve of best fit rises more and more steeply, passing through (0, 2), (2, 4), (4, 8), (6, 16) and (8, 32).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          36
+        ],
+        "grid": 2,
+        "axes": true,
+        "ticks": 4,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              11
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              7,
+              22
+            ],
+            [
+              8,
+              31
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "2*2^(x/2)",
+          "domain": [
+            0,
+            8.3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f041",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A hiker recorded the elevation x, in hundreds of meters, and the air temperature y, in degrees Celsius, at 11 points along a mountain trail. The scatterplot shows the data and a line of best fit. Which of the following best describes the association between elevation and temperature?",
+    "choices": [
+      "A strong positive linear association",
+      "A weak negative linear association",
+      "No association",
+      "A strong negative linear association"
+    ],
+    "answer": "A strong negative linear association",
+    "explanation": [
+      "As elevation increases, the temperatures tend to decrease, so the association is negative.",
+      "The points lie very close to the line of best fit, so the linear association is strong.",
+      "So the data show a strong negative linear association."
+    ],
+    "hints": [
+      "As you move to the right on the graph, do the points tend to go up or down?",
+      "Are the points close to the line or widely scattered around it?"
+    ],
+    "wrong_reasons": {
+      "A strong positive linear association": "Mixed up the direction: points that fall from left to right show a negative association",
+      "A weak negative linear association": "Did not notice how closely the points follow the line, which makes the association strong",
+      "No association": "Thought an association needs every point to lie exactly on the line"
+    },
+    "check": "from sympy import sqrt, Rational\nP=[(0,18),(1,16),(2,15),(3,14),(4,12),(5,10),(6,9),(7,8),(8,6),(9,5),(10,3)]\nn=len(P)\nmx=Rational(sum(x for x,_ in P),n); my=Rational(sum(y for _,y in P),n)\nsxy=sum((x-mx)*(y-my) for x,y in P); sxx=sum((x-mx)**2 for x,_ in P); syy=sum((y-my)**2 for _,y in P)\nr=float(sxy/sqrt(sxx*syy))\nresult=('A strong ' if abs(r)>=0.8 else 'A weak ')+('negative' if r<0 else 'positive')+' linear association'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, elevation in hundreds of meters, from 0 to 10 and y, temperature in degrees Celsius, from 0 to 20, with grid lines every 1 unit and axis labels every 2 units. The data points are (0, 18), (1, 16), (2, 15), (3, 14), (4, 12), (5, 10), (6, 9), (7, 8), (8, 6), (9, 5), (10, 3). They fall from left to right and lie very close to a line of best fit through (0, 18), (2, 15), (4, 12), (6, 9), (8, 6) and (10, 3).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          10
+        ],
+        "y": [
+          0,
+          20
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              18
+            ],
+            [
+              1,
+              16
+            ],
+            [
+              2,
+              15
+            ],
+            [
+              3,
+              14
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              9,
+              5
+            ],
+            [
+              10,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "18 - 1.5*x",
+          "domain": [
+            0,
+            10
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f042",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "A ski resort measured the snow depth y, in feet, on its main slope x days after the last snowfall. The scatterplot shows the data for the first 11 days and a line of best fit. If the trend shown by the line of best fit continues, how many days after the last snowfall will the predicted snow depth be 1.5 feet?",
+    "answer": "17",
+    "explanation": [
+      "The line passes through (0, 10) and (4, 8), so its slope is −2/4 = −0.5 and its equation is y = 10 − 0.5x.",
+      "Set 10 − 0.5x = 1.5, so 0.5x = 8.5.",
+      "x = 17, so the predicted depth is 1.5 feet 17 days after the last snowfall."
+    ],
+    "hints": [
+      "What is the equation of the line through (0, 10) and (4, 8)?",
+      "Which variable do you set equal to 1.5?"
+    ],
+    "check": "from sympy import symbols, solve, Rational\nx=symbols('x')\nm=Rational(8-10,4-0)\nresult=solve(10+m*x-Rational(3,2),x)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, days after the last snowfall, from 0 to 12 and y, snow depth in feet, from 0 to 12, with grid lines and axis labels every 1 unit. The data points are (1, 10), (2, 9), (3, 8), (4, 8), (5, 7), (6, 7), (7, 6), (8, 6), (9, 5), (10, 5), (11, 4). A line of best fit falls from left to right through (0, 10), (4, 8), (8, 6) and (12, 4).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          0,
+          12
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              9,
+              5
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              11,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "10 - 0.5*x",
+          "domain": [
+            0,
+            12
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f043",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A tank was flushed with clean water, and the amount of dye y, in grams, remaining in the tank was measured x hours after flushing began. The scatterplot shows the data. Which of the following equations best models the data?",
+    "choices": [
+      "y = 16(0.8)^x",
+      "y = 16 − 3x",
+      "y = 16(0.5)^x",
+      "y = 8(0.5)^x"
+    ],
+    "answer": "y = 16(0.5)^x",
+    "explanation": [
+      "The points fall by about half each hour and level off, which is exponential decay, not a straight line.",
+      "The amount starts near 16 grams: 15, 9, 4, 2, 1, 1 is close to 16, 8, 4, 2, 1, 0.5.",
+      "A decay factor of 0.8 would leave about 8 grams after 3 hours, and y = 16 − 3x would give a negative amount at x = 6, so y = 16(0.5)^x fits best."
+    ],
+    "hints": [
+      "Do the points fall by about the same amount each hour or by about the same fraction?",
+      "About what fraction of the dye remains from one hour to the next?",
+      "Which model starts near the value at x = 0?"
+    ],
+    "wrong_reasons": {
+      "y = 16(0.8)^x": "Saw decay but did not check the rate: 0.8 keeps far too much dye each hour",
+      "y = 16 − 3x": "Chose a linear model even though the drop gets smaller each hour",
+      "y = 8(0.5)^x": "Used the value at x = 1 as the starting amount instead of the value at x = 0"
+    },
+    "check": "P=[(0,15),(1,9),(2,4),(3,2),(4,1),(5,1)]\nC={'y=16(0.5)^x':lambda x:16*0.5**x,'y=16(0.8)^x':lambda x:16*0.8**x,'y=16-3x':lambda x:16-3*x,'y=8(0.5)^x':lambda x:8*0.5**x}\nresult=min(C,key=lambda k:sum((C[k](x)-y)**2 for x,y in P))",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, hours, from 0 to 6 and y, grams of dye, from 0 to 18, with grid lines every 1 unit and axis labels every 2 units. The data points are (0, 15), (1, 9), (2, 4), (3, 2), (4, 1), (5, 1). The points drop steeply at first and then level off near 0, falling by about half each hour.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          6
+        ],
+        "y": [
+          0,
+          18
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              15
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f044",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "A pizza shop's menu lists the price y, in dollars, of a large pizza with x toppings. The scatterplot shows the data and a line of best fit. Which of the following is the best interpretation of the y-intercept of the line of best fit?",
+    "choices": [
+      "The predicted price of a pizza with no toppings is 1.50 dollars.",
+      "The predicted price increases by 8 dollars for each additional topping.",
+      "The predicted price increases by 1.50 dollars for each additional topping.",
+      "The predicted price of a pizza with no toppings is 8 dollars."
+    ],
+    "answer": "The predicted price of a pizza with no toppings is 8 dollars.",
+    "explanation": [
+      "The y-intercept is where the line crosses the y-axis, at x = 0.",
+      "The line crosses the y-axis at (0, 8).",
+      "x = 0 means no toppings, so the line predicts a price of 8 dollars for a pizza with no toppings."
+    ],
+    "hints": [
+      "What is the value of x at the y-intercept, and what does that mean for the pizza?",
+      "Where does the line, not the data point, cross the y-axis?"
+    ],
+    "wrong_reasons": {
+      "The predicted price of a pizza with no toppings is 1.50 dollars.": "Used the slope as the starting price",
+      "The predicted price increases by 8 dollars for each additional topping.": "Treated the y-intercept as a rate of change",
+      "The predicted price increases by 1.50 dollars for each additional topping.": "Interpreted the slope instead of the y-intercept"
+    },
+    "check": "b=11-1.5*2\nresult=f'The predicted price of a pizza with no toppings is {int(b)} dollars.'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, number of toppings, from 0 to 8 and y, price in dollars, from 0 to 22, with grid lines every 1 unit and axis labels every 2 units. The data points are (0, 9), (1, 9), (2, 11), (3, 13), (4, 14), (5, 15), (6, 17), (7, 19), (8, 19). A line of best fit crosses the y-axis at (0, 8) and passes through (2, 11), (4, 14), (6, 17) and (8, 20), rising 1.5 dollars per topping.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          8
+        ],
+        "y": [
+          0,
+          22
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              9
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              4,
+              14
+            ],
+            [
+              5,
+              15
+            ],
+            [
+              6,
+              17
+            ],
+            [
+              7,
+              19
+            ],
+            [
+              8,
+              19
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "1.5*x + 8",
+          "domain": [
+            0,
+            8
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "psda-two-var-data-f045",
+    "skill_id": "psda-two-var-data",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "A homeowner recorded the average outdoor temperature x, in tens of degrees Fahrenheit, and the number of hours y that the furnace ran on each of 8 days. The scatterplot shows the data and a line of best fit. Which of the following is an equation of the line of best fit?",
+    "choices": [
+      "y = −1.5x + 12",
+      "y = 1.5x + 12",
+      "y = −(2/3)x + 12",
+      "y = −1.5x + 8"
+    ],
+    "answer": "y = −1.5x + 12",
+    "explanation": [
+      "The line crosses the y-axis at (0, 12), so the y-intercept is 12.",
+      "It also passes through (4, 6), so the slope is (6 − 12)/(4 − 0) = −1.5.",
+      "So the line is y = −1.5x + 12."
+    ],
+    "hints": [
+      "Where does the line cross the y-axis?",
+      "Pick two grid points on the line: how much does y change when x increases by 1?"
+    ],
+    "wrong_reasons": {
+      "y = 1.5x + 12": "Used a positive slope even though the line falls from left to right",
+      "y = −(2/3)x + 12": "Found change in x over change in y (the reciprocal of the slope's size)",
+      "y = −1.5x + 8": "Used the x-intercept, 8, as the y-intercept"
+    },
+    "check": "x1,y1,x2,y2=0,12,4,6\nm=(y2-y1)/(x2-x1)\nresult=f'y={m}x+{y1}'",
+    "table": null,
+    "figure": {
+      "alt": "A scatterplot with x, temperature in tens of degrees Fahrenheit, from 0 to 8 and y, hours the furnace ran, from 0 to 14, with grid lines every 1 unit and axis labels every 2 units. The data points are (0, 11), (1, 11), (2, 9), (3, 7), (4, 6), (5, 5), (6, 3), (7, 2). A line of best fit falls from (0, 12) through (2, 9), (4, 6) and (6, 3) to (8, 0).",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          0,
+          8
+        ],
+        "y": [
+          0,
+          14
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 2,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "scatter",
+          "points": [
+            [
+              0,
+              11
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "12 - 1.5*x",
+          "domain": [
+            0,
+            8
+          ]
+        }
+      ]
+    }
   }
 ]

@@ -2092,5 +2092,2714 @@
       "$18,750": "Added both prices, $65, for each extra floor ticket"
     },
     "check": "from sympy import *\nx,y=symbols('x y')\nf,b=symbols('f b')\nr=solve([f+b-500,40*f+25*b-15500],[f,b])\nresult=40*(r[f]+50)+25*(r[b]-50)"
+  },
+  {
+    "id": "alg-systems-f001",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. What is the solution (x, y) to the system?",
+    "choices": [
+      "(2, 3)",
+      "(3, 2)",
+      "(0, 1)",
+      "(0, 5)"
+    ],
+    "answer": "(2, 3)",
+    "explanation": [
+      "The solution to a system is the point where the two graphs cross.",
+      "Follow the marked crossing point down to the x-axis: x = 2.",
+      "Follow it across to the y-axis: y = 3.",
+      "So the solution is (2, 3)."
+    ],
+    "hints": [
+      "Which point lies on both lines at the same time?",
+      "Which coordinate do you read along the horizontal axis, and which along the vertical axis?"
+    ],
+    "wrong_reasons": {
+      "(3, 2)": "Swapped the coordinates, writing the y-value first",
+      "(0, 1)": "Gave the y-intercept of the rising line instead of the crossing point",
+      "(0, 5)": "Gave the y-intercept of the falling line instead of the crossing point"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((-1,0),(1,2)),L((0,5),(1,4))],[x,y])\nresult='(%s, %s)'%(s[x],s[y])",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line rises from left to right and passes through (−1, 0), (0, 1), and (1, 2). The second line falls from left to right and passes through (0, 5), (1, 4), and (3, 2). The two lines cross at the marked point (2, 3).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -1,
+              0
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f002",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Each line passes through the two marked points on it. How many solutions does the system have?",
+    "choices": [
+      "Exactly one",
+      "Zero",
+      "Exactly two",
+      "Infinitely many"
+    ],
+    "answer": "Zero",
+    "explanation": [
+      "First line: slope = (3 − (−1))/(0 − (−2)) = 4/2 = 2, y-intercept 3.",
+      "Second line: slope = (2 − (−2))/(2 − 0) = 4/2 = 2, y-intercept −2.",
+      "Same slope, different y-intercepts: the lines are parallel and never meet.",
+      "A system whose lines never meet has zero solutions."
+    ],
+    "hints": [
+      "What is the slope of each line?",
+      "If two lines have the same slope, when do they meet, and when are they the same line?"
+    ],
+    "wrong_reasons": {
+      "Exactly one": "Assumed any two lines that are not identical must cross once, ignoring that these are parallel",
+      "Exactly two": "A system of two linear equations can never have exactly two solutions",
+      "Infinitely many": "Treated equal slopes as meaning the same line, ignoring the different y-intercepts"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ne1=L((-2,-1),(0,3))\ne2=L((0,-2),(2,2))\ns=solve([e1,e2],[x,y],dict=True)\nresult='Zero' if len(s)==0 else ('Exactly one' if len(s[0])==2 else 'Infinitely many')",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line passes through the marked points (−2, −1) and (0, 3). The second line passes through the marked points (0, −2) and (2, 2). Both lines rise 2 units for every 1 unit to the right, and they never cross within the window.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              -1
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            -1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f003",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Each line passes through the marked points on it. Which system of equations is shown?",
+    "choices": [
+      "x + 2y = 4 and 2x − y = 2",
+      "2x − y = 4 and x + 2y = 2",
+      "2x + y = 4 and x − 2y = 2",
+      "2x + y = 2 and x − 2y = 4"
+    ],
+    "answer": "2x + y = 4 and x − 2y = 2",
+    "explanation": [
+      "The falling line has slope (0 − 4)/(2 − 0) = −2 and y-intercept 4, so y = −2x + 4, which is 2x + y = 4.",
+      "The rising line has slope (1 − (−1))/(4 − 0) = 1/2 and y-intercept −1, so y = (1/2)x − 1.",
+      "Multiply by 2: 2y = x − 2, which is x − 2y = 2.",
+      "So the system is 2x + y = 4 and x − 2y = 2."
+    ],
+    "hints": [
+      "What are the slope and y-intercept of each line?",
+      "How can you rewrite y = mx + b so that it looks like ax + by = c?"
+    ],
+    "wrong_reasons": {
+      "x + 2y = 4 and 2x − y = 2": "Swapped the x- and y-coefficients, which turns each slope into its reciprocal",
+      "2x − y = 4 and x + 2y = 2": "Got the sign of each slope wrong: these lines rise where the graph falls and fall where it rises",
+      "2x + y = 2 and x − 2y = 4": "Swapped the constants, which moves both lines off the marked intercepts"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\npts=[((0,4),(2,0)),((0,-1),(4,1))]\ncands={'2x + y = 4 and x − 2y = 2':[(2,1,4),(1,-2,2)],'x + 2y = 4 and 2x − y = 2':[(1,2,4),(2,-1,2)],'2x − y = 4 and x + 2y = 2':[(2,-1,4),(1,2,2)],'2x + y = 2 and x − 2y = 4':[(2,1,2),(1,-2,4)]}\non=lambda e,P:all(e[0]*p[0]+e[1]*p[1]==e[2] for p in P)\nresult=[k for k,v in cands.items() if (on(v[0],pts[0]) and on(v[1],pts[1])) or (on(v[0],pts[1]) and on(v[1],pts[0]))][0].replace('−','-')",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line falls from left to right and passes through the marked points (0, 4) and (2, 0). The second line rises from left to right and passes through the marked points (0, −1) and (4, 1). The lines cross at (2, 0).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -1
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f004",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. If (x, y) is the solution to the system, what is the value of y?",
+    "answer": "−1",
+    "accept": [
+      "-1"
+    ],
+    "explanation": [
+      "The solution is the point where the two lines cross, at the marked point.",
+      "The crossing point is 2 units right of the origin and 1 unit below the x-axis: (2, −1).",
+      "So y = −1."
+    ],
+    "hints": [
+      "Where do the two lines meet?",
+      "Is the meeting point above or below the x-axis, and by how much?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((0,-3),(3,0)),L((0,3),(1,1))],[x,y])\nresult=s[y]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line rises from left to right and passes through (0, −3), (1, −2), and (3, 0). The second line falls from left to right and passes through (0, 3) and (1, 1). The two lines cross at the marked point (2, −1).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -3
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f005",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Line ℓ is shown in the xy-plane. A system of equations is made up of the equation of line ℓ and the equation x = 10. The solution to the system is (10, b). What is the value of b?",
+    "choices": [
+      "5",
+      "7",
+      "12",
+      "22"
+    ],
+    "answer": "7",
+    "explanation": [
+      "Line ℓ has slope (2 − 0)/(0 − (−4)) = 2/4 = 1/2 and y-intercept 2.",
+      "So line ℓ is y = (1/2)x + 2.",
+      "The solution has x = 10, so b = (1/2)(10) + 2 = 5 + 2 = 7."
+    ],
+    "hints": [
+      "The point (10, b) is off the graph. What equation could you write for line ℓ so you can find it anyway?",
+      "How much does y go up each time x goes up by 1?"
+    ],
+    "wrong_reasons": {
+      "5": "Multiplied 10 by the slope 1/2 but forgot to add the y-intercept 2",
+      "12": "Used a slope of 1 instead of 1/2",
+      "22": "Used the run over the rise (slope 2) instead of the rise over the run"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\nb=solve([L((-4,0),(0,2)),x-10],[x,y])[y]\nresult=b",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Line ℓ rises from left to right and passes through the marked points (−4, 0) and (0, 2). It also passes through (2, 3) and (4, 4).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f006",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Line ℓ is shown in the xy-plane. A system of two linear equations is made up of the equation of line ℓ and the equation kx + 4y = 10, where k is a constant. If the system has no solution, what is the value of k?",
+    "answer": "6",
+    "explanation": [
+      "Line ℓ has slope (0 − 6)/(4 − 0) = −3/2 and y-intercept 6.",
+      "Solve kx + 4y = 10 for y: y = −(k/4)x + 5/2, so its slope is −k/4.",
+      "No solution means the lines are parallel and distinct: −k/4 = −3/2, so k = 6.",
+      "Check: the y-intercepts 6 and 5/2 differ, so the lines are not the same line."
+    ],
+    "hints": [
+      "What has to be true about two lines for a system to have no solution?",
+      "What is the slope of kx + 4y = 10 in terms of k?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\nk=symbols('k')\nm=Rational(0-6,4-0)\nresult=solve(Eq(-k/4,m),k)[0]\nassert Rational(10,4)!=6",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −2 to 8 on both axes, with grid lines every 1 unit. Line ℓ falls from left to right and passes through the marked points (0, 6), (2, 3), and (4, 0).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -2,
+          8
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              6
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f007",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. The solution to the system is (x, y). What is the value of x?",
+    "choices": [
+      "−3",
+      "−2",
+      "1",
+      "3"
+    ],
+    "answer": "−3",
+    "explanation": [
+      "The solution is the point where the lines cross.",
+      "The crossing point is 3 units to the left of the y-axis and 1 unit above the x-axis: (−3, 1).",
+      "So x = −3."
+    ],
+    "hints": [
+      "Where do the two lines meet?",
+      "Is the meeting point to the left or the right of the y-axis?"
+    ],
+    "wrong_reasons": {
+      "−2": "Gave the x-intercept of the falling line instead of the crossing point",
+      "1": "Gave the y-coordinate of the crossing point instead of the x-coordinate",
+      "3": "Dropped the negative sign for a point left of the y-axis"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((-4,0),(0,4)),L((-2,0),(0,-2))],[x,y])\nresult=s[x]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line rises from left to right and passes through (−4, 0) and (0, 4). The second line falls from left to right and passes through (−2, 0) and (0, −2). The two lines cross at the marked point (−3, 1).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              0
+            ],
+            [
+              0,
+              -2
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f008",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. The solution to the system is (a, b). What is the value of a − b?",
+    "answer": "6",
+    "explanation": [
+      "The lines cross at (4, −2), so a = 4 and b = −2.",
+      "a − b = 4 − (−2) = 4 + 2 = 6."
+    ],
+    "hints": [
+      "Which marked point is on both lines?",
+      "What happens when you subtract a negative number?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\na,b=symbols('a b')\ns=solve([L((0,2),(2,0)),L((0,-4),(2,-3))],[x,y])\nresult=s[x]-s[y]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line falls from left to right and passes through the marked point (0, 2) and through (2, 0). The second line rises from left to right and passes through the marked point (0, −4) and through (2, −3). The two lines cross at the marked point (4, −2).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -4
+            ],
+            [
+              2,
+              -3
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f009",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The line shown in the xy-plane is the graph of one equation in a system of two linear equations. The other equation in the system is 6y = 4x − 18. How many solutions does the system have?",
+    "choices": [
+      "Zero",
+      "Exactly one",
+      "Exactly two",
+      "Infinitely many"
+    ],
+    "answer": "Infinitely many",
+    "explanation": [
+      "The line shown has slope (−1 − (−3))/(3 − 0) = 2/3 and y-intercept −3, so it is y = (2/3)x − 3.",
+      "Divide 6y = 4x − 18 by 6: y = (2/3)x − 3.",
+      "Both equations describe the same line, so every point on the line solves the system.",
+      "The system has infinitely many solutions."
+    ],
+    "hints": [
+      "What equation in slope-intercept form describes the line shown?",
+      "What do you get if you solve 6y = 4x − 18 for y?"
+    ],
+    "wrong_reasons": {
+      "Zero": "Saw that the slopes match and concluded the lines are parallel, without checking that the y-intercepts also match",
+      "Exactly one": "Assumed two different-looking equations must give two different lines that cross once",
+      "Exactly two": "A system of two linear equations can never have exactly two solutions"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ne1=L((0,-3),(3,-1))\ne2=6*y-(4*x-18)\ns=solve([e1,e2],[x,y],dict=True)\nresult='Zero' if len(s)==0 else ('Exactly one' if len(s[0])==2 else 'Infinitely many')",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. A line rises from left to right and passes through the marked points (−3, −5), (0, −3), (3, −1), and (6, 1).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -3
+            ],
+            [
+              3,
+              -1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            -5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            -1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f010",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Which ordered pair (x, y) is the solution to the system?",
+    "choices": [
+      "(−2, −3)",
+      "(0, −2)",
+      "(−3, −2)",
+      "(0, 1)"
+    ],
+    "answer": "(−3, −2)",
+    "explanation": [
+      "The solution is the point where the two lines cross.",
+      "The crossing point is 3 units left of the y-axis and 2 units below the x-axis.",
+      "So the solution is (−3, −2)."
+    ],
+    "hints": [
+      "Which point lies on both the horizontal line and the slanted line?",
+      "Which coordinate is read along the horizontal axis?"
+    ],
+    "wrong_reasons": {
+      "(−2, −3)": "Swapped the coordinates, writing the y-value first",
+      "(0, −2)": "Gave where the horizontal line meets the y-axis instead of where the two lines meet",
+      "(0, 1)": "Gave the y-intercept of the slanted line instead of the crossing point"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([y+2,L((-1,0),(0,1))],[x,y])\nresult='(%s, %s)'%(s[x],s[y])",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. One is a horizontal line through (0, −2). The other rises from left to right and passes through (−1, 0) and (0, 1). The two lines cross at the marked point (−3, −2).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -5,
+              -2
+            ],
+            [
+              5,
+              -2
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f011",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Lines ℓ and m are shown in the xy-plane. Each line passes through the marked points on it. Which system of equations is represented by lines ℓ and m?",
+    "choices": [
+      "y = (1/2)x + 1 and y = −2x + 6",
+      "y = 2x + 1 and y = (1/2)x + 6",
+      "y = 2x + 6 and y = −(1/2)x + 1",
+      "y = 2x + 1 and y = −(1/2)x + 6"
+    ],
+    "answer": "y = 2x + 1 and y = −(1/2)x + 6",
+    "explanation": [
+      "Line ℓ: slope = (5 − 1)/(2 − 0) = 2, y-intercept 1, so y = 2x + 1.",
+      "Line m: slope = (4 − 6)/(4 − 0) = −2/4 = −1/2, y-intercept 6, so y = −(1/2)x + 6.",
+      "So the system is y = 2x + 1 and y = −(1/2)x + 6."
+    ],
+    "hints": [
+      "Where does each line cross the y-axis?",
+      "For each line, how much does y change when x increases by 1, and in which direction?"
+    ],
+    "wrong_reasons": {
+      "y = (1/2)x + 1 and y = −2x + 6": "Computed each slope as run over rise instead of rise over run",
+      "y = 2x + 1 and y = (1/2)x + 6": "Missed that line m falls from left to right, so its slope is negative",
+      "y = 2x + 6 and y = −(1/2)x + 1": "Matched the slopes correctly but swapped the two lines' y-intercepts"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\nlp=[(0,1),(2,5)]\nmp=[(0,6),(4,4)]\nR=Rational\ncands={'y = 2x + 1 and y = −(1/2)x + 6':(2,1,R(-1,2),6),'y = (1/2)x + 1 and y = −2x + 6':(R(1,2),1,-2,6),'y = 2x + 1 and y = (1/2)x + 6':(2,1,R(1,2),6),'y = 2x + 6 and y = −(1/2)x + 1':(2,6,R(-1,2),1)}\non=lambda m,b,P:all(m*p[0]+b==p[1] for p in P)\nresult=[k for k,v in cands.items() if on(v[0],v[1],lp) and on(v[2],v[3],mp)][0].replace('−','-')",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane with x from −4 to 6 and y from −2 to 8, with grid lines every 1 unit. Line ℓ rises steeply from left to right and passes through the marked points (0, 1) and (2, 5). Line m falls gently from left to right and passes through the marked points (0, 6) and (4, 4). The lines cross at (2, 5).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -4,
+          6
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              6
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          "label": "m"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            6
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f012",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Line ℓ is shown in the xy-plane. A system of equations is made up of the equation of line ℓ and the equation 2x + y = c, where c is a constant. If the solution to the system has x = 9, what is the value of c?",
+    "answer": "25",
+    "explanation": [
+      "Line ℓ has slope (3 − 1)/(3 − 0) = 2/3 and y-intercept 1, so y = (2/3)x + 1.",
+      "At x = 9 on line ℓ: y = (2/3)(9) + 1 = 6 + 1 = 7, so the solution is (9, 7).",
+      "The solution must also satisfy 2x + y = c: c = 2(9) + 7 = 25."
+    ],
+    "hints": [
+      "What equation describes line ℓ?",
+      "The solution lies on both graphs. What is its y-coordinate, and what must c be for (9, y) to fit 2x + y = c?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\nc=symbols('c')\ns=solve([L((-3,-1),(0,1)),x-9],[x,y])\nresult=solve(Eq(2*s[x]+s[y],c),c)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Line ℓ rises from left to right and passes through the marked points (−3, −1), (0, 1), and (3, 3).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -3,
+              -1
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            -1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f013",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Line ℓ is shown in the xy-plane. A second linear equation will be paired with the equation of line ℓ to form a system of two equations. Which equation would make the system have no solution?",
+    "choices": [
+      "x + 2y = 10",
+      "2x + y = 4",
+      "x + 2y = 4",
+      "x − 2y = 10"
+    ],
+    "answer": "x + 2y = 10",
+    "explanation": [
+      "Line ℓ has slope (0 − 2)/(4 − 0) = −1/2 and y-intercept 2, so y = −(1/2)x + 2, which is x + 2y = 4.",
+      "No solution needs a parallel line (slope −1/2) with a different y-intercept.",
+      "x + 2y = 10 becomes y = −(1/2)x + 5: same slope, y-intercept 5 instead of 2.",
+      "So x + 2y = 10 gives a system with no solution."
+    ],
+    "hints": [
+      "What is the slope of line ℓ?",
+      "Two lines with the same slope can be parallel or identical. How do you tell which?"
+    ],
+    "wrong_reasons": {
+      "2x + y = 4": "Swapped the x- and y-coefficients, giving slope −2, which crosses line ℓ once",
+      "x + 2y = 4": "This is the same line as ℓ, so the system has infinitely many solutions, not none",
+      "x − 2y = 10": "Has slope 1/2, the wrong sign, so it crosses line ℓ once"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ne1=L((-2,3),(4,0))\ncands={'x + 2y = 10':(1,2,10),'2x + y = 4':(2,1,4),'x + 2y = 4':(1,2,4),'x − 2y = 10':(1,-2,10)}\nresult=[k for k,(a,b,c) in cands.items() if solve([e1,a*x+b*y-c],[x,y],dict=True)==[]][0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Line ℓ falls from left to right and passes through the marked points (−2, 3), (0, 2), and (4, 0).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              3
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f014",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Lines ℓ and m are shown in the xy-plane. Line m is translated up 3 units, and line ℓ is not moved. What is the solution (x, y) to the system formed by line ℓ and the translated line?",
+    "choices": [
+      "(2, 3)",
+      "(3, 5)",
+      "(2, 6)",
+      "(5, 3)"
+    ],
+    "answer": "(3, 5)",
+    "explanation": [
+      "Line ℓ: slope (3 − (−1))/(2 − 0) = 2, y-intercept −1, so y = 2x − 1.",
+      "Line m: slope (0 − 5)/(5 − 0) = −1, y-intercept 5, so y = −x + 5. Moving it up 3 gives y = −x + 8.",
+      "Set 2x − 1 = −x + 8: 3x = 9, so x = 3 and y = 2(3) − 1 = 5.",
+      "The new solution is (3, 5)."
+    ],
+    "hints": [
+      "What are the equations of lines ℓ and m?",
+      "How does translating a line up 3 units change its equation?",
+      "Does the crossing point move straight up, or does it slide along line ℓ?"
+    ],
+    "wrong_reasons": {
+      "(2, 3)": "Gave the solution of the original system, before line m was moved",
+      "(2, 6)": "Moved the old crossing point straight up 3, but the new crossing point must stay on line ℓ",
+      "(5, 3)": "Found the right point but swapped its coordinates"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((0,-1),(2,3)),L((0,5),(5,0))-3],[x,y])\nresult='(%s, %s)'%(s[x],s[y])",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane with x and y each from −3 to 7, with grid lines every 1 unit. Line ℓ rises from left to right and passes through the marked points (0, −1) and (2, 3). Line m falls from left to right and passes through the marked points (0, 5) and (5, 0). The two lines cross at (2, 3).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -3,
+          7
+        ],
+        "y": [
+          -3,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "label": "m"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            5
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f015",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. If (x, y) is the solution to the system, what is the value of x + y?",
+    "choices": [
+      "−5",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": "3",
+    "explanation": [
+      "The lines cross at the marked point (−1, 4), so x = −1 and y = 4.",
+      "x + y = −1 + 4 = 3."
+    ],
+    "hints": [
+      "Which point is on both lines?",
+      "Is the x-coordinate of that point positive or negative?"
+    ],
+    "wrong_reasons": {
+      "−5": "Computed x − y instead of x + y",
+      "4": "Gave only the y-coordinate and forgot to add x",
+      "5": "Dropped the negative sign on x = −1 and added 1 + 4"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((0,2),(1,0)),L((-5,0),(0,5))],[x,y])\nresult=s[x]+s[y]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line falls from left to right and passes through (0, 2) and (1, 0). The second line rises from left to right and passes through (−5, 0) and (0, 5). The two lines cross at the marked point (−1, 4).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f016",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Which ordered pair (x, y) is the solution to the system?",
+    "choices": [
+      "(−3, 2)",
+      "(2, −3)",
+      "(0, 5)",
+      "(−2, 0)"
+    ],
+    "answer": "(−3, 2)",
+    "explanation": [
+      "The solution to a system is the point that lies on both lines, which is where the lines cross.",
+      "The lines cross at the marked point 3 units left of the y-axis, so x = −3.",
+      "That point is 2 units above the x-axis, so y = 2.",
+      "The solution is (−3, 2)."
+    ],
+    "hints": [
+      "Which point on the graph is on both lines at once?",
+      "Which coordinate is measured left or right, and which is measured up or down?"
+    ],
+    "wrong_reasons": {
+      "(2, −3)": "Swapped the coordinates, writing the y-value first",
+      "(0, 5)": "Gave the y-intercept of the rising line instead of the crossing point",
+      "(−2, 0)": "Gave the x-intercept of the falling line instead of the crossing point"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((-5,0),(0,5)),L((-2,0),(0,-4))],[x,y])\nresult='(%s, %s)'%(s[x],s[y])",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line rises from left to right and passes through (−5, 0), (−3, 2), and (0, 5). The second line falls from left to right and passes through (−3, 2), (−2, 0), and (0, −4). The two lines cross at the marked point (−3, 2).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              0
+            ],
+            [
+              0,
+              -4
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f017",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Each line passes through the two marked points on it. How many solutions does the system have?",
+    "choices": [
+      "Exactly one",
+      "Exactly two",
+      "Infinitely many",
+      "Zero"
+    ],
+    "answer": "Zero",
+    "explanation": [
+      "The first line goes from (0, 1) to (2, 4): it rises 3 for a run of 2, so its slope is 3/2.",
+      "The second line goes from (0, −2) to (2, 1): it also rises 3 for a run of 2, so its slope is 3/2.",
+      "The slopes are equal but the y-intercepts (1 and −2) are different, so the lines are parallel and never meet.",
+      "A system whose lines never meet has zero solutions."
+    ],
+    "hints": [
+      "Use the marked points to find the slope of each line. How do they compare?",
+      "If two lines have the same slope, what decides whether they are the same line or never touch?"
+    ],
+    "wrong_reasons": {
+      "Exactly one": "Assumed two different lines must cross somewhere, without comparing slopes",
+      "Exactly two": "Counted one solution for each equation instead of the shared points",
+      "Infinitely many": "Saw equal slopes and concluded the lines are the same, ignoring the different y-intercepts"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ndef count(a,b):\n    s=solve([a,b],[x,y],dict=True)\n    if not s: return 'Zero'\n    if len(s[0])<2: return 'Infinitely many'\n    return 'Exactly one'\nresult=count(L((0,1),(2,4)),L((0,-2),(2,1)))",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn, both rising from left to right. The first line passes through the marked points (0, 1) and (2, 4). The second line passes through the marked points (0, −2) and (2, 1). The second line is 3 units directly below the first line everywhere.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -2
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f018",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Lines ℓ and m are shown in the xy-plane. Each line passes through the marked points on it. Which system of equations is represented by lines ℓ and m?",
+    "choices": [
+      "x − 2y = 6 and 2x − y = 2",
+      "x + 2y = 6 and 2x − y = 2",
+      "x + 2y = 6 and 2x + y = 2",
+      "2x + y = 6 and x − 2y = 2"
+    ],
+    "answer": "x + 2y = 6 and 2x − y = 2",
+    "explanation": [
+      "Line ℓ passes through (0, 3) and (4, 1), so its slope is (1 − 3)/(4 − 0) = −1/2 and its equation is y = −(1/2)x + 3.",
+      "Multiply by 2 and move the x-term: x + 2y = 6.",
+      "Line m passes through (0, −2) and (2, 2), so its slope is 4/2 = 2 and its equation is y = 2x − 2.",
+      "Rearrange: 2x − y = 2.",
+      "So the system is x + 2y = 6 and 2x − y = 2."
+    ],
+    "hints": [
+      "Find the slope and y-intercept of each line from its marked points.",
+      "How can you rewrite y = mx + b so that the x- and y-terms are on the same side?"
+    ],
+    "wrong_reasons": {
+      "x − 2y = 6 and 2x − y = 2": "Gave line ℓ a positive slope; x − 2y = 6 rises from left to right",
+      "x + 2y = 6 and 2x + y = 2": "Made a sign error rearranging line m; 2x + y = 2 has slope −2",
+      "2x + y = 6 and x − 2y = 2": "Used the reciprocals of the slopes, swapping the coefficients of x and y"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ndef on(e,p): return simplify(e.subs({x:p[0],y:p[1]}))==0\ndef fits(e,ln): return all(on(e,p) for p in ln)\nl=[(0,3),(4,1)]\nm=[(0,-2),(2,2)]\nC={'x+2y=6 and 2x-y=2':[x+2*y-6,2*x-y-2],'x-2y=6 and 2x-y=2':[x-2*y-6,2*x-y-2],'x+2y=6 and 2x+y=2':[x+2*y-6,2*x+y-2],'2x+y=6 and x-2y=2':[2*x+y-6,x-2*y-2]}\nresult=[k for k,(a,b) in C.items() if (fits(a,l) and fits(b,m)) or (fits(a,m) and fits(b,l))][0].replace(' and ','and')",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Line ℓ falls gently from left to right and passes through the marked points (0, 3) and (4, 1). Line m rises steeply from left to right and passes through the marked points (0, −2) and (2, 2). The lines cross at (2, 2).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              1
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "label": "m"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f019",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. If (x, y) is the solution to the system, what is the value of x?",
+    "answer": "4",
+    "accept": [],
+    "explanation": [
+      "The solution is the point where the two lines cross.",
+      "The lines cross at the marked point (4, −1).",
+      "The x-coordinate of that point is 4."
+    ],
+    "hints": [
+      "Where on the graph do the two lines meet?",
+      "How far to the right of the y-axis is that point?"
+    ],
+    "wrong_reasons": {},
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((0,-5),(5,0)),L((0,1),(2,0))],[x,y])\nresult=s[x]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line rises from left to right and passes through (0, −5), (4, −1), and (5, 0). The second line falls gently from left to right and passes through (0, 1), (2, 0), and (4, −1). The two lines cross at the marked point (4, −1).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -5
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f020",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Each line passes through the marked points on it. If (x, y) is the solution to the system, what is the value of xy?",
+    "choices": [
+      "−6",
+      "−5",
+      "1",
+      "6"
+    ],
+    "answer": "−6",
+    "explanation": [
+      "The solution is the point where the two lines cross.",
+      "The falling line has slope −1 and y-intercept 1, so it is y = −x + 1. The rising line has slope 1/2 and y-intercept 4, so it is y = (1/2)x + 4.",
+      "Set them equal: −x + 1 = (1/2)x + 4, so −(3/2)x = 3 and x = −2. Then y = −(−2) + 1 = 3.",
+      "The lines cross at (−2, 3), so xy = (−2)(3) = −6."
+    ],
+    "hints": [
+      "Where do the two lines cross? Read it from the grid, or find each line's equation.",
+      "Once you have x and y, multiply them, and watch the sign."
+    ],
+    "wrong_reasons": {
+      "−5": "Found x − y instead of xy",
+      "1": "Found x + y instead of xy",
+      "6": "Dropped the negative sign on the x-coordinate"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((0,1),(1,0)),L((-4,2),(0,4))],[x,y])\nresult=s[x]*s[y]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. One line falls from left to right and passes through the marked points (0, 1) and (1, 0). The other line rises gently from left to right and passes through the marked points (−4, 2) and (0, 4). The two lines cross at the grid point (−2, 3), which is not marked.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              2
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f021",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Line ℓ is shown in the xy-plane. Line ℓ passes through the marked points on it. A system of two linear equations is made up of the equation of line ℓ and the equation 6x + by = c, where b and c are constants. If the system has infinitely many solutions, what is the value of b + c?",
+    "answer": "27",
+    "accept": [],
+    "explanation": [
+      "Line ℓ passes through (0, 2) and (3, 0), so its slope is −2/3 and its equation is y = −(2/3)x + 2.",
+      "Multiply by 3 and rearrange: 2x + 3y = 6.",
+      "Infinitely many solutions means 6x + by = c is the same line, so it must be a multiple of 2x + 3y = 6.",
+      "Matching 6x means multiplying by 3: 6x + 9y = 18, so b = 9 and c = 18.",
+      "b + c = 9 + 18 = 27."
+    ],
+    "hints": [
+      "Write the equation of line ℓ in the form Ax + By = C.",
+      "For a system to have infinitely many solutions, how must the two equations be related?"
+    ],
+    "wrong_reasons": {},
+    "check": "from sympy import *\nx,y,b,c,k=symbols('x y b c k')\nA,B,C=2,3,6\n# l through (0,2),(3,0): check A*x+B*y=C fits both\nassert A*0+B*2==C and A*3+B*0==C\ns=solve([6-k*A,b-k*B,c-k*C],[k,b,c])\nresult=s[b]+s[c]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Line ℓ falls from left to right and passes through the marked points (−3, 4), (0, 2), and (3, 0).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              2
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f022",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. How many solutions does the system have?",
+    "choices": [
+      "Zero",
+      "Exactly two",
+      "Exactly one",
+      "Infinitely many"
+    ],
+    "answer": "Exactly one",
+    "explanation": [
+      "Each solution of a system is a point that lies on both lines.",
+      "The two lines shown cross at exactly one point, (2, 1).",
+      "Two lines that cross meet only once, so the system has exactly one solution."
+    ],
+    "hints": [
+      "How many points lie on both lines?",
+      "Can two different straight lines cross each other more than once?"
+    ],
+    "wrong_reasons": {
+      "Zero": "Thought a system has no solution unless the lines cross at a labeled axis point",
+      "Exactly two": "Counted one solution for each line instead of the points the lines share",
+      "Infinitely many": "Thought every point on either line is a solution, instead of only the points on both lines"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ndef count(a,b):\n    s=solve([a,b],[x,y],dict=True)\n    if not s: return 'Zero'\n    if len(s[0])<2: return 'Infinitely many'\n    return 'Exactly one'\nresult=count(L((-4,-2),(0,0)),L((0,3),(3,0)))",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line rises gently from left to right and passes through (−4, −2), (0, 0), and (2, 1). The second line falls from left to right and passes through (0, 3), (2, 1), and (3, 0). The lines cross at one point, (2, 1).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -4,
+              -2
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f023",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Each line passes through the marked points on it. Which system of equations is shown?",
+    "choices": [
+      "y = 3x + 1 and y = −x + 3",
+      "y = 3x − 1 and y = −x + 3",
+      "y = (1/3)x − 1 and y = −x + 3",
+      "y = 3x − 1 and y = x + 3"
+    ],
+    "answer": "y = 3x − 1 and y = −x + 3",
+    "explanation": [
+      "The rising line crosses the y-axis at (0, −1) and also passes through (1, 2), so it rises 3 for a run of 1: slope 3. Its equation is y = 3x − 1.",
+      "The falling line crosses the y-axis at (0, 3) and passes through (3, 0), so it falls 3 for a run of 3: slope −1. Its equation is y = −x + 3.",
+      "So the system is y = 3x − 1 and y = −x + 3."
+    ],
+    "hints": [
+      "Where does each line cross the y-axis?",
+      "For each line, how far does it go up or down for each 1 unit to the right?"
+    ],
+    "wrong_reasons": {
+      "y = 3x + 1 and y = −x + 3": "Took the rising line's y-intercept as 1 instead of −1",
+      "y = (1/3)x − 1 and y = −x + 3": "Computed the rising line's slope as run over rise",
+      "y = 3x − 1 and y = x + 3": "Missed that the second line falls, giving it a positive slope"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ndef on(e,p): return simplify(e.subs({x:p[0],y:p[1]}))==0\ndef fits(e,ln): return all(on(e,p) for p in ln)\nl=[(0,-1),(1,2)]\nm=[(0,3),(3,0)]\nC={'y=3x-1 and y=-x+3':[y-3*x+1,y+x-3],'y=3x+1 and y=-x+3':[y-3*x-1,y+x-3],'y=(1/3)x-1 and y=-x+3':[y-x/3+1,y+x-3],'y=3x-1 and y=x+3':[y-3*x+1,y-x-3]}\nresult=[k for k,(a,b) in C.items() if (fits(a,l) and fits(b,m)) or (fits(a,m) and fits(b,l))][0].replace(' and ','and')",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. One line rises steeply from left to right and passes through the marked points (0, −1) and (1, 2). The other line falls from left to right and passes through the marked points (0, 3) and (3, 0). The lines cross at (1, 2).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              3
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -1
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f024",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Line ℓ is shown in the xy-plane. Line ℓ passes through the marked points on it. A system of two equations is made up of the equation of line ℓ and the equation y = kx, where k is a constant. For which value of k does the system have no solution?",
+    "choices": [
+      "−3/2",
+      "−2/3",
+      "2/3",
+      "3/2"
+    ],
+    "answer": "−2/3",
+    "explanation": [
+      "The graph of y = kx is a line through the origin with slope k.",
+      "The system has no solution only when that line is parallel to ℓ and not the same line.",
+      "Line ℓ passes through (0, 4) and (6, 0), so its slope is (0 − 4)/(6 − 0) = −2/3.",
+      "Line ℓ does not pass through the origin, so y = −(2/3)x is parallel to ℓ and never meets it. So k = −2/3."
+    ],
+    "hints": [
+      "What does the graph of y = kx look like, and which point is always on it?",
+      "When do two lines in a system share no points at all?"
+    ],
+    "wrong_reasons": {
+      "−3/2": "Computed the slope of ℓ as run over rise",
+      "2/3": "Dropped the negative sign; line ℓ falls from left to right",
+      "3/2": "Inverted the slope and dropped its sign"
+    },
+    "check": "from sympy import *\nx,k=symbols('x k')\nm=Rational(0-4,6-0)\nb=4\nassert b!=0\ns=solve(Eq(k,m),k)[0]\n# y=kx and y=m*x+b: no solution iff k==m and b!=0\nassert solve(Eq(s*x,m*x+b),x)==[]\nresult=s",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −2 to 8 on both axes, with grid lines every 1 unit. Line ℓ falls from left to right and passes through the marked points (0, 4), (3, 2), and (6, 0).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -2,
+          8
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f025",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. The solution to the system is (x, y). What is the value of y?",
+    "choices": [
+      "−3",
+      "−2",
+      "1",
+      "3"
+    ],
+    "answer": "−2",
+    "explanation": [
+      "The solution is the point where the two lines cross.",
+      "The lines cross at the marked point (1, −2).",
+      "The y-coordinate of that point is −2."
+    ],
+    "hints": [
+      "Find the one point that is on both lines.",
+      "Is that point above or below the x-axis, and by how much?"
+    ],
+    "wrong_reasons": {
+      "1": "Gave the x-coordinate of the crossing point instead of the y-coordinate",
+      "−3": "Gave the y-intercept of the rising line",
+      "3": "Gave the x-intercept of the rising line"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((0,1),(1,-2)),L((0,-3),(3,0))],[x,y])\nresult=s[y]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line falls steeply from left to right and passes through (0, 1) and (1, −2). The second line rises from left to right and passes through (0, −3), (1, −2), and (3, 0). The two lines cross at the marked point (1, −2).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              -2
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -3
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            -2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f026",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Line ℓ is shown in the xy-plane. Line ℓ passes through the marked points on it. Which equation, paired with the equation of line ℓ, forms a system with infinitely many solutions?",
+    "choices": [
+      "4x − 6y = 12",
+      "3x − 2y = −6",
+      "4x − 6y = −12",
+      "2x + 3y = −6"
+    ],
+    "answer": "4x − 6y = −12",
+    "explanation": [
+      "Line ℓ passes through (−3, 0) and (0, 2), so its slope is 2/3 and its equation is y = (2/3)x + 2.",
+      "Multiply by 3 and rearrange: 2x − 3y = −6.",
+      "A system has infinitely many solutions when both equations describe the same line.",
+      "Multiplying 2x − 3y = −6 by 2 gives 4x − 6y = −12, which is the same line."
+    ],
+    "hints": [
+      "Write the equation of line ℓ in the form Ax + By = C.",
+      "Which choice is the same equation multiplied through by a constant?"
+    ],
+    "wrong_reasons": {
+      "4x − 6y = 12": "Changed the sign of the constant when doubling; this line is parallel to ℓ, so the system has no solution",
+      "3x − 2y = −6": "Used the reciprocal of the slope; this line has a different slope, so it crosses ℓ at exactly one point",
+      "2x + 3y = −6": "Made a sign error on the y-term; this line has a negative slope and crosses ℓ once"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ndef on(e,p): return simplify(e.subs({x:p[0],y:p[1]}))==0\ndef fits(e,ln): return all(on(e,p) for p in ln)\nl=[(-3,0),(0,2)]\nC={'4x-6y=-12':4*x-6*y+12,'4x-6y=12':4*x-6*y-12,'3x-2y=-6':3*x-2*y+6,'2x+3y=-6':2*x+3*y+6}\nresult=[k for k,e in C.items() if fits(e,l)][0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Line ℓ rises from left to right and passes through the marked points (−3, 0), (0, 2), and (3, 4).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -3,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            -3,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f027",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "Lines ℓ and m are shown in the xy-plane. Each line passes through the marked points on it. Which of the following systems has the same solution as the system represented by lines ℓ and m?",
+    "choices": [
+      "x + y = 4 and x − y = −2",
+      "2x + y = 5 and x − y = 4",
+      "x + 2y = 3 and x − y = 1",
+      "x + y = 4 and x − y = 2"
+    ],
+    "answer": "x + y = 4 and x − y = 2",
+    "explanation": [
+      "Line ℓ passes through (0, −2) and (2, 0), so it is y = x − 2. Line m passes through (2, 3) and (4, −1), so its slope is −2 and it is y = −2x + 7.",
+      "Set them equal: x − 2 = −2x + 7, so 3x = 9 and x = 3. Then y = 1, so the solution is (3, 1).",
+      "Test (3, 1) in each choice: 3 + 1 = 4 and 3 − 1 = 2, so x + y = 4 and x − y = 2 works.",
+      "The other systems have solutions (1, 3), (3, −1), and (5/3, 2/3)."
+    ],
+    "hints": [
+      "First find the point where ℓ and m cross.",
+      "Which choice is satisfied by that point in both of its equations?"
+    ],
+    "wrong_reasons": {
+      "x + y = 4 and x − y = −2": "Swapped the coordinates of the solution, using (1, 3)",
+      "2x + y = 5 and x − y = 4": "Made a sign error on the y-coordinate, using (3, −1)",
+      "x + 2y = 3 and x − y = 1": "Picked a system without testing (3, 1) in it; this system's solution is (5/3, 2/3)"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((0,-2),(2,0)),L((2,3),(4,-1))],[x,y])\nC={'x+y=4 and x-y=2':[x+y-4,x-y-2],'x+y=4 and x-y=-2':[x+y-4,x-y+2],'2x+y=5 and x-y=4':[2*x+y-5,x-y-4],'x+2y=3 and x-y=1':[x+2*y-3,x-y-1]}\nresult=[k for k,e in C.items() if solve(e,[x,y])==s][0].replace(' and ','and')",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Line ℓ rises from left to right and passes through the marked points (0, −2) and (2, 0). Line m falls steeply from left to right and passes through the marked points (2, 3) and (4, −1). The lines cross at the grid point (3, 1), which is not marked.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -2
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              -1
+            ]
+          ],
+          "label": "m"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            -2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            -1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f028",
+    "skill_id": "alg-systems",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. If (x, y) is the solution to the system, what is the value of y?",
+    "answer": "-3",
+    "accept": [
+      "−3"
+    ],
+    "explanation": [
+      "The solution is the point where the two lines cross.",
+      "The lines cross at the marked point (−4, −3).",
+      "The y-coordinate of that point is −3."
+    ],
+    "hints": [
+      "Find the point that lies on both lines.",
+      "How far above or below the x-axis is that point?"
+    ],
+    "wrong_reasons": {},
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ns=solve([L((-1,0),(0,1)),L((0,-5),(-2,-4))],[x,y])\nresult=s[y]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −6 to 6 on both axes, with grid lines every 1 unit. Two lines are drawn. The first line rises from left to right and passes through (−4, −3), (−1, 0), and (0, 1). The second line falls gently from left to right and passes through (−4, −3), (−2, −4), and (0, −5). The two lines cross at the marked point (−4, −3).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -6,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              -5
+            ],
+            [
+              -2,
+              -4
+            ]
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            -4,
+            -3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f029",
+    "skill_id": "alg-systems",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "Lines ℓ and m are shown in the xy-plane. Each line passes through the marked points on it. Which ordered pair (x, y) satisfies the equation of line ℓ but not the equation of line m?",
+    "choices": [
+      "(2, 4)",
+      "(1, 3)",
+      "(4, 0)",
+      "(3, 3)"
+    ],
+    "answer": "(2, 4)",
+    "explanation": [
+      "Line ℓ passes through (−2, 0) and (0, 2), so it is y = x + 2. Line m passes through (0, 4) and (4, 0), so it is y = −x + 4.",
+      "(2, 4): 4 = 2 + 2 is true for ℓ, but 4 = −2 + 4 is false for m.",
+      "(1, 3) is on both lines, (4, 0) is only on m, and (3, 3) is on neither.",
+      "So (2, 4) is on ℓ but not on m."
+    ],
+    "hints": [
+      "Write an equation for each line using its marked points.",
+      "A point on ℓ but not m must make the first equation true and the second false. Which choice does that?"
+    ],
+    "wrong_reasons": {
+      "(1, 3)": "Chose the crossing point, which satisfies both equations",
+      "(4, 0)": "Mixed up the lines; this point is on m, not ℓ",
+      "(3, 3)": "Assumed a point between the lines belongs to ℓ; it is on neither line"
+    },
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\nl=L((-2,0),(0,2))\nm=L((0,4),(4,0))\nC={'(1, 3)':(1,3),'(2, 4)':(2,4),'(4, 0)':(4,0),'(3, 3)':(3,3)}\nz=lambda e,p: e.subs({x:p[0],y:p[1]})==0\nresult=[k for k,p in C.items() if z(l,p) and not z(m,p)][0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Line ℓ rises from left to right and passes through the marked points (−2, 0) and (0, 2). Line m falls from left to right and passes through the marked points (0, 4) and (4, 0). The lines cross at (1, 3).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -5,
+          5
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              -2,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "label": "m"
+        },
+        {
+          "type": "point",
+          "at": [
+            -2,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            4
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "alg-systems-f030",
+    "skill_id": "alg-systems",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Line ℓ is shown in the xy-plane. Line ℓ passes through the marked points on it. A system of two linear equations is made up of the equation of line ℓ and the equation 3x + ky = 24, where k is a constant. If the solution to the system has x = 4, what is the value of k?",
+    "answer": "3/2",
+    "accept": [
+      "1.5"
+    ],
+    "explanation": [
+      "Line ℓ passes through (0, 2) and (2, 5), so its slope is 3/2 and its equation is y = (3/2)x + 2.",
+      "At x = 4, line ℓ gives y = (3/2)(4) + 2 = 8, so the solution is (4, 8).",
+      "That point must also satisfy 3x + ky = 24: 3(4) + 8k = 24.",
+      "So 8k = 12 and k = 3/2."
+    ],
+    "hints": [
+      "Use the marked points to write the equation of line ℓ.",
+      "The solution lies on line ℓ. What is its y-coordinate when x = 4?"
+    ],
+    "wrong_reasons": {},
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\nk=symbols('k')\nl=L((0,2),(2,5))\ny4=solve(l.subs(x,4),y)[0]\nresult=solve(3*4+k*y4-24,k)[0]",
+    "table": null,
+    "figure": {
+      "alt": "A coordinate plane from −2 to 10 on both axes, with grid lines every 1 unit. Line ℓ rises from left to right and passes through the marked points (0, 2) and (2, 5).",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -2,
+          10
+        ],
+        "y": [
+          -2,
+          10
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "line",
+          "through": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "label": "ℓ"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            2
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            5
+          ]
+        }
+      ]
+    }
   }
 ]

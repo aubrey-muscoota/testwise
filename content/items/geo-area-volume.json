@@ -1979,5 +1979,4062 @@
       "80%": "Gave the new height as a percent of the original instead of the percent decrease"
     },
     "check": "from sympy import *\nk=symbols('k',positive=True)\nkv=solve(Rational(5,4)*k-1,k)[0]\nresult=(1-kv)*100"
+  },
+  {
+    "id": "geo-area-volume-f001",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The figure shows an L-shaped patio. All of its corners are right angles, and its side lengths are given in meters. What is the area of the patio, in square meters?",
+    "choices": [
+      "36",
+      "56",
+      "64",
+      "80"
+    ],
+    "answer": "56",
+    "explanation": [
+      "Split the L into two rectangles with a horizontal cut at height 4.",
+      "The bottom rectangle is 10 × 4 = 40.",
+      "The top rectangle is 4 wide and 8 − 4 = 4 tall, so its area is 4 × 4 = 16.",
+      "40 + 16 = 56 square meters."
+    ],
+    "hints": [
+      "Where could you draw one line to split the patio into two rectangles?",
+      "What are the length and width of each of those rectangles?"
+    ],
+    "wrong_reasons": {
+      "36": "Added the side lengths, which gives the perimeter, not the area",
+      "64": "Treated the top part as 4 × 6 instead of 4 × 4, using 6 for its height (40 + 24)",
+      "80": "Multiplied 10 × 8 as if the figure were a full rectangle, ignoring the missing corner"
+    },
+    "check": "from sympy import *\nbottom=10*4\ntop=4*(8-4)\nresult=bottom+top",
+    "figure": {
+      "alt": "An L-shaped figure with all right-angle corners. Starting at the bottom left corner and going counterclockwise, the sides measure 10 (bottom), 4 (right side), 6 (step inward along the top of the lower part), 4 (up the inner vertical edge), 4 (top), and 8 (left side). The lower part is a 10 by 4 rectangle and the upper part sits on its left end, 4 wide.",
+      "aspect": 1.1667,
+      "plane": {
+        "x": [
+          -2,
+          12
+        ],
+        "y": [
+          -2,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "fill": true,
+          "sideLabels": [
+            "10",
+            "4",
+            "6",
+            "4",
+            "4",
+            "8"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f002",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, ABCD is a rhombus whose diagonals intersect at point E. If AE = 12 and BE = 5, what is the area of rhombus ABCD?",
+    "choices": [
+      "52",
+      "60",
+      "120",
+      "240"
+    ],
+    "answer": "120",
+    "explanation": [
+      "The diagonals of a rhombus bisect each other, so AC = 2(12) = 24 and BD = 2(5) = 10.",
+      "The area of a rhombus is half the product of its diagonals.",
+      "(1/2)(24)(10) = 120."
+    ],
+    "hints": [
+      "How long is each full diagonal if E is the midpoint of both?",
+      "The diagonals split the rhombus into four congruent right triangles. What is the area of one of them?"
+    ],
+    "wrong_reasons": {
+      "52": "Found the perimeter: each side is 13 by the Pythagorean theorem, and 4 × 13 = 52",
+      "60": "Multiplied AE × BE, which is the area of only two of the four right triangles",
+      "240": "Multiplied the full diagonals 24 × 10 without taking half"
+    },
+    "check": "from sympy import *\nAE,BE=12,5\nresult=Rational(1,2)*(2*AE)*(2*BE)",
+    "figure": {
+      "alt": "Rhombus ABCD with A at the right, B at the top, C at the left and D at the bottom. The diagonals AC (horizontal) and BD (vertical) are drawn as dashed segments and meet at point E at a right angle. Segment AE is labeled 12 and segment BE is labeled 5.",
+      "aspect": 2.0,
+      "plane": {
+        "x": [
+          -14,
+          14
+        ],
+        "y": [
+          -7,
+          7
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              12,
+              0
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              -12,
+              0
+            ],
+            [
+              0,
+              -5
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            -12,
+            0
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            12,
+            0
+          ],
+          "label": "12",
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            5
+          ],
+          "label": "5",
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            -5
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "E",
+          "labelPos": "sw"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            12,
+            0
+          ],
+          "to": [
+            0,
+            5
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f003",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In the figure, ABCD is a square with side length 12. Point E is the midpoint of side BC, and point F is the midpoint of side CD. What is the area of the shaded triangle AEF?",
+    "choices": [
+      "54",
+      "72",
+      "90",
+      "108"
+    ],
+    "answer": "54",
+    "explanation": [
+      "The square's area is 12 × 12 = 144.",
+      "Triangles ABE and ADF each have legs 12 and 6, so each has area (1/2)(12)(6) = 36.",
+      "Triangle ECF has legs 6 and 6, so its area is (1/2)(6)(6) = 18.",
+      "Shaded area = 144 − 36 − 36 − 18 = 54."
+    ],
+    "hints": [
+      "What unshaded pieces are left over when you remove triangle AEF from the square?",
+      "What are the leg lengths of each of those right triangles?",
+      "How many unshaded triangles are there in all?"
+    ],
+    "wrong_reasons": {
+      "72": "Subtracted the two large corner triangles but forgot triangle ECF",
+      "90": "Subtracted only one large corner triangle and triangle ECF",
+      "108": "Subtracted only one of the corner triangles from the square"
+    },
+    "check": "from sympy import *\nA=Point(0,12);B=Point(12,12);C=Point(12,0);D=Point(0,0)\nE=B.midpoint(C);F=C.midpoint(D)\nresult=abs(Polygon(A,E,F).area)",
+    "figure": {
+      "alt": "Square ABCD with A at the top left, B at the top right, C at the bottom right and D at the bottom left; side AD is labeled 12. Point E is on side BC and tick marks show BE = EC. Point F is on side CD and double tick marks show CF = FD. Triangle AEF is shaded. The three unshaded right triangles are ABE, ECF and FDA.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -2,
+          14
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              12
+            ],
+            [
+              12,
+              6
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              12
+            ],
+            [
+              12,
+              12
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "",
+            "",
+            "",
+            "12"
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            12,
+            6
+          ],
+          "label": "E",
+          "labelPos": "e"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            0
+          ],
+          "label": "F",
+          "labelPos": "s"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              12,
+              12
+            ],
+            [
+              12,
+              6
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              12,
+              6
+            ],
+            [
+              12,
+              0
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              12,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f004",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In triangle PQR shown, PQ = 14, QR = 15, PR = 13, and the dashed segment from R is perpendicular to PQ and has length 12. What is the area of triangle PQR?",
+    "choices": [
+      "84",
+      "91",
+      "105",
+      "168"
+    ],
+    "answer": "84",
+    "explanation": [
+      "Use PQ as the base; the dashed segment is the height to that base.",
+      "Area = (1/2) × base × height = (1/2)(14)(12).",
+      "(1/2)(168) = 84."
+    ],
+    "hints": [
+      "Which labeled length is perpendicular to the base PQ?",
+      "Do the slanted sides 13 and 15 belong in the area formula?"
+    ],
+    "wrong_reasons": {
+      "91": "Used the slanted side 13 as the height: (1/2)(14)(13)",
+      "105": "Used the slanted side 15 as the height: (1/2)(14)(15)",
+      "168": "Multiplied base by height but forgot the factor of 1/2"
+    },
+    "check": "from sympy import *\nresult=Rational(1,2)*14*12",
+    "figure": {
+      "alt": "Triangle PQR with base PQ horizontal at the bottom, P on the left and Q on the right, and R at the top. Side PQ is labeled 14, side QR is labeled 15, and side RP is labeled 13. A dashed segment labeled 12 drops straight down from R to PQ, meeting it at a right angle 5 units from P.",
+      "aspect": 1.125,
+      "plane": {
+        "x": [
+          -2,
+          16
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "vertexLabels": [
+            "P",
+            "Q",
+            "R"
+          ],
+          "sideLabels": [
+            "14",
+            "15",
+            "13"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            12
+          ],
+          "to": [
+            5,
+            0
+          ],
+          "label": "12",
+          "dash": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5,
+            0
+          ],
+          "from": [
+            14,
+            0
+          ],
+          "to": [
+            5,
+            12
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f005",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The right circular cylinder shown has a radius of 3 centimeters and a height of 8 centimeters. What is the volume of the cylinder, in cubic centimeters?",
+    "choices": [
+      "24π",
+      "48π",
+      "192π",
+      "72π"
+    ],
+    "answer": "72π",
+    "explanation": [
+      "The volume of a cylinder is πr²h.",
+      "r² = 3² = 9.",
+      "π(9)(8) = 72π cubic centimeters."
+    ],
+    "hints": [
+      "What is the area of the circular base?",
+      "How many layers of that base are stacked to make the cylinder?"
+    ],
+    "wrong_reasons": {
+      "24π": "Used r instead of r²: π(3)(8)",
+      "48π": "Found the lateral surface area 2πrh instead of the volume",
+      "192π": "Swapped the radius and height: π(8²)(3)"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\nr,h=3,8\nresult=pif(pi*r**2*h/pi)",
+    "figure": {
+      "alt": "A right circular cylinder standing upright. A radius of the top circular face, drawn from the center of the top to its edge, is labeled 3. The vertical side of the cylinder is labeled 8 for its height. The back half of the bottom edge is dashed.",
+      "aspect": 0.8333,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -2,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "8 + 0.9*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "8 - 0.9*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0 - 0.9*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0.9*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3,
+            0
+          ],
+          "to": [
+            -3,
+            8
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            0
+          ],
+          "to": [
+            3,
+            8
+          ],
+          "label": "8"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            8
+          ],
+          "to": [
+            3,
+            8
+          ],
+          "label": "3"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            8
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f006",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "Triangle ABC is graphed in the xy-plane shown, and each vertex is at a point with integer coordinates. What is the area of triangle ABC, in square units?",
+    "answer": "20",
+    "accept": [
+      "20.0"
+    ],
+    "explanation": [
+      "From the graph, A = (−3, −2), B = (5, 0), and C = (1, 4).",
+      "Enclose the triangle in the rectangle from x = −3 to x = 5 and y = −2 to y = 4; its area is 8 × 6 = 48.",
+      "The three right triangles outside ABC have areas (1/2)(8)(2) = 8, (1/2)(4)(4) = 8, and (1/2)(4)(6) = 12.",
+      "48 − 8 − 8 − 12 = 20."
+    ],
+    "hints": [
+      "What are the coordinates of the three vertices?",
+      "Can you draw a rectangle with horizontal and vertical sides that just encloses the triangle?",
+      "What are the areas of the right triangles inside that rectangle but outside triangle ABC?"
+    ],
+    "check": "from sympy import *\nresult=abs(Polygon(Point(-3,-2),Point(5,0),Point(1,4)).area)",
+    "figure": {
+      "alt": "A coordinate plane from −5 to 7 on the x-axis and −4 to 6 on the y-axis, with grid lines every 1 unit. Triangle ABC is drawn with vertex A at (−3, −2), vertex B at (5, 0), and vertex C at (1, 4).",
+      "aspect": 1.2,
+      "plane": {
+        "x": [
+          -5,
+          7
+        ],
+        "y": [
+          -4,
+          6
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              -3,
+              -2
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f007",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "The figure shows a trapezoid with parallel sides of length 14 and 8. The dashed segment, perpendicular to both parallel sides, has length 6. What is the area of the trapezoid?",
+    "answer": "66",
+    "accept": [
+      "66.0"
+    ],
+    "explanation": [
+      "The area of a trapezoid is (1/2)(b₁ + b₂)h.",
+      "b₁ + b₂ = 14 + 8 = 22.",
+      "(1/2)(22)(6) = 66."
+    ],
+    "hints": [
+      "What is the average of the two parallel side lengths?",
+      "Which length in the figure measures the height?"
+    ],
+    "check": "from sympy import *\nresult=Rational(1,2)*(14+8)*6",
+    "figure": {
+      "alt": "A trapezoid with a horizontal bottom side labeled 14 and a shorter horizontal top side labeled 8, centered above it. A dashed vertical segment labeled 6 runs from the left end of the top side down to the bottom side, meeting it at a right angle.",
+      "aspect": 1.8,
+      "plane": {
+        "x": [
+          -2,
+          16
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "fill": true,
+          "sideLabels": [
+            "14",
+            "",
+            "8",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            6
+          ],
+          "to": [
+            3,
+            0
+          ],
+          "label": "6",
+          "dash": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3,
+            0
+          ],
+          "from": [
+            14,
+            0
+          ],
+          "to": [
+            3,
+            6
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f008",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, ABCD is a rectangle with AD = 8. Point E lies on side AB with AE = 5 and EB = 7. Segments DE and CE are drawn, and the two triangles ADE and EBC are shaded. What is the total area of the shaded region?",
+    "choices": [
+      "35",
+      "48",
+      "56",
+      "96"
+    ],
+    "answer": "48",
+    "explanation": [
+      "AB = 5 + 7 = 12, so the rectangle's area is 12 × 8 = 96.",
+      "Unshaded triangle DEC has base DC = 12 and height 8, so its area is (1/2)(12)(8) = 48.",
+      "Shaded area = 96 − 48 = 48. (Check: (1/2)(5)(8) + (1/2)(7)(8) = 20 + 28 = 48.)"
+    ],
+    "hints": [
+      "How long is side DC?",
+      "What is the height of triangle DEC from E to side DC?",
+      "What fraction of the rectangle does triangle DEC cover?"
+    ],
+    "wrong_reasons": {
+      "35": "Multiplied AE × EB, which is not an area in the figure",
+      "56": "Multiplied EB × AD = 7 × 8, a rectangle's area, instead of finding the triangle areas",
+      "96": "Found the area of the whole rectangle and did not subtract triangle DEC"
+    },
+    "check": "from sympy import *\nAE,EB,AD=5,7,8\nrect=(AE+EB)*AD\nunshaded=Rational(1,2)*(AE+EB)*AD\nresult=rect-unshaded",
+    "figure": {
+      "alt": "Rectangle ABCD with A at the top left, B at the top right, C at the bottom right and D at the bottom left. Side AD is labeled 8. Point E is on top side AB; AE is labeled 5 and EB is labeled 7. Segments DE and CE form unshaded triangle DEC. The two right triangles ADE (left) and EBC (right) are shaded.",
+      "aspect": 1.3333,
+      "plane": {
+        "x": [
+          -2,
+          14
+        ],
+        "y": [
+          -2,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              12,
+              0
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              12,
+              8
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              12,
+              8
+            ],
+            [
+              12,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "D",
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "8",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            8
+          ],
+          "to": [
+            5,
+            8
+          ],
+          "label": "5"
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            8
+          ],
+          "to": [
+            12,
+            8
+          ],
+          "label": "7"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5,
+            8
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            8
+          ],
+          "to": [
+            12,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            8
+          ],
+          "label": "E",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f009",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The figure shows a quadrilateral with two right angles. Its parallel sides have lengths 17 and 9, and the slanted side has length 10. What is the area of the quadrilateral?",
+    "choices": [
+      "78",
+      "104",
+      "130",
+      "156"
+    ],
+    "answer": "78",
+    "explanation": [
+      "Drop a perpendicular from the top right vertex to the bottom side. It cuts off a horizontal leg of 17 − 9 = 8.",
+      "The right triangle has hypotenuse 10 and leg 8, so the height is √(10² − 8²) = √36 = 6.",
+      "Area = (1/2)(17 + 9)(6) = (1/2)(26)(6) = 78."
+    ],
+    "hints": [
+      "Is the slanted side the height of the trapezoid?",
+      "If you drop a perpendicular from the top of the slanted side, what right triangle do you form?",
+      "What are the two known sides of that right triangle?"
+    ],
+    "wrong_reasons": {
+      "104": "Used 17 − 9 = 8 as the height instead of solving for it",
+      "130": "Used the slanted side 10 as the height",
+      "156": "Found the height correctly but forgot the factor of 1/2"
+    },
+    "check": "from sympy import *\nb1,b2,s=17,9,10\nh=sqrt(s**2-(b1-b2)**2)\nresult=Rational(1,2)*(b1+b2)*h",
+    "figure": {
+      "alt": "A right trapezoid. The bottom side is horizontal and labeled 17; the top side is horizontal and labeled 9; the left side is vertical and unlabeled, with right angles at both of its ends. The right side slants from the right end of the bottom side up to the right end of the top side and is labeled 10.",
+      "aspect": 2.1,
+      "plane": {
+        "x": [
+          -2,
+          19
+        ],
+        "y": [
+          -2,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              9,
+              6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "fill": true,
+          "sideLabels": [
+            "17",
+            "10",
+            "9",
+            ""
+          ]
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            0
+          ],
+          "from": [
+            17,
+            0
+          ],
+          "to": [
+            0,
+            6
+          ],
+          "right": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            0,
+            6
+          ],
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            9,
+            6
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f010",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The rectangular prism shown has length 5 inches, width 3 inches, and height 4 inches. What is the volume of the prism, in cubic inches?",
+    "choices": [
+      "12",
+      "47",
+      "60",
+      "94"
+    ],
+    "answer": "60",
+    "explanation": [
+      "The volume of a rectangular prism is length × width × height.",
+      "5 × 3 × 4 = 60.",
+      "The volume is 60 cubic inches."
+    ],
+    "hints": [
+      "How many 1-inch cubes would fit in one layer on the bottom?",
+      "How many layers would stack up to the top?"
+    ],
+    "wrong_reasons": {
+      "12": "Added the three dimensions instead of multiplying",
+      "47": "Added the areas of three different faces, 15 + 20 + 12, which is half the surface area",
+      "94": "Found the surface area, 2(15 + 20 + 12), instead of the volume"
+    },
+    "check": "from sympy import *\nresult=5*3*4",
+    "figure": {
+      "alt": "A rectangular prism drawn in perspective. The front bottom edge is labeled 5 (length), the edge going back from the front bottom right corner is labeled 3 (width), and the front left vertical edge is labeled 4 (height). Hidden edges are dashed.",
+      "aspect": 1.25,
+      "plane": {
+        "x": [
+          -1.5,
+          8.5
+        ],
+        "y": [
+          -1.5,
+          6.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "sideLabels": [
+            "5",
+            "",
+            "",
+            "4"
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              4
+            ],
+            [
+              1.8,
+              5.2
+            ],
+            [
+              6.8,
+              5.2
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            0
+          ],
+          "to": [
+            6.8,
+            1.2
+          ],
+          "label": "3"
+        },
+        {
+          "type": "segment",
+          "from": [
+            6.8,
+            1.2
+          ],
+          "to": [
+            6.8,
+            5.2
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            1.8,
+            1.2
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.8,
+            1.2
+          ],
+          "to": [
+            6.8,
+            1.2
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            1.8,
+            1.2
+          ],
+          "to": [
+            1.8,
+            5.2
+          ],
+          "dash": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f011",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "The triangle shown has two sides of length 25 and a base of length 14. What is the area of the triangle?",
+    "answer": "168",
+    "accept": [
+      "168.0"
+    ],
+    "explanation": [
+      "The altitude to the base of an isosceles triangle bisects the base, making two right triangles with leg 7 and hypotenuse 25.",
+      "Height = √(25² − 7²) = √(625 − 49) = √576 = 24.",
+      "Area = (1/2)(14)(24) = 168."
+    ],
+    "hints": [
+      "Where does the altitude from the top vertex meet the base?",
+      "What right triangle does that altitude form, and which sides of it do you know?"
+    ],
+    "check": "from sympy import *\nleg,base=25,14\nh=sqrt(leg**2-(base/Integer(2))**2)\nresult=Rational(1,2)*base*h",
+    "figure": {
+      "alt": "An isosceles triangle with a horizontal base labeled 14 and a top vertex directly above the midpoint of the base. Each of the two slanted sides is labeled 25, and matching tick marks show they are equal.",
+      "aspect": 0.6429,
+      "plane": {
+        "x": [
+          -2,
+          16
+        ],
+        "y": [
+          -2,
+          26
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              7,
+              24
+            ]
+          ],
+          "sideLabels": [
+            "14",
+            "25",
+            "25"
+          ]
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              14,
+              0
+            ],
+            [
+              7,
+              24
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              7,
+              24
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f012",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A rectangular photo that is 12 inches by 8 inches is surrounded by a frame of uniform width x inches, as shown. The area of the frame alone (the shaded region) is 96 square inches. What is the value of x?",
+    "choices": [
+      "2",
+      "2.4",
+      "4",
+      "12"
+    ],
+    "answer": "2",
+    "explanation": [
+      "The outer rectangle is (12 + 2x) by (8 + 2x).",
+      "Frame area = (12 + 2x)(8 + 2x) − 12·8 = 4x² + 40x.",
+      "4x² + 40x = 96 gives x² + 10x − 24 = 0, so (x + 12)(x − 2) = 0.",
+      "A width must be positive, so x = 2."
+    ],
+    "hints": [
+      "How much does the frame add to each dimension of the photo?",
+      "How can you write the frame's area as the difference of two rectangle areas?",
+      "Which solution of your equation makes sense for a width?"
+    ],
+    "wrong_reasons": {
+      "2.4": "Modeled the frame as four strips 2(12x) + 2(8x) = 96 and left out the four corner squares",
+      "4": "Gave 2x, the total amount the frame adds to each dimension, instead of x",
+      "12": "Took the root of x + 12 = 0 with the wrong sign"
+    },
+    "check": "from sympy import *\nx=symbols('x')\nsol=[s for s in solve((12+2*x)*(8+2*x)-12*8-96,x) if s>0]\nresult=sol[0]",
+    "figure": {
+      "alt": "A photo shown as an unshaded inner rectangle with top side labeled 12 and right side labeled 8. It is surrounded by a shaded frame of the same width on all four sides; a short dashed segment across the frame on the right side and another across the top are each labeled x. The outer edge of the frame is a larger rectangle.",
+      "aspect": 1.25,
+      "plane": {
+        "x": [
+          -2,
+          18
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              16,
+              0
+            ],
+            [
+              16,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              10
+            ],
+            [
+              16,
+              10
+            ],
+            [
+              16,
+              12
+            ],
+            [
+              0,
+              12
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              0,
+              10
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              14,
+              2
+            ],
+            [
+              16,
+              2
+            ],
+            [
+              16,
+              10
+            ],
+            [
+              14,
+              10
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              16,
+              0
+            ],
+            [
+              16,
+              12
+            ],
+            [
+              0,
+              12
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              2,
+              2
+            ],
+            [
+              14,
+              2
+            ],
+            [
+              14,
+              10
+            ],
+            [
+              2,
+              10
+            ]
+          ],
+          "sideLabels": [
+            "",
+            "8",
+            "12",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            14,
+            4
+          ],
+          "to": [
+            16,
+            4
+          ],
+          "label": "x",
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            10
+          ],
+          "to": [
+            5,
+            12
+          ],
+          "label": "x",
+          "dash": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f013",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The figure shows a parallelogram with a base of 12 and a slanted side of 10. The dashed segment, perpendicular to the base, has length 8. What is the area of the parallelogram?",
+    "choices": [
+      "44",
+      "48",
+      "96",
+      "120"
+    ],
+    "answer": "96",
+    "explanation": [
+      "The area of a parallelogram is base × height, where the height is perpendicular to the base.",
+      "The height is 8, not the slanted side 10.",
+      "12 × 8 = 96."
+    ],
+    "hints": [
+      "Which labeled length makes a right angle with the base?",
+      "Does a slanted side measure how tall the figure is?"
+    ],
+    "wrong_reasons": {
+      "44": "Found the perimeter, 2(12 + 10), instead of the area",
+      "48": "Took half of base × height, using the triangle area formula",
+      "120": "Multiplied the base by the slanted side, 12 × 10, instead of by the height"
+    },
+    "check": "from sympy import *\nresult=12*8",
+    "figure": {
+      "alt": "A parallelogram leaning to the right with a horizontal bottom side labeled 12 and the right slanted side labeled 10. A dashed vertical segment labeled 8 runs from the top left vertex down to the bottom side, meeting it at a right angle.",
+      "aspect": 1.8333,
+      "plane": {
+        "x": [
+          -2,
+          20
+        ],
+        "y": [
+          -2,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              18,
+              8
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "fill": true,
+          "sideLabels": [
+            "12",
+            "10",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            8
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "label": "8",
+          "dash": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            6,
+            0
+          ],
+          "from": [
+            12,
+            0
+          ],
+          "to": [
+            6,
+            8
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f014",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, a circle is inscribed in a square with side length 10, so the circle touches all four sides of the square. What is the area of the shaded region inside the square and outside the circle?",
+    "choices": [
+      "25π",
+      "100 − 10π",
+      "100 − 100π",
+      "100 − 25π"
+    ],
+    "answer": "100 − 25π",
+    "explanation": [
+      "The square's area is 10² = 100.",
+      "The circle's diameter equals the side of the square, 10, so its radius is 5.",
+      "The circle's area is π(5²) = 25π.",
+      "Shaded area = 100 − 25π."
+    ],
+    "hints": [
+      "How does the circle's diameter compare with the side of the square?",
+      "What two areas could you subtract to get the shaded region?"
+    ],
+    "wrong_reasons": {
+      "25π": "Found the area of the circle instead of the region outside it",
+      "100 − 10π": "Subtracted the circumference πd instead of the circle's area",
+      "100 − 100π": "Used the side length 10 as the radius of the circle"
+    },
+    "check": "from sympy import *\ndef pif(c):\n    c=nsimplify(c)\n    p,q=fraction(c)\n    s=('' if p==1 else str(p))+'π'\n    return s if q==1 else s+'/'+str(q)\ns=10\nr=Rational(s,2)\nresult=str(s**2)+'-'+pif(pi*r**2/pi)",
+    "figure": {
+      "alt": "A square with its bottom side labeled 10. A circle is inscribed in the square, touching the midpoint of each side. The four corner regions inside the square but outside the circle are shaded.",
+      "aspect": 1.0,
+      "plane": {
+        "x": [
+          -2,
+          12
+        ],
+        "y": [
+          -2,
+          12
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              10,
+              10
+            ],
+            [
+              10.0,
+              5.0
+            ],
+            [
+              9.957,
+              5.653
+            ],
+            [
+              9.83,
+              6.294
+            ],
+            [
+              9.619,
+              6.913
+            ],
+            [
+              9.33,
+              7.5
+            ],
+            [
+              8.967,
+              8.044
+            ],
+            [
+              8.536,
+              8.536
+            ],
+            [
+              8.044,
+              8.967
+            ],
+            [
+              7.5,
+              9.33
+            ],
+            [
+              6.913,
+              9.619
+            ],
+            [
+              6.294,
+              9.83
+            ],
+            [
+              5.653,
+              9.957
+            ],
+            [
+              5.0,
+              10.0
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              10
+            ],
+            [
+              5.0,
+              10.0
+            ],
+            [
+              4.347,
+              9.957
+            ],
+            [
+              3.706,
+              9.83
+            ],
+            [
+              3.087,
+              9.619
+            ],
+            [
+              2.5,
+              9.33
+            ],
+            [
+              1.956,
+              8.967
+            ],
+            [
+              1.464,
+              8.536
+            ],
+            [
+              1.033,
+              8.044
+            ],
+            [
+              0.67,
+              7.5
+            ],
+            [
+              0.381,
+              6.913
+            ],
+            [
+              0.17,
+              6.294
+            ],
+            [
+              0.043,
+              5.653
+            ],
+            [
+              0.0,
+              5.0
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.0,
+              5.0
+            ],
+            [
+              0.043,
+              4.347
+            ],
+            [
+              0.17,
+              3.706
+            ],
+            [
+              0.381,
+              3.087
+            ],
+            [
+              0.67,
+              2.5
+            ],
+            [
+              1.033,
+              1.956
+            ],
+            [
+              1.464,
+              1.464
+            ],
+            [
+              1.956,
+              1.033
+            ],
+            [
+              2.5,
+              0.67
+            ],
+            [
+              3.087,
+              0.381
+            ],
+            [
+              3.706,
+              0.17
+            ],
+            [
+              4.347,
+              0.043
+            ],
+            [
+              5.0,
+              0.0
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              10,
+              0
+            ],
+            [
+              5.0,
+              0.0
+            ],
+            [
+              5.653,
+              0.043
+            ],
+            [
+              6.294,
+              0.17
+            ],
+            [
+              6.913,
+              0.381
+            ],
+            [
+              7.5,
+              0.67
+            ],
+            [
+              8.044,
+              1.033
+            ],
+            [
+              8.536,
+              1.464
+            ],
+            [
+              8.967,
+              1.956
+            ],
+            [
+              9.33,
+              2.5
+            ],
+            [
+              9.619,
+              3.087
+            ],
+            [
+              9.83,
+              3.706
+            ],
+            [
+              9.957,
+              4.347
+            ],
+            [
+              10.0,
+              5.0
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              0,
+              10
+            ]
+          ],
+          "sideLabels": [
+            "10",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "circle",
+          "center": [
+            5,
+            5
+          ],
+          "r": 5
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f015",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The figure shows an open-top box in the shape of a rectangular prism. The base is 10 centimeters by 6 centimeters, and the height is h centimeters. The box has a bottom and four sides but no top, and the total area of these five faces is 188 square centimeters. What is the value of h?",
+    "answer": "4",
+    "accept": [
+      "4.0"
+    ],
+    "explanation": [
+      "The bottom has area 10 × 6 = 60.",
+      "The four sides have total area 2(10h) + 2(6h) = 32h.",
+      "60 + 32h = 188, so 32h = 128.",
+      "h = 4."
+    ],
+    "hints": [
+      "Which faces does the box have, and which one is missing?",
+      "Can you write the area of each side face in terms of h?",
+      "How do the five face areas combine to make 188?"
+    ],
+    "check": "from sympy import *\nh=symbols('h')\nresult=solve(10*6+2*(10*h)+2*(6*h)-188,h)[0]",
+    "figure": {
+      "alt": "An open-top box drawn as a rectangular prism in perspective. The front bottom edge is labeled 10, the edge going back from the front bottom right corner is labeled 6, and the front left vertical edge is labeled h. Hidden edges are dashed. The top face is open.",
+      "aspect": 1.7895,
+      "plane": {
+        "x": [
+          -1.5,
+          15.5
+        ],
+        "y": [
+          -1.5,
+          8
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "sideLabels": [
+            "10",
+            "",
+            "",
+            "h"
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              4
+            ],
+            [
+              3.6,
+              6.4
+            ],
+            [
+              13.6,
+              6.4
+            ],
+            [
+              10,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            10,
+            0
+          ],
+          "to": [
+            13.6,
+            2.4
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            13.6,
+            2.4
+          ],
+          "to": [
+            13.6,
+            6.4
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3.6,
+            2.4
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.6,
+            2.4
+          ],
+          "to": [
+            13.6,
+            2.4
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.6,
+            2.4
+          ],
+          "to": [
+            3.6,
+            6.4
+          ],
+          "dash": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f016",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The figure shows the floor plan of a room. All angles in the figure are right angles, and the lengths shown are in feet. What is the area of the room, in square feet?",
+    "choices": [
+      "36",
+      "56",
+      "64",
+      "80"
+    ],
+    "answer": "56",
+    "explanation": [
+      "Split the L-shaped floor into two rectangles with a horizontal cut.",
+      "The bottom rectangle is 10 by 4, so its area is 40.",
+      "The top rectangle is 4 wide and 8 − 4 = 4 tall, so its area is 16.",
+      "40 + 16 = 56 square feet."
+    ],
+    "hints": [
+      "Can you cut the shape into two rectangles?",
+      "For the upper piece, how tall is it once the bottom piece is removed?"
+    ],
+    "wrong_reasons": {
+      "36": "Added all six side lengths, finding the perimeter instead of the area",
+      "64": "Subtracted a 4-by-4 notch from the 10-by-8 rectangle instead of the 6-by-4 notch",
+      "80": "Multiplied 10 × 8 as if the room were a full rectangle"
+    },
+    "check": "from sympy import *\nresult=10*4+4*(8-4)",
+    "figure": {
+      "alt": "An L-shaped floor plan with all right angles. Starting at the bottom left corner and going counterclockwise, the sides are: bottom side 10, right side 4, a horizontal step inward of 6, a vertical side up of 4, top side 4, and left side 8. The shape is a 10-by-8 rectangle with a 6-by-4 rectangle missing from its upper right corner.",
+      "aspect": 1.273,
+      "plane": {
+        "x": [
+          -2,
+          12
+        ],
+        "y": [
+          -1.5,
+          9.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "sideLabels": [
+            "10",
+            "4",
+            "6",
+            "4",
+            "4",
+            "8"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f017",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In rectangle ABCD shown, points P and Q lie on side AB, and point E lies on side DC. Triangle PQE is shaded. What is the area of the unshaded region of the rectangle?",
+    "choices": [
+      "24",
+      "48",
+      "72",
+      "84"
+    ],
+    "answer": "72",
+    "explanation": [
+      "AB = 3 + 6 + 3 = 12 and BC = 8, so the rectangle's area is 12 × 8 = 96.",
+      "Triangle PQE has base PQ = 6, and its height is the distance from E to AB, which is BC = 8.",
+      "The triangle's area is (1/2)(6)(8) = 24.",
+      "Unshaded area = 96 − 24 = 72."
+    ],
+    "hints": [
+      "How long is all of side AB?",
+      "Where is E, and how far is it from line AB?"
+    ],
+    "wrong_reasons": {
+      "24": "Found the area of the shaded triangle instead of the unshaded region",
+      "48": "Used half the rectangle as the unshaded area, as if the triangle's base were the whole side AB",
+      "84": "Took the triangle's area as (1/2)(6)(4), using half the height, so subtracted 12"
+    },
+    "check": "from sympy import *\nrect=(3+6+3)*8\ntri=Rational(1,2)*6*8\nresult=rect-tri",
+    "figure": {
+      "alt": "Rectangle ABCD with A at the bottom left, B at the bottom right, C at the top right, and D at the top left. Side BC is labeled 8. On bottom side AB, points P and Q divide it into AP = 3, PQ = 6, and QB = 3. Point E is on the top side DC. Triangle PQE is shaded; the rest of the rectangle is unshaded.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -2,
+          14
+        ],
+        "y": [
+          -2,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "",
+            "8",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              3,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3,
+            0
+          ],
+          "label": "3"
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            0
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "label": "6"
+        },
+        {
+          "type": "segment",
+          "from": [
+            9,
+            0
+          ],
+          "to": [
+            12,
+            0
+          ],
+          "label": "3"
+        },
+        {
+          "type": "point",
+          "at": [
+            3,
+            0
+          ],
+          "label": "P",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            9,
+            0
+          ],
+          "label": "Q",
+          "labelPos": "s"
+        },
+        {
+          "type": "point",
+          "at": [
+            5,
+            8
+          ],
+          "label": "E",
+          "labelPos": "n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f018",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "In the figure, ABCD is a square with side length 12. Point E is the midpoint of side DC, and segments AE and BD intersect at point F. What is the area of the shaded triangle ABF?",
+    "answer": "48",
+    "accept": [],
+    "explanation": [
+      "Place A at (0, 0), B at (12, 0), C at (12, 12), and D at (0, 12). Then E = (6, 12).",
+      "Line AE is y = 2x, and line BD is x + y = 12.",
+      "Solving, 3x = 12, so F = (4, 8).",
+      "Triangle ABF has base AB = 12 and height 8 (the y-coordinate of F), so its area is (1/2)(12)(8) = 48."
+    ],
+    "hints": [
+      "Could coordinates help you locate F exactly?",
+      "Once you know F, which of its coordinates is the height of triangle ABF over base AB?"
+    ],
+    "check": "from sympy import *\nx,y=symbols('x y')\ns=12\nE=(Rational(s,2),s)\nsol=solve([y-E[1]/E[0]*x, x+y-s],[x,y])\nresult=Rational(1,2)*s*sol[y]",
+    "figure": {
+      "alt": "Square ABCD with A at the bottom left, B at the bottom right, C at the top right, and D at the top left; side AB is labeled 12. Point E is the midpoint of top side DC, shown by matching tick marks on DE and EC. Segment AE and diagonal BD cross at point F. Triangle ABF, with base AB and top vertex F, is shaded.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -2,
+          14
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              12
+            ],
+            [
+              0,
+              12
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "12",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            6,
+            12
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            12,
+            0
+          ],
+          "to": [
+            0,
+            12
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            12
+          ],
+          "label": "E",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            4,
+            8
+          ],
+          "label": "F",
+          "labelPos": "w"
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              0,
+              12
+            ],
+            [
+              6,
+              12
+            ]
+          ],
+          "count": 1
+        },
+        {
+          "type": "tick",
+          "on": [
+            [
+              6,
+              12
+            ],
+            [
+              12,
+              12
+            ]
+          ],
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f019",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "The right circular cylinder shown has the dimensions labeled, in inches. What is the volume of the cylinder, in cubic inches?",
+    "choices": [
+      "72π",
+      "24π",
+      "48π",
+      "192π"
+    ],
+    "answer": "72π",
+    "explanation": [
+      "The volume of a cylinder is V = πr²h.",
+      "Here r = 3 and h = 8.",
+      "V = π(3²)(8) = π(9)(8) = 72π cubic inches."
+    ],
+    "hints": [
+      "What is the area of the circular base?",
+      "How many copies of that base stack up to the height?"
+    ],
+    "wrong_reasons": {
+      "24π": "Used πrh, forgetting to square the radius",
+      "48π": "Computed 2πrh, the area of the curved side, instead of the volume",
+      "192π": "Swapped the radius and height, computing π(8²)(3)"
+    },
+    "check": "from sympy import *\nr,h=3,8\nV=pi*r**2*h\nresult=f\"{V/pi}π\"",
+    "figure": {
+      "alt": "A right circular cylinder standing upright. A segment from the center of the top circular face to its edge is labeled 3 (the radius). The vertical side of the cylinder is labeled 8 (the height).",
+      "aspect": 0.833,
+      "plane": {
+        "x": [
+          -5,
+          5
+        ],
+        "y": [
+          -2,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "8 + 0.8*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "8 - 0.8*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0 - 0.8*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0 + 0.8*sqrt(1 - (x/3)^2)",
+          "domain": [
+            -3,
+            3
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            -3,
+            0
+          ],
+          "to": [
+            -3,
+            8
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            0
+          ],
+          "to": [
+            3,
+            8
+          ],
+          "label": "8"
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            8
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            8
+          ],
+          "to": [
+            3,
+            8
+          ],
+          "label": "3"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f020",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In trapezoid ABCD shown, side AB is parallel to side DC, and the legs AD and BC have the same length. What is the area of trapezoid ABCD?",
+    "choices": [
+      "66",
+      "132",
+      "143",
+      "264"
+    ],
+    "answer": "132",
+    "explanation": [
+      "The bases are 16 and 6, so the longer base extends (16 − 6)/2 = 5 past the shorter base on each side.",
+      "Drop the height from D: it forms a right triangle with hypotenuse 13 and one leg 5.",
+      "Height = √(13² − 5²) = √144 = 12.",
+      "Area = (1/2)(16 + 6)(12) = 132."
+    ],
+    "hints": [
+      "Is the slanted side 13 the height of the trapezoid?",
+      "If you drop a perpendicular from D to AB, how long is the short horizontal piece it cuts off?"
+    ],
+    "wrong_reasons": {
+      "66": "Multiplied by 1/2 twice, once for the average of the bases and again at the end",
+      "143": "Used the leg length 13 as the height",
+      "264": "Added the bases and multiplied by the height but forgot to take half"
+    },
+    "check": "from sympy import *\nb1,b2,leg=16,6,13\nh=sqrt(leg**2-((b1-b2)/Integer(2))**2)\nresult=Rational(1,2)*(b1+b2)*h",
+    "figure": {
+      "alt": "Isosceles trapezoid ABCD with A at the bottom left, B at the bottom right, C at the top right, and D at the top left. Bottom base AB is labeled 16, top base DC is labeled 6, and both legs AD and BC are labeled 13. A dashed vertical segment drops from D to AB, meeting it at a right angle; it is not labeled.",
+      "aspect": 1.25,
+      "plane": {
+        "x": [
+          -2,
+          18
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              16,
+              0
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "16",
+            "13",
+            "6",
+            "13"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            5,
+            12
+          ],
+          "to": [
+            5,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            5,
+            0
+          ],
+          "from": [
+            5,
+            12
+          ],
+          "to": [
+            16,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f021",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "In triangle ABC shown, point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC. The area of triangle ABC is 75 square units. What is the area of the shaded region DBCE, in square units?",
+    "choices": [
+      "12",
+      "45",
+      "48",
+      "63"
+    ],
+    "answer": "63",
+    "explanation": [
+      "Because DE ∥ BC, triangle ADE is similar to triangle ABC.",
+      "The scale factor is AD/AB = 4/(4 + 6) = 2/5.",
+      "Areas scale by the square of the scale factor: area of ADE = (2/5)²(75) = (4/25)(75) = 12.",
+      "Shaded area = 75 − 12 = 63."
+    ],
+    "hints": [
+      "Which two triangles in the figure are similar, and why?",
+      "If lengths shrink by a factor k, by what factor do areas shrink?"
+    ],
+    "wrong_reasons": {
+      "12": "Found the area of the small triangle ADE instead of the shaded region",
+      "45": "Scaled the area by 6/10 instead of using the square of the ratio, computing 75 × 3/5",
+      "48": "Used the ratio 6/10 (DB/AB) for triangle ADE, computing 75 − 75 × (3/5)²"
+    },
+    "check": "from sympy import *\nAD,DB,T=4,6,75\nk=Rational(AD,AD+DB)\nresult=T-k**2*T",
+    "figure": {
+      "alt": "Triangle ABC with B at the bottom left, C at the bottom right, and A at the top. Point D is on side AB and point E is on side AC, with segment DE parallel to BC. Along side AB, AD is labeled 4 and DB is labeled 6. The region DBCE, between segment DE and side BC, is shaded; small triangle ADE at the top is unshaded.",
+      "aspect": 1.917,
+      "plane": {
+        "x": [
+          -2,
+          21
+        ],
+        "y": [
+          -1.5,
+          10.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              3.6,
+              4.8
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              18.75,
+              0
+            ],
+            [
+              11.1,
+              4.8
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              6,
+              8
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              18.75,
+              0
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.6,
+            4.8
+          ],
+          "to": [
+            11.1,
+            4.8
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            6,
+            8
+          ],
+          "to": [
+            3.6,
+            4.8
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            3.6,
+            4.8
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "6"
+        },
+        {
+          "type": "point",
+          "at": [
+            3.6,
+            4.8
+          ],
+          "label": "D",
+          "labelPos": "w"
+        },
+        {
+          "type": "point",
+          "at": [
+            11.1,
+            4.8
+          ],
+          "label": "E",
+          "labelPos": "e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f022",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "spr",
+    "stem": "Quadrilateral ABCD is graphed in the xy-plane shown. What is the area of quadrilateral ABCD, in square units?",
+    "answer": "30",
+    "accept": [],
+    "explanation": [
+      "From the graph, A = (0, 0), B = (8, 0), C = (6, 6), and D = (2, 4).",
+      "Enclose the figure in the rectangle from x = 0 to 8 and y = 0 to 6, with area 48.",
+      "Subtract the three right triangles outside ABCD: (1/2)(2)(6) = 6 on the right, (1/2)(4)(2) = 4 along the top, and (1/2)(2)(4) = 4 on the left; the remaining corner rectangle from (0, 4) to (2, 6) has area 4.",
+      "48 − 6 − 4 − 4 − 4 = 30."
+    ],
+    "hints": [
+      "What are the coordinates of the four vertices?",
+      "Could you surround the shape with a rectangle and subtract the pieces outside it?"
+    ],
+    "check": "from sympy import *\nP=[(0,0),(8,0),(6,6),(2,4)]\ns=sum(P[i][0]*P[(i+1)%4][1]-P[(i+1)%4][0]*P[i][1] for i in range(4))\nresult=Rational(abs(s),2)",
+    "figure": {
+      "alt": "A coordinate plane with x from −1 to 9 and y from −1 to 7, grid lines every 1 unit. Quadrilateral ABCD has vertices A at (0, 0), B at (8, 0), C at (6, 6), and D at (2, 4), each on a grid intersection.",
+      "aspect": 1.25,
+      "plane": {
+        "x": [
+          -1,
+          9
+        ],
+        "y": [
+          -1,
+          7
+        ],
+        "grid": 1,
+        "axes": true,
+        "ticks": 1,
+        "xlabel": "x",
+        "ylabel": "y"
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ],
+          "label": "A",
+          "labelPos": "sw"
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            0
+          ],
+          "label": "B",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            6,
+            6
+          ],
+          "label": "C",
+          "labelPos": "ne"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            4
+          ],
+          "label": "D",
+          "labelPos": "nw"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f023",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In triangle ABC shown, the dashed segment from C is perpendicular to side AB. What is the area of triangle ABC?",
+    "choices": [
+      "17",
+      "34",
+      "35",
+      "70"
+    ],
+    "answer": "35",
+    "explanation": [
+      "The dashed segment is the height to base AB, so the base is 10 and the height is 7.",
+      "Area = (1/2)(base)(height) = (1/2)(10)(7).",
+      "Area = 35."
+    ],
+    "hints": [
+      "Which labeled length is the base, and which is the height?",
+      "How does a triangle's area compare with a rectangle's that has the same base and height?"
+    ],
+    "wrong_reasons": {
+      "17": "Added the base and the height instead of multiplying",
+      "34": "Computed 2(10 + 7), a rectangle's perimeter",
+      "70": "Multiplied base by height but forgot the factor of 1/2"
+    },
+    "check": "from sympy import *\nresult=Rational(1,2)*10*7",
+    "figure": {
+      "alt": "Triangle ABC with A at the bottom left, B at the bottom right, and C above side AB, closer to A. Side AB is labeled 10. A dashed segment drops from C straight down to AB, meeting it at a right angle, and is labeled 7.",
+      "aspect": 1.333,
+      "plane": {
+        "x": [
+          -2,
+          12
+        ],
+        "y": [
+          -1.5,
+          9
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "10",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            7
+          ],
+          "to": [
+            3,
+            0
+          ],
+          "dash": true,
+          "label": "7"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3,
+            0
+          ],
+          "from": [
+            3,
+            7
+          ],
+          "to": [
+            10,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f024",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "The side lengths of triangle ABC are shown. What is the area of triangle ABC, in square units?",
+    "answer": "84",
+    "accept": [],
+    "explanation": [
+      "Drop the height from C to AB, meeting it at H. Let AH = x, so HB = 14 − x.",
+      "Using the two right triangles: 13² − x² = 15² − (14 − x)².",
+      "169 − x² = 225 − 196 + 28x − x², so 169 = 29 + 28x and x = 5.",
+      "Height = √(13² − 5²) = 12, so area = (1/2)(14)(12) = 84."
+    ],
+    "hints": [
+      "None of the sides is a height. Where could you draw one?",
+      "If the height splits AB into pieces x and 14 − x, what does the Pythagorean theorem say on each side?"
+    ],
+    "check": "from sympy import *\na,b,c=14,15,13\ns=Rational(a+b+c,2)\nresult=sqrt(s*(s-a)*(s-b)*(s-c))",
+    "figure": {
+      "alt": "Triangle ABC with A at the bottom left, B at the bottom right, and C above, closer to A. Side AB is labeled 14, side BC is labeled 15, and side CA is labeled 13. No height is drawn.",
+      "aspect": 1.125,
+      "plane": {
+        "x": [
+          -2,
+          16
+        ],
+        "y": [
+          -2,
+          14
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "sideLabels": [
+            "14",
+            "15",
+            "13"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f025",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "A storage chest is shaped like the right rectangular prism shown, with dimensions in feet. What is the volume of the chest, in cubic feet?",
+    "answer": "120",
+    "accept": [],
+    "explanation": [
+      "The volume of a rectangular prism is length × width × height.",
+      "The dimensions are 8, 5, and 3.",
+      "8 × 5 × 3 = 120 cubic feet."
+    ],
+    "hints": [
+      "Which three edges meet at one corner of the box?",
+      "What is the area of the bottom face, and how many layers of it fill the height?"
+    ],
+    "check": "from sympy import *\nresult=8*5*3",
+    "figure": {
+      "alt": "A right rectangular prism drawn in perspective with hidden edges dashed. The front bottom edge (length) is labeled 8, the front left vertical edge (height) is labeled 3, and the bottom edge going back on the right side (depth) is labeled 5.",
+      "aspect": 1.867,
+      "plane": {
+        "x": [
+          -2,
+          12
+        ],
+        "y": [
+          -1.5,
+          6
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "sideLabels": [
+            "8",
+            "",
+            "",
+            "3"
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              3
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              10,
+              4.5
+            ],
+            [
+              2,
+              4.5
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              8,
+              0
+            ],
+            [
+              10,
+              1.5
+            ],
+            [
+              10,
+              4.5
+            ],
+            [
+              8,
+              3
+            ]
+          ],
+          "sideLabels": [
+            "5",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2,
+            1.5
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            2,
+            1.5
+          ],
+          "to": [
+            10,
+            1.5
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            2,
+            1.5
+          ],
+          "to": [
+            2,
+            4.5
+          ],
+          "dash": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f026",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "In the figure, each vertex of the smaller square lies on a side of the larger square and divides that side into segments of lengths 3 and 4, as shown. The four corner triangles are shaded. What fraction of the area of the larger square is shaded?",
+    "choices": [
+      "12/49",
+      "24/49",
+      "25/49",
+      "48/49"
+    ],
+    "answer": "24/49",
+    "explanation": [
+      "The larger square has side 3 + 4 = 7, so its area is 49.",
+      "Each shaded corner triangle is a right triangle with legs 3 and 4, so its area is (1/2)(3)(4) = 6.",
+      "The four triangles have total area 24.",
+      "The shaded fraction is 24/49."
+    ],
+    "hints": [
+      "What is the side length of the larger square?",
+      "What kind of triangle sits in each corner, and what are its legs?"
+    ],
+    "wrong_reasons": {
+      "12/49": "Counted only two of the four corner triangles",
+      "25/49": "Found the fraction that is unshaded (the inner square, side 5) instead of shaded",
+      "48/49": "Forgot the factor of 1/2 and used 3 × 4 = 12 for each triangle"
+    },
+    "check": "from sympy import *\na,b=3,4\nresult=4*Rational(1,2)*a*b/Integer((a+b)**2)",
+    "figure": {
+      "alt": "A large square with a smaller tilted square inside it. Each vertex of the small square touches a side of the large square, splitting each side into a piece of length 3 and a piece of length 4 (the bottom side is labeled 3 then 4 from left to right; going around, every side is split the same way). The four right triangles in the corners, between the two squares, are shaded; the inner square is unshaded.",
+      "aspect": 1,
+      "plane": {
+        "x": [
+          -1.5,
+          8.5
+        ],
+        "y": [
+          -1.5,
+          8.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              7,
+              7
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              7,
+              3
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              7
+            ]
+          ],
+          "fill": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              3,
+              0
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            3,
+            0
+          ],
+          "label": "3"
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            0
+          ],
+          "to": [
+            7,
+            0
+          ],
+          "label": "4"
+        },
+        {
+          "type": "segment",
+          "from": [
+            7,
+            0
+          ],
+          "to": [
+            7,
+            3
+          ],
+          "label": "3"
+        },
+        {
+          "type": "segment",
+          "from": [
+            7,
+            3
+          ],
+          "to": [
+            7,
+            7
+          ],
+          "label": "4"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f027",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "The right rectangular prism shown has a length of 12 centimeters and a height of 4 centimeters. The dashed diagonal across its bottom face, labeled 13, is 13 centimeters long. What is the volume of the prism, in cubic centimeters? Note: Figure not drawn to scale.",
+    "choices": [
+      "60",
+      "120",
+      "240",
+      "624"
+    ],
+    "answer": "240",
+    "explanation": [
+      "The bottom face is a rectangle with length 12 and diagonal 13, so its width w satisfies 12² + w² = 13².",
+      "w² = 169 − 144 = 25, so w = 5.",
+      "Volume = 12 × 5 × 4 = 240 cubic centimeters."
+    ],
+    "hints": [
+      "What right triangle does the diagonal of the bottom face form?",
+      "Once you know the width of the base, what three numbers do you multiply?"
+    ],
+    "wrong_reasons": {
+      "60": "Found the area of the base, 12 × 5, and did not multiply by the height",
+      "120": "Treated the base as a triangle, taking (1/2)(12)(5) before multiplying by 4",
+      "624": "Used the diagonal 13 as the width, computing 12 × 13 × 4"
+    },
+    "check": "from sympy import *\nl,d,h=12,13,4\nw=sqrt(d**2-l**2)\nresult=l*w*h",
+    "figure": {
+      "alt": "A right rectangular prism drawn in perspective with hidden edges dashed. The front bottom edge is labeled 12 and the front left vertical edge is labeled 4. The depth edge is not labeled. A dashed diagonal across the bottom face, from the front left bottom corner to the back right bottom corner, is labeled 13.",
+      "aspect": 1.75,
+      "plane": {
+        "x": [
+          -2,
+          16
+        ],
+        "y": [
+          -2,
+          8.3
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "sideLabels": [
+            "12",
+            "",
+            "",
+            "4"
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              4
+            ],
+            [
+              12,
+              4
+            ],
+            [
+              14.5,
+              6
+            ],
+            [
+              2.5,
+              6
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              12,
+              0
+            ],
+            [
+              14.5,
+              2
+            ],
+            [
+              14.5,
+              6
+            ],
+            [
+              12,
+              4
+            ]
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            2.5,
+            2
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.5,
+            2
+          ],
+          "to": [
+            14.5,
+            2
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            2.5,
+            2
+          ],
+          "to": [
+            2.5,
+            6
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            14.5,
+            2
+          ],
+          "dash": true,
+          "label": "13"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f028",
+    "skill_id": "geo-area-volume",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "The window shown is made of a rectangle with a semicircle on top. The diameter of the semicircle is the top side of the rectangle (dashed). Using the dimensions shown, in feet, what is the area of the window, in square feet?",
+    "choices": [
+      "40 + 8π",
+      "18 + 4π",
+      "40 + 16π",
+      "40 + 32π"
+    ],
+    "answer": "40 + 8π",
+    "explanation": [
+      "The rectangle is 8 by 5, so its area is 40.",
+      "The semicircle's diameter is 8, so its radius is 4.",
+      "The semicircle's area is (1/2)π(4²) = 8π.",
+      "Total area = 40 + 8π square feet."
+    ],
+    "hints": [
+      "What is the radius of the semicircle?",
+      "What fraction of a full circle's area does a semicircle have?"
+    ],
+    "wrong_reasons": {
+      "18 + 4π": "Found the length of the window's outer edge (5 + 8 + 5 + 4π) instead of its area",
+      "40 + 16π": "Used the area of a full circle instead of a semicircle",
+      "40 + 32π": "Used the diameter 8 as the radius, computing (1/2)π(8²)"
+    },
+    "check": "from sympy import *\nw,h=8,5\nr=Rational(w,2)\nA=w*h\nB=Rational(1,2)*pi*r**2\nresult=f\"{A} + {B/pi}π\"",
+    "figure": {
+      "alt": "A window shape: a rectangle with a semicircle on top. The rectangle's bottom side is labeled 8 and its left side is labeled 5. The rectangle's top side, drawn dashed, is the diameter of the semicircle above it.",
+      "aspect": 1.043,
+      "plane": {
+        "x": [
+          -2,
+          10
+        ],
+        "y": [
+          -1.5,
+          10
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            8,
+            0
+          ],
+          "label": "8"
+        },
+        {
+          "type": "segment",
+          "from": [
+            8,
+            0
+          ],
+          "to": [
+            8,
+            5
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            5
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "label": "5"
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            5
+          ],
+          "to": [
+            8,
+            5
+          ],
+          "dash": true
+        },
+        {
+          "type": "arc",
+          "center": [
+            4,
+            5
+          ],
+          "r": 4,
+          "start": 0,
+          "end": 180
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f029",
+    "skill_id": "geo-area-volume",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "In parallelogram ABCD shown, the dashed segment is perpendicular to side AB. What is the area of the parallelogram?",
+    "choices": [
+      "18",
+      "28",
+      "36",
+      "45"
+    ],
+    "answer": "36",
+    "explanation": [
+      "The area of a parallelogram is base × height, where the height is perpendicular to the base.",
+      "The base AB is 9 and the dashed height is 4.",
+      "9 × 4 = 36."
+    ],
+    "hints": [
+      "Which labeled length is perpendicular to the base?",
+      "Is the slanted side 5 the height?"
+    ],
+    "wrong_reasons": {
+      "18": "Used the triangle formula (1/2)(9)(4)",
+      "28": "Added the side lengths, 2(9 + 5), finding the perimeter",
+      "45": "Multiplied the two side lengths, 9 × 5, using the slanted side as the height"
+    },
+    "check": "from sympy import *\nresult=9*4",
+    "figure": {
+      "alt": "Parallelogram ABCD with A at the bottom left, B at the bottom right, C at the top right, and D at the top left. Bottom side AB is labeled 9 and slanted side BC is labeled 5. A dashed segment drops from D straight down to AB, meeting it at a right angle, and is labeled 4.",
+      "aspect": 1.556,
+      "plane": {
+        "x": [
+          -1.5,
+          12.5
+        ],
+        "y": [
+          -1.5,
+          7.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              12,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "vertexLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "sideLabels": [
+            "9",
+            "5",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            3,
+            4
+          ],
+          "to": [
+            3,
+            0
+          ],
+          "dash": true,
+          "label": "4"
+        },
+        {
+          "type": "angle",
+          "vertex": [
+            3,
+            0
+          ],
+          "from": [
+            3,
+            4
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "right": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-area-volume-f030",
+    "skill_id": "geo-area-volume",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "A solid wooden cylinder has a cone-shaped hole carved out of it, as shown. The base of the cone is the top face of the cylinder, and the vertex of the cone is the center of the cylinder's bottom face. Using the dimensions shown, in centimeters, what is the volume of the wood that remains, in cubic centimeters?",
+    "choices": [
+      "48π",
+      "132π",
+      "144π",
+      "96π"
+    ],
+    "answer": "96π",
+    "explanation": [
+      "The cylinder has r = 4 and h = 9, so its volume is π(4²)(9) = 144π.",
+      "The cone has the same radius and height, so its volume is (1/3)π(4²)(9) = 48π.",
+      "Remaining wood = 144π − 48π = 96π cubic centimeters."
+    ],
+    "hints": [
+      "How do the cone's radius and height compare with the cylinder's?",
+      "What fraction of the cylinder's volume does such a cone take up?"
+    ],
+    "wrong_reasons": {
+      "48π": "Found the volume of the cone that was removed instead of the wood that remains",
+      "132π": "Computed the cone's volume as (1/3)π(4)(9) = 12π without squaring the radius",
+      "144π": "Found the cylinder's volume and did not subtract the cone"
+    },
+    "check": "from sympy import *\nr,h=4,9\nV=pi*r**2*h-Rational(1,3)*pi*r**2*h\nresult=f\"{V/pi}π\"",
+    "figure": {
+      "alt": "An upright right circular cylinder. A segment from the center of the top face to its edge is labeled 4 (the radius), and the vertical side is labeled 9 (the height). Dashed lines run from opposite edges of the top circle down to the center of the bottom face, showing the cone-shaped hole whose base is the top face and whose vertex is the bottom center.",
+      "aspect": 0.857,
+      "plane": {
+        "x": [
+          -6,
+          6
+        ],
+        "y": [
+          -2.5,
+          11.5
+        ],
+        "grid": 0,
+        "axes": false
+      },
+      "elements": [
+        {
+          "type": "function",
+          "expr": "9 + 1*sqrt(1 - (x/4)^2)",
+          "domain": [
+            -4,
+            4
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "9 - 1*sqrt(1 - (x/4)^2)",
+          "domain": [
+            -4,
+            4
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0 - 1*sqrt(1 - (x/4)^2)",
+          "domain": [
+            -4,
+            4
+          ]
+        },
+        {
+          "type": "function",
+          "expr": "0 + 1*sqrt(1 - (x/4)^2)",
+          "domain": [
+            -4,
+            4
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            -4,
+            0
+          ],
+          "to": [
+            -4,
+            9
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            4,
+            9
+          ],
+          "label": "9"
+        },
+        {
+          "type": "segment",
+          "from": [
+            -4,
+            9
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "segment",
+          "from": [
+            4,
+            9
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "dash": true
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "type": "point",
+          "at": [
+            0,
+            9
+          ]
+        },
+        {
+          "type": "segment",
+          "from": [
+            0,
+            9
+          ],
+          "to": [
+            4,
+            9
+          ],
+          "label": "4"
+        }
+      ]
+    }
   }
 ]
