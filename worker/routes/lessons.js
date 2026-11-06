@@ -52,10 +52,12 @@ export async function startLesson(env, request, learnerId, skillId) {
 
 // Placement quiz: a few questions per domain, easy to hard, so a learner who
 // already knows the basics can skip ahead. Answers go through /api/answers.
-export async function startPlacement(env, request, learnerId) {
+export async function startPlacement(env, request, learnerId, sectionId = "sat-math") {
   const now = Date.now();
   const today = E.localDay(now, tzOffset(request));
-  const probes = E.pickPlacementProbes(await allSkills(env));
+  const skills = await allSkills(env, sectionId);
+  if (!skills.length) return fail(404, "unknown section");
+  const probes = E.pickPlacementProbes(skills);
   const ids = [...new Set(probes.map((p) => p.skill_id))];
   const pool = (await env.DB.prepare(
     `SELECT id, skill_id, difficulty FROM items WHERE status = 'live' AND skill_id IN (${ids.map(() => "?").join(", ")})`,
@@ -75,8 +77,8 @@ export async function startPlacement(env, request, learnerId) {
   ).bind(...chosen).all()).results;
   const byId = new Map(rows.map((r) => [r.id, r]));
   await env.DB.prepare(
-    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, kind) VALUES (?, ?, NULL, ?, ?, 'placement')",
-  ).bind(lessonId, learnerId, now, today).run();
+    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, kind, section_id) VALUES (?, ?, NULL, ?, ?, 'placement', ?)",
+  ).bind(lessonId, learnerId, now, today, sectionId).run();
   return json({
     lesson_id: lessonId,
     skill_id: null,
@@ -87,8 +89,8 @@ export async function startPlacement(env, request, learnerId) {
 
 // Tests out the skills a finished placement quiz showed the learner knows.
 // Only ever raises progress, so finishing twice (or late) is harmless.
-async function applyPlacement(env, learnerId, lessonId) {
-  const skills = await allSkills(env);
+async function applyPlacement(env, learnerId, lessonId, sectionId) {
+  const skills = await allSkills(env, sectionId || "sat-math");
   const probes = E.pickPlacementProbes(skills);
   const first = (await env.DB.prepare(
     `SELECT a.skill_id, a.correct FROM attempts a WHERE a.lesson_id = ? AND a.answered_at =
@@ -109,8 +111,8 @@ async function applyPlacement(env, learnerId, lessonId) {
   return out;
 }
 
-async function placementSummary(env, learnerId) {
-  const skills = await allSkills(env);
+async function placementSummary(env, learnerId, sectionId) {
+  const skills = await allSkills(env, sectionId || "sat-math");
   const mastery = await masteryMap(env, learnerId);
   const name = (s) => ({ id: s.id, name: s.name });
   const m = (s) => mastery[s.id] || { rating: 0, attempts: 0 };
@@ -146,8 +148,8 @@ export async function finishLesson(env, request, learnerId, b) {
   const today = E.localDay(Date.now(), tzOffset(request));
   const extra = {};
   if (lesson.kind === "placement") {
-    if (!lesson.completed_at) await applyPlacement(env, learnerId, lesson.id);
-    extra.placement = await placementSummary(env, learnerId);
+    if (!lesson.completed_at) await applyPlacement(env, learnerId, lesson.id, lesson.section_id);
+    extra.placement = await placementSummary(env, learnerId, lesson.section_id);
   }
   return json({ ...done, ...extra, stats: await stats(env, learnerId, today) });
 }

@@ -21,7 +21,9 @@ Each file `content/items/<skill-id>.json` is a JSON array of items:
 Rules:
 - `difficulty`: 1 easy, 2 medium, 3 hard (relative to the SAT).
 - `type`: `mc` (4 choices, `answer` is the exact text of one choice) or `spr` (student-produced response; `answer` is the canonical value; `accept` lists other accepted forms such as "0.5" for "1/2").
-- Plain text with Unicode math (x², √, π, ≤, −, ·). No LaTeX, no figures. Describe any geometry in words. Tables may use a `table` field: `{"headers": [...], "rows": [[...]]}`.
+- Plain text with Unicode math (x², √, π, ≤, −, ·). A small TeX subset is also allowed inside `$…$` (`\frac`, `\sqrt`, `^`, `_`, `\le`, `\pi`, `\overline`, …; see `app/src/text/tex.ts`); the app renders it as Unicode text. Write a literal dollar sign as `\$` in TeX-bearing text. Tables may use a `table` field: `{"title": "…", "headers": [...], "rows": [[...]]}`.
+- Figures: an optional `figure` spec that the app draws (see `FIGURE_FORMAT.md`).
+- Reading and Writing items add `passage` (and `passage2` for cross-text items); see `RW_FORMAT.md`.
 - `check`: Python (sympy allowed) that computes the answer independently and stores it in `result`. Required whenever the answer is computable. Use `null` for purely conceptual items (e.g. study design), and explain why in `check_note`.
 - `explanation`: 2–6 short steps. `hints`: 2–3 Socratic questions that guide without giving the answer. `wrong_reasons`: for each wrong `mc` choice, the misconception that leads to it.
 - All content original. Never copy or paraphrase official College Board questions.

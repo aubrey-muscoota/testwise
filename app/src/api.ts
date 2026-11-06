@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
+import type { FigureSpec } from "./figure/Figure";
 
 export type Item = {
   id: string;
@@ -7,7 +8,10 @@ export type Item = {
   difficulty: number;
   type: "mc" | "spr";
   stem: string;
-  table: { headers: string[]; rows: string[][] } | null;
+  table: { title?: string; headers: string[]; rows: string[][] } | null;
+  passage?: string | null;
+  passage2?: string | null;
+  figure?: FigureSpec | null;
   choices: string[] | null;
   answer: string;
   accept: string[];
@@ -29,13 +33,15 @@ export type Skill = {
   unlocked: boolean;
 };
 
-export type Domain = { id: string; name: string; skills: Skill[] };
+export type Domain = { id: string; name: string; section_id?: string; skills: Skill[] };
+
+export type Section = { id: string; name: string; domains: string[] };
 
 export type Stats = { xp: number; streak: number; lessons_today: number; xp_today: number; reviews_due: number };
 
 export type Consent = { age_confirmed: boolean; ai_consent: boolean };
 
-export type Tree = { exam: { id: string; name: string }; domains: Domain[]; stats: Stats; learner?: Consent };
+export type Tree = { exam: { id: string; name: string }; sections?: Section[]; domains: Domain[]; stats: Stats; learner?: Consent };
 
 export type Lesson = { lesson_id: string; skill_id: string | null; placement?: boolean; items: Item[] };
 

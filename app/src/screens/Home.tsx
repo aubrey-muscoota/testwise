@@ -68,6 +68,17 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
   const [tree, setTree] = useState<Tree | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<Skill | null>(null);
+  // Which section's path is showing (SAT Math or Reading and Writing). Remembered.
+  const [section, setSection] = useState<string | null>(null);
+  useEffect(() => {
+    AsyncStorage.getItem(SECTION_KEY).then((v) => v && setSection(v), () => {});
+  }, []);
+  const pickSection = (id: string) => {
+    setSection(id);
+    setSelected(null);
+    AsyncStorage.setItem(SECTION_KEY, id).catch(() => {});
+    scroll.current?.scrollTo({ y: 0, animated: false });
+  };
   const [refreshing, setRefreshing] = useState(false);
   const [cel, setCel] = useState<Celebration | null>(null);
   const [streakBump, setStreakBump] = useState(0);
@@ -179,7 +190,7 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
   // After a placement quiz the next skill can be far down the path: bring it into view.
   useEffect(() => {
     if (!tree || cel?.newIds.length) return;
-    const all = tree.domains.flatMap((d) => d.skills);
+    const all = domainsOf(tree, section).flatMap((d) => d.skills);
     const nx = all.find((sk) => sk.unlocked && !sk.mastered && !sk.tested_out);
     if (!nx || !all.some((sk) => sk.tested_out)) return;
     const t = setTimeout(() => {
@@ -189,7 +200,7 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
       if (y + n.h > viewH.current - 40) scroll.current?.scrollTo({ y: Math.max(0, y - 160), animated: true });
     }, 800);
     return () => clearTimeout(t);
-  }, [tree, cel]);
+  }, [tree, cel, section]);
 
   if (!tree) {
     return (
@@ -201,7 +212,10 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
   }
 
   const st = tree.stats;
-  const allSkills = tree.domains.flatMap((d) => d.skills);
+  const sections = tree.sections ?? [];
+  const sec = sections.find((x) => x.id === section) ?? sections[0];
+  const domains = domainsOf(tree, sec?.id ?? null);
+  const allSkills = domains.flatMap((d) => d.skills);
   // Skills skipped in the placement quiz stay open, but the path starts after them.
   const next =
     allSkills.find((sk) => sk.unlocked && !sk.mastered && !sk.tested_out) ??
@@ -273,7 +287,26 @@ export function Home({ onStartLesson, onReset }: { onStartLesson: (skill: Skill 
           </Rise>
         )}
 
-        {tree.domains.map((d) => (
+        {sections.length > 1 && (
+          <View style={s.tabs} accessibilityRole="tablist">
+            {sections.map((x) => {
+              const on = x.id === sec?.id;
+              return (
+                <Pressable
+                  key={x.id}
+                  onPress={() => pickSection(x.id)}
+                  accessibilityRole="tab"
+                  accessibilityState={{ selected: on }}
+                  style={[s.tab, on && s.tabOn]}
+                >
+                  <Text style={[s.tabText, on && { color: "#fff" }]}>{x.name}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        )}
+
+        {domains.map((d) => (
           <View key={d.id} style={s.domain} onLayout={(e) => { domainY.current[d.id] = e.nativeEvent.layout.y; }}>
             <FadeIn delay={delayOf(n)} style={s.domainHead}>
               <View style={s.rule} />
@@ -566,7 +599,20 @@ function Bubble({
   return isNext ? <Pulse size={FACE + 8} ring={color.azure}>{body}</Pulse> : body;
 }
 
+const SECTION_KEY = "testwise.section";
+
+// The domains on the path for one section (all of them if the tree has no sections).
+function domainsOf(tree: Tree, sectionId: string | null) {
+  const sections = tree.sections ?? [];
+  const sec = sections.find((x) => x.id === sectionId) ?? sections[0];
+  return sec ? tree.domains.filter((d) => sec.domains.includes(d.id)) : tree.domains;
+}
+
 const s = StyleSheet.create({
+  tabs: { flexDirection: "row", backgroundColor: color.locked, borderRadius: 14, padding: 4, gap: 4, marginBottom: space(1) },
+  tab: { flex: 1, paddingVertical: space(1), borderRadius: 11, alignItems: "center" },
+  tabOn: { backgroundColor: color.azure },
+  tabText: { fontFamily: font.bold, fontSize: 15, color: color.textSoft },
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: space(3) },
   top: {
     flexDirection: "row",

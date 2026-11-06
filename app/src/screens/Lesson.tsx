@@ -7,6 +7,9 @@ import {
   Burst, Button, FloatUp, Mascot, Mood, PopIn, Press3D, ProgressBar, Rise, SlideIn, SlideUp, Speech, usePop, useShake,
 } from "../components/ui";
 import { lines, pick } from "../copy";
+import { Figure } from "../figure/Figure";
+import { Passage, RichText } from "../text/Passage";
+import { renderMath } from "../text/tex";
 import { feedback } from "../motion/feedback";
 import { color, font, radius, space, type } from "../theme";
 
@@ -326,8 +329,11 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
           )}
 
           <Animated.View style={areaShake.style}>
-            <Text style={[type.body, s.stem]}>{item.stem}</Text>
+            {item.passage && <Passage text={item.passage} label={item.passage2 ? "TEXT 1" : undefined} />}
+            {item.passage2 && <Passage text={item.passage2} label="TEXT 2" />}
+            {item.figure && <Figure spec={item.figure} />}
             {item.table && <DataTable table={item.table} />}
+            <RichText text={item.stem} style={[type.body, s.stem]} />
 
             {item.type === "mc" ? (
               <View style={{ gap: space(1.5) }}>
@@ -402,7 +408,7 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
             {item.explanation.map((step, i) => (
               <Text key={i} style={[type.body, { marginBottom: 4 }]}>
                 {item.explanation.length > 1 ? `${i + 1}. ` : ""}
-                {step}
+                {renderMath(step)}
               </Text>
             ))}
           </Rise>
@@ -459,7 +465,7 @@ export function Lesson({ skill, placement = false, onDone, onQuit }: { skill: Sk
                   <>
                     <Text style={[s.bannerTitle, { color: CORAL_TEXT }]}>Correct answer:</Text>
                     <Rise delay={100}>
-                      <Text style={[type.body, { fontFamily: font.bold, color: CORAL_TEXT }]}>{item.answer}</Text>
+                      <Text style={[type.body, { fontFamily: font.bold, color: CORAL_TEXT }]}>{renderMath(item.answer)}</Text>
                     </Rise>
                   </>
                 )}
@@ -553,7 +559,7 @@ function ChoiceTile({ letter, text, state, selected, disabled, celebrate, onPres
           <View style={[s.letter, { backgroundColor: t.letterBg, borderColor: t.letterBorder }]}>
             <Text style={[type.label, { color: t.letterFg, fontFamily: font.black }]}>{letter}</Text>
           </View>
-          <Text style={[type.body, { flex: 1 }, state === "right" && { fontFamily: font.bold }]}>{text}</Text>
+          <RichText text={text} style={[type.body, { flex: 1 }, state === "right" && { fontFamily: font.bold }]} />
           {(state === "right" || state === "wrong") && (
             <View>
               <PopIn from={0.2} delay={state === "right" ? 60 : 0}>
@@ -710,6 +716,15 @@ function QuitSheet({ placement, onStay, onLeave }: { placement: boolean; onStay:
 // ─── Data table ──────────────────────────────────────────────────────────────
 
 function DataTable({ table }: { table: NonNullable<Item["table"]> }) {
+  return (
+    <View>
+      {table.title ? <Text style={[type.label, { textAlign: "center", marginBottom: space(1) }]}>{table.title}</Text> : null}
+      <TableBody table={table} />
+    </View>
+  );
+}
+
+function TableBody({ table }: { table: NonNullable<Item["table"]> }) {
   const n = Math.max(table.headers.length, ...table.rows.map((r) => r.length));
   const cols = Array.from({ length: n }, (_, ci) => ci);
   const cell = (r: (string | number)[], ci: number) => (r[ci] == null ? "" : String(r[ci]));

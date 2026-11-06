@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { pickPlacementProbes, placementTestOut, skillDepths } from "../worker/engine.js";
 
-const map = JSON.parse(readFileSync(new URL("../content/skills.json", import.meta.url), "utf8"));
+const content = JSON.parse(readFileSync(new URL("../content/skills.json", import.meta.url), "utf8"));
+// Placement runs per section; these tests use SAT Math.
+const map = content.exams.find((e) => e.id === "sat").sections.find((s) => s.id === "sat-math");
 let pos = 0;
 const skills = map.domains.flatMap((d) => d.skills.map((s) => ({ ...s, domain_id: d.id, position: pos++ })));
 const probes = pickPlacementProbes(skills);
