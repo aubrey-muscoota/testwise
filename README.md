@@ -16,7 +16,10 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 | `migrations/` | D1 (SQLite) schema |
 | `worker/engine.js` | Adaptive engine: ratings, lesson picking, spaced review, streaks, answer checking |
 | `worker/socrates.js` | The tutor: prompt, Claude API call, and an offline fallback that walks through hints |
-| `worker/index.js` | API routes (Cloudflare Worker) |
+| `worker/index.js` | API entry point (Cloudflare Worker, Hono router) |
+| `worker/routes/` | One module per API area: tree, lessons and placement, answers, Socrates, reports |
+| `worker/schemas.js` | Request body shapes (zod) |
+| `docs/PLAN.md` | Release checklist for v1 to v5 |
 | `app/` | Expo (React Native) app. Exports to web now; the same code builds for iOS later |
 | `test/` | Unit tests for the engine and an end-to-end API check |
 

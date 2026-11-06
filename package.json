@@ -10,10 +10,14 @@
     "deploy": "npm run build:app && npm run seed && wrangler d1 migrations apply testwise --remote && wrangler d1 execute testwise --remote --file seed/seed.sql && wrangler deploy"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^1.0.0"
+    "@anthropic-ai/sdk": "^1.0.0",
+    "hono": "^4.13.16",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "wrangler": "^4.40.0"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  }
 }
