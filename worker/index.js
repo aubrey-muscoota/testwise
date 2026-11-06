@@ -49,7 +49,7 @@ api.get("/tree", route(null, (env, request, learnerId) => tree(env, request, lea
 api.post("/consent", route(S.Consent, (env, request, learnerId, b) => setConsent(env, learnerId, b)));
 api.post("/learner/delete", route(null, (env, request, learnerId) => deleteLearner(env, learnerId)));
 api.post("/lessons", route(S.LessonStart, (env, request, learnerId, b) => b.placement
-  ? startPlacement(env, request, learnerId)
+  ? startPlacement(env, request, learnerId, b.section || "sat-math")
   : startLesson(env, request, learnerId, b.skill_id || null)));
 api.post("/answers", route(S.Answer, answer));
 api.post("/lessons/finish", route(S.Finish, finishLesson));

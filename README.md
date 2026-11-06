@@ -8,7 +8,8 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 
 | Path | What it is |
 | --- | --- |
-| `content/skills.json` | Skill map: 19 SAT Math skills in 4 domains, with prerequisites |
+| `content/skills.json` | Skill map: exams → sections → domains → skills, with prerequisites (SAT Math: 19 skills; SAT Reading and Writing: 10) |
+| `content/ITEM_FORMAT.md`, `RW_FORMAT.md`, `FIGURE_FORMAT.md` | How questions, passages and figures are written |
 | `content/items/*.json` | Practice questions, one file per skill (format in `content/ITEM_FORMAT.md`) |
 | `content/reports/*.json` | Notes from the independent review of each skill's questions |
 | `scripts/check_items.py` | Validates every question and re-computes its answer with code |
@@ -20,6 +21,8 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 | `worker/routes/` | One module per API area: tree, lessons and placement, answers, Socrates, reports |
 | `worker/schemas.js` | Request body shapes (zod) |
 | `docs/PLAN.md` | Release checklist for v1 to v5 |
+| `app/src/figure/` | Draws question figures from their spec (react-native-svg) |
+| `app/src/text/` | Passages (blanks, underlines, notes) and the TeX-subset math renderer |
 | `app/` | Expo (React Native) app. Exports to web now; the same code builds for iOS later |
 | `test/` | Unit tests for the engine and an end-to-end API check |
 

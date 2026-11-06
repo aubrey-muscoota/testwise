@@ -19,6 +19,12 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
 assert.match(learner, /^[a-f0-9]{32}$/);
 
 assert.equal((await call("/api/tree")).status, 200);
+{
+  const t = (await call("/api/tree")).data;
+  assert.ok(t.sections.length >= 1 && t.sections[0].id === "sat-math", "sections listed, Math first");
+  assert.ok(t.domains.every((d) => d.section_id), "every domain has a section");
+  assert.equal((await call("/api/lessons", { placement: true, section: "nope" })).status, 404, "unknown section");
+}
 let tree = (await call("/api/tree")).data;
 const skills = tree.domains.flatMap((d) => d.skills);
 const first = skills.find((s) => s.id === "alg-linear-eq-1var");

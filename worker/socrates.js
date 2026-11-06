@@ -8,7 +8,7 @@ export const DEFAULT_TUTOR_MODEL = "claude-opus-5-5";
 export const DAILY_CONVERSATIONS = 5;
 export const MAX_STUDENT_TURNS = 6;
 
-const PERSONA = `You are Socrates, the tutor in Testwise, an app where high school students practice SAT Math in short daily lessons.
+const PERSONA = `You are Socrates, the tutor in Testwise, an app where high school students practice for the SAT (Math, and Reading and Writing) in short daily lessons.
 
 A student just answered a practice question wrong. Your job is to guide them to the right answer themselves, the way a great one-on-one tutor would.
 
@@ -27,9 +27,12 @@ How you teach:
 - Never ask for personal information.`;
 
 export function itemBrief(item, response) {
-  const lines = [`Question: ${item.stem}`];
+  const lines = [];
+  if (item.passage) lines.push(item.passage2 ? `Text 1: ${item.passage}\nText 2: ${item.passage2}` : `Passage: ${item.passage}`);
+  if (item.figure?.alt) lines.push(`Figure (the student sees a drawing of this): ${item.figure.alt}`);
+  lines.push(`Question: ${item.stem}`);
   if (item.table) {
-    lines.push(`Table: ${item.table.headers.join(" | ")}`);
+    lines.push(`Table${item.table.title ? ` (${item.table.title})` : ""}: ${item.table.headers.join(" | ")}`);
     for (const r of item.table.rows) lines.push(`  ${r.join(" | ")}`);
   }
   if (item.type === "mc") lines.push(`Choices: ${item.choices.map((c, i) => `${"ABCD"[i]}) ${c}`).join("   ")}`);

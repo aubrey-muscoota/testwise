@@ -16,6 +16,9 @@ export function parseItem(row, { withAnswer = true } = {}) {
     table: row.table_json ? JSON.parse(row.table_json) : null,
     choices: row.choices ? JSON.parse(row.choices) : null,
     rating: row.rating,
+    passage: row.passage ?? null,
+    passage2: row.passage2 ?? null,
+    figure: row.figure_json ? JSON.parse(row.figure_json) : null,
   };
   if (withAnswer) {
     item.answer = row.answer;
@@ -48,8 +51,13 @@ export async function masteryMap(env, learnerId) {
   return Object.fromEntries(results.map((r) => [r.skill_id, r]));
 }
 
-export async function allSkills(env) {
-  const { results } = await env.DB.prepare("SELECT id, name, domain_id, position, prereqs FROM skills ORDER BY position").all();
+// All skills, or only those in one section (e.g. "sat-math").
+export async function allSkills(env, sectionId = null) {
+  const { results } = await (sectionId
+    ? env.DB.prepare(
+      "SELECT s.id, s.name, s.domain_id, s.position, s.prereqs FROM skills s JOIN domains d ON d.id = s.domain_id WHERE d.section_id = ? ORDER BY s.position",
+    ).bind(sectionId)
+    : env.DB.prepare("SELECT id, name, domain_id, position, prereqs FROM skills ORDER BY position")).all();
   return results.map((r) => ({ ...r, prereqs: JSON.parse(r.prereqs || "[]") }));
 }
 

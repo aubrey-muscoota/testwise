@@ -12,8 +12,8 @@ Each release's "Acceptance" line is the gate that must pass before the next rele
 ### v1: Complete SAT (6 to 8 weeks)
 Goal: a student can prepare for the whole digital SAT, not just Math, and their progress follows them across devices.
 - [x] Refactor the Worker into route modules (Hono, zod) with no behavior change; all existing tests pass.
-- [ ] Migrate to the multi-exam content model: sections, item types, stimuli. Existing SAT Math items convert by script.
-- [ ] Math rendering (TeX subset) and figure support (SVG from code, stored in R2, with alt text).
+- [x] Migrate to the multi-exam content model: sections, item types, stimuli. Existing SAT Math items convert by script.
+- [x] Math rendering (TeX subset) and figure support (SVG from code, stored in R2, with alt text). (Built as figure specs that the app draws with react-native-svg, so there are no image files and no R2 bucket. TeX is a subset rendered as Unicode text.)
 - [ ] Regenerate figures for SAT Math skills that need them (geometry, graphs of functions, scatterplots), adding about 300 figure items.
 - [ ] SAT Reading and Writing: all four domains and their skills, about 1,600 items, with passages of the right length and one question per passage.
 - [ ] Accounts: Sign in with Apple, Google and email link; anonymous progress carries over; settings with data export and delete. Age gate at sign-up (no accounts under 13), the AI-consent screen before the first Socrates turn (existing learners see it once too), and privacy policy and terms pages. Acceptance: no account can be created under 13, and Socrates is unreachable before consent. (Done so far: age question, AI consent, delete-my-data, privacy and terms pages. Still to do: sign-in and cross-device progress.)

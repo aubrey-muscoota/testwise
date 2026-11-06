@@ -8,6 +8,7 @@ const optString = z.preprocess((v) => (v == null ? undefined : String(v)), z.str
 export const LessonStart = z.object({
   skill_id: optString,
   placement: z.coerce.boolean().catch(false).default(false),
+  section: z.string().regex(/^[a-z0-9-]{1,40}$/).optional().catch(undefined),
 }).catch({ placement: false });
 
 export const Answer = z.object({
