@@ -9,8 +9,8 @@ Testwise should feel like a patient tutor's notebook, not a generated app templa
   means something (right, wrong, streak), it is never decoration.
 - **Socrates is a person in the room.** He talks in his own typeface, beside the learner's work, about what they just did.
   He asks more than he cheers.
-- **Made by hand.** Lines wobble slightly, chapter numbers are Roman, the skill path is drawn in ink. Small imperfections
-  are on purpose; symmetry everywhere reads as generated.
+- **Made by hand, kept simple.** The skill path is drawn in ink and lines wobble slightly. Small imperfections are on
+  purpose; perfect symmetry everywhere reads as generated. Simple beats detailed: fewer elements, fewer styles.
 - **Calm by default, lively at the moments that count.** Motion and sound mark a right answer, a finished lesson or an
   unlocked skill. Between those, things stay still.
 
@@ -23,29 +23,34 @@ Testwise should feel like a patient tutor's notebook, not a generated app templa
 | sheet | #FFFDF9 | Raised surfaces that hold work (question, sheet) |
 | ink | #22252B | Body text, icons |
 | inkSoft | #5E6470 | Secondary text |
-| rule | #E6DDCF | Hairlines and dividers |
+| rule | #E6DDCF | The rare hairline (see Layout) |
 | azure | #58A6FF | Primary action, selection, progress (brand) |
 | azureInk | #2D6FC2 | Azure text on paper (links, small labels), passes contrast |
 | azureWash | #E6F0FC | Selected answer background |
-| terracotta | #D9774B | Socrates' warmth: streak, highlights, chapter numerals |
+| terracotta | #D9774B | Socrates' warmth: streak, highlights |
 | olive | #5E8F4C / wash #EAF1E3 | Correct |
 | brick | #C0553F / wash #F8E7E2 | Incorrect |
 | ochre | #D99A2B | XP |
 
-No gradients. No pure white backgrounds. Shadows only on things that float (sheets, the bottom bar), and soft.
+That is the whole palette. No extra shades or opacity variants of these colors, no gradients, no pure white
+backgrounds. Shadows only on things that float (sheets, the bottom bar), and soft.
 
 ## Type
 
 - **Fraunces** (serif): Socrates' speech, chapter titles, big numbers (countdown, score), screen titles.
 - **Nunito** (brand font): everything else, including question text and choices.
-- Sentence case everywhere, buttons included. Letter-spacing only on tiny overlines, and sparingly.
+- Sentence case everywhere, buttons included. No periods at the end of titles or headings.
+- Default letter-spacing. No negative tracking on headings, no letter-spaced labels.
+- Italics only where meaning needs them (a title of a work in a passage). No monospace in the interface.
 - Sizes: title 28/34 Fraunces 600; Socrates 19/27 Fraunces 400; body 17/25 Nunito 400; label 15/20 Nunito 700;
   small 13/18 Nunito 600.
 
 ## Layout
 
 - Left-aligned text with a 20 px side gutter. Center only single words or numbers that are the point (a score).
-- Group with space and hairlines, not boxes. Never a card inside a card. At most one raised surface per region.
+- Group with space, not boxes or dividers. A hairline only where space alone can't separate two things. Never a card
+  inside a card, and no bordered containers. At most one raised surface per region.
+- No eyebrows (small labels above titles), no section numbering, no tags or pills for status. Say it in the sentence.
 - One primary action per screen, anchored at the bottom on phones. Secondary actions are text buttons.
 - Vary rhythm: the top of Home is not three identical cards. Today's plan reads as a short list with a single
   highlighted next step.
@@ -80,6 +85,8 @@ No gradients. No pure white backgrounds. Shadows only on things that float (shee
 
 ## Never (review checklist)
 
+Unless there's a specific design reason, and that reason is written in the PR:
+
 - [ ] Emoji used as icons or decoration (🔥 ⚡ 🌱 🏛 ⏱).
 - [ ] ALL-CAPS or letter-spaced button labels.
 - [ ] A stack of identical rounded cards with soft shadows, or a colored left border on a card.
@@ -90,3 +97,9 @@ No gradients. No pure white backgrounds. Shadows only on things that float (shee
 - [ ] Placeholder-feeling numbers (0 XP, 0 streak shown as a badge before the learner has done anything).
 - [ ] Three-item feature lists with an icon tile per item.
 - [ ] Pure white backgrounds or pure black text.
+- [ ] Tags and pills, eyebrows, section numbering, all-caps subtitles.
+- [ ] Containers with borders; squircles (superellipse app-icon corners) on cards and buttons.
+- [ ] Overused dividers; extra shades and opacities of the palette colors.
+- [ ] Excessive italics, negative kerning, Instrument Serif, monospace fonts in the interface.
+- [ ] Over-detailed UI or diagrams; dithering; ASCII art.
+- [ ] Verbose or redundant text, code-like breadcrumbs (Home / Math / Algebra), periods at the end of titles.
