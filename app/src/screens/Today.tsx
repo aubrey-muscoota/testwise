@@ -1,0 +1,240 @@
+// Today: the countdown, one line from Socrates about where the learner stands,
+// today's tasks from the plan with the next one emphasized, and one button
+// that starts it.
+import React from "react";
+import { Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import Svg, { Circle, Path } from "react-native-svg";
+import { api, Exam, getExam, Plan, PlanTask, Tree } from "../api";
+import { listOf, longDay, minutes, plural, taskName } from "../copy";
+import { Icon } from "../components/icons";
+import { SocratesLine } from "../components/SocratesLine";
+import { useWide } from "../components/Shell";
+import { Bone, Button, ErrorState, ProgressBar, Rise, Skeleton, Stat, TextButton, decorative } from "../components/ui";
+import { LessonSource, practiceSource, useLoad } from "../nav";
+import { color, font, GUTTER, radius, space, tabular, type } from "../theme";
+
+export function taskSource(t: PlanTask): LessonSource | null {
+  if (!t.start) return null;
+  return { kind: "task", start: t.start, title: t.kind === "review" ? "Review" : taskName(t.title), why: t.why, mode: t.mode };
+}
+
+export function startLabel(t: PlanTask) {
+  if (t.kind === "review") return "Start review";
+  if (t.kind === "lesson") return `Start ${taskName(t.title)}`;
+  return `Start ${t.title.charAt(0).toLowerCase()}${t.title.slice(1)}`;
+}
+
+// The big line at the top.
+export function countdown(plan: Plan, exam: Exam | null, narrow: boolean): { title: string; sub: string | null } {
+  const name = exam?.short_name ?? "test";
+  const d = plan.days_left;
+  const br = narrow ? "\n" : " ";
+  if (plan.phase === "after" || d < 0) return { title: `How did the${br}${name} go?`, sub: "Taking it again? Set a new date in Me." };
+  if (d === 0) return { title: "Test day", sub: longDay(plan.exam_date) };
+  if (d === 1) return { title: `Your ${name} is${br}tomorrow`, sub: longDay(plan.exam_date) };
+  if (plan.exam_date_assumed) {
+    return { title: d >= 14 ? `About ${Math.round(d / 7)} weeks${br}to go` : `About ${d} days${br}to go`, sub: null };
+  }
+  return { title: `${d} days${br}to your ${name}`, sub: longDay(plan.exam_date) };
+}
+
+type Data = { plan: Plan; tree: Tree };
+
+export function Today({
+  onStart, onOpenPlan, onEditDate, onUnauthorized,
+}: { onStart: (s: LessonSource) => void; onOpenPlan: () => void; onEditDate: () => void; onUnauthorized: () => void }) {
+  const { data, error, reload } = useLoad<Data>(async () => {
+    const [plan, tree] = await Promise.all([api.plan(), api.tree()]);
+    return { plan, tree };
+  });
+  const [refreshing, setRefreshing] = React.useState(false);
+  const wide = useWide();
+  const narrow = useWindowDimensions().width < 520;
+  const exam = getExam();
+
+  React.useEffect(() => {
+    if (error?.status === 401) onUnauthorized();
+  }, [error, onUnauthorized]);
+
+  if (error && !data) return <ErrorState message="I couldn't load today's plan. Is the connection down?" onRetry={reload} />;
+  if (!data) return <TodaySkeleton />;
+
+  const { plan, tree } = data;
+  const st = tree.stats;
+  const head = countdown(plan, exam, narrow);
+  const tasks = plan.today;
+  const next = tasks.find((t) => !t.done && t.start);
+  const doneCount = tasks.filter((t) => t.done).length;
+  const allDone = tasks.length > 0 && !tasks.some((t) => !t.done && t.start);
+  const left = tasks.filter((t) => !t.done).reduce((a, t) => a + t.minutes, 0);
+
+  // The shakiest started skill, for "more" once today is done.
+  const started = tree.domains.flatMap((d) => d.skills).filter((sk) => sk.attempts > 0 && !sk.mastered).sort((a, b) => a.mastery - b.mastery);
+  const restTask = tasks.find((t) => t.kind === "rest");
+  const line = restTask
+    ? restTask.why
+    : allDone
+      ? started.length
+        ? `That's today done. ${started[0].name} is still your shakiest skill, if you have ten more minutes.`
+        : "That's today done. Come back tomorrow and the list will be new."
+      : plan.status.message;
+
+  const more = practiceSource({ mode: "weak", n: 10 }, "Weak spots", started.length ? `Your lowest right now: ${listOf(started.slice(0, 3).map((x) => x.name))}.` : undefined);
+  const cta = next
+    ? <Button title={startLabel(next)} onPress={() => onStart(taskSource(next)!)} testID="start-next" />
+    : allDone && !restTask
+      ? <Button title="Ten more minutes on weak spots" onPress={() => onStart(more)} testID="start-next" />
+      : null;
+
+  return (
+    <View style={{ flex: 1 }}>
+      <ScrollView
+        contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={async () => { setRefreshing(true); await reload(); setRefreshing(false); }} />}
+      >
+        <View style={s.topRow}>
+          {!wide && <Text style={s.mark} accessibilityRole="header">testwise</Text>}
+          <View style={{ flex: 1 }} />
+          {st.xp > 0 && (
+            <View style={s.stats}>
+              {st.streak > 0 && <Stat icon="streak" value={st.streak} label={st.streak === 1 ? "day in a row" : "days in a row"} tint={color.terracotta} />}
+              <Stat icon="xp" value={st.xp} label="XP" tint={color.ochre} />
+            </View>
+          )}
+        </View>
+
+        <Rise>
+          <Text style={s.hero} accessibilityRole="header">{head.title}</Text>
+          {head.sub ? (
+            <Text style={[type.body, { color: color.inkSoft, marginTop: space(0.5) }]}>{head.sub}</Text>
+          ) : (
+            <View style={s.subRow}>
+              <Text style={[type.body, { color: color.inkSoft }]}>No test date yet. </Text>
+              <TextButton title="Set it" onPress={onEditDate} style={s.inlineLink} accessibilityLabel="Set your test date" />
+            </View>
+          )}
+        </Rise>
+
+        <Rise delay={80} style={{ marginTop: space(3) }}>
+          <SocratesLine text={line} mood={allDone ? "happy" : plan.status.on_track ? "idle" : "concerned"} size={84} />
+        </Rise>
+
+        {tasks.length > 0 && (
+          <Rise delay={140} style={{ marginTop: space(4) }}>
+            <View style={s.listHead}>
+              <Text style={type.heading}>{allDone ? "Done for today" : "Today"}</Text>
+              <Text style={[type.small, tabular]}>
+                {doneCount} of {tasks.length} done{left > 0 && !allDone ? ` · ${minutes(left, true)} left` : ""}
+              </Text>
+            </View>
+            {doneCount > 0 ? (
+              <View style={{ flexDirection: "row", marginTop: space(1), marginBottom: space(1.5) }}>
+                <ProgressBar value={doneCount / tasks.length} fill={allDone ? color.olive : color.azure} height={6} />
+              </View>
+            ) : (
+              <View style={{ height: space(1.5) }} />
+            )}
+            {tasks.map((t, i) => (
+              <Rise key={t.id} delay={180 + i * 40}>
+                <TaskRow task={t} isNext={t === next} onPress={t.start && !t.done ? () => onStart(taskSource(t)!) : undefined} />
+              </Rise>
+            ))}
+          </Rise>
+        )}
+
+        <TextButton title="See the full plan" icon="arrow" onPress={onOpenPlan} align="left" style={{ marginTop: space(1.5), alignSelf: "flex-start", marginLeft: -space(1) }} />
+
+        {wide && cta && <View style={{ marginTop: space(3), maxWidth: 420 }}>{cta}</View>}
+        <View style={{ height: space(4) }} />
+      </ScrollView>
+      {!wide && cta && <View style={s.foot}>{cta}</View>}
+    </View>
+  );
+}
+
+// Done: a filled olive circle with a check. Next: an azure ring. Later: a light ring.
+function Mark({ state }: { state: "done" | "next" | "later" }) {
+  return (
+    <View {...decorative} style={{ width: 28, height: 28 }}>
+      <Svg width={28} height={28} viewBox="0 0 28 28">
+        {state === "done" ? (
+          <>
+            <Circle cx={14} cy={14} r={12} fill={color.olive} />
+            <Path d="M8.4 14.4L12.2 18L19.6 10.1" stroke={color.sheet} strokeWidth={2.2} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          </>
+        ) : (
+          <Circle cx={14} cy={14} r={11} fill="none" stroke={state === "next" ? color.azure : color.rule} strokeWidth={state === "next" ? 2.5 : 2} />
+        )}
+      </Svg>
+    </View>
+  );
+}
+
+function TaskRow({ task, isNext, onPress }: { task: PlanTask; isNext: boolean; onPress?: () => void }) {
+  const state = task.done ? "done" : isNext ? "next" : "later";
+  const mins = minutes(task.minutes);
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={!onPress}
+      style={({ pressed }) => [s.task, isNext && s.taskNext, pressed && { backgroundColor: isNext ? color.azureWash : color.paperDeep }]}
+      accessibilityRole={onPress ? "button" : "text"}
+      accessibilityLabel={`${task.title}, ${mins}${task.done ? ", done" : ""}. ${task.why}`}
+    >
+      <Mark state={state} />
+      <View style={{ flex: 1, marginLeft: space(1.5) }}>
+        <View style={{ flexDirection: "row", alignItems: "baseline" }}>
+          <Text
+            style={[isNext ? s.taskTitleNext : type.label, { flex: 1 }, task.done && { color: color.inkSoft }]}
+          >
+            {task.title}
+          </Text>
+          <Text style={[type.small, tabular, { marginLeft: space(1) }]}>{mins}</Text>
+        </View>
+        <Text style={[isNext ? type.body : type.small, isNext ? { marginTop: space(0.5) } : { marginTop: 2 }, !isNext && { color: color.inkSoft }]} numberOfLines={isNext ? undefined : 2}>
+          {task.why}
+        </Text>
+      </View>
+    </Pressable>
+  );
+}
+
+function TodaySkeleton() {
+  return (
+    <Skeleton label="Loading today's plan">
+      <View style={s.scroll}>
+        <View style={[s.topRow, { height: 28 }]}><Bone w={96} h={20} /></View>
+        <Bone w={220} h={34} />
+        <Bone w={170} h={34} style={{ marginTop: 8 }} />
+        <View style={{ flexDirection: "row", marginTop: space(4), gap: space(2) }}>
+          <Bone w={84} h={84} r={42} />
+          <View style={{ flex: 1, gap: 10, paddingTop: 10 }}>
+            <Bone h={16} /><Bone h={16} /><Bone w="60%" h={16} />
+          </View>
+        </View>
+        <Bone w={120} h={22} style={{ marginTop: space(5) }} />
+        {[0, 1, 2].map((i) => (
+          <View key={i} style={{ flexDirection: "row", gap: space(1.5), marginTop: space(2.5) }}>
+            <Bone w={28} h={28} r={14} />
+            <View style={{ flex: 1, gap: 8 }}><Bone w="70%" h={16} /><Bone h={12} /></View>
+          </View>
+        ))}
+      </View>
+    </Skeleton>
+  );
+}
+
+const s = StyleSheet.create({
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(2), maxWidth: 640, width: "100%", alignSelf: "center" },
+  topRow: { flexDirection: "row", alignItems: "center", minHeight: 32, marginBottom: space(2.5) },
+  mark: { fontFamily: font.black, fontSize: 19, color: color.azureInk },
+  stats: { flexDirection: "row", gap: space(2) },
+  hero: { fontFamily: font.serifSemi, fontSize: 38, lineHeight: 44, color: color.ink },
+  subRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: space(0.5) },
+  inlineLink: { minHeight: 32, paddingHorizontal: 0 },
+  listHead: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
+  task: { flexDirection: "row", alignItems: "flex-start", paddingVertical: space(1.5), paddingHorizontal: space(1.5), marginHorizontal: -space(1.5), borderRadius: radius.row },
+  taskNext: { backgroundColor: color.sheet, paddingVertical: space(2), marginVertical: space(0.5) },
+  taskTitleNext: { fontFamily: font.serifSemi, fontSize: 21, lineHeight: 27, color: color.ink },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: 640, width: "100%", alignSelf: "center", ...(Platform.OS === "web" ? {} : {}) },
+});
