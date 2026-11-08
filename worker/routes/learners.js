@@ -32,6 +32,9 @@ export async function deleteLearner(env, learnerId) {
   const tables = ["attempts", "skill_mastery", "reviews", "lessons", "tutor_turns"];
   await env.DB.batch([
     ...tables.map((t) => env.DB.prepare(`DELETE FROM ${t} WHERE learner_id = ?`).bind(learnerId)),
+    // Questions Claude wrote at this learner's request stay (they're content,
+    // shared with everyone); only the link back to the learner goes.
+    env.DB.prepare("UPDATE generated_items SET learner_id = NULL WHERE learner_id = ?").bind(learnerId),
     env.DB.prepare("DELETE FROM learners WHERE id = ?").bind(learnerId),
   ]);
   return json({ ok: true });

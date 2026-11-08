@@ -1,9 +1,10 @@
 import * as E from "../engine.js";
 import { json, masteryMap, stats, today } from "../lib/http.js";
 import { consentState } from "./learners.js";
+import { getProfile } from "./plan.js";
 
 export async function tree(env, request, learnerId) {
-  const [exam, sections, domains, skills, counts, mastery, st, consent] = await Promise.all([
+  const [exam, sections, domains, skills, counts, mastery, st, consent, profile] = await Promise.all([
     env.DB.prepare("SELECT id, name FROM exams LIMIT 1").first(),
     env.DB.prepare("SELECT id, name FROM sections ORDER BY position").all(),
     env.DB.prepare("SELECT id, name, section_id FROM domains ORDER BY position").all(),
@@ -12,6 +13,7 @@ export async function tree(env, request, learnerId) {
     masteryMap(env, learnerId),
     stats(env, learnerId, today(request)),
     consentState(env, learnerId),
+    getProfile(env, learnerId, today(request)),
   ]);
   const itemCount = Object.fromEntries(counts.results.map((r) => [r.skill_id, r.n]));
   const out = domains.results.map((d) => ({
@@ -42,5 +44,5 @@ export async function tree(env, request, learnerId) {
   const secs = sections.results
     .map((s) => ({ id: s.id, name: s.name, domains: out.filter((d) => d.section_id === s.id && live.has(d.id)).map((d) => d.id) }))
     .filter((s) => s.domains.length);
-  return json({ exam, sections: secs, domains: out.filter((d) => live.has(d.id)), stats: st, learner: consent });
+  return json({ exam, sections: secs, domains: out.filter((d) => live.has(d.id)), stats: st, learner: consent, profile });
 }

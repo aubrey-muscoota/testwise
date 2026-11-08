@@ -8,6 +8,8 @@ export async function report(env, learnerId, b) {
     env.DB.prepare("UPDATE items SET reports = reports + 1 WHERE id = ?").bind(row.id),
     env.DB.prepare("INSERT INTO item_checks (item_id, kind, passed, note, created_at) VALUES (?, 'report', 0, ?, ?)")
       .bind(row.id, `learner ${learnerId.slice(0, 6)}: ${note}`, Date.now()),
+    // A question Claude wrote has had no human review: one report pulls it.
+    env.DB.prepare("UPDATE items SET status = 'pulled' WHERE id = ? AND source = 'generated'").bind(row.id),
   ]);
   return json({ ok: true });
 }
