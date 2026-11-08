@@ -32,7 +32,8 @@ const CORAL_EDGE = "#E5605B";
 
 // `placement` runs the placement quiz instead: one try per question, no tutor.
 export function Lesson({ skill, placementSection, onDone, onQuit }: { skill: Skill | null; placementSection?: string; onDone: (r: LessonResult) => void; onQuit: () => void }) {
-  const placement = !!placementSection;
+  // An empty placementSection means the exam's default section.
+  const placement = placementSection !== undefined;
   const [lesson, setLesson] = useState<LessonT | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [queue, setQueue] = useState<{ item: Item; retry: boolean }[]>([]);
@@ -71,7 +72,7 @@ export function Lesson({ skill, placementSection, onDone, onQuit }: { skill: Ski
   const wasTutorOpen = useRef(false);
 
   useEffect(() => {
-    (placementSection ? api.startPlacement(placementSection) : api.startLesson(skill?.id ?? null))
+    (placement ? api.startPlacement(placementSection || undefined) : api.startLesson(skill?.id ?? null))
       .then((l) => {
         setLesson(l);
         setQueue(l.items.map((item) => ({ item, retry: false })));
@@ -348,7 +349,7 @@ export function Lesson({ skill, placementSection, onDone, onQuit }: { skill: Ski
                   return (
                     <Rise key={c} delay={90 + i * 60} style={{ zIndex: state === "right" ? 2 : 0 }}>
                     <ChoiceTile
-                      letter={"ABCD"[i]}
+                      letter={"ABCDEFGH"[i]}
                       text={c}
                       state={state}
                       selected={picked}

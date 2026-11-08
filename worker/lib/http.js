@@ -51,7 +51,7 @@ export async function masteryMap(env, learnerId) {
   return Object.fromEntries(results.map((r) => [r.skill_id, r]));
 }
 
-// All skills, or only those in one section (e.g. "sat-math").
+// All skills, or only those in one section (an id from the exam pack).
 export async function allSkills(env, sectionId = null) {
   const { results } = await (sectionId
     ? env.DB.prepare(

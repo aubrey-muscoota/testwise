@@ -189,12 +189,14 @@ export function isCorrect(item, response) {
 }
 
 // ─── Placement quiz ──────────────────────────────────────────────────────────
-// A short quiz for new learners: three questions per domain, from an early, a
-// middle and a late skill, at easy, medium and hard difficulty. A passed
+// A short quiz for new learners: three questions per domain (the exam pack's
+// "placement": per_domain, difficulties), from an early, a middle and a late
+// skill, at easy, medium and hard difficulty. A passed
 // question "tests out" that skill and everything it builds on, so the learner
 // skips ahead instead of starting at the very first skill.
 
-export const PLACEMENT_PER_DOMAIN = 3;
+export const PLACEMENT_PER_DOMAIN = 3; // defaults when the exam pack doesn't say
+export const PLACEMENT_DIFFICULTIES = [1, 2, 3];
 export const PLACEMENT_RATING = 1.0; // starting rating for a tested-out skill
 
 // Longest prerequisite chain under each skill (roots are 0).
@@ -217,9 +219,12 @@ export function skillDepths(skills) {
 /**
  * Which skills to probe. Skills carry {id, domain_id, prereqs, position}.
  * Returns probes ordered easy → hard (all easy ones first), so the quiz warms up.
+ * @param {{per_domain?: number, difficulties?: number[]}} [opts]  exam.json "placement"
  * @returns {{skill_id:string, domain_id:string, difficulty:number, level:number}[]}
  */
-export function pickPlacementProbes(skills) {
+export function pickPlacementProbes(skills, opts = {}) {
+  const perDomain = opts.per_domain || PLACEMENT_PER_DOMAIN;
+  const diffs = opts.difficulties?.length ? opts.difficulties : PLACEMENT_DIFFICULTIES;
   const depth = skillDepths(skills);
   const domains = new Map();
   for (const s of skills) {
@@ -229,10 +234,10 @@ export function pickPlacementProbes(skills) {
   const probes = [];
   for (const [domainId, list] of domains) {
     const sorted = [...list].sort((a, b) => depth.get(a.id) - depth.get(b.id) || a.position - b.position);
-    const n = Math.min(PLACEMENT_PER_DOMAIN, sorted.length);
+    const n = Math.min(perDomain, sorted.length);
     const picks = n === 1 ? [0] : Array.from({ length: n }, (_, k) => Math.round((k * (sorted.length - 1)) / (n - 1)));
     picks.forEach((idx, level) => {
-      probes.push({ skill_id: sorted[idx].id, domain_id: domainId, difficulty: Math.min(3, level + 1), level });
+      probes.push({ skill_id: sorted[idx].id, domain_id: domainId, difficulty: diffs[Math.min(level, diffs.length - 1)], level });
     });
   }
   return probes.sort((a, b) => a.level - b.level);

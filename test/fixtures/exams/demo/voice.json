@@ -1,0 +1,6 @@
+{
+  "persona_notes": ["The Demo Exam has one section, Quantitative, with three answer choices per question."],
+  "terms": { "spr": "numeric entry", "sections": { "demo-quant": "Quant" } },
+  "placement_intro": { "demo-quant": "Know some fractions already? Let's find out." },
+  "test_day_tips": ["Read every choice before you pick one."]
+}

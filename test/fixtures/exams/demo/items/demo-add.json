@@ -1,0 +1,27 @@
+[
+  {
+    "id": "demo-add-001",
+    "skill_id": "demo-add",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "What is 1/4 + 1/4?",
+    "choices": ["1/8", "1/2", "2/8"],
+    "answer": "1/2",
+    "explanation": ["The denominators match, so add the numerators: 1 + 1 = 2.", "2/4 simplifies to 1/2."],
+    "hints": ["The pieces are the same size. How many quarters do you have?"],
+    "wrong_reasons": { "1/8": "Added the denominators too", "2/8": "Added numerators and denominators" },
+    "check": "from sympy import Rational\nresult = Rational(1, 4) + Rational(1, 4)"
+  },
+  {
+    "id": "demo-add-002",
+    "skill_id": "demo-add",
+    "difficulty": 3,
+    "type": "spr",
+    "stem": "What is 2/3 + 1/6? Give your answer as a fraction.",
+    "answer": "5/6",
+    "accept": ["10/12"],
+    "explanation": ["Rewrite 2/3 as 4/6.", "4/6 + 1/6 = 5/6."],
+    "hints": ["What denominator can both fractions share?"],
+    "check": "from sympy import Rational\nresult = Rational(2, 3) + Rational(1, 6)"
+  }
+]

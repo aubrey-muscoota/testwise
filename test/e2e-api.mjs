@@ -1,8 +1,9 @@
 // End-to-end API check against a running dev server (npm run dev).
-// Usage: node test/e2e-api.mjs [baseUrl]
+// Usage: node test/e2e-api.mjs [baseUrl]   (or BASE=http://localhost:8791 node test/e2e-api.mjs)
+// Expects the SAT pack to be seeded.
 import assert from "node:assert/strict";
 
-const BASE = process.argv[2] || "http://localhost:8787";
+const BASE = process.argv[2] || process.env.BASE || "http://localhost:8787";
 let learner;
 const call = async (path, body) => {
   const res = await fetch(BASE + path, {
@@ -12,6 +13,17 @@ const call = async (path, body) => {
   });
   return { status: res.status, data: await res.json() };
 };
+
+// The exam pack is readable before there is a learner (Welcome needs it).
+{
+  const e = (await call("/api/exam")).data;
+  assert.equal(e.id, "sat");
+  assert.equal(e.default_section, "sat-math");
+  assert.match(e.publisher.disclaimer, /not affiliated with College Board/);
+  assert.deepEqual(e.sections.map((s) => s.id), ["sat-math", "sat-rw"]);
+  for (const s of e.sections) assert.ok(Math.abs(s.domains.reduce((a, d) => a + d.weight, 0) - 1) < 1e-9, `${s.id} weights add up to 1`);
+  assert.equal(e.plan.default_weeks, 8);
+}
 
 assert.equal((await call("/api/learners", {})).status, 403, "no learner without the age answer");
 assert.equal((await call("/api/learners", { age_13_plus: false })).status, 403);

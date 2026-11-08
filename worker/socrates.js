@@ -8,7 +8,26 @@ export const DEFAULT_TUTOR_MODEL = "claude-opus-5-5";
 export const DAILY_CONVERSATIONS = 5;
 export const MAX_STUDENT_TURNS = 6;
 
-const PERSONA = `You are Socrates, the tutor in Testwise, an app where high school students practice for the SAT (Math, and Reading and Writing) in short daily lessons.
+// "Math, and Reading and Writing": section names can contain "and" themselves,
+// so the list always uses a comma before its last "and".
+const listOf = (names) => (names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")}, and ${names[names.length - 1]}`);
+
+/**
+ * The system prompt. Everything exam-specific comes from the exam pack
+ * (worker/lib/exam.js): exam.json for the name, audience and sections, and
+ * voice.json for what Socrates calls the sections and his persona notes.
+ */
+export function buildPersona(exam) {
+  const voice = exam.voice || {};
+  const names = exam.sections.map((s) => voice.terms?.sections?.[s.id] || s.name);
+  const notes = (voice.persona_notes || []).map((n) => `- ${n}`).join("\n");
+  return PERSONA
+    .replace("{audience}", exam.audience)
+    .replace("{exam}", `the ${exam.short_name || exam.name}${names.length ? ` (${listOf(names)})` : ""}`)
+    .replace("{notes}", notes ? `\n\nAbout this exam:\n${notes}` : "");
+}
+
+const PERSONA = `You are Socrates, the tutor in Testwise, an app where {audience} practice for {exam} in short daily lessons.
 
 A student just answered a practice question wrong. Your job is to guide them to the right answer themselves, the way a great one-on-one tutor would.
 
@@ -24,9 +43,9 @@ How you teach:
 - When the student reaches the right answer, confirm it briefly and celebrate.
 - The answer key and worked solution below are verified. Trust them over your own arithmetic. Never tell the student a different answer is correct.
 - Stay on this question. If the student goes off topic or asks for something unrelated, kindly steer back to the problem.
-- Never ask for personal information.`;
+- Never ask for personal information.{notes}`;
 
-export function itemBrief(item, response) {
+export function itemBrief(item, response, voice = {}) {
   const lines = [];
   if (item.passage) lines.push(item.passage2 ? `Text 1: ${item.passage}\nText 2: ${item.passage2}` : `Passage: ${item.passage}`);
   if (item.figure?.alt) lines.push(`Figure (the student sees a drawing of this): ${item.figure.alt}`);
@@ -35,8 +54,8 @@ export function itemBrief(item, response) {
     lines.push(`Table${item.table.title ? ` (${item.table.title})` : ""}: ${item.table.headers.join(" | ")}`);
     for (const r of item.table.rows) lines.push(`  ${r.join(" | ")}`);
   }
-  if (item.type === "mc") lines.push(`Choices: ${item.choices.map((c, i) => `${"ABCD"[i]}) ${c}`).join("   ")}`);
-  else lines.push("This is a grid-in question (the student types the answer).");
+  if (item.type === "mc") lines.push(`Choices: ${item.choices.map((c, i) => `${"ABCDEFGH"[i]}) ${c}`).join("   ")}`);
+  else lines.push(`This is a ${voice.terms?.spr || "student-produced response"} question (the student types the answer).`);
   lines.push(`Correct answer (verified): ${item.answer}`);
   lines.push(`Worked solution (verified): ${item.explanation.join(" ")}`);
   lines.push(`The student answered: ${response}`);
@@ -64,14 +83,15 @@ export function offlineReply(item, studentTurns) {
  * @param {object} o.item       parsed item
  * @param {string} o.response   the student's wrong answer
  * @param {{role:'student'|'socrates', content:string}[]} o.history
+ * @param {object} o.exam       the learner's exam pack (worker/lib/exam.js)
  */
-export async function socratesReply({ apiKey, model, item, response, history }) {
+export async function socratesReply({ apiKey, model, item, response, history, exam }) {
   const client = new Anthropic({ apiKey });
   const messages = [
     {
       role: "user",
       content:
-        `${itemBrief(item, response)}\n\nThe student just tapped "Ask Socrates". Open the conversation.`,
+        `${itemBrief(item, response, exam.voice)}\n\nThe student just tapped "Ask Socrates". Open the conversation.`,
     },
   ];
   for (const turn of history) {
@@ -81,7 +101,7 @@ export async function socratesReply({ apiKey, model, item, response, history }) 
   const res = await client.beta.messages.create({
     model: model || DEFAULT_TUTOR_MODEL,
     max_tokens: 16000,
-    system: PERSONA,
+    system: buildPersona(exam),
     // A short chat: low effort keeps replies quick.
     output_config: { effort: "low" },
     betas: ["server-side-fallback-2026-07-01"],

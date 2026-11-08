@@ -1,0 +1,26 @@
+{
+  "sections": [
+    {
+      "id": "demo-quant",
+      "domains": [
+        {
+          "id": "demo-arith",
+          "name": "Arithmetic",
+          "weight": 0.6,
+          "skills": [
+            { "id": "demo-add", "name": "Adding fractions", "prereqs": [] },
+            { "id": "demo-mult", "name": "Multiplying fractions", "prereqs": ["demo-add"] }
+          ]
+        },
+        {
+          "id": "demo-alg",
+          "name": "Algebra",
+          "weight": 0.4,
+          "skills": [
+            { "id": "demo-eq", "name": "One-step equations", "prereqs": ["demo-mult"] }
+          ]
+        }
+      ]
+    }
+  ]
+}

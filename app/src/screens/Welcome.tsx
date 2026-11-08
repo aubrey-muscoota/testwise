@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Animated, Easing, Image, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { Button, Mascot, Mood, PopIn, Rise, Speech, Stagger, logo } from "../components/ui";
 import { color, radius, space, type } from "../theme";
+import { getExam } from "../api";
 
 // Entrance timeline (ms).
 const T = { logo: 0, hero: 120, speech: 260, headline: 480, points: 620, cta: 900, captions: 1000, attention: 2000 };
@@ -62,6 +63,8 @@ function Attention({ children, active, delay }: { children: React.ReactNode; act
 export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Tagline and disclaimer come from the exam pack, loaded at boot (App.tsx).
+  const exam = getExam();
   // Short phones (e.g. iPhone 13 web, ~664px tall) get a tighter layout so the
   // Start button and its attention pulse are on screen at first glance.
   const compact = useWindowDimensions().height < 760;
@@ -90,7 +93,7 @@ export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
       </Rise>
       <View style={{ alignSelf: "stretch" }}>
         <Rise delay={T.headline}>
-          <Text style={[type.h2, s.center]}>SAT Math practice, five minutes a day</Text>
+          <Text style={[type.h2, s.center]}>{exam?.tagline}</Text>
         </Rise>
         <Stagger delay={T.points} step={90} style={[s.points, compact && s.pointsCompact]}>
           {[
@@ -132,7 +135,7 @@ export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
             No account needed. Your progress is saved on this device.
           </Text>
           <Text style={[type.caption, s.center, { marginTop: space(1) }]}>
-            Testwise is not affiliated with College Board. SAT is a trademark of College Board.
+            {exam?.publisher.disclaimer}
           </Text>
         </Rise>
       </View>

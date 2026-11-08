@@ -1,4 +1,4 @@
-// Draws an item figure from its spec (see content/FIGURE_FORMAT.md).
+// Draws an item figure from its spec (see exams/FIGURE_FORMAT.md).
 // Everything is placed in "plane" coordinates and mapped into an SVG viewBox.
 import React, { useId, useMemo } from "react";
 import { View } from "react-native";

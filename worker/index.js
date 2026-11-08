@@ -13,6 +13,7 @@ import { answer } from "./routes/answers.js";
 import { socrates } from "./routes/socrates.js";
 import { report } from "./routes/reports.js";
 import { createLearner, consentState, setConsent, deleteLearner } from "./routes/learners.js";
+import { learnerExam, publicExam } from "./lib/exam.js";
 
 async function readBody(request) {
   try {
@@ -27,6 +28,14 @@ const api = new Hono().basePath("/api");
 api.get("/health", () => json({ ok: true }));
 
 api.post("/learners", async (c) => createLearner(c.env, S.Consent.parse(await readBody(c.req.raw))));
+
+// The exam pack (exams/<id>/exam.json + voice.json + domain weights). Open
+// without a learner so Welcome can show the exam's name and disclaimer; with
+// one, it is that learner's exam.
+api.get("/exam", async (c) => {
+  const learner = await requireLearner(c.env, c.req.header("x-learner") || c.req.query("learner"));
+  return json(publicExam(await learnerExam(c.env, learner?.id ?? null)));
+});
 
 // Everything else needs a known learner id, from the header, query or body.
 api.use("*", async (c, next) => {
@@ -49,7 +58,7 @@ api.get("/tree", route(null, (env, request, learnerId) => tree(env, request, lea
 api.post("/consent", route(S.Consent, (env, request, learnerId, b) => setConsent(env, learnerId, b)));
 api.post("/learner/delete", route(null, (env, request, learnerId) => deleteLearner(env, learnerId)));
 api.post("/lessons", route(S.LessonStart, (env, request, learnerId, b) => b.placement
-  ? startPlacement(env, request, learnerId, b.section || "sat-math")
+  ? startPlacement(env, request, learnerId, b.section || null)
   : startLesson(env, request, learnerId, b.skill_id || null)));
 api.post("/answers", route(S.Answer, answer));
 api.post("/lessons/finish", route(S.Finish, finishLesson));

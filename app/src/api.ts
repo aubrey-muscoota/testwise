@@ -33,7 +33,7 @@ export type Skill = {
   unlocked: boolean;
 };
 
-export type Domain = { id: string; name: string; section_id?: string; skills: Skill[] };
+export type Domain = { id: string; name: string; section_id?: string; weight?: number; skills: Skill[] };
 
 export type Section = { id: string; name: string; domains: string[] };
 
@@ -48,6 +48,46 @@ export type Lesson = { lesson_id: string; skill_id: string | null; placement?: b
 export type Placement = { tested_out: { id: string; name: string }[]; next: { id: string; name: string }[]; total_skills: number };
 
 export type TutorTurn = { role: "student" | "socrates"; content: string };
+
+// The exam pack (exams/<id>/exam.json + voice.json, with domain weights), from GET /api/exam.
+export type Score = { min: number; max: number; step: number };
+export type ExamSection = {
+  id: string;
+  name: string;
+  minutes: number;
+  questions: number;
+  modules?: number;
+  seconds_per_question: number;
+  score: Score;
+  item_types: ("mc" | "spr")[];
+  choices: number;
+  domains: { id: string; name: string; weight: number }[];
+};
+export type Exam = {
+  id: string;
+  name: string;
+  short_name: string;
+  tagline: string;
+  audience: string;
+  publisher: { name: string; disclaimer: string };
+  score: Score;
+  default_section: string;
+  sections: ExamSection[];
+  placement: { per_domain: number; difficulties: number[]; seconds_per_question?: number };
+  plan: {
+    default_weeks: number;
+    daily_minutes: number[];
+    default_daily_minutes: number;
+    rest_days_per_week?: number;
+    phases: { id: string; name: string; share: number }[];
+  };
+  voice: {
+    persona_notes?: string[];
+    terms?: { spr?: string; sections?: Record<string, string> };
+    placement_intro?: Record<string, string>;
+    test_day_tips?: string[];
+  };
+};
 
 const KEY = "testwise.learner";
 
@@ -113,10 +153,30 @@ export async function forgetLearner() {
   } catch {}
 }
 
+// The learner's exam pack. Loaded once at boot (loadExam) and kept on the device,
+// so screens can read it synchronously with getExam().
+const EXAM_KEY = "testwise.exam";
+let exam: Exam | null = null;
+export const getExam = () => exam;
+export async function loadExam(): Promise<Exam | null> {
+  try {
+    exam = await call<Exam>("/api/exam");
+    AsyncStorage.setItem(EXAM_KEY, JSON.stringify(exam)).catch(() => {});
+  } catch {
+    try {
+      const saved = await AsyncStorage.getItem(EXAM_KEY);
+      if (saved) exam = JSON.parse(saved) as Exam;
+    } catch {}
+  }
+  return exam;
+}
+
 // AsyncStorage key remembering that a learner took or declined a section's placement quiz.
-// SAT Math keeps the original key so existing learners aren't asked again.
-export const placementKey = (id: string | null, section = "sat-math") =>
-  `testwise.placementDone.${id ?? "anon"}${section === "sat-math" ? "" : `.${section}`}`;
+// The exam's default section (offered at sign-up) keeps the original unsuffixed key,
+// so existing learners aren't asked again. Once learners can switch exams, the key
+// needs the exam id too.
+export const placementKey = (id: string | null, section?: string) =>
+  `testwise.placementDone.${id ?? "anon"}${!section || section === exam?.default_section ? "" : `.${section}`}`;
 export const currentLearnerId = () => learnerId;
 
 // Last known consent state, refreshed by every tree load.
@@ -145,7 +205,8 @@ export const api = {
   startLesson: (skillId: string | null) => call<Lesson>("/api/lessons", { method: "POST", body: { skill_id: skillId } }),
   answer: (b: { lesson_id: string; item_id: string; response: string; time_ms: number }) =>
     call<{ correct: boolean; answer: string; mastery: number; xp: number }>("/api/answers", { method: "POST", body: b }),
-  startPlacement: (section = "sat-math") => call<Lesson>("/api/lessons", { method: "POST", body: { placement: true, section } }),
+  // No section: the Worker uses the exam's default section.
+  startPlacement: (section?: string) => call<Lesson>("/api/lessons", { method: "POST", body: { placement: true, section } }),
   finish: (lessonId: string) =>
     call<{ correct: number; total: number; xp: number; stats: Stats; placement?: Placement }>("/api/lessons/finish", { method: "POST", body: { lesson_id: lessonId } }),
   socrates: (b: { item_id: string; response: string; history: TutorTurn[] }) =>

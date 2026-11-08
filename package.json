@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/*.test.mjs && python3 -I scripts/check_items.py content/items/*.json",
+    "test": "node --test test/*.test.mjs && python3 -I scripts/check_items.py exams/*/items/*.json test/fixtures/exams/*/items/*.json",
+    "new-exam": "node scripts/new-exam.mjs",
     "seed": "node scripts/build-seed.mjs",
     "build:app": "cd app && npx expo export -p web --output-dir dist",
     "dev": "npm run seed && wrangler d1 migrations apply testwise --local && wrangler d1 execute testwise --local --file seed/seed.sql && wrangler dev",
