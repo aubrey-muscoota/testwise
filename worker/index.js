@@ -13,6 +13,8 @@ import { answer } from "./routes/answers.js";
 import { socrates } from "./routes/socrates.js";
 import { report } from "./routes/reports.js";
 import { createLearner, consentState, setConsent, deleteLearner } from "./routes/learners.js";
+import { profileRoute, setProfile, planRoute } from "./routes/plan.js";
+import { startPractice, practiceSummary } from "./routes/practice.js";
 
 async function readBody(request) {
   try {
@@ -60,6 +62,16 @@ api.post("/socrates", route(S.Socrates, async (env, request, learnerId, b) => {
   return socrates(env, request, learnerId, b);
 }));
 api.post("/reports", route(S.Report, (env, request, learnerId, b) => report(env, learnerId, b)));
+// v1.5: test-date profile, the personalized plan, and practice mode (docs/API.md).
+api.get("/profile", route(null, profileRoute));
+api.post("/profile", route(S.Profile, setProfile));
+api.get("/plan", route(null, planRoute));
+api.get("/practice/summary", route(null, practiceSummary));
+api.post("/practice", (c) => {
+  let execCtx = null;
+  try { execCtx = c.executionCtx; } catch { /* not available outside a Worker */ }
+  return startPractice(c.env, c.req.raw, c.get("learner"), S.Practice.parse(c.get("body")), execCtx);
+});
 
 api.notFound(() => fail(404, "not found"));
 api.onError((err) => {

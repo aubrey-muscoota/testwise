@@ -17,6 +17,10 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 | `migrations/` | D1 (SQLite) schema |
 | `worker/engine.js` | Adaptive engine: ratings, lesson picking, spaced review, streaks, answer checking |
 | `worker/socrates.js` | The tutor: prompt, Claude API call, and an offline fallback that walks through hints |
+| `worker/plan.js` | Study plan: works back from the test date in phases and sizes today's tasks to the learner's daily time |
+| `worker/practice.js` | Practice mode: which skills and questions a session gets (unseen, then missed, then oldest) |
+| `worker/generate.js` | Fresh questions: Claude writes a batch, a blind second call must agree, code checks the shape |
+| `docs/API.md` | Profile, plan and practice endpoints with request and response examples |
 | `worker/index.js` | API entry point (Cloudflare Worker, Hono router) |
 | `worker/routes/` | One module per API area: tree, lessons and placement, answers, Socrates, reports |
 | `worker/schemas.js` | Request body shapes (zod) |
