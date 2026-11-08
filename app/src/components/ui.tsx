@@ -2,7 +2,7 @@
 // paper, ink and one blue; sentence case; no borders, pills or badges.
 import React, { useEffect, useRef, useState } from "react";
 import {
-  AccessibilityInfo, Animated, Easing, Platform, Pressable, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle,
+  AccessibilityInfo, Animated, Easing, LayoutChangeEvent, Platform, Pressable, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle,
 } from "react-native";
 import { buzz, isMuted, onMutedChange, play, setMuted } from "../motion/feedback";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
@@ -208,10 +208,10 @@ export function PopIn({ children, delay = 0, style, from = 0.92 }: { children: R
   );
 }
 
-export function Rise({ children, delay = 0, style, distance = 14 }: { children: React.ReactNode; delay?: number; style?: StyleProp<ViewStyle>; distance?: number }) {
+export function Rise({ children, delay = 0, style, distance = 14, onLayout }: { children: React.ReactNode; delay?: number; style?: StyleProp<ViewStyle>; distance?: number; onLayout?: (e: LayoutChangeEvent) => void }) {
   const { v, still } = useEntrance(delay);
   return (
-    <Animated.View style={[style, { opacity: v.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, 1, 1] }), transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [distance, 0] }) }] }]}>
+    <Animated.View onLayout={onLayout} style={[style, { opacity: v.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, 1, 1] }), transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [distance, 0] }) }] }]}>
       {children}
     </Animated.View>
   );

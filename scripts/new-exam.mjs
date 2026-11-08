@@ -30,7 +30,7 @@ export function scaffoldExam(id, name, examsDir = "exams") {
     name,
     short_name: id.toUpperCase(),
     "// tagline": "Welcome screen headline.",
-    tagline: `${id.toUpperCase()} practice, five minutes a day`,
+    tagline: `A daily ${id.toUpperCase()} plan, built from your test date`,
     "// audience": "Who studies for it, as Socrates should picture them (\"high school students\", \"graduate school applicants\").",
     audience: "test takers",
     publisher: {
@@ -99,7 +99,7 @@ export function scaffoldExam(id, name, examsDir = "exams") {
     "//": "Socrates' exam-specific lines. persona_notes go into his system prompt; the app reads placement_intro and test_day_tips.",
     persona_notes: [`The ${id.toUpperCase()} has one section so far. Replace this with what a tutor should know about the test.`],
     terms: { spr: "student-produced response", sections: { [section]: "Section one" } },
-    placement_intro: { [section]: "Already know some of this? Answer a few questions and I'll skip you past what you know." },
+    placement_intro: { [section]: "Answer what you can and I'll skip what you already know." },
     test_day_tips: ["Answer every question if there's no penalty for guessing."],
   };
 

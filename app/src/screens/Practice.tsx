@@ -4,13 +4,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, PracticeSummary, Tree } from "../api";
-import { lines, minutes, noOrphan, plural } from "../copy";
+import { lines, minutes, noOrphan, plural, skillStatus } from "../copy";
 import { Icon } from "../components/icons";
 import { SectionSwitch } from "../components/SectionSwitch";
 import { useWide } from "../components/Shell";
 import { Bone, Button, ErrorState, IconButton, Rise, Row, Skeleton } from "../components/ui";
 import { LessonSource, practiceSource, useLoad } from "../nav";
-import { color, GUTTER, space, type } from "../theme";
+import { color, GUTTER, space, type, COLUMN } from "../theme";
 
 const TIMED_N = 10;
 const SECTION_KEY = "testwise.section";
@@ -34,7 +34,7 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
 
   const t = summary.totals;
   const skills = tree.domains.flatMap((d) => d.skills);
-  const started = skills.filter((sk) => sk.attempts > 0 && !sk.mastered).sort((a, b) => a.mastery - b.mastery);
+  const started = skills.filter((sk) => (sk.answered ?? sk.attempts) > 0 && !sk.mastered).sort((a, b) => a.mastery - b.mastery);
   const weakNames = started.slice(0, 3).map((sk) => sk.name);
   const anyStarted = skills.some((sk) => sk.attempts > 0 || sk.tested_out);
 
@@ -62,7 +62,8 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
     : "Practice anything, any day";
   const cta =
     best === "mistakes" ? <Button title={`Fix ${serve} mistakes`} onPress={() => go("mistakes", mistakesWhy)} testID="practice-best" />
-    : best === "weak" ? <Button title={`Practice ${weakNames[0]}`} onPress={() => go("weak")} testID="practice-best" />
+    // One named skill on the button, so the set it opens carries that name too.
+    : best === "weak" ? <Button title={`Practice ${weakNames[0]}`} onPress={() => onStart(practiceSource({ mode: "skill", skill_id: started[0].id, n: 10 }, started[0].name))} testID="practice-best" />
     : <Button title="Start a mixed set" onPress={() => go("mixed")} testID="practice-best" />;
   const mistakesDetail = !fixable
     ? t.missed ? `${plural(t.missed, "miss", "misses")} in skills that aren't open yet` : "Nothing to fix right now"
@@ -159,9 +160,8 @@ function SkillPicker({
           <View style={{ marginTop: space(1) }}>
             {d.skills.filter((sk) => sk.unlocked || sk.attempts > 0).map((sk) => {
               const c = counts.get(sk.id);
-              // In words, missed first; nothing when there's nothing to say yet.
-              const parts = [c?.missed ? `${c.missed} to fix` : "", sk.attempts ? `${sk.mastery}% mastered` : ""].filter(Boolean);
-              const detail = parts.length ? parts.join(", ") : undefined;
+              // The same words as Path, plus the percentage Path shows in its ring.
+              const detail = skillStatus(sk, c?.missed ?? 0, true) || "Not started";
               return <Row key={sk.id} title={sk.name} detail={detail} onPress={() => onPick(sk.id, sk.name)} />;
             })}
             {(() => {
@@ -202,7 +202,7 @@ function PracticeSkeleton() {
 }
 
 const s = StyleSheet.create({
-  scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: 640, width: "100%", alignSelf: "center" },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: 640, width: "100%", alignSelf: "center" },
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });
 

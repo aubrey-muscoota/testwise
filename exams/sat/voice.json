@@ -6,16 +6,50 @@
   ],
   "terms": {
     "spr": "grid-in",
-    "sections": { "sat-math": "Math", "sat-rw": "Reading and Writing" }
+    "sections": {
+      "sat-math": "Math",
+      "sat-rw": "Reading and Writing"
+    }
   },
   "placement_intro": {
-    "sat-math": "Already know some math?",
-    "sat-rw": "Already a strong reader?"
+    "sat-math": "Answer what you can and I'll skip the math you already know.",
+    "sat-rw": "Answer what you can and I'll skip what you already know."
   },
   "test_day_tips": [
     "Answer every question. There's no penalty for guessing on the SAT.",
     "Flag a hard one and come back. You can move freely between questions within a module.",
     "In Math, plug the answer choices back in when you're stuck.",
     "In Reading and Writing, find the words in the passage that prove your answer."
-  ]
+  ],
+  "skill_about": {
+    "alg-linear-eq-1var": "Solving for x when it shows up on both sides",
+    "alg-linear-func": "Slope, intercepts and what they mean in a story",
+    "alg-linear-eq-2var": "Equations like 3x + 2y = 12 and their graphs",
+    "alg-systems": "Where two lines meet, by substitution or elimination",
+    "alg-inequalities": "Solving and graphing with < and >",
+    "adv-equiv-expr": "Factoring, expanding and rewriting expressions",
+    "adv-nonlinear-eq": "Quadratics, radicals and curves that cross lines",
+    "adv-nonlinear-func": "Parabolas, exponentials and reading their graphs",
+    "psda-ratios": "Rates, scale and converting units",
+    "psda-percent": "Percent change, discounts and growth",
+    "psda-one-var-data": "Mean, median and spread from tables and plots",
+    "psda-two-var-data": "Scatterplots, lines of fit and what they predict",
+    "psda-probability": "Two-way tables and chances given a condition",
+    "psda-inference": "What a sample says about everyone, and how sure",
+    "psda-studies": "Spotting which conclusions a study supports",
+    "geo-area-volume": "Areas, volumes and how they scale",
+    "geo-lines-angles": "Parallel lines, angle facts and similar triangles",
+    "geo-right-trig": "Pythagoras, special triangles, sine and cosine",
+    "geo-circles": "Arcs, sectors, radians and circle equations",
+    "rw-central-ideas": "Finding the main point of a short passage",
+    "rw-command-evidence": "Picking the quote or data that proves a claim",
+    "rw-inferences": "Finishing a passage with the conclusion it supports",
+    "rw-words-context": "The word that fits the sentence exactly",
+    "rw-text-structure": "Why the writer put a sentence where it is",
+    "rw-cross-text": "How two passages on one topic agree or differ",
+    "rw-transitions": "However, therefore, for example: picking the link",
+    "rw-rhetorical-synthesis": "Using notes to write the sentence a goal needs",
+    "rw-boundaries": "Commas, semicolons and dashes between clauses",
+    "rw-form-structure": "Verb tense, agreement and pronouns"
+  }
 }

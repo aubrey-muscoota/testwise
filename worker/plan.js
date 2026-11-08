@@ -268,6 +268,7 @@ function weakWhy(list) {
  * @param {{kind:string, mode:string|null, skill_id:string|null, completed:boolean}[]} [o.lessons_today]
  * @param {string[]} [o.active_days]      days (last 2 weeks or more) with a finished lesson
  * @param {Object<string,{practice_minutes:number, timed_seconds:number}>} [o.pace] per section
+ * @param {Object<string,string>} [o.skill_about] skill id → what it covers (from the exam's voice.json)
  */
 export function buildPlan(o) {
   const today = o.today;
@@ -337,9 +338,9 @@ export function buildPlan(o) {
   };
 
   const lessonTask = (s, isDone) => {
-    const opens = skills.filter((x) => x.prereqs.includes(s.id)).map((x) => x.name);
-    let why = isDone ? `You started ${s.name} today.` : `You haven't started ${s.name} yet.`;
-    if (opens.length) why += ` It opens up ${opens.slice(0, 2).join(" and ")}.`;
+    // What the skill covers, in plain words (the row's title and ring already say whether it's started).
+    const about = o.skill_about?.[s.id];
+    const why = about ? `${about}. ${LESSON_QUESTIONS} questions.` : `A first lesson on ${s.name.charAt(0).toLowerCase()}${s.name.slice(1)}.`;
     return {
       id: `lesson-${s.id}`,
       kind: "lesson",
@@ -403,8 +404,8 @@ export function buildPlan(o) {
         add(practiceTask("mixed", pool, nFor(budget, per), {
           title: "Mixed practice",
           why: startedNow.length
-            ? `A mix from the ${plural(startedNow.length, "skill")} you've started, so the early ones don't fade while you learn new ones.`
-            : "After today's lessons: a mixed set on what you just learned, to lock it in.",
+            ? `Mixed from the ${plural(startedNow.length, "skill")} you've started.`
+            : "Today's new skills, mixed together.",
         }));
       }
     }
@@ -433,7 +434,7 @@ export function buildPlan(o) {
         const per = practiceMinutesPer(startedNow, pace);
         add(practiceTask("mixed", startedNow, nFor(budget, per), {
           title: "Mixed practice",
-          why: "On the test, skills come in any order. Mixed sets train you to spot which one a question needs.",
+          why: "Skills in any order, the way the test mixes them.",
         }));
       }
     }

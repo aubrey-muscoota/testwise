@@ -9,7 +9,7 @@ import { Icon } from "../components/icons";
 import { SocratesLine } from "../components/SocratesLine";
 import { Button, IconButton, ProgressBar, Rise, TextButton, usePop } from "../components/ui";
 import { buzz } from "../motion/feedback";
-import { color, font, GUTTER, radius, space, tabular, type } from "../theme";
+import { color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 import { Animated } from "react-native";
 
 export type Field = "date" | "score" | "minutes";
@@ -332,9 +332,9 @@ export function Onboarding({ initial, onDone, only, onCancel }: {
 const CELL = 44;
 
 const s = StyleSheet.create({
-  head: { flexDirection: "row", alignItems: "center", paddingHorizontal: GUTTER, paddingTop: space(1), minHeight: 52, maxWidth: 560, width: "100%", alignSelf: "center" },
-  scroll: { paddingHorizontal: GUTTER, paddingTop: space(2), paddingBottom: space(3), maxWidth: 560, width: "100%", alignSelf: "center" },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1.5), maxWidth: 560, width: "100%", alignSelf: "center" },
+  head: { flexDirection: "row", alignItems: "center", paddingHorizontal: GUTTER, paddingTop: space(1), minHeight: 52, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(2), paddingBottom: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1.5), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   calHead: { flexDirection: "row", alignItems: "center", marginBottom: space(1) },
   calRow: { flexDirection: "row", justifyContent: "space-between" },
   calCell: { width: CELL, alignItems: "center", justifyContent: "center", minHeight: CELL },

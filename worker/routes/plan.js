@@ -2,6 +2,7 @@
 import * as E from "../engine.js";
 import { json, fail, masteryMap, today as localToday } from "../lib/http.js";
 import { skillContext } from "../lib/skill-context.js";
+import { learnerExam } from "../lib/exam.js";
 import { buildPlan, addDays, daysBetween, isDay, effectiveExamDate, DAILY_MINUTES_OPTIONS, DEFAULT_DAILY_MINUTES } from "../plan.js";
 
 export const MAX_EXAM_DAYS = 730; // a test date at most 2 years out
@@ -127,6 +128,6 @@ export async function planInput(env, learnerId, day) {
 // GET /api/plan
 export async function planRoute(env, request, learnerId) {
   const day = localToday(request);
-  const { profile, input } = await planInput(env, learnerId, day);
-  return json({ profile, ...buildPlan(input) });
+  const [{ profile, input }, exam] = await Promise.all([planInput(env, learnerId, day), learnerExam(env, learnerId).catch(() => null)]);
+  return json({ profile, ...buildPlan({ ...input, skill_about: exam?.voice?.skill_about }) });
 }

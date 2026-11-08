@@ -7,7 +7,7 @@ import { examIdFor } from "../lib/exam.js";
 // The learner's exam only (see lib/exam.js); GET /api/exam has the rest of the pack.
 export async function tree(env, request, learnerId) {
   const examId = await examIdFor(env, learnerId);
-  const [exam, sections, domains, skills, counts, mastery, st, consent, profile] = await Promise.all([
+  const [exam, sections, domains, skills, counts, mastery, st, consent, profile, answeredRes] = await Promise.all([
     env.DB.prepare("SELECT id, name FROM exams WHERE id = ?").bind(examId).first(),
     env.DB.prepare("SELECT id, name FROM sections WHERE exam_id = ? ORDER BY position").bind(examId).all(),
     env.DB.prepare("SELECT id, name, section_id, weight FROM domains WHERE exam_id = ? ORDER BY position").bind(examId).all(),
@@ -17,7 +17,14 @@ export async function tree(env, request, learnerId) {
     stats(env, learnerId, today(request)),
     consentState(env, learnerId),
     getProfile(env, learnerId, today(request)),
+    // Questions the learner really answered per skill, outside placement. A
+    // tested-out skill's mastery row carries credited attempts, which aren't these.
+    env.DB.prepare(
+      `SELECT a.skill_id, COUNT(*) AS n FROM attempts a LEFT JOIN lessons l ON l.id = a.lesson_id
+       WHERE a.learner_id = ? AND (l.kind IS NULL OR l.kind != 'placement') GROUP BY a.skill_id`,
+    ).bind(learnerId).all(),
   ]);
+  const answered = Object.fromEntries(answeredRes.results.map((r) => [r.skill_id, r.n]));
   const itemCount = Object.fromEntries(counts.results.map((r) => [r.skill_id, r.n]));
   const out = domains.results.map((d) => ({
     id: d.id,
@@ -35,6 +42,7 @@ export async function tree(env, request, learnerId) {
           prereqs,
           items: itemCount[s.id] || 0,
           attempts: m.attempts,
+          answered: answered[s.id] || 0,
           mastery: E.masteryPct(m.rating, m.attempts),
           mastered: E.isMastered(m.rating, m.attempts),
           tested_out: !!m.tested_out,

@@ -7,18 +7,19 @@
 export const lines = {
   // Right answer, nothing more specific to say.
   correct: [
-    "Yes. Could you explain why to a friend?",
-    "That's it. What gave it away?",
-    "Right. Did you check it another way, or trust it?",
-    "Correct. Was that a guess or a sure thing?",
-    "Good. Would you get it again in a week?",
+    // The sheet's header already says "Right", so he goes straight to a question.
+    "Could you explain why to a friend?",
+    "What gave it away?",
+    "Did you check it another way, or trust it?",
+    "Was that a guess or a sure thing?",
+    "Would you get it again in a week?",
   ],
   // Wrong answer without a reason on file for that choice.
   incorrect: [
-    "Not this time. Where did it turn?",
-    "Close? Look at the solution and find the step you skipped.",
-    "That's not it. Which part felt shaky?",
-    "No. Want to talk it through with me?",
+    "Where did it turn?",
+    "Look at the solution and find the step you skipped.",
+    "Which part felt shaky?",
+    "Want to talk it through with me?",
   ],
   // A missed question coming back at the end of the lesson.
   retry: [
@@ -124,4 +125,22 @@ export function noOrphan(t: string) {
 // A plan task title without its "Learn: " prefix.
 export function taskName(title: string) {
   return title.replace(/^(Learn|Review|Practice):\s*/i, "");
+}
+
+// One status line for a skill, the same on Path and in the skill picker:
+// misses to fix first, then how far along it is. `pct` adds the mastery
+// percentage where no ring shows it.
+export function skillStatus(
+  sk: { answered?: number; attempts: number; mastery: number; mastered: boolean; tested_out?: boolean },
+  missed = 0,
+  pct = false,
+) {
+  const n = sk.answered ?? sk.attempts;
+  const parts: string[] = [];
+  if (missed) parts.push(`${missed} to fix`);
+  if (sk.mastered) parts.push("Mastered");
+  else if (n > 0) parts.push(pct ? `${sk.mastery}% after ${plural(n, "question")}` : `${plural(n, "question")} so far`);
+  else if (sk.tested_out) parts.push("Tested out");
+  const line = parts.join(", ");
+  return line ? line.charAt(0).toUpperCase() + line.slice(1) : "";
 }

@@ -11,7 +11,7 @@ import { SocratesLine } from "../components/SocratesLine";
 import { useWide } from "../components/Shell";
 import { Bone, Button, ErrorState, Rise, Skeleton, Stat, TextButton, Wordmark, decorative, usePop } from "../components/ui";
 import { LessonSource, practiceSource, useLoad } from "../nav";
-import { color, font, GUTTER, radius, space, tabular, type } from "../theme";
+import { color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 
 export function taskSource(t: PlanTask): LessonSource | null {
   if (!t.start) return null;
@@ -72,7 +72,7 @@ export function Today({
   const left = tasks.filter((t) => !t.done).reduce((a, t) => a + t.minutes, 0);
 
   // The shakiest started skill, for "more" once today is done.
-  const started = tree.domains.flatMap((d) => d.skills).filter((sk) => sk.attempts > 0 && !sk.mastered).sort((a, b) => a.mastery - b.mastery);
+  const started = tree.domains.flatMap((d) => d.skills).filter((sk) => (sk.answered ?? sk.attempts) > 0 && !sk.mastered).sort((a, b) => a.mastery - b.mastery);
   const restTask = tasks.find((t) => t.kind === "rest");
   const line = restTask
     ? restTask.why
@@ -82,7 +82,10 @@ export function Today({
         : "That's today done. Come back tomorrow and the list will be new."
       : plan.status.message;
 
-  const more = practiceSource({ mode: "weak", n: 10 }, "Weak spots");
+  // The button names one skill, so the set it opens is that skill, under that name.
+  const more = started.length
+    ? practiceSource({ mode: "skill", skill_id: started[0].id, n: 10 }, started[0].name)
+    : practiceSource({ mode: "weak", n: 10 }, "Weak spots");
   const cta = next
     ? <Button title={startLabel(next)} onPress={() => onStart(taskSource(next)!)} testID="start-next" />
     : allDone && !restTask
@@ -92,9 +95,11 @@ export function Today({
   return (
     <View style={{ flex: 1 }}>
       <ScrollView
-        contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}
+        contentContainerStyle={[s.scroll, wide && { paddingTop: space(4) }]}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={async () => { setRefreshing(true); await reload(); setRefreshing(false); }} />}
       >
+        {/* On wide screens the rail holds the wordmark; this row's top padding matches
+            the rail's, so the XP count sits on the wordmark's line. */}
         <View style={s.topRow}>
           {!wide && <Wordmark size={19} />}
           <View style={{ flex: 1 }} />
@@ -187,9 +192,12 @@ function TaskRow({ task, isNext, onPress }: { task: PlanTask; isNext: boolean; o
           </Text>
           <Text style={[type.small, tabular, { marginLeft: space(1) }]}>{mins}</Text>
         </View>
-        <Text style={[isNext ? type.body : type.small, isNext ? { marginTop: space(0.5) } : { marginTop: 2 }, !isNext && { color: color.inkSoft }]} numberOfLines={isNext ? undefined : 2}>
-          {task.why}
-        </Text>
+        {/* Once it's checked off, the reason has done its job. */}
+        {!task.done && (
+          <Text style={[isNext ? type.body : type.small, isNext ? { marginTop: space(0.5) } : { marginTop: 2 }, !isNext && { color: color.inkSoft }]} numberOfLines={isNext ? undefined : 2}>
+            {task.why}
+          </Text>
+        )}
       </View>
     </Pressable>
   );
@@ -221,7 +229,7 @@ function TodaySkeleton() {
 }
 
 const s = StyleSheet.create({
-  scroll: { paddingHorizontal: GUTTER, paddingTop: space(2), maxWidth: 640, width: "100%", alignSelf: "center" },
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   topRow: { flexDirection: "row", alignItems: "center", minHeight: 32, marginBottom: space(2.5) },
   stats: { flexDirection: "row", gap: space(2) },
   subRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: space(0.5) },
@@ -229,5 +237,5 @@ const s = StyleSheet.create({
   task: { flexDirection: "row", alignItems: "flex-start", paddingVertical: space(1.5), paddingHorizontal: space(1.5), marginHorizontal: -space(1.5), borderRadius: radius.row },
   taskNext: { backgroundColor: color.sheet, paddingVertical: space(2), marginVertical: space(0.5) },
   taskTitleNext: { fontFamily: font.serifSemi, fontSize: 21, lineHeight: 27, color: color.ink },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: 640, width: "100%", alignSelf: "center" },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });

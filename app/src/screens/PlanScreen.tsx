@@ -3,12 +3,12 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, Plan, PlanPhase } from "../api";
-import { longDay, plural, shortDay } from "../copy";
+import { longDay, parseDay, plural, shortDay, shortMonth } from "../copy";
 import { Icon } from "../components/icons";
 import { useWide } from "../components/Shell";
-import { Bone, ErrorState, IconButton, Rise, Skeleton } from "../components/ui";
+import { Bone, ErrorState, IconButton, Rise, Skeleton, TextButton } from "../components/ui";
 import { useLoad } from "../nav";
-import { color, GUTTER, space, tabular, type } from "../theme";
+import { color, GUTTER, space, tabular, type, COLUMN } from "../theme";
 
 const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven"];
 
@@ -24,6 +24,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
   const { data, error, reload } = useLoad(async () => ({ plan: await api.plan() }));
   const wide = useWide();
   const exam = getExam();
+  const [all, setAll] = React.useState(false);
 
   const header = (
     <View style={s.head}>
@@ -65,7 +66,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
   const learnWeeks = plan.weeks.filter((w) => w.phase === "learn");
   const perWeek = learnWeeks.length ? Math.round(learnWeeks.reduce((a, w) => a + w.focus_names.length, 0) / learnWeeks.length) : 0;
   const phaseLine: Partial<Record<PlanPhase, string>> = {
-    learn: perWeek >= 2 ? `${WORDS[perWeek] ? WORDS[perWeek].charAt(0).toUpperCase() + WORDS[perWeek].slice(1) : perWeek} new skills a week` : "A new skill most weeks",
+    learn: perWeek >= 2 ? `About ${WORDS[perWeek] ?? perWeek} new skills a week` : "A new skill most weeks",
     strengthen: "Your weakest skills, plus mixed sets",
   };
 
@@ -85,6 +86,13 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
             <View style={{ marginTop: space(1.5) }}>
               {g.weeks.map((w, wi) => {
                 const now = gi === 0 && wi === 0;
+                const idx = plan.weeks.indexOf(w);
+                if (!all && idx >= SHOWN) {
+                  // The weeks past the next two fold into one line per phase.
+                  if (plan.weeks[idx - 1]?.phase === w.phase && idx - 1 >= SHOWN) return null;
+                  const rest = g.weeks.slice(wi);
+                  return <Summary key={w.start} phase={g.phase} weeks={rest} />;
+                }
                 return (
                   <View key={w.start} style={[s.week, now && s.weekNow]}>
                     <View style={s.weekDate}>
@@ -92,7 +100,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
                     </View>
                     <View style={{ flex: 1 }}>
                       {w.focus_names.length
-                        ? w.focus_names.map((n) => <Text key={n} style={type.body}>{n}</Text>)
+                        ? w.focus_names.map((n, ni) => <Text key={n} style={[type.body, ni > 0 && s.nextSkill]}>{n}</Text>)
                         : <Text style={type.body}>{w.goal}</Text>}
                     </View>
                   </View>
@@ -101,6 +109,10 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
             </View>
           </Rise>
         ))}
+
+        {!all && plan.weeks.length > SHOWN && (
+          <TextButton title="Show every week" align="left" onPress={() => setAll(true)} style={{ alignSelf: "flex-start", paddingHorizontal: 0, marginTop: space(2) }} />
+        )}
 
         {plan.phase !== "after" && (
           <View style={s.end}>
@@ -112,6 +124,31 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
         )}
         <View style={{ height: space(4) }} />
       </ScrollView>
+    </View>
+  );
+}
+
+// This week and next are listed in full; the rest are summed up.
+const SHOWN = 2;
+
+// "Dec – Jan" or "Feb": the months a run of weeks covers.
+function months(weeks: Plan["weeks"]) {
+  const a = shortMonth(parseDay(weeks[0].start).getMonth());
+  const b = shortMonth(parseDay(weeks[weeks.length - 1].start).getMonth());
+  return a === b ? a : `${a} – ${b}`;
+}
+
+function Summary({ phase, weeks }: { phase: PlanPhase; weeks: Plan["weeks"] }) {
+  const skills = new Set(weeks.flatMap((w) => w.focus_names)).size;
+  const text = phase === "learn"
+    ? skills ? `${plural(skills, "more skill")}` : "Review and practice"
+    : phase === "strengthen"
+      ? plural(weeks.length, "week")
+      : weeks[weeks.length - 1].goal ?? "";
+  return (
+    <View style={s.week}>
+      <View style={s.weekDate}><Text style={[type.label, tabular]}>{months(weeks)}</Text></View>
+      <Text style={[type.body, { flex: 1 }]}>{text}</Text>
     </View>
   );
 }
@@ -135,10 +172,12 @@ function PlanSkeleton() {
 }
 
 const s = StyleSheet.create({
-  head: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: 640, width: "100%", alignSelf: "center" },
-  scroll: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: 640, width: "100%", alignSelf: "center" },
+  head: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   week: { flexDirection: "row", paddingVertical: space(1.25) },
   weekNow: {},
+  // A little air between skills, so a name that wraps still reads as one.
+  nextSkill: { marginTop: space(0.75) },
   // Nudged down so the label sits on the first body line's baseline.
   weekDate: { width: 96, paddingRight: space(1), paddingTop: 3 },
   end: { flexDirection: "row", alignItems: "center", marginTop: space(4) },

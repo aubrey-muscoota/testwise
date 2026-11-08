@@ -5,7 +5,7 @@ import { getExam } from "../api";
 import { noOrphan } from "../copy";
 import { SocratesLine } from "../components/SocratesLine";
 import { Button, Rise, Wordmark } from "../components/ui";
-import { color, GUTTER, space, type } from "../theme";
+import { color, GUTTER, space, type, COLUMN } from "../theme";
 
 export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
   const [busy, setBusy] = useState(false);
@@ -20,14 +20,13 @@ export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
         <Wordmark size={26} />
         <Rise delay={80} style={{ marginTop: short ? space(3) : space(6) }}>
           <SocratesLine
-            layout="under"
-            size={short ? 128 : 168}
+            size={short ? 104 : 128}
             mood="happy"
-            text={`I'm Socrates. Tell me when your ${name} is and I'll plan every day until then.`}
+            text="I'm Socrates. I ask the questions, you find the answers."
           />
         </Rise>
         <Rise delay={240} style={{ marginTop: space(4) }}>
-          <Text style={type.title} accessibilityRole="header">{noOrphan(exam?.tagline ?? "Test prep, a few minutes a day")}</Text>
+          <Text style={type.title} accessibilityRole="header">{noOrphan(exam?.tagline ?? `A daily ${name} plan, built from your test date`)}</Text>
           <Text style={[type.body, { color: color.inkSoft, marginTop: space(1) }]}>
             No account needed. Your progress stays on this device.
           </Text>
@@ -57,6 +56,6 @@ export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
 }
 
 const s = StyleSheet.create({
-  wrap: { paddingHorizontal: GUTTER, paddingTop: space(5), paddingBottom: space(2), maxWidth: 520, width: "100%", alignSelf: "center" },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(2), maxWidth: 520, width: "100%", alignSelf: "center" },
+  wrap: { paddingHorizontal: GUTTER, paddingTop: space(5), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });

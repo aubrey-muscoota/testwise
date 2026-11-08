@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Svg, { Circle, Path as SvgPath } from "react-native-svg";
 import { api, currentLearnerId, getExam, placementKey, Skill, Tree } from "../api";
-import { noOrphan, plural } from "../copy";
+import { noOrphan, skillStatus } from "../copy";
 import { Icon } from "../components/icons";
 import { SectionSwitch } from "../components/SectionSwitch";
 import { useWide } from "../components/Shell";
@@ -13,15 +13,16 @@ import { Bone, Button, ErrorState, Rise, Sheet, Skeleton, TextButton, decorative
 import { feedback } from "../motion/feedback";
 import { LessonSource, practiceSource, useLoad } from "../nav";
 import { Socrates } from "../socrates/Socrates";
-import { color, font, GUTTER, space, tabular, type } from "../theme";
+import { color, font, GUTTER, space, tabular, type, COLUMN } from "../theme";
 
 const SECTION_KEY = "testwise.section";
 // Remembered between visits so the path can mark newly opened skills.
 const unlockedKey = (learner: string | null) => `testwise.unlocked.${learner ?? "anon"}`;
 
 const ROW = 92;
-const XS = [46, 84, 104, 72, 40, 64, 96, 58];
-const LABEL_X = 150;
+// The line wobbles in a narrow band, so skill names get most of a phone's width.
+const XS = [38, 62, 80, 56, 34, 50, 74, 46];
+const LABEL_X = 124;
 const R = 26;
 const R_NEXT = 32;
 
@@ -29,8 +30,9 @@ type State = "locked" | "mastered" | "tested" | "progress" | "open";
 function stateOf(sk: Skill): State {
   if (!sk.unlocked) return "locked";
   if (sk.mastered) return "mastered";
-  if (sk.tested_out && sk.attempts === 0) return "tested";
-  return sk.attempts > 0 ? "progress" : "open";
+  const answered = sk.answered ?? sk.attempts;
+  if (sk.tested_out && answered === 0) return "tested";
+  return answered > 0 ? "progress" : "open";
 }
 
 function sectionDomains(tree: Tree, id: string | null) {
@@ -40,7 +42,11 @@ function sectionDomains(tree: Tree, id: string | null) {
 }
 
 export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonSource) => void; onStartPlacement: (section: string, name: string) => void }) {
-  const { data: tree, error, reload } = useLoad(() => api.tree());
+  const { data, error, reload } = useLoad(async () => {
+    const [tree, summary] = await Promise.all([api.tree(), api.practiceSummary().catch(() => null)]);
+    return { tree, missed: new Map((summary?.skills ?? []).map((x) => [x.skill_id, x.missed] as const)) };
+  });
+  const tree = data?.tree;
   const [section, setSection] = useState<string | null>(null);
   const [selected, setSelected] = useState<Skill | null>(null);
   const [newIds, setNewIds] = useState<Set<string>>(new Set());
@@ -132,6 +138,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
               newIds={newIds}
               onOpen={setSelected}
               byId={byId}
+              missed={data!.missed}
             />
           </View>
         ))}
@@ -143,6 +150,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
         <SkillSheet
           skill={selected}
           byId={byId}
+          missed={data!.missed.get(selected.id) ?? 0}
           onClose={() => setSelected(null)}
           onLesson={() => { setSelected(null); onStart({ kind: "skill", skillId: selected.id, name: selected.name }); }}
           onDrill={() => { setSelected(null); onStart(practiceSource({ mode: "skill", skill_id: selected.id, n: 8 }, selected.name)); }}
@@ -154,8 +162,8 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
 
 // One domain's skills along an inked line.
 function Track({
-  skills, offset, nextId, newIds, onOpen, byId,
-}: { skills: Skill[]; offset: number; nextId?: string; newIds: Set<string>; onOpen: (sk: Skill) => void; byId: Map<string, Skill> }) {
+  skills, offset, nextId, newIds, onOpen, byId, missed,
+}: { skills: Skill[]; offset: number; nextId?: string; newIds: Set<string>; onOpen: (sk: Skill) => void; byId: Map<string, Skill>; missed: Map<string, number> }) {
   const pts = skills.map((_, i) => ({ x: XS[(i + offset) % XS.length], y: ROW * i + ROW / 2 }));
   const h = ROW * skills.length;
   // Segments, each a little uneven; solid up to open skills, dotted to locked ones.
@@ -178,7 +186,7 @@ function Track({
         </Svg>
       </View>
       {skills.map((sk, i) => (
-        <SkillNode key={sk.id} skill={sk} x={pts[i].x} y={pts[i].y} isNext={sk.id === nextId} isNew={newIds.has(sk.id)} onPress={() => onOpen(sk)} byId={byId} />
+        <SkillNode key={sk.id} skill={sk} x={pts[i].x} y={pts[i].y} isNext={sk.id === nextId} isNew={newIds.has(sk.id)} onPress={() => onOpen(sk)} byId={byId} missed={missed.get(sk.id) ?? 0} />
       ))}
     </View>
   );
@@ -189,25 +197,24 @@ function unmet(sk: Skill, byId: Map<string, Skill>) {
   return sk.prereqs.map((id) => byId.get(id)).filter((x): x is Skill => !!x && !x.mastered && !x.tested_out).map((x) => x.name);
 }
 
-function statusLine(sk: Skill, isNext: boolean, byId: Map<string, Skill>) {
+function statusLine(sk: Skill, isNext: boolean, byId: Map<string, Skill>, missed: number) {
   const st = stateOf(sk);
   if (st === "locked") {
     const before = unmet(sk, byId);
     // The first unmet skill only: the dotted line already shows the order.
     return before.length ? noOrphan(`After ${before[0]}`) : "Opens soon";
   }
-  if (st === "mastered") return "Mastered";
-  if (st === "tested") return "Tested out, open to practice";
-  // The percentage lives in the ring; the line says how much work is behind it.
-  if (st === "progress") return `${plural(sk.attempts, "question")} so far`;
+  // The same words as the skill picker; the percentage lives in the ring.
+  const line = skillStatus(sk, missed);
+  if (line) return line;
   return isNext ? "Start here" : "Not started";
 }
 
-function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId }: { skill: Skill; x: number; y: number; isNext: boolean; isNew: boolean; onPress: () => void; byId: Map<string, Skill> }) {
+function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId, missed }: { skill: Skill; x: number; y: number; isNext: boolean; isNew: boolean; onPress: () => void; byId: Map<string, Skill>; missed: number }) {
   const st = stateOf(sk);
   const r = isNext ? R_NEXT : R;
   const pop = usePop(isNew, 1.18);
-  const status = statusLine(sk, isNext, byId);
+  const status = statusLine(sk, isNext, byId, missed);
   const label = `${sk.name}, ${st === "progress" ? `${sk.mastery}%, ` : ""}${status}${isNew ? ", new" : ""}`;
   // Both the node and its label press together: the node shrinks, the name turns azure.
   const [down, setDown] = useState(false);
@@ -227,7 +234,7 @@ function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId }: { skill: S
       </Pressable>
       <Pressable {...press} onPress={onPress} accessible={false} focusable={false} style={[s.label, { top: y - 36, height: 72 }]}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text style={[type.label, st === "locked" && { color: color.inkSoft }, down && { color: color.azureInk }, { flexShrink: 1 }]} numberOfLines={2}>{sk.name}</Text>
+          <Text style={[type.label, st === "locked" && { color: color.inkSoft }, down && { color: color.azureInk }, { flexShrink: 1 }]} numberOfLines={2}>{noOrphan(sk.name)}</Text>
           {isNew && <Icon name="dot" size={14} color={color.terracotta} style={{ marginLeft: 4 }} />}
         </View>
         <Text style={[type.small, tabular, isNext && { color: color.azureInk, fontFamily: font.bold }]} numberOfLines={2}>
@@ -281,7 +288,7 @@ function NodeArt({ state, r, mastery, pop, isNext }: { state: State; r: number; 
   );
 }
 
-function SkillSheet({ skill: sk, byId, onClose, onLesson, onDrill }: { skill: Skill; byId: Map<string, Skill>; onClose: () => void; onLesson: () => void; onDrill: () => void }) {
+function SkillSheet({ skill: sk, byId, missed, onClose, onLesson, onDrill }: { skill: Skill; byId: Map<string, Skill>; missed: number; onClose: () => void; onLesson: () => void; onDrill: () => void }) {
   const st = stateOf(sk);
   const ref = useRef(sk.id);
   ref.current = sk.id;
@@ -289,7 +296,8 @@ function SkillSheet({ skill: sk, byId, onClose, onLesson, onDrill }: { skill: Sk
     st === "locked" ? (unmet(sk, byId).length ? `Opens after ${unmet(sk, byId).join(", ")}. Finish a lesson there first.` : "Opens soon.")
     : st === "mastered" ? "You've mastered this. A drill now and then keeps it that way."
     : st === "tested" ? "You tested out of this in the placement quiz. Practice it any time."
-    : st === "progress" ? `After ${plural(sk.attempts, "question")}. A lesson takes about 6 minutes.`
+    : st === "progress" ? `${skillStatus(sk, 0, true)}. A 6-minute lesson goes over what you've been missing.`
+    : missed ? `You missed ${missed === 1 ? "one" : missed} in the placement quiz. A short lesson, about 6 minutes, starts from the basics.`
     : "A short lesson, about 6 minutes.";
   return (
     <Sheet onClose={onClose} label={sk.name}>
@@ -301,7 +309,7 @@ function SkillSheet({ skill: sk, byId, onClose, onLesson, onDrill }: { skill: Sk
         ) : (
           <>
             <Button title="Start lesson" onPress={onLesson} />
-            {(sk.attempts > 0 || st !== "open") && <TextButton title="Drill 8 questions instead" onPress={onDrill} />}
+            {(sk.attempts > 0 || st !== "open") && <TextButton title="Just drill questions" onPress={onDrill} />}
           </>
         )}
       </View>
@@ -328,7 +336,7 @@ function PathSkeleton() {
 }
 
 const s = StyleSheet.create({
-  scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: 640, width: "100%", alignSelf: "center" },
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   // Grouped by space only: no card around the offer.
   offer: { marginTop: space(3) },
   label: { position: "absolute", left: LABEL_X, right: 0, minHeight: 44, justifyContent: "center" },

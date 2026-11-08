@@ -20,7 +20,7 @@ import { renderMath } from "../text/tex";
 import { feedback } from "../motion/feedback";
 import { LessonSource, MODE_TITLE } from "../nav";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
-import { color, font, GUTTER, radius, scrim, shadow, space, tabular, type } from "../theme";
+import { color, font, GUTTER, radius, scrim, shadow, space, tabular, type, COLUMN } from "../theme";
 
 export type LessonResult = {
   correct: number;
@@ -104,6 +104,17 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
   const scrollY = useRef(0);
   const viewH = useRef(0);
   const block = useRef({ y: 0, h: 0 });
+  // The stem and each choice, measured when Check lands, so a scroll can stop on a clean edge.
+  type Measurable = React.ComponentRef<typeof View>;
+  const innerRef = useRef<Measurable>(null);
+  const stemRef = useRef<Measurable>(null);
+  const tileRefs = useRef<(Measurable | null)[]>([]);
+  const contentH = useRef(0);
+  // The Check bar floats (with a shadow) only while there's more to scroll under it.
+  const [moreBelow, setMoreBelow] = useState(false);
+  // Extra room under a checked question, so its stem can scroll up to the header.
+  const [tailPad, setTailPad] = useState(0);
+  const updateMore = () => setMoreBelow(contentH.current - (scrollY.current + viewH.current) > 4);
   const revealSolution = useRef(false);
   const solLayout = useRef<{ y: number; h: number } | null>(null);
   const contentRef = useRef<React.ComponentRef<typeof View>>(null);
@@ -193,7 +204,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
         const milestone = firstTry && COMBO_MILESTONES.includes(n);
         setCheer(milestone);
         if (milestone) {
-          setLine(`That's ${n} in a row. Keep reading every line.`);
+          setLine("Keep reading every line, all the way to the end.");
           setTimeout(feedback.combo, 220);
         } else {
           setLine(pick(lines.correct));
@@ -235,6 +246,8 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
     setXpGain(0);
     revealSolution.current = false;
     solLayout.current = null;
+    tileRefs.current = [];
+    setTailPad(0);
     scrollY.current = 0;
     scrollRef.current?.scrollTo({ y: 0, animated: false });
     started.current = Date.now();
@@ -281,10 +294,41 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
     setShowSolution(true);
   }
 
-  // After Check, keep the answer area in view above the feedback panel.
+  // After Check, show the answer area above the feedback panel. The view's top
+  // edge stops at the start of the stem or of a choice, never partway through a
+  // line of the passage.
+  // Positions are measured now rather than kept from onLayout: on web, onLayout
+  // only reports size changes, and the folded Socrates row moves things without
+  // resizing them.
+  async function revealAnswer() {
+    const inner = innerRef.current;
+    const sv = scrollRef.current as unknown as { getScrollableNode?: () => { clientHeight: number; scrollHeight: number } } | null;
+    if (!inner || !sv) return;
+    const node = Platform.OS === "web" ? sv.getScrollableNode?.() : null;
+    const vh = node ? node.clientHeight : viewH.current;
+    const ch = node ? node.scrollHeight : contentH.current;
+    if (!vh) return;
+    const top = (r: Measurable | null) => new Promise<{ y: number; h: number } | null>((res) => {
+      if (!r) return res(null);
+      try { r.measureLayout(inner as never, (_x, y, _w, h) => res({ y, h }), () => res(null)); } catch { res(null); }
+    });
+    const [stem, ...tiles] = await Promise.all([top(stemRef.current), ...tileRefs.current.map(top)]);
+    const parts = [stem, ...tiles].filter((x): x is { y: number; h: number } => !!x);
+    if (!parts.length) return;
+    const m = space(2);
+    const last = parts[parts.length - 1];
+    const want = Math.max(0, last.y + last.h + m - vh);
+    const max = Math.max(0, ch - vh);
+    const edges = parts.map((p) => Math.max(0, p.y - m));
+    // The first clean edge at or past where the last choice fits. When the
+    // content is too short to scroll that far, room is added under it.
+    const to = want === 0 ? 0 : edges.find((e) => e >= want) ?? want;
+    const go = () => { if (Math.abs(to - scrollY.current) > 1) scrollRef.current?.scrollTo({ y: to, animated: true }); };
+    if (to > max) { setTailPad((p) => p + Math.ceil(to - max)); setTimeout(go, 60); } else go();
+  }
   useEffect(() => {
     if (phase === "answering") return;
-    const t = setTimeout(() => { const { y, h } = block.current; ensureVisible(y + Math.max(0, h - 280), y + h); }, 160);
+    const t = setTimeout(revealAnswer, 200);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, fx]);
@@ -378,11 +422,14 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
           contentContainerStyle={s.body}
           keyboardShouldPersistTaps="handled"
           scrollEventThrottle={16}
-          onScroll={(e) => { scrollY.current = e.nativeEvent.contentOffset.y; }}
-          onLayout={(e) => { viewH.current = e.nativeEvent.layout.height; }}
+          onScroll={(e) => { scrollY.current = e.nativeEvent.contentOffset.y; updateMore(); }}
+          onLayout={(e) => { viewH.current = e.nativeEvent.layout.height; updateMore(); }}
+          onContentSizeChange={(_, hgt) => { contentH.current = hgt; updateMore(); }}
         >
-          {!(quietStart.current && done === 0 && !current.retry) && (
-            <FadeWhen hidden={checked} style={s.say}>
+          <View ref={innerRef}>
+          {/* Once checked, Socrates speaks from the feedback sheet, so his row here folds away. */}
+          {!checked && !(quietStart.current && done === 0 && !current.retry) && (
+            <FadeWhen hidden={false} style={s.say}>
               <SocratesLine text={line} mood={mood} size={64} textStyle={type.socratesSmall} />
             </FadeWhen>
           )}
@@ -394,7 +441,9 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
                 {item.passage2 && <Passage text={item.passage2} label="Text 2" />}
                 {item.figure && <Figure spec={item.figure} />}
                 {item.table && <DataTable table={item.table} />}
-                <RichText text={item.stem} style={[type.question, s.stem]} />
+                <View ref={stemRef}>
+                  <RichText text={item.stem} style={[type.question, s.stem]} />
+                </View>
                 {item.source === "generated" && !checked && (
                   <View style={s.genRow}>
                     <TextButton
@@ -417,6 +466,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
                       const state: TileState = checked ? (c === item.answer ? "right" : picked ? "wrong" : "dim") : picked ? "picked" : "idle";
                       return (
                         <Rise key={c} delay={60 + i * 40}>
+                          <View ref={(r) => { tileRefs.current[i] = r; }}>
                           <ChoiceTile
                             letter={"ABCDEFGH"[i]}
                             text={c}
@@ -425,12 +475,13 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
                             disabled={checked}
                             onPress={() => { if (choice !== c) feedback.select(); setChoice(c); }}
                           />
+                          </View>
                         </Rise>
                       );
                     })}
                   </View>
                 ) : (
-                  <View>
+                  <View ref={(r) => { tileRefs.current[0] = r; }}>
                     <View>
                       <TextInput
                         value={typed}
@@ -480,11 +531,13 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
             </View>
           )}
 
-          <View style={{ height: space(3) }} />
+          {/* Room under the last choice, so every tile can scroll clear of the bar or sheet. */}
+          <View style={{ height: (checked ? space(6) : space(3)) + (checked ? tailPad : 0) }} />
+          </View>
         </ScrollView>
 
         {phase === "answering" ? (
-          <View key="foot" style={s.foot}>
+          <View key="foot" style={[s.foot, moreBelow && shadow.bar]}>
             <View style={s.footInner}>
               <Button title={busy ? "Checking…" : "Check"} disabled={!response || busy} onPress={check} />
             </View>
@@ -997,7 +1050,7 @@ function ThinkingDots() {
 
 const PANEL_R = radius.sheet;
 // One column for the lesson on wide screens: header, body, panel and tutor.
-const COLUMN = 680;
+
 
 const s = StyleSheet.create({
   center: { flex: 1, alignItems: "flex-start", justifyContent: "center", padding: GUTTER, maxWidth: 520, width: "100%", alignSelf: "center" },
@@ -1030,7 +1083,8 @@ const s = StyleSheet.create({
   solution: { marginTop: space(3) },
   foot: { paddingHorizontal: GUTTER, paddingVertical: space(1.5), backgroundColor: color.paper },
   footInner: { maxWidth: COLUMN - 2 * GUTTER, width: "100%", alignSelf: "center" },
-  panel: { width: "100%", maxWidth: COLUMN, alignSelf: "center", paddingHorizontal: GUTTER, paddingTop: space(2.5), paddingBottom: space(1.5), borderTopLeftRadius: PANEL_R, borderTopRightRadius: PANEL_R },
+  // Full width; its contents line up with the lesson column through footInner.
+  panel: { width: "100%", paddingHorizontal: GUTTER, paddingTop: space(2.5), paddingBottom: space(1.5), borderTopLeftRadius: PANEL_R, borderTopRightRadius: PANEL_R },
   panelHead: { flexDirection: "row", alignItems: "flex-start", marginBottom: space(1.5) },
   panelTitle: { fontFamily: font.serifSemi, fontSize: 22, lineHeight: 28 },
   panelLinks: { flexDirection: "row", flexWrap: "wrap", marginBottom: space(1), marginTop: -space(0.5) },

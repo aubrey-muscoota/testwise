@@ -4,7 +4,7 @@ import { Button, Rise } from "../components/ui";
 import { legalUrl } from "../api";
 import { Socrates } from "../socrates/Socrates";
 import { buzz } from "../motion/feedback";
-import { color, font, GUTTER, radius, space, tabular, type } from "../theme";
+import { color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -95,8 +95,8 @@ export function TooYoung() {
 }
 
 const s = StyleSheet.create({
-  wrap: { flexGrow: 1, paddingHorizontal: GUTTER, paddingTop: space(4), paddingBottom: space(2), maxWidth: 520, width: "100%", alignSelf: "center" },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(2), maxWidth: 520, width: "100%", alignSelf: "center" },
+  wrap: { flexGrow: 1, paddingHorizontal: GUTTER, paddingTop: space(4), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   months: { flexDirection: "row", flexWrap: "wrap", gap: space(1) },
   month: { width: "22%", flexGrow: 1, minHeight: 44, alignItems: "center", justifyContent: "center", borderRadius: radius.input, backgroundColor: color.paperDeep },
   monthOn: { backgroundColor: color.azure },

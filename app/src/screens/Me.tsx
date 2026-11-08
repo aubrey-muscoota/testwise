@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { Alert, Linking, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, legalUrl, Profile, Tree } from "../api";
-import { longDay, monthName, parseDay } from "../copy";
+import { monthName, parseDay } from "../copy";
 import { useWide } from "../components/Shell";
 import { Bone, ErrorState, Rise, Row, Skeleton, Toggle, TextButton, useMuted } from "../components/ui";
 import { useLoad } from "../nav";
-import { color, GUTTER, space, type } from "../theme";
+import { color, GUTTER, space, type, COLUMN } from "../theme";
 import type { Field } from "./Onboarding";
 import { ConsentSheet } from "./Lesson";
 
@@ -39,7 +39,8 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
   const name = exam?.short_name ?? "test";
 
   const dateText = profile.exam_date ? (() => { const d = parseDay(profile.exam_date!); return `${monthName(d.getMonth())} ${d.getDate()}`; })() : profile.not_booked ? "Not booked yet" : "Not set";
-  const title = profile.exam_date ? `${name} on ${longDay(profile.exam_date).replace(/^\w+, /, "")}` : `Your ${name} settings`;
+  // The rows below carry the date, so the title doesn't repeat it.
+  const title = `Your ${name} plan`;
 
   const setAi = (on: boolean) => {
     if (on) { setConsentOpen(true); return; }
@@ -156,6 +157,6 @@ function MeSkeleton() {
 }
 
 const s = StyleSheet.create({
-  scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: 640, width: "100%", alignSelf: "center" },
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   link: { paddingHorizontal: 0 },
 });

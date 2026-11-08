@@ -29,6 +29,8 @@ export type Skill = {
   prereqs: string[];
   items: number;
   attempts: number;
+  // Questions really answered outside placement (attempts includes placement credit).
+  answered?: number;
   mastery: number;
   mastered: boolean;
   tested_out?: boolean;
@@ -172,6 +174,7 @@ export type Exam = {
     persona_notes?: string[];
     terms?: { spr?: string; sections?: Record<string, string> };
     placement_intro?: Record<string, string>;
+    skill_about?: Record<string, string>;
     test_day_tips?: string[];
   };
 };

@@ -35,6 +35,8 @@ export const space = (n: number) => n * 8;
 
 // Side gutter for left-aligned text.
 export const GUTTER = 20;
+// One reading column for every screen, so the left edge holds still between them.
+export const COLUMN = 640;
 
 // Corners. Nested surfaces use outer − padding (see `inner`).
 export const radius = { sheet: 20, row: 14, button: 14, input: 12, well: 12, small: 8 };
