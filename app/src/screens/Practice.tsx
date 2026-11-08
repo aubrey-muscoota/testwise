@@ -82,7 +82,7 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
           detail={t.missed ? `${plural(t.missed, "question")} to fix` : "Nothing to fix right now"}
           disabled={!t.missed}
           emphasized={best === "mistakes"}
-          onPress={() => go("mistakes", `${plural(t.missed, "question")} you got wrong and haven't got right since.`)}
+          onPress={() => go("mistakes", "You missed these and haven't got them right since. Shall we see what tripped you?")}
         />
         <Row
           testID="mode-timed"

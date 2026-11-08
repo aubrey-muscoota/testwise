@@ -44,6 +44,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
   const [section, setSection] = useState<string | null>(null);
   const [selected, setSelected] = useState<Skill | null>(null);
   const [newIds, setNewIds] = useState<Set<string>>(new Set());
+  const scrollRef = useRef<React.ComponentRef<typeof ScrollView>>(null);
   const wide = useWide();
   const exam = getExam();
   const [placed, setPlaced] = useState<Record<string, boolean>>(exam ? { [exam.default_section]: true } : {});
@@ -91,7 +92,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}>
+      <ScrollView ref={scrollRef} contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}>
         <Text style={type.title} accessibilityRole="header">
           {noOrphan(mastered ? `${mastered} of ${all.length} skills mastered` : `${all.length} skills in ${sec?.name ?? "this section"}`)}
         </Text>
@@ -99,7 +100,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
           <SectionSwitch
             sections={sections}
             value={sec?.id ?? ""}
-            onChange={(id) => { setSection(id); AsyncStorage.setItem(SECTION_KEY, id).catch(() => {}); }}
+            onChange={(id) => { setSection(id); scrollRef.current?.scrollTo({ y: 0, animated: false }); AsyncStorage.setItem(SECTION_KEY, id).catch(() => {}); }}
           />
         </View>
 
