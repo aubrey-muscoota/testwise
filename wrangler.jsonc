@@ -23,7 +23,14 @@
   ],
   "vars": {
     // Model for Socrates. Set the key with: npx wrangler secret put ANTHROPIC_API_KEY
-    "TUTOR_MODEL": "claude-opus-5-5"
+    "TUTOR_MODEL": "claude-opus-5-5",
+    // Model that writes fresh practice questions (and blind-solves them).
+    // Falls back to TUTOR_MODEL when unset.
+    "GENERATOR_MODEL": "claude-opus-5-5",
+    // Fresh questions written per UTC day across all learners (each learner: 20).
+    "GENERATOR_DAILY_CAP": "200",
+    // Exam pack (exams/<id>/) for learners who haven't picked one.
+    "DEFAULT_EXAM": "sat"
   },
   "observability": { "enabled": true }
 }

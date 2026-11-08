@@ -1,8 +1,9 @@
 // End-to-end API check against a running dev server (npm run dev).
-// Usage: node test/e2e-api.mjs [baseUrl]
+// Usage: node test/e2e-api.mjs [baseUrl]   (or BASE=http://localhost:8791 node test/e2e-api.mjs)
+// Expects the SAT pack to be seeded.
 import assert from "node:assert/strict";
 
-const BASE = process.argv[2] || "http://localhost:8787";
+const BASE = process.argv[2] || process.env.BASE || "http://localhost:8787";
 let learner;
 const call = async (path, body) => {
   const res = await fetch(BASE + path, {
@@ -12,6 +13,17 @@ const call = async (path, body) => {
   });
   return { status: res.status, data: await res.json() };
 };
+
+// The exam pack is readable before there is a learner (Welcome needs it).
+{
+  const e = (await call("/api/exam")).data;
+  assert.equal(e.id, "sat");
+  assert.equal(e.default_section, "sat-math");
+  assert.match(e.publisher.disclaimer, /not affiliated with College Board/);
+  assert.deepEqual(e.sections.map((s) => s.id), ["sat-math", "sat-rw"]);
+  for (const s of e.sections) assert.ok(Math.abs(s.domains.reduce((a, d) => a + d.weight, 0) - 1) < 1e-9, `${s.id} weights add up to 1`);
+  assert.equal(e.plan.default_weeks, 8);
+}
 
 assert.equal((await call("/api/learners", {})).status, 403, "no learner without the age answer");
 assert.equal((await call("/api/learners", { age_13_plus: false })).status, 403);
@@ -133,6 +145,135 @@ assert.equal(pf2.placement.tested_out.length, 0);
 const after2 = (await call("/api/tree")).data.domains.flatMap((d) => d.skills);
 assert.ok(!after2.find((s) => s.id === "alg-linear-func").unlocked);
 assert.ok(after2.every((s) => s.attempts === 0 && !s.tested_out), "placement answers don't count as practice");
+
+// v1.5: test-date profile, the plan, and practice mode.
+learner = (await call("/api/learners", { age_13_plus: true })).data.id;
+{
+  const localDay = (offsetDays = 0) => new Date(Date.now() - 300 * 60_000 + offsetDays * 86_400_000).toISOString().slice(0, 10);
+  const t0 = (await call("/api/tree")).data;
+  assert.equal(t0.profile.onboarded, false, "no profile yet");
+
+  // A plan works before onboarding: "not booked", 8 weeks from today.
+  const p0 = (await call("/api/plan")).data;
+  assert.equal(p0.exam_date_assumed, true);
+  assert.equal(p0.days_left, 56);
+  assert.equal(p0.phase, "learn");
+
+  // Validation.
+  assert.equal((await call("/api/profile", { exam_date: "2020-01-01" })).status, 400, "past date");
+  assert.equal((await call("/api/profile", { exam_date: "next tuesday" })).status, 400, "not a date");
+  assert.equal((await call("/api/profile", { exam_date: localDay(800) })).status, 400, "over 2 years out");
+  assert.equal((await call("/api/profile", { daily_minutes: 15 })).status, 400, "minutes must be 10/20/30/45");
+  assert.equal((await call("/api/profile", { target_score: "lots" })).status, 400);
+
+  const examDate = localDay(60);
+  const prof = (await call("/api/profile", { exam_date: examDate, target_score: 1400, daily_minutes: 20 })).data;
+  assert.deepEqual(
+    { onboarded: prof.onboarded, exam_date: prof.exam_date, not_booked: prof.not_booked, target_score: prof.target_score, daily_minutes: prof.daily_minutes, plan_started_at: prof.plan_started_at },
+    { onboarded: true, exam_date: examDate, not_booked: false, target_score: 1400, daily_minutes: 20, plan_started_at: localDay() },
+  );
+  assert.deepEqual((await call("/api/profile")).data, prof);
+  assert.equal((await call("/api/tree")).data.profile.exam_date, examDate);
+  // Only given fields change.
+  assert.equal((await call("/api/profile", { daily_minutes: 30 })).data.exam_date, examDate);
+  await call("/api/profile", { daily_minutes: 20 });
+
+  let plan = (await call("/api/plan")).data;
+  assert.equal(plan.exam_date, examDate);
+  assert.equal(plan.days_left, 60);
+  assert.equal(plan.phase, "learn");
+  assert.equal(plan.profile.target_score, 1400);
+  assert.ok(Math.abs(plan.minutes_planned - 20) <= 5, `planned ${plan.minutes_planned}`);
+  assert.ok(plan.weeks.length >= 9 && plan.weeks[plan.weeks.length - 1].end === examDate);
+  assert.equal(plan.skills_total, 29);
+
+  // Start the first lesson task exactly as the plan says, and finish it.
+  const task = plan.today.find((x) => x.kind === "lesson");
+  const l = (await call(task.start.path, task.start.body)).data;
+  assert.equal(l.items.length, 8);
+  for (const it of l.items) await call("/api/answers", { lesson_id: l.lesson_id, item_id: it.id, response: it.answer, time_ms: 3000 });
+  await call("/api/lessons/finish", { lesson_id: l.lesson_id });
+  plan = (await call("/api/plan")).data;
+  assert.equal(plan.today.find((x) => x.id === task.id).done, true, "finished lesson marks its task done");
+  assert.ok(plan.today.find((x) => x.id === task.id), "and the task stays on the list");
+
+  // Nothing missed yet: no mistakes session.
+  assert.equal((await call("/api/practice", { mode: "mistakes" })).status, 404);
+  assert.equal((await call("/api/practice", { mode: "nope" })).status, 400);
+  assert.equal((await call("/api/practice", { mode: "skill" })).status, 400, "a drill needs a skill");
+  assert.equal((await call("/api/practice", { mode: "skill", skill_id: "adv-nonlinear-eq" })).status, 403, "locked skill");
+
+  // Mixed practice: same shape as a lesson; miss three, then finish.
+  const mx = (await call("/api/practice", { mode: "mixed", n: 10 })).data;
+  assert.equal(mx.practice, true);
+  assert.equal(mx.mode, "mixed");
+  assert.equal(mx.items.length, 10);
+  assert.equal(new Set(mx.items.map((i) => i.id)).size, 10, "no repeats in a session");
+  assert.ok(mx.items.every((i) => i.choices || i.type === "spr"));
+  assert.ok(mx.items.every((i) => !l.items.some((seen) => seen.id === i.id)), "unseen questions first");
+  const missed = [];
+  for (const [i, it] of mx.items.entries()) {
+    const r = (await call("/api/answers", { lesson_id: mx.lesson_id, item_id: it.id, response: i < 3 ? wrong(it) : it.answer, time_ms: 4000 })).data;
+    assert.equal(r.correct, i >= 3);
+    if (i < 3) missed.push(it.id);
+  }
+  const mf = (await call("/api/lessons/finish", { lesson_id: mx.lesson_id })).data;
+  assert.equal(mf.correct, 7);
+  assert.equal(mf.total, 10);
+  assert.equal(mf.xp, 7 * 10 + 15, "practice earns XP like a lesson");
+  assert.equal(mf.stats.lessons_today, 2);
+  assert.equal(mf.stats.streak, 1);
+
+  // My mistakes: exactly the three misses.
+  const ms = (await call("/api/practice", { mode: "mistakes" })).data;
+  assert.deepEqual(ms.items.map((i) => i.id).sort(), [...missed].sort());
+
+  // Weak spots, a skill drill, a timed set.
+  const wk = (await call("/api/practice", { mode: "weak", n: 6 })).data;
+  assert.equal(wk.items.length, 6);
+  const dr = (await call("/api/practice", { mode: "skill", skill_id: task.skill_id, n: 5 })).data;
+  assert.equal(dr.skill_id, task.skill_id);
+  assert.ok(dr.items.every((i) => i.skill_id === task.skill_id));
+  assert.ok(dr.items.every((i) => !l.items.some((seen) => seen.id === i.id)), "drill skips seen questions while unseen remain");
+  const tm = (await call("/api/practice", { mode: "timed", n: 8 })).data;
+  assert.equal(tm.items.length, 8);
+  assert.ok(tm.time_limit_seconds >= 8 * 60 && tm.time_limit_seconds <= 8 * 100, `time limit ${tm.time_limit_seconds}`);
+  assert.equal((await call("/api/practice", { mode: "mixed", section: "nope" })).status, 404);
+  const rwOnly = (await call("/api/practice", { mode: "mixed", section: "sat-rw", n: 4 })).data;
+  assert.ok(rwOnly.items.every((i) => i.skill_id.startsWith("rw-")), "section filter");
+
+  // Fresh questions fall back to the bank when Claude isn't available (no key in dev).
+  const fr = await call("/api/practice", { mode: "fresh" });
+  assert.equal(fr.status, 200);
+  assert.equal(fr.data.mode, "fresh");
+  if (!fr.data.fresh) {
+    assert.equal(fr.data.generated, 0);
+    assert.match(fr.data.note, /bank/);
+  }
+  assert.ok(fr.data.items.length >= 3);
+
+  // Summary.
+  const sm = (await call("/api/practice/summary")).data;
+  assert.ok(sm.totals.bank >= 3000);
+  assert.equal(sm.totals.seen, 8 + 10);
+  assert.equal(sm.totals.missed, 3);
+  assert.equal(sm.totals.unseen, sm.totals.bank - sm.totals.seen);
+  assert.equal(sm.skills.length, 29);
+  assert.equal(sm.fresh.daily_limit, 20);
+
+  // A mixed practice task in the plan is done once a mixed session is finished.
+  plan = (await call("/api/plan")).data;
+  const mixedTask = plan.today.find((x) => x.mode === "mixed");
+  if (mixedTask) assert.equal(mixedTask.done, true);
+
+  // Not booked: no date, plan assumes one 8 weeks out.
+  const nb = (await call("/api/profile", { not_booked: true })).data;
+  assert.equal(nb.exam_date, null);
+  assert.equal(nb.not_booked, true);
+  assert.equal(nb.assumed_exam_date, localDay(56));
+  plan = (await call("/api/plan")).data;
+  assert.equal(plan.exam_date_assumed, true);
+}
 
 // Deleting a learner removes them.
 assert.equal((await call("/api/learner/delete", {})).status, 200);

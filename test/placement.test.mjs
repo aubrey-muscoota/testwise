@@ -1,14 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { pickPlacementProbes, placementTestOut, skillDepths } from "../worker/engine.js";
+import { loadPack, packSkills } from "../scripts/lib/packs.mjs";
 
-const content = JSON.parse(readFileSync(new URL("../content/skills.json", import.meta.url), "utf8"));
+const pack = loadPack(fileURLToPath(new URL("../exams/sat", import.meta.url)));
 // Placement runs per section; these tests use SAT Math.
-const map = content.exams.find((e) => e.id === "sat").sections.find((s) => s.id === "sat-math");
-let pos = 0;
-const skills = map.domains.flatMap((d) => d.skills.map((s) => ({ ...s, domain_id: d.id, position: pos++ })));
-const probes = pickPlacementProbes(skills);
+const map = pack.skills.sections.find((s) => s.id === "sat-math");
+const skills = packSkills(pack, "sat-math");
+const probes = pickPlacementProbes(skills, pack.exam.placement);
 const all = (ok) => new Map(probes.map((p) => [p.skill_id, ok]));
 
 test("depths follow the prerequisite chains", () => {
@@ -73,10 +73,9 @@ test("a missed probe is never tested out, even as a prerequisite", () => {
 });
 
 test("Reading and Writing placement probes every domain, easy first", () => {
-  const rw = content.exams.find((e) => e.id === "sat").sections.find((s) => s.id === "sat-rw");
-  let p = 0;
-  const rwSkills = rw.domains.flatMap((d) => d.skills.map((s) => ({ ...s, domain_id: d.id, position: p++ })));
-  const rwProbes = pickPlacementProbes(rwSkills);
+  const rw = pack.skills.sections.find((s) => s.id === "sat-rw");
+  const rwSkills = packSkills(pack, "sat-rw");
+  const rwProbes = pickPlacementProbes(rwSkills, pack.exam.placement);
   assert.deepEqual(new Set(rwProbes.map((x) => x.domain_id)), new Set(rw.domains.map((d) => d.id)));
   assert.equal(rwProbes.length, rw.domains.reduce((n, d) => n + Math.min(3, d.skills.length), 0));
   assert.ok(rwProbes.every((x, i) => i === 0 || rwProbes[i - 1].level <= x.level), "sorted easy to hard");

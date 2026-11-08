@@ -1,0 +1,102 @@
+{
+  "id": "sat",
+  "enabled": true,
+  "name": "SAT",
+  "short_name": "SAT",
+  "tagline": "A daily SAT plan, built from your test date",
+  "audience": "high school students",
+  "publisher": {
+    "name": "College Board",
+    "disclaimer": "Testwise is not affiliated with College Board. SAT is a trademark of College Board."
+  },
+  "score": {
+    "min": 400,
+    "max": 1600,
+    "step": 10
+  },
+  "default_section": "sat-math",
+  "sections": [
+    {
+      "id": "sat-math",
+      "name": "Math",
+      "minutes": 70,
+      "questions": 44,
+      "modules": 2,
+      "seconds_per_question": 95,
+      "score": {
+        "min": 200,
+        "max": 800,
+        "step": 10
+      },
+      "item_types": [
+        "mc",
+        "spr"
+      ],
+      "choices": 4,
+      "code_checks": true,
+      "practice_minutes_per_question": 1.0
+    },
+    {
+      "id": "sat-rw",
+      "name": "Reading and Writing",
+      "minutes": 64,
+      "questions": 54,
+      "modules": 2,
+      "seconds_per_question": 71,
+      "score": {
+        "min": 200,
+        "max": 800,
+        "step": 10
+      },
+      "item_types": [
+        "mc"
+      ],
+      "choices": 4,
+      "code_checks": false,
+      "passage": {
+        "required": true,
+        "min_words": 20,
+        "max_words": 165,
+        "paired_max_words": 125
+      },
+      "practice_minutes_per_question": 1.2
+    }
+  ],
+  "placement": {
+    "per_domain": 3,
+    "difficulties": [
+      1,
+      2,
+      3
+    ],
+    "seconds_per_question": 25
+  },
+  "plan": {
+    "default_weeks": 8,
+    "daily_minutes": [
+      10,
+      20,
+      30,
+      45
+    ],
+    "default_daily_minutes": 20,
+    "rest_days_per_week": 1,
+    "phases": [
+      {
+        "id": "learn",
+        "name": "Learn",
+        "share": 0.5
+      },
+      {
+        "id": "strengthen",
+        "name": "Strengthen",
+        "share": 0.3
+      },
+      {
+        "id": "test-ready",
+        "name": "Test-ready",
+        "share": 0.2
+      }
+    ]
+  }
+}

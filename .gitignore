@@ -6,3 +6,4 @@ app/.expo/
 .dev.vars
 seed/
 *.log
+.claude/worktrees/

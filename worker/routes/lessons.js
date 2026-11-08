@@ -1,5 +1,6 @@
 import * as E from "../engine.js";
 import { json, fail, parseItem, tzOffset, masteryMap, allSkills, stats } from "../lib/http.js";
+import { learnerExam, sectionOf } from "../lib/exam.js";
 
 export async function startLesson(env, request, learnerId, skillId) {
   const now = Date.now();
@@ -52,12 +53,15 @@ export async function startLesson(env, request, learnerId, skillId) {
 
 // Placement quiz: a few questions per domain, easy to hard, so a learner who
 // already knows the basics can skip ahead. Answers go through /api/answers.
-export async function startPlacement(env, request, learnerId, sectionId = "sat-math") {
+// The section defaults to the exam pack's default_section; other exams' sections are refused.
+export async function startPlacement(env, request, learnerId, requested = null) {
   const now = Date.now();
   const today = E.localDay(now, tzOffset(request));
-  const skills = await allSkills(env, sectionId);
+  const exam = await learnerExam(env, learnerId);
+  const sectionId = sectionOf(exam, requested)?.id;
+  const skills = sectionId ? await allSkills(env, sectionId) : [];
   if (!skills.length) return fail(404, "unknown section");
-  const probes = E.pickPlacementProbes(skills);
+  const probes = E.pickPlacementProbes(skills, exam.placement);
   const ids = [...new Set(probes.map((p) => p.skill_id))];
   const pool = (await env.DB.prepare(
     `SELECT id, skill_id, difficulty FROM items WHERE status = 'live' AND skill_id IN (${ids.map(() => "?").join(", ")})`,
@@ -89,9 +93,11 @@ export async function startPlacement(env, request, learnerId, sectionId = "sat-m
 
 // Tests out the skills a finished placement quiz showed the learner knows.
 // Only ever raises progress, so finishing twice (or late) is harmless.
-async function applyPlacement(env, learnerId, lessonId, sectionId) {
-  const skills = await allSkills(env, sectionId || "sat-math");
-  const probes = E.pickPlacementProbes(skills);
+// Placement lessons from before sections were stored have no section_id; they
+// were for the exam's default section.
+async function applyPlacement(env, exam, learnerId, lessonId, sectionId) {
+  const skills = await allSkills(env, sectionId || exam.default_section);
+  const probes = E.pickPlacementProbes(skills, exam.placement);
   const first = (await env.DB.prepare(
     `SELECT a.skill_id, a.correct FROM attempts a WHERE a.lesson_id = ? AND a.answered_at =
       (SELECT MIN(answered_at) FROM attempts b WHERE b.lesson_id = a.lesson_id AND b.item_id = a.item_id)`,
@@ -111,8 +117,8 @@ async function applyPlacement(env, learnerId, lessonId, sectionId) {
   return out;
 }
 
-async function placementSummary(env, learnerId, sectionId) {
-  const skills = await allSkills(env, sectionId || "sat-math");
+async function placementSummary(env, exam, learnerId, sectionId) {
+  const skills = await allSkills(env, sectionId || exam.default_section);
   const mastery = await masteryMap(env, learnerId);
   const name = (s) => ({ id: s.id, name: s.name });
   const m = (s) => mastery[s.id] || { rating: 0, attempts: 0 };
@@ -133,12 +139,18 @@ export async function finishLesson(env, request, learnerId, b) {
     const r = await env.DB.prepare(
       "SELECT COUNT(DISTINCT item_id) AS total, SUM(correct) AS correct FROM attempts WHERE lesson_id = ?",
     ).bind(lesson.id).first();
+    // A set that ends with nothing answered (a timed set that ran out) earns
+    // nothing and isn't a finished lesson: no XP, no streak day, no task done.
+    if (!((r.total || 0) > 0) && lesson.kind !== "placement") {
+      const today = E.localDay(Date.now(), tzOffset(request));
+      return json({ correct: 0, total: 0, xp: 0, stats: await stats(env, learnerId, today) });
+    }
     // First-try results only count once per item, so retries at the end of a lesson don't farm XP.
     const firstTry = await env.DB.prepare(
       `SELECT COUNT(*) AS n FROM attempts a WHERE lesson_id = ? AND correct = 1 AND answered_at =
         (SELECT MIN(answered_at) FROM attempts b WHERE b.lesson_id = a.lesson_id AND b.item_id = a.item_id)`,
     ).bind(lesson.id).first();
-    const xp = firstTry.n * E.XP_CORRECT + E.XP_LESSON;
+    const xp = (r.total || 0) > 0 ? firstTry.n * E.XP_CORRECT + E.XP_LESSON : 0;
     const today = E.localDay(Date.now(), tzOffset(request));
     await env.DB.prepare(
       "UPDATE lessons SET completed_at = ?, correct = ?, total = ?, xp = ?, local_day = ? WHERE id = ?",
@@ -148,8 +160,9 @@ export async function finishLesson(env, request, learnerId, b) {
   const today = E.localDay(Date.now(), tzOffset(request));
   const extra = {};
   if (lesson.kind === "placement") {
-    if (!lesson.completed_at) await applyPlacement(env, learnerId, lesson.id, lesson.section_id);
-    extra.placement = await placementSummary(env, learnerId, lesson.section_id);
+    const exam = await learnerExam(env, learnerId);
+    if (!lesson.completed_at) await applyPlacement(env, exam, learnerId, lesson.id, lesson.section_id);
+    extra.placement = await placementSummary(env, exam, learnerId, lesson.section_id);
   }
   return json({ ...done, ...extra, stats: await stats(env, learnerId, today) });
 }

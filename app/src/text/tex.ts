@@ -80,14 +80,20 @@ export function texToText(src: string): string {
       i++;
     }
   }
-  return out.replace(/\s*([=<>≤≥≠+±×÷])\s*/g, " $1 ").replace(/\s{2,}/g, " ").trim();
+  // Non-breaking spaces around operators, so an expression never wraps mid-way.
+  return out.replace(/\s*([=<>≤≥≠+±×÷])\s*/g, "\u00a0$1\u00a0").replace(/\s{2,}/g, " ").trim();
 }
 
-// Replaces every $…$ span in a string. A literal dollar sign is written \$.
+// A closing "$" right before a digit is the next dollar amount ("= $300"), not math.
+const isTex = (t: string, after?: string) => /[\\^_{}=]/.test(t) && !/\d/.test(after ?? "");
+
+// Replaces every $…$ span that holds TeX. A span is TeX only when it has a TeX
+// signal (\ ^ _ { } =); otherwise it is a pair of dollar amounts ("$2.50 … $9.75")
+// and is left untouched. A literal dollar sign can always be written \$.
 export function renderMath(s: string): string {
   if (!s.includes("$")) return s;
   return s
     .replace(/\\\$/g, "\u0000")
-    .replace(/\$([^$]+)\$/g, (_, t) => texToText(t))
+    .replace(/\$([^$]+)\$/g, (m, t, at, all) => (isTex(t, all[at + m.length]) ? texToText(t) : m))
     .replace(/\u0000/g, "$");
 }

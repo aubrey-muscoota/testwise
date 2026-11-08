@@ -1,0 +1,26 @@
+[
+  {
+    "id": "demo-eq-001",
+    "skill_id": "demo-eq",
+    "difficulty": 1,
+    "type": "spr",
+    "stem": "If x + 7 = 12, what is x?",
+    "answer": "5",
+    "explanation": ["Subtract 7 from both sides.", "x = 5."],
+    "hints": ["What undoes adding 7?"],
+    "check": "from sympy import symbols, solve\nx = symbols('x')\nresult = solve(x + 7 - 12, x)[0]"
+  },
+  {
+    "id": "demo-eq-002",
+    "skill_id": "demo-eq",
+    "difficulty": 2,
+    "type": "mc",
+    "stem": "If (1/2)x = 3/4, what is x?",
+    "choices": ["3/8", "3/2", "5/4"],
+    "answer": "3/2",
+    "explanation": ["Multiply both sides by 2.", "x = 3/2."],
+    "hints": ["What undoes multiplying by 1/2?"],
+    "wrong_reasons": { "3/8": "Multiplied by 1/2 instead of dividing", "5/4": "Added 1/2 instead of dividing" },
+    "check": "from sympy import symbols, solve, Rational\nx = symbols('x')\nresult = solve(Rational(1, 2) * x - Rational(3, 4), x)[0]"
+  }
+]

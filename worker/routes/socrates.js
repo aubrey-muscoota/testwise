@@ -1,6 +1,7 @@
 import * as E from "../engine.js";
 import { json, fail, parseItem, tzOffset } from "../lib/http.js";
 import { socratesReply, offlineReply, DAILY_CONVERSATIONS, MAX_STUDENT_TURNS } from "../socrates.js";
+import { learnerExam } from "../lib/exam.js";
 
 export async function socrates(env, request, learnerId, b) {
   const today = E.localDay(Date.now(), tzOffset(request));
@@ -33,7 +34,8 @@ export async function socrates(env, request, learnerId, b) {
   let model = "offline";
   if (env.ANTHROPIC_API_KEY) {
     try {
-      const r = await socratesReply({ apiKey: env.ANTHROPIC_API_KEY, model: env.TUTOR_MODEL, item, response, history });
+      const exam = await learnerExam(env, learnerId);
+      const r = await socratesReply({ apiKey: env.ANTHROPIC_API_KEY, model: env.TUTOR_MODEL, item, response, history, exam });
       reply = r.text;
       model = r.model;
     } catch (err) {

@@ -1,17 +1,28 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Animated, Easing, Platform, SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import { Animated, Easing, Platform, SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import {
   useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold,
 } from "@expo-google-fonts/nunito";
+import { Fraunces_400Regular, Fraunces_600SemiBold } from "@expo-google-fonts/fraunces";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api, createLearner, forgetLearner, loadLearner, placementKey, Skill } from "./src/api";
+import { api, createLearner, forgetLearner, getExam, loadExam, loadLearner, placementKey, Profile } from "./src/api";
 import { Welcome } from "./src/screens/Welcome";
-import { Home } from "./src/screens/Home";
+import { Today } from "./src/screens/Today";
+import { PlanScreen } from "./src/screens/PlanScreen";
+import { Practice } from "./src/screens/Practice";
+import { PathScreen } from "./src/screens/Path";
+import { Me } from "./src/screens/Me";
+import { Field, Onboarding } from "./src/screens/Onboarding";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
 import { Complete } from "./src/screens/Complete";
 import { PlacementIntro } from "./src/screens/PlacementIntro";
 import { AgeGate, TooYoung } from "./src/screens/AgeGate";
+import { SocratesLab } from "./src/screens/SocratesLab";
+import { Shell } from "./src/components/Shell";
+import { useReducedMotion } from "./src/components/ui";
+import { Socrates } from "./src/socrates/Socrates";
 import { initFeedback, preloadSounds } from "./src/motion/feedback";
+import { LessonSource, Tab } from "./src/nav";
 import { color } from "./src/theme";
 
 type Screen =
@@ -19,13 +30,25 @@ type Screen =
   | { name: "welcome" }
   | { name: "age"; existing: boolean }
   | { name: "tooYoung" }
-  | { name: "home"; key: number }
+  | { name: "onboarding"; then: "placement" | "home" }
   | { name: "placement" }
-  | { name: "lesson"; skill: Skill | null; placement?: string }
+  | { name: "main"; tab: Tab; key: number }
+  | { name: "plan" }
+  | { name: "edit"; field: Field; profile: Profile }
+  | { name: "lesson"; source: LessonSource; back: Tab | "placement" }
   | { name: "complete"; result: LessonResult };
 
+// Review page for the Socrates rig: web only, ?lab=socrates.
+const LAB = Platform.OS === "web" && typeof window !== "undefined" && /[?&]lab=socrates\b/.test(window.location.search);
+
 export default function App() {
-  const [fontsLoaded] = useFonts({ Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold });
+  return LAB ? <SocratesLab /> : <TestwiseApp />;
+}
+
+function TestwiseApp() {
+  const [fontsLoaded] = useFonts({
+    Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Fraunces_400Regular, Fraunces_600SemiBold,
+  });
   const [screen, setScreen] = useState<Screen>({ name: "boot" });
 
   // Sounds and haptics: restore the mute setting and warm up the players once.
@@ -34,22 +57,33 @@ export default function App() {
     preloadSounds();
   }, []);
 
-  // Where a returning learner lands: the placement offer if they never chose, else Home.
+  const home = useCallback((tab: Tab = "today") => setScreen({ name: "main", tab, key: Math.random() }), []);
+
+  // Where a returning learner lands: the test-date questions once, then the
+  // placement offer if they never chose, else Today.
   const resume = useCallback(async (id: string) => {
+    let needsPlacement = false;
     if (!(await placementSettled(id))) {
       try {
         const t = await api.tree();
-        if (t.stats.xp === 0) return setScreen({ name: "placement" });
-        await settlePlacement();
+        if (t.stats.xp === 0) needsPlacement = true;
+        else await settlePlacement();
       } catch {}
     }
-    setScreen({ name: "home", key: 0 });
-  }, []);
+    try {
+      const p = await api.profile();
+      if (!p.onboarded) return setScreen({ name: "onboarding", then: needsPlacement ? "placement" : "home" });
+    } catch {}
+    if (needsPlacement) return setScreen({ name: "placement" });
+    home();
+  }, [home]);
 
   useEffect(() => {
     (async () => {
       if (await ageBlocked()) return setScreen({ name: "tooYoung" });
       const id = await loadLearner();
+      // Exam name, sections and disclaimer come from the exam pack (GET /api/exam).
+      await loadExam();
       if (!id) return setScreen({ name: "welcome" });
       // Learners from before the age question answer it once.
       try {
@@ -72,23 +106,24 @@ export default function App() {
       return id ? resume(id) : setScreen({ name: "welcome" });
     }
     currentLearner = await createLearner();
-    setScreen({ name: "placement" });
+    setScreen({ name: "onboarding", then: "placement" });
   }, [resume]);
 
-  const goHome = useCallback(() => setScreen({ name: "home", key: Math.random() }), []);
-  const skipPlacement = useCallback(() => { settlePlacement(); goHome(); }, [goHome]);
+  const skipPlacement = useCallback(() => { settlePlacement(); home(); }, [home]);
   const reset = useCallback(() => {
     forgetLearner().then(() => setScreen({ name: "welcome" }));
   }, []);
+  const startFrom = (back: Tab | "placement") => (source: LessonSource) => setScreen({ name: "lesson", source, back });
 
   let body: React.ReactNode;
   const booting = !fontsLoaded || screen.name === "boot";
   // Changes whenever the visible screen changes, so the transition replays.
-  const screenId = booting ? "boot" : screen.name === "home" ? `home-${screen.key}` : screen.name;
+  const inShell = screen.name === "main" || screen.name === "plan" || screen.name === "edit";
+  const screenId = booting ? "boot" : inShell ? "shell" : screen.name;
   if (booting) {
     body = (
-      <View style={s.center}>
-        <ActivityIndicator color={color.azure} />
+      <View style={s.center} accessibilityLabel="Loading" aria-busy>
+        <Socrates size={96} mood="thinking" />
       </View>
     );
   } else if (screen.name === "welcome") {
@@ -98,32 +133,59 @@ export default function App() {
     body = <AgeGate onAnswer={(ok) => answerAge(existing, ok)} />;
   } else if (screen.name === "tooYoung") {
     body = <TooYoung />;
+  } else if (screen.name === "onboarding") {
+    const then = screen.then;
+    body = <Onboarding onDone={() => (then === "placement" ? setScreen({ name: "placement" }) : home())} />;
   } else if (screen.name === "placement") {
-    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: "sat-math" })} onSkip={skipPlacement} />;
-  } else if (screen.name === "home") {
+    const exam = getExam();
+    const section = exam?.default_section ?? "";
+    const name = exam?.sections.find((x) => x.id === section)?.name ?? "";
+    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "placement" })} onSkip={skipPlacement} />;
+  } else if (screen.name === "main" || screen.name === "plan" || screen.name === "edit") {
+    const tab: Tab = screen.name === "main" ? screen.tab : screen.name === "plan" ? "today" : "me";
+    let inner: React.ReactNode;
+    if (screen.name === "plan") inner = <PlanScreen onBack={() => home("today")} />;
+    else if (screen.name === "edit") {
+      inner = <Onboarding only={screen.field} initial={screen.profile} onDone={() => home("me")} onCancel={() => home("me")} />;
+    } else if (tab === "today") {
+      inner = <Today key={screen.key} onStart={startFrom("today")} onOpenPlan={() => setScreen({ name: "plan" })} onEditDate={() => editField("date")} onUnauthorized={reset} />;
+    } else if (tab === "practice") {
+      inner = <Practice key={screen.key} onStart={startFrom("practice")} />;
+    } else if (tab === "path") {
+      inner = (
+        <PathScreen
+          key={screen.key}
+          onStart={startFrom("path")}
+          onStartPlacement={(section, name) => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "path" })}
+        />
+      );
+    } else {
+      inner = <Me key={screen.key} onEdit={(field, profile) => setScreen({ name: "edit", field, profile })} onDeleted={reset} />;
+    }
+    const innerId = screen.name === "main" ? `${screen.tab}-${screen.key}` : screen.name === "edit" ? `edit-${screen.field}` : "plan";
     body = (
-      <Home
-        key={screen.key}
-        onStartLesson={(skill) => setScreen({ name: "lesson", skill })}
-        onStartPlacement={(section) => setScreen({ name: "lesson", skill: null, placement: section })}
-        onReset={reset}
-      />
+      <Shell tab={tab} onTab={(t) => home(t)}>
+        <ScreenTransition key={innerId}>{inner}</ScreenTransition>
+      </Shell>
     );
   } else if (screen.name === "lesson") {
-    // Leaving the placement quiz goes back to its intro, where "Start from the beginning" is one tap.
+    const { source, back } = screen;
     body = (
       <Lesson
-        skill={screen.skill}
-        placementSection={screen.placement}
-        onQuit={screen.placement === "sat-math" ? () => setScreen({ name: "placement" }) : goHome}
+        source={source}
+        onQuit={() => (back === "placement" ? setScreen({ name: "placement" }) : home(back))}
         onDone={(result) => {
-          if (result.placement) settlePlacement(screen.placement);
+          if (result.placement && source.kind === "placement") settlePlacement(source.section);
           setScreen({ name: "complete", result });
         }}
       />
     );
   } else {
-    body = <Complete result={screen.result} onContinue={goHome} />;
+    body = <Complete result={screen.result} onContinue={() => home("today")} onStart={startFrom("today")} />;
+  }
+
+  function editField(field: Field) {
+    api.profile().then((p) => setScreen({ name: "edit", field, profile: p }), () => {});
   }
 
   return (
@@ -135,7 +197,7 @@ export default function App() {
 }
 
 // Remembers (per learner and section) that the placement offer was taken or declined.
-// SAT Math keeps the original key so existing learners aren't asked again.
+// The exam's default section keeps the original key so existing learners aren't asked again.
 let currentLearner: string | null = null;
 
 async function placementSettled(id: string) {
@@ -146,7 +208,7 @@ async function placementSettled(id: string) {
     return false;
   }
 }
-async function settlePlacement(section = "sat-math") {
+async function settlePlacement(section?: string) {
   try {
     const id = currentLearner ?? (await loadLearner());
     await AsyncStorage.setItem(placementKey(id, section), "1");
@@ -170,23 +232,22 @@ async function blockAge() {
   } catch {}
 }
 
-// Each screen fades in while sliding up 16px. Remounted per screen via `key`.
+// Each screen fades in while rising 12px (a plain fade under reduced motion).
 function ScreenTransition({ children }: { children: React.ReactNode }) {
   const v = useRef(new Animated.Value(0)).current;
+  const still = useReducedMotion();
   useEffect(() => {
-    Animated.timing(v, { toValue: 1, duration: 250, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
+    Animated.timing(v, { toValue: 1, duration: 240, easing: Easing.out(Easing.cubic), useNativeDriver: Platform.OS !== "web" }).start();
   }, [v]);
   return (
-    <Animated.View
-      style={[s.screen, { opacity: v, transform: [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] }]}
-    >
+    <Animated.View style={[s.screen, { opacity: v, transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [12, 0] }) }] }]}>
       {children}
     </Animated.View>
   );
 }
 
 const s = StyleSheet.create({
-  root: { flex: 1, backgroundColor: color.bg, ...(Platform.OS === "web" ? { minHeight: "100%" as unknown as number } : {}) },
+  root: { flex: 1, backgroundColor: color.paper, ...(Platform.OS === "web" ? { minHeight: "100%" as unknown as number } : {}) },
   screen: { flex: 1 },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
 });

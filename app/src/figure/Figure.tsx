@@ -1,4 +1,4 @@
-// Draws an item figure from its spec (see content/FIGURE_FORMAT.md).
+// Draws an item figure from its spec (see exams/FIGURE_FORMAT.md).
 // Everything is placed in "plane" coordinates and mapped into an SVG viewBox.
 import React, { useId, useMemo } from "react";
 import { View } from "react-native";
@@ -17,10 +17,10 @@ export type FigureSpec = {
   elements: any[];
 };
 
-const INK = color.text;
-const SOFT = "#9AA8B6";
-const GRID = "#E7EDF3";
-const ACCENT = color.azureDark;
+const INK = color.ink;
+const SOFT = color.inkSoft;
+const GRID = color.rule;
+const ACCENT = color.azureInk;
 const FS = 14;
 
 export function Figure({ spec, maxWidth = 380 }: { spec: FigureSpec; maxWidth?: number }) {
@@ -58,7 +58,7 @@ function draw(spec: FigureSpec, W: number, H: number, clip: string) {
   // Labels get a white halo so they stay readable where they cross a line.
   const label = (x: number, y: number, text: string, anchor: "start" | "middle" | "end" = "middle", fill = INK, size = FS) => (
     <G key={key()}>
-      <SvgText x={x} y={y + size * 0.35} fontSize={size} fontFamily={font.bold} fill="#fff" stroke="#fff" strokeWidth={4} strokeLinejoin="round" textAnchor={anchor}>{text}</SvgText>
+      <SvgText x={x} y={y + size * 0.35} fontSize={size} fontFamily={font.bold} fill={color.sheet} stroke={color.sheet} strokeWidth={4} strokeLinejoin="round" textAnchor={anchor}>{text}</SvgText>
       <SvgText x={x} y={y + size * 0.35} fontSize={size} fontFamily={font.bold} fill={fill} textAnchor={anchor}>{text}</SvgText>
     </G>
   );
@@ -84,17 +84,17 @@ function draw(spec: FigureSpec, W: number, H: number, clip: string) {
       for (let x = Math.ceil(x0 / t) * t; x <= x1 - t / 2; x += t) {
         if (Math.abs(x - ax) < 1e-9) continue;
         out.push(<Line key={key()} x1={X(x)} y1={Y(ay) - 4} x2={X(x)} y2={Y(ay) + 4} stroke={SOFT} strokeWidth={1.5} />);
-        if (showX) out.push(label(X(x), Y(ay) + 14, fmt(x), "middle", color.textSoft, 11));
+        if (showX) out.push(label(X(x), Y(ay) + 14, fmt(x), "middle", color.inkSoft, 11));
       }
       for (let y = Math.ceil(y0 / t) * t; y <= y1 - t / 2; y += t) {
         if (Math.abs(y - ay) < 1e-9) continue;
         out.push(<Line key={key()} x1={X(ax) - 4} y1={Y(y)} x2={X(ax) + 4} y2={Y(y)} stroke={SOFT} strokeWidth={1.5} />);
-        if (showY) out.push(label(X(ax) - 8, Y(y), fmt(y), "end", color.textSoft, 11));
+        if (showY) out.push(label(X(ax) - 8, Y(y), fmt(y), "end", color.inkSoft, 11));
       }
-      if (showX && showY && ax === 0 && ay === 0) out.push(label(X(0) - 8, Y(0) + 12, "0", "end", color.textSoft, 11));
+      if (showX && showY && ax === 0 && ay === 0) out.push(label(X(0) - 8, Y(0) + 12, "0", "end", color.inkSoft, 11));
     }
-    if (pl.xlabel) out.push(label(X(x1) - 4, Y(ay) - 12, pl.xlabel, "end", color.textSoft, 13));
-    if (pl.ylabel) out.push(label(X(ax) + 8, Y(y1) + 4, pl.ylabel, "start", color.textSoft, 13));
+    if (pl.xlabel) out.push(label(X(x1) - 4, Y(ay) - 12, pl.xlabel, "end", color.inkSoft, 13));
+    if (pl.ylabel) out.push(label(X(ax) + 8, Y(y1) + 4, pl.ylabel, "start", color.inkSoft, 13));
   }
 
   // Elements, clipped to the plot area (labels are drawn unclipped afterwards).
@@ -120,7 +120,7 @@ function draw(spec: FigureSpec, W: number, H: number, clip: string) {
       switch (el.type) {
         case "point": {
           const [px, py] = P(el.at);
-          shapes.push(<Circle key={key()} cx={px} cy={py} r={4.5} fill={el.open ? "#fff" : INK} stroke={INK} strokeWidth={2} />);
+          shapes.push(<Circle key={key()} cx={px} cy={py} r={4.5} fill={el.open ? color.sheet : INK} stroke={INK} strokeWidth={2} />);
           if (el.label) {
             const [dx, dy, a] = POS[el.labelPos || "ne"] || POS.ne;
             labels.push(label(px + dx, py + dy, el.label, a));
@@ -157,7 +157,7 @@ function draw(spec: FigureSpec, W: number, H: number, clip: string) {
         }
         case "polygon": {
           const pts: Pt[] = el.points;
-          shapes.push(<Polygon key={key()} points={pts.map((p) => P(p).join(",")).join(" ")} fill={el.fill ? color.azureSoft : "none"} stroke={INK} strokeWidth={2} strokeLinejoin="round" />);
+          shapes.push(<Polygon key={key()} points={pts.map((p) => P(p).join(",")).join(" ")} fill={el.fill ? color.azureWash : "none"} stroke={INK} strokeWidth={2} strokeLinejoin="round" />);
           const [cx, cy] = centroidOf(pts);
           (el.vertexLabels || []).forEach((t: string, i: number) => {
             if (!t) return;
@@ -175,7 +175,7 @@ function draw(spec: FigureSpec, W: number, H: number, clip: string) {
         }
         case "circle": {
           const [cx, cy] = P(el.center);
-          shapes.push(<Ellipse key={key()} cx={cx} cy={cy} rx={el.r * sx} ry={el.r * sy} fill={el.fill ? color.azureSoft : "none"} stroke={INK} strokeWidth={2} />);
+          shapes.push(<Ellipse key={key()} cx={cx} cy={cy} rx={el.r * sx} ry={el.r * sy} fill={el.fill ? color.azureWash : "none"} stroke={INK} strokeWidth={2} />);
           break;
         }
         case "arc": {
@@ -241,7 +241,7 @@ function draw(spec: FigureSpec, W: number, H: number, clip: string) {
         case "scatter":
           for (const p of el.points as Pt[]) {
             const [px, py] = P(p);
-            shapes.push(<Circle key={key()} cx={px} cy={py} r={4} fill={el.hollow ? "#fff" : INK} stroke={INK} strokeWidth={1.5} />);
+            shapes.push(<Circle key={key()} cx={px} cy={py} r={4} fill={el.hollow ? color.sheet : INK} stroke={INK} strokeWidth={1.5} />);
           }
           break;
         case "text": {
@@ -273,7 +273,7 @@ function draw(spec: FigureSpec, W: number, H: number, clip: string) {
           <Rect x={pad - 6} y={pad - 6} width={W - 2 * pad + 12} height={H - 2 * pad + 12} />
         </ClipPath>
       </Defs>
-      <Rect x={0} y={0} width={W} height={H} fill="#fff" rx={16} />
+      <Rect x={0} y={0} width={W} height={H} fill={color.sheet} rx={16} />
       {out}
       <G clipPath={`url(#${clip})`}>{shapes}</G>
       {labels}

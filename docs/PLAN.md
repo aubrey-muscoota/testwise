@@ -8,7 +8,7 @@ To work on the plan: read this file and the doc, then do the next unchecked item
 
 ## Releases
 Five releases, each ending with real students using it. A release is done only when every acceptance criterion below passes and the next release's riskiest assumption has been tested. Timings assume one person directing Claude Code, with paid human reviewers for content.
-Each release's "Acceptance" line is the gate that must pass before the next release starts. v1 is next.
+Each release's "Acceptance" line is the gate that must pass before the next release starts. v1.5 is done; the rest of v1 (accounts, analytics, pilot) is next.
 ### v1: Complete SAT (6 to 8 weeks)
 Goal: a student can prepare for the whole digital SAT, not just Math, and their progress follows them across devices.
 - [x] Refactor the Worker into route modules (Hono, zod) with no behavior change; all existing tests pass.
@@ -21,6 +21,17 @@ Goal: a student can prepare for the whole digital SAT, not just Math, and their 
 - [x] Placement quiz covers both SAT sections.
 - [ ] Pilot with 20 to 50 students for two weeks.
 Acceptance: every item-type renderer passes screenshot tests at iPhone SE, iPhone 15 and 1440px desktop widths; a student moves from web to a second browser and keeps all progress; the duplicate scan finds no pairs; day-7 retention among pilot students is measured, whatever it is.
+### v1.5: Depth and craft (done Nov 8, 2026)
+Goal: Testwise is worth opening every day until test day, looks made by people rather than generated, and the structure can be copied to a new exam without new code. Ships before accounts and the pilot.
+- [x] Exam packs: one folder per exam (`exams/<id>/`) with `exam.json`, skill map, items, format docs and Socrates' exam lines; the Worker and app read exam specifics from the pack; `npm run new-exam -- <id>` scaffold and `docs/ADDING_AN_EXAM.md`; a test-only exam proves a new pack needs no code changes.
+- [x] Test date onboarding: exam date (or "not booked yet" = 8 weeks), optional target score, daily time (10/20/30/45 min); editable later.
+- [x] Personalized plan: works back from the test date in phases (Learn, Strengthen, Test-ready, rest day), recomputed daily; Home leads with Today (tasks sized to daily time, countdown, on track or behind); a Plan screen shows the weeks ahead.
+- [x] Practice mode that never runs out: Weak spots, Mixed, Skill drill, Timed set, My mistakes; unseen first, then missed, then oldest seen.
+- [x] Fresh questions from Socrates: Claude writes a batch live when a skill's bank is mostly seen or on request; a blind second call must agree; stored in D1, labelled, capped per day, falls back to recycled questions.
+- [x] Animated Socrates: a vector rig in code (react-native-svg) with breathing, blinking, glances, talking mouth and moods (happy, thinking, concerned, celebrating).
+- [x] Human visual and copy pass: no emoji-as-icons, all-caps buttons, identical cards, everything centered or stock quips; warm paper background, a serif for Socrates and chapter titles, line icons, copy that refers to what the learner did; rules written down in `docs/DESIGN.md`.
+Notes: fresh questions are verified offline with a mock writer; the first live check with the real key happens after deploy.
+Acceptance: a learner with a test date sees a Today plan that adds up to their daily time; after finishing every lesson they can still practice daily with no repeats for weeks; Socrates is animated wherever he appears; a reviewer finds none of the listed AI-app patterns; a new exam pack loads in tests with no code changes.
 ### v2: iPhone app and practice tests (6 to 8 weeks)
 Goal: Testwise is on the App Store with full SAT practice tests and an estimated score.
 - [ ] iPhone app through EAS: TestFlight, then App Store review. App icon, launch screen, haptics already in place.
