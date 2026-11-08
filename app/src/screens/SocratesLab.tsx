@@ -6,7 +6,8 @@
 import React, { useState } from "react";
 import { useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from "@expo-google-fonts/nunito";
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { mascot } from "../components/ui";
+// The lab keeps the old PNG, for comparing the rig against it.
+const mascot = require("../../assets/socratesmascotmain.png");
 import { MOODS, Socrates, SocratesMood, type LookAt } from "../socrates/Socrates";
 import { color, font, radius, space } from "../theme";
 
@@ -58,7 +59,7 @@ export function SocratesLab() {
 
   const chip = (label: string, on: boolean, onPress: () => void, testID?: string) => (
     <Pressable key={label} onPress={onPress} testID={testID} accessibilityRole="button" style={[st.chip, on && st.chipOn]}>
-      <Text style={[st.chipText, on && { color: "#fff" }]}>{label}</Text>
+      <Text style={[st.chipText, on && { color: color.sheet }]}>{label}</Text>
     </Pressable>
   );
 
@@ -108,19 +109,19 @@ export function SocratesLab() {
 }
 
 const st = StyleSheet.create({
-  page: { flex: 1, backgroundColor: color.bg },
+  page: { flex: 1, backgroundColor: color.paper },
   content: { padding: space(3), paddingTop: space(4), maxWidth: 1100, width: "100%", alignSelf: "center" },
-  h1: { fontFamily: font.black, fontSize: 28, color: color.text },
-  sub: { fontFamily: font.regular, fontSize: 15, color: color.textSoft, marginTop: 4, marginBottom: space(2) },
+  h1: { fontFamily: font.black, fontSize: 28, color: color.ink },
+  sub: { fontFamily: font.regular, fontSize: 15, color: color.inkSoft, marginTop: 4, marginBottom: space(2) },
   row: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 8, marginBottom: space(1.5) },
-  chip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: radius.pill, borderWidth: 2, borderColor: color.line, backgroundColor: "#fff" },
+  chip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 999, borderWidth: 2, borderColor: color.rule, backgroundColor: color.sheet },
   chipOn: { backgroundColor: color.azure, borderColor: color.azure },
-  chipText: { fontFamily: font.semibold, fontSize: 14, color: color.text },
-  label: { fontFamily: font.bold, fontSize: 15, color: color.text, marginRight: 4 },
-  caption: { fontFamily: font.regular, fontSize: 12, color: color.textSoft },
-  compare: { flexDirection: "row", justifyContent: "center", gap: space(4), paddingVertical: space(4), marginVertical: space(1), backgroundColor: color.cream, borderRadius: radius.card },
+  chipText: { fontFamily: font.semibold, fontSize: 14, color: color.ink },
+  label: { fontFamily: font.bold, fontSize: 15, color: color.ink, marginRight: 4 },
+  caption: { fontFamily: font.regular, fontSize: 12, color: color.inkSoft },
+  compare: { flexDirection: "row", justifyContent: "center", gap: space(4), paddingVertical: space(4), marginVertical: space(1), backgroundColor: color.paperDeep, borderRadius: radius.sheet },
   cmpCell: { alignItems: "center", gap: 6 },
   grid: { flexDirection: "row", flexWrap: "wrap", gap: space(2), marginTop: space(2) },
-  cell: { width: 240, alignItems: "center", paddingVertical: space(3), paddingTop: space(5), backgroundColor: "#fff", borderRadius: radius.card, borderWidth: 1, borderColor: color.line },
+  cell: { width: 240, alignItems: "center", paddingVertical: space(3), paddingTop: space(5), backgroundColor: color.sheet, borderRadius: radius.sheet, borderWidth: 1, borderColor: color.rule },
   cellArt: { flexDirection: "row", alignItems: "flex-end", gap: space(1), marginBottom: space(1) },
 });

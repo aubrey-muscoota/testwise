@@ -4,7 +4,7 @@
 import React from "react";
 import { StyleProp, StyleSheet, Text, TextStyle, View } from "react-native";
 import { renderMath } from "./tex";
-import { color, font, space, type } from "../theme";
+import { color, font, radius, space, type } from "../theme";
 
 const BLANK = /_{4,}/;
 
@@ -44,13 +44,11 @@ export function Passage({ text, label }: { text: string; label?: string }) {
 }
 
 const st = StyleSheet.create({
-  box: {
-    backgroundColor: color.card, borderRadius: 16, borderWidth: 2, borderColor: color.line,
-    padding: space(2), marginBottom: space(2), gap: space(0.75),
-  },
-  label: { fontFamily: font.black, fontSize: 12, letterSpacing: 1, color: color.textSoft, marginBottom: space(0.5) },
+  // A sunken well: paperDeep, no border.
+  box: { backgroundColor: color.paperDeep, borderRadius: radius.well, padding: space(2), marginBottom: space(2), gap: space(0.75) },
+  label: { fontFamily: font.bold, fontSize: 13, lineHeight: 18, color: color.inkSoft, marginBottom: space(0.25) },
   text: { fontSize: 17, lineHeight: 26 },
   bullet: { flexDirection: "row", gap: space(1) },
-  u: { textDecorationLine: "underline", textDecorationColor: color.azureDark, fontFamily: font.semibold },
-  blank: { textDecorationLine: "underline", textDecorationColor: color.text, letterSpacing: 2 },
+  u: { textDecorationLine: "underline", textDecorationColor: color.azureInk, fontFamily: font.semibold },
+  blank: { textDecorationLine: "underline", textDecorationColor: color.ink, letterSpacing: 2 },
 });

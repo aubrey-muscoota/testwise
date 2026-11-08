@@ -19,6 +19,8 @@ export type Item = {
   hints: string[];
   wrong_reasons: Record<string, string>;
   review: boolean;
+  // Practice only: "generated" when Socrates wrote it.
+  source?: "bank" | "generated";
 };
 
 export type Skill = {
@@ -41,9 +43,92 @@ export type Stats = { xp: number; streak: number; lessons_today: number; xp_toda
 
 export type Consent = { age_confirmed: boolean; ai_consent: boolean };
 
-export type Tree = { exam: { id: string; name: string }; sections?: Section[]; domains: Domain[]; stats: Stats; learner?: Consent };
+export type Tree = { exam: { id: string; name: string }; sections?: Section[]; domains: Domain[]; stats: Stats; learner?: Consent; profile?: Profile };
 
-export type Lesson = { lesson_id: string; skill_id: string | null; placement?: boolean; items: Item[] };
+export type PracticeMode = "weak" | "mixed" | "skill" | "timed" | "mistakes" | "fresh";
+
+export type Lesson = {
+  lesson_id: string;
+  skill_id: string | null;
+  placement?: boolean;
+  items: Item[];
+  // Practice sessions (POST /api/practice).
+  practice?: boolean;
+  mode?: PracticeMode;
+  time_limit_seconds?: number;
+  fresh?: boolean;
+  generated?: number;
+  note?: string;
+};
+
+// Test date and pacing (GET/POST /api/profile).
+export type Profile = {
+  onboarded: boolean;
+  exam_date: string | null;
+  not_booked: boolean;
+  assumed_exam_date: string | null;
+  target_score: number | null;
+  daily_minutes: number | null;
+  plan_started_at: string | null;
+};
+
+// The exact request that starts a plan task.
+export type StartRequest = { method: "POST"; path: string; body: Record<string, unknown> };
+
+export type PlanTask = {
+  id: string;
+  kind: "review" | "lesson" | "practice" | "rest";
+  minutes: number;
+  title: string;
+  why: string;
+  done: boolean;
+  start: StartRequest | null;
+  n?: number;
+  skill_id?: string;
+  mode?: PracticeMode;
+  skill_ids?: string[];
+};
+
+export type PlanPhase = "learn" | "strengthen" | "test_ready" | "rest" | "after";
+
+export type Plan = {
+  profile: Profile;
+  date: string;
+  exam_date: string;
+  exam_date_assumed: boolean;
+  days_left: number;
+  phase: PlanPhase;
+  status: { on_track: boolean; behind_by_lessons: number; missed_yesterday: boolean; message: string };
+  today_tasks_done: number;
+  today: PlanTask[];
+  minutes_planned: number;
+  daily_minutes: number;
+  skills_started: number;
+  skills_total: number;
+  learn_by: string;
+  test_ready_from: string;
+  weeks: { start: string; end: string; phase: PlanPhase; focus_skill_ids: string[]; goal: string }[];
+};
+
+export type SkillSummary = {
+  skill_id: string;
+  name: string;
+  section_id: string;
+  bank: number;
+  generated: number;
+  seen: number;
+  unseen: number;
+  missed: number;
+  started: boolean;
+  unlocked: boolean;
+  low: boolean;
+};
+
+export type PracticeSummary = {
+  totals: { bank: number; generated: number; seen: number; unseen: number; missed: number };
+  skills: SkillSummary[];
+  fresh: { available: boolean; generated_today: number; daily_limit: number };
+};
 
 export type Placement = { tested_out: { id: string; name: string }[]; next: { id: string; name: string }[]; total_skills: number };
 
@@ -211,5 +296,17 @@ export const api = {
     call<{ correct: number; total: number; xp: number; stats: Stats; placement?: Placement }>("/api/lessons/finish", { method: "POST", body: { lesson_id: lessonId } }),
   socrates: (b: { item_id: string; response: string; history: TutorTurn[] }) =>
     call<{ reply: string; offline?: boolean; done?: boolean; error?: string; remaining_today?: number }>("/api/socrates", { method: "POST", body: b }),
+  profile: () => call<Profile>("/api/profile"),
+  saveProfile: (b: { exam_date?: string | null; not_booked?: true; target_score?: number | null; daily_minutes?: number }) =>
+    call<Profile>("/api/profile", { method: "POST", body: b }),
+  plan: () => call<Plan>("/api/plan"),
+  practiceSummary: () => call<PracticeSummary>("/api/practice/summary"),
+  practice: (b: { mode: PracticeMode; n?: number; skill_id?: string; skill_ids?: string[]; section?: string }) =>
+    call<Lesson>("/api/practice", { method: "POST", body: b }),
+  // Starts a plan task with the request the plan gave. Only lesson and practice starts are allowed.
+  start: (r: StartRequest) => {
+    if (r.method !== "POST" || !/^\/api\/(lessons|practice)$/.test(r.path)) return Promise.reject(new Error("unknown task"));
+    return call<Lesson>(r.path, { method: "POST", body: r.body });
+  },
   report: (itemId: string, note: string) => call<{ ok: boolean }>("/api/reports", { method: "POST", body: { item_id: itemId, note } }),
 };
