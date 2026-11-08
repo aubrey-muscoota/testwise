@@ -338,10 +338,8 @@ export function buildPlan(o) {
 
   const lessonTask = (s, isDone) => {
     const opens = skills.filter((x) => x.prereqs.includes(s.id)).map((x) => x.name);
-    const left = skills.filter((x) => !x.started).length;
     let why = isDone ? `You started ${s.name} today.` : `You haven't started ${s.name} yet.`;
     if (opens.length) why += ` It opens up ${opens.slice(0, 2).join(" and ")}.`;
-    if (!isDone && phase === "learn" && left > 1) why += ` ${plural(left, "skill")} left to start by ${shortDate(tl.learnEnd)}.`;
     return {
       id: `lesson-${s.id}`,
       kind: "lesson",
@@ -494,6 +492,11 @@ export function buildPlan(o) {
   const missedTwo = planDays >= 2 && !active.has(yesterday) && !active.has(dayBefore);
   const missedYesterday = planDays >= 1 && !active.has(yesterday);
   const onTrack = behind === 0 && !missedTwo;
+  // The weeks ahead, and from them the one date every skill is started by, so
+  // Today, the plan header and the weekly list never disagree.
+  const weeks = phase === "after" ? [] : projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSod, todayNew: tasks.filter((t) => t.kind === "lesson").map((t) => t.skill_id), shortRunway });
+  const learnWeeks = weeks.filter((w) => w.phase === "learn");
+  const learnBy = learnWeeks.length ? learnWeeks[learnWeeks.length - 1].end : tl.learnEnd;
   const assumedNote = exam.assumed ? ` (We're assuming a test around ${shortDate(exam.date)} until you pick a date.)` : "";
   let message;
   if (phase === "after") {
@@ -513,13 +516,11 @@ export function buildPlan(o) {
     message = shortRunway
       ? `${plural(tl.daysLeft, "day")} isn't enough to start all ${plural(left, "skill")}, so we'll start the ones worth the most points first.`
       : behind
-      ? `${plural(behind, "lesson")} behind. ${plural(left, "skill")} left to start by ${shortDate(tl.learnEnd)}, so today has a bit more.`
-      : `On track: ${startedNow.length} of ${skills.length} skills started. ${plural(skills.length - startedNow.length, "skill")} to go by ${shortDate(tl.learnEnd)}.`;
+      ? `${plural(behind, "lesson")} behind. ${plural(left, "skill")} left to start by ${shortDate(learnBy)}, so today has a bit more.`
+      : `You've started ${startedNow.length} of ${skills.length} skills. ${skills.length - startedNow.length} to go by ${shortDate(learnBy)}.`;
     if (missedYesterday && !behind) message += " You missed yesterday, but you're still on pace.";
   }
   message += assumedNote;
-
-  const weeks = phase === "after" ? [] : projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSod, todayNew: tasks.filter((t) => t.kind === "lesson").map((t) => t.skill_id), shortRunway });
 
   return {
     date: today,
@@ -534,7 +535,7 @@ export function buildPlan(o) {
     daily_minutes: minutes,
     skills_started: startedNow.length,
     skills_total: skills.length,
-    learn_by: tl.learnEnd,
+    learn_by: learnBy,
     test_ready_from: addDays(exam.date, -(tl.tr + 1)),
     weeks,
   };
@@ -584,26 +585,31 @@ export function projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSo
   const weakList = [...skills].sort((a, b) => weakness(b) - weakness(a) || a.position - b.position);
   let strengthenIdx = 0;
   const nameOf = new Map(skills.map((s) => [s.id, s.name]));
+  // Each week names its skills (focus_names, one per line in the app) or, when
+  // it has none to name, says what it is for in `goal`. No template sentences:
+  // the phase heading says the verb once.
   return weeks.map((w) => {
     let focus = [];
-    let goal;
+    let named = true;
+    let goal = null;
     if (w.phase === "learn") {
       focus = w.new;
-      goal = focus.length
-        ? `Start ${plural(focus.length, "new skill")}: ${focus.slice(0, 3).map((id) => nameOf.get(id)).join(", ")}${focus.length > 3 ? ", and more" : ""}.`
-        : "Keep up with review and practice; the next new skill comes soon.";
+      if (!focus.length) goal = "Review and practice";
     } else if (w.phase === "strengthen") {
       const k = 3;
       const n = weakList.length;
       focus = n ? Array.from({ length: Math.min(k, n) }, (_, j) => weakList[(strengthenIdx * k + j) % n].id) : [];
       strengthenIdx++;
-      goal = focus.length ? `Raise ${focus.map((id) => nameOf.get(id)).join(", ")}, plus mixed sets.` : "Mixed sets and review.";
+      if (!focus.length) goal = "Review and practice";
     } else if (w.phase === "test_ready") {
       focus = weakList.slice(0, 3).map((s) => s.id);
-      goal = "Timed mixed sets at test pace, and a last pass on your weakest skills.";
+      named = false;
+      goal = "Timed sets at test pace";
     } else {
-      goal = daysBetween(w.end, exam) === 0 ? "Rest, then the test." : "Rest.";
+      named = false;
+      goal = daysBetween(w.end, exam) === 0 ? "Rest, then the test" : "Rest";
     }
-    return { start: w.start, end: w.end, phase: w.phase, focus_skill_ids: focus, goal };
+    const focus_names = named ? focus.map((id) => nameOf.get(id)) : [];
+    return { start: w.start, end: w.end, phase: w.phase, focus_skill_ids: focus, focus_names, goal };
   });
 }

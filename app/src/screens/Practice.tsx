@@ -4,11 +4,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, PracticeSummary, Tree } from "../api";
-import { listOf, minutes, plural } from "../copy";
+import { lines, minutes, noOrphan, plural } from "../copy";
 import { Icon } from "../components/icons";
 import { SectionSwitch } from "../components/SectionSwitch";
 import { useWide } from "../components/Shell";
-import { Bone, ErrorState, IconButton, Rise, Row, Skeleton } from "../components/ui";
+import { Bone, Button, ErrorState, IconButton, Rise, Row, Skeleton } from "../components/ui";
 import { LessonSource, practiceSource, useLoad } from "../nav";
 import { color, GUTTER, space, type } from "../theme";
 
@@ -29,7 +29,7 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
   const { summary, tree }: { summary: PracticeSummary; tree: Tree } = data;
 
   if (picking) {
-    return <SkillPicker summary={summary} tree={tree} onBack={() => setPicking(false)} onPick={(id, name) => onStart(practiceSource({ mode: "skill", skill_id: id, n: 8 }, name, `Eight questions on ${name}, easy to hard.`))} />;
+    return <SkillPicker summary={summary} tree={tree} onBack={() => setPicking(false)} onPick={(id, name) => onStart(practiceSource({ mode: "skill", skill_id: id, n: 8 }, name))} />;
   }
 
   const t = summary.totals;
@@ -45,78 +45,92 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
   const f = summary.fresh;
   const freshLeft = Math.max(0, f.daily_limit - f.generated_today);
 
+  // Misses the mistakes set can serve (in open skills), and how many one set holds.
+  const fixable = t.fixable ?? t.missed;
+  const serve = Math.min(10, fixable);
   const go = (mode: "weak" | "mixed" | "timed" | "mistakes" | "fresh", why?: string) => {
-    const n = mode === "timed" ? TIMED_N : mode === "fresh" ? 5 : mode === "mistakes" ? Math.min(10, Math.max(3, t.missed)) : 10;
+    const n = mode === "timed" ? TIMED_N : mode === "fresh" ? 5 : mode === "mistakes" ? Math.max(3, serve) : 10;
     onStart(practiceSource({ mode, n }, undefined, why));
   };
+  const mistakesWhy = "You missed these and haven't got them right since. Shall we see what tripped you?";
 
-  // The row worth doing first gets the emphasis.
-  const best = t.missed >= 5 ? "mistakes" : started.length ? "weak" : "mixed";
+  // The mode worth doing first is the screen's one button; the rest are rows.
+  const best = fixable >= 5 ? "mistakes" : started.length ? "weak" : "mixed";
+  const headline =
+    best === "mistakes" ? `${fixable} questions you missed are waiting`
+    : best === "weak" ? `${weakNames[0]} is your weakest skill`
+    : "Practice anything, any day";
+  const cta =
+    best === "mistakes" ? <Button title={`Fix ${serve} mistakes`} onPress={() => go("mistakes", mistakesWhy)} testID="practice-best" />
+    : best === "weak" ? <Button title={`Practice ${weakNames[0]}`} onPress={() => go("weak")} testID="practice-best" />
+    : <Button title="Start a mixed set" onPress={() => go("mixed")} testID="practice-best" />;
+  const mistakesDetail = !fixable
+    ? t.missed ? `${plural(t.missed, "miss", "misses")} in skills that aren't open yet` : "Nothing to fix right now"
+    : serve < t.missed ? `Fix ${serve} of your ${t.missed} misses` : `${plural(serve, "question")} to fix`;
 
   return (
-    <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}>
-      <Rise>
-        <Text style={type.title} accessibilityRole="header">
-          {t.unseen.toLocaleString("en-US")} questions{"\n"}you haven't tried
-        </Text>
-        <Text style={[type.body, { color: color.inkSoft, marginTop: space(1) }]}>
-          {t.seen > 0 ? `You've answered ${plural(t.seen, "question")} so far. ` : ""}Every set counts toward today's plan.
-        </Text>
-      </Rise>
+    <View style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}>
+        <Rise>
+          <Text style={type.title} accessibilityRole="header">{noOrphan(headline)}</Text>
+          {wide && <View style={{ marginTop: space(3) }}>{cta}</View>}
+        </Rise>
 
-      <Rise delay={80} style={{ marginTop: space(3.5), gap: space(0.5) }}>
-        <Row
-          testID="mode-weak"
-          icon="target"
-          iconTint={color.terracotta}
-          title="Weak spots"
-          detail={weakNames.length ? listOf(weakNames) : "Your first open skills, until you've tried a few"}
-          emphasized={best === "weak"}
-          onPress={() => go("weak", weakNames.length ? `Your lowest right now: ${listOf(weakNames)}.` : undefined)}
-        />
-        <Row
-          testID="mode-mistakes"
-          icon="redo"
-          iconTint={color.brick}
-          title="My mistakes"
-          detail={t.missed ? `${plural(t.missed, "question")} to fix` : "Nothing to fix right now"}
-          disabled={!t.missed}
-          emphasized={best === "mistakes"}
-          onPress={() => go("mistakes", "You missed these and haven't got them right since. Shall we see what tripped you?")}
-        />
-        <Row
-          testID="mode-timed"
-          icon="clock"
-          title="Timed set"
-          detail={`${TIMED_N} questions at test pace, ${lo === hi ? minutes(lo) : `${lo} to ${hi} minutes`}`}
-          onPress={() => go("timed", `${TIMED_N} questions at test pace. When the clock hits zero, the set ends.`)}
-        />
-        <Row
-          testID="mode-mixed"
-          icon="shuffle"
-          title="Mixed"
-          detail={anyStarted ? "10 questions from skills you've started" : "10 questions from your open skills"}
-          emphasized={best === "mixed"}
-          onPress={() => go("mixed")}
-        />
-        <Row testID="mode-skill" icon="book" title="One skill" detail="Pick any open skill and drill it" onPress={() => setPicking(true)} />
-        <Row
-          testID="mode-fresh"
-          icon="quill"
-          iconTint={color.azureInk}
-          title="New questions from Socrates"
-          detail={
-            f.available
-              ? freshLeft > 0
-                ? `He writes 5 just for you · ${freshLeft} left today`
-                : "That's today's 20. More tomorrow, or bank questions now"
-              : "He can't write new ones here yet, so you'll get unseen bank questions"
-          }
-          onPress={() => go("fresh")}
-        />
-      </Rise>
-      <View style={{ height: space(4) }} />
-    </ScrollView>
+        <Rise delay={80} style={{ marginTop: space(3.5), gap: space(0.5) }}>
+          {best !== "weak" && (
+            <Row
+              testID="mode-weak"
+              icon="target"
+              iconTint={color.terracotta}
+              title="Weak spots"
+              detail={weakNames.length ? `${weakNames[0]}${started.length > 1 ? ` and ${started.length - 1} more` : ""}` : "Your first open skills, until you've tried a few"}
+              onPress={() => go("weak")}
+            />
+          )}
+          {best !== "mistakes" && (
+            <Row
+              testID="mode-mistakes"
+              icon="redo"
+              iconTint={color.brick}
+              title="My mistakes"
+              detail={mistakesDetail}
+              disabled={!fixable}
+              onPress={() => go("mistakes", mistakesWhy)}
+            />
+          )}
+          <Row
+            testID="mode-timed"
+            icon="clock"
+            title="Timed set"
+            detail={`${TIMED_N} questions at test pace, ${lo === hi ? minutes(lo) : `${lo} to ${hi} minutes`}`}
+            onPress={() => go("timed", lines.timed)}
+          />
+          {best !== "mixed" && (
+            <Row
+              testID="mode-mixed"
+              icon="shuffle"
+              title="Mixed"
+              detail={anyStarted ? "10 questions from skills you've started" : "10 questions from your open skills"}
+              onPress={() => go("mixed")}
+            />
+          )}
+          <Row testID="mode-skill" icon="book" title="One skill" detail="Pick any open skill and drill it" onPress={() => setPicking(true)} />
+          {f.available && (
+            <Row
+              testID="mode-fresh"
+              icon="quill"
+              iconTint={color.azureInk}
+              title="New questions from Socrates"
+              detail={freshLeft > 0 ? `5 written for you, ${freshLeft} left today` : "That's today's 20. More tomorrow"}
+              disabled={freshLeft === 0}
+              onPress={() => go("fresh")}
+            />
+          )}
+        </Rise>
+        <View style={{ height: space(4) }} />
+      </ScrollView>
+      {!wide && <View style={s.foot}>{cta}</View>}
+    </View>
   );
 }
 
@@ -145,9 +159,9 @@ function SkillPicker({
           <View style={{ marginTop: space(1) }}>
             {d.skills.filter((sk) => sk.unlocked || sk.attempts > 0).map((sk) => {
               const c = counts.get(sk.id);
-              const detail = c
-                ? `${c.unseen.toLocaleString("en-US")} unseen${c.missed ? ` \u00b7 ${c.missed} to fix` : ""}${sk.attempts ? ` \u00b7 ${sk.mastery}%` : ""}`
-                : undefined;
+              // In words, missed first; nothing when there's nothing to say yet.
+              const parts = [c?.missed ? `${c.missed} to fix` : "", sk.attempts ? `${sk.mastery}% mastered` : ""].filter(Boolean);
+              const detail = parts.length ? parts.join(", ") : undefined;
               return <Row key={sk.id} title={sk.name} detail={detail} onPress={() => onPick(sk.id, sk.name)} />;
             })}
             {(() => {
@@ -176,7 +190,6 @@ function PracticeSkeleton() {
       <View style={s.scroll}>
         <Bone w={260} h={30} />
         <Bone w={200} h={30} style={{ marginTop: 8 }} />
-        <Bone w="80%" h={16} style={{ marginTop: 14 }} />
         {[0, 1, 2, 3, 4, 5].map((i) => (
           <View key={i} style={{ flexDirection: "row", gap: 14, marginTop: i ? 22 : 34 }}>
             <Bone w={24} h={24} r={12} />
@@ -190,5 +203,6 @@ function PracticeSkeleton() {
 
 const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: 640, width: "100%", alignSelf: "center" },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: 640, width: "100%", alignSelf: "center" },
 });
 

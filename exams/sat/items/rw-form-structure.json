@@ -434,7 +434,7 @@
     "wrong_reasons": {
       "only the occasional lantern was visible to Mira, swinging on a station platform.": "Mentions Mira and keeps the details, but it makes \"the occasional lantern\" the thing peering through the window.",
       "the occasional lantern swinging on a station platform was all Mira could see.": "Reads smoothly, but its subject is \"the occasional lantern,\" so the lantern seems to be peering.",
-      "Mira's view was limited to the occasional lantern swinging on a station platform.": "Tempting because \"Mira's\" comes first, but the subject is \"view\" (\"Mira's\" only modifies it), and a view can't peer through a window."
+      "Mira's view was limited to the occasional lantern swinging on a station platform.": "\"Mira's\" comes first, but the subject is \"view\" (\"Mira's\" only modifies it), and a view can't peer through a window."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -651,7 +651,7 @@
     "wrong_reasons": {
       "offer": "Matches the nearby plural \"lanes,\" but the subject is the singular \"network.\"",
       "have offered": "The present perfect is a fine tense here, but \"have\" is plural and doesn't agree with \"network.\"",
-      "are offering": "Tempting because \"lanes\" sits next to the blank, but \"are\" is plural and the subject is singular."
+      "are offering": "\"Lanes\" sits next to the blank, but \"are\" is plural and the subject is singular."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -773,7 +773,7 @@
       "Which choice puts that thing right after the comma?"
     ],
     "wrong_reasons": {
-      "researchers found that crimson clover reduced soil erosion by nearly 30 percent": "Tempting because it names the researchers who ran the trial, but now the modifier says the researchers were planted between rows of corn.",
+      "researchers found that crimson clover reduced soil erosion by nearly 30 percent": "It names the researchers who ran the trial, but now the modifier says the researchers were planted between rows of corn.",
       "the soil erosion was reduced by crimson clover by nearly 30 percent": "The passive voice puts \"soil erosion\" after the modifier, so it says the erosion was planted.",
       "a reduction of nearly 30 percent in soil erosion came from crimson clover": "It mentions clover, but only at the end. The phrase right after the modifier is \"a reduction,\" which wasn't planted."
     },
@@ -990,7 +990,7 @@
       "Which pronoun can act as the subject of a verb?"
     ],
     "wrong_reasons": {
-      "it": "Tempting because \"Company\" is singular, but the people who stretch are the plural \"dancers.\"",
+      "it": "\"Company\" is singular, but the people who stretch are the plural \"dancers.\"",
       "them": "Plural, but it's an object pronoun and can't be the subject of \"stretch.\"",
       "their": "A possessive needs a noun after it: \"their stretch\" isn't a clause with a subject and verb."
     },
@@ -1053,7 +1053,7 @@
     ],
     "wrong_reasons": {
       "the weaver gives the yarn": "Names the person who spins, but it says the weaver was spun by hand.",
-      "the yarn's thickness gives it": "Tempting because \"yarn\" appears first, but it's a possessive. The subject is \"thickness,\" which isn't spun.",
+      "the yarn's thickness gives it": "\"Yarn\" appears first, but it's a possessive. The subject is \"thickness,\" which isn't spun.",
       "weavers find in the yarn": "Mentions the yarn, but the subject is \"weavers,\" so they become the ones spun on a spindle."
     },
     "check": null,
@@ -1207,7 +1207,7 @@
       "Is that noun singular or plural?"
     ],
     "wrong_reasons": {
-      "it": "Tempting because \"the ground\" and \"the soil\" are close by, but soil doesn't germinate. The plural \"seeds\" does.",
+      "it": "\"The ground\" and \"the soil\" are close by, but soil doesn't germinate. The plural \"seeds\" does.",
       "this": "A vague singular pronoun with no clear antecedent; it doesn't agree with \"seeds.\"",
       "its": "A possessive pronoun can't be the subject of \"germinate.\""
     },
@@ -1920,7 +1920,7 @@
       "Do you need a possessive word or a contraction before \"simplicity\"?"
     ],
     "wrong_reasons": {
-      "its": "Tempting because \"a single tiny lens\" and \"a small metal plate\" are singular, but the simplicity belongs to the plural \"instruments.\"",
+      "its": "\"A single tiny lens\" and \"a small metal plate\" are singular, but the simplicity belongs to the plural \"instruments.\"",
       "it's": "Means \"it is,\" which is not a possessive, and it is singular anyway.",
       "they're": "Plural, but it means \"they are,\" not a possessive; \"despite they are simplicity\" makes no sense."
     },
@@ -2197,7 +2197,7 @@
       "Is that plant treated as singular or plural, and how can you tell from its verb?"
     ],
     "wrong_reasons": {
-      "their": "Tempting because the text lists three crops and mentions the plural \"stalks\" and \"beans,\" but the leaves belong to the singular \"squash.\"",
+      "their": "The text lists three crops and mentions the plural \"stalks\" and \"beans,\" but the leaves belong to the singular \"squash.\"",
       "they're": "Means \"they are\" and is plural, so it fits neither the meaning nor the antecedent.",
       "it's": "Singular, but it means \"it is,\" not a possessive."
     },
@@ -2258,7 +2258,7 @@
       "Is that subject one person or more than one?"
     ],
     "wrong_reasons": {
-      "see": "Tempting because \"puppets\" and \"performers\" are plural, but the subject is the singular \"spectator.\"",
+      "see": "\"Puppets\" and \"performers\" are plural, but the subject is the singular \"spectator.\"",
       "are seeing": "\"Are\" is plural and doesn't agree with \"spectator.\"",
       "have seen": "\"Have\" is plural, and the perfect tense doesn't fit a general description."
     },
@@ -3128,7 +3128,7 @@
       "Does the sentence have a main verb without the blank?"
     ],
     "wrong_reasons": {
-      "have shortened": "Tempting because the plural nouns \"corridors\" and \"planners\" sit right before the blank, but the subject is the singular \"network.\"",
+      "have shortened": "The plural nouns \"corridors\" and \"planners\" sit right before the blank, but the subject is the singular \"network.\"",
       "having shortened": "Sounds formal and complete, but a participle can't serve as the sentence's main verb, leaving the subject without a predicate.",
       "were shortening": "Feels natural after a list of plural nouns, but it is plural and doesn't agree with \"network\"; the past progressive also clashes with a survey reporting a result to date."
     },
@@ -3194,7 +3194,7 @@
       "Does the blank need to show possession or to mean \"it is\"?"
     ],
     "wrong_reasons": {
-      "their": "Tempting because \"9,000 people\" comes just before the blank, but the first year belongs to the singular \"program.\"",
+      "their": "\"9,000 people\" comes just before the blank, but the first year belongs to the singular \"program.\"",
       "it's": "Looks possessive because of the apostrophe, but \"it's\" means \"it is,\" which makes no sense here.",
       "its'": "Looks like a possessive form, but \"its'\" is not a word in Standard English."
     },
@@ -3394,7 +3394,7 @@
       "Does the sentence have a main verb outside the \"whose\" clause?"
     ],
     "wrong_reasons": {
-      "fails": "Tempting because the singular \"activity\" sits just before the blank, but the subject is the plural \"mice.\"",
+      "fails": "The singular \"activity\" sits just before the blank, but the subject is the plural \"mice.\"",
       "has failed": "Also attracted to the singular \"activity\"; \"has\" doesn't agree with \"mice.\"",
       "failing": "Sounds like a description of the mice, but a participle can't be the main verb, leaving the sentence incomplete."
     },
@@ -3528,7 +3528,7 @@
       "Does the clause after the colon have a finite verb without the blank?"
     ],
     "wrong_reasons": {
-      "gives": "Tempting because the first subject, \"the ship's passenger manifest,\" is singular and \"filed a decade later\" separates the verb from \"records,\" but the verb agrees with the nearer, plural subject.",
+      "gives": "The first subject, \"the ship's passenger manifest,\" is singular and \"filed a decade later\" separates the verb from \"records,\" but the verb agrees with the nearer, plural subject.",
       "has given": "Also agrees with the singular \"manifest\" rather than the nearer plural \"records.\"",
       "giving": "Avoids the agreement question, but it is a participle, so the clause after the colon would lack a main verb."
     },
@@ -3594,7 +3594,7 @@
       "Is that word singular or plural?"
     ],
     "wrong_reasons": {
-      "have": "Tempting because \"residents\" and \"cities\" are plural, but the subject is the singular \"share.\"",
+      "have": "\"Residents\" and \"cities\" are plural, but the subject is the singular \"share.\"",
       "having": "Makes \"having grown\" a participle, so the sentence would have no main verb.",
       "were": "Plural and in the wrong form; \"were grown\" is passive and doesn't agree with \"share.\""
     },
@@ -3693,7 +3693,7 @@
       "Is that noun singular or plural?"
     ],
     "wrong_reasons": {
-      "it.": "Tempting because \"each of these volumes\" is singular, but the antecedent is the plural \"the manuscripts.\"",
+      "it.": "\"Each of these volumes\" is singular, but the antecedent is the plural \"the manuscripts.\"",
       "itself.": "Reflexive, so it would have to refer back to the subject, \"monks,\" and it is singular.",
       "one.": "Sounds like it picks out a single volume, but the monks protected all the manuscripts, and \"one\" has no clear antecedent."
     },
@@ -3727,7 +3727,7 @@
       "Is there a main verb for \"Its kidneys\" outside the \"which\" clause?"
     ],
     "wrong_reasons": {
-      "conserves": "Tempting because \"The kangaroo rat\" is the main topic and \"a degree\" is singular, but the subject here is the plural \"kidneys.\"",
+      "conserves": "\"The kangaroo rat\" is the main topic and \"a degree\" is singular, but the subject here is the plural \"kidneys.\"",
       "conserving": "Seems to continue the description, but a participle can't be the main verb, so \"Its kidneys\" would have no predicate.",
       "having conserved": "Sounds formal, but it is nonfinite and also suggests a completed earlier action, leaving the sentence without a main verb."
     },
@@ -3791,9 +3791,9 @@
       "If you remove \"Teodora and,\" which word sounds right after \"to\"?"
     ],
     "wrong_reasons": {
-      "I": "Picked because \"Teodora and I\" sounds formal and correct, but \"I\" is a subject pronoun and cannot be the object of \"to.\"",
+      "I": "\"Teodora and I\" sounds formal and correct, but \"I\" is a subject pronoun and cannot be the object of \"to.\"",
       "myself": "Picked to avoid choosing between \"I\" and \"me,\" but a reflexive pronoun needs an earlier \"I\" in the same clause to refer back to, and the subject here is \"he.\"",
-      "mine": "Picked because the narrator also gets a schedule, but \"mine\" is a possessive meaning \"my schedule,\" and he handed a schedule to a person, not to a schedule."
+      "mine": "The narrator also gets a schedule, but \"mine\" is a possessive meaning \"my schedule,\" and he handed a schedule to a person, not to a schedule."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3822,9 +3822,9 @@
       "Is that subject singular or plural?"
     ],
     "wrong_reasons": {
-      "suggests": "Picked because \"a small theropod\" sits just before the modifier, but the subject is the plural \"footprints,\" so the verb must be plural.",
-      "is suggesting": "Picked because it sounds like ongoing scientific interpretation, but \"is\" is singular and cannot agree with \"footprints.\"",
-      "has suggested": "Picked because the present perfect sounds like a finding, but \"has\" is singular and does not agree with the plural \"footprints.\""
+      "suggests": "\"A small theropod\" sits just before the modifier, but the subject is the plural \"footprints,\" so the verb must be plural.",
+      "is suggesting": "It sounds like ongoing scientific interpretation, but \"is\" is singular and cannot agree with \"footprints.\"",
+      "has suggested": "The present perfect sounds like a finding, but \"has\" is singular and does not agree with the plural \"footprints.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3853,9 +3853,9 @@
       "Which noun does each choice place directly after the comma?"
     ],
     "wrong_reasons": {
-      "Ardoy recorded": "Picked because Ardoy is the person doing the work, but placing her right after the modifier says that she herself was exposed on the rooftop for eight hours.",
-      "the night sky revealed": "Picked because the sky is what the photograph shows, but the sky is not what was exposed; the modifier must attach to the plate.",
-      "Ardoy, using a single glass plate, recorded": "Picked because it mentions the plate, but the plate is buried in an interrupting phrase; the subject right after the modifier is still \"Ardoy,\" so the sentence still says she was exposed."
+      "Ardoy recorded": "Ardoy is the person doing the work, but placing her right after the modifier says that she herself was exposed on the rooftop for eight hours.",
+      "the night sky revealed": "The sky is what the photograph shows, but the sky is not what was exposed; the modifier must attach to the plate.",
+      "Ardoy, using a single glass plate, recorded": "It mentions the plate, but the plate is buried in an interrupting phrase; the subject right after the modifier is still \"Ardoy,\" so the sentence still says she was exposed."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3883,9 +3883,9 @@
       "Which verb form matches an action that is already over?"
     ],
     "wrong_reasons": {
-      "counts": "Picked because the passage describes an ongoing study, but the present tense contradicts \"Last summer.\"",
-      "will count": "Picked because the second sentence looks ahead to future work, but the counting itself happened last summer.",
-      "have counted": "Picked because the present perfect can describe completed actions, but it is not used with a specific finished time like \"last summer,\" and \"have\" does not agree with the singular \"team.\""
+      "counts": "The passage describes an ongoing study, but the present tense contradicts \"Last summer.\"",
+      "will count": "The second sentence looks ahead to future work, but the counting itself happened last summer.",
+      "have counted": "The present perfect can describe completed actions, but it is not used with a specific finished time like \"last summer,\" and \"have\" does not agree with the singular \"team.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3913,9 +3913,9 @@
       "Is that thing singular or plural, and do you need a possessive or a contraction?"
     ],
     "wrong_reasons": {
-      "it's": "Picked because it has an apostrophe like most possessives, but \"it's\" means \"it is,\" and \"Before it is appearance\" makes no sense.",
-      "their": "Picked because \"surveyors\" and \"atlases\" are nearby plural nouns, but the appearance referred to is that of the single Halden Atlas.",
-      "they're": "Picked because it sounds like \"their,\" but it is a contraction of \"they are\" and is also plural."
+      "it's": "It has an apostrophe like most possessives, but \"it's\" means \"it is,\" and \"Before it is appearance\" makes no sense.",
+      "their": "\"Surveyors\" and \"atlases\" are nearby plural nouns, but the appearance referred to is that of the single Halden Atlas.",
+      "they're": "It sounds like \"their,\" but it is a contraction of \"they are\" and is also plural."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3944,8 +3944,8 @@
       "Try rewriting the sentence with the subject first. Which verb fits?"
     ],
     "wrong_reasons": {
-      "is": "Picked because the singular \"matrix\" comes right before the blank, but \"matrix\" is the object of \"in\"; the subject is the plural \"channels.\"",
-      "lies": "Picked because \"lies embedded\" sounds natural for something inside a structure, but \"lies\" is singular and the subject \"channels\" is plural.",
+      "is": "The singular \"matrix\" comes right before the blank, but \"matrix\" is the object of \"in\"; the subject is the plural \"channels.\"",
+      "lies": "\"Lies embedded\" sounds natural for something inside a structure, but \"lies\" is singular and the subject \"channels\" is plural.",
       "was": "Picked by matching the singular \"matrix,\" but it is singular and also shifts into the past tense, while the rest of the passage is in the present."
     },
     "check": null,
@@ -3974,8 +3974,8 @@
       "Is the word showing ownership or just naming more than one?"
     ],
     "wrong_reasons": {
-      "the runner's": "Picked because each person has one heart rate, but \"runner's\" is singular, and twelve runners were measured.",
-      "the runners": "Picked because it is plural, but without an apostrophe it does not show that the heart rates belong to the runners.",
+      "the runner's": "Each person has one heart rate, but \"runner's\" is singular, and twelve runners were measured.",
+      "the runners": "It is plural, but without an apostrophe it does not show that the heart rates belong to the runners.",
       "the runners's": "Picked by adding the usual \"'s\" to show possession, but a plural noun ending in s takes only an apostrophe."
     },
     "check": null,
@@ -4005,9 +4005,9 @@
       "Does the sentence have a main verb without the blank?"
     ],
     "wrong_reasons": {
-      "making": "Picked because \"flying\" later in the sentence ends in -ing, but an -ing form alone cannot be the main verb, so the sentence would be a fragment.",
-      "to make": "Picked because it sounds like a purpose, but an infinitive is not a finite verb and leaves the godwit without a main verb.",
-      "having made": "Picked because it sounds like a completed achievement, but a participle phrase cannot serve as the sentence's main verb."
+      "making": "\"Flying\" later in the sentence ends in -ing, but an -ing form alone cannot be the main verb, so the sentence would be a fragment.",
+      "to make": "It sounds like a purpose, but an infinitive is not a finite verb and leaves the godwit without a main verb.",
+      "having made": "It sounds like a completed achievement, but a participle phrase cannot serve as the sentence's main verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4036,9 +4036,9 @@
       "Which action began earlier and continued up to that arrival?"
     ],
     "wrong_reasons": {
-      "has been descending": "Picked because it expresses an action continuing over a span of time, but the present perfect reaches up to now, not up to a past moment like \"reached.\"",
-      "is descending": "Picked because \"creeping\" describes an ongoing motion, but the present tense clashes with the past-tense \"reached.\"",
-      "will have descended": "Picked because the future perfect also describes an action completed by a certain point, but that point here is in the past, not the future."
+      "has been descending": "It expresses an action continuing over a span of time, but the present perfect reaches up to now, not up to a past moment like \"reached.\"",
+      "is descending": "\"Creeping\" describes an ongoing motion, but the present tense clashes with the past-tense \"reached.\"",
+      "will have descended": "The future perfect also describes an action completed by a certain point, but that point here is in the past, not the future."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4067,9 +4067,9 @@
       "Does \"every cell\" take a singular or plural verb?"
     ],
     "wrong_reasons": {
-      "contain": "Picked because \"every cell\" seems to refer to many cells, but \"every\" makes the subject grammatically singular.",
+      "contain": "\"Every cell\" seems to refer to many cells, but \"every\" makes the subject grammatically singular.",
       "are containing": "Picked by treating the subject as plural, but \"every cell\" is singular, and the progressive form is also odd for a permanent fact.",
-      "have contained": "Picked because it sounds scientific, but \"have\" is plural and does not agree with the singular \"every cell.\""
+      "have contained": "It sounds scientific, but \"have\" is plural and does not agree with the singular \"every cell.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4097,8 +4097,8 @@
       "Does the blank name more than one protein, or show that the strands belong to them?"
     ],
     "wrong_reasons": {
-      "protein's": "Picked because gluten seems like a single substance, but the strands come from two proteins, so the possessive must be plural.",
-      "proteins": "Picked because it is plural, but without an apostrophe it reads as a noun stacked in front of \"linked strands\" and fails to show possession.",
+      "protein's": "Gluten seems like a single substance, but the strands come from two proteins, so the possessive must be plural.",
+      "proteins": "It is plural, but without an apostrophe it reads as a noun stacked in front of \"linked strands\" and fails to show possession.",
       "proteins's": "Picked by adding the usual \"'s,\" but plural nouns ending in s take only an apostrophe."
     },
     "check": null,
@@ -4128,9 +4128,9 @@
       "Do you need a subject pronoun or an object pronoun there?"
     ],
     "wrong_reasons": {
-      "whom": "Picked because \"they had assumed\" seems to make the pronoun its object, but the pronoun is actually the subject of \"would kill.\"",
-      "which": "Picked because it can begin a relative clause, but \"which\" refers to things, and Marta Quill is a person.",
-      "whose": "Picked because it also introduces a relative clause about a person, but it is possessive and needs a noun after it, such as \"whose editor.\""
+      "whom": "\"They had assumed\" seems to make the pronoun its object, but the pronoun is actually the subject of \"would kill.\"",
+      "which": "It can begin a relative clause, but \"which\" refers to things, and Marta Quill is a person.",
+      "whose": "It also introduces a relative clause about a person, but it is possessive and needs a noun after it, such as \"whose editor.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4159,9 +4159,9 @@
       "Is that subject singular or plural?"
     ],
     "wrong_reasons": {
-      "tells": "Picked because \"book\" and \"Moss and the Moon\" are singular and sit right before the blank, but the subject is the plural \"illustrations.\"",
-      "is telling": "Picked because it sounds like ongoing storytelling, but \"is\" is singular and does not agree with \"illustrations.\"",
-      "has told": "Picked because it sounds like a past achievement, but \"has\" is singular and does not agree with the plural \"illustrations.\""
+      "tells": "\"Book\" and \"Moss and the Moon\" are singular and sit right before the blank, but the subject is the plural \"illustrations.\"",
+      "is telling": "It sounds like ongoing storytelling, but \"is\" is singular and does not agree with \"illustrations.\"",
+      "has told": "It sounds like a past achievement, but \"has\" is singular and does not agree with the plural \"illustrations.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4190,9 +4190,9 @@
       "What tense fits a change that began in 2015 and continues to now?"
     ],
     "wrong_reasons": {
-      "nearly triple": "Picked because \"school groups\" is plural and right before the verb, but the subject is the singular \"number,\" and the simple present ignores the \"Since 2015\" timeline.",
-      "have nearly tripled": "Picked because it has the right tense and matches the plural \"groups,\" but the subject is the singular \"number.\"",
-      "is nearly tripling": "Picked because the growth seems ongoing, but the present progressive does not fit \"Since 2015,\" which describes change measured up to now."
+      "nearly triple": "\"School groups\" is plural and right before the verb, but the subject is the singular \"number,\" and the simple present ignores the \"Since 2015\" timeline.",
+      "have nearly tripled": "It has the right tense and matches the plural \"groups,\" but the subject is the singular \"number.\"",
+      "is nearly tripling": "The growth seems ongoing, but the present progressive does not fit \"Since 2015,\" which describes change measured up to now."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4221,9 +4221,9 @@
       "Is a \"what\" clause treated as one thing or many?"
     ],
     "wrong_reasons": {
-      "are": "Picked because plural nouns like \"theories,\" \"experiences,\" and \"behaviors\" sit right before the blank, but the subject is the singular \"what\" clause.",
+      "are": "Plural nouns like \"theories,\" \"experiences,\" and \"behaviors\" sit right before the blank, but the subject is the singular \"what\" clause.",
       "were": "Picked by matching the nearby plural nouns, but it is plural and also shifts into the past tense.",
-      "being": "Picked because it avoids choosing a number, but an -ing form is not a finite verb, leaving the long subject with no main verb."
+      "being": "It avoids choosing a number, but an -ing form is not a finite verb, leaving the long subject with no main verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4251,8 +4251,8 @@
       "How do you show that something belongs to a plural noun ending in s?"
     ],
     "wrong_reasons": {
-      "city's": "Picked because it is a correct possessive, but it is singular, and \"large\" describing many cities calls for the plural.",
-      "cities": "Picked because it is the correct plural, but without an apostrophe it does not show that the residents belong to the cities.",
+      "city's": "It is a correct possessive, but it is singular, and \"large\" describing many cities calls for the plural.",
+      "cities": "It is the correct plural, but without an apostrophe it does not show that the residents belong to the cities.",
       "citys'": "Picked by adding an apostrophe to make a plural possessive, but the plural of \"city\" is spelled \"cities.\""
     },
     "check": null,
@@ -4282,9 +4282,9 @@
       "Remove the phrase between the commas. What verb does \"The common earthworm\" need?"
     ],
     "wrong_reasons": {
-      "break down": "Picked because the earthworm, fungi, and bacteria all do the work, but \"along with\" does not create a compound subject; the subject is the singular \"earthworm.\"",
+      "break down": "The earthworm, fungi, and bacteria all do the work, but \"along with\" does not create a compound subject; the subject is the singular \"earthworm.\"",
       "are breaking down": "Picked by treating the earthworm and microbes as a plural team, but the subject is singular, and \"are\" is plural.",
-      "have broken down": "Picked because it sounds like a completed process, but \"have\" is plural and does not agree with the singular \"earthworm.\""
+      "have broken down": "It sounds like a completed process, but \"have\" is plural and does not agree with the singular \"earthworm.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4313,9 +4313,9 @@
       "In each choice, what is the first noun after the comma?"
     ],
     "wrong_reasons": {
-      "the path to the creek was one that Lena could still find in the dark.": "Picked because it names Lena and the path, but placing \"the path\" right after the modifier says the path spent its summers at the farm.",
-      "it was still possible for Lena to find the path to the creek in the dark.": "Picked because \"it was still possible\" sounds graceful, but the subject \"it\" is not the one who spent those summers, so the modifier dangles.",
-      "Lena's feet could still find the path to the creek in the dark.": "Picked because it begins with Lena's name and is vivid, but the subject is \"feet,\" not Lena; the possessive does not make Lena the subject, so it says her feet spent the summers there."
+      "the path to the creek was one that Lena could still find in the dark.": "It names Lena and the path, but placing \"the path\" right after the modifier says the path spent its summers at the farm.",
+      "it was still possible for Lena to find the path to the creek in the dark.": "\"It was still possible\" sounds graceful, but the subject \"it\" is not the one who spent those summers, so the modifier dangles.",
+      "Lena's feet could still find the path to the creek in the dark.": "It begins with Lena's name and is vivid, but the subject is \"feet,\" not Lena; the possessive does not make Lena the subject, so it says her feet spent the summers there."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4344,9 +4344,9 @@
       "Does \"males\" or \"months\" control the verb, or something earlier?"
     ],
     "wrong_reasons": {
-      "develop": "Picked because the plural nouns \"males\" and \"months\" come right before the blank, but the subject is the singular \"young male.\"",
+      "develop": "The plural nouns \"males\" and \"months\" come right before the blank, but the subject is the singular \"young male.\"",
       "are developing": "Picked by matching the nearby plural nouns, but \"are\" is plural and does not agree with \"young male.\"",
-      "have developed": "Picked because it sounds like a study result, but \"have\" is plural and does not agree with the singular \"young male.\""
+      "have developed": "It sounds like a study result, but \"have\" is plural and does not agree with the singular \"young male.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4375,9 +4375,9 @@
       "Is the blank naming otters or showing that the fur belongs to one?"
     ],
     "wrong_reasons": {
-      "otters": "Picked because the first sentence is about sea otters in general, but \"a\" requires a singular noun, and the blank must show possession.",
-      "otters'": "Picked because the passage begins with plural \"Sea otters,\" but \"a sea\" calls for a single otter, and \"its skin\" is singular.",
-      "otter is": "Picked because \"otter's\" can be a contraction of \"otter is,\" but \"a sea otter is fur\" makes no sense and leaves \"traps\" without a proper subject."
+      "otters": "The first sentence is about sea otters in general, but \"a\" requires a singular noun, and the blank must show possession.",
+      "otters'": "The passage begins with plural \"Sea otters,\" but \"a sea\" calls for a single otter, and \"its skin\" is singular.",
+      "otter is": "\"Otter's\" can be a contraction of \"otter is,\" but \"a sea otter is fur\" makes no sense and leaves \"traps\" without a proper subject."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4406,7 +4406,7 @@
       "Is the detection happening now, or did it happen at a specific time in the past?"
     ],
     "wrong_reasons": {
-      "were": "Picked because the plural \"ash and sulfur dioxide\" sits right before the verb, but the subject is the singular \"plume.\"",
+      "were": "The plural \"ash and sulfur dioxide\" sits right before the verb, but the subject is the singular \"plume.\"",
       "have been": "This is plural, and the present perfect doesn't fit an event pinned to 2019.",
       "are": "Plural and present tense. It agrees with neither the singular subject nor the past-tense time frame."
     },
@@ -4437,7 +4437,7 @@
       "Do you need a possessive here, or a contraction of \"it is\" / \"they are\"?"
     ],
     "wrong_reasons": {
-      "their": "Tempting because \"sources\" is plural and comes right before the blank, but the antecedent is the singular \"Each.\"",
+      "their": "\"Sources\" is plural and comes right before the blank, but the antecedent is the singular \"Each.\"",
       "it's": "This means \"it is,\" so it isn't possessive. \"Each... had it is own limitations\" makes no sense.",
       "they're": "This means \"they are.\" It's a contraction, not a possessive, and it's plural besides."
     },
@@ -4561,7 +4561,7 @@
       "Is the subject singular or plural?"
     ],
     "wrong_reasons": {
-      "remain": "Picked because \"researchers\" comes right before the blank, but it sits inside a prepositional phrase. The subject is \"team.\"",
+      "remain": "\"Researchers\" comes right before the blank, but it sits inside a prepositional phrase. The subject is \"team.\"",
       "are remaining": "\"Are\" is plural and doesn't agree with \"team.\"",
       "have remained": "\"Have\" is plural, and the present perfect doesn't fit a routine that happens \"each winter.\""
     },
@@ -4623,8 +4623,8 @@
       "Which choice puts that noun right after the introductory phrase?"
     ],
     "wrong_reasons": {
-      "laborers dug the Erie Canal largely by hand,": "Tempting because it's an active, direct clause, but it makes the laborers the ones \"stretching 363 miles,\" which is a dangling modifier.",
-      "the digging of the Erie Canal was done largely by hand,": "Tempting because the canal is named early, but the subject is \"the digging,\" and the digging didn't stretch 363 miles or open in 1825.",
+      "laborers dug the Erie Canal largely by hand,": "It's an active, direct clause, but it makes the laborers the ones \"stretching 363 miles,\" which is a dangling modifier.",
+      "the digging of the Erie Canal was done largely by hand,": "The canal is named early, but the subject is \"the digging,\" and the digging didn't stretch 363 miles or open in 1825.",
       "it was largely by hand that laborers dug the Erie Canal,": "The subject is the empty \"it\" of a cleft sentence, so the modifier still has no logical noun to describe."
     },
     "check": null,
@@ -4716,7 +4716,7 @@
       "How many things are joined by \"and\" in the subject?"
     ],
     "wrong_reasons": {
-      "stands": "Tempting because \"a row\" is singular and comes right after the blank, but it's only half of a compound subject.",
+      "stands": "\"A row\" is singular and comes right after the blank, but it's only half of a compound subject.",
       "is standing": "Singular, so it has the same problem as \"stands.\" It also makes a permanent arrangement sound temporary.",
       "has stood": "Singular \"has\" doesn't agree with the compound subject \"a row... and... a trellis.\""
     },
@@ -4778,7 +4778,7 @@
       "Do you need \"it is\" or a word that shows ownership?"
     ],
     "wrong_reasons": {
-      "their": "Tempting because \"strings\" is plural and there are many marionettes in the company, but the antecedent is the singular \"the marionette.\"",
+      "their": "\"Strings\" is plural and there are many marionettes in the company, but the antecedent is the singular \"the marionette.\"",
       "it's": "This means \"it is.\" The apostrophe makes it look possessive, but \"has it is strings\" makes no sense.",
       "they're": "This means \"they are.\" It isn't possessive and it's plural."
     },
@@ -4809,7 +4809,7 @@
       "Does \"together with\" join two subjects the way \"and\" does?"
     ],
     "wrong_reasons": {
-      "suggest": "Picked because \"together with\" feels like \"and,\" and the nearby plurals (\"fragments,\" \"jars\") pull toward a plural verb. The subject is still the singular \"discovery.\"",
+      "suggest": "\"Together with\" feels like \"and,\" and the nearby plurals (\"fragments,\" \"jars\") pull toward a plural verb. The subject is still the singular \"discovery.\"",
       "have suggested": "\"Have\" is plural and doesn't agree with \"discovery.\"",
       "are suggesting": "\"Are\" is plural, and the progressive makes the evidence sound like a temporary process."
     },
@@ -4902,7 +4902,7 @@
       "Look later in the clause: whose interiors are flooded with daylight?"
     ],
     "wrong_reasons": {
-      "uses": "Tempting because the sentence is about one building, the Arcade, but \"that\" refers to the plural \"galleries.\"",
+      "uses": "The sentence is about one building, the Arcade, but \"that\" refers to the plural \"galleries.\"",
       "has used": "\"Has\" is singular and doesn't agree with \"galleries.\"",
       "is using": "\"Is\" is singular, and the progressive wrongly makes a permanent architectural feature sound temporary."
     },
@@ -4964,7 +4964,7 @@
       "Is the effect known by this name now, or only in the past?"
     ],
     "wrong_reasons": {
-      "are": "Picked because \"tasks\" and \"ones\" are plural and come right before the blank, but the subject is the singular \"tendency.\"",
+      "are": "\"Tasks\" and \"ones\" are plural and come right before the blank, but the subject is the singular \"tendency.\"",
       "were": "Plural, and past tense suggests the name is no longer used.",
       "have been": "\"Have\" is plural and doesn't agree with \"tendency.\""
     },
@@ -4995,7 +4995,7 @@
       "Does the clause beginning with \"that\" need a finite verb?"
     ],
     "wrong_reasons": {
-      "date": "Tempting because \"elders\" sits right before the blank, but \"elders\" is the subject of \"say.\" The subject of the blank is \"that,\" meaning the singular \"practice.\"",
+      "date": "\"Elders\" sits right before the blank, but \"elders\" is the subject of \"say.\" The subject of the blank is \"that,\" meaning the singular \"practice.\"",
       "dating": "A participle leaves the clause \"that elders say ______\" without a finite verb.",
       "to date": "An infinitive can't be the main verb of the relative clause, and \"to date\" also reads as the idiom \"so far.\""
     },

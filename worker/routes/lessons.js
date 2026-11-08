@@ -139,12 +139,18 @@ export async function finishLesson(env, request, learnerId, b) {
     const r = await env.DB.prepare(
       "SELECT COUNT(DISTINCT item_id) AS total, SUM(correct) AS correct FROM attempts WHERE lesson_id = ?",
     ).bind(lesson.id).first();
+    // A set that ends with nothing answered (a timed set that ran out) earns
+    // nothing and isn't a finished lesson: no XP, no streak day, no task done.
+    if (!((r.total || 0) > 0) && lesson.kind !== "placement") {
+      const today = E.localDay(Date.now(), tzOffset(request));
+      return json({ correct: 0, total: 0, xp: 0, stats: await stats(env, learnerId, today) });
+    }
     // First-try results only count once per item, so retries at the end of a lesson don't farm XP.
     const firstTry = await env.DB.prepare(
       `SELECT COUNT(*) AS n FROM attempts a WHERE lesson_id = ? AND correct = 1 AND answered_at =
         (SELECT MIN(answered_at) FROM attempts b WHERE b.lesson_id = a.lesson_id AND b.item_id = a.item_id)`,
     ).bind(lesson.id).first();
-    const xp = firstTry.n * E.XP_CORRECT + E.XP_LESSON;
+    const xp = (r.total || 0) > 0 ? firstTry.n * E.XP_CORRECT + E.XP_LESSON : 0;
     const today = E.localDay(Date.now(), tzOffset(request));
     await env.DB.prepare(
       "UPDATE lessons SET completed_at = ?, correct = ?, total = ?, xp = ?, local_day = ? WHERE id = ?",

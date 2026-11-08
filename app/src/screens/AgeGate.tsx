@@ -47,7 +47,7 @@ export function AgeGate({ onAnswer }: { onAnswer: (age13Plus: boolean) => void }
                   accessibilityRole="radio"
                   accessibilityState={{ checked: on }}
                   accessibilityLabel={MONTH_NAMES[i]}
-                  style={({ pressed }) => [s.month, on && s.monthOn, pressed && !on && { backgroundColor: color.rule }]}
+                  style={({ pressed }) => [s.month, on && s.monthOn, pressed && !on && { backgroundColor: color.azureWash }]}
                 >
                   <Text style={[s.monthText, on && { fontFamily: font.black }]}>{m}</Text>
                 </Pressable>

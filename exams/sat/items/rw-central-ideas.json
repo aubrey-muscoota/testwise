@@ -4842,7 +4842,7 @@
     ],
     "wrong_reasons": {
       "Slender bridge decks were abandoned after 1940 because they could not support the weight of traffic.": "The passage says slender decks bore their loads 'with ample margin'; the problem was wind-driven twisting, not weight.",
-      "Engineers of the early twentieth century did not take wind into account when designing suspension bridges.": "Tempting because the calculations 'omitted' the wind, but the passage specifies that designers had accounted for the wind's 'steady push'; they missed only its interaction with a flexible deck.",
+      "Engineers of the early twentieth century did not take wind into account when designing suspension bridges.": "The calculations 'omitted' the wind, but the passage specifies that designers had accounted for the wind's 'steady push'; they missed only its interaction with a flexible deck.",
       "Engineers replaced deep stiffening trusses with slender decks because the trusses were vulnerable to wind.": "The passage says slender decks were adopted because they were lighter and cheaper; it was the slender decks, not the trusses, that proved vulnerable to wind."
     },
     "check": null,

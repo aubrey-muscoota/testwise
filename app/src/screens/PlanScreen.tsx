@@ -3,12 +3,14 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, Plan, PlanPhase } from "../api";
-import { dayRange, longDay, plural, shortDay } from "../copy";
+import { longDay, plural, shortDay } from "../copy";
 import { Icon } from "../components/icons";
 import { useWide } from "../components/Shell";
 import { Bone, ErrorState, IconButton, Rise, Skeleton } from "../components/ui";
 import { useLoad } from "../nav";
 import { color, GUTTER, space, tabular, type } from "../theme";
+
+const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven"];
 
 const PHASE_FALLBACK: Record<PlanPhase, string> = {
   learn: "Learn",
@@ -45,11 +47,27 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
 
   const date = shortDay(plan.exam_date);
   const title = plan.phase === "after" ? "Your plan is done" : `${plan.exam_date_assumed ? "About " : ""}${plural(plan.days_left, "day")} to ${date}`;
-  const track = plan.status.on_track
-    ? `On track. Every skill started by ${shortDay(plan.learn_by)}, test-pace sets from ${shortDay(plan.test_ready_from)}.`
-    : plan.status.behind_by_lessons > 0
-      ? `${plural(plan.status.behind_by_lessons, "lesson")} behind. Today's list leans on new skills to catch up.`
-      : "A little behind. A few days in a row will fix it.";
+  // Dates never break across lines ("Mar" / "2").
+  const day = (iso: string) => shortDay(iso).replace(" ", "\u00a0");
+  // One sentence owns the count, the learn-by date and the timed-sets date.
+  const allStarted = plan.skills_started >= plan.skills_total;
+  const count = allStarted ? `All ${plan.skills_total} skills started.` : `You've started ${plan.skills_started} of ${plan.skills_total} skills.`;
+  const track = plan.phase === "after"
+    ? count
+    : !plan.status.on_track
+      ? `${count} ${plan.status.behind_by_lessons > 0 ? `${plural(plan.status.behind_by_lessons, "lesson")} behind, so today's list leans on new skills to catch up.` : "A little behind. A few days in a row will fix it."}`
+      : allStarted
+        ? `${count} Timed sets from ${day(plan.test_ready_from)}.`
+        : `${count} All of them by ${day(plan.learn_by)}, then timed sets from ${day(plan.test_ready_from)}.`;
+  const assumed = plan.exam_date_assumed ? `Assuming a test on ${longDay(plan.exam_date)}.` : null;
+
+  // The verb for each phase, said once under its heading.
+  const learnWeeks = plan.weeks.filter((w) => w.phase === "learn");
+  const perWeek = learnWeeks.length ? Math.round(learnWeeks.reduce((a, w) => a + w.focus_names.length, 0) / learnWeeks.length) : 0;
+  const phaseLine: Partial<Record<PlanPhase, string>> = {
+    learn: perWeek >= 2 ? `${WORDS[perWeek] ? WORDS[perWeek].charAt(0).toUpperCase() + WORDS[perWeek].slice(1) : perWeek} new skills a week` : "A new skill most weeks",
+    strengthen: "Your weakest skills, plus mixed sets",
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -57,29 +75,25 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
       <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(2) }]}>
         <Rise>
           <Text style={type.title} accessibilityRole="header">{title}</Text>
-          <Text style={[type.body, { marginTop: space(1) }]}>{track}</Text>
-          <Text style={[type.small, tabular, { marginTop: space(1) }]}>
-            {plan.skills_started} of {plan.skills_total} skills started
-            {plan.exam_date_assumed ? ` · assuming a test on ${longDay(plan.exam_date)}` : ""}
-          </Text>
+          <Text style={[type.body, { marginTop: space(1) }]}>{track}{assumed ? ` ${assumed}` : ""}</Text>
         </Rise>
 
         {groups.map((g, gi) => (
           <Rise key={`${g.phase}-${gi}`} delay={60 + gi * 50} style={{ marginTop: space(5) }}>
             <Text style={type.heading} accessibilityRole="header">{phaseName(g.phase)}</Text>
-            <Text style={[type.small, tabular, { marginTop: 2 }]}>
-              {dayRange(g.weeks[0].start, g.weeks[g.weeks.length - 1].end)}
-            </Text>
+            {phaseLine[g.phase] && <Text style={[type.body, { color: color.inkSoft, marginTop: 2 }]}>{phaseLine[g.phase]}</Text>}
             <View style={{ marginTop: space(1.5) }}>
               {g.weeks.map((w, wi) => {
                 const now = gi === 0 && wi === 0;
                 return (
                   <View key={w.start} style={[s.week, now && s.weekNow]}>
                     <View style={s.weekDate}>
-                      <Text style={[type.label, tabular, now && { color: color.azureInk }]}>{now ? "This week" : dayRange(w.start, w.end).replace(" \u2013 ", " \u2013\n").replace(/\n(\d+)$/, " $1")}</Text>
+                      <Text style={[type.label, tabular, now && { color: color.azureInk }]}>{now ? "This week" : shortDay(w.start)}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                      <Text style={type.body}>{w.goal}</Text>
+                      {w.focus_names.length
+                        ? w.focus_names.map((n) => <Text key={n} style={type.body}>{n}</Text>)
+                        : <Text style={type.body}>{w.goal}</Text>}
                     </View>
                   </View>
                 );
@@ -125,6 +139,7 @@ const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: 640, width: "100%", alignSelf: "center" },
   week: { flexDirection: "row", paddingVertical: space(1.25) },
   weekNow: {},
-  weekDate: { width: 96, paddingRight: space(1) },
+  // Nudged down so the label sits on the first body line's baseline.
+  weekDate: { width: 96, paddingRight: space(1), paddingTop: 3 },
   end: { flexDirection: "row", alignItems: "center", marginTop: space(4) },
 });

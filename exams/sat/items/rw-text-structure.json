@@ -4428,9 +4428,9 @@
       "What role does the thrust fault play in relation to the strange fossil arrangement?"
     ],
     "wrong_reasons": {
-      "It presents a geological rule, describes a challenge to the rule's usefulness, and then argues that the rule should be abandoned.": "Tempting because the text does describe a challenge to the rule, but it never says to abandon the rule; it calls the violation only \"apparent.\"",
-      "It describes a fault, explains how faults form in general, and then identifies the regions where faults are most common.": "Tempting because a thrust fault is described, but the text explains one specific fault, not faults in general or where they are common.",
-      "It compares two methods of dating rock layers and then explains why geologists consider one method more reliable than the other.": "Tempting because the text is about the age of rock layers, but it never compares two dating methods."
+      "It presents a geological rule, describes a challenge to the rule's usefulness, and then argues that the rule should be abandoned.": "The text does describe a challenge to the rule, but it never says to abandon the rule; it calls the violation only \"apparent.\"",
+      "It describes a fault, explains how faults form in general, and then identifies the regions where faults are most common.": "A thrust fault is described, but the text explains one specific fault, not faults in general or where they are common.",
+      "It compares two methods of dating rock layers and then explains why geologists consider one method more reliable than the other.": "The text is about the age of rock layers, but it never compares two dating methods."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4460,9 +4460,9 @@
       "What does Brask's design keep from the older approach?"
     ],
     "wrong_reasons": {
-      "It explains why architects of earlier libraries preferred to keep their book collections sealed in windowless cores.": "Tempting because the underlined sentence mentions \"the older caution,\" but the reasons for windowless cores are given in the first sentence, not here.",
-      "It argues that Brask's design protects books more effectively than earlier library designs did.": "Tempting because the sentence says Brask keeps sunlight off the books, but it never compares how well his design protects them with earlier designs.",
-      "It presents the critics' view that the library represents a decisive break with tradition.": "Tempting because the critics are mentioned right after, but the underlined sentence argues against their view rather than presenting it."
+      "It explains why architects of earlier libraries preferred to keep their book collections sealed in windowless cores.": "The underlined sentence mentions \"the older caution,\" but the reasons for windowless cores are given in the first sentence, not here.",
+      "It argues that Brask's design protects books more effectively than earlier library designs did.": "The sentence says Brask keeps sunlight off the books, but it never compares how well his design protects them with earlier designs.",
+      "It presents the critics' view that the library represents a decisive break with tradition.": "The critics are mentioned right after, but the underlined sentence argues against their view rather than presenting it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4491,9 +4491,9 @@
       "Which part of the text gets the most attention: the resin itself, or the towns along the route?"
     ],
     "wrong_reasons": {
-      "To describe the methods used to harvest frankincense from trees": "Tempting because frankincense is called a tree resin, but the text never explains how it was harvested.",
-      "To argue that camels were more important to ancient trade than ships were": "Tempting because camels are mentioned, but ships are never discussed and no such comparison is made.",
-      "To compare the wealth of northern markets with that of southern coastal towns": "Tempting because both the north and the southern coast are named, but the text compares neither one's wealth; the wealth it discusses belongs to the oasis towns."
+      "To describe the methods used to harvest frankincense from trees": "Frankincense is called a tree resin, but the text never explains how it was harvested.",
+      "To argue that camels were more important to ancient trade than ships were": "Camels are mentioned, but ships are never discussed and no such comparison is made.",
+      "To compare the wealth of northern markets with that of southern coastal towns": "Both the north and the southern coast are named, but the text compares neither one's wealth; the wealth it discusses belongs to the oasis towns."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4522,9 +4522,9 @@
       "How does remembering something that wasn't there relate to the first sentence's idea?"
     ],
     "wrong_reasons": {
-      "It presents a claim that the rest of the text sets out to disprove.": "Tempting because the sentence reports a mistaken memory, but the text supports, rather than disproves, what it reports.",
-      "It describes a step Tull took to make the room seem realistic to participants.": "Tempting because the sentence is about the room, but it reports what participants remembered, not how the room was set up.",
-      "It offers Tull's explanation for why participants felt confident in their reports.": "Tempting because \"confidently\" appears in the sentence, but Tull's explanation comes in the next sentence and is about filling gaps, not confidence."
+      "It presents a claim that the rest of the text sets out to disprove.": "The sentence reports a mistaken memory, but the text supports, rather than disproves, what it reports.",
+      "It describes a step Tull took to make the room seem realistic to participants.": "The sentence is about the room, but it reports what participants remembered, not how the room was set up.",
+      "It offers Tull's explanation for why participants felt confident in their reports.": "\"Confidently\" appears in the sentence, but Tull's explanation comes in the next sentence and is about filling gaps, not confidence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4553,9 +4553,9 @@
       "What does the final sentence say about the search for an \"original\" version?"
     ],
     "wrong_reasons": {
-      "It describes a method used by early collectors, presents evidence that the method produced inaccurate records, and recommends a more reliable method of collection.": "Tempting because the text does describe the early collectors and criticize them, but it questions how they interpreted variants, not the accuracy of their records, and it recommends no new collection method.",
-      "It traces the history of a single ballad from its origin to its current forms and explains why some versions of the ballad disappeared.": "Tempting because one ballad is discussed in detail, but the text never traces its origin or says that any versions disappeared.",
-      "It contrasts two folk traditions and argues that the tradition that permitted more variation proved more successful.": "Tempting because the text discusses variation and survival, but it examines one tradition, not two."
+      "It describes a method used by early collectors, presents evidence that the method produced inaccurate records, and recommends a more reliable method of collection.": "The text does describe the early collectors and criticize them, but it questions how they interpreted variants, not the accuracy of their records, and it recommends no new collection method.",
+      "It traces the history of a single ballad from its origin to its current forms and explains why some versions of the ballad disappeared.": "One ballad is discussed in detail, but the text never traces its origin or says that any versions disappeared.",
+      "It contrasts two folk traditions and argues that the tradition that permitted more variation proved more successful.": "The text discusses variation and survival, but it examines one tradition, not two."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4584,9 +4584,9 @@
       "What does Dolores do when she sees Felix, and how does the room feel afterward?"
     ],
     "wrong_reasons": {
-      "To describe the technology used in Dolores's office": "Tempting because cabinets, labels, and laptops are mentioned, but those details only set the scene for the meeting between Dolores and Felix.",
-      "To explain why Felix chose to work as an intern": "Tempting because Felix is a main character, but the text never says why he became an intern.",
-      "To show that Dolores is frustrated by her coworkers' reliance on laptops": "Tempting because the text contrasts her tools with her coworkers' laptops, but it never says she is frustrated; her mood changes only when Felix arrives."
+      "To describe the technology used in Dolores's office": "Cabinets, labels, and laptops are mentioned, but those details only set the scene for the meeting between Dolores and Felix.",
+      "To explain why Felix chose to work as an intern": "Felix is a main character, but the text never says why he became an intern.",
+      "To show that Dolores is frustrated by her coworkers' reliance on laptops": "The text contrasts her tools with her coworkers' laptops, but it never says she is frustrated; her mood changes only when Felix arrives."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4615,9 +4615,9 @@
       "How does learning whose eggs these were change the picture?"
     ],
     "wrong_reasons": {
-      "It introduces the assumption that the rest of the text goes on to support.": "Tempting because the old assumption is important, but it appears in the first sentence, and the text goes on to challenge it, not support it.",
-      "It describes the posture that led researchers to compare Pellisaurus with brooding birds.": "Tempting because the bird comparison comes just before, but the posture is described in the previous sentence; the underlined sentence is about the eggs.",
-      "It explains why early paleontologists concluded that Pellisaurus ate eggs.": "Tempting because it concerns eggs, but the reason for the early conclusion (a skeleton found on a nest) is given in the first sentence."
+      "It introduces the assumption that the rest of the text goes on to support.": "The old assumption is important, but it appears in the first sentence, and the text goes on to challenge it, not support it.",
+      "It describes the posture that led researchers to compare Pellisaurus with brooding birds.": "The bird comparison comes just before, but the posture is described in the previous sentence; the underlined sentence is about the eggs.",
+      "It explains why early paleontologists concluded that Pellisaurus ate eggs.": "It concerns eggs, but the reason for the early conclusion (a skeleton found on a nest) is given in the first sentence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4647,9 +4647,9 @@
       "Which word in the second sentence limits the technical explanation?"
     ],
     "wrong_reasons": {
-      "To explain how improvements in photographic technology eventually made it possible for portrait sitters to smile": "Tempting because shorter exposures are mentioned, but the text brings them up to show that solemn faces lasted even after smiling became possible.",
-      "To suggest that people of the early photographic era were less cheerful than is commonly assumed": "Tempting because the \"dour era\" reading appears, but the text calls that reading \"tempting\" and then rejects it.",
-      "To claim that technical limitations had no real influence on the expressions seen in early portraits": "Tempting because the text says technology is not enough, but it calls the explanation \"at least partly technical,\" so technical limits did matter."
+      "To explain how improvements in photographic technology eventually made it possible for portrait sitters to smile": "Shorter exposures are mentioned, but the text brings them up to show that solemn faces lasted even after smiling became possible.",
+      "To suggest that people of the early photographic era were less cheerful than is commonly assumed": "The \"dour era\" reading appears, but the text calls that reading \"tempting\" and then rejects it.",
+      "To claim that technical limitations had no real influence on the expressions seen in early portraits": "The text says technology is not enough, but it calls the explanation \"at least partly technical,\" so technical limits did matter."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4678,8 +4678,8 @@
       "Does the underlined sentence tell what the bee does, or what the dance means?"
     ],
     "wrong_reasons": {
-      "It explains why honeybees must often travel far from the hive to find food.": "Tempting because the dance concerns food, but the text never explains why bees forage far away.",
-      "It shows how other bees respond after watching the dance.": "Tempting because the dance is aimed at other bees, but the sentence describes the forager's own movements, not how others respond.",
+      "It explains why honeybees must often travel far from the hive to find food.": "The dance concerns food, but the text never explains why bees forage far away.",
+      "It shows how other bees respond after watching the dance.": "The dance is aimed at other bees, but the sentence describes the forager's own movements, not how others respond.",
       "It presents a disagreement among scientists about how the dance works.": "Tempting if a reader expects science texts to present debates, but no scientists or disagreements are mentioned."
     },
     "check": null,
@@ -4709,9 +4709,9 @@
       "Does the text defend the Mercator projection against criticism, or accept the criticism?"
     ],
     "wrong_reasons": {
-      "It describes how a map was created, lists the regions it represents accurately, and argues that it should be used more widely.": "Tempting because the text does explain the projection's design, but it focuses on what it distorts and recommends using it less widely, not more.",
-      "It compares two map projections and explains why sailors preferred the older of the two.": "Tempting because \"other projections\" are mentioned at the end, but no second projection is described or compared.",
-      "It presents a common criticism of a map projection and then explains why cartographers consider that criticism mistaken.": "Tempting because the text admits an advantage, but it accepts the criticism about distortion rather than rejecting it."
+      "It describes how a map was created, lists the regions it represents accurately, and argues that it should be used more widely.": "The text does explain the projection's design, but it focuses on what it distorts and recommends using it less widely, not more.",
+      "It compares two map projections and explains why sailors preferred the older of the two.": "\"Other projections\" are mentioned at the end, but no second projection is described or compared.",
+      "It presents a common criticism of a map projection and then explains why cartographers consider that criticism mistaken.": "The text admits an advantage, but it accepts the criticism about distortion rather than rejecting it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4741,9 +4741,9 @@
       "Does the text say slow growth is the only cause, or a major one?"
     ],
     "wrong_reasons": {
-      "It provides evidence that the slime surrounding a biofilm prevents antibiotics from reaching the cells inside.": "Tempting because the sentence mentions the biofilm's interior, but the text has just shown that drugs do get through; the underlined sentence explains survival another way.",
-      "It describes the method Lund used to measure how quickly antibiotics penetrate biofilms.": "Tempting because measurements of penetration are discussed, but those appear in the previous sentence; the underlined sentence reports where survivors were found and why.",
-      "It establishes that slow growth is the only reason that biofilms resist antibiotics.": "Tempting because the sentence gives slow growth as the cause, but \"disproportionately\" and \"less ... than\" show the text does not claim it is the only one."
+      "It provides evidence that the slime surrounding a biofilm prevents antibiotics from reaching the cells inside.": "The sentence mentions the biofilm's interior, but the text has just shown that drugs do get through; the underlined sentence explains survival another way.",
+      "It describes the method Lund used to measure how quickly antibiotics penetrate biofilms.": "Measurements of penetration are discussed, but those appear in the previous sentence; the underlined sentence reports where survivors were found and why.",
+      "It establishes that slow growth is the only reason that biofilms resist antibiotics.": "The sentence gives slow growth as the cause, but \"disproportionately\" and \"less ... than\" show the text does not claim it is the only one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4772,9 +4772,9 @@
       "Does the text tell runners to skip warming up, or to warm up differently?"
     ],
     "wrong_reasons": {
-      "To argue that runners should stop warming up before races": "Tempting because the text questions stretching, but it recommends a different warm-up, not skipping warm-ups.",
-      "To describe the history of stretching in competitive running": "Tempting because stretching is a main topic, but the text gives no history of the practice.",
-      "To explain why long-distance runners are injured more often than sprinters": "Tempting because injury is mentioned, but the text never compares long-distance runners with sprinters."
+      "To argue that runners should stop warming up before races": "The text questions stretching, but it recommends a different warm-up, not skipping warm-ups.",
+      "To describe the history of stretching in competitive running": "Stretching is a main topic, but the text gives no history of the practice.",
+      "To explain why long-distance runners are injured more often than sprinters": "Injury is mentioned, but the text never compares long-distance runners with sprinters."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4803,9 +4803,9 @@
       "How does the final sentence use the information in the underlined sentence?"
     ],
     "wrong_reasons": {
-      "It contrasts the godwits' migration with that of other birds that stop to feed along the way.": "Tempting because the text calls the flight one of the longest known, but no other birds' migrations are described.",
-      "It explains why godwits feed on clams and worms rather than on other foods.": "Tempting because the diet is mentioned just before, but the underlined sentence is about organs, not food choice.",
-      "It presents a difficulty that godwits face during migration that the text says scientists have not yet explained.": "Tempting because shrinking organs is called \"striking,\" but it is a solution the birds use, and the text explains it fully."
+      "It contrasts the godwits' migration with that of other birds that stop to feed along the way.": "The text calls the flight one of the longest known, but no other birds' migrations are described.",
+      "It explains why godwits feed on clams and worms rather than on other foods.": "The diet is mentioned just before, but the underlined sentence is about organs, not food choice.",
+      "It presents a difficulty that godwits face during migration that the text says scientists have not yet explained.": "Shrinking organs is called \"striking,\" but it is a solution the birds use, and the text explains it fully."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4834,9 +4834,9 @@
       "Why does the text use the word \"Paradoxically\" in the final sentence?"
     ],
     "wrong_reasons": {
-      "It describes a problem in robot design, reviews several proposed solutions, and concludes that none has yet succeeded.": "Tempting because the text opens with a problem, but it discusses one alternative, not several, and that alternative succeeds.",
-      "It explains how a robot's sensors work, describes a malfunction in those sensors, and proposes a method for repairing them.": "Tempting because sensors are mentioned, but the text describes a design limitation, not a malfunction, and offers no repair.",
-      "It introduces a team's robot, describes the laboratory tests it passed, and argues that laboratory testing is an unreliable guide to performance.": "Tempting because laboratory performance is mentioned, but that refers to the traditional robots, and the text does not argue that laboratory testing is unreliable."
+      "It describes a problem in robot design, reviews several proposed solutions, and concludes that none has yet succeeded.": "The text opens with a problem, but it discusses one alternative, not several, and that alternative succeeds.",
+      "It explains how a robot's sensors work, describes a malfunction in those sensors, and proposes a method for repairing them.": "Sensors are mentioned, but the text describes a design limitation, not a malfunction, and offers no repair.",
+      "It introduces a team's robot, describes the laboratory tests it passed, and argues that laboratory testing is an unreliable guide to performance.": "Laboratory performance is mentioned, but that refers to the traditional robots, and the text does not argue that laboratory testing is unreliable."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4865,9 +4865,9 @@
       "What does the word \"This\" in the final sentence refer back to?"
     ],
     "wrong_reasons": {
-      "It defines the term \"recessive allele\" for the reader.": "Tempting because the sentence uses the term, but the term was already defined in the previous sentence.",
-      "It explains why a person inherits two copies of most genes, one from each parent.": "Tempting because gene pairs are mentioned, but the first sentence states that fact without explaining it, and the underlined sentence does not address it.",
-      "It argues that recessive traits are rarer than other traits.": "Tempting because the trait usually stays hidden, but the text never compares how common recessive traits are."
+      "It defines the term \"recessive allele\" for the reader.": "The sentence uses the term, but the term was already defined in the previous sentence.",
+      "It explains why a person inherits two copies of most genes, one from each parent.": "Gene pairs are mentioned, but the first sentence states that fact without explaining it, and the underlined sentence does not address it.",
+      "It argues that recessive traits are rarer than other traits.": "The trait usually stays hidden, but the text never compares how common recessive traits are."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4896,9 +4896,9 @@
       "What does the final sentence say searing is really good for?"
     ],
     "wrong_reasons": {
-      "To argue that cooks should stop searing meat because it causes moisture loss": "Tempting because the text says seared steaks lose moisture, but it then says searing \"remains worthwhile.\"",
-      "To describe the steps a cook should follow to sear a steak properly": "Tempting because the text is about searing, but it explains why searing helps, not how to do it.",
-      "To compare the Maillard reaction with other chemical reactions that occur during cooking": "Tempting because the Maillard reaction is described, but no other reactions are mentioned."
+      "To argue that cooks should stop searing meat because it causes moisture loss": "The text says seared steaks lose moisture, but it then says searing \"remains worthwhile.\"",
+      "To describe the steps a cook should follow to sear a steak properly": "The text is about searing, but it explains why searing helps, not how to do it.",
+      "To compare the Maillard reaction with other chemical reactions that occur during cooking": "The Maillard reaction is described, but no other reactions are mentioned."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4927,9 +4927,9 @@
       "How do the words \"Even so\" and \"at least\" in the final sentence relate to the underlined sentence?"
     ],
     "wrong_reasons": {
-      "It presents evidence that readers who notice corrections trust newspapers more than other readers do.": "Tempting because the sentence concerns that result, but the result itself is in the previous sentence; the underlined sentence questions what it shows.",
-      "It explains why newspapers have traditionally placed corrections on inside pages.": "Tempting because placement on inside pages is mentioned in the first sentence, but the underlined sentence does not explain it.",
-      "It undermines Marchetti's argument by showing that her survey results were inaccurate.": "Tempting because the sentence points out a weakness, but it questions how the results can be interpreted, not whether they are accurate, and Marchetti keeps her argument."
+      "It presents evidence that readers who notice corrections trust newspapers more than other readers do.": "The sentence concerns that result, but the result itself is in the previous sentence; the underlined sentence questions what it shows.",
+      "It explains why newspapers have traditionally placed corrections on inside pages.": "Placement on inside pages is mentioned in the first sentence, but the underlined sentence does not explain it.",
+      "It undermines Marchetti's argument by showing that her survey results were inaccurate.": "The sentence points out a weakness, but it questions how the results can be interpreted, not whether they are accurate, and Marchetti keeps her argument."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4958,9 +4958,9 @@
       "What does the final sentence say the pictures do for children?"
     ],
     "wrong_reasons": {
-      "It describes the history of picture books and then explains how they have changed over time.": "Tempting because the text discusses picture books in general, but it gives no history or changes over time.",
-      "It compares two picture books and argues that one is better suited to young readers.": "Tempting because there are two stories, but they are the words and pictures in one book, not two books.",
-      "It describes a problem with picture books and then suggests a way to fix it.": "Tempting because the words \"leave out\" something, but the text presents this as a strength, not a problem."
+      "It describes the history of picture books and then explains how they have changed over time.": "The text discusses picture books in general, but it gives no history or changes over time.",
+      "It compares two picture books and argues that one is better suited to young readers.": "There are two stories, but they are the words and pictures in one book, not two books.",
+      "It describes a problem with picture books and then suggests a way to fix it.": "The words \"leave out\" something, but the text presents this as a strength, not a problem."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4989,9 +4989,9 @@
       "Why does Holm show unfinished quilts next to finished ones?"
     ],
     "wrong_reasons": {
-      "To argue that unfinished quilts are more valuable as artworks than finished ones": "Tempting because the unfinished quilts are featured, but Holm uses them to help visitors appreciate finished quilts, not to rank them.",
-      "To explain the techniques that quilters use to mark patterns on fabric": "Tempting because pencil guidelines are mentioned, but only as a detail of the display, not as an explanation of quilting technique.",
-      "To report how visitors reacted to the museum's reopened textile gallery": "Tempting because visitors are discussed, but the text gives Holm's view of visitors' habits and her hopes, not their reactions to the gallery."
+      "To argue that unfinished quilts are more valuable as artworks than finished ones": "The unfinished quilts are featured, but Holm uses them to help visitors appreciate finished quilts, not to rank them.",
+      "To explain the techniques that quilters use to mark patterns on fabric": "Pencil guidelines are mentioned, but only as a detail of the display, not as an explanation of quilting technique.",
+      "To report how visitors reacted to the museum's reopened textile gallery": "Visitors are discussed, but the text gives Holm's view of visitors' habits and her hopes, not their reactions to the gallery."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5021,9 +5021,9 @@
       "Whose view appears in the final sentence?"
     ],
     "wrong_reasons": {
-      "It describes the experience Ada has when she first sees color.": "Tempting because Ada's experience is discussed just before, but the underlined sentence states an implication, not her experience.",
-      "It presents the response that defenders of physicalism have given to the thought experiment about Ada.": "Tempting because physicalism is involved, but the physicalists' responses come in the next sentence; the underlined sentence states the challenge they respond to.",
-      "It establishes that a complete physical account of the mind is impossible.": "Tempting because the sentence names this conclusion, but it is conditional on the intuition being correct, which the text does not settle."
+      "It describes the experience Ada has when she first sees color.": "Ada's experience is discussed just before, but the underlined sentence states an implication, not her experience.",
+      "It presents the response that defenders of physicalism have given to the thought experiment about Ada.": "Physicalism is involved, but the physicalists' responses come in the next sentence; the underlined sentence states the challenge they respond to.",
+      "It establishes that a complete physical account of the mind is impossible.": "The sentence names this conclusion, but it is conditional on the intuition being correct, which the text does not settle."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

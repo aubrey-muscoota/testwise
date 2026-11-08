@@ -10,7 +10,10 @@ const BLANK = /_{4,}/;
 
 function inline(line: string, keyBase: string) {
   // Split on <u>…</u> and blanks, keeping both as their own pieces.
-  const parts = renderMath(line).split(/(<u>.*?<\/u>|_{4,})/g).filter((p) => p !== "");
+  // Glue operators to their operands with non-breaking spaces, so "5x + 16" never
+  // wraps between "+" and "16". Only the Unicode minus, so prose dashes are untouched.
+  const glued = renderMath(line).replace(/ ([=+−<>≤≥×÷]) /g, "\u00a0$1\u00a0");
+  const parts = glued.split(/(<u>.*?<\/u>|_{4,})/g).filter((p) => p !== "");
   return parts.map((p, i) => {
     if (p.startsWith("<u>")) return <Text key={`${keyBase}-${i}`} style={st.u}>{p.slice(3, -4)}</Text>;
     if (BLANK.test(p)) return <Text key={`${keyBase}-${i}`} style={st.blank} accessibilityLabel="blank">{" ".repeat(8)}</Text>;

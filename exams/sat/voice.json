@@ -9,8 +9,8 @@
     "sections": { "sat-math": "Math", "sat-rw": "Reading and Writing" }
   },
   "placement_intro": {
-    "sat-math": "Already know some math? Answer a few questions and I'll skip you past what you know.",
-    "sat-rw": "Already a strong reader? Answer a few questions and I'll skip you past what you know."
+    "sat-math": "Already know some math?",
+    "sat-rw": "Already a strong reader?"
   },
   "test_day_tips": [
     "Answer every question. There's no penalty for guessing on the SAT.",

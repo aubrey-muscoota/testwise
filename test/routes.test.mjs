@@ -8,6 +8,7 @@ import { planRoute, setProfile } from "../worker/routes/plan.js";
 import { deleteLearner } from "../worker/routes/learners.js";
 import { answer } from "../worker/routes/answers.js";
 import { report } from "../worker/routes/reports.js";
+import { finishLesson } from "../worker/routes/lessons.js";
 
 const L = "learner0000000001";
 function setup(envExtra = {}) {
@@ -68,7 +69,7 @@ test("fresh mode: generated questions are stored, served first, and work with an
   assert.equal(r.http, 200);
   assert.equal(r.fresh, true);
   assert.equal(r.generated, 1, "one passed shape and agreement (one bad key, one solver disagreement)");
-  assert.match(r.note, /Socrates just wrote 1 new question on Adding/);
+  assert.match(r.note, /I just wrote 1 new question on Adding/);
   assert.equal(r.items.length, 5);
   assert.match(r.items[0].id, /^gen-tx-add-/);
   assert.equal(r.items[0].source, "generated");
@@ -100,18 +101,18 @@ test("fresh mode falls back to the bank offline, at the cap, and when nothing pa
   const r = await body(await startPractice(offline, req(), L, { mode: "fresh", skill_id: "tx-add" }, null));
   assert.equal(r.fresh, false);
   assert.equal(r.generated, 0);
-  assert.match(r.note, /can't write new questions right now, so here are questions from the bank on Adding/);
+  assert.match(r.note, /^I can't write new ones right now, so these are from the bank\./);
   assert.equal(r.items.length, 5);
 
   const capped = setup({ GENERATOR_CLIENT: fakeClient(), GENERATOR_MODEL: "m", GENERATOR_DAILY_CAP: "0" });
   const c = await body(await startPractice(capped, req(), L, { mode: "fresh", skill_id: "tx-add" }, null));
   assert.equal(c.fresh, false);
-  assert.match(c.note, /all the new questions Socrates can write today/);
+  assert.match(c.note, /all the new ones I can write today/);
 
   const failing = setup({ GENERATOR_CLIENT: { messages: { create: async () => { throw new Error("down"); } } }, GENERATOR_MODEL: "m" });
   const f = await body(await startPractice(failing, req(), L, { mode: "fresh", skill_id: "tx-add" }, null));
   assert.equal(f.fresh, false);
-  assert.match(f.note, /couldn't write new questions/);
+  assert.match(f.note, /couldn't write new ones/);
 
   // Per-learner cap: 20 a day.
   const many = setup({ GENERATOR_CLIENT: fakeClient(), GENERATOR_MODEL: "m" });
@@ -163,4 +164,24 @@ test("the plan works for an exam with no weights or pacing on file", async () =>
   assert.equal(p.today[0].skill_id, "tx-add");
   const t = await body(await startPractice(env, req(), L, { mode: "timed", n: 4 }, null));
   assert.equal(t.time_limit_seconds, 4 * 80, "generic pace without exam data");
+});
+
+test("a timed set that ends with nothing answered earns nothing and isn't a finished lesson", async () => {
+  const env = setup();
+  const t = await body(await startPractice(env, req(), L, { mode: "timed", n: 5 }, null));
+  assert.ok(t.time_limit_seconds > 0);
+  const f = await body(await finishLesson(env, req(), L, { lesson_id: t.lesson_id }));
+  assert.equal(f.xp, 0);
+  assert.equal(f.total, 0);
+  assert.equal(f.stats.xp, 0);
+  assert.equal(f.stats.lessons_today, 0);
+  assert.equal(f.stats.streak, 0);
+  assert.equal(env.DB.raw.prepare("SELECT completed_at FROM lessons WHERE id = ?").get(t.lesson_id).completed_at, null);
+
+  // One answer is enough to count.
+  const t2 = await body(await startPractice(env, req(), L, { mode: "timed", n: 5 }, null));
+  await answer(env, req(), L, { lesson_id: t2.lesson_id, item_id: t2.items[0].id, response: t2.items[0].answer, time_ms: 9000 });
+  const f2 = await body(await finishLesson(env, req(), L, { lesson_id: t2.lesson_id }));
+  assert.ok(f2.xp > 0);
+  assert.equal(f2.stats.lessons_today, 1);
 });

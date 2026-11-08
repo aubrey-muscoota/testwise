@@ -61,7 +61,7 @@ export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => v
               accessibilityRole="tab"
               accessibilityLabel={t.label}
               accessibilityState={{ selected: on }}
-              style={s.barItem}
+              style={({ pressed }) => [s.barItem, pressed && !on && { backgroundColor: color.paperDeep, borderRadius: radius.row }]}
             >
               <Icon name={t.icon} color={on ? color.azureInk : color.inkSoft} strokeWidth={on ? 2 : 1.75} />
               <Text style={[s.barLabel, on && s.barLabelOn]}>{t.label}</Text>

@@ -641,9 +641,9 @@
       "What does the second part do: add a new idea, or explain the \"deliberate choice\"?"
     ],
     "wrong_reasons": {
-      "choice": "Picked because the words seem to flow on, but with no punctuation two independent clauses run together, creating a run-on sentence.",
-      "choice,": "Picked because a comma marks a pause, but a comma alone cannot join two independent clauses; this is a comma splice.",
-      "choice, which": "Picked because \"which\" seems to link the explanation to \"choice,\" but \"which\" then needs to function inside its clause, and \"which Orpheus . . . turns in order to release her\" is ungrammatical."
+      "choice": "The words seem to flow on, but with no punctuation two independent clauses run together, creating a run-on sentence.",
+      "choice,": "A comma marks a pause, but a comma alone cannot join two independent clauses; this is a comma splice.",
+      "choice, which": "\"Which\" seems to link the explanation to \"choice,\" but \"which\" then needs to function inside its clause, and \"which Orpheus . . . turns in order to release her\" is ungrammatical."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -674,9 +674,9 @@
       "Must the closing mark of an interruption match the opening one?"
     ],
     "wrong_reasons": {
-      "mallet, retains": "Tempting because the clause already uses commas to separate its list, so a comma looks natural; but a clause opened with a dash must be closed with a dash, not a comma.",
-      "mallet retains": "Tempting because no punctuation is normally needed between a subject and its verb, but here the interrupting clause opened with a dash is never closed.",
-      "mallet; retains": "Tempting because the sentence is long and a semicolon seems to mark a major break, but a semicolon must join two independent clauses, and \"retains the right . . .\" has no subject of its own."
+      "mallet, retains": "The clause already uses commas to separate its list, so a comma looks natural; but a clause opened with a dash must be closed with a dash, not a comma.",
+      "mallet retains": "No punctuation is normally needed between a subject and its verb, but here the interrupting clause opened with a dash is never closed.",
+      "mallet; retains": "The sentence is long and a semicolon seems to mark a major break, but a semicolon must join two independent clauses, and \"retains the right . . .\" has no subject of its own."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -705,9 +705,9 @@
       "What punctuation can correctly separate two complete sentences?"
     ],
     "wrong_reasons": {
-      "there, its": "Chosen because the ideas are closely related, but joining two complete sentences with only a comma creates a comma splice.",
-      "there its": "Chosen because the words read smoothly aloud, but two complete sentences with no punctuation create a run-on.",
-      "there; and its": "Chosen because a semicolon can join sentences, but a semicolon should not be followed by \"and\" here; use either a semicolon alone or a comma plus \"and.\""
+      "there, its": "The ideas are closely related, but joining two complete sentences with only a comma creates a comma splice.",
+      "there its": "The words read smoothly aloud, but two complete sentences with no punctuation create a run-on.",
+      "there; and its": "A semicolon can join sentences, but a semicolon should not be followed by \"and\" here; use either a semicolon alone or a comma plus \"and.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -736,9 +736,9 @@
       "What does the material after the blank do in relation to \"components\"?"
     ],
     "wrong_reasons": {
-      "components;": "Picked because a semicolon looks like a strong separator, but a semicolon must be followed by an independent clause, and the list that follows is not one.",
-      "components": "Picked because the list seems to continue the sentence, but with no punctuation it reads as if \"components dimethyl trisulfide\" were one phrase, and the list is not introduced.",
-      "components, including:": "Picked because \"including\" seems to announce the list, but a colon should not come between \"including\" and its object, since the words before the colon are no longer a complete clause."
+      "components;": "A semicolon looks like a strong separator, but a semicolon must be followed by an independent clause, and the list that follows is not one.",
+      "components": "The list seems to continue the sentence, but with no punctuation it reads as if \"components dimethyl trisulfide\" were one phrase, and the list is not introduced.",
+      "components, including:": "\"Including\" seems to announce the list, but a colon should not come between \"including\" and its object, since the words before the colon are no longer a complete clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -768,9 +768,9 @@
       "Does the first clause of the second sentence contrast with the first sentence of the text?"
     ],
     "wrong_reasons": {
-      "vent, however,": "Tempting because \"however\" looks like a simple interrupter set off by two commas, but that leaves two independent clauses joined only by commas, a comma splice.",
-      "vent, however;": "Tempting because it fixes the comma splice, but it attaches \"however\" to the first clause, which would mean the coarse tephra settling nearby contrasts with the valleys being buried; it doesn't, since both describe heavy local deposits.",
-      "vent however,": "Tempting because it looks like \"however\" begins a new thought, but with no punctuation before \"however,\" the two independent clauses run together."
+      "vent, however,": "\"However\" looks like a simple interrupter set off by two commas, but that leaves two independent clauses joined only by commas, a comma splice.",
+      "vent, however;": "It fixes the comma splice, but it attaches \"however\" to the first clause, which would mean the coarse tephra settling nearby contrasts with the valleys being buried; it doesn't, since both describe heavy local deposits.",
+      "vent however,": "It looks like \"however\" begins a new thought, but with no punctuation before \"however,\" the two independent clauses run together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -799,9 +799,9 @@
       "What mark opens that interruption, and what should close it?"
     ],
     "wrong_reasons": {
-      "Lunde;": "Chosen because a semicolon looks like it marks the end of the extra information, but a semicolon cannot separate a subject from its verb.",
-      "Lunde": "Chosen because the name seems to lead straight into the verb, but the interruption that opened with a comma is never closed.",
-      "Lunde—": "Chosen because a dash can set off extra information, but this interruption opened with a comma, so it must close with a comma."
+      "Lunde;": "A semicolon looks like it marks the end of the extra information, but a semicolon cannot separate a subject from its verb.",
+      "Lunde": "The name seems to lead straight into the verb, but the interruption that opened with a comma is never closed.",
+      "Lunde—": "A dash can set off extra information, but this interruption opened with a comma, so it must close with a comma."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -830,9 +830,9 @@
       "Which punctuation can join two independent clauses without a conjunction?"
     ],
     "wrong_reasons": {
-      "length, silk": "Picked because the comma seems to begin the list \"silk, spices, and other goods,\" but a comma alone between two independent clauses is a comma splice.",
-      "length silk": "Picked because the sentence is easy to read aloud without a pause, but two independent clauses with no punctuation make a run-on.",
-      "length; and silk": "Picked because \"and\" seems to connect the ideas, but a semicolon that joins two independent clauses is not followed by a coordinating conjunction such as \"and\"; use a semicolon alone or a comma plus a conjunction."
+      "length, silk": "The comma seems to begin the list \"silk, spices, and other goods,\" but a comma alone between two independent clauses is a comma splice.",
+      "length silk": "The sentence is easy to read aloud without a pause, but two independent clauses with no punctuation make a run-on.",
+      "length; and silk": "\"And\" seems to connect the ideas, but a semicolon that joins two independent clauses is not followed by a coordinating conjunction such as \"and\"; use a semicolon alone or a comma plus a conjunction."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -862,9 +862,9 @@
       "Should punctuation come between a subject and its verb?"
     ],
     "wrong_reasons": {
-      "silently, is": "Tempting because the long subject seems to call for a breath before the verb, but a single comma should not separate a subject from its verb.",
-      "silently; is": "Tempting because the sentence is long, but a semicolon must join two independent clauses, and \"is consistent with . . .\" has no subject of its own.",
-      "silently—is": "Tempting because a dash can mark a pause, but there is no opening dash for it to pair with, and a single dash should not divide a subject from its verb."
+      "silently, is": "The long subject seems to call for a breath before the verb, but a single comma should not separate a subject from its verb.",
+      "silently; is": "The sentence is long, but a semicolon must join two independent clauses, and \"is consistent with . . .\" has no subject of its own.",
+      "silently—is": "A dash can mark a pause, but there is no opening dash for it to pair with, and a single dash should not divide a subject from its verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -893,9 +893,9 @@
       "What punctuation usually follows an introductory \"when\" clause?"
     ],
     "wrong_reasons": {
-      "fields; families": "Chosen because the sentence has two clauses, but a semicolon must join two independent clauses, and the \"When\" clause is dependent.",
+      "fields; families": "The sentence has two clauses, but a semicolon must join two independent clauses, and the \"When\" clause is dependent.",
       "fields. Families": "Chosen to separate the two ideas, but a period leaves \"When the first frost silvers the fields\" as a sentence fragment.",
-      "fields: families": "Chosen because a colon seems to introduce what happens next, but a colon must follow an independent clause, and the \"When\" clause is dependent."
+      "fields: families": "A colon seems to introduce what happens next, but a colon must follow an independent clause, and the \"When\" clause is dependent."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -924,9 +924,9 @@
       "Where does the description of the supervisor begin, and with what mark?"
     ],
     "wrong_reasons": {
-      "day;": "Picked because the description feels like a complete thought, but a semicolon cannot come between a subject and its verb.",
-      "day—": "Picked because dashes often set off descriptions, but this description opened with a comma, so a dash creates mismatched punctuation.",
-      "day": "Picked because \"day asked\" may seem to flow, but the appositive that opened with a comma is never closed, and the reader cannot tell where the description ends."
+      "day;": "The description feels like a complete thought, but a semicolon cannot come between a subject and its verb.",
+      "day—": "Dashes often set off descriptions, but this description opened with a comma, so a dash creates mismatched punctuation.",
+      "day": "\"Day asked\" may seem to flow, but the appositive that opened with a comma is never closed, and the reader cannot tell where the description ends."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -956,9 +956,9 @@
       "Why would commas between the items be confusing here?"
     ],
     "wrong_reasons": {
-      "sauropods, and": "Tempting because lists usually take \"and\" with a comma, but this list already uses commas inside its items, so a comma here blurs where the second item ends and breaks the semicolon pattern.",
-      "sauropods: and": "Tempting because colons appear in lists, but this list was already introduced by a colon, and a colon cannot separate items.",
-      "sauropods and": "Tempting because \"and\" seems to join the last two items, but without a semicolon \"long-necked sauropods and fragments of eggshell\" reads as a single item."
+      "sauropods, and": "Lists usually take \"and\" with a comma, but this list already uses commas inside its items, so a comma here blurs where the second item ends and breaks the semicolon pattern.",
+      "sauropods: and": "Colons appear in lists, but this list was already introduced by a colon, and a colon cannot separate items.",
+      "sauropods and": "\"And\" seems to join the last two items, but without a semicolon \"long-necked sauropods and fragments of eggshell\" reads as a single item."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -987,9 +987,9 @@
       "What two things can join independent clauses when used together?"
     ],
     "wrong_reasons": {
-      "exposures, people": "Chosen because a comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
-      "exposures people": "Chosen because the meaning is clear, but no punctuation between two independent clauses makes a run-on.",
-      "exposures so, people": "Chosen because it includes \"so,\" but the comma must go before the conjunction, not after it."
+      "exposures, people": "A comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
+      "exposures people": "The meaning is clear, but no punctuation between two independent clauses makes a run-on.",
+      "exposures so, people": "It includes \"so,\" but the comma must go before the conjunction, not after it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1018,9 +1018,9 @@
       "Where does the main clause of the last sentence begin?"
     ],
     "wrong_reasons": {
-      "grandparents;": "Picked because a semicolon marks a strong break, but a semicolon must join two independent clauses, and the introductory phrase is not one.",
-      "grandparents:": "Picked because a colon seems to introduce what the late-summer monarchs do, but a colon must follow an independent clause, and \"Unlike their parents and grandparents\" is only a phrase.",
-      "grandparents—": "Picked because dashes can mark a break, but a single dash is not used to end an introductory phrase; a comma is the convention."
+      "grandparents;": "A semicolon marks a strong break, but a semicolon must join two independent clauses, and the introductory phrase is not one.",
+      "grandparents:": "A colon seems to introduce what the late-summer monarchs do, but a colon must follow an independent clause, and \"Unlike their parents and grandparents\" is only a phrase.",
+      "grandparents—": "Dashes can mark a break, but a single dash is not used to end an introductory phrase; a comma is the convention."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1050,9 +1050,9 @@
       "Since the sentence already contains many commas, could another comma join the clauses?"
     ],
     "wrong_reasons": {
-      "cost,": "Tempting because the sentence is already full of commas, but a comma alone cannot join the independent clause that follows; it creates a comma splice.",
-      "cost": "Tempting because the explanation seems to follow naturally, but with no punctuation, two independent clauses run together.",
-      "cost, which": "Tempting because \"which\" seems to point back to \"a cost,\" but then \"which\" has no role in the clause that follows, and \"which landmasses . . . appear vastly larger\" is ungrammatical."
+      "cost,": "The sentence is already full of commas, but a comma alone cannot join the independent clause that follows; it creates a comma splice.",
+      "cost": "The explanation seems to follow naturally, but with no punctuation, two independent clauses run together.",
+      "cost, which": "\"Which\" seems to point back to \"a cost,\" but then \"which\" has no role in the clause that follows, and \"which landmasses . . . appear vastly larger\" is ungrammatical."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1081,9 +1081,9 @@
       "Which mark can join two complete sentences without a conjunction?"
     ],
     "wrong_reasons": {
-      "fission, one": "Chosen because the second clause seems to describe the first, but a comma alone between independent clauses is a comma splice.",
-      "fission one": "Chosen because it reads quickly, but two independent clauses with no punctuation create a run-on.",
-      "fission and, one": "Chosen because \"and\" connects the clauses, but the comma must come before \"and,\" not after it."
+      "fission, one": "The second clause seems to describe the first, but a comma alone between independent clauses is a comma splice.",
+      "fission one": "It reads quickly, but two independent clauses with no punctuation create a run-on.",
+      "fission and, one": "\"And\" connects the clauses, but the comma must come before \"and,\" not after it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1112,9 +1112,9 @@
       "Should punctuation interrupt a clause beginning with \"that\"?"
     ],
     "wrong_reasons": {
-      "that,": "Picked because the clause that follows is long, but a comma after \"that\" splits the clause from its own subject and verb.",
-      "that:": "Picked because a colon seems to announce the finding, but a colon must follow an independent clause, and \"Researchers . . . found that\" is incomplete.",
-      "that;": "Picked because a semicolon marks a big break, but \"Researchers . . . found that\" is not an independent clause, so a semicolon cannot follow it."
+      "that,": "The clause that follows is long, but a comma after \"that\" splits the clause from its own subject and verb.",
+      "that:": "A colon seems to announce the finding, but a colon must follow an independent clause, and \"Researchers . . . found that\" is incomplete.",
+      "that;": "A semicolon marks a big break, but \"Researchers . . . found that\" is not an independent clause, so a semicolon cannot follow it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1144,9 +1144,9 @@
       "If \"each year\" is set off by two commas, what joins the two clauses?"
     ],
     "wrong_reasons": {
-      "animal, each year,": "Tempting because \"each year\" looks like an interrupter neatly set off by commas, but that leaves the two independent clauses joined only by commas, a comma splice.",
-      "animal each year,": "Tempting because \"the longest of any animal each year\" seems to make sense, but it leaves no punctuation between the two independent clauses, creating a run-on.",
-      "animal, each year": "Tempting because the comma seems to mark the clause break, but a comma alone cannot join two independent clauses, so this creates a comma splice."
+      "animal, each year,": "\"Each year\" looks like an interrupter neatly set off by commas, but that leaves the two independent clauses joined only by commas, a comma splice.",
+      "animal each year,": "\"The longest of any animal each year\" seems to make sense, but it leaves no punctuation between the two independent clauses, creating a run-on.",
+      "animal, each year": "The comma seems to mark the clause break, but a comma alone cannot join two independent clauses, so this creates a comma splice."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1175,9 +1175,9 @@
       "What do the words after the blank have to do with \"three kinds of sensors\"?"
     ],
     "wrong_reasons": {
-      "sensors, cameras": "Chosen because lists use commas, but a comma here makes \"sensors\" look like the first of four items instead of introducing the list.",
-      "sensors; cameras": "Chosen because a semicolon is a strong break, but a semicolon must be followed by an independent clause, and the list is not one.",
-      "sensors cameras": "Chosen because the list seems to continue the sentence, but without punctuation \"sensors cameras\" runs together and the list is not introduced."
+      "sensors, cameras": "Lists use commas, but a comma here makes \"sensors\" look like the first of four items instead of introducing the list.",
+      "sensors; cameras": "A semicolon is a strong break, but a semicolon must be followed by an independent clause, and the list is not one.",
+      "sensors cameras": "The list seems to continue the sentence, but without punctuation \"sensors cameras\" runs together and the list is not introduced."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1206,9 +1206,9 @@
       "Can a phrase without a verb follow a semicolon or stand as its own sentence?"
     ],
     "wrong_reasons": {
-      "genes; one": "Picked because the phrase adds a separate detail, but a semicolon must be followed by an independent clause, and \"one from each parent\" is only a phrase.",
+      "genes; one": "The phrase adds a separate detail, but a semicolon must be followed by an independent clause, and \"one from each parent\" is only a phrase.",
       "genes. One": "Picked to separate the ideas, but a period turns \"One from each parent\" into a sentence fragment.",
-      "genes one": "Picked because the words flow together, but without a comma \"genes one from each parent\" is hard to read and fails to set off the explanatory phrase."
+      "genes one": "The words flow together, but without a comma \"genes one from each parent\" is hard to read and fails to set off the explanatory phrase."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1238,9 +1238,9 @@
       "Where does the main clause begin?"
     ],
     "wrong_reasons": {
-      "rapidly; a": "Tempting because the introduction is so long that it seems like a complete clause, but it begins with \"Because,\" so it is dependent, and a semicolon cannot follow a dependent clause.",
-      "rapidly. A": "Tempting because the period breaks up a long sentence, but it leaves the \"Because\" clause as a sentence fragment.",
-      "rapidly a": "Tempting because the clause boundary is hard to see, but with no comma the introductory clause runs into the main clause, and \"proceed rapidly a steak\" misreads."
+      "rapidly; a": "The introduction is so long that it seems like a complete clause, but it begins with \"Because,\" so it is dependent, and a semicolon cannot follow a dependent clause.",
+      "rapidly. A": "The period breaks up a long sentence, but it leaves the \"Because\" clause as a sentence fragment.",
+      "rapidly a": "The clause boundary is hard to see, but with no comma the introductory clause runs into the main clause, and \"proceed rapidly a steak\" misreads."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1269,9 +1269,9 @@
       "What mark should close an interruption that opens with a comma?"
     ],
     "wrong_reasons": {
-      "winters;": "Picked because the long phrase feels like a finished thought, but a semicolon would separate the subject \"piece\" from its verb \"was left,\" and the words before it are not an independent clause.",
-      "winters—": "Picked because a dash can set off an interruption, but the appositive opened with a comma after \"piece\"; mixing a comma and a dash fails to pair the marks.",
-      "winters": "Picked because the long phrase seems to run straight into the verb, but leaving out the closing comma leaves the appositive opened and never closed."
+      "winters;": "The long phrase feels like a finished thought, but a semicolon would separate the subject \"piece\" from its verb \"was left,\" and the words before it are not an independent clause.",
+      "winters—": "A dash can set off an interruption, but the appositive opened with a comma after \"piece\"; mixing a comma and a dash fails to pair the marks.",
+      "winters": "The long phrase seems to run straight into the verb, but leaving out the closing comma leaves the appositive opened and never closed."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1300,9 +1300,9 @@
       "What punctuation can separate two complete sentences when there is no \"and\" or \"but\"?"
     ],
     "wrong_reasons": {
-      "end, this": "Picked because a comma marks a natural pause, but a comma alone between two independent clauses creates a comma splice.",
-      "end this": "Picked because the words seem to read on smoothly, but with no punctuation the two independent clauses form a run-on sentence.",
-      "end, this,": "Picked because extra commas look careful, but this is still a comma splice, and the comma after \"this\" wrongly separates it from the noun \"arrangement\" it modifies."
+      "end, this": "A comma marks a natural pause, but a comma alone between two independent clauses creates a comma splice.",
+      "end this": "The words seem to read on smoothly, but with no punctuation the two independent clauses form a run-on sentence.",
+      "end, this,": "Extra commas look careful, but this is still a comma splice, and the comma after \"this\" wrongly separates it from the noun \"arrangement\" it modifies."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1331,9 +1331,9 @@
       "Look at the mark after \"line.\" What mark should match it at the start of the phrase?"
     ],
     "wrong_reasons": {
-      "horizon—": "Picked because a dash can introduce a description, but the phrase closes with a comma after \"line,\" and a dash and a comma cannot pair to set off one element.",
-      "horizon;": "Picked because the sentence is long and seems to need a strong break, but a semicolon must join two independent clauses, and \"the wagon creaked . . . and the horizon\" leaves \"horizon\" without its verb.",
-      "horizon:": "Picked because a colon seems to introduce the description of the horizon, but a colon cannot split a subject from its verb, and the phrase still ends with a comma before \"seemed.\""
+      "horizon—": "A dash can introduce a description, but the phrase closes with a comma after \"line,\" and a dash and a comma cannot pair to set off one element.",
+      "horizon;": "The sentence is long and seems to need a strong break, but a semicolon must join two independent clauses, and \"the wagon creaked . . . and the horizon\" leaves \"horizon\" without its verb.",
+      "horizon:": "A colon seems to introduce the description of the horizon, but a colon cannot split a subject from its verb, and the phrase still ends with a comma before \"seemed.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1362,9 +1362,9 @@
       "Which mark opened the interruption? Which mark should close it?"
     ],
     "wrong_reasons": {
-      "read,": "Picked because the interruption already contains a comma, so a comma seems natural here, but the interruption opened with a dash and must close with one; a comma leaves the dash unpaired.",
-      "read;": "Picked because the sentence is long and seems to need a firm break, but a semicolon cannot separate the subject \"letters\" from its verb \"are.\"",
-      "read": "Picked because \"read are\" may look like it continues, but leaving out the closing dash runs the interruption into the main clause and never closes the element the dash opened."
+      "read,": "The interruption already contains a comma, so a comma seems natural here, but the interruption opened with a dash and must close with one; a comma leaves the dash unpaired.",
+      "read;": "The sentence is long and seems to need a firm break, but a semicolon cannot separate the subject \"letters\" from its verb \"are.\"",
+      "read": "\"Read are\" may look like it continues, but leaving out the closing dash runs the interruption into the main clause and never closes the element the dash opened."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1393,9 +1393,9 @@
       "When a state name follows a city in the middle of a sentence, what goes after the state?"
     ],
     "wrong_reasons": {
-      "Massachusetts": "Picked because no pause seems needed before the verb, but the state in a city-state pair must be followed by a comma as well as preceded by one.",
-      "Massachusetts;": "Picked because a semicolon looks like a stronger break, but it would cut the subject off from its verb \"walked,\" and the words before it are not an independent clause.",
-      "Massachusetts:": "Picked because a colon seems to lead into the action, but a colon cannot come between a subject and its verb."
+      "Massachusetts": "No pause seems needed before the verb, but the state in a city-state pair must be followed by a comma as well as preceded by one.",
+      "Massachusetts;": "A semicolon looks like a stronger break, but it would cut the subject off from its verb \"walked,\" and the words before it are not an independent clause.",
+      "Massachusetts:": "A colon seems to lead into the action, but a colon cannot come between a subject and its verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1424,9 +1424,9 @@
       "Does the second part explain the \"striking way\"? Which mark introduces an explanation?"
     ],
     "wrong_reasons": {
-      "way,": "Picked because a comma marks a pause, but a comma alone between two independent clauses is a comma splice.",
-      "way": "Picked because \"striking way they produce\" can seem to read on, but with no punctuation the two independent clauses run together.",
-      "way, which": "Picked because \"which\" seems to link the explanation to \"way,\" but \"which they produce their own light\" is ungrammatical, since \"which\" has no role in that clause."
+      "way,": "A comma marks a pause, but a comma alone between two independent clauses is a comma splice.",
+      "way": "\"Striking way they produce\" can seem to read on, but with no punctuation the two independent clauses run together.",
+      "way, which": "\"Which\" seems to link the explanation to \"way,\" but \"which they produce their own light\" is ungrammatical, since \"which\" has no role in that clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1455,9 +1455,9 @@
       "Is there any interrupting element between the subject and the verb that would need to be set off?"
     ],
     "wrong_reasons": {
-      "ballot, was": "Picked because the long subject seems to call for a breath before the verb, but a single comma between a subject and its verb is an error.",
-      "ballot—was": "Picked because a dash seems to add emphasis before the finding, but a single dash cannot separate a subject from its verb.",
-      "ballot; was": "Picked because the sentence is long and seems to need a strong break, but a semicolon joins independent clauses, and neither part here is one."
+      "ballot, was": "The long subject seems to call for a breath before the verb, but a single comma between a subject and its verb is an error.",
+      "ballot—was": "A dash seems to add emphasis before the finding, but a single dash cannot separate a subject from its verb.",
+      "ballot; was": "The sentence is long and seems to need a strong break, but a semicolon joins independent clauses, and neither part here is one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1486,9 +1486,9 @@
       "If a new sentence begins after the blank, how should its first word look?"
     ],
     "wrong_reasons": {
-      "disappear, for": "Picked because a comma seems to mark the pause, but joining two complete sentences with only a comma creates a comma splice.",
-      "disappear for": "Picked because \"disappear for decades\" sounds natural, but then \"the rotting wood feeds fungi\" runs on with no punctuation, creating a run-on sentence.",
-      "disappear; For": "Picked because a semicolon correctly separates independent clauses, but the word after a semicolon should not be capitalized."
+      "disappear, for": "A comma seems to mark the pause, but joining two complete sentences with only a comma creates a comma splice.",
+      "disappear for": "\"Disappear for decades\" sounds natural, but then \"the rotting wood feeds fungi\" runs on with no punctuation, creating a run-on sentence.",
+      "disappear; For": "A semicolon correctly separates independent clauses, but the word after a semicolon should not be capitalized."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1517,9 +1517,9 @@
       "The clause about the nickname ends with a comma. What should mark its beginning?"
     ],
     "wrong_reasons": {
-      "approach which": "Picked because \"which\" seems to attach smoothly to \"approach,\" but the closing comma after \"talk first\" needs a matching opening comma.",
-      "approach; which": "Picked because a semicolon looks like a strong separator, but \"The approach\" is not an independent clause, so a semicolon cannot follow it.",
-      "approach—which": "Picked because a dash can set off extra information, but the element closes with a comma, and a dash and a comma do not pair."
+      "approach which": "\"Which\" seems to attach smoothly to \"approach,\" but the closing comma after \"talk first\" needs a matching opening comma.",
+      "approach; which": "A semicolon looks like a strong separator, but \"The approach\" is not an independent clause, so a semicolon cannot follow it.",
+      "approach—which": "A dash can set off extra information, but the element closes with a comma, and a dash and a comma do not pair."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1549,9 +1549,9 @@
       "Once you know which clause \"however\" belongs to, what mark must separate the two clauses?"
     ],
     "wrong_reasons": {
-      "warning; however,": "Picked because \"; however,\" is the familiar pattern, but it attaches the contrast to the seismometer clause, which actually supports, rather than contrasts with, the lack of warning.",
-      "warning, however,": "Picked because it sets \"however\" off neatly, but it leaves only commas between two independent clauses, creating a comma splice.",
-      "warning however": "Picked because it avoids choosing a side for \"however,\" but with no punctuation the two independent clauses run together."
+      "warning; however,": "\"; however,\" is the familiar pattern, but it attaches the contrast to the seismometer clause, which actually supports, rather than contrasts with, the lack of warning.",
+      "warning, however,": "It sets \"however\" off neatly, but it leaves only commas between two independent clauses, creating a comma splice.",
+      "warning however": "It avoids choosing a side for \"however,\" but with no punctuation the two independent clauses run together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1580,9 +1580,9 @@
       "What can join two complete sentences besides a period or a semicolon?"
     ],
     "wrong_reasons": {
-      "bacteria his": "Picked because the words flow together when read quickly, but two independent clauses with no punctuation or conjunction form a run-on.",
-      "bacteria, his": "Picked because a comma marks the pause, but a comma alone cannot join two independent clauses; this is a comma splice.",
-      "bacteria, and his,": "Picked because it includes the correct comma and \"and,\" but the comma after \"his\" wrongly separates the possessive from the noun \"observation.\""
+      "bacteria his": "The words flow together when read quickly, but two independent clauses with no punctuation or conjunction form a run-on.",
+      "bacteria, his": "A comma marks the pause, but a comma alone cannot join two independent clauses; this is a comma splice.",
+      "bacteria, and his,": "It includes the correct comma and \"and,\" but the comma after \"his\" wrongly separates the possessive from the noun \"observation.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1611,9 +1611,9 @@
       "\"William the Conqueror\" is followed by a comma. What does that tell you about the mark before \"William\"?"
     ],
     "wrong_reasons": {
-      "king William": "Picked because \"King William\" sounds like a title, but here \"king\" is a common noun renamed by an appositive, and the closing comma after \"Conqueror\" needs an opening comma.",
-      "king—William": "Picked because a dash can introduce a name, but the appositive closes with a comma, and a dash cannot pair with a comma.",
-      "king; William": "Picked because a semicolon looks like a strong separator, but \"In 1085, England's king\" is not an independent clause."
+      "king William": "\"King William\" sounds like a title, but here \"king\" is a common noun renamed by an appositive, and the closing comma after \"Conqueror\" needs an opening comma.",
+      "king—William": "A dash can introduce a name, but the appositive closes with a comma, and a dash cannot pair with a comma.",
+      "king; William": "A semicolon looks like a strong separator, but \"In 1085, England's king\" is not an independent clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1642,9 +1642,9 @@
       "What separates the first item from the second? Should the second and third items be separated the same way?"
     ],
     "wrong_reasons": {
-      "cousins,": "Picked because commas usually separate list items, but these items contain internal commas, so a comma here blurs the boundary between Tolun and Varek and breaks the semicolon pattern set after \"older ones.\"",
-      "cousins": "Picked because \"and\" seems enough to start the last item, but with no mark the Tolun item runs into Varek, and the semicolon pattern of the series is broken.",
-      "cousins:": "Picked because a colon already appears earlier, but a second colon cannot separate items in a series; it would wrongly suggest that Varek explains Tolun."
+      "cousins,": "Commas usually separate list items, but these items contain internal commas, so a comma here blurs the boundary between Tolun and Varek and breaks the semicolon pattern set after \"older ones.\"",
+      "cousins": "\"And\" seems enough to start the last item, but with no mark the Tolun item runs into Varek, and the semicolon pattern of the series is broken.",
+      "cousins:": "A colon already appears earlier, but a second colon cannot separate items in a series; it would wrongly suggest that Varek explains Tolun."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1673,9 +1673,9 @@
       "The describing phrase begins with a comma. What should end it?"
     ],
     "wrong_reasons": {
-      "BCE; was": "Picked because a semicolon looks like a strong separator, but it would split the subject from its verb, and neither part is an independent clause.",
-      "BCE was": "Picked because \"BCE was\" reads smoothly, but the appositive opened with a comma after \"Elements\" and must be closed by one.",
-      "BCE: was": "Picked because a colon seems to mark a turn, but a colon cannot come between a subject and its verb."
+      "BCE; was": "A semicolon looks like a strong separator, but it would split the subject from its verb, and neither part is an independent clause.",
+      "BCE was": "\"BCE was\" reads smoothly, but the appositive opened with a comma after \"Elements\" and must be closed by one.",
+      "BCE: was": "A colon seems to mark a turn, but a colon cannot come between a subject and its verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1704,9 +1704,9 @@
       "Does the second part explain the first? Which mark signals that?"
     ],
     "wrong_reasons": {
-      "climate,": "Picked because a comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
-      "climate": "Picked because \"Earth's climate tiny bubbles\" might seem to continue the phrase, but without punctuation the two clauses form a run-on.",
-      "climate, which": "Picked because \"which\" seems to connect the bubbles to the climate, but \"which tiny bubbles . . . hold samples\" is ungrammatical, since \"which\" has no role in the clause."
+      "climate,": "A comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
+      "climate": "\"Earth's climate tiny bubbles\" might seem to continue the phrase, but without punctuation the two clauses form a run-on.",
+      "climate, which": "\"Which\" seems to connect the bubbles to the climate, but \"which tiny bubbles . . . hold samples\" is ungrammatical, since \"which\" has no role in the clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1735,9 +1735,9 @@
       "Is \"In the end, she decided to preserve\" a complete thought on its own?"
     ],
     "wrong_reasons": {
-      "preserve:": "Picked because a colon often comes before a list, but a colon must follow an independent clause, and here it would cut the verb \"preserve\" off from its object.",
-      "preserve—": "Picked because a dash seems to add dramatic emphasis before the list, but a single dash cannot separate a verb from its object.",
-      "preserve,": "Picked because a pause before a long list feels natural, but a comma cannot separate a verb from its direct object."
+      "preserve:": "A colon often comes before a list, but a colon must follow an independent clause, and here it would cut the verb \"preserve\" off from its object.",
+      "preserve—": "A dash seems to add dramatic emphasis before the list, but a single dash cannot separate a verb from its object.",
+      "preserve,": "A pause before a long list feels natural, but a comma cannot separate a verb from its direct object."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1766,9 +1766,9 @@
       "Which punctuation mark can join two complete sentences without a conjunction?"
     ],
     "wrong_reasons": {
-      "1869,": "Picked because a comma marks the pause, but a comma alone cannot join two independent clauses; this is a comma splice.",
-      "1869": "Picked because the words seem to flow on, but with no punctuation the two clauses run together into a run-on sentence.",
-      "1869, that": "Picked because \"that\" seems to link the year to the event, but \"in 1869, that the final spike was driven\" is ungrammatical."
+      "1869": "The words seem to flow on, but with no punctuation the two clauses run together into a run-on sentence.",
+      "1869,": "A comma marks the pause, but a comma alone cannot join two independent clauses; this is a comma splice.",
+      "1869, that": "\"That\" seems to link the year to the event, but \"in 1869, that the final spike was driven\" is ungrammatical."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1797,9 +1797,9 @@
       "Is there any interrupting phrase that needs to be set off, or does the subject lead straight to its verb?"
     ],
     "wrong_reasons": {
-      "tissues,": "Picked because the compound subject is long and seems to need a pause, but a single comma cannot separate a subject from its verb.",
-      "tissues;": "Picked because a semicolon looks like a natural break, but the words before it are not an independent clause; they are only the subject.",
-      "tissues—": "Picked because a dash seems to add emphasis, but a single dash between a subject and its verb is an error."
+      "tissues,": "The compound subject is long and seems to need a pause, but a single comma cannot separate a subject from its verb.",
+      "tissues;": "A semicolon looks like a natural break, but the words before it are not an independent clause; they are only the subject.",
+      "tissues—": "A dash seems to add emphasis, but a single dash between a subject and its verb is an error."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1828,9 +1828,9 @@
       "Which marks require an independent clause on both sides, and which do not?"
     ],
     "wrong_reasons": {
-      "denser;": "Picked because the long sentence seems to call for a firm break, but a semicolon must be followed by an independent clause, and \"a sign that . . .\" is only a noun phrase.",
-      "denser": "Picked because \"denser a sign\" may seem to run on naturally, but without punctuation the descriptive phrase is jammed against the clause it comments on.",
-      "denser, which": "Picked because \"which\" seems to introduce the explanation, but \"which a sign that the spacecraft had left\" has no verb and is ungrammatical."
+      "denser;": "The long sentence seems to call for a firm break, but a semicolon must be followed by an independent clause, and \"a sign that . . .\" is only a noun phrase.",
+      "denser": "\"Denser a sign\" may seem to run on naturally, but without punctuation the descriptive phrase is jammed against the clause it comments on.",
+      "denser, which": "\"Which\" seems to introduce the explanation, but \"which a sign that the spacecraft had left\" has no verb and is ungrammatical."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1859,9 +1859,9 @@
       "What punctuation usually follows a long introductory clause that starts with \"Because\"?"
     ],
     "wrong_reasons": {
-      "moist;": "Picked because a semicolon looks like a strong break, but the clause before it starts with \"Because\" and cannot stand alone, so a semicolon is wrong.",
-      "moist": "Picked because the sentence seems to read straight through, but without a comma \"keep it moist fewer weeds\" runs the introductory clause into the main clause.",
-      "moist:": "Picked because the main clause seems to explain a result, but a colon must follow an independent clause, and the \"Because\" clause is dependent."
+      "moist;": "A semicolon looks like a strong break, but the clause before it starts with \"Because\" and cannot stand alone, so a semicolon is wrong.",
+      "moist": "The sentence seems to read straight through, but without a comma \"keep it moist fewer weeds\" runs the introductory clause into the main clause.",
+      "moist:": "The main clause seems to explain a result, but a colon must follow an independent clause, and the \"Because\" clause is dependent."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1890,9 +1890,9 @@
       "Which punctuation mark can join two complete sentences on its own?"
     ],
     "wrong_reasons": {
-      "painful, many": "Picked because a comma marks the pause between the ideas, but a comma alone between two independent clauses is a comma splice.",
-      "painful many": "Picked because the sentence seems to flow on, but with no punctuation the two independent clauses run together into a run-on sentence.",
-      "painful, as a result many": "Picked because \"as a result\" seems to link the clauses, but it is a transitional phrase, not a conjunction, so the comma still splices two independent clauses."
+      "painful, many": "A comma marks the pause between the ideas, but a comma alone between two independent clauses is a comma splice.",
+      "painful many": "The sentence seems to flow on, but with no punctuation the two independent clauses run together into a run-on sentence.",
+      "painful, as a result many": "\"As a result\" seems to link the clauses, but it is a transitional phrase, not a conjunction, so the comma still splices two independent clauses."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1922,9 +1922,9 @@
       "What punctuation goes before a transition word that starts a new independent clause?"
     ],
     "wrong_reasons": {
-      "names, consequently,": "Picked because the commas around \"consequently\" look like the usual way to set off a transition, but the first comma joins two independent clauses, creating a comma splice.",
-      "names consequently,": "Picked because the comma after \"consequently\" seems to take care of the transition, but nothing separates the two independent clauses, so the sentence is a run-on.",
-      "names, consequently": "Picked because \"consequently\" feels like it connects the ideas, but it is not a conjunction; the result is a comma splice, and the transition is not set off from the clause it introduces."
+      "names, consequently,": "The commas around \"consequently\" look like the usual way to set off a transition, but the first comma joins two independent clauses, creating a comma splice.",
+      "names consequently,": "The comma after \"consequently\" seems to take care of the transition, but nothing separates the two independent clauses, so the sentence is a run-on.",
+      "names, consequently": "\"Consequently\" feels like it connects the ideas, but it is not a conjunction; the result is a comma splice, and the transition is not set off from the clause it introduces."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1954,9 +1954,9 @@
       "Should the last two items be separated the same way as the first two?"
     ],
     "wrong_reasons": {
-      "dye, and": "Picked because a comma before \"and\" is standard in a simple series, but this series already uses a semicolon between items because the items contain commas; switching to a comma blurs where the second stage ends.",
-      "dye and": "Picked because \"and\" alone seems to finish the list, but without a semicolon the third stage runs into the \"which\" clause of the second.",
-      "dye: and": "Picked because the passage contains a colon and the sentence is long, but a colon introduces the list; it cannot also separate items within it."
+      "dye, and": "A comma before \"and\" is standard in a simple series, but this series already uses a semicolon between items because the items contain commas; switching to a comma blurs where the second stage ends.",
+      "dye and": "\"And\" alone seems to finish the list, but without a semicolon the third stage runs into the \"which\" clause of the second.",
+      "dye: and": "The passage contains a colon and the sentence is long, but a colon introduces the list; it cannot also separate items within it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1985,9 +1985,9 @@
       "Does anything interrupt the subject and the verb that would need to be set off?"
     ],
     "wrong_reasons": {
-      "often, were": "Picked because the subject is long and seems to call for a pause, but a single comma should not separate a subject from its verb.",
-      "often: were": "Picked because a colon seems to introduce what the people were, but a colon must follow a complete independent clause, and \"The people that residents greeted most often\" is not one.",
-      "often—were": "Picked because a dash seems to mark a dramatic break, but a single dash cannot come between a subject and its verb."
+      "often, were": "The subject is long and seems to call for a pause, but a single comma should not separate a subject from its verb.",
+      "often: were": "A colon seems to introduce what the people were, but a colon must follow a complete independent clause, and \"The people that residents greeted most often\" is not one.",
+      "often—were": "A dash seems to mark a dramatic break, but a single dash cannot come between a subject and its verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2017,9 +2017,9 @@
       "Should the opening mark match the closing mark?"
     ],
     "wrong_reasons": {
-      "sections,": "Picked because commas often set off an interruption, but this one closes with a dash; a comma opening also blends into the commas of the list.",
-      "sections:": "Picked because a colon often introduces a list, but a colon must follow a complete independent clause, and \"Its three sections\" is only a subject.",
-      "sections": "Picked because the list seems to follow naturally, but then the dash after \"garden\" has no partner, and the list is not set off from the subject."
+      "sections,": "Commas often set off an interruption, but this one closes with a dash; a comma opening also blends into the commas of the list.",
+      "sections:": "A colon often introduces a list, but a colon must follow a complete independent clause, and \"Its three sections\" is only a subject.",
+      "sections": "The list seems to follow naturally, but then the dash after \"garden\" has no partner, and the list is not set off from the subject."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2049,9 +2049,9 @@
       "Which mark introduces an explanation?"
     ],
     "wrong_reasons": {
-      "cost; however, the": "Picked because \"; however,\" is the familiar pattern for joining clauses, but it makes \"however\" contrast the cooling air with the hidden cost, when the cooling air is the cost.",
-      "cost, however, the": "Picked because commas around \"however\" look correct, but the second comma then joins two independent clauses, creating a comma splice.",
-      "cost however: the": "Picked because the colon is in the right place, but \"however\" interrupts the clause and must be set off with a comma."
+      "cost; however, the": "\"; however,\" is the familiar pattern for joining clauses, but it makes \"however\" contrast the cooling air with the hidden cost, when the cooling air is the cost.",
+      "cost, however, the": "Commas around \"however\" look correct, but the second comma then joins two independent clauses, creating a comma splice.",
+      "cost however: the": "The colon is in the right place, but \"however\" interrupts the clause and must be set off with a comma."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2080,9 +2080,9 @@
       "What mark can join two complete thoughts without a conjunction?"
     ],
     "wrong_reasons": {
-      "sense, a": "Picked because a comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
-      "sense a": "Picked because \"made sense a single volume\" can seem to continue, but with no punctuation the two independent clauses form a run-on.",
-      "sense, which a": "Picked because \"which\" seems to connect the reason to the precaution, but \"which a single handwritten volume could represent months\" is ungrammatical."
+      "sense, a": "A comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
+      "sense a": "\"Made sense a single volume\" can seem to continue, but with no punctuation the two independent clauses form a run-on.",
+      "sense, which a": "\"Which\" seems to connect the reason to the precaution, but \"which a single handwritten volume could represent months\" is ungrammatical."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2112,9 +2112,9 @@
       "How should the clause begin to match?"
     ],
     "wrong_reasons": {
-      "network—": "Picked because a dash can set off extra information, but this clause closes with a comma, and the two marks must match.",
-      "network": "Picked because no punctuation seems needed before \"which,\" but then the comma after \"tall\" wrongly separates the subject from its verb.",
-      "network;": "Picked because the sentence is long and a strong break seems needed, but a semicolon must join two independent clauses, and \"which can spread . . .\" is not one."
+      "network—": "A dash can set off extra information, but this clause closes with a comma, and the two marks must match.",
+      "network": "No punctuation seems needed before \"which,\" but then the comma after \"tall\" wrongly separates the subject from its verb.",
+      "network;": "The sentence is long and a strong break seems needed, but a semicolon must join two independent clauses, and \"which can spread . . .\" is not one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2144,9 +2144,9 @@
       "Has that phrase been closed before the verb?"
     ],
     "wrong_reasons": {
-      "phrase": "Picked because a comma before the verb looks like it separates subject and verb, but the appositive opened with a comma must also close with one.",
-      "phrase;": "Picked because the sentence already contains a semicolon and seems to need a strong break, but \"unsettled many listeners at first\" has no subject of its own, so it is not an independent clause.",
-      "phrase—": "Picked because a dash can end an interruption, but this interruption opened with a comma, and the marks must match."
+      "phrase": "A comma before the verb looks like it separates subject and verb, but the appositive opened with a comma must also close with one.",
+      "phrase;": "The sentence already contains a semicolon and seems to need a strong break, but \"unsettled many listeners at first\" has no subject of its own, so it is not an independent clause.",
+      "phrase—": "A dash can end an interruption, but this interruption opened with a comma, and the marks must match."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2175,9 +2175,9 @@
       "What mark separates the items in a simple list?"
     ],
     "wrong_reasons": {
-      "fish": "Picked because the words sound fine read aloud, but without a comma \"fish\" and \"frogs\" run together, and the first two items of the series are not separated.",
-      "fish;": "Picked because a semicolon can separate list items, but only when the items contain commas themselves; these short items do not, and the list already uses a comma after \"frogs.\"",
-      "fish:": "Picked because colons are associated with lists, but a colon introduces a list after a complete clause; it does not separate items within one."
+      "fish": "The words sound fine read aloud, but without a comma \"fish\" and \"frogs\" run together, and the first two items of the series are not separated.",
+      "fish;": "A semicolon can separate list items, but only when the items contain commas themselves; these short items do not, and the list already uses a comma after \"frogs.\"",
+      "fish:": "Colons are associated with lists, but a colon introduces a list after a complete clause; it does not separate items within one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2207,9 +2207,9 @@
       "What mark can join them without a conjunction?"
     ],
     "wrong_reasons": {
-      "remains, in": "Picked because commas already separate the parts of the long sentence, but a comma alone between two independent clauses is a comma splice.",
-      "remains in": "Picked because \"the surface that remains in an engraving\" can seem to read as one phrase, but it confuses the two techniques and runs two independent clauses together.",
-      "remains, however, in": "Picked because \"however\" signals the contrast between the two techniques, but \"however\" is not a conjunction, so the comma still splices two independent clauses."
+      "remains, in": "Commas already separate the parts of the long sentence, but a comma alone between two independent clauses is a comma splice.",
+      "remains in": "\"The surface that remains in an engraving\" can seem to read as one phrase, but it confuses the two techniques and runs two independent clauses together.",
+      "remains, however, in": "\"However\" signals the contrast between the two techniques, but \"however\" is not a conjunction, so the comma still splices two independent clauses."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2238,9 +2238,9 @@
       "Is anything between the subject and the verb an interruption that needs to be set off?"
     ],
     "wrong_reasons": {
-      "way, is": "Picked because the long clausal subject seems to need a pause before the verb, but a single comma should not separate a subject from its verb.",
-      "way: is": "Picked because the sentence later uses a colon and the subject seems to build toward an explanation, but a colon must follow an independent clause, and the subject alone is not one.",
-      "way—is": "Picked because a dash seems to mark the end of a long subject, but a single dash cannot come between a subject and its verb."
+      "way, is": "The long clausal subject seems to need a pause before the verb, but a single comma should not separate a subject from its verb.",
+      "way: is": "The sentence later uses a colon and the subject seems to build toward an explanation, but a colon must follow an independent clause, and the subject alone is not one.",
+      "way—is": "A dash seems to mark the end of a long subject, but a single dash cannot come between a subject and its verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2269,9 +2269,9 @@
       "What does the part after the blank do: start a new sentence or name the three qualities?"
     ],
     "wrong_reasons": {
-      "qualities;": "Picked because a semicolon looks like a strong break, but a semicolon joins two independent clauses, and \"strength, stability, and comfort . . .\" is not a clause.",
-      "qualities": "Picked because the words seem to flow together, but with no punctuation the list runs straight into \"qualities,\" and nothing signals that it names them.",
-      "qualities, including:": "Picked because \"including\" seems to lead into the list, but a colon should not follow \"including,\" and \"including\" wrongly suggests there are other qualities beyond the three."
+      "qualities;": "A semicolon looks like a strong break, but a semicolon joins two independent clauses, and \"strength, stability, and comfort . . .\" is not a clause.",
+      "qualities": "The words seem to flow together, but with no punctuation the list runs straight into \"qualities,\" and nothing signals that it names them.",
+      "qualities, including:": "\"Including\" seems to lead into the list, but a colon should not follow \"including,\" and \"including\" wrongly suggests there are other qualities beyond the three."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2301,9 +2301,9 @@
       "What can separate two complete sentences?"
     ],
     "wrong_reasons": {
-      "breakfast, only": "Picked because the inverted clause doesn't look like a typical sentence, but it has its own subject and verb (\"I remember\"), so a comma creates a comma splice.",
-      "breakfast only": "Picked because \"two cups for breakfast only\" sounds like a complete phrase, but then \"when the kettle starts to whistle do I remember\" is left without a proper start, and the clauses run together.",
-      "breakfast, only,": "Picked because commas around \"only\" make it look like an interrupter, but \"only\" begins the second clause; the result is still a comma splice and wrongly separates \"only\" from \"when.\""
+      "breakfast, only": "The inverted clause doesn't look like a typical sentence, but it has its own subject and verb (\"I remember\"), so a comma creates a comma splice.",
+      "breakfast only": "\"Two cups for breakfast only\" sounds like a complete phrase, but then \"when the kettle starts to whistle do I remember\" is left without a proper start, and the clauses run together.",
+      "breakfast, only,": "Commas around \"only\" make it look like an interrupter, but \"only\" begins the second clause; the result is still a comma splice and wrongly separates \"only\" from \"when.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2333,9 +2333,9 @@
       "What does the second part do in relation to the first?"
     ],
     "wrong_reasons": {
-      "type, a": "Picked because the sentence already uses commas, but a comma alone between two independent clauses is a comma splice.",
-      "type a": "Picked because \"type a granite boulder\" can briefly read as one phrase, but the two independent clauses run together without punctuation.",
-      "type, for example, a": "Picked because the second clause really is an example, but \"for example\" is a transitional phrase, not a conjunction, so the comma still splices the two clauses."
+      "type, a": "The sentence already uses commas, but a comma alone between two independent clauses is a comma splice.",
+      "type a": "\"Type a granite boulder\" can briefly read as one phrase, but the two independent clauses run together without punctuation.",
+      "type, for example, a": "The second clause really is an example, but \"for example\" is a transitional phrase, not a conjunction, so the comma still splices the two clauses."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2364,9 +2364,9 @@
       "What mark usually follows a long introductory clause?"
     ],
     "wrong_reasons": {
-      "burns; its": "Picked because the sentence has two clauses, but a semicolon must join two independent clauses, and the \"When\" clause is dependent.",
-      "burns: its": "Picked because the second part describes what happens, but a colon must follow an independent clause, and the \"When\" clause cannot stand alone.",
-      "burns its": "Picked because \"burns its core\" reads smoothly at first, but it misleadingly makes \"its core\" the object of \"burns\" and leaves no break after the introductory clause."
+      "burns; its": "The sentence has two clauses, but a semicolon must join two independent clauses, and the \"When\" clause is dependent.",
+      "burns: its": "The second part describes what happens, but a colon must follow an independent clause, and the \"When\" clause cannot stand alone.",
+      "burns its": "\"Burns its core\" reads smoothly at first, but it misleadingly makes \"its core\" the object of \"burns\" and leaves no break after the introductory clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2396,9 +2396,9 @@
       "What mark closes the \"such as\" phrase in the last sentence?"
     ],
     "wrong_reasons": {
-      "morphemes": "Picked because \"such as\" can seem to follow directly, but then the comma after \"un-\" wrongly separates the subject from its verb; the nonessential examples need commas on both sides.",
-      "morphemes:": "Picked because colons introduce examples, but a colon must follow an independent clause, and \"Bound morphemes\" is only a subject.",
-      "morphemes;": "Picked because the semicolon seems to signal a major break, but a semicolon must join two independent clauses, and \"such as . . . un-\" is not one."
+      "morphemes": "\"Such as\" can seem to follow directly, but then the comma after \"un-\" wrongly separates the subject from its verb; the nonessential examples need commas on both sides.",
+      "morphemes:": "Colons introduce examples, but a colon must follow an independent clause, and \"Bound morphemes\" is only a subject.",
+      "morphemes;": "The semicolon seems to signal a major break, but a semicolon must join two independent clauses, and \"such as . . . un-\" is not one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2428,9 +2428,9 @@
       "Does the list's complexity change the rule between a verb and its object?"
     ],
     "wrong_reasons": {
-      "comprised:": "Picked because the long list with semicolons seems to call for a colon, but a colon must follow a complete independent clause, and \"the court orchestra . . . comprised\" is incomplete without its object.",
-      "comprised—": "Picked because a dash seems to set up the list dramatically, but a dash should not separate a verb from its object.",
-      "comprised,": "Picked because the comma after \"feast day\" suggests another pause, but a comma should not separate a verb from its object."
+      "comprised:": "The long list with semicolons seems to call for a colon, but a colon must follow a complete independent clause, and \"the court orchestra . . . comprised\" is incomplete without its object.",
+      "comprised—": "A dash seems to set up the list dramatically, but a dash should not separate a verb from its object.",
+      "comprised,": "The comma after \"feast day\" suggests another pause, but a comma should not separate a verb from its object."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2459,9 +2459,9 @@
       "Does the part after the blank have its own subject and verb?"
     ],
     "wrong_reasons": {
-      "dance, a": "Picked because the second part describes the dance and seems closely linked, but a comma alone between two independent clauses is a comma splice.",
-      "dance a": "Picked because the words run on smoothly, but with no punctuation the two independent clauses form a run-on.",
-      "dance, which a": "Picked because \"which\" seems to connect the description to the dance, but \"which a returning forager runs in a figure-eight pattern\" is ungrammatical as written."
+      "dance, a": "The second part describes the dance and seems closely linked, but a comma alone between two independent clauses is a comma splice.",
+      "dance a": "The words run on smoothly, but with no punctuation the two independent clauses form a run-on.",
+      "dance, which a": "\"Which\" seems to connect the description to the dance, but \"which a returning forager runs in a figure-eight pattern\" is ungrammatical as written."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2490,9 +2490,9 @@
       "Does the part after the blank form its own sentence, or does it identify the resource?"
     ],
     "wrong_reasons": {
-      "others;": "Picked because a semicolon seems to mark the break, but a semicolon must join two independent clauses, and \"a carpool system of volunteer drivers . . .\" is a noun phrase, not a clause.",
-      "others": "Picked because \"others a carpool system\" seems to flow, but without punctuation nothing signals that the phrase identifies the resource, and the sentence becomes confusing.",
-      "others, it was": "Picked because adding \"it was\" makes the second part a full clause, but then a comma alone joins two independent clauses, creating a comma splice."
+      "others;": "A semicolon seems to mark the break, but a semicolon must join two independent clauses, and \"a carpool system of volunteer drivers . . .\" is a noun phrase, not a clause.",
+      "others": "\"Others a carpool system\" seems to flow, but without punctuation nothing signals that the phrase identifies the resource, and the sentence becomes confusing.",
+      "others, it was": "Adding \"it was\" makes the second part a full clause, but then a comma alone joins two independent clauses, creating a comma splice."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2521,9 +2521,9 @@
       "Is the name an extra detail that could be removed, or is it part of the subject itself?"
     ],
     "wrong_reasons": {
-      "Dana Ortiz,": "Picked because a comma often follows a name, but a single comma here separates the subject \"Investigative reporter Dana Ortiz\" from its verb \"spent\"; there is no opening comma to pair with.",
-      "Dana Ortiz—": "Picked because a dash can set off a name, but no dash opens an interruption, so this lone dash just splits the subject from the verb \"spent.\"",
-      "Dana Ortiz;": "Picked because the sentence is long, but a semicolon needs an independent clause on each side, and \"Investigative reporter Dana Ortiz\" is only a subject."
+      "Dana Ortiz,": "A comma often follows a name, but a single comma here separates the subject \"Investigative reporter Dana Ortiz\" from its verb \"spent\"; there is no opening comma to pair with.",
+      "Dana Ortiz—": "A dash can set off a name, but no dash opens an interruption, so this lone dash just splits the subject from the verb \"spent.\"",
+      "Dana Ortiz;": "The sentence is long, but a semicolon needs an independent clause on each side, and \"Investigative reporter Dana Ortiz\" is only a subject."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2552,9 +2552,9 @@
       "Was any punctuation used to open the long description that comes after \"the phrase\"?"
     ],
     "wrong_reasons": {
-      "woods,": "Picked because the subject is so long that a pause feels natural, but a comma here separates the subject \"the phrase\" from its verb \"grows.\"",
-      "woods;": "Picked because the words before the blank feel like a complete thought, but they are only a long subject with no main verb, so a semicolon cannot follow them.",
-      "woods—": "Picked because a dash seems to mark a dramatic pause, but no dash opened an interruption, so this dash only cuts the subject off from \"grows.\""
+      "woods,": "The subject is so long that a pause feels natural, but a comma here separates the subject \"the phrase\" from its verb \"grows.\"",
+      "woods;": "The words before the blank feel like a complete thought, but they are only a long subject with no main verb, so a semicolon cannot follow them.",
+      "woods—": "A dash seems to mark a dramatic pause, but no dash opened an interruption, so this dash only cuts the subject off from \"grows.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2583,9 +2583,9 @@
       "Do the examples need any mark between them and \"such as,\" or do they follow it directly?"
     ],
     "wrong_reasons": {
-      "such as:": "Picked because a colon often comes before a list, but a colon must follow a complete clause, and \"such as\" already introduces the examples.",
-      "such as;": "Picked because the list is long, but a semicolon joins two independent clauses, and the list of objects is not a clause.",
-      "such as—": "Picked because a dash can introduce examples, but placing it after \"such as\" needlessly separates the phrase from its own objects."
+      "such as:": "A colon often comes before a list, but a colon must follow a complete clause, and \"such as\" already introduces the examples.",
+      "such as;": "The list is long, but a semicolon joins two independent clauses, and the list of objects is not a clause.",
+      "such as—": "A dash can introduce examples, but placing it after \"such as\" needlessly separates the phrase from its own objects."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2614,9 +2614,9 @@
       "The phrase starting with \"whether\" ends with a comma. What mark should open it?"
     ],
     "wrong_reasons": {
-      "poses": "Picked because \"poses whether\" can sound like a verb and its object, but then the comma after \"tomato\" would split the subject from \"has divided\" without a partner.",
-      "poses;": "Picked because \"The question it poses\" might seem complete, but it is only a subject, so a semicolon cannot follow it.",
-      "poses:": "Picked because a colon can introduce what the question is, but a colon must follow an independent clause, and here it would also leave the closing comma after \"tomato\" unmatched."
+      "poses": "\"Poses whether\" can sound like a verb and its object, but then the comma after \"tomato\" would split the subject from \"has divided\" without a partner.",
+      "poses;": "\"The question it poses\" might seem complete, but it is only a subject, so a semicolon cannot follow it.",
+      "poses:": "A colon can introduce what the question is, but a colon must follow an independent clause, and here it would also leave the closing comma after \"tomato\" unmatched."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2645,9 +2645,9 @@
       "Where does that interruption end, and what mark should close it?"
     ],
     "wrong_reasons": {
-      "ideas,": "Picked because the list inside the interruption already uses commas, but a comma cannot close an interruption that a dash opened.",
-      "ideas;": "Picked because the long list makes the words before the blank feel complete, but they include no main verb, so a semicolon is wrong.",
-      "ideas": "Picked because \"ideas tend\" might seem to read smoothly, but leaving the dash unclosed makes it look as though \"ideas\" were the subject of \"tend.\""
+      "ideas,": "The list inside the interruption already uses commas, but a comma cannot close an interruption that a dash opened.",
+      "ideas;": "The long list makes the words before the blank feel complete, but they include no main verb, so a semicolon is wrong.",
+      "ideas": "\"Ideas tend\" might seem to read smoothly, but leaving the dash unclosed makes it look as though \"ideas\" were the subject of \"tend.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2676,9 +2676,9 @@
       "What mark closes that phrase, and what mark should open it?"
     ],
     "wrong_reasons": {
-      "horizon": "Picked because \"horizon known as topsoil\" can sound like one unit, but then the comma after \"topsoil\" would split the subject from the verb \"holds.\"",
-      "horizon;": "Picked because a pause seems needed, but \"The dark, crumbly uppermost horizon\" is not an independent clause, so a semicolon cannot follow it.",
-      "horizon—": "Picked because a dash can set off extra information, but the phrase closes with a comma, and a dash and a comma cannot be paired."
+      "horizon": "\"Horizon known as topsoil\" can sound like one unit, but then the comma after \"topsoil\" would split the subject from the verb \"holds.\"",
+      "horizon;": "A pause seems needed, but \"The dark, crumbly uppermost horizon\" is not an independent clause, so a semicolon cannot follow it.",
+      "horizon—": "A dash can set off extra information, but the phrase closes with a comma, and a dash and a comma cannot be paired."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2707,9 +2707,9 @@
       "When \"but\" joins two such clauses, where does the comma go?"
     ],
     "wrong_reasons": {
-      "grass but": "Picked because \"but\" alone seems to connect the ideas, but joining two independent clauses with a conjunction and no comma creates a run-on.",
-      "grass, but,": "Picked because commas seem to frame \"but\" like a transition, but a coordinating conjunction is not followed by a comma here.",
-      "grass; but,": "Picked because a semicolon can separate clauses, but a semicolon plus \"but\" is redundant, and the comma after \"but\" is unnecessary."
+      "grass but": "\"But\" alone seems to connect the ideas, but joining two independent clauses with a conjunction and no comma creates a run-on.",
+      "grass, but,": "Commas seem to frame \"but\" like a transition, but a coordinating conjunction is not followed by a comma here.",
+      "grass; but,": "A semicolon can separate clauses, but a semicolon plus \"but\" is redundant, and the comma after \"but\" is unnecessary."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2738,9 +2738,9 @@
       "What mark separates the second item from the third?"
     ],
     "wrong_reasons": {
-      "slow,": "Picked because commas usually separate list items, but these items contain their own commas, so a comma here blurs where the first site ends and clashes with the semicolon after \"louder.\"",
-      "slow:": "Picked because the sentence already uses a colon to start the list, but a second colon cannot separate one item from the next.",
-      "slow": "Picked because \"slow a farm edge\" might be skimmed past, but with no mark the first and second list items run together."
+      "slow,": "Commas usually separate list items, but these items contain their own commas, so a comma here blurs where the first site ends and clashes with the semicolon after \"louder.\"",
+      "slow:": "The sentence already uses a colon to start the list, but a second colon cannot separate one item from the next.",
+      "slow": "\"Slow a farm edge\" might be skimmed past, but with no mark the first and second list items run together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2769,9 +2769,9 @@
       "Should anything separate \"some species\" from \"can even grow\"?"
     ],
     "wrong_reasons": {
-      "limb, some species": "Picked because a comma feels like enough of a pause, but a comma alone between two independent clauses creates a comma splice.",
-      "limb some species": "Picked because the sentence seems to flow on, but two independent clauses with no punctuation create a run-on.",
-      "limb; some species,": "Picked because the semicolon is right, but the extra comma separates the subject \"some species\" from its verb \"can even grow.\""
+      "limb, some species": "A comma feels like enough of a pause, but a comma alone between two independent clauses creates a comma splice.",
+      "limb some species": "The sentence seems to flow on, but two independent clauses with no punctuation create a run-on.",
+      "limb; some species,": "The semicolon is right, but the extra comma separates the subject \"some species\" from its verb \"can even grow.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2800,9 +2800,9 @@
       "What mark closes those words, and what mark should open them?"
     ],
     "wrong_reasons": {
-      "feature,": "Picked because commas often set off descriptions, but this interruption closes with a dash, and a comma and a dash cannot be paired.",
-      "feature:": "Picked because a colon can introduce what the feature is, but the sentence continues past the dash with \"to twelve busy intersections,\" so the description is an interruption that needs matching dashes.",
-      "feature;": "Picked because the sentence is long, but \"They added a low-cost feature\" is followed by a phrase, not an independent clause, so a semicolon is wrong."
+      "feature,": "Commas often set off descriptions, but this interruption closes with a dash, and a comma and a dash cannot be paired.",
+      "feature:": "A colon can introduce what the feature is, but the sentence continues past the dash with \"to twelve busy intersections,\" so the description is an interruption that needs matching dashes.",
+      "feature;": "The sentence is long, but \"They added a low-cost feature\" is followed by a phrase, not an independent clause, so a semicolon is wrong."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2831,9 +2831,9 @@
       "What mark normally follows an introductory clause before the main clause begins?"
     ],
     "wrong_reasons": {
-      "suppliers;": "Picked because the opening is long enough to feel complete, but a clause starting with \"Because\" is dependent, and a semicolon needs an independent clause on each side.",
-      "suppliers:": "Picked because a colon appears later in the sentence and seems to fit an explanation, but a colon must follow an independent clause, and the \"Because\" clause is not one.",
-      "suppliers": "Picked because the words seem to run on naturally, but without a comma the long introductory clause blurs into the main clause, making \"their suppliers its owners\" hard to parse."
+      "suppliers;": "The opening is long enough to feel complete, but a clause starting with \"Because\" is dependent, and a semicolon needs an independent clause on each side.",
+      "suppliers:": "A colon appears later in the sentence and seems to fit an explanation, but a colon must follow an independent clause, and the \"Because\" clause is not one.",
+      "suppliers": "The words seem to run on naturally, but without a comma the long introductory clause blurs into the main clause, making \"their suppliers its owners\" hard to parse."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2862,9 +2862,9 @@
       "Is \"winter\" the end of the subject or the end of a complete thought?"
     ],
     "wrong_reasons": {
-      "winter,": "Picked because the subject is long, but a single comma would separate the subject from its verb \"depends.\"",
-      "winter;": "Picked because the words before the blank might seem like a full sentence, but they have no main verb, so a semicolon cannot follow them.",
-      "winter—": "Picked because a dash suggests a pause, but nothing is being interrupted, and the dash would cut the subject off from \"depends.\""
+      "winter,": "The subject is long, but a single comma would separate the subject from its verb \"depends.\"",
+      "winter;": "The words before the blank might seem like a full sentence, but they have no main verb, so a semicolon cannot follow them.",
+      "winter—": "A dash suggests a pause, but nothing is being interrupted, and the dash would cut the subject off from \"depends.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2893,9 +2893,9 @@
       "What does the rest of the sentence do: add a new clause, or name the three ingredients?"
     ],
     "wrong_reasons": {
-      "ingredients;": "Picked because semicolons appear throughout the sentence, but a semicolon needs an independent clause after it, and the list is not a clause.",
-      "ingredients,": "Picked because commas often introduce lists, but here a comma makes \"sand\" look like another item in a series alongside \"ingredients\" and does not clearly introduce the list.",
-      "ingredients": "Picked because the list seems to follow directly, but with no punctuation \"ingredients sand\" runs together and the list is never introduced."
+      "ingredients;": "Semicolons appear throughout the sentence, but a semicolon needs an independent clause after it, and the list is not a clause.",
+      "ingredients,": "Commas often introduce lists, but here a comma makes \"sand\" look like another item in a series alongside \"ingredients\" and does not clearly introduce the list.",
+      "ingredients": "The list seems to follow directly, but with no punctuation \"ingredients sand\" runs together and the list is never introduced."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2925,9 +2925,9 @@
       "Should any mark come between \"the other half\" and \"received\"?"
     ],
     "wrong_reasons": {
-      "air, the other half": "Picked because the comma-heavy \"which\" clause makes another comma feel natural, but a comma alone between two independent clauses is a comma splice.",
-      "air the other half": "Picked because the reader may hear one flowing sentence, but two independent clauses with no punctuation create a run-on.",
-      "air; the other half,": "Picked because the semicolon is right, but the added comma splits the subject \"the other half\" from its verb \"received.\""
+      "air, the other half": "The comma-heavy \"which\" clause makes another comma feel natural, but a comma alone between two independent clauses is a comma splice.",
+      "air the other half": "The reader may hear one flowing sentence, but two independent clauses with no punctuation create a run-on.",
+      "air; the other half,": "The semicolon is right, but the added comma splits the subject \"the other half\" from its verb \"received.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2956,9 +2956,9 @@
       "Is \"however\" strong enough by itself to join two complete sentences?"
     ],
     "wrong_reasons": {
-      "day, however,": "Picked because commas often surround \"however,\" but using only commas between two independent clauses creates a comma splice.",
-      "day however,": "Picked because the comma after \"however\" looks correct, but with no mark before it the two clauses run together.",
-      "day, however": "Picked because it seems to pause before the transition, but a comma alone cannot join two independent clauses, and \"however\" also loses its following comma."
+      "day, however,": "Commas often surround \"however,\" but using only commas between two independent clauses creates a comma splice.",
+      "day however,": "The comma after \"however\" looks correct, but with no mark before it the two clauses run together.",
+      "day, however": "It seems to pause before the transition, but a comma alone cannot join two independent clauses, and \"however\" also loses its following comma."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2987,9 +2987,9 @@
       "What mark closes the description, and what mark should open it?"
     ],
     "wrong_reasons": {
-      "sister": "Picked because \"sister who\" sounds natural, but then the comma after \"shelf\" would stand alone between the subject and \"arrived.\"",
-      "sister—": "Picked because a dash can introduce a long aside, but the aside closes with a comma, and a dash cannot be paired with a comma.",
-      "sister;": "Picked because a long pause seems fitting, but \"That summer my mother's younger sister\" is not an independent clause, so a semicolon is wrong."
+      "sister": "\"Sister who\" sounds natural, but then the comma after \"shelf\" would stand alone between the subject and \"arrived.\"",
+      "sister—": "A dash can introduce a long aside, but the aside closes with a comma, and a dash cannot be paired with a comma.",
+      "sister;": "A long pause seems fitting, but \"That summer my mother's younger sister\" is not an independent clause, so a semicolon is wrong."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3018,9 +3018,9 @@
       "Who or what \"does ... unspool\"? Is that part a complete clause with its own subject and verb?"
     ],
     "wrong_reasons": {
-      "her, only when": "Picked because the poetic rhythm invites a soft pause, but a comma alone between two independent clauses creates a comma splice.",
-      "her only when": "Picked because \"forget her only when a minnow strays\" seems to make sense, but then \"does the folded neck unspool\" is left with nothing to attach to, creating a run-on.",
-      "her; only, when": "Picked because the semicolon is right, but the comma breaks apart the phrase \"only when,\" which must stay together to trigger the inverted clause."
+      "her, only when": "The poetic rhythm invites a soft pause, but a comma alone between two independent clauses creates a comma splice.",
+      "her only when": "\"Forget her only when a minnow strays\" seems to make sense, but then \"does the folded neck unspool\" is left with nothing to attach to, creating a run-on.",
+      "her; only, when": "The semicolon is right, but the comma breaks apart the phrase \"only when,\" which must stay together to trigger the inverted clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3049,9 +3049,9 @@
       "Should any mark come between a verb and the thing it acts on?"
     ],
     "wrong_reasons": {
-      "releases,": "Picked because a pause seems natural before the long object, but a comma would separate the verb \"releases\" from its object.",
-      "releases:": "Picked because a colon can introduce something, but a colon must follow a complete clause, and \"the cell releases\" is incomplete without its object.",
-      "releases;": "Picked because the sentence is long, but a semicolon needs independent clauses on both sides, and it would cut the verb off from its object."
+      "releases,": "A pause seems natural before the long object, but a comma would separate the verb \"releases\" from its object.",
+      "releases:": "A colon can introduce something, but a colon must follow a complete clause, and \"the cell releases\" is incomplete without its object.",
+      "releases;": "The sentence is long, but a semicolon needs independent clauses on both sides, and it would cut the verb off from its object."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3080,9 +3080,9 @@
       "Does \"as a result\" belong with the clause before it or the clause after it?"
     ],
     "wrong_reasons": {
-      "themselves, as a result,": "Picked because commas often surround transitions, but commas alone between two independent clauses create a comma splice.",
-      "themselves as a result,": "Picked because the comma after \"as a result\" looks right, but with no mark before it the two clauses run together.",
-      "themselves, as a result;": "Picked because it contains a semicolon, but it attaches \"as a result\" to the first clause, wrongly saying the cameras' whir was the result rather than the studios' response."
+      "themselves, as a result,": "Commas often surround transitions, but commas alone between two independent clauses create a comma splice.",
+      "themselves as a result,": "The comma after \"as a result\" looks right, but with no mark before it the two clauses run together.",
+      "themselves, as a result;": "It contains a semicolon, but it attaches \"as a result\" to the first clause, wrongly saying the cameras' whir was the result rather than the studios' response."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3111,9 +3111,9 @@
       "The two dashes enclose \"some samples are more than 95 percent air.\" Is that pair already complete?"
     ],
     "wrong_reasons": {
-      "smoke": "Picked because \"frozen smoke is\" may sound continuous, but without a closing comma the appositive opened after \"aerogel\" is never closed.",
-      "smoke—": "Picked because dashes appear just before the blank, but those dashes already form a closed pair, and the appositive they sit inside opened with a comma.",
-      "smoke;": "Picked because the words before the blank seem long enough to be complete, but they contain no main verb for \"Silica aerogel,\" so a semicolon is wrong."
+      "smoke": "\"Frozen smoke is\" may sound continuous, but without a closing comma the appositive opened after \"aerogel\" is never closed.",
+      "smoke—": "Dashes appear just before the blank, but those dashes already form a closed pair, and the appositive they sit inside opened with a comma.",
+      "smoke;": "The words before the blank seem long enough to be complete, but they contain no main verb for \"Silica aerogel,\" so a semicolon is wrong."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3143,9 +3143,9 @@
       "What punctuation mark opened the interruption?"
     ],
     "wrong_reasons": {
-      "lyre,": "Picked because a comma usually closes a nonessential clause, but this one was opened with a dash, and the pair must match.",
-      "lyre;": "Picked because the interruption is long and seems to need a strong stop, but a semicolon here separates the subject \"Eurydice\" from its verb \"hears.\"",
-      "lyre": "Picked because the long clause seems to flow straight into \"hears,\" but the dash after \"Eurydice\" is left unclosed, so the interruption never ends."
+      "lyre,": "A comma usually closes a nonessential clause, but this one was opened with a dash, and the pair must match.",
+      "lyre;": "The interruption is long and seems to need a strong stop, but a semicolon here separates the subject \"Eurydice\" from its verb \"hears.\"",
+      "lyre": "The long clause seems to flow straight into \"hears,\" but the dash after \"Eurydice\" is left unclosed, so the interruption never ends."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3174,9 +3174,9 @@
       "Which mark can join two complete sentences without a conjunction?"
     ],
     "wrong_reasons": {
-      "themselves, it": "Picked because a comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
-      "themselves it": "Picked because the sentence reads smoothly aloud, but with no punctuation the two independent clauses run together.",
-      "themselves; it,": "Picked because it has the correct semicolon, but the extra comma separates the subject \"it\" from its verb \"sees.\""
+      "themselves, it": "A comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
+      "themselves it": "The sentence reads smoothly aloud, but with no punctuation the two independent clauses run together.",
+      "themselves; it,": "It has the correct semicolon, but the extra comma separates the subject \"it\" from its verb \"sees.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3205,9 +3205,9 @@
       "What punctuation goes before a transition word that starts a new independent clause? What goes after it?"
     ],
     "wrong_reasons": {
-      "archive, however,": "Picked because commas around \"however\" look familiar, but \"however\" cannot join two independent clauses, so this is a comma splice.",
-      "archive however,": "Picked because \"however\" seems to do the linking on its own, but with nothing before it the two independent clauses are fused.",
-      "archive; however": "Picked because the semicolon is correctly placed, but an introductory \"however\" must be set off by a comma from the rest of its clause."
+      "archive, however,": "Commas around \"however\" look familiar, but \"however\" cannot join two independent clauses, so this is a comma splice.",
+      "archive however,": "\"However\" seems to do the linking on its own, but with nothing before it the two independent clauses are fused.",
+      "archive; however": "The semicolon is correctly placed, but an introductory \"however\" must be set off by a comma from the rest of its clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3236,9 +3236,9 @@
       "Is there any interrupting element that has to be set off, or is the long subject one unit?"
     ],
     "wrong_reasons": {
-      "deep, is": "Picked because the subject is so long that a pause seems natural before \"is,\" but a single comma cannot separate a subject from its verb.",
-      "deep; is": "Picked because the subject feels like a complete thought, but it has no verb, and a semicolon must join two independent clauses.",
-      "deep—is": "Picked because a dash seems to mark a dramatic pause before the definition, but a lone dash still splits the subject from its verb \"is.\""
+      "deep, is": "The subject is so long that a pause seems natural before \"is,\" but a single comma cannot separate a subject from its verb.",
+      "deep; is": "The subject feels like a complete thought, but it has no verb, and a semicolon must join two independent clauses.",
+      "deep—is": "A dash seems to mark a dramatic pause before the definition, but a lone dash still splits the subject from its verb \"is.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3267,9 +3267,9 @@
       "Can \"as a result\" join two sentences by itself the way \"and\" or \"so\" can?"
     ],
     "wrong_reasons": {
-      "grow, as a result,": "Picked because \"as a result\" seems to connect the ideas, but it is a transitional phrase, so the comma before it creates a comma splice.",
-      "grow as a result,": "Picked because \"grow as a result\" seems to read as one phrase, but that leaves two complete sentences joined only by a comma.",
-      "grow, as a result": "Picked because a comma before the transition looks natural, but it still splices two independent clauses together."
+      "grow, as a result,": "\"As a result\" seems to connect the ideas, but it is a transitional phrase, so the comma before it creates a comma splice.",
+      "grow as a result,": "\"Grow as a result\" seems to read as one phrase, but that leaves two complete sentences joined only by a comma.",
+      "grow, as a result": "A comma before the transition looks natural, but it still splices two independent clauses together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3298,9 +3298,9 @@
       "Which mark can introduce an explanation after a complete clause?"
     ],
     "wrong_reasons": {
-      "buttress;": "Picked because the first part is a complete clause, but a semicolon must be followed by another independent clause, and \"an external arch that carried . . .\" is not one.",
-      "buttress": "Picked because the definition seems to belong right next to the term, but without punctuation \"buttress\" and \"an external arch\" collide.",
-      "buttress, it was": "Picked because adding \"it was\" makes the second part sound complete, but then two independent clauses are joined by only a comma."
+      "buttress;": "The first part is a complete clause, but a semicolon must be followed by another independent clause, and \"an external arch that carried . . .\" is not one.",
+      "buttress": "The definition seems to belong right next to the term, but without punctuation \"buttress\" and \"an external arch\" collide.",
+      "buttress, it was": "Adding \"it was\" makes the second part sound complete, but then two independent clauses are joined by only a comma."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3330,9 +3330,9 @@
       "Why might commas alone make this list confusing?"
     ],
     "wrong_reasons": {
-      "sheen, glass": "Picked because commas usually separate list items, but these items already contain commas, so a comma here blurs where the silk item ends; the later \"; and\" shows semicolons are the separators.",
-      "sheen: glass": "Picked because a colon seems to introduce the next group of goods, but the list has already been introduced by a colon, and a second colon cannot separate its items.",
-      "sheen glass": "Picked because \"its sheen glass\" can be misread as one phrase, but with no punctuation the first two items of the list run together."
+      "sheen, glass": "Commas usually separate list items, but these items already contain commas, so a comma here blurs where the silk item ends; the later \"; and\" shows semicolons are the separators.",
+      "sheen: glass": "A colon seems to introduce the next group of goods, but the list has already been introduced by a colon, and a second colon cannot separate its items.",
+      "sheen glass": "\"Its sheen glass\" can be misread as one phrase, but with no punctuation the first two items of the list run together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3361,9 +3361,9 @@
       "Can \"by contrast\" join two sentences by itself?"
     ],
     "wrong_reasons": {
-      "describe, by contrast, implicit": "Picked because the commas neatly frame \"by contrast,\" but a comma before a transition cannot join two independent clauses; this is a comma splice.",
-      "describe by contrast, implicit": "Picked because \"describe by contrast\" seems to read as one phrase, but that leaves two independent clauses joined by just a comma.",
-      "describe, by contrast implicit": "Picked because there is a comma at the break, but a comma alone still splices the two clauses, and \"by contrast\" is left unpunctuated."
+      "describe, by contrast, implicit": "The commas neatly frame \"by contrast,\" but a comma before a transition cannot join two independent clauses; this is a comma splice.",
+      "describe by contrast, implicit": "\"Describe by contrast\" seems to read as one phrase, but that leaves two independent clauses joined by just a comma.",
+      "describe, by contrast implicit": "There is a comma at the break, but a comma alone still splices the two clauses, and \"by contrast\" is left unpunctuated."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3392,9 +3392,9 @@
       "Does anything need to separate \"such as\" from the examples it introduces?"
     ],
     "wrong_reasons": {
-      "patterns such as:": "Picked because a list follows and lists often come after colons, but a colon must follow a complete clause, and \"such as\" leaves the clause unfinished.",
-      "patterns such as,": "Picked because a pause seems natural before the list, but a comma here wrongly separates \"such as\" from the examples it introduces.",
-      "patterns; such as": "Picked because the sentence is long and seems to need a break, but what follows the semicolon is not an independent clause."
+      "patterns such as:": "A list follows and lists often come after colons, but a colon must follow a complete clause, and \"such as\" leaves the clause unfinished.",
+      "patterns such as,": "A pause seems natural before the list, but a comma here wrongly separates \"such as\" from the examples it introduces.",
+      "patterns; such as": "The sentence is long and seems to need a break, but what follows the semicolon is not an independent clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3423,9 +3423,9 @@
       "Where does the description of Mr. Hale begin, and what mark opened it?"
     ],
     "wrong_reasons": {
-      "read": "Picked because the nested clauses (\"that a report nobody questioned was a report nobody had read\") seem to flow into \"initialed,\" but the appositive opened by a comma is never closed.",
-      "read;": "Picked because the description feels finished, but a semicolon separates the subject \"Mr. Hale\" from its verb \"initialed.\"",
-      "read—": "Picked because a dash can end an interruption, but this one was opened with a comma, and the pair of marks must match."
+      "read": "The nested clauses (\"that a report nobody questioned was a report nobody had read\") seem to flow into \"initialed,\" but the appositive opened by a comma is never closed.",
+      "read;": "The description feels finished, but a semicolon separates the subject \"Mr. Hale\" from its verb \"initialed.\"",
+      "read—": "A dash can end an interruption, but this one was opened with a comma, and the pair of marks must match."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3454,9 +3454,9 @@
       "When \"but\" joins two complete clauses, where does the comma go?"
     ],
     "wrong_reasons": {
-      "ground but": "Picked because \"but\" already connects the ideas, but joining two long independent clauses with a conjunction calls for a comma before it.",
-      "ground, but,": "Picked because the comma before \"but\" is right, but the extra comma after \"but\" wrongly separates the conjunction from its clause.",
-      "ground. But,": "Picked because starting a new sentence seems safe, but a comma after \"But\" splits it from the subject \"fossil trackways\" for no reason."
+      "ground but": "\"But\" already connects the ideas, but joining two long independent clauses with a conjunction calls for a comma before it.",
+      "ground, but,": "The comma before \"but\" is right, but the extra comma after \"but\" wrongly separates the conjunction from its clause.",
+      "ground. But,": "Starting a new sentence seems safe, but a comma after \"But\" splits it from the subject \"fossil trackways\" for no reason."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3485,9 +3485,9 @@
       "Where does the introductory clause end and the main clause begin?"
     ],
     "wrong_reasons": {
-      "strongly;": "Picked because the \"Because\" clause sounds complete, but it is dependent, and a semicolon must join two independent clauses.",
-      "strongly": "Picked because the sentence seems to flow, but without a comma the reader runs \"strongly trees and grass\" together and can't see where the main clause starts.",
-      "strongly:": "Picked because what follows explains a result, but a colon must come after an independent clause, and the \"Because\" clause is not one."
+      "strongly;": "The \"Because\" clause sounds complete, but it is dependent, and a semicolon must join two independent clauses.",
+      "strongly": "The sentence seems to flow, but without a comma the reader runs \"strongly trees and grass\" together and can't see where the main clause starts.",
+      "strongly:": "What follows explains a result, but a colon must come after an independent clause, and the \"Because\" clause is not one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3517,8 +3517,8 @@
     ],
     "wrong_reasons": {
       "autumn; however,": "Picked by the habit of putting a semicolon before \"however,\" but \"Workers that emerge in autumn\" is only a subject, not an independent clause.",
-      "autumn however": "Picked because \"however\" seems to slip in smoothly, but an interrupting transition must be set off with commas on both sides.",
-      "autumn, however;": "Picked because it pairs the two marks, but the semicolon cuts the subject off from its verb \"can survive.\""
+      "autumn however": "\"However\" seems to slip in smoothly, but an interrupting transition must be set off with commas on both sides.",
+      "autumn, however;": "It pairs the two marks, but the semicolon cuts the subject off from its verb \"can survive.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3547,9 +3547,9 @@
       "Is the part after the blank a sentence, or a list?"
     ],
     "wrong_reasons": {
-      "landscape;": "Picked because the first part is complete, but a semicolon must be followed by an independent clause, not a list.",
-      "landscape": "Picked because the list seems to continue the sentence, but without punctuation \"landscape blue for lakes\" runs together.",
-      "landscape.": "Picked because the first part is a full sentence, but the period leaves the list stranded as a fragment."
+      "landscape;": "The first part is complete, but a semicolon must be followed by an independent clause, not a list.",
+      "landscape": "The list seems to continue the sentence, but without punctuation \"landscape blue for lakes\" runs together.",
+      "landscape.": "The first part is a full sentence, but the period leaves the list stranded as a fragment."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3578,9 +3578,9 @@
       "Are clauses beginning with \"that\" set off by commas?"
     ],
     "wrong_reasons": {
-      "cell, that": "Picked because descriptive clauses are often set off by commas, but a clause beginning with \"that\" is essential and takes no comma.",
-      "cell; that": "Picked because a break seems needed before the description, but a semicolon cuts the subject off from its clause and verb.",
-      "cell that,": "Picked because a pause seems to belong after \"that,\" but the comma splits \"that\" from its verb \"carries.\""
+      "cell, that": "Descriptive clauses are often set off by commas, but a clause beginning with \"that\" is essential and takes no comma.",
+      "cell; that": "A break seems needed before the description, but a semicolon cuts the subject off from its clause and verb.",
+      "cell that,": "A pause seems to belong after \"that,\" but the comma splits \"that\" from its verb \"carries.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3609,9 +3609,9 @@
       "How many independent clauses are in the sentence, and what joins them?"
     ],
     "wrong_reasons": {
-      "muscles, today, researchers": "Picked because the commas seem to set off \"today\" neatly, but a comma alone between two independent clauses is a comma splice.",
-      "muscles today, researchers": "Picked because \"accumulating in the muscles today\" reads like a phrase, but it attaches \"today\" to the twentieth-century clause and leaves a comma splice before \"researchers.\"",
-      "muscles, today researchers": "Picked because there is a comma at the break between ideas, but it still splices two independent clauses."
+      "muscles, today, researchers": "The commas seem to set off \"today\" neatly, but a comma alone between two independent clauses is a comma splice.",
+      "muscles today, researchers": "\"Accumulating in the muscles today\" reads like a phrase, but it attaches \"today\" to the twentieth-century clause and leaves a comma splice before \"researchers.\"",
+      "muscles, today researchers": "There is a comma at the break between ideas, but it still splices two independent clauses."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3640,9 +3640,9 @@
       "What mark opened the description of the bird, and what mark should close it?"
     ],
     "wrong_reasons": {
-      "grams": "Picked because the phrase flows into \"may fly,\" but the description opened with a comma must be closed with one.",
-      "grams;": "Picked because the description seems complete, but a semicolon separates the subject \"The Arctic tern\" from its verb.",
-      "grams:": "Picked because what follows seems to explain the bird's feat, but a colon cannot separate a subject from its verb."
+      "grams": "The phrase flows into \"may fly,\" but the description opened with a comma must be closed with one.",
+      "grams;": "The description seems complete, but a semicolon separates the subject \"The Arctic tern\" from its verb.",
+      "grams:": "What follows seems to explain the bird's feat, but a colon cannot separate a subject from its verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3671,9 +3671,9 @@
       "Should anything separate a verb from the words that complete it?"
     ],
     "wrong_reasons": {
-      "are: a": "Picked because a list follows and the earlier sentence used a colon, but a colon must follow a complete clause, and \"components are\" is unfinished.",
-      "are, a": "Picked because a pause seems natural before a list, but a comma wrongly separates the verb \"are\" from its complement.",
-      "are; a": "Picked because the sentence is long, but neither side of the semicolon is an independent clause."
+      "are: a": "A list follows and the earlier sentence used a colon, but a colon must follow a complete clause, and \"components are\" is unfinished.",
+      "are, a": "A pause seems natural before a list, but a comma wrongly separates the verb \"are\" from its complement.",
+      "are; a": "The sentence is long, but neither side of the semicolon is an independent clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3702,9 +3702,9 @@
       "What does the phrase after the blank identify in the first part of the sentence?"
     ],
     "wrong_reasons": {
-      "points; CpG": "Picked because the long phrase after the blank looks like a clause, but its only verb sits inside \"that sit side by side,\" so it isn't independent and can't follow a semicolon.",
-      "points CpG": "Picked because the name seems to attach directly, but without punctuation \"starting points CpG islands\" runs together into nonsense.",
-      "points. CpG": "Picked because the first part is complete, but the period leaves \"CpG islands, stretches of DNA . . .\" as a fragment with no main verb."
+      "points; CpG": "The long phrase after the blank looks like a clause, but its only verb sits inside \"that sit side by side,\" so it isn't independent and can't follow a semicolon.",
+      "points CpG": "The name seems to attach directly, but without punctuation \"starting points CpG islands\" runs together into nonsense.",
+      "points. CpG": "The first part is complete, but the period leaves \"CpG islands, stretches of DNA . . .\" as a fragment with no main verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3733,9 +3733,9 @@
       "What mark can join two complete sentences without a conjunction?"
     ],
     "wrong_reasons": {
-      "gas, the": "Picked because a comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
-      "gas the": "Picked because \"gas the bubbles\" seems to continue the thought, but the two independent clauses run together with no punctuation.",
-      "gas, and, the": "Picked because adding \"and\" seems to fix the splice, but the comma after \"and\" wrongly separates the conjunction from its clause."
+      "gas, the": "A comma marks the pause, but a comma alone between two independent clauses is a comma splice.",
+      "gas the": "\"Gas the bubbles\" seems to continue the thought, but the two independent clauses run together with no punctuation.",
+      "gas, and, the": "Adding \"and\" seems to fix the splice, but the comma after \"and\" wrongly separates the conjunction from its clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3763,9 +3763,9 @@
       "Does anything need to separate a verb from the thing it acts on?"
     ],
     "wrong_reasons": {
-      "spread:": "Picked because a colon can introduce what follows, but a colon must follow a complete clause, and \"he spread\" is not complete without its object.",
-      "spread,": "Picked because the sentence is long and seems to need a pause, but a comma here cuts the verb \"spread\" off from its object.",
-      "spread;": "Picked because semicolons appear in long sentences, but a semicolon needs a complete clause on each side, and \"Instead, he spread\" is not one."
+      "spread:": "A colon can introduce what follows, but a colon must follow a complete clause, and \"he spread\" is not complete without its object.",
+      "spread,": "The sentence is long and seems to need a pause, but a comma here cuts the verb \"spread\" off from its object.",
+      "spread;": "Semicolons appear in long sentences, but a semicolon needs a complete clause on each side, and \"Instead, he spread\" is not one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3794,9 +3794,9 @@
       "What punctuation mark opens that interruption?"
     ],
     "wrong_reasons": {
-      "construction,": "Picked because commas often close a nonessential phrase, but this phrase was opened with a dash, and the two marks must match.",
-      "construction": "Picked because the phrase seems to flow into the verb, but without a closing mark the interruption never ends and runs straight into \"was.\"",
-      "construction;": "Picked because the sentence is long, but a semicolon here would split the subject \"Bridge\" from its verb \"was stiffened\" and leave neither side a complete clause."
+      "construction,": "Commas often close a nonessential phrase, but this phrase was opened with a dash, and the two marks must match.",
+      "construction": "The phrase seems to flow into the verb, but without a closing mark the interruption never ends and runs straight into \"was.\"",
+      "construction;": "The sentence is long, but a semicolon here would split the subject \"Bridge\" from its verb \"was stiffened\" and leave neither side a complete clause."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3825,9 +3825,9 @@
       "What mark introduces a list that spells out something the sentence just mentioned?"
     ],
     "wrong_reasons": {
-      "instead;": "Picked because the list items contain verbs (\"lifted,\" \"glowed,\" \"hummed\"), so they look like clauses, but those verbs sit inside relative clauses; the items are noun phrases, and a semicolon needs a complete clause after it.",
-      "instead,": "Picked because a comma can sometimes set off a phrase, but the list itself is separated by commas, so a comma here blurs where the clause ends and the list begins; a colon is needed to introduce the list.",
-      "instead": "Picked because the list seems to follow naturally, but with no mark the reader cannot tell that the herons, farmhouses, and times are the \"other things\" being counted."
+      "instead;": "The list items contain verbs (\"lifted,\" \"glowed,\" \"hummed\"), so they look like clauses, but those verbs sit inside relative clauses; the items are noun phrases, and a semicolon needs a complete clause after it.",
+      "instead,": "A comma can sometimes set off a phrase, but the list itself is separated by commas, so a comma here blurs where the clause ends and the list begins; a colon is needed to introduce the list.",
+      "instead": "The list seems to follow naturally, but with no mark the reader cannot tell that the herons, farmhouses, and times are the \"other things\" being counted."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3855,9 +3855,9 @@
       "What mark opens the interruption, and what mark should close it?"
     ],
     "wrong_reasons": {
-      "all,": "Picked because commas often set off \"if\" clauses, but this one was opened with a dash, and the closing mark must match.",
-      "all": "Picked because the words seem to run together in speech, but without a closing dash the interruption never ends.",
-      "all;": "Picked because a pause is needed, but a semicolon would separate the subject \"The train\" from its verb \"will take.\""
+      "all,": "Commas often set off \"if\" clauses, but this one was opened with a dash, and the closing mark must match.",
+      "all": "The words seem to run together in speech, but without a closing dash the interruption never ends.",
+      "all;": "A pause is needed, but a semicolon would separate the subject \"The train\" from its verb \"will take.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3886,9 +3886,9 @@
       "Does any mark belong between a subject and its verb?"
     ],
     "wrong_reasons": {
-      "collars,": "Picked because the long subject seems to need a pause before \"earned,\" but a single comma splits the subject from its verb.",
-      "collars;": "Picked because the sentence is long, but a semicolon needs a complete clause on each side, and \"the workers who stitched sleeves and collars\" has no main verb.",
-      "collars—": "Picked because a dash can mark a break, but no dash opens an interruption here, so this lone dash just cuts the subject off from \"earned.\""
+      "collars,": "The long subject seems to need a pause before \"earned,\" but a single comma splits the subject from its verb.",
+      "collars;": "The sentence is long, but a semicolon needs a complete clause on each side, and \"the workers who stitched sleeves and collars\" has no main verb.",
+      "collars—": "A dash can mark a break, but no dash opens an interruption here, so this lone dash just cuts the subject off from \"earned.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3917,9 +3917,9 @@
       "Why might commas alone make this list confusing?"
     ],
     "wrong_reasons": {
-      "units,": "Picked because a comma usually comes before \"and\" in a list, but the items here contain commas of their own, so the list must keep using semicolons as it did after \"Celsius.\"",
-      "units:": "Picked because the sentence already uses a colon, but a colon introduces the list once; it cannot separate the second item from the third.",
-      "units": "Picked because \"and\" seems to join the items on its own, but the first two items are separated by a semicolon, and the list must stay consistent."
+      "units,": "A comma usually comes before \"and\" in a list, but the items here contain commas of their own, so the list must keep using semicolons as it did after \"Celsius.\"",
+      "units:": "The sentence already uses a colon, but a colon introduces the list once; it cannot separate the second item from the third.",
+      "units": "\"And\" seems to join the items on its own, but the first two items are separated by a semicolon, and the list must stay consistent."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3947,9 +3947,9 @@
       "What mark opens that extra information?"
     ],
     "wrong_reasons": {
-      "preference": "Picked because the phrase seems to run into the verb, but without a closing comma the extra information never ends.",
-      "preference;": "Picked because a break is needed, but a semicolon would separate the subject \"Ranked-choice voting\" from its verb \"asks.\"",
-      "preference—": "Picked because a dash can close an interruption, but this one was opened with a comma, and the two marks must match."
+      "preference": "The phrase seems to run into the verb, but without a closing comma the extra information never ends.",
+      "preference;": "A break is needed, but a semicolon would separate the subject \"Ranked-choice voting\" from its verb \"asks.\"",
+      "preference—": "A dash can close an interruption, but this one was opened with a comma, and the two marks must match."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3978,9 +3978,9 @@
       "Without punctuation, how would \"neighboring plants trees\" read?"
     ],
     "wrong_reasons": {
-      "plants": "Picked because short introductory phrases sometimes skip the comma, but this one is long, and without a comma \"plants trees\" runs together and is misread.",
-      "plants;": "Picked because the sentence is long, but a semicolon needs a complete clause on each side, and the introductory phrase is not one.",
-      "plants—": "Picked because a dash marks a strong break, but a single dash here suggests an interruption or explanation, while the phrase is simply introductory and takes a comma."
+      "plants": "Short introductory phrases sometimes skip the comma, but this one is long, and without a comma \"plants trees\" runs together and is misread.",
+      "plants;": "The sentence is long, but a semicolon needs a complete clause on each side, and the introductory phrase is not one.",
+      "plants—": "A dash marks a strong break, but a single dash here suggests an interruption or explanation, while the phrase is simply introductory and takes a comma."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4009,9 +4009,9 @@
       "Which clause does \"however\" contrast with the other: the prediction or the result?"
     ],
     "wrong_reasons": {
-      "skills, however,": "Picked because commas set off \"however\" in mid-sentence, but here it links two independent clauses, so commas alone create a comma splice.",
-      "skills; however": "Picked because the semicolon is in the right place, but an introductory \"however\" must be followed by a comma.",
-      "skills, however;": "Picked because it punctuates two clauses correctly on the surface, but it attaches \"however\" to the prediction, which makes no sense; the contrast is introduced by the result, so \"however\" belongs after the semicolon."
+      "skills, however,": "Commas set off \"however\" in mid-sentence, but here it links two independent clauses, so commas alone create a comma splice.",
+      "skills; however": "The semicolon is in the right place, but an introductory \"however\" must be followed by a comma.",
+      "skills, however;": "It punctuates two clauses correctly on the surface, but it attaches \"however\" to the prediction, which makes no sense; the contrast is introduced by the result, so \"however\" belongs after the semicolon."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4039,9 +4039,9 @@
       "What mark usually follows a \"Because...\" clause at the start of a sentence?"
     ],
     "wrong_reasons": {
-      "eruption": "Picked because the sentence seems to flow, but without a comma \"eruption scientists\" runs together and the main clause is hard to find.",
-      "eruption;": "Picked because the sentence has two parts, but a semicolon needs a complete clause on each side, and the \"Because\" clause cannot stand alone.",
-      "eruption:": "Picked because what follows explains a response, but a colon must follow a complete clause, and the \"Because\" clause is not one."
+      "eruption": "The sentence seems to flow, but without a comma \"eruption scientists\" runs together and the main clause is hard to find.",
+      "eruption;": "The sentence has two parts, but a semicolon needs a complete clause on each side, and the \"Because\" clause cannot stand alone.",
+      "eruption:": "What follows explains a response, but a colon must follow a complete clause, and the \"Because\" clause is not one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4070,9 +4070,9 @@
       "What mark must open it?"
     ],
     "wrong_reasons": {
-      "Antoine Lavoisier": "Picked because \"who\" clauses are sometimes essential, but this one closes with a comma after \"oxygen,\" so it is nonessential and needs a matching opening comma.",
-      "Antoine Lavoisier;": "Picked because the sentence is long, but a semicolon would leave \"the French chemist Antoine Lavoisier\" without a verb.",
-      "Antoine Lavoisier—": "Picked because a dash can open an interruption, but this one closes with a comma, and the two marks must match."
+      "Antoine Lavoisier": "\"Who\" clauses are sometimes essential, but this one closes with a comma after \"oxygen,\" so it is nonessential and needs a matching opening comma.",
+      "Antoine Lavoisier;": "The sentence is long, but a semicolon would leave \"the French chemist Antoine Lavoisier\" without a verb.",
+      "Antoine Lavoisier—": "A dash can open an interruption, but this one closes with a comma, and the two marks must match."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4101,9 +4101,9 @@
       "Which marks inside the interruption belong to its own list, and which mark must end it?"
     ],
     "wrong_reasons": {
-      "supported,": "Picked because the interruption is full of commas, so another one seems natural, but it opened with a dash and must close with one; a comma here also makes \"supported\" look like part of the list.",
-      "supported;": "Picked because the sentence is long and complex, but a semicolon would separate the subject \"The Domesday Book\" from its verb \"gave.\"",
-      "supported": "Picked because the phrase seems to flow into \"gave,\" but without a closing dash the interruption never ends."
+      "supported,": "The interruption is full of commas, so another one seems natural, but it opened with a dash and must close with one; a comma here also makes \"supported\" look like part of the list.",
+      "supported;": "The sentence is long and complex, but a semicolon would separate the subject \"The Domesday Book\" from its verb \"gave.\"",
+      "supported": "The phrase seems to flow into \"gave,\" but without a closing dash the interruption never ends."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4132,9 +4132,9 @@
       "What is needed between two complete sentences?"
     ],
     "wrong_reasons": {
-      "life, she": "Picked because the ideas are closely linked, but a comma alone between two complete sentences is a comma splice.",
-      "life she": "Picked because the sentence reads quickly, but with no punctuation the two complete sentences run together.",
-      "life; she,": "Picked because the semicolon correctly joins the clauses, but the comma after \"she\" separates the subject from its verb \"plants.\""
+      "life, she": "The ideas are closely linked, but a comma alone between two complete sentences is a comma splice.",
+      "life she": "The sentence reads quickly, but with no punctuation the two complete sentences run together.",
+      "life; she,": "The semicolon correctly joins the clauses, but the comma after \"she\" separates the subject from its verb \"plants.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4163,9 +4163,9 @@
       "Does the second clause explain the first, or add a separate fact?"
     ],
     "wrong_reasons": {
-      "Europe, al-Khwarizmi's": "Picked because \"meanwhile\" seems to connect the ideas, but it is not a conjunction, so a comma between two independent clauses is a comma splice.",
-      "Europe al-Khwarizmi's": "Picked because \"Europe al-Khwarizmi's\" can look like a phrase, but with no punctuation the two independent clauses run together.",
-      "Europe: al-Khwarizmi's": "Picked because a colon can join two independent clauses, but only when the second explains or illustrates the first; the history of the word algorithm is a separate fact, as \"meanwhile\" signals."
+      "Europe, al-Khwarizmi's": "\"Meanwhile\" seems to connect the ideas, but it is not a conjunction, so a comma between two independent clauses is a comma splice.",
+      "Europe al-Khwarizmi's": "\"Europe al-Khwarizmi's\" can look like a phrase, but with no punctuation the two independent clauses run together.",
+      "Europe: al-Khwarizmi's": "A colon can join two independent clauses, but only when the second explains or illustrates the first; the history of the word algorithm is a separate fact, as \"meanwhile\" signals."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4194,9 +4194,9 @@
       "Is anything before the blank an introductory element, or is it all part of the subject?"
     ],
     "wrong_reasons": {
-      "centuries,": "Picked because the subject is so long that a pause seems natural, and because \"as fresh snow is buried\" looks like an introductory clause that would need a comma; but that clause sits inside the subject, and a comma here splits \"bubbles\" from \"give.\"",
-      "centuries—": "Picked because a dash can mark a break after a long phrase, but no dash opens an interruption, so this lone dash just separates the subject from its verb.",
-      "centuries;": "Picked because the sentence is long, but a semicolon needs a complete clause on each side, and everything before the blank is a subject with no main verb."
+      "centuries,": "The subject is so long that a pause seems natural, and because \"as fresh snow is buried\" looks like an introductory clause that would need a comma; but that clause sits inside the subject, and a comma here splits \"bubbles\" from \"give.\"",
+      "centuries—": "A dash can mark a break after a long phrase, but no dash opens an interruption, so this lone dash just separates the subject from its verb.",
+      "centuries;": "The sentence is long, but a semicolon needs a complete clause on each side, and everything before the blank is a subject with no main verb."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4224,9 +4224,9 @@
       "What mark comes after \"for example\"?"
     ],
     "wrong_reasons": {
-      "language": "Picked because the phrase seems to flow, but \"for example\" is set off and already has a closing comma, so it needs an opening one.",
-      "language;": "Picked because a pause is needed, but a semicolon would separate the subject \"A pun\" from its verb \"may have.\"",
-      "language:": "Picked because \"for example\" introduces an illustration, but a colon must follow a complete clause, and \"A pun in the original language\" is not one."
+      "language": "The phrase seems to flow, but \"for example\" is set off and already has a closing comma, so it needs an opening one.",
+      "language;": "A pause is needed, but a semicolon would separate the subject \"A pun\" from its verb \"may have.\"",
+      "language:": "\"For example\" introduces an illustration, but a colon must follow a complete clause, and \"A pun in the original language\" is not one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4254,9 +4254,9 @@
       "What mark should follow the state name?"
     ],
     "wrong_reasons": {
-      "Utah": "Picked because the name seems to lead straight into \"where,\" but a state name after a city is set off by a pair of commas.",
-      "Utah;": "Picked because the sentence is long, but a semicolon needs a complete clause after it, and \"where a ceremonial golden spike joined the tracks...\" is a dependent clause.",
-      "Utah—": "Picked because a dash can introduce extra detail, but the state name was opened with a comma, so it must close with one."
+      "Utah": "The name seems to lead straight into \"where,\" but a state name after a city is set off by a pair of commas.",
+      "Utah;": "The sentence is long, but a semicolon needs a complete clause after it, and \"where a ceremonial golden spike joined the tracks...\" is a dependent clause.",
+      "Utah—": "A dash can introduce extra detail, but the state name was opened with a comma, so it must close with one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4285,9 +4285,9 @@
       "What job does \"a dependence\" do in relation to the clause before it?"
     ],
     "wrong_reasons": {
-      "needs; a": "Picked because \"leaves\" looks like a main verb, but it belongs to the \"that\" clause, so what follows the blank is a noun phrase, not an independent clause, and cannot follow a semicolon.",
-      "needs a": "Picked because \"a coral needs a dependence\" reads at first like a verb and object, but that misreads the sentence; the phrase sums up the whole clause and must be set off.",
-      "needs. A": "Picked because the clause before the blank is complete, but \"A dependence that leaves the coral in serious trouble...\" has no main verb and would be a fragment."
+      "needs; a": "\"Leaves\" looks like a main verb, but it belongs to the \"that\" clause, so what follows the blank is a noun phrase, not an independent clause, and cannot follow a semicolon.",
+      "needs a": "\"A coral needs a dependence\" reads at first like a verb and object, but that misreads the sentence; the phrase sums up the whole clause and must be set off.",
+      "needs. A": "The clause before the blank is complete, but \"A dependence that leaves the coral in serious trouble...\" has no main verb and would be a fragment."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4315,9 +4315,9 @@
       "What mark opens the phrase that describes Collins?"
     ],
     "wrong_reasons": {
-      "pilot": "Picked because the phrase seems to run into the verb, but without a closing comma the extra information never ends.",
-      "pilot;": "Picked because a break is needed, but a semicolon would separate the subject \"Michael Collins\" from its verb \"remained.\"",
-      "pilot—": "Picked because a dash can close an interruption, but this one was opened with a comma, and the marks must match."
+      "pilot": "The phrase seems to run into the verb, but without a closing comma the extra information never ends.",
+      "pilot;": "A break is needed, but a semicolon would separate the subject \"Michael Collins\" from its verb \"remained.\"",
+      "pilot—": "A dash can close an interruption, but this one was opened with a comma, and the marks must match."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4346,9 +4346,9 @@
       "Does what follows explain that claim?"
     ],
     "wrong_reasons": {
-      "others, cornstalks": "Picked because the explanation seems closely tied to the claim, but a comma alone between two independent clauses is a comma splice.",
-      "others cornstalks": "Picked because \"others cornstalks\" reads quickly, but with no punctuation the independent clauses run together.",
-      "others: cornstalks,": "Picked because the colon is correct, but the comma after \"cornstalks\" separates the subject from its verb \"give.\""
+      "others, cornstalks": "The explanation seems closely tied to the claim, but a comma alone between two independent clauses is a comma splice.",
+      "others cornstalks": "\"Others cornstalks\" reads quickly, but with no punctuation the independent clauses run together.",
+      "others: cornstalks,": "The colon is correct, but the comma after \"cornstalks\" separates the subject from its verb \"give.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4378,9 +4378,9 @@
       "Which mark can join two complete sentences when the second explains the first?"
     ],
     "wrong_reasons": {
-      "chores, a dancer": "Picked because a comma feels like a natural pause, but a comma alone between two independent clauses is a comma splice.",
-      "chores a dancer": "Picked because \"chores a dancer\" can sound like one flowing phrase, but it fuses two independent clauses with no punctuation, a run-on.",
-      "chores: a dancer,": "Picked because it starts with the right colon, but the added comma wrongly separates the subject \"a dancer\" from its verb \"reaches.\""
+      "chores, a dancer": "A comma feels like a natural pause, but a comma alone between two independent clauses is a comma splice.",
+      "chores a dancer": "\"Chores a dancer\" can sound like one flowing phrase, but it fuses two independent clauses with no punctuation, a run-on.",
+      "chores: a dancer,": "It starts with the right colon, but the added comma wrongly separates the subject \"a dancer\" from its verb \"reaches.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4410,9 +4410,9 @@
       "Why would commas between the items make the list hard to read?"
     ],
     "wrong_reasons": {
-      "savings,": "Picked because list items are usually separated by commas, but these items already contain commas, and the writer separates the later items with a semicolon, so a comma here blurs where the first item ends.",
-      "savings:": "Picked because a strong mark seems needed, but the list was already introduced by the colon after \"worries\"; a second colon cannot separate items in that list.",
-      "savings": "Picked because the long relative clause seems to run on into the next phrase, but with no mark the first and second items fuse into \"entire savings the medical inspection.\""
+      "savings,": "List items are usually separated by commas, but these items already contain commas, and the writer separates the later items with a semicolon, so a comma here blurs where the first item ends.",
+      "savings:": "A strong mark seems needed, but the list was already introduced by the colon after \"worries\"; a second colon cannot separate items in that list.",
+      "savings": "The long relative clause seems to run on into the next phrase, but with no mark the first and second items fuse into \"entire savings the medical inspection.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4442,9 +4442,9 @@
       "Should a comma come between a subject and its verb?"
     ],
     "wrong_reasons": {
-      "vat, the color": "Picked because the two ideas are closely linked, but a comma alone between two independent clauses creates a comma splice.",
-      "vat the color": "Picked because the words seem to flow together, but two independent clauses joined with no punctuation form a run-on sentence.",
-      "vat; the color,": "Picked because the semicolon is right, but the extra comma separates the subject \"the color\" from its verb \"turns.\""
+      "vat, the color": "The two ideas are closely linked, but a comma alone between two independent clauses creates a comma splice.",
+      "vat the color": "The words seem to flow together, but two independent clauses joined with no punctuation form a run-on sentence.",
+      "vat; the color,": "The semicolon is right, but the extra comma separates the subject \"the color\" from its verb \"turns.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4474,9 +4474,9 @@
       "What punctuation usually follows \"however\" at the start of a clause?"
     ],
     "wrong_reasons": {
-      "did, however,": "Picked because \"however\" is often set off by a pair of commas, but here it begins a new independent clause, so the commas create a comma splice.",
-      "did; however": "Picked because the semicolon is correctly placed, but an introductory \"however\" needs a comma after it.",
-      "did however,": "Picked because \"did however\" may sound like one phrase, but with no mark before \"however\" the two independent clauses run together."
+      "did, however,": "\"However\" is often set off by a pair of commas, but here it begins a new independent clause, so the commas create a comma splice.",
+      "did; however": "The semicolon is correctly placed, but an introductory \"however\" needs a comma after it.",
+      "did however,": "\"Did however\" may sound like one phrase, but with no mark before \"however\" the two independent clauses run together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4506,9 +4506,9 @@
       "Does the \"that\" clause need to be set off from the verb, or does it finish the verb's meaning?"
     ],
     "wrong_reasons": {
-      "was:": "Picked because a colon seems to announce the discovery, but a colon must follow a complete independent clause, and \"What she eventually discovered was\" is not one.",
-      "was,": "Picked because the long subject and the earlier commas make a pause feel natural, but a comma cannot separate the verb \"was\" from the clause that completes it.",
-      "was—": "Picked because a dash seems to add a dramatic reveal, but it cuts the verb \"was\" off from its complement and starts an interruption that nothing closes."
+      "was:": "A colon seems to announce the discovery, but a colon must follow a complete independent clause, and \"What she eventually discovered was\" is not one.",
+      "was,": "The long subject and the earlier commas make a pause feel natural, but a comma cannot separate the verb \"was\" from the clause that completes it.",
+      "was—": "A dash seems to add a dramatic reveal, but it cuts the verb \"was\" off from its complement and starts an interruption that nothing closes."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4538,9 +4538,9 @@
       "Does any punctuation belong after \"so\" here?"
     ],
     "wrong_reasons": {
-      "them so": "Picked because \"so\" already joins the clauses, but two independent clauses joined by a conjunction need a comma before it; without it, \"them so many homeowners\" also misreads.",
-      "them, so,": "Picked because commas seem to set off \"so,\" but no comma belongs after a coordinating conjunction that joins two clauses.",
-      "them so,": "Picked because a pause seems needed somewhere, but the comma belongs before the conjunction \"so,\" not after it."
+      "them so": "\"So\" already joins the clauses, but two independent clauses joined by a conjunction need a comma before it; without it, \"them so many homeowners\" also misreads.",
+      "them, so,": "Commas seem to set off \"so,\" but no comma belongs after a coordinating conjunction that joins two clauses.",
+      "them so,": "A pause seems needed somewhere, but the comma belongs before the conjunction \"so,\" not after it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4570,9 +4570,9 @@
       "What is the verb that goes with \"The term incunabula\"?"
     ],
     "wrong_reasons": {
-      "term, incunabula,": "Picked because names after a noun are often set off by commas, but here the name is essential: without it, the sentence never says which term comes from the Latin word.",
-      "term, incunabula": "Picked because a comma before a name looks familiar, but it treats the essential name as nonessential and never closes the pair of commas.",
-      "term incunabula,": "Picked because the subject feels finished and a pause seems natural, but the comma separates the subject \"The term incunabula\" from its verb \"comes.\""
+      "term, incunabula,": "Names after a noun are often set off by commas, but here the name is essential: without it, the sentence never says which term comes from the Latin word.",
+      "term, incunabula": "A comma before a name looks familiar, but it treats the essential name as nonessential and never closes the pair of commas.",
+      "term incunabula,": "The subject feels finished and a pause seems natural, but the comma separates the subject \"The term incunabula\" from its verb \"comes.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4602,9 +4602,9 @@
       "What mark comes at the end of that removable phrase, and what mark must match it?"
     ],
     "wrong_reasons": {
-      "store when": "Picked because \"store when broken down\" sounds smooth, but then the comma after \"digestion\" stands alone and separates the subject from its verb \"yield.\"",
-      "store; when": "Picked because the sentence is long and seems to need a strong break, but a semicolon must join two independent clauses, and \"The dry seeds that the animals gather and store\" is not one.",
-      "store—when": "Picked because a dash can set off an interruption, but this interruption is closed with a comma after \"digestion,\" and the marks must match."
+      "store when": "\"Store when broken down\" sounds smooth, but then the comma after \"digestion\" stands alone and separates the subject from its verb \"yield.\"",
+      "store; when": "The sentence is long and seems to need a strong break, but a semicolon must join two independent clauses, and \"The dry seeds that the animals gather and store\" is not one.",
+      "store—when": "A dash can set off an interruption, but this interruption is closed with a comma after \"digestion,\" and the marks must match."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4634,9 +4634,9 @@
       "What mark opened the phrase, and what mark should close it?"
     ],
     "wrong_reasons": {
-      "1940s": "Picked because the phrase seems to flow straight into \"was,\" but the comma after \"Bebop\" opened a phrase that must also be closed.",
-      "1940s;": "Picked because a semicolon seems to mark a strong pause, but it would separate the subject \"Bebop\" from its verb \"was.\"",
-      "1940s:": "Picked because a colon seems to introduce the list of features, but it would split the subject \"Bebop\" from its verb \"was.\""
+      "1940s": "The phrase seems to flow straight into \"was,\" but the comma after \"Bebop\" opened a phrase that must also be closed.",
+      "1940s;": "A semicolon seems to mark a strong pause, but it would separate the subject \"Bebop\" from its verb \"was.\"",
+      "1940s:": "A colon seems to introduce the list of features, but it would split the subject \"Bebop\" from its verb \"was.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4666,9 +4666,9 @@
       "Which mark introduces a list after a complete sentence?"
     ],
     "wrong_reasons": {
-      "zones;": "Picked because semicolons appear throughout the list, but a semicolon must join two independent clauses, and the list that follows is not one.",
-      "zones,": "Picked because a comma often introduces added detail, but this long list has its items separated by semicolons, so a comma cannot clearly introduce it.",
-      "zones": "Picked because the list seems to continue the sentence, but without punctuation \"three broad zones the headwaters\" runs together."
+      "zones;": "Semicolons appear throughout the list, but a semicolon must join two independent clauses, and the list that follows is not one.",
+      "zones,": "A comma often introduces added detail, but this long list has its items separated by semicolons, so a comma cannot clearly introduce it.",
+      "zones": "The list seems to continue the sentence, but without punctuation \"three broad zones the headwaters\" runs together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4698,9 +4698,9 @@
       "What mark opened that removable phrase?"
     ],
     "wrong_reasons": {
-      "burr": "Picked because \"a burr along each edge\" can read as one phrase, but the comma after \"metal\" opened an interruption that must be closed.",
-      "burr;": "Picked because a semicolon appears later in the sentence, but placing one here cuts off \"along each edge of the groove,\" which cannot stand as an independent clause.",
-      "burr—": "Picked because a dash can end an interruption, but this one was opened with a comma, and the two marks must match."
+      "burr": "\"A burr along each edge\" can read as one phrase, but the comma after \"metal\" opened an interruption that must be closed.",
+      "burr;": "A semicolon appears later in the sentence, but placing one here cuts off \"along each edge of the groove,\" which cannot stand as an independent clause.",
+      "burr—": "A dash can end an interruption, but this one was opened with a comma, and the two marks must match."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4730,9 +4730,9 @@
       "Can a comma alone join two complete sentences?"
     ],
     "wrong_reasons": {
-      "shifted, by": "Picked because the two ideas are closely related, but a comma alone between two complete sentences is a comma splice.",
-      "shifted by": "Picked because \"shifted by the 1500s\" sounds like a natural phrase, but it leaves two complete sentences run together with no punctuation.",
-      "shifted; by,": "Picked because the semicolon correctly separates the two complete sentences, but the comma after \"by\" wrongly splits the preposition from its object, \"the 1500s.\""
+      "shifted, by": "The two ideas are closely related, but a comma alone between two complete sentences is a comma splice.",
+      "shifted by": "\"Shifted by the 1500s\" sounds like a natural phrase, but it leaves two complete sentences run together with no punctuation.",
+      "shifted; by,": "The semicolon correctly separates the two complete sentences, but the comma after \"by\" wrongly splits the preposition from its object, \"the 1500s.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4762,9 +4762,9 @@
       "Which mark attaches a describing phrase to the end of a sentence?"
     ],
     "wrong_reasons": {
-      "foam; a": "Picked because the sentence is long and a strong break seems needed, but a semicolon must be followed by an independent clause, and \"a material soft enough . . .\" is only a phrase.",
-      "foam a": "Picked because the words seem to run on naturally, but with no punctuation \"dense foam a material\" jams the noun and the phrase that renames it together.",
-      "foam. A": "Picked because the description seems like a new thought, but \"A material soft enough . . . a crisp edge\" has no main verb, so it would be a fragment."
+      "foam; a": "The sentence is long and a strong break seems needed, but a semicolon must be followed by an independent clause, and \"a material soft enough . . .\" is only a phrase.",
+      "foam a": "The words seem to run on naturally, but with no punctuation \"dense foam a material\" jams the noun and the phrase that renames it together.",
+      "foam. A": "The description seems like a new thought, but \"A material soft enough . . . a crisp edge\" has no main verb, so it would be a fragment."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4794,9 +4794,9 @@
       "What mark sits at the end of that clause, and what should match it?"
     ],
     "wrong_reasons": {
-      "carry—": "Picked because dashes often set off a writer's aside, but this aside closes with a comma after \"me,\" and the opening and closing marks must match.",
-      "carry;": "Picked because the sentence is long and seems to need a strong pause, but a semicolon would cut the comparison \"less for . . . than for\" in half, leaving neither part a complete clause.",
-      "carry": "Picked because \"the news they carry which is a season old\" can sound like it flows, but then the comma after \"me\" has no partner and the aside is never properly set off."
+      "carry—": "Dashes often set off a writer's aside, but this aside closes with a comma after \"me,\" and the opening and closing marks must match.",
+      "carry;": "The sentence is long and seems to need a strong pause, but a semicolon would cut the comparison \"less for . . . than for\" in half, leaving neither part a complete clause.",
+      "carry": "\"The news they carry which is a season old\" can sound like it flows, but then the comma after \"me\" has no partner and the aside is never properly set off."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4826,9 +4826,9 @@
       "Should anything separate a subject from its verb?"
     ],
     "wrong_reasons": {
-      "glaciers, have": "Picked because the long subject seems to need a pause, but a comma cannot separate the subject from its verb \"have.\"",
-      "glaciers: have": "Picked because a colon seems to introduce the description, but it would split the subject from its verb, and the words before it are not a complete sentence.",
-      "glaciers; have": "Picked because a semicolon looks like a pause, but it needs complete sentences on both sides, and neither side here is one."
+      "glaciers, have": "The long subject seems to need a pause, but a comma cannot separate the subject from its verb \"have.\"",
+      "glaciers: have": "A colon seems to introduce the description, but it would split the subject from its verb, and the words before it are not a complete sentence.",
+      "glaciers; have": "A semicolon looks like a pause, but it needs complete sentences on both sides, and neither side here is one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4858,9 +4858,9 @@
       "Which mark usually follows a long introductory clause?"
     ],
     "wrong_reasons": {
-      "across;": "Picked because the sentence is long and a strong pause seems right, but a semicolon must join two independent clauses, and the \"Because\" clause is dependent.",
-      "across:": "Picked because the second part seems to reveal a striking result, but a colon must follow a complete independent clause, and the \"Because\" clause is not one.",
-      "across": "Picked because the clauses seem to flow together, but without a comma the long introductory clause runs straight into the main clause, so the reader can't see where one ends and the other begins."
+      "across;": "The sentence is long and a strong pause seems right, but a semicolon must join two independent clauses, and the \"Because\" clause is dependent.",
+      "across:": "The second part seems to reveal a striking result, but a colon must follow a complete independent clause, and the \"Because\" clause is not one.",
+      "across": "The clauses seem to flow together, but without a comma the long introductory clause runs straight into the main clause, so the reader can't see where one ends and the other begins."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4890,9 +4890,9 @@
       "If a phrase ends with a comma, what must come before it?"
     ],
     "wrong_reasons": {
-      "witnessed, another,": "Picked because it correctly sets off \"-ul\" with a pair of commas, but a comma alone between two independent clauses creates a comma splice.",
-      "witnessed; another": "Picked because it correctly joins the two clauses, but it leaves the comma after \"-ul\" without a partner, so that comma wrongly separates the subject from its verb \"attaches.\"",
-      "witnessed another,": "Picked because the comma pair around \"-ul\" looks complete, but nothing separates the two independent clauses, so they run together."
+      "witnessed, another,": "It correctly sets off \"-ul\" with a pair of commas, but a comma alone between two independent clauses creates a comma splice.",
+      "witnessed; another": "It correctly joins the two clauses, but it leaves the comma after \"-ul\" without a partner, so that comma wrongly separates the subject from its verb \"attaches.\"",
+      "witnessed another,": "The comma pair around \"-ul\" looks complete, but nothing separates the two independent clauses, so they run together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4922,9 +4922,9 @@
       "Should a comma separate \"This ability\" from \"gave\"?"
     ],
     "wrong_reasons": {
-      "pressed, this ability": "Picked because the ideas are connected, but a comma alone between two complete sentences is a comma splice.",
-      "pressed this ability": "Picked because the words seem to flow, but two complete sentences run together with no punctuation form a run-on.",
-      "pressed. This ability,": "Picked because the period is right, but the added comma separates the subject \"This ability\" from its verb \"gave.\""
+      "pressed, this ability": "The ideas are connected, but a comma alone between two complete sentences is a comma splice.",
+      "pressed this ability": "The words seem to flow, but two complete sentences run together with no punctuation form a run-on.",
+      "pressed. This ability,": "The period is right, but the added comma separates the subject \"This ability\" from its verb \"gave.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4954,9 +4954,9 @@
       "Should anything separate a verb from its object?"
     ],
     "wrong_reasons": {
-      "dive-bombed, anyone": "Picked because a pause before the long object feels natural, but a comma cannot separate the verbs from their object.",
-      "dive-bombed anyone,": "Picked because \"who wore that mask\" looks like extra information, but it is essential: the crows did not attack anyone at all, only people in the mask.",
-      "dive-bombed: anyone": "Picked because a colon seems to introduce who was targeted, but a colon must follow a complete independent clause, and \"the crows scolded and dive-bombed\" needs its object."
+      "dive-bombed, anyone": "A pause before the long object feels natural, but a comma cannot separate the verbs from their object.",
+      "dive-bombed anyone,": "\"Who wore that mask\" looks like extra information, but it is essential: the crows did not attack anyone at all, only people in the mask.",
+      "dive-bombed: anyone": "A colon seems to introduce who was targeted, but a colon must follow a complete independent clause, and \"the crows scolded and dive-bombed\" needs its object."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4986,9 +4986,9 @@
       "What mark opened that interruption?"
     ],
     "wrong_reasons": {
-      "churches,": "Picked because the interruption already contains commas, so another comma looks natural, but this interruption was opened with a dash, and the marks must match.",
-      "churches;": "Picked because the sentence is long and seems to need a strong break, but a semicolon must join two independent clauses, and \"that carried riders . . .\" is not one.",
-      "churches": "Picked because \"churches that carried riders\" sounds like a natural phrase, but it leaves the dash unclosed and wrongly makes it seem that the churches, not the network, carried riders."
+      "churches,": "The interruption already contains commas, so another comma looks natural, but this interruption was opened with a dash, and the marks must match.",
+      "churches;": "The sentence is long and seems to need a strong break, but a semicolon must join two independent clauses, and \"that carried riders . . .\" is not one.",
+      "churches": "\"Churches that carried riders\" sounds like a natural phrase, but it leaves the dash unclosed and wrongly makes it seem that the churches, not the network, carried riders."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

@@ -183,3 +183,12 @@ test("the Worker serves the demo exam end to end with no code changes", async ()
   const lesson = (await call("/api/lessons", { skill_id: "demo-add" })).data;
   assert.equal(lesson.items.length, 2);
 });
+
+test("no wrong_reason opens with a 'Picked/Chosen/Tempting because' template", () => {
+  const dir = path("../exams/sat/items/");
+  for (const f of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    for (const it of JSON.parse(readFileSync(join(dir, f), "utf8"))) {
+      for (const [k, v] of Object.entries(it.wrong_reasons ?? {})) assert.ok(!/^(Picked|Chosen|Tempting) because/.test(v), `${it.id} ${k}: ${v}`);
+    }
+  }
+});

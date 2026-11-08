@@ -62,8 +62,13 @@ const ICONS = {
       <Path d="M16 9.6L20.8 14.4M20.8 9.6L16 14.4" stroke={c} fill="none" />
     </>
   ),
-  // Days in a row: three rising tally strokes on a baseline.
-  streak: P("M4 19.6H20.2M6.6 19.4L7.6 14.4M11.3 19.4L12.8 10.4M16.1 19.4L18.1 5.8"),
+  // Days in a row: a calendar page with today ticked off.
+  streak: (c: string) => (
+    <>
+      <Rect x={4} y={5.6} width={16} height={14.6} rx={2.6} stroke={c} fill="none" />
+      <Path d="M8.3 3.6V7.1M15.7 3.7V7.1M8.6 13.9L11 16.2L15.6 11.2" stroke={c} fill="none" />
+    </>
+  ),
   // XP: a small stacked block.
   xp: P("M12 3.9L19 8V16L12 20.1L5 16V8L12 3.9ZM5.2 8.1L12 12.2L18.8 8.1M12 12.2V19.9"),
   calendar: (c: string) => (

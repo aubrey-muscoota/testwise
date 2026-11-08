@@ -1918,7 +1918,7 @@
       "Which word means 'pushed aside into a smaller role'?"
     ],
     "wrong_reasons": {
-      "restored": "Tempting because the vowels are still heard, but \"restored\" implies they were lost and brought back; the passage says they never vanished and are now used less, not more.",
+      "restored": "The vowels are still heard, but \"restored\" implies they were lost and brought back; the passage says they never vanished and are now used less, not more.",
       "standardized": "Sounds technical and linguistic, but it means made uniform or official, which clashes with use only in jokes.",
       "eradicated": "Matches the linguists' original expectation, but the passage says the vowels \"survive.\""
     },
@@ -4367,7 +4367,7 @@
       "What does \"without a telescope\" tell you about how noticeable the star's changes are?"
     ],
     "wrong_reasons": {
-      "erratic": "Tempting because the brightness \"swings so widely,\" but the text stresses \"clockwork regularity,\" the opposite of erratic.",
+      "erratic": "The brightness \"swings so widely,\" but the text stresses \"clockwork regularity,\" the opposite of erratic.",
       "dim": "Picks up the idea of dimming, but a dim star would be harder to see, not easier to follow without a telescope.",
       "remote": "Stars are far away, but distance has nothing to do with the contrast about how noticeable the changes are."
     },
@@ -4402,7 +4402,7 @@
     "wrong_reasons": {
       "insulated from": "Reverses the point: a word kept separate from the new language's patterns would keep its foreign look, not lose it.",
       "imposed on": "Reverses the direction of influence; the text says speakers reshape the word, not that the word forces patterns on the language.",
-      "derived from": "Tempting because the passage discusses word origins, but the word comes from another language; it is not derived from the receiving language's patterns."
+      "derived from": "The passage discusses word origins, but the word comes from another language; it is not derived from the receiving language's patterns."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4467,7 +4467,7 @@
     ],
     "wrong_reasons": {
       "doubt": "If the birds doubted others would steal, they would have no reason to move their food.",
-      "recall": "Tempting because the birds' own past thefts matter, but what they \"recall\" is their own stealing; the blank concerns what others \"might\" do in the future.",
+      "recall": "The birds' own past thefts matter, but what they \"recall\" is their own stealing; the blank concerns what others \"might\" do in the future.",
       "pretend": "Nothing suggests the birds are acting or faking; their re-caching is a real response to a real risk."
     },
     "check": null,
@@ -4501,7 +4501,7 @@
     "wrong_reasons": {
       "reinforce": "New scholarship turning to the groundwork is a correction to the march-centered view, not a strengthening of it.",
       "publicize": "The marches were already well publicized (\"drew national cameras\"); scholars are not spreading the emphasis but adjusting it.",
-      "repudiate": "Tempting because the scholarship challenges the older view, but \"not by dismissing the marches\" rules out outright rejection."
+      "repudiate": "The scholarship challenges the older view, but \"not by dismissing the marches\" rules out outright rejection."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4599,7 +4599,7 @@
     ],
     "wrong_reasons": {
       "elation": "Captures her longing for the sea, which a traveler might be expected to feel, but ignores her wish that the plains would continue.",
-      "indifference": "Tempting because she \"stopped counting the miles,\" but she cares strongly both ways; she longs and wishes, which is not indifference.",
+      "indifference": "She \"stopped counting the miles,\" but she cares strongly both ways; she longs and wishes, which is not indifference.",
       "trepidation": "A river ford might sound dangerous, but nothing in the text suggests she fears it; her hesitation is about leaving the plains."
     },
     "check": null,
@@ -4699,7 +4699,7 @@
     "wrong_reasons": {
       "precipitate": "Sounds fitting for dissolved gases in chemistry, and it can mean \"bring about,\" but the gases do not cause surface conditions; they record them.",
       "efface": "To efface is to erase, the opposite of what an archive does.",
-      "forecast": "Tempting because the gases tell scientists something, but they tell about past conditions, not future ones."
+      "forecast": "The gases tell scientists something, but they tell about past conditions, not future ones."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

@@ -146,7 +146,10 @@ test("weeks are contiguous and never span two phases", () => {
   for (let i = 0; i < p.weeks.length; i++) {
     const w = p.weeks[i];
     assert.ok(daysBetween(w.start, w.end) >= 0 && daysBetween(w.start, w.end) < 7);
-    assert.ok(w.goal.length > 5);
+    // A week names its skills, one per line, or says what it is for. No template sentence, no trailing period.
+    assert.ok(w.focus_names.length || (w.goal && w.goal.length > 3), JSON.stringify(w));
+    if (w.goal) assert.ok(!w.goal.endsWith("."), w.goal);
+    if (w.focus_names.length) assert.equal(w.goal, null);
     if (i) assert.equal(daysBetween(p.weeks[i - 1].end, w.start), 1);
   }
   assert.equal(p.weeks[0].start, TODAY);
@@ -262,4 +265,21 @@ test("test-ready: a timed set at test pace plus light review", () => {
 test("an empty skill list doesn't crash", () => {
   const p = plan({ exam_date: examIn(30), plan_started_at: TODAY, skills: [] });
   assert.ok(Array.isArray(p.today) && Array.isArray(p.weeks));
+});
+
+test("the plan's learn-by date is the end of its last learn week", () => {
+  for (const total of [40, 75, 125, 200]) {
+    const p = plan({ exam_date: examIn(total), plan_started_at: TODAY, skills: fresh() });
+    const learn = p.weeks.filter((w) => w.phase === "learn");
+    assert.equal(learn[learn.length - 1].end, p.learn_by, `${total} days`);
+    // Socrates' status line owns the count and names the same date.
+    const [y, m, d] = p.learn_by.split("-").map(Number);
+    const short = new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+    assert.match(p.status.message, new RegExp(`^You've started \\d+ of 29 skills\\. \\d+ to go by ${short}\\.`));
+  }
+});
+
+test("a lesson task's why doesn't repeat the skills count", () => {
+  const p = plan({ exam_date: examIn(75), plan_started_at: TODAY, skills: fresh() });
+  for (const t of p.today.filter((t) => t.kind === "lesson")) assert.doesNotMatch(t.why, /left to start/);
 });

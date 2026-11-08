@@ -4787,9 +4787,9 @@
       "Which finding separates an effect on one route from a general slowdown?"
     ],
     "wrong_reasons": {
-      "Rats whose replay was disrupted after every run moved through the maze more slowly overall than rats whose replay was left undisturbed.": "Tempting because it shows disrupting replay matters, but an overall slowdown is the general impairment the hypothesis says should not be the pattern.",
-      "Replay sequences occurred more frequently after rats ran routes that were new to them than after they ran routes they had run many times before.": "Tempting because it links replay to learning new routes, but it describes how often replay happens, not whether replay affects later navigation.",
-      "Place cells that fired during replay also fired when rats were placed in the maze's starting chamber before running any route.": "Tempting because it involves the same cells, but activity before any run says nothing about whether replay consolidates route memories."
+      "Rats whose replay was disrupted after every run moved through the maze more slowly overall than rats whose replay was left undisturbed.": "It shows disrupting replay matters, but an overall slowdown is the general impairment the hypothesis says should not be the pattern.",
+      "Replay sequences occurred more frequently after rats ran routes that were new to them than after they ran routes they had run many times before.": "It links replay to learning new routes, but it describes how often replay happens, not whether replay affects later navigation.",
+      "Place cells that fired during replay also fired when rats were placed in the maze's starting chamber before running any route.": "It involves the same cells, but activity before any run says nothing about whether replay consolidates route memories."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4849,7 +4849,7 @@
     ],
     "wrong_reasons": {
       "Larkspur released 36 films, four fewer than it had released in 1927.": "Accurate for 1930, but the total number of releases says nothing about the shift to sound.",
-      "the studio released 29 films with synchronized sound.": "Tempting because 29 appears in the table, but that figure is for 1929, not 1930.",
+      "the studio released 29 films with synchronized sound.": "29 appears in the table, but that figure is for 1929, not 1930.",
       "only 3 of the studio's 40 releases had synchronized sound.": "This repeats the 1927 figures, so it is inaccurate for 1930 and shows no change."
     },
     "check": null,
@@ -4940,9 +4940,9 @@
       "Does the quotation show Teodora responding to a student, or only describe Teodora herself?"
     ],
     "wrong_reasons": {
-      "Teodora found that she could no longer listen to music, even at dinner, without her feet silently counting the beats beneath the table.": "Tempting because it shows her career has shaped her body, but it says nothing about reading others or responding to her students.",
+      "Teodora found that she could no longer listen to music, even at dinner, without her feet silently counting the beats beneath the table.": "It shows her career has shaped her body, but it says nothing about reading others or responding to her students.",
       "Before the first lesson, Teodora memorized the class roster, repeating each child's name aloud until she could say it without glancing at the page.": "This shows care and preparation, but it concerns names and words, not bodies.",
-      "A girl in the back row asked why the arms had to be held so high, and Teodora answered her at length, tracing the history of the position across two centuries.": "Tempting because it involves a student and dance technique, but Teodora responds to the girl's spoken question with words, the opposite of the claim."
+      "A girl in the back row asked why the arms had to be held so high, and Teodora answered her at length, tracing the history of the position across two centuries.": "It involves a student and dance technique, but Teodora responds to the girl's spoken question with words, the opposite of the claim."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5033,7 +5033,7 @@
     ],
     "wrong_reasons": {
       "\"The shuttle hums its single note / from early dawn until the lamps are lit.\"": "This describes the sound of weaving but mentions no memories or people.",
-      "\"The loom was old before my birth; / its frame is dark where other hands have pressed.\"": "Tempting because it hints at earlier owners, but it shows marks left on the loom, not the speaker's weaving preserving memories.",
+      "\"The loom was old before my birth; / its frame is dark where other hands have pressed.\"": "It hints at earlier owners, but it shows marks left on the loom, not the speaker's weaving preserving memories.",
       "\"I sell the cloth at market stalls / to strangers who will never learn my name.\"": "This concerns selling cloth to strangers, not remembering family."
     },
     "check": null,
@@ -5230,9 +5230,9 @@
       "Which record would identify the people who borrowed the books?"
     ],
     "wrong_reasons": {
-      "The main texts of the prayer books were copied by at least six different scribes, all of whom are known to have been monks at Saint-Orlan.": "Tempting because it concerns who produced the books, but it is about the scribes of the main text, not the authors of the notes.",
+      "The main texts of the prayer books were copied by at least six different scribes, all of whom are known to have been monks at Saint-Orlan.": "It concerns who produced the books, but it is about the scribes of the main text, not the authors of the notes.",
       "Many of the marginal notes are written in the same ink and the same hand as the main text of the book in which they appear.": "This points toward the books' makers, the monks, writing the notes, which weakens Wren's argument.",
-      "Marginal notes appear far more often in the abbey's prayer books than in its legal and financial manuscripts.": "Tempting because it suggests the prayer books were heavily read, but it does not show who wrote the notes."
+      "Marginal notes appear far more often in the abbey's prayer books than in its legal and financial manuscripts.": "It suggests the prayer books were heavily read, but it does not show who wrote the notes."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5319,7 +5319,7 @@
     "wrong_reasons": {
       "Wendell could play faster runs than anyone the club's regulars had ever heard, and on good nights the crowd stood to applaud before he had finished.": "This highlights his dazzling skill and the crowd's applause, the opposite of the claim.",
       "Every morning, long before the club opened, Wendell practiced scales for three hours in his cramped apartment.": "This shows discipline, but it says nothing about how he interacts with other players.",
-      "The other players admired Wendell and often asked him to choose which songs the band would perform.": "Tempting because it involves the band, but choosing songs is not responding to bandmates as he plays."
+      "The other players admired Wendell and often asked him to choose which songs the band would perform.": "It involves the band, but choosing songs is not responding to bandmates as he plays."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5445,9 +5445,9 @@
       "Which finding compares verbs by how often they are used?"
     ],
     "wrong_reasons": {
-      "Young children learning English sometimes say regular forms such as \"goed\" before they learn the correct irregular forms.": "Tempting because it involves regular and irregular forms, but it concerns how children learn, not which irregular forms survive across generations.",
+      "Young children learning English sometimes say regular forms such as \"goed\" before they learn the correct irregular forms.": "It involves regular and irregular forms, but it concerns how children learn, not which irregular forms survive across generations.",
       "Irregular past-tense forms are found in many languages besides English.": "This shows irregular forms are widespread but says nothing about frequency.",
-      "Some verbs that were regular in an earlier stage of English have since developed irregular forms.": "Tempting because it is about historical change, but it describes verbs becoming irregular and never mentions frequency."
+      "Some verbs that were regular in an earlier stage of English have since developed irregular forms.": "It is about historical change, but it describes verbs becoming irregular and never mentions frequency."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5694,7 +5694,7 @@
     ],
     "wrong_reasons": {
       "Toddlers in the study learned more new words in total than older children did.": "This compares age groups and says nothing about where the adult looks.",
-      "Toddlers learned new words faster when they heard them in songs than when they heard them in ordinary speech.": "Tempting because it shows a way to speed learning, but songs are not the adult's gaze.",
+      "Toddlers learned new words faster when they heard them in songs than when they heard them in ordinary speech.": "It shows a way to speed learning, but songs are not the adult's gaze.",
       "Toddlers paid closer attention to adults who spoke in high-pitched voices than to adults who spoke in low-pitched voices.": "This is about voice pitch and attention, not gaze or word learning."
     },
     "check": null,

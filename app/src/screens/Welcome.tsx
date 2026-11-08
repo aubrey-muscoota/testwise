@@ -23,7 +23,7 @@ export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
             layout="under"
             size={short ? 128 : 168}
             mood="happy"
-            text={`I'm Socrates. Tell me when your ${name} is, and I'll plan every day from now until then. I ask a lot of questions.`}
+            text={`I'm Socrates. Tell me when your ${name} is and I'll plan every day until then.`}
           />
         </Rise>
         <Rise delay={240} style={{ marginTop: space(4) }}>

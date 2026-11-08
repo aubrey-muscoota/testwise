@@ -3247,9 +3247,9 @@
       "Does the historian in Text 2 say the justification is missing, hidden, or present in a different form?"
     ],
     "wrong_reasons": {
-      "She would agree that Mesopotamian mathematics was mainly practical but deny that Greek mathematicians justified their rules more rigorously.": "Tempting because the historian in Text 2 concedes the tablets are full of practical problems, but she rejects the claim that the mathematics was mere calculation, and she says nothing about Greek rigor.",
-      "She would contend that the tablets contain written general proofs that historians have so far failed to decipher.": "Tempting because the historian in Text 2 thinks justification is present, but she places it in the ordering of examples and lost oral commentary, not in undeciphered written proofs.",
-      "She would claim that Greek mathematicians learned the practice of proving general rules directly from Mesopotamian scribes.": "Tempting because both texts mention the Greeks, but the historian in Text 2 never discusses any transmission from Mesopotamia to Greece."
+      "She would agree that Mesopotamian mathematics was mainly practical but deny that Greek mathematicians justified their rules more rigorously.": "The historian in Text 2 concedes the tablets are full of practical problems, but she rejects the claim that the mathematics was mere calculation, and she says nothing about Greek rigor.",
+      "She would contend that the tablets contain written general proofs that historians have so far failed to decipher.": "The historian in Text 2 thinks justification is present, but she places it in the ordering of examples and lost oral commentary, not in undeciphered written proofs.",
+      "She would claim that Greek mathematicians learned the practice of proving general rules directly from Mesopotamian scribes.": "Both texts mention the Greeks, but the historian in Text 2 never discusses any transmission from Mesopotamia to Greece."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3279,9 +3279,9 @@
       "What does Text 2 say scientists use to study even older climates?"
     ],
     "wrong_reasons": {
-      "By arguing that the air bubbles in ice do not preserve ancient air": "Tempting because Text 2 qualifies Text 1, but it never questions what the bubbles preserve; it calls ice cores 'valuable.'",
+      "By arguing that the air bubbles in ice do not preserve ancient air": "Text 2 qualifies Text 1, but it never questions what the bubbles preserve; it calls ice cores 'valuable.'",
       "By claiming that drilling into the Antarctic ice sheet damages it": "Tempting as a familiar environmental concern, but neither text mentions any damage from drilling.",
-      "By agreeing that ice cores are the only reliable record of past climate": "Tempting because Text 2 does call ice cores valuable, but it then names ocean mud as another record, so it would not call ice cores the only one."
+      "By agreeing that ice cores are the only reliable record of past climate": "Text 2 does call ice cores valuable, but it then names ocean mud as another record, so it would not call ice cores the only one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3311,9 +3311,9 @@
       "What does Text 2 say is lost when translators force rhyme, and what does it recommend instead?"
     ],
     "wrong_reasons": {
-      "The translator in Text 1 thinks the sound of a poem matters, whereas the author of Text 2 thinks only a poem's meaning should be carried over.": "Tempting because Text 2 gives up strict rhyme, but it still cares about sound, recovering 'the music' through repeated vowels and consonants.",
-      "The translator in Text 1 prefers translations that convey only the meaning of a poem's words, whereas the author of Text 2 prefers translations that keep the rhyme.": "Tempting because it names the two positions, but it reverses them: the translator in Text 1 is the one who keeps rhyme.",
-      "The translator in Text 1 believes rhymed poems cannot truly be translated, whereas the author of Text 2 believes any poem can be translated without loss.": "Tempting because the translator in Text 1 is strict, but she does translate rhymed poems herself, and Text 2 admits that forcing rhyme causes losses."
+      "The translator in Text 1 thinks the sound of a poem matters, whereas the author of Text 2 thinks only a poem's meaning should be carried over.": "Text 2 gives up strict rhyme, but it still cares about sound, recovering 'the music' through repeated vowels and consonants.",
+      "The translator in Text 1 prefers translations that convey only the meaning of a poem's words, whereas the author of Text 2 prefers translations that keep the rhyme.": "It names the two positions, but it reverses them: the translator in Text 1 is the one who keeps rhyme.",
+      "The translator in Text 1 believes rhymed poems cannot truly be translated, whereas the author of Text 2 believes any poem can be translated without loss.": "The translator in Text 1 is strict, but she does translate rhymed poems herself, and Text 2 admits that forcing rhyme causes losses."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3343,9 +3343,9 @@
       "What does Text 2 say about how soon the canal declined, and about what caused it?"
     ],
     "wrong_reasons": {
-      "As wrong to claim that canals declined at all, since canal traffic kept growing after railroads arrived": "Tempting because tonnage 'climbed for nearly three decades,' but Text 2 says 'Decline came' in the late 1870s, so it accepts that canals did decline.",
-      "As accurate about when canals declined but mistaken in attributing their decline to speed rather than cost": "Tempting because it captures half of Text 2's objection (cost, not speed), but Text 2 also rejects Text 1's timing: decline came decades later, not 'almost at once.'",
-      "As overlooking the fact that canals moved bulky goods faster than early railroads did": "Tempting because Text 2 says speed mattered little for bulky goods, but it never claims the canal was faster; it says the canal was cheaper."
+      "As wrong to claim that canals declined at all, since canal traffic kept growing after railroads arrived": "Tonnage 'climbed for nearly three decades,' but Text 2 says 'Decline came' in the late 1870s, so it accepts that canals did decline.",
+      "As accurate about when canals declined but mistaken in attributing their decline to speed rather than cost": "It captures half of Text 2's objection (cost, not speed), but Text 2 also rejects Text 1's timing: decline came decades later, not 'almost at once.'",
+      "As overlooking the fact that canals moved bulky goods faster than early railroads did": "Text 2 says speed mattered little for bulky goods, but it never claims the canal was faster; it says the canal was cheaper."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3375,8 +3375,8 @@
       "Does Text 2 agree that bleaching always kills corals?"
     ],
     "wrong_reasons": {
-      "By agreeing that bleached corals can never take in algae again": "Tempting because Text 2 calls bleaching 'dangerous,' but it reports that most colonies took in algae again.",
-      "By denying that warm water causes corals to push out their algae": "Tempting because Text 2 disagrees with Text 1, but it never disputes that heat causes bleaching; its study took place 'during a heat wave.'",
+      "By agreeing that bleached corals can never take in algae again": "Text 2 calls bleaching 'dangerous,' but it reports that most colonies took in algae again.",
+      "By denying that warm water causes corals to push out their algae": "Text 2 disagrees with Text 1, but it never disputes that heat causes bleaching; its study took place 'during a heat wave.'",
       "By arguing that bleaching is caused by pollution rather than by heat": "Tempting as a familiar reef threat, but neither text mentions pollution."
     },
     "check": null,
@@ -3408,8 +3408,8 @@
     ],
     "wrong_reasons": {
       "Robots will soon make human exploration of Mars unnecessary.": "Tempting as a summary of Text 2's leaning, but Text 1 argues strongly for astronauts, and even Text 2 says only that robots are wiser 'for most scientific goals.'",
-      "The scientific benefits of sending astronauts to Mars justify the cost.": "Tempting because it is Text 1's main claim, but Text 2 argues that robots are the wiser investment.",
-      "Autonomous rovers can now notice unexpected features as well as humans can.": "Tempting because Text 2 praises newer rovers, but it concedes that humans 'would still be better at noticing the unexpected.'"
+      "The scientific benefits of sending astronauts to Mars justify the cost.": "It is Text 1's main claim, but Text 2 argues that robots are the wiser investment.",
+      "Autonomous rovers can now notice unexpected features as well as humans can.": "Text 2 praises newer rovers, but it concedes that humans 'would still be better at noticing the unexpected.'"
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3439,8 +3439,8 @@
       "What does the ethnobotanist say about whether yield per acre is what the growers cared about?"
     ],
     "wrong_reasons": {
-      "By disputing the claim that bean plants add nitrogen to the soil in which they grow": "Tempting because the ethnobotanist challenges the agronomists, but she explicitly 'grants the agronomists their biology,' including the nitrogen benefit.",
-      "By arguing that the three crops produce less food when planted together than when planted separately": "Tempting because she mentions plots where the practice 'yields less,' but she presents those as some cases, not as a general rule about combined planting.",
+      "By disputing the claim that bean plants add nitrogen to the soil in which they grow": "The ethnobotanist challenges the agronomists, but she explicitly 'grants the agronomists their biology,' including the nitrogen benefit.",
+      "By arguing that the three crops produce less food when planted together than when planted separately": "She mentions plots where the practice 'yields less,' but she presents those as some cases, not as a general rule about combined planting.",
       "By claiming that the practice persisted mainly because growers had no other farming methods available": "Tempting as another way of explaining persistence, but the ethnobotanist credits diet, storage, and ceremony, not a lack of alternatives."
     },
     "check": null,
@@ -3471,9 +3471,9 @@
       "How does Text 2 describe a writer who changes a myth?"
     ],
     "wrong_reasons": {
-      "By agreeing that modern writers should avoid changing the plots of myths": "Tempting because it restates Text 1, but Text 2 says reshaping a myth is 'taking part in' the tradition.",
-      "By arguing that ancient myths are too unfamiliar for modern readers to enjoy": "Tempting because Text 1 mentions modern readers, but neither text claims readers find myths too unfamiliar.",
-      "By claiming that the oldest version of a myth is always the most accurate one": "Tempting because Text 1 values the oldest versions, but Text 2 argues that no single version is fixed or authoritative."
+      "By agreeing that modern writers should avoid changing the plots of myths": "It restates Text 1, but Text 2 says reshaping a myth is 'taking part in' the tradition.",
+      "By arguing that ancient myths are too unfamiliar for modern readers to enjoy": "Text 1 mentions modern readers, but neither text claims readers find myths too unfamiliar.",
+      "By claiming that the oldest version of a myth is always the most accurate one": "Text 1 values the oldest versions, but Text 2 argues that no single version is fixed or authoritative."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3504,8 +3504,8 @@
     ],
     "wrong_reasons": {
       "the higher cost of digital projection equipment compared with that of hand-cut figures.": "Tempting as a practical objection to new technology, but neither text mentions cost.",
-      "audiences' general preference for stories performed without visual effects.": "Tempting because Text 2 criticizes digital effects, but it says projections 'may dazzle'; it never claims audiences dislike effects.",
-      "the ability of hand-cut figures to produce every effect that a digital projection can.": "Tempting because Text 2 defends hand-cut figures, but it does not dispute the director's point that projections can do things puppeteers cannot."
+      "audiences' general preference for stories performed without visual effects.": "Text 2 criticizes digital effects, but it says projections 'may dazzle'; it never claims audiences dislike effects.",
+      "the ability of hand-cut figures to produce every effect that a digital projection can.": "Text 2 defends hand-cut figures, but it does not dispute the director's point that projections can do things puppeteers cannot."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3535,9 +3535,9 @@
       "What alternative use does Text 2 propose, and how well does it fit the evidence?"
     ],
     "wrong_reasons": {
-      "As contradicted by evidence showing that the building was an ordinary dwelling": "Tempting because Text 2 mentions 'modest houses' and 'village households,' but it proposes a large shared hall, not a home, and it accepts that the floors lacked household debris.",
-      "As correct about how the building was used but mistaken about the social status of the people who used it": "Tempting because Text 2 replaces a priestly elite with ordinary villagers, but it also changes the use, from a temple set apart from daily life to a hall for feasts.",
-      "As plausible but undermined by doubts about where the painted cups were made": "Tempting because the cups are central to the debate, but Text 2 accepts that they are 'of foreign clay' and questions only what they imply."
+      "As contradicted by evidence showing that the building was an ordinary dwelling": "Text 2 mentions 'modest houses' and 'village households,' but it proposes a large shared hall, not a home, and it accepts that the floors lacked household debris.",
+      "As correct about how the building was used but mistaken about the social status of the people who used it": "Text 2 replaces a priestly elite with ordinary villagers, but it also changes the use, from a temple set apart from daily life to a hall for feasts.",
+      "As plausible but undermined by doubts about where the painted cups were made": "The cups are central to the debate, but Text 2 accepts that they are 'of foreign clay' and questions only what they imply."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3567,9 +3567,9 @@
       "What happens to the habit as the plants mature?"
     ],
     "wrong_reasons": {
-      "By denying that sunflowers ever turn to follow the sun": "Tempting because Text 2 corrects Text 1, but it agrees that young sunflowers do turn with the sun.",
-      "By arguing that blooming sunflowers face west rather than east": "Tempting because Text 2 describes the heads stopping, but it says they stay facing east, not west.",
-      "By claiming that tracking the sun gives sunflowers no benefit": "Tempting because Text 2 mentions benefits of facing east, but it never says tracking the sun is useless."
+      "By denying that sunflowers ever turn to follow the sun": "Text 2 corrects Text 1, but it agrees that young sunflowers do turn with the sun.",
+      "By arguing that blooming sunflowers face west rather than east": "Text 2 describes the heads stopping, but it says they stay facing east, not west.",
+      "By claiming that tracking the sun gives sunflowers no benefit": "Text 2 mentions benefits of facing east, but it never says tracking the sun is useless."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3599,9 +3599,9 @@
       "On which details do the two accounts disagree?"
     ],
     "wrong_reasons": {
-      "the rocks move only when the surface of the lakebed is completely dry.": "Tempting because the lakebed is described as dry and cracked, but both accounts say the rocks move after rain, when the surface is wet.",
-      "strong gusts of wind alone can push the rocks across slick mud.": "Tempting because it is the explanation in Text 1, but Text 2 reports that 'Strong gusts proved unnecessary.'",
-      "thin sheets of ice are needed for the rocks to move.": "Tempting because it is Text 2's key discovery, but the explanation in Text 1 involves no ice at all."
+      "the rocks move only when the surface of the lakebed is completely dry.": "The lakebed is described as dry and cracked, but both accounts say the rocks move after rain, when the surface is wet.",
+      "strong gusts of wind alone can push the rocks across slick mud.": "It is the explanation in Text 1, but Text 2 reports that 'Strong gusts proved unnecessary.'",
+      "thin sheets of ice are needed for the rocks to move.": "It is Text 2's key discovery, but the explanation in Text 1 involves no ice at all."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3631,9 +3631,9 @@
       "Does Text 2 reject openness as a goal, or doubt that glass achieves it?"
     ],
     "wrong_reasons": {
-      "By agreeing that the glass makes the courthouse's interior visible but arguing that courts should not be visible to passersby": "Tempting because Text 2 questions the critic, but it doubts that glass reveals interiors well, and it never says courts should be hidden.",
+      "By agreeing that the glass makes the courthouse's interior visible but arguing that courts should not be visible to passersby": "Text 2 questions the critic, but it doubts that glass reveals interiors well, and it never says courts should be hidden.",
       "By contending that the town most likely chose glass for the courthouse to reduce construction costs rather than to express openness": "Tempting as a cynical reading of the town's motives, but Text 2 says nothing about cost.",
-      "By arguing that stone buildings like Eastmere's old courthouse were more welcoming to the public than glass buildings are": "Tempting because Text 2 criticizes glass, but it never praises stone buildings; its point is that the look of a facade does not settle who may enter."
+      "By arguing that stone buildings like Eastmere's old courthouse were more welcoming to the public than glass buildings are": "Text 2 criticizes glass, but it never praises stone buildings; its point is that the look of a facade does not settle who may enter."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3663,9 +3663,9 @@
       "What else besides silk does Text 2 say traveled along the routes?"
     ],
     "wrong_reasons": {
-      "By arguing that silk was never actually traded along the routes": "Tempting because Text 2 disagrees with Text 1, but it says 'Along with silk,' so silk was traded.",
-      "By agreeing that the routes carried almost nothing other than silk": "Tempting because it matches Text 1, but Text 2 lists many other goods and ideas.",
-      "By claiming that Roman merchants built the routes to buy silk": "Tempting because Text 1 mentions Rome, but neither text says who built the routes."
+      "By arguing that silk was never actually traded along the routes": "Text 2 disagrees with Text 1, but it says 'Along with silk,' so silk was traded.",
+      "By agreeing that the routes carried almost nothing other than silk": "It matches Text 1, but Text 2 lists many other goods and ideas.",
+      "By claiming that Roman merchants built the routes to buy silk": "Text 1 mentions Rome, but neither text says who built the routes."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3695,9 +3695,9 @@
       "In the study, what happened to the memories and to people's confidence over the year?"
     ],
     "wrong_reasons": {
-      "By arguing that most people cannot recall anything about how they learned of a shocking event": "Tempting because the study shows memory errors, but participants still recalled details, just different ones; the text never says they remembered nothing.",
-      "By agreeing that flashbulb memories are accurate but only for the first few days after an event": "Tempting because the first accounts were written a day after the event, but the study compared a day with a year and does not establish accuracy for a few days.",
-      "By suggesting that people's confidence in such memories declines along with their accuracy": "Tempting because accuracy did decline, but the study found that confidence did not: it stayed as high as before."
+      "By arguing that most people cannot recall anything about how they learned of a shocking event": "The study shows memory errors, but participants still recalled details, just different ones; the text never says they remembered nothing.",
+      "By agreeing that flashbulb memories are accurate but only for the first few days after an event": "The first accounts were written a day after the event, but the study compared a day with a year and does not establish accuracy for a few days.",
+      "By suggesting that people's confidence in such memories declines along with their accuracy": "Accuracy did decline, but the study found that confidence did not: it stayed as high as before."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3727,9 +3727,9 @@
       "What do the 1880s records in Text 2 reveal about that past?"
     ],
     "wrong_reasons": {
-      "underestimates how much visitors to Velin today enjoy watching the procession.": "Tempting because tourists are part of the debate, but Text 2 never discusses how much visitors enjoy the procession.",
-      "correctly identifies commerce as a threat to the procession but overlooks the greater threat posed by declining participation.": "Tempting because it sounds like a balanced critique, but Text 2 neither calls commerce a threat nor mentions declining participation.",
-      "fails to recognize that the villagers have abandoned the songs that were once part of the procession.": "Tempting because songs are mentioned, but Text 2 says the villagers 'still decide its form, its songs,' which implies the songs continue."
+      "underestimates how much visitors to Velin today enjoy watching the procession.": "Tourists are part of the debate, but Text 2 never discusses how much visitors enjoy the procession.",
+      "correctly identifies commerce as a threat to the procession but overlooks the greater threat posed by declining participation.": "It sounds like a balanced critique, but Text 2 neither calls commerce a threat nor mentions declining participation.",
+      "fails to recognize that the villagers have abandoned the songs that were once part of the procession.": "Songs are mentioned, but Text 2 says the villagers 'still decide its form, its songs,' which implies the songs continue."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3759,9 +3759,9 @@
       "What does Ruth say she was thinking while she watched him?"
     ],
     "wrong_reasons": {
-      "She would agree that his work that morning was careless.": "Tempting because it matches Dev's fear, but Ruth praises how carefully he 'lined up each letter.'",
-      "She would admit that she had been too busy to notice his work.": "Tempting because Ruth says she was 'too busy,' but she was busy watching his work, so she did notice it.",
-      "She would say that she had been nervous about training him.": "Tempting because Dev is nervous, but Ruth never says she felt nervous herself."
+      "She would agree that his work that morning was careless.": "It matches Dev's fear, but Ruth praises how carefully he 'lined up each letter.'",
+      "She would admit that she had been too busy to notice his work.": "Ruth says she was 'too busy,' but she was busy watching his work, so she did notice it.",
+      "She would say that she had been nervous about training him.": "Dev is nervous, but Ruth never says she felt nervous herself."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3791,8 +3791,8 @@
       "Where does Okonkwo's team think sauropods found their food?"
     ],
     "wrong_reasons": {
-      "By arguing that a long neck gave sauropods no advantage in feeding": "Tempting because the team rejects the treetop idea, but it still sees a feeding advantage: saving energy while reaching many plants.",
-      "By agreeing that sauropods fed mainly in treetops but proposing that they did so to save energy": "Tempting because it mentions saving energy, but the team proposes feeding on 'low plants,' not in treetops.",
+      "By arguing that a long neck gave sauropods no advantage in feeding": "The team rejects the treetop idea, but it still sees a feeding advantage: saving energy while reaching many plants.",
+      "By agreeing that sauropods fed mainly in treetops but proposing that they did so to save energy": "It mentions saving energy, but the team proposes feeding on 'low plants,' not in treetops.",
       "By claiming that sauropods' long necks were used mainly to attract mates": "Tempting as another familiar hypothesis, but neither text mentions attracting mates."
     },
     "check": null,
@@ -3823,9 +3823,9 @@
       "Does the art historian think painters were fleeing photography or learning from it?"
     ],
     "wrong_reasons": {
-      "By arguing that photography had little influence on the development of painting in the nineteenth century": "Tempting because the art historian rejects the rivalry story, but she argues that photography strongly influenced painting, just in a different way.",
-      "By agreeing that painters abandoned realism because cameras made it pointless while adding that some painters also used photographs as references": "Tempting because the art historian does mention painters using photographs, but she rejects the idea that they 'fled' the camera, the core of the conventional account.",
-      "By contending that early photographs recorded scenes more precisely than paintings of the same period did": "Tempting because the conventional history assumes the camera's 'mechanical precision,' but the art historian stresses that early photographs were often blurred and badly cropped."
+      "By arguing that photography had little influence on the development of painting in the nineteenth century": "The art historian rejects the rivalry story, but she argues that photography strongly influenced painting, just in a different way.",
+      "By agreeing that painters abandoned realism because cameras made it pointless while adding that some painters also used photographs as references": "The art historian does mention painters using photographs, but she rejects the idea that they 'fled' the camera, the core of the conventional account.",
+      "By contending that early photographs recorded scenes more precisely than paintings of the same period did": "The conventional history assumes the camera's 'mechanical precision,' but the art historian stresses that early photographs were often blurred and badly cropped."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3855,9 +3855,9 @@
       "Which statement fits both texts, not just one?"
     ],
     "wrong_reasons": {
-      "Honeybees are the only insects that pollinate farm crops.": "Tempting because Text 1 focuses only on honeybees, but even Text 1 does not say they are the only pollinators, and Text 2 names wild bees.",
-      "Wild bees pollinate more kinds of crops than honeybees do.": "Tempting because Text 2 praises wild bees, but it never compares how many crops each kind pollinates, and Text 1 would disagree.",
-      "Tomato plants are pollinated mainly by honeybees.": "Tempting because tomatoes are mentioned, but Text 2 says honeybees lack the skill tomato flowers require."
+      "Honeybees are the only insects that pollinate farm crops.": "Text 1 focuses only on honeybees, but even Text 1 does not say they are the only pollinators, and Text 2 names wild bees.",
+      "Wild bees pollinate more kinds of crops than honeybees do.": "Text 2 praises wild bees, but it never compares how many crops each kind pollinates, and Text 1 would disagree.",
+      "Tomato plants are pollinated mainly by honeybees.": "Tomatoes are mentioned, but Text 2 says honeybees lack the skill tomato flowers require."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4527,8 +4527,8 @@
       "What changed by the fourth season, and why?"
     ],
     "wrong_reasons": {
-      "She would agree that cover crops should be avoided in regions that receive little rainfall.": "Tempting because Okafor's trial took place in a semiarid region, but her results show cover crops eventually paid off there, so she would not tell farmers to avoid them.",
-      "She would argue that cover crops do not actually take any water from the soil that a cash crop needs.": "Tempting because Okafor challenges the conventional wisdom, but she concedes an early yield dip, so she does not deny the water competition outright.",
+      "She would agree that cover crops should be avoided in regions that receive little rainfall.": "Okafor's trial took place in a semiarid region, but her results show cover crops eventually paid off there, so she would not tell farmers to avoid them.",
+      "She would argue that cover crops do not actually take any water from the soil that a cash crop needs.": "Okafor challenges the conventional wisdom, but she concedes an early yield dip, so she does not deny the water competition outright.",
       "She would recommend that farmers plant cover crops only in alternating years to limit their effect on yields.": "Tempting as a sensible-sounding compromise, but Okafor never discusses alternating years; her fields were planted with cover crops throughout the trial."
     },
     "check": null,
@@ -4559,9 +4559,9 @@
       "Does Sand's analysis find no change at all, or a change of a different kind than the researchers claim?"
     ],
     "wrong_reasons": {
-      "She would reject the idea that changes in climate have had any influence on hailstorms over the plateau.": "Tempting because Sand undercuts the researchers' evidence, but her finding that large-hail storms became more common leaves room for a climate influence; this choice overstates her position.",
-      "She would accept the interpretation but maintain that it applies only to the areas surrounding long-running stations.": "Tempting because Sand relies on the long-running stations, but her results from those stations contradict the claim of more frequent hail rather than confirming it locally.",
-      "She would argue that volunteer observers tend to exaggerate the size of the hailstones that they report.": "Tempting because Sand questions volunteer records, but her concern is how many storms were recorded, not whether hailstone sizes were reported accurately."
+      "She would reject the idea that changes in climate have had any influence on hailstorms over the plateau.": "Sand undercuts the researchers' evidence, but her finding that large-hail storms became more common leaves room for a climate influence; this choice overstates her position.",
+      "She would accept the interpretation but maintain that it applies only to the areas surrounding long-running stations.": "Sand relies on the long-running stations, but her results from those stations contradict the claim of more frequent hail rather than confirming it locally.",
+      "She would argue that volunteer observers tend to exaggerate the size of the hailstones that they report.": "Sand questions volunteer records, but her concern is how many storms were recorded, not whether hailstone sizes were reported accurately."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4591,9 +4591,9 @@
       "What does she say she was doing during the 'quiet minutes at the table'?"
     ],
     "wrong_reasons": {
-      "She would agree that the dinners exhausted her and admit she wished they had ended sooner.": "Tempting because the mother admits her feet ached, but planning the next menu shows she looked forward to the dinners, not that she wanted them to end.",
-      "She would explain that Priya's uncles did most of the cooking on Sundays.": "Tempting because the uncles appear in both texts, but they were arguing or laughing, not cooking; the mother was at the stove.",
-      "She would say that Priya was too young at the time to remember the dinners at all.": "Tempting because the mother says Priya 'never saw' something, but she means Priya missed her point of view, not that Priya cannot remember the dinners."
+      "She would agree that the dinners exhausted her and admit she wished they had ended sooner.": "The mother admits her feet ached, but planning the next menu shows she looked forward to the dinners, not that she wanted them to end.",
+      "She would explain that Priya's uncles did most of the cooking on Sundays.": "The uncles appear in both texts, but they were arguing or laughing, not cooking; the mother was at the stove.",
+      "She would say that Priya was too young at the time to remember the dinners at all.": "The mother says Priya 'never saw' something, but she means Priya missed her point of view, not that Priya cannot remember the dinners."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4623,9 +4623,9 @@
       "In Text 2, which things does the speaker notice once the hills withdraw: near ones or distant ones?"
     ],
     "wrong_reasons": {
-      "Text 1 portrays fog as a source of fear, while Text 2 portrays it as a source of curiosity.": "Tempting because Text 1 sounds melancholy, but the speaker feels loss, not fear; nothing in Text 1 is threatening.",
-      "Text 1 suggests that fog distorts the shapes of distant objects, while Text 2 suggests that fog makes distant objects easier to see.": "Tempting because both texts involve distant things, but Text 1 says distant objects vanish rather than distort, and Text 2 says the distance 'closes,' not that it becomes clearer.",
-      "Text 1 values memory over direct observation, while Text 2 values direct observation over memory.": "Tempting because Text 1 mentions memory, but it calls memory 'a poor lamp,' so it does not value memory over seeing."
+      "Text 1 portrays fog as a source of fear, while Text 2 portrays it as a source of curiosity.": "Text 1 sounds melancholy, but the speaker feels loss, not fear; nothing in Text 1 is threatening.",
+      "Text 1 suggests that fog distorts the shapes of distant objects, while Text 2 suggests that fog makes distant objects easier to see.": "Both texts involve distant things, but Text 1 says distant objects vanish rather than distort, and Text 2 says the distance 'closes,' not that it becomes clearer.",
+      "Text 1 values memory over direct observation, while Text 2 values direct observation over memory.": "Text 1 mentions memory, but it calls memory 'a poor lamp,' so it does not value memory over seeing."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4655,9 +4655,9 @@
       "What do the routes 'it has never entered' suggest replay might be for, besides remembering?"
     ],
     "wrong_reasons": {
-      "overstate the importance of replay, since disrupting it has little measurable effect on how well animals learn.": "Tempting because Fenn challenges the researchers, but he explicitly agrees that disrupting replay 'degrades learning.'",
-      "rely too heavily on studies of rats, whose brains may not resemble those of other animals.": "Tempting because criticisms of animal research are common, but Fenn never questions using rats; his own evidence comes from the same kind of maze studies.",
-      "are mistaken in claiming that replay takes place during sleep, since it occurs only while animals are awake.": "Tempting because Fenn stresses waking replay, but he says replay is 'hardly confined to sleep,' which means it occurs during sleep and also while awake."
+      "overstate the importance of replay, since disrupting it has little measurable effect on how well animals learn.": "Fenn challenges the researchers, but he explicitly agrees that disrupting replay 'degrades learning.'",
+      "rely too heavily on studies of rats, whose brains may not resemble those of other animals.": "Criticisms of animal research are common, but Fenn never questions using rats; his own evidence comes from the same kind of maze studies.",
+      "are mistaken in claiming that replay takes place during sleep, since it occurs only while animals are awake.": "Fenn stresses waking replay, but he says replay is 'hardly confined to sleep,' which means it occurs during sleep and also while awake."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4687,8 +4687,8 @@
       "Why did some directors dislike early sound cameras?"
     ],
     "wrong_reasons": {
-      "By agreeing that audiences preferred talking pictures to silent films": "Tempting because Text 2 does say audiences 'flocked' to talking pictures, but audiences are not the film industry, so this does not answer the claim about everyone in the industry.",
-      "By arguing that silent films continued to earn more money than sound films": "Tempting because it disputes the idea that sound was a triumph, but Text 2 never discusses how much money films earned.",
+      "By agreeing that audiences preferred talking pictures to silent films": "Text 2 does say audiences 'flocked' to talking pictures, but audiences are not the film industry, so this does not answer the claim about everyone in the industry.",
+      "By arguing that silent films continued to earn more money than sound films": "It disputes the idea that sound was a triumph, but Text 2 never discusses how much money films earned.",
       "By claiming that synchronized sound did not actually arrive until many years later": "Tempting as a way to challenge Text 1, but Text 2 accepts the timing and discusses 'the first talking pictures' of that era."
     },
     "check": null,
@@ -4719,9 +4719,9 @@
       "On which claim do the texts disagree, and which claim do they share?"
     ],
     "wrong_reasons": {
-      "Self-healing concrete could make routine inspections of bridges and tunnels unnecessary.": "Tempting because Text 1's advocates make this claim, but Text 2 says the material is 'not a substitute for the inspections.'",
-      "The bacteria in self-healing concrete stay able to revive for the entire life of a structure.": "Tempting because Text 1 describes the spores reviving, but Text 2 says their ability to revive 'appears to decline as the concrete ages.'",
-      "Self-healing concrete is too expensive to be used in most construction projects.": "Tempting because Text 1 mentions 'costly' patching, but neither text says the concrete itself is too expensive."
+      "Self-healing concrete could make routine inspections of bridges and tunnels unnecessary.": "Text 1's advocates make this claim, but Text 2 says the material is 'not a substitute for the inspections.'",
+      "The bacteria in self-healing concrete stay able to revive for the entire life of a structure.": "Text 1 describes the spores reviving, but Text 2 says their ability to revive 'appears to decline as the concrete ages.'",
+      "Self-healing concrete is too expensive to be used in most construction projects.": "Text 1 mentions 'costly' patching, but neither text says the concrete itself is too expensive."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4751,9 +4751,9 @@
       "What does she say the dancers' lineage carries that the page does not?"
     ],
     "wrong_reasons": {
-      "She would endorse the claim, since her own reconstructions show that scores preserve every essential feature of a dance.": "Tempting because Marchetti is 'grateful' for scores and uses them, but she says they leave out qualities that give a dance its life, so they do not preserve everything essential.",
-      "She would reject the claim on the grounds that scores often record the direction and timing of movements incorrectly.": "Tempting because Marchetti criticizes score-based revivals, but she calls a score-only revival 'accurate in its outline'; her objection is about what scores omit, not errors in what they record.",
-      "She would contend that dancers' memories preserve the sequence of a work's steps more accurately than notation does.": "Tempting because Marchetti values the dancers' lineage, but she credits it with carrying qualities such as weight and breath, not with recording the steps more accurately than a score."
+      "She would endorse the claim, since her own reconstructions show that scores preserve every essential feature of a dance.": "Marchetti is 'grateful' for scores and uses them, but she says they leave out qualities that give a dance its life, so they do not preserve everything essential.",
+      "She would reject the claim on the grounds that scores often record the direction and timing of movements incorrectly.": "Marchetti criticizes score-based revivals, but she calls a score-only revival 'accurate in its outline'; her objection is about what scores omit, not errors in what they record.",
+      "She would contend that dancers' memories preserve the sequence of a work's steps more accurately than notation does.": "Marchetti values the dancers' lineage, but she credits it with carrying qualities such as weight and breath, not with recording the steps more accurately than a score."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4783,9 +4783,9 @@
       "When and by whom, according to Text 2, were most names changed?"
     ],
     "wrong_reasons": {
-      "By agreeing that inspectors often shortened names they found hard to spell": "Tempting because this is exactly what the family story says, but Text 2 says historians found 'little evidence for such stories.'",
-      "By suggesting that the Novak family most likely arrived at a different port": "Tempting because Text 2 mentions 'the port of departure,' but that port is where passenger lists were made, not a different arrival port.",
-      "By arguing that very few immigrants ever changed their names": "Tempting because Text 2 doubts the story, but it says 'many immigrants did change their names.'"
+      "By agreeing that inspectors often shortened names they found hard to spell": "This is exactly what the family story says, but Text 2 says historians found 'little evidence for such stories.'",
+      "By suggesting that the Novak family most likely arrived at a different port": "Text 2 mentions 'the port of departure,' but that port is where passenger lists were made, not a different arrival port.",
+      "By arguing that very few immigrants ever changed their names": "Text 2 doubts the story, but it says 'many immigrants did change their names.'"
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4815,9 +4815,9 @@
       "What specific evidence does Abernathy find in the quilts she studied?"
     ],
     "wrong_reasons": {
-      "the high prices that antique quilts now bring when they are sold at auction.": "Tempting because it would support quilts' status, but neither text mentions prices or auctions.",
-      "the fact that many quilts were made purely for display and were never used as bedding.": "Tempting because it would undercut the curators' focus on warmth, but Abernathy never says the quilts were unused; her argument is about how they were designed.",
-      "the influence that abstract painters had on the patterns used by quilt makers.": "Tempting because Text 2 mentions abstract paintings, but it says critics praised similar choices 'decades later,' so the quilts came first; no influence from painters on quilters is claimed."
+      "the high prices that antique quilts now bring when they are sold at auction.": "It would support quilts' status, but neither text mentions prices or auctions.",
+      "the fact that many quilts were made purely for display and were never used as bedding.": "It would undercut the curators' focus on warmth, but Abernathy never says the quilts were unused; her argument is about how they were designed.",
+      "the influence that abstract painters had on the patterns used by quilt makers.": "Text 2 mentions abstract paintings, but it says critics praised similar choices 'decades later,' so the quilts came first; no influence from painters on quilters is claimed."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4847,9 +4847,9 @@
       "Why does Iwu call the situation an 'irony'?"
     ],
     "wrong_reasons": {
-      "She would maintain that busy, mixed-use streets actually reduce the number of neighbors whom residents recognize.": "Tempting because Iwu challenges Text 1, but her survey found residents of mixed-use districts recognize more neighbors, not fewer.",
-      "She would agree that such streets produce trust but add that the trust extends only to residents who own shops.": "Tempting because Text 1 mentions homes above shops, but Iwu never distinguishes shop owners; she finds trust depends on length of residence.",
-      "She would contend that how long people have lived in a district matters less to trust than how its streets are designed.": "Tempting because Iwu discusses both design and tenure, but she found tenure was what predicted trust, the reverse of this claim."
+      "She would maintain that busy, mixed-use streets actually reduce the number of neighbors whom residents recognize.": "Iwu challenges Text 1, but her survey found residents of mixed-use districts recognize more neighbors, not fewer.",
+      "She would agree that such streets produce trust but add that the trust extends only to residents who own shops.": "Text 1 mentions homes above shops, but Iwu never distinguishes shop owners; she finds trust depends on length of residence.",
+      "She would contend that how long people have lived in a district matters less to trust than how its streets are designed.": "Iwu discusses both design and tenure, but she found tenure was what predicted trust, the reverse of this claim."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4879,9 +4879,9 @@
       "What does Ruiz say the audience gets to do with a spare set?"
     ],
     "wrong_reasons": {
-      "Bell thinks sets should be inexpensive to build, while Ruiz thinks they are worth a large budget.": "Tempting because Bell's sets sound costly and Ruiz's simple, but neither designer discusses budgets, and this reverses what their methods would suggest.",
-      "Bell cares mainly about lighting, while Ruiz cares mainly about costumes.": "Tempting because Ruiz mentions a lamp, but neither text is mainly about lighting or costumes.",
-      "Bell believes sets matter more than acting, while Ruiz believes acting matters more than sets.": "Tempting because Ruiz gives the actors' words and gestures a large role, but Bell never says sets matter more than acting."
+      "Bell thinks sets should be inexpensive to build, while Ruiz thinks they are worth a large budget.": "Bell's sets sound costly and Ruiz's simple, but neither designer discusses budgets, and this reverses what their methods would suggest.",
+      "Bell cares mainly about lighting, while Ruiz cares mainly about costumes.": "Ruiz mentions a lamp, but neither text is mainly about lighting or costumes.",
+      "Bell believes sets matter more than acting, while Ruiz believes acting matters more than sets.": "Ruiz gives the actors' words and gestures a large role, but Bell never says sets matter more than acting."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4911,9 +4911,9 @@
       "What does Text 2 suggest planners can do about that variation?"
     ],
     "wrong_reasons": {
-      "By denying that the output of wind and solar facilities changes with the weather and time of day": "Tempting because Text 2 pushes back on the critics, but it begins by saying 'Variability is real.'",
-      "By agreeing that fossil fuel plants will always be needed to back up wind and solar power": "Tempting because Text 2 concedes variability, but it suggests intermittency can be handled without treating fossil backup as permanent.",
-      "By arguing that batteries alone can supply a region's electricity for weeks at a time": "Tempting because Text 2 mentions batteries, but it describes them only as storing midday surplus for the evening, one tool among several."
+      "By denying that the output of wind and solar facilities changes with the weather and time of day": "Text 2 pushes back on the critics, but it begins by saying 'Variability is real.'",
+      "By agreeing that fossil fuel plants will always be needed to back up wind and solar power": "Text 2 concedes variability, but it suggests intermittency can be handled without treating fossil backup as permanent.",
+      "By arguing that batteries alone can supply a region's electricity for weeks at a time": "Text 2 mentions batteries, but it describes them only as storing midday surplus for the evening, one tool among several."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4943,9 +4943,9 @@
       "What does the phrase 'a contest whose winner was already known' suggest about how Text 1 tells the story?"
     ],
     "wrong_reasons": {
-      "underestimates how quickly printed books came to outnumber manuscripts in fifteenth-century libraries.": "Tempting because it addresses the speed of print's rise, but Lindqvist argues the change was slower and less decisive than Text 1 claims, not faster.",
-      "wrongly assumes that scribes could produce books more cheaply than early printers could.": "Tempting because cost seems relevant to the contest between methods, but neither text claims scribes were cheaper; Text 1 stresses print's speed, and Lindqvist stresses prestige.",
-      "correctly dates the end of manuscript production but misidentifies the reason that it ended.": "Tempting because Lindqvist does dispute Text 1, but she denies that manuscript production ended in that period, saying scribal workshops 'continued to flourish.'"
+      "underestimates how quickly printed books came to outnumber manuscripts in fifteenth-century libraries.": "It addresses the speed of print's rise, but Lindqvist argues the change was slower and less decisive than Text 1 claims, not faster.",
+      "wrongly assumes that scribes could produce books more cheaply than early printers could.": "Cost seems relevant to the contest between methods, but neither text claims scribes were cheaper; Text 1 stresses print's speed, and Lindqvist stresses prestige.",
+      "correctly dates the end of manuscript production but misidentifies the reason that it ended.": "Lindqvist does dispute Text 1, but she denies that manuscript production ended in that period, saying scribal workshops 'continued to flourish.'"
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4975,9 +4975,9 @@
       "What is the 'dark, lumpy crust' really made of?"
     ],
     "wrong_reasons": {
-      "By agreeing that few living things can survive the heat of the desert": "Tempting because Text 2 mentions the hot day, but it says many animals survive by resting in burrows, so it rejects the idea that little survives.",
+      "By agreeing that few living things can survive the heat of the desert": "Text 2 mentions the hot day, but it says many animals survive by resting in burrows, so it rejects the idea that little survives.",
       "By arguing that deserts receive more rain than most visitors believe": "Tempting as a reason a desert might hold life, but neither text mentions rainfall.",
-      "By warning that visitors damage the desert when they walk off the trails": "Tempting because Text 2 does ask walkers to stay on trails, but that advice is a side detail; it does not respond to the impression that the desert is lifeless."
+      "By warning that visitors damage the desert when they walk off the trails": "Text 2 does ask walkers to stay on trails, but that advice is a side detail; it does not respond to the impression that the desert is lifeless."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5007,9 +5007,9 @@
       "Does Whitcomb say the solos were rehearsed? Where does she place the creativity?"
     ],
     "wrong_reasons": {
-      "By claiming that most jazz solos are actually written out in advance and memorized": "Tempting because recurring phrases might suggest preparation, but Whitcomb 'does not conclude that the solos were rehearsed.'",
-      "By agreeing that skilled improvisers avoid repeating any phrase they have played before": "Tempting because it matches the admirers' 'never to be heard again,' but Whitcomb found phrases repeated 'across performances years apart.'",
-      "By suggesting that improvisation is less important to jazz than the band's chords are": "Tempting because Text 1 mentions the band's chords, but neither text compares the importance of chords and improvisation."
+      "By claiming that most jazz solos are actually written out in advance and memorized": "Recurring phrases might suggest preparation, but Whitcomb 'does not conclude that the solos were rehearsed.'",
+      "By agreeing that skilled improvisers avoid repeating any phrase they have played before": "It matches the admirers' 'never to be heard again,' but Whitcomb found phrases repeated 'across performances years apart.'",
+      "By suggesting that improvisation is less important to jazz than the band's chords are": "Text 1 mentions the band's chords, but neither text compares the importance of chords and improvisation."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5039,9 +5039,9 @@
       "According to Kessler, what has a river 'locked between armored banks' stopped doing?"
     ],
     "wrong_reasons": {
-      "She would accept its goal of a stable channel but object that armoring banks with rock is too costly to justify.": "Tempting because Kessler criticizes bank armoring, but she rejects the goal of a fixed channel itself and never mentions cost.",
-      "She would argue that it underestimates the harm that floods do to the plants and animals of the floodplain.": "Tempting because the conventional wisdom treats floods as disorder, but Kessler says floods spread 'sediment and seeds' and carve habitat, so she sees them as beneficial.",
-      "She would contend that it is sound for large rivers but mistaken when applied to small streams.": "Tempting because it sounds like a careful qualification, but Kessler never distinguishes rivers by size; her argument applies to rivers generally."
+      "She would accept its goal of a stable channel but object that armoring banks with rock is too costly to justify.": "Kessler criticizes bank armoring, but she rejects the goal of a fixed channel itself and never mentions cost.",
+      "She would argue that it underestimates the harm that floods do to the plants and animals of the floodplain.": "The conventional wisdom treats floods as disorder, but Kessler says floods spread 'sediment and seeds' and carve habitat, so she sees them as beneficial.",
+      "She would contend that it is sound for large rivers but mistaken when applied to small streams.": "It sounds like a careful qualification, but Kessler never distinguishes rivers by size; her argument applies to rivers generally."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5071,9 +5071,9 @@
       "What does Text 2 say the linocut artist must remember?"
     ],
     "wrong_reasons": {
-      "Linoleum is easier for beginners to carve than wood is.": "Tempting because Text 2 says beginners 'often find' linoleum easier, but Text 1 says nothing about how hard wood is to carve.",
-      "Artists should avoid printing materials that have a visible grain.": "Tempting because Text 2 points out linoleum's lack of grain, but Text 1 says many artists 'enjoy' the grain, so the authors would not agree on this.",
-      "The grain of the block usually shows in the finished print.": "Tempting because Text 1 says grain shows in woodcuts, but Text 2 says linoleum 'has no grain,' so it would not apply to linocuts."
+      "Linoleum is easier for beginners to carve than wood is.": "Text 2 says beginners 'often find' linoleum easier, but Text 1 says nothing about how hard wood is to carve.",
+      "Artists should avoid printing materials that have a visible grain.": "Text 2 points out linoleum's lack of grain, but Text 1 says many artists 'enjoy' the grain, so the authors would not agree on this.",
+      "The grain of the block usually shows in the finished print.": "Text 1 says grain shows in woodcuts, but Text 2 says linoleum 'has no grain,' so it would not apply to linocuts."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5103,9 +5103,9 @@
       "What does Osei's comparison to a job interview suggest about how students switch styles?"
     ],
     "wrong_reasons": {
-      "By agreeing that texting shortcuts are appearing more and more often in students' essays": "Tempting because it echoes the commentators' fear, but Osei's study found shortcuts in fewer than one percent of essays.",
-      "By arguing that the rules of formal writing should be changed to accept texting shortcuts": "Tempting because Osei defends texting, but she never suggests changing the rules of formal writing; she says students already follow them.",
-      "By claiming that young people rarely use shortcuts when they send text messages": "Tempting because Osei says students are not hurt by texting, but she assumes they do text in their casual style; she studied students who 'texted heavily.'"
+      "By agreeing that texting shortcuts are appearing more and more often in students' essays": "It echoes the commentators' fear, but Osei's study found shortcuts in fewer than one percent of essays.",
+      "By arguing that the rules of formal writing should be changed to accept texting shortcuts": "Osei defends texting, but she never suggests changing the rules of formal writing; she says students already follow them.",
+      "By claiming that young people rarely use shortcuts when they send text messages": "Osei says students are not hurt by texting, but she assumes they do text in their casual style; she studied students who 'texted heavily.'"
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -5135,9 +5135,9 @@
       "According to Text 2, what were consumers paying for when they bought the streamlined sharpener?"
     ],
     "wrong_reasons": {
-      "By arguing that ornamented objects are generally easier to use than plain ones": "Tempting because Text 2 complicates Text 1's dismissal of ornament, but it never claims ornament makes objects easier to use.",
-      "By agreeing that streamlined shapes improved the performance of the household objects to which they were applied": "Tempting because streamlining is linked to 'speed' and 'efficiency,' but Text 2 stresses that the sharpener's shape served no aerodynamic purpose, since it sat bolted to a desk.",
-      "By contending that designers of the 1930s rejected the principle because they found plain surfaces unappealing": "Tempting because the 1930s designers seem to break the principle, but Text 2 says they adopted a functional look for its associations, not that they disliked plain surfaces."
+      "By arguing that ornamented objects are generally easier to use than plain ones": "Text 2 complicates Text 1's dismissal of ornament, but it never claims ornament makes objects easier to use.",
+      "By agreeing that streamlined shapes improved the performance of the household objects to which they were applied": "Streamlining is linked to 'speed' and 'efficiency,' but Text 2 stresses that the sharpener's shape served no aerodynamic purpose, since it sat bolted to a desk.",
+      "By contending that designers of the 1930s rejected the principle because they found plain surfaces unappealing": "The 1930s designers seem to break the principle, but Text 2 says they adopted a functional look for its associations, not that they disliked plain surfaces."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

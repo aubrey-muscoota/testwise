@@ -2,7 +2,7 @@
 // POST /api/profile, then the plan is built backwards from the date. The same
 // three steps open one at a time from Me to edit.
 import React, { useEffect, useRef, useState } from "react";
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { api, Exam, getExam, Profile } from "../api";
 import { daysBetween, isoDay, longDay, monthName, parseDay, plural, todayIso } from "../copy";
 import { Icon } from "../components/icons";
@@ -61,7 +61,7 @@ export function DatePick({ value, onChange }: { value: string | null; onChange: 
         <IconButton name="chevron" label="Next month" onPress={() => canFwd && shift(1)} tone={canFwd ? color.ink : color.rule} />
       </View>
       <View style={s.calRow} {...{ "aria-hidden": true }}>
-        {WEEKDAYS.map((d, i) => <Text key={i} style={[type.small, s.calCell, { textAlign: "center" }]}>{d}</Text>)}
+        {WEEKDAYS.map((d, i) => <Text key={i} style={[type.small, s.calWeekday]}>{d}</Text>)}
       </View>
       {weeks.map((w, wi) => (
         <View key={wi} style={s.calRow}>
@@ -143,7 +143,7 @@ export function ScoreStepper({ value, onChange }: { value: number; onChange: (n:
       disabled={disabled}
       accessibilityRole="button"
       accessibilityLabel={label}
-      style={({ pressed }) => [s.step, pressed && { backgroundColor: color.rule }]}
+      style={({ pressed }) => [s.step, pressed && { backgroundColor: color.azureWash }]}
     >
       <Icon name={name} size={26} color={disabled ? color.inkSoft : color.ink} strokeWidth={2} />
     </Pressable>
@@ -164,7 +164,7 @@ export function ScoreStepper({ value, onChange }: { value: number; onChange: (n:
         {btn(1, "plus", `Higher, ${r.step} points`, value >= r.max)}
       </View>
       <Text style={[type.small, tabular, { textAlign: "center", marginTop: space(1) }]}>
-        {r.min} to {r.max}. Hold a button to move faster.
+        {r.min}–{r.max}
       </Text>
     </View>
   );
@@ -189,7 +189,7 @@ export function MinutesChoice({ value, onChange }: { value: number; onChange: (m
             style={({ pressed }) => [s.minRow, on && { backgroundColor: color.azureWash }, pressed && !on && { backgroundColor: color.paperDeep }]}
           >
             <View style={{ flex: 1 }}>
-              <Text style={[type.label, { fontSize: 17, lineHeight: 23 }]}>{m} minutes</Text>
+              <Text style={[type.label, tabular]}>{m} minutes</Text>
               <Text style={[type.small, { marginTop: 2 }]}>{minutesDetail(m)}</Text>
             </View>
             <View style={{ width: 24 }}>{on && <Icon name="check" color={color.azureInk} strokeWidth={2.2} />}</View>
@@ -202,15 +202,11 @@ export function MinutesChoice({ value, onChange }: { value: number; onChange: (m
 
 // ─── Flow ────────────────────────────────────────────────────────────────────
 
+// Socrates' question is the screen's question: no form-label title under it.
 const LINES: Record<Field, string> = {
-  date: "When's your test? I'll plan backwards from that day, so every skill gets started in time.",
-  score: "Do you have a score in mind? It's fine if not.",
-  minutes: "How much time can you give me on a normal day? Be honest; ten good minutes beat forty skipped ones.",
-};
-const TITLES: Record<Field, string> = {
-  date: "Test date",
-  score: "Target score",
-  minutes: "Time each day",
+  date: "When's your test? I'll plan backwards from it.",
+  score: "Do you have a score in mind?",
+  minutes: "How long can you study on a normal school day?",
 };
 
 export function Onboarding({ initial, onDone, only, onCancel }: {
@@ -221,6 +217,8 @@ export function Onboarding({ initial, onDone, only, onCancel }: {
   onCancel?: () => void;
 }) {
   const exam = getExam();
+  // Short phones: a smaller Socrates, so the whole calendar fits above the button.
+  const shortScreen = useWindowDimensions().height < 720;
   const steps: Field[] = only ? [only] : ["date", "score", "minutes"];
   const [i, setI] = useState(0);
   const step = steps[i];
@@ -296,7 +294,7 @@ export function Onboarding({ initial, onDone, only, onCancel }: {
     primary = { title: only ? "Save" : busy ? "Building your plan…" : "Build my plan", disabled: busy, onPress: () => nextStep() };
   }
 
-  const line = step === "date" && !only ? LINES.date.replace("your test", `your ${short}`) : LINES[step];
+  const line = step === "date" ? LINES.date.replace("your test", `your ${short}`) : LINES[step];
 
   return (
     <View style={{ flex: 1 }}>
@@ -305,8 +303,8 @@ export function Onboarding({ initial, onDone, only, onCancel }: {
           <IconButton name="back" label="Back" onPress={() => onCancel?.()} style={{ marginLeft: -8 }} />
         ) : (
           <>
-            {i > 0 ? <IconButton name="back" label="Previous step" onPress={() => setI(i - 1)} style={{ marginLeft: -8 }} /> : <View style={{ width: 40 }} />}
-            <View style={{ flex: 1, flexDirection: "row", marginHorizontal: space(1.5) }}>
+            {i > 0 && <IconButton name="back" label="Previous step" onPress={() => setI(i - 1)} style={{ marginLeft: -8 }} />}
+            <View style={{ flex: 1, flexDirection: "row", marginLeft: i > 0 ? space(1.5) : 0, marginRight: space(1.5) }}>
               <ProgressBar value={(i + 1) / steps.length} height={6} />
             </View>
             <Text style={[type.small, tabular, { width: 40, textAlign: "right" }]}>{i + 1} of {steps.length}</Text>
@@ -315,8 +313,10 @@ export function Onboarding({ initial, onDone, only, onCancel }: {
       </View>
       <ScrollView contentContainerStyle={s.scroll} keyboardShouldPersistTaps="handled">
         <Rise key={step}>
-          <SocratesLine text={line} size={72} mood="listening" />
-          <Text style={[type.title, { marginTop: space(3), marginBottom: space(2) }]} accessibilityRole="header">{TITLES[step]}</Text>
+          <View accessibilityRole="header">
+            <SocratesLine text={line} size={shortScreen ? 56 : 72} mood="listening" />
+          </View>
+          <View style={{ height: shortScreen ? space(2) : space(3) }} />
           {body}
           {error && <Text style={[type.body, { color: color.brick, marginTop: space(2) }]} accessibilityRole="alert">{error}</Text>}
         </Rise>
@@ -338,6 +338,7 @@ const s = StyleSheet.create({
   calHead: { flexDirection: "row", alignItems: "center", marginBottom: space(1) },
   calRow: { flexDirection: "row", justifyContent: "space-between" },
   calCell: { width: CELL, alignItems: "center", justifyContent: "center", minHeight: CELL },
+  calWeekday: { width: CELL, minHeight: 24, textAlign: "center" },
   day: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center" },
   dayText: { fontFamily: font.bold, fontSize: 16, color: color.ink },
   scoreRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: space(2) },

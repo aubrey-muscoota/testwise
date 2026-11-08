@@ -3144,9 +3144,9 @@
       "If a voter shows up but skips the local races, what does the turnout figure fail to capture?"
     ],
     "wrong_reasons": {
-      "how many Corland residents are legally eligible to vote in local elections.": "Tempting because eligibility sounds like a turnout issue, but the passage says nothing about who is eligible; the problem is what voters did once they had the ballot.",
-      "the influence that national campaigns exert on the choices voters make in local races.": "Tempting because the local races now share a ballot with national ones, but the passage is about whether voters marked local contests at all, not how national campaigns shaped the choices they made.",
-      "the role that indifference to local affairs played in the low turnout of separately held local elections.": "Tempting because indifference is named in the first sentence, but the blank ballots suggest indifference to local races is real, so the evidence would understate, not overstate, its role."
+      "how many Corland residents are legally eligible to vote in local elections.": "Eligibility sounds like a turnout issue, but the passage says nothing about who is eligible; the problem is what voters did once they had the ballot.",
+      "the influence that national campaigns exert on the choices voters make in local races.": "The local races now share a ballot with national ones, but the passage is about whether voters marked local contests at all, not how national campaigns shaped the choices they made.",
+      "the role that indifference to local affairs played in the low turnout of separately held local elections.": "Indifference is named in the first sentence, but the blank ballots suggest indifference to local races is real, so the evidence would understate, not overstate, its role."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3175,9 +3175,9 @@
       "What happens to the log over the centuries?"
     ],
     "wrong_reasons": {
-      "hemlocks are unable to grow anywhere except on fallen logs.": "Tempting because the passage praises nurse logs, but it says seedlings 'often' grow on them, not that they can grow nowhere else.",
-      "mosses and ferns help hemlock seedlings survive on the forest floor.": "Tempting because mosses and ferns are mentioned, but the passage presents them as competition that hurts seedlings.",
-      "people planted the trees in a row on purpose.": "Tempting because rows often suggest planting, but the passage gives a natural explanation for rows and never mentions people."
+      "hemlocks are unable to grow anywhere except on fallen logs.": "The passage praises nurse logs, but it says seedlings 'often' grow on them, not that they can grow nowhere else.",
+      "mosses and ferns help hemlock seedlings survive on the forest floor.": "Mosses and ferns are mentioned, but the passage presents them as competition that hurts seedlings.",
+      "people planted the trees in a row on purpose.": "Rows often suggest planting, but the passage gives a natural explanation for rows and never mentions people."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3207,9 +3207,9 @@
       "What did those students do that the others did not?"
     ],
     "wrong_reasons": {
-      "students in the one-week group were less interested in math than students in the one-day group were.": "Tempting because the groups scored differently, but the study never measures interest, and the difference is explained by what students did with feedback.",
-      "written comments are less helpful to students than numerical grades are.": "Tempting because grades and comments both appear, but the study compares timing, not comments versus grades.",
-      "returning homework after a week lowers test scores no matter how students respond to the comments.": "Tempting because the one-week group scored lower on average, but one-day students who ignored feedback scored the same, so timing alone did not make the difference."
+      "students in the one-week group were less interested in math than students in the one-day group were.": "The groups scored differently, but the study never measures interest, and the difference is explained by what students did with feedback.",
+      "written comments are less helpful to students than numerical grades are.": "Grades and comments both appear, but the study compares timing, not comments versus grades.",
+      "returning homework after a week lowers test scores no matter how students respond to the comments.": "The one-week group scored lower on average, but one-day students who ignored feedback scored the same, so timing alone did not make the difference."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3239,8 +3239,8 @@
       "If that thing turns out to be the same in both, what can it no longer explain?"
     ],
     "wrong_reasons": {
-      "indicates that silica has no effect on how viscous magma is at any volcano.": "Tempting because the Isorna data clash with the silica explanation, but one volcano cannot show that silica never affects viscosity anywhere; this overreaches.",
-      "shows that Isorna's mild eruptions released more gas than its explosive eruptions did.": "Tempting because gas is part of the mechanism, but the passage gives no measurements of gas released, so this goes beyond the evidence.",
+      "indicates that silica has no effect on how viscous magma is at any volcano.": "The Isorna data clash with the silica explanation, but one volcano cannot show that silica never affects viscosity anywhere; this overreaches.",
+      "shows that Isorna's mild eruptions released more gas than its explosive eruptions did.": "Gas is part of the mechanism, but the passage gives no measurements of gas released, so this goes beyond the evidence.",
       "suggests that the pumice layers on Isorna's flanks were produced by a different volcano.": "Tempting as a way to explain away the puzzle, but nothing in the passage suggests another source, and the layers are described as Isorna's own."
     },
     "check": null,
@@ -3270,9 +3270,9 @@
       "Where did maggots appear, and what could reach the meat there?"
     ],
     "wrong_reasons": {
-      "meat rots only when it is left completely open to the air.": "Tempting because the jars differed in openness, but the cloth let air in, so air was not the difference.",
-      "flies are attracted mainly to meat that is covered with cloth.": "Tempting because flies matter in the experiment, but flies landed on the open meat, not the covered meat.",
-      "the cloth kept the meat in the covered jars from rotting.": "Tempting because no maggots appeared in covered jars, but the passage never says the covered meat did not rot."
+      "meat rots only when it is left completely open to the air.": "The jars differed in openness, but the cloth let air in, so air was not the difference.",
+      "flies are attracted mainly to meat that is covered with cloth.": "Flies matter in the experiment, but flies landed on the open meat, not the covered meat.",
+      "the cloth kept the meat in the covered jars from rotting.": "No maggots appeared in covered jars, but the passage never says the covered meat did not rot."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3302,9 +3302,9 @@
       "Why would people cut coins into halves and quarters?"
     ],
     "wrong_reasons": {
-      "the monastery's record keepers deliberately falsified the rent rolls to hide payments made in coin.": "Tempting because the coins challenge the old view, but nothing suggests dishonest records; the rolls can be accurate about rent and still incomplete about daily life.",
-      "Wexmoor's peasants paid their rents mainly in coin rather than in goods and labor.": "Tempting because coins were common, but the rent rolls still record rent paid in goods and labor, and the coins say nothing about rent.",
-      "silver coins were too valuable for Wexmoor's peasants to use in ordinary transactions.": "Tempting because silver sounds valuable, but the coins were low in value and cut up for small change, which points to everyday use."
+      "the monastery's record keepers deliberately falsified the rent rolls to hide payments made in coin.": "The coins challenge the old view, but nothing suggests dishonest records; the rolls can be accurate about rent and still incomplete about daily life.",
+      "Wexmoor's peasants paid their rents mainly in coin rather than in goods and labor.": "Coins were common, but the rent rolls still record rent paid in goods and labor, and the coins say nothing about rent.",
+      "silver coins were too valuable for Wexmoor's peasants to use in ordinary transactions.": "Silver sounds valuable, but the coins were low in value and cut up for small change, which points to everyday use."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3334,7 +3334,7 @@
       "Does Moravec's evidence show grass is irrelevant, or that it is not the only factor?"
     ],
     "wrong_reasons": {
-      "wrongly treated the condition of the pasture as relevant to Tahrani decisions about when to move.": "Tempting because Moravec complicates the grass explanation, but her evidence shows grass is not the whole story, not that it plays no role; this overreaches.",
+      "wrongly treated the condition of the pasture as relevant to Tahrani decisions about when to move.": "Moravec complicates the grass explanation, but her evidence shows grass is not the whole story, not that it plays no role; this overreaches.",
       "described Tahrani migration accurately for an earlier period, even if not for the period Moravec studied.": "Tempting as a way to reconcile the two accounts, but the passage gives no evidence that Tahrani behavior changed over time.",
       "mistakenly assumed that Tahrani households migrate from season to season at all.": "Tempting if the criticism is read too broadly, but Moravec traveled with migrating households, so migration itself is not in question."
     },
@@ -3365,9 +3365,9 @@
       "Which ancient system was built on that number?"
     ],
     "wrong_reasons": {
-      "the Babylonians invented clocks that showed both minutes and seconds.": "Tempting because the passage mentions minutes and seconds, but it never says the Babylonians built clocks.",
-      "a number system based on 60 is easier than one based on 10 for every kind of calculation.": "Tempting because 60 is called convenient for splitting into parts, but that does not make it easier for every kind of calculation.",
-      "the Babylonians did not know how to count by tens.": "Tempting because they chose 60 over 10, but choosing a base says nothing about whether they could count by tens; 10 even appears in the list of numbers that divide 60."
+      "the Babylonians invented clocks that showed both minutes and seconds.": "The passage mentions minutes and seconds, but it never says the Babylonians built clocks.",
+      "a number system based on 60 is easier than one based on 10 for every kind of calculation.": "60 is called convenient for splitting into parts, but that does not make it easier for every kind of calculation.",
+      "the Babylonians did not know how to count by tens.": "They chose 60 over 10, but choosing a base says nothing about whether they could count by tens; 10 even appears in the list of numbers that divide 60."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3396,9 +3396,9 @@
       "What two things does a stain not reveal?"
     ],
     "wrong_reasons": {
-      "the total number of emperor penguins is larger than scientists had previously believed.": "Tempting because new sites seem to mean more penguins, but the team says stains do not show numbers, and the birds could have come from known colonies.",
-      "emperor penguins have recently abandoned the sites where colonies were previously recorded.": "Tempting because new sites might suggest the birds moved, but the passage says nothing about the old sites being empty.",
-      "chicks hatched successfully at each of the newly identified sites.": "Tempting because these are breeding colonies, but the team explicitly says stains do not show whether chicks hatched."
+      "the total number of emperor penguins is larger than scientists had previously believed.": "New sites seem to mean more penguins, but the team says stains do not show numbers, and the birds could have come from known colonies.",
+      "emperor penguins have recently abandoned the sites where colonies were previously recorded.": "New sites might suggest the birds moved, but the passage says nothing about the old sites being empty.",
+      "chicks hatched successfully at each of the newly identified sites.": "These are breeding colonies, but the team explicitly says stains do not show whether chicks hatched."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3428,9 +3428,9 @@
       "If a reader sees four different verbs instead of one, what can that reader no longer notice?"
     ],
     "wrong_reasons": {
-      "made their versions less faithful to the events of the novel's plot.": "Tempting because the translations are being criticized for unfaithfulness, but the plot is unchanged; the loss is a pattern of wording, not events.",
-      "reflected a misunderstanding of what the repeated verb means in Lithuanian.": "Tempting because the dispute is about one verb, but 'walked,' 'strolled,' and the rest all carry its basic meaning; the issue is the pattern, not the meaning.",
-      "improved the novel by removing repetition that the author had included carelessly.": "Tempting because it echoes the reviewers' view, but Kessler argues the repetition is deliberate and meaningful, the opposite of careless."
+      "made their versions less faithful to the events of the novel's plot.": "The translations are being criticized for unfaithfulness, but the plot is unchanged; the loss is a pattern of wording, not events.",
+      "reflected a misunderstanding of what the repeated verb means in Lithuanian.": "The dispute is about one verb, but 'walked,' 'strolled,' and the rest all carry its basic meaning; the issue is the pattern, not the meaning.",
+      "improved the novel by removing repetition that the author had included carelessly.": "It echoes the reviewers' view, but Kessler argues the repetition is deliberate and meaningful, the opposite of careless."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3459,9 +3459,9 @@
       "How would sharing one time across a zone help with that problem?"
     ],
     "wrong_reasons": {
-      "make noon fall at the exact moment the Sun is highest over every town.": "Tempting because noon and the Sun are discussed, but standard zones move most towns away from Sun-based noon, the opposite of this.",
-      "allow their trains to travel faster between towns.": "Tempting because railroads care about speed, but the passage is about schedules and clocks, not train speed.",
-      "reduce the number of towns where their trains stopped.": "Tempting because the problem involved many stops, but changing clocks does nothing to the number of stops."
+      "make noon fall at the exact moment the Sun is highest over every town.": "Noon and the Sun are discussed, but standard zones move most towns away from Sun-based noon, the opposite of this.",
+      "allow their trains to travel faster between towns.": "Railroads care about speed, but the passage is about schedules and clocks, not train speed.",
+      "reduce the number of towns where their trains stopped.": "The problem involved many stops, but changing clocks does nothing to the number of stops."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3490,9 +3490,9 @@
       "Why does the passage mention that the islands face similar waves and storms?"
     ],
     "wrong_reasons": {
-      "parrotfish are the only source of sand on tropical beaches.": "Tempting because parrotfish produce a lot of sand, but the passage never says they are the only source; 'may have contributed' is as far as the evidence goes.",
-      "storms do not cause beaches to erode on islands like Meru.": "Tempting because storms are ruled out as the difference between islands, but that does not mean storms cause no erosion at all.",
-      "parrotfish prefer to feed on living coral rather than on algae.": "Tempting because parrotfish eat coral bits, but the passage says they scrape algae from dead coral."
+      "parrotfish are the only source of sand on tropical beaches.": "Parrotfish produce a lot of sand, but the passage never says they are the only source; 'may have contributed' is as far as the evidence goes.",
+      "storms do not cause beaches to erode on islands like Meru.": "Storms are ruled out as the difference between islands, but that does not mean storms cause no erosion at all.",
+      "parrotfish prefer to feed on living coral rather than on algae.": "Parrotfish eat coral bits, but the passage says they scrape algae from dead coral."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3522,9 +3522,9 @@
       "What advantage of ion engines did the engineers give up, and what did they gain?"
     ],
     "wrong_reasons": {
-      "an ion engine would have consumed more propellant than chemical thrusters would.": "Tempting because the engineers rejected ion engines, but the passage says ion engines use propellant far more efficiently; the problem was thrust, not consumption.",
-      "the moon's lack of an atmosphere would have kept an ion engine from operating.": "Tempting because 'airless' is mentioned, but nothing says ion engines need air; the airless moon only explains why the lander must use engines to slow down.",
-      "ion engines would be unsuitable for any part of a mission to a moon.": "Tempting because ion engines were rejected for the descent, but the choice was 'for this phase' only; ion engines could still serve in the long cruise."
+      "an ion engine would have consumed more propellant than chemical thrusters would.": "The engineers rejected ion engines, but the passage says ion engines use propellant far more efficiently; the problem was thrust, not consumption.",
+      "the moon's lack of an atmosphere would have kept an ion engine from operating.": "'Airless' is mentioned, but nothing says ion engines need air; the airless moon only explains why the lander must use engines to slow down.",
+      "ion engines would be unsuitable for any part of a mission to a moon.": "Ion engines were rejected for the descent, but the choice was 'for this phase' only; ion engines could still serve in the long cruise."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3554,9 +3554,9 @@
       "Does the passage say any plant cannot survive alone?"
     ],
     "wrong_reasons": {
-      "corn cannot grow at all without beans planted nearby.": "Tempting because beans add nitrogen that helps corn, but helping is not the same as being necessary; this overreaches.",
-      "squash plants need more sunlight than corn plants do.": "Tempting because squash leaves shade the ground, but the passage never compares how much sunlight the crops need.",
-      "weeds help keep the soil moist for young plants.": "Tempting because moist soil is mentioned, but the passage says squash keeps soil moist and blocks weeds, treating weeds as a problem."
+      "corn cannot grow at all without beans planted nearby.": "Beans add nitrogen that helps corn, but helping is not the same as being necessary; this overreaches.",
+      "squash plants need more sunlight than corn plants do.": "Squash leaves shade the ground, but the passage never compares how much sunlight the crops need.",
+      "weeds help keep the soil moist for young plants.": "Moist soil is mentioned, but the passage says squash keeps soil moist and blocks weeds, treating weeds as a problem."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3586,9 +3586,9 @@
       "Are those admissions about Icarus's choices or about Daedalus's?"
     ],
     "wrong_reasons": {
-      "from Icarus to the gods who control the Sun.": "Tempting because myths often involve gods, but the passage never mentions gods; the Sun matters only as a source of heat.",
-      "onto the unusually hot weather on the day of the escape.": "Tempting because heat melts the wax, but the passage says nothing about unusual weather; the point is that Daedalus never tested or warned about heat.",
-      "away from Daedalus by showing how carefully he warned his son.": "Tempting because Daedalus did warn Icarus in the myth, but the novel stresses what he failed to tell him, which adds to his blame rather than removing it."
+      "from Icarus to the gods who control the Sun.": "Myths often involve gods, but the passage never mentions gods; the Sun matters only as a source of heat.",
+      "onto the unusually hot weather on the day of the escape.": "Heat melts the wax, but the passage says nothing about unusual weather; the point is that Daedalus never tested or warned about heat.",
+      "away from Daedalus by showing how carefully he warned his son.": "Daedalus did warn Icarus in the myth, but the novel stresses what he failed to tell him, which adds to his blame rather than removing it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3617,9 +3617,9 @@
       "When, according to seasoned spectators, does the figure seem most alive?"
     ],
     "wrong_reasons": {
-      "would be still more convincing if the puppeteers performed behind a screen.": "Tempting because it matches the newcomers' assumption, but the passage reports that the illusion works well with the handlers in view and gives no reason to think hiding them would help.",
-      "is experienced only by spectators who have themselves trained as puppeteers.": "Tempting because 'seasoned spectators' sounds like experts, but 'seasoned' means experienced at watching; the passage never says they trained as puppeteers or that only trained viewers feel the illusion.",
-      "arises because audiences cannot see the puppeteers clearly from their seats.": "Tempting because the operators 'fade from awareness,' but the passage says they remain plainly visible; they fade from attention, not from sight."
+      "would be still more convincing if the puppeteers performed behind a screen.": "It matches the newcomers' assumption, but the passage reports that the illusion works well with the handlers in view and gives no reason to think hiding them would help.",
+      "is experienced only by spectators who have themselves trained as puppeteers.": "'Seasoned spectators' sounds like experts, but 'seasoned' means experienced at watching; the passage never says they trained as puppeteers or that only trained viewers feel the illusion.",
+      "arises because audiences cannot see the puppeteers clearly from their seats.": "The operators 'fade from awareness,' but the passage says they remain plainly visible; they fade from attention, not from sight."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3648,9 +3648,9 @@
       "What would you expect to find if the beads had been made at the site?"
     ],
     "wrong_reasons": {
-      "made the beads themselves from shells they collected nearby.": "Tempting because the beads were found at the site, but there are no raw shells or tools, and the snail does not live nearby.",
+      "made the beads themselves from shells they collected nearby.": "The beads were found at the site, but there are no raw shells or tools, and the snail does not live nearby.",
       "lived at a time when the ocean reached all the way to the site.": "Tempting as a way to explain shells far inland, but the passage gives no evidence of an ancient coastline.",
-      "valued shell beads more highly than any of their other possessions.": "Tempting because beads can be prized, but the passage says nothing about how they compared with other possessions."
+      "valued shell beads more highly than any of their other possessions.": "Beads can be prized, but the passage says nothing about how they compared with other possessions."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3679,9 +3679,9 @@
       "What natural event would expose seeds in the soil to both of those things?"
     ],
     "wrong_reasons": {
-      "in places where the soil has not been disturbed for many decades.": "Tempting because seeds stay dormant for decades, but staying dormant is what they do without heat and smoke, not when they sprout.",
-      "in shaded areas beneath fully grown Ardella shrubs.": "Tempting because seeds may fall near the parent plant, but nothing about shade supplies heat and smoke.",
-      "in places reached by smoke drifting from distant fires.": "Tempting because smoke chemicals matter, but drifting smoke alone brings no heat, and smoke alone rarely triggered sprouting."
+      "in places where the soil has not been disturbed for many decades.": "Seeds stay dormant for decades, but staying dormant is what they do without heat and smoke, not when they sprout.",
+      "in shaded areas beneath fully grown Ardella shrubs.": "Seeds may fall near the parent plant, but nothing about shade supplies heat and smoke.",
+      "in places reached by smoke drifting from distant fires.": "Smoke chemicals matter, but drifting smoke alone brings no heat, and smoke alone rarely triggered sprouting."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3711,9 +3711,9 @@
       "What does an undisturbed shale layer resting on top of the dike tell you about when the shale formed?"
     ],
     "wrong_reasons": {
-      "the lowest sandstone layer was deposited about 140 million years ago and the upper two more recently.": "Tempting because 140 million years is the only date given, but that is the dike's age; the principle shows only that all three sandstones are older than the dike.",
-      "the shale was deposited before the dike formed, since the molten rock was unable to break through it.": "Tempting because the dike stops at the shale, but an undisturbed layer sitting on top of the dike was most likely deposited later; nothing suggests shale blocks molten rock.",
-      "the three sandstone layers were deposited over a span of roughly 140 million years.": "Tempting because it reuses the number, but 140 million years ago is a single point in time, not the length of time the sandstones took to form."
+      "the lowest sandstone layer was deposited about 140 million years ago and the upper two more recently.": "140 million years is the only date given, but that is the dike's age; the principle shows only that all three sandstones are older than the dike.",
+      "the shale was deposited before the dike formed, since the molten rock was unable to break through it.": "The dike stops at the shale, but an undisturbed layer sitting on top of the dike was most likely deposited later; nothing suggests shale blocks molten rock.",
+      "the three sandstone layers were deposited over a span of roughly 140 million years.": "It reuses the number, but 140 million years ago is a single point in time, not the length of time the sandstones took to form."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3742,9 +3742,9 @@
       "If something outside helps hold the walls up, what limits are removed?"
     ],
     "wrong_reasons": {
-      "be built entirely without stone.": "Tempting because the design changed, but the buttresses themselves are stone, and the passage never suggests giving up stone.",
-      "have smaller windows that let in less light than before.": "Tempting because windows are discussed, but small windows were the old limitation that buttresses helped remove.",
-      "stand without needing walls at all.": "Tempting because buttresses take over some of the work, but they press against walls, so the walls are still needed."
+      "be built entirely without stone.": "The design changed, but the buttresses themselves are stone, and the passage never suggests giving up stone.",
+      "have smaller windows that let in less light than before.": "Windows are discussed, but small windows were the old limitation that buttresses helped remove.",
+      "stand without needing walls at all.": "Buttresses take over some of the work, but they press against walls, so the walls are still needed."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3774,7 +3774,7 @@
     ],
     "wrong_reasons": {
       "medieval readers preferred to read standing at the shelves rather than sitting at desks.": "The chains reached the reading surface, so the passage never says readers had to stand at the shelves; this picks up on the physical detail but invents a preference.",
-      "most medieval books were too heavy to be carried out of a library.": "Tempting because chains seem to make weight relevant, but the passage says the chains were there to stop books from leaving, not that books were too heavy to move.",
+      "most medieval books were too heavy to be carried out of a library.": "Chains seem to make weight relevant, but the passage says the chains were there to stop books from leaving, not that books were too heavy to move.",
       "copying books by hand became faster once libraries began chaining them.": "Mixes two details from the passage; nothing links chaining to the speed of copying."
     },
     "check": null,
@@ -4270,7 +4270,7 @@
     ],
     "wrong_reasons": {
       "had never existed anywhere except in her grandmother's imagination.": "Overreaches: the sea her grandmother described is still there, so the stories were not imaginary.",
-      "was a different town from the one where the bus had stopped.": "Tempting because Ana checks the sign twice, but checking it confirms she is in the right place.",
+      "was a different town from the one where the bus had stopped.": "Ana checks the sign twice, but checking it confirms she is in the right place.",
       "looked almost exactly as her grandmother had described it.": "Contradicts the description of new beige buildings and a gas station instead of white walls."
     },
     "check": null,
@@ -4393,8 +4393,8 @@
       "How does the grandmother react when the girl drops peas?"
     ],
     "wrong_reasons": {
-      "had hoped that, with enough summers of practice, the narrator would learn to shell peas more quickly.": "Tempting because adults often want children to improve, but nothing shows the grandmother trying to speed the girl up; she accepted the slowness.",
-      "had never noticed how many peas the narrator let fall into the grass.": "Tempting because she never scolded, but buying double the peas shows she knew exactly how many would be dropped.",
+      "had hoped that, with enough summers of practice, the narrator would learn to shell peas more quickly.": "Adults often want children to improve, but nothing shows the grandmother trying to speed the girl up; she accepted the slowness.",
+      "had never noticed how many peas the narrator let fall into the grass.": "She never scolded, but buying double the peas shows she knew exactly how many would be dropped.",
       "had secretly preferred to shell the peas herself but did not want to say so.": "Tempting as a way to explain her patience, but nothing suggests she wanted the task for herself; she kept handing the girl bowls."
     },
     "check": null,
@@ -4424,9 +4424,9 @@
       "Does the third group support or undercut the 'acoustic quality' explanation?"
     ],
     "wrong_reasons": {
-      "juvenile marsh finches cannot learn accurate song from recordings under any conditions.": "Tempting because plain recordings led to poor copies, but the responsive-recording group copied precisely, which directly contradicts this.",
-      "live adult males produce songs with a fuller acoustic quality than recordings can reproduce.": "Tempting because the passage raises this idea, but it raises it only to undercut it; identical recordings produced precise copies when they were responsive.",
-      "juveniles that call more often go on to learn a greater number of distinct songs than juveniles that call less often.": "Tempting because the juveniles' calls triggered playback, but the study measured how precise copies were, not how many songs were learned or how often birds called."
+      "juvenile marsh finches cannot learn accurate song from recordings under any conditions.": "Plain recordings led to poor copies, but the responsive-recording group copied precisely, which directly contradicts this.",
+      "live adult males produce songs with a fuller acoustic quality than recordings can reproduce.": "The passage raises this idea, but it raises it only to undercut it; identical recordings produced precise copies when they were responsive.",
+      "juveniles that call more often go on to learn a greater number of distinct songs than juveniles that call less often.": "The juveniles' calls triggered playback, but the study measured how precise copies were, not how many songs were learned or how often birds called."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4486,8 +4486,8 @@
       "What would the owners have needed to believe for their warning to make sense?"
     ],
     "wrong_reasons": {
-      "were justified, since shoppers who drive tend to spend more money on each visit.": "Tempting because it defends the owners, but the passage says nothing about how much any group spends.",
-      "show that Dunmore should eliminate parking on all of its commercial streets.": "Tempting because the bike lanes seem to have worked, but one street's survey can't support a citywide policy.",
+      "were justified, since shoppers who drive tend to spend more money on each visit.": "It defends the owners, but the passage says nothing about how much any group spends.",
+      "show that Dunmore should eliminate parking on all of its commercial streets.": "The bike lanes seem to have worked, but one street's survey can't support a citywide policy.",
       "reflected the fact that bus riders shop less often than people who drive.": "This contradicts the survey, which found that non-drivers, including bus riders, visited more often than drivers."
     },
     "check": null,
@@ -4519,8 +4519,8 @@
     ],
     "wrong_reasons": {
       "tend to serve wealthier customers than do independent stores located far from any chain outlet.": "Tempting as another way to explain higher prices, but the passage never mentions customers' wealth.",
-      "would earn noticeably higher revenues if they lowered their prices to match those of the nearby chain outlet.": "Tempting because it echoes the common assumption, but nothing in the survey shows what would happen if prices were lowered.",
-      "are largely unaffected when a chain outlet opens in their area.": "Tempting because revenues held steady, but these stores clearly changed how they operate, so they were affected."
+      "would earn noticeably higher revenues if they lowered their prices to match those of the nearby chain outlet.": "It echoes the common assumption, but nothing in the survey shows what would happen if prices were lowered.",
+      "are largely unaffected when a chain outlet opens in their area.": "Revenues held steady, but these stores clearly changed how they operate, so they were affected."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4549,7 +4549,7 @@
       "Why does the passage mention that both schools had a similar flu season?"
     ],
     "wrong_reasons": {
-      "the sanitizer stations prevented every kind of illness at Linden.": "Tempting because absences fell, but they fell by a fifth, not to zero, so 'every kind of illness' goes too far.",
+      "the sanitizer stations prevented every kind of illness at Linden.": "Absences fell, but they fell by a fifth, not to zero, so 'every kind of illness' goes too far.",
       "Ridgeway Elementary had a much worse flu season than Linden did.": "The passage says the two schools faced a similar flu season, so this contradicts it.",
       "students at Linden cleaned their hands less often after the stations arrived.": "Nothing suggests this; installing stations would make hand cleaning easier, not rarer."
     },
@@ -4580,9 +4580,9 @@
       "What is left on the pan after it is scrubbed to bare metal?"
     ],
     "wrong_reasons": {
-      "the pan has become even slicker than it was before scrubbing.": "Tempting because scrubbing sounds like cleaning, but the slick layer is the seasoning, which the scrubbing removed.",
+      "the pan has become even slicker than it was before scrubbing.": "Scrubbing sounds like cleaning, but the slick layer is the seasoning, which the scrubbing removed.",
       "the pan's oil molecules link together faster than usual.": "Molecules link together only when oil is heated; this pan was scrubbed and left wet, with no oil or heat.",
-      "the water drips off the pan more quickly than off a seasoned pan.": "Tempting because it mentions water, but the seasoning is what repels water, so bare iron would shed water less, not more."
+      "the water drips off the pan more quickly than off a seasoned pan.": "It mentions water, but the seasoning is what repels water, so bare iron would shed water less, not more."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4611,8 +4611,8 @@
       "Which set of plots would start the trial with more usable nitrogen?"
     ],
     "wrong_reasons": {
-      "the clover on the heavily fertilized plots formed more nodules, since well-nourished plants can better afford to supply sugars to their bacterial partners.": "Tempting because extra nutrients usually mean healthier plants, but the passage says legumes form fewer nodules when nitrogen is plentiful.",
-      "the clover on both sets of plots fixed similar amounts of nitrogen, since atmospheric nitrogen was equally available to all of them.": "Tempting because the air's nitrogen is the same everywhere, but the passage says how much a legume fixes depends on soil nitrogen.",
+      "the clover on the heavily fertilized plots formed more nodules, since well-nourished plants can better afford to supply sugars to their bacterial partners.": "Extra nutrients usually mean healthier plants, but the passage says legumes form fewer nodules when nitrogen is plentiful.",
+      "the clover on both sets of plots fixed similar amounts of nitrogen, since atmospheric nitrogen was equally available to all of them.": "The air's nitrogen is the same everywhere, but the passage says how much a legume fixes depends on soil nitrogen.",
       "the heavily fertilized plots ended the trial with less soil nitrogen than the lightly fertilized plots did.": "Nothing supports this; the heavy plots started with more nitrogen, and reduced fixation there wouldn't obviously leave them with less."
     },
     "check": null,
@@ -4642,7 +4642,7 @@
       "What changes when the lake is covered in ice?"
     ],
     "wrong_reasons": {
-      "the downwind towns usually receive even heavier snow than they did before.": "Tempting because ice seems colder and snowier, but the process depends on open water, which the ice removes.",
+      "the downwind towns usually receive even heavier snow than they did before.": "Ice seems colder and snowier, but the process depends on open water, which the ice removes.",
       "the lake's water becomes much warmer than the air above it.": "Freezing indicates the water has cooled, not warmed; this also wouldn't follow from ice covering the lake.",
       "winds stop blowing across the lake for the rest of winter.": "Nothing suggests ice stops wind; the passage is about where moisture comes from."
     },
@@ -4673,8 +4673,8 @@
       "Is the hand squeeze a gesture of disapproval or encouragement?"
     ],
     "wrong_reasons": {
-      "urging Theo to stay and work the orchard, making the same sacrifice she herself once made.": "Tempting because she did stay, but her wistful remark about Lisbon and the squeeze suggest she doesn't want him to repeat her sacrifice.",
-      "admitting that she had never truly wanted to work on her family's farm.": "Tempting because she seems to have wanted Lisbon, but she never says she disliked the farm; this overstates the hint.",
+      "urging Theo to stay and work the orchard, making the same sacrifice she herself once made.": "She did stay, but her wistful remark about Lisbon and the squeeze suggest she doesn't want him to repeat her sacrifice.",
+      "admitting that she had never truly wanted to work on her family's farm.": "She seems to have wanted Lisbon, but she never says she disliked the farm; this overstates the hint.",
       "trying to change the subject before an argument could start at the table.": "She speaks directly to Theo's situation by telling a related story, so she isn't avoiding the topic."
     },
     "check": null,
@@ -4704,9 +4704,9 @@
       "What does the heron gain by giving up the chase?"
     ],
     "wrong_reasons": {
-      "less successful as a hunter than the birds that dart after their prey.": "Tempting because 'surrender' sounds like failure, but the passage presents waiting as how the heron gets 'what it needs.'",
+      "less successful as a hunter than the birds that dart after their prey.": "'Surrender' sounds like failure, but the passage presents waiting as how the heron gets 'what it needs.'",
       "impatient for the moment when it may at last abandon its stillness.": "This contradicts the passage, which describes the stillness as a 'surrender' of urgency, not barely contained impatience.",
-      "a symbol of the river's indifference toward the creatures living within it.": "Tempting because the prose is poetic and symbolic, but the passage is about the heron and its prey, not the river's attitude."
+      "a symbol of the river's indifference toward the creatures living within it.": "The prose is poetic and symbolic, but the passage is about the heron and its prey, not the river's attitude."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4736,7 +4736,7 @@
     ],
     "wrong_reasons": {
       "staying awake after learning helps people remember more.": "This reverses the result: the group that stayed awake recalled fewer word pairs.",
-      "people who sleep longer each night are generally more intelligent than people who sleep less.": "Tempting because sleep helped memory, but the study measured recall of one list, not general intelligence.",
+      "people who sleep longer each night are generally more intelligent than people who sleep less.": "Sleep helped memory, but the study measured recall of one list, not general intelligence.",
       "the brain stops processing information while people sleep.": "This contradicts the research showing the brain replays experiences during sleep."
     },
     "check": null,
@@ -4766,7 +4766,7 @@
       "Why does the passage compare these films to the late silent films?"
     ],
     "wrong_reasons": {
-      "reflected audiences' growing preference for still, carefully framed images.": "Tempting because the films were static, but the passage says nothing about what audiences preferred.",
+      "reflected audiences' growing preference for still, carefully framed images.": "The films were static, but the passage says nothing about what audiences preferred.",
       "led studios to give up on sound film and return to silent production.": "Nothing says studios abandoned sound; they were 'rushing' to make sound films.",
       "was just as typical of the silent films that studios were producing during those same years.": "This contradicts the passage, which says late silent films had cameras that moved freely."
     },
@@ -4797,8 +4797,8 @@
       "What happens to the strength trend once grains are smaller than that threshold?"
     ],
     "wrong_reasons": {
-      "the copper grew steadily stronger throughout, since every reduction in grain size added more grain boundaries.": "Tempting because it follows the general rule, but the passage says the rule breaks down below a few tens of nanometers, which this range crosses.",
-      "the copper grew weaker from the very start, since grain boundaries allow grains to slide at any size.": "Tempting because sliding weakens the metal, but the passage says sliding takes over only at very small sizes, not at 100 nanometers.",
+      "the copper grew steadily stronger throughout, since every reduction in grain size added more grain boundaries.": "It follows the general rule, but the passage says the rule breaks down below a few tens of nanometers, which this range crosses.",
+      "the copper grew weaker from the very start, since grain boundaries allow grains to slide at any size.": "Sliding weakens the metal, but the passage says sliding takes over only at very small sizes, not at 100 nanometers.",
       "the number of dislocations within each grain rose as the grains became smaller.": "This contradicts the passage, which says very small grains are too small to hold many dislocations."
     },
     "check": null,
@@ -4828,7 +4828,7 @@
       "What happens when a dancer skips that technique?"
     ],
     "wrong_reasons": {
-      "finish her turns more gracefully than students who spot.": "Tempting because 'smoothly' sounds graceful, but the passage only says spotting prevents dizziness, which this student lacks.",
+      "finish her turns more gracefully than students who spot.": "'Smoothly' sounds graceful, but the passage only says spotting prevents dizziness, which this student lacks.",
       "need to keep her eyes tightly closed for the whole series of turns to stay balanced.": "Nothing in the passage mentions closing the eyes; spotting is about focusing them.",
       "be able to perform many more turns in a row than before.": "Without spotting she would get dizzy, which would make many turns harder, not easier."
     },
@@ -4859,8 +4859,8 @@
       "Where did the new emigrants settle?"
     ],
     "wrong_reasons": {
-      "most villagers who received such letters decided to emigrate.": "Tempting because departures rose, but a sharp rise doesn't mean most recipients left; this overstates the finding.",
-      "Wisconsin's harvests in those years were better than the harvests of any other state in the country.": "Tempting because the letters praised Wisconsin harvests, but the passage compares no other states.",
+      "most villagers who received such letters decided to emigrate.": "Departures rose, but a sharp rise doesn't mean most recipients left; this overstates the finding.",
+      "Wisconsin's harvests in those years were better than the harvests of any other state in the country.": "The letters praised Wisconsin harvests, but the passage compares no other states.",
       "villagers left mainly because of hardship at home, not because of news from abroad.": "This contradicts the pattern linking departures to the arrival of letters; the passage says nothing about hardship at home."
     },
     "check": null,
@@ -4890,7 +4890,7 @@
       "Which mordant produces red, and which produces a dark purple?"
     ],
     "wrong_reasons": {
-      "had used iron throughout the tapestry but applied a much larger quantity of madder dye to the bright central panels.": "Tempting because more dye might seem to change the shade, but the passage links iron to dark purple, not red, and never mentions the amount of dye.",
+      "had used iron throughout the tapestry but applied a much larger quantity of madder dye to the bright central panels.": "More dye might seem to change the shade, but the passage links iron to dark purple, not red, and never mentions the amount of dye.",
       "had dyed the borders with some other plant whose color closely resembled that of madder.": "This contradicts the finding that all the borders and panels were dyed with madder.",
       "had left the borders without any mordant, which caused their madder dye to darken over time.": "Tempting as an aging explanation, but the passage says dyes without a mordant bond poorly, which suggests fading, not darkening."
     },
@@ -4921,7 +4921,7 @@
       "What does knowing neighbors by name suggest about a person's ties to a community?"
     ],
     "wrong_reasons": {
-      "matter more to residents than their homes or workplaces do.": "Tempting because the finding favors third places, but the survey doesn't compare their importance with homes or workplaces.",
+      "matter more to residents than their homes or workplaces do.": "The finding favors third places, but the survey doesn't compare their importance with homes or workplaces.",
       "lead residents to spend most of their free time away from home.": "Visiting a third place weekly doesn't mean spending most free time away from home.",
       "be found more often in large cities than in small towns.": "The survey covered only one city and made no comparison with towns."
     },
@@ -4952,7 +4952,7 @@
       "Why might painted flats work in one space but not the other?"
     ],
     "wrong_reasons": {
-      "painted canvas flats are always worse than real building materials.": "Tempting because the designer chose real materials in the small space, but the same designer used flats in the large one, so doesn't think they are always worse.",
+      "painted canvas flats are always worse than real building materials.": "The designer chose real materials in the small space, but the same designer used flats in the large one, so doesn't think they are always worse.",
       "large auditoriums are poorly suited to staging realistic family dramas.": "The designer staged the same realistic play in the large auditorium; nothing suggests it was considered a poor fit.",
       "audiences in small theaters respond best to abstract, simplified sets.": "This contradicts the choice of real pine and cast iron, which is the opposite of abstract."
     },
@@ -4983,8 +4983,8 @@
       "At 65°C, about how much output would a panel lose?"
     ],
     "wrong_reasons": {
-      "the desert installation to produce more electricity per panel, since its higher temperatures signal more intense sunlight.": "Tempting because heat and sunshine often go together, but the passage says the two sites receive nearly the same sunlight and that heat lowers output.",
-      "the two installations to produce about the same amount of electricity per panel, since output depends mainly on how much sunlight arrives at each site.": "Tempting because the sunlight is equal, but this ignores the passage's main point that temperature reduces efficiency.",
+      "the desert installation to produce more electricity per panel, since its higher temperatures signal more intense sunlight.": "Heat and sunshine often go together, but the passage says the two sites receive nearly the same sunlight and that heat lowers output.",
+      "the two installations to produce about the same amount of electricity per panel, since output depends mainly on how much sunlight arrives at each site.": "The sunlight is equal, but this ignores the passage's main point that temperature reduces efficiency.",
       "the desert panels to stop producing electricity entirely during the hottest hours of summer afternoons.": "This overstates the effect: at 65°C the loss is roughly 16 percent, a reduction, not a shutdown."
     },
     "check": null,

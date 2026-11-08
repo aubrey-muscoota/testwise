@@ -4,6 +4,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   AccessibilityInfo, Animated, Easing, KeyboardAvoidingView, Linking, Platform, Pressable, ScrollView, ScrollViewInstance, StyleSheet, Text, TextInput, View,
+  useWindowDimensions,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { api, getConsent, Item, legalUrl, Lesson as LessonT, Placement, Stats, TutorTurn } from "../api";
@@ -12,7 +13,7 @@ import { SocratesLine, SocratesSays } from "../components/SocratesLine";
 import {
   Button, FloatUp, IconButton, PopIn, Press3D, ProgressBar, Rise, Sheet, SlideIn, TextButton, decorative, isReduceMotion, usePop, useReducedMotion, useShake,
 } from "../components/ui";
-import { clock, lines, pick, plural } from "../copy";
+import { clock, lines, pick } from "../copy";
 import { Figure } from "../figure/Figure";
 import { Passage, RichText } from "../text/Passage";
 import { renderMath } from "../text/tex";
@@ -55,14 +56,18 @@ function begin(src: LessonSource) {
   return api.start(src.start);
 }
 
+// What Socrates says before question 1. The header already names the set, so
+// this never repeats it; plan metadata (a task's why) is only for practice modes.
+// An empty line means he stays quiet until the first answer.
 function openingLine(src: LessonSource, l: LessonT) {
   if (l.note) return l.note;
   if (src.kind === "placement") return pick(lines.placement);
-  if (src.kind === "review") return pick(lines.review);
-  if (src.kind === "task" && src.why) return src.why;
-  if (l.time_limit_seconds) return `${plural(l.items.length, "question")}, ${clock(l.time_limit_seconds)} on the clock. That's test pace.`;
-  if (src.kind === "skill") return `${plural(l.items.length, "question")} on ${src.name}. Read each one to the end before the choices.`;
-  return `${plural(l.items.length, "question")}. Take them one at a time.`;
+  const lessonTask = src.kind === "task" && !src.mode;
+  if (src.kind === "review" || (lessonTask && src.title === "Review")) return pick(lines.review);
+  if (src.kind === "task" && src.mode && src.why) return src.why;
+  if (l.time_limit_seconds) return lines.timed;
+  if (src.kind === "skill" || lessonTask || (src.kind === "task" && src.mode === "skill")) return "Read each one to the end before the choices.";
+  return "";
 }
 
 export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDone: (r: LessonResult) => void; onQuit: () => void }) {
@@ -80,6 +85,8 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
   const [busy, setBusy] = useState(false);
   const [line, setLine] = useState("");
   const [reported, setReported] = useState<Set<string>>(new Set());
+  const [reportFailed, setReportFailed] = useState<string | null>(null);
+  const quietStart = useRef(false);
   const [fx, setFx] = useState(0); // bumps on every checked answer, replays reactions
   const [combo, setCombo] = useState(0);
   const [cheer, setCheer] = useState(false);
@@ -110,7 +117,9 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
       .then((l) => {
         setLesson(l);
         setQueue(l.items.map((item) => ({ item, retry: false })));
-        setLine(openingLine(source, l));
+        const opener = openingLine(source, l);
+        quietStart.current = opener === "";
+        setLine(opener);
         started.current = Date.now();
         begunAt.current = Date.now();
         if (l.time_limit_seconds) setLeft(l.time_limit_seconds);
@@ -231,16 +240,29 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
     started.current = Date.now();
     const up = rest[0];
     if (up?.retry) setLine(pick(lines.retry));
+    else if (up?.item.review) setLine(pick(lines.review));
     else if (up?.item.source === "generated") setLine("I wrote this one myself. If something's off, report it.");
     else setLine(pick(lines.next));
     if (!rest.length) await finish();
+  }
+
+  // Reports only show as sent once the server has them.
+  async function report(id: string, note: string) {
+    if (reported.has(id)) return;
+    setReportFailed(null);
+    try {
+      await api.report(id, note);
+      setReported((r) => new Set(r).add(id));
+    } catch {
+      setReportFailed(id);
+    }
   }
 
   function announce(msg: string) {
     if (Platform.OS !== "web") AccessibilityInfo.announceForAccessibility(msg);
   }
 
-  // `below` keeps room for Socrates peeking over the result panel.
+  // `below` keeps extra room under the block.
   function ensureVisible(top: number, bottom: number, below = 0) {
     const vh = viewH.current;
     if (!vh) return;
@@ -262,7 +284,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
   // After Check, keep the answer area in view above the feedback panel.
   useEffect(() => {
     if (phase === "answering") return;
-    const t = setTimeout(() => { const { y, h } = block.current; ensureVisible(y + Math.max(0, h - 280), y + h, 44); }, 160);
+    const t = setTimeout(() => { const { y, h } = block.current; ensureVisible(y + Math.max(0, h - 280), y + h); }, 160);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, fx]);
@@ -359,38 +381,32 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
           onScroll={(e) => { scrollY.current = e.nativeEvent.contentOffset.y; }}
           onLayout={(e) => { viewH.current = e.nativeEvent.layout.height; }}
         >
-          <FadeWhen hidden={checked} style={s.say}>
-            <SocratesLine text={line} mood={mood} size={64} textStyle={{ fontSize: 17, lineHeight: 24 }} />
-          </FadeWhen>
+          {!(quietStart.current && done === 0 && !current.retry) && (
+            <FadeWhen hidden={checked} style={s.say}>
+              <SocratesLine text={line} mood={mood} size={64} textStyle={type.socratesSmall} />
+            </FadeWhen>
+          )}
 
           <View onLayout={(e) => { const { y, height } = e.nativeEvent.layout; block.current = { y, h: height }; }}>
             <SlideIn key={qKey} id={qKey}>
-              {(current.retry || item.review) && (
-                <Text style={[type.small, { color: color.terracotta, fontFamily: font.bold, marginBottom: space(1) }]}>
-                  {current.retry ? "You missed this one earlier" : "From your review pile"}
-                </Text>
-              )}
               <Animated.View style={areaShake.style}>
                 {item.passage && <Passage text={item.passage} label={item.passage2 ? "Text 1" : undefined} />}
                 {item.passage2 && <Passage text={item.passage2} label="Text 2" />}
                 {item.figure && <Figure spec={item.figure} />}
                 {item.table && <DataTable table={item.table} />}
                 <RichText text={item.stem} style={[type.question, s.stem]} />
-                {item.source === "generated" && (
+                {item.source === "generated" && !checked && (
                   <View style={s.genRow}>
-                    <Icon name="quill" size={16} color={color.inkSoft} />
-                    <Text style={[type.small, { marginLeft: 6 }]}>Socrates wrote this question.</Text>
-                    {!reported.has(item.id) ? (
-                      <TextButton
-                        title="Report it"
-                        tone="soft"
-                        style={{ minHeight: 32, paddingHorizontal: 6 }}
-                        accessibilityLabel="Report a problem with this question"
-                        onPress={() => { setReported(new Set(reported).add(item.id)); api.report(item.id, "generated question, reported before answering").catch(() => {}); }}
-                      />
-                    ) : (
-                      <Text style={[type.small, { marginLeft: 6 }]}>Reported, thanks.</Text>
-                    )}
+                    <TextButton
+                      title={reported.has(item.id) ? "Reported" : "Report it"}
+                      tone="soft"
+                      align="left"
+                      disabled={reported.has(item.id)}
+                      style={{ minHeight: 32, paddingHorizontal: 0 }}
+                      accessibilityLabel={reported.has(item.id) ? "Question reported" : "Report a problem with this question"}
+                      onPress={() => report(item.id, "generated question, reported before answering")}
+                    />
+                    {reportFailed === item.id && <Text style={[type.small, { color: color.brick, marginLeft: space(1) }]} accessibilityRole="alert">Couldn't send that. Try again?</Text>}
                   </View>
                 )}
 
@@ -442,7 +458,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
             </SlideIn>
           </View>
 
-          {checked && (showSolution || phase === "right") && item.explanation.length > 0 && (
+          {checked && showSolution && item.explanation.length > 0 && (
             <View
               onLayout={(e) => {
                 const { y, height } = e.nativeEvent.layout;
@@ -452,8 +468,8 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
                 setTimeout(() => ensureVisible(y, y + height), 30);
               }}
             >
-              <Rise delay={phase === "right" ? 160 : 80} style={s.solution}>
-                <Text style={[type.heading, { fontSize: 19, marginBottom: space(1) }]}>How to solve it</Text>
+              <Rise delay={80} style={s.solution}>
+                <Text style={[type.heading, { marginBottom: space(1) }]}>How to solve it</Text>
                 {item.explanation.map((step, i) => (
                   <View key={i} style={{ flexDirection: "row", marginBottom: space(0.75) }}>
                     {item.explanation.length > 1 && <Text style={[type.body, tabular, { width: 24, color: color.inkSoft }]}>{i + 1}.</Text>}
@@ -464,24 +480,6 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
             </View>
           )}
 
-          {checked && item.source !== "generated" && (
-            <Pressable
-              onPress={async () => {
-                if (reported.has(item.id)) return;
-                setReported(new Set(reported).add(item.id));
-                try { await api.report(item.id, `after ${phase}, answered ${response}`); } catch {}
-              }}
-              accessibilityRole="button"
-              accessibilityLabel={reported.has(item.id) ? "Question reported" : "Report a problem with this question"}
-              accessibilityState={{ disabled: reported.has(item.id) }}
-              hitSlop={8}
-              style={s.report}
-            >
-              <Text style={[type.small, { textDecorationLine: reported.has(item.id) ? "none" : "underline" }]}>
-                {reported.has(item.id) ? "Thanks, we'll look at this question." : "Something wrong with this question? Report it"}
-              </Text>
-            </Pressable>
-          )}
           <View style={{ height: space(3) }} />
         </ScrollView>
 
@@ -505,6 +503,9 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
             onNext={next}
             onAsk={placement ? undefined : askSocrates}
             onSolution={showSolution || item.explanation.length === 0 ? undefined : openSolution}
+            reported={reported.has(item.id)}
+            reportFailed={reportFailed === item.id}
+            onReport={() => report(item.id, `after ${phase}, answered ${response}`)}
             last={queue.length === 1 && !(phase === "wrong" && !current.retry && !placement && !timed)}
           />
         )}
@@ -541,10 +542,14 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
 
 // ─── Result panel ────────────────────────────────────────────────────────────
 
-function ResultPanel({ ok, line, mood, fx, answer, combo, xp, busy, onNext, onAsk, onSolution, last }: {
+function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk, onSolution, last, reported, reportFailed, onReport }: {
   ok: boolean; line: string; mood: SocratesMood; fx: number; answer: string; combo: number; xp: number; busy: boolean;
   onNext: () => void; onAsk?: () => void; onSolution?: () => void; last: boolean;
+  reported: boolean; reportFailed: boolean; onReport: () => void;
 }) {
+  // Short phones: a smaller Socrates and tighter padding, so the picked and
+  // the right tile stay visible above the panel.
+  const short = useWindowDimensions().height < 720;
   const v = useRef(new Animated.Value(0)).current;
   const still = useReducedMotion();
   const [typing, setTyping] = useState(true);
@@ -556,15 +561,15 @@ function ResultPanel({ ok, line, mood, fx, answer, combo, xp, busy, onNext, onAs
   }, [v, still]);
   return (
     <Animated.View
-      style={[s.panel, { backgroundColor: ok ? color.oliveWash : color.brickWash }, {
+      style={[s.panel, short && { paddingTop: space(2) }, { backgroundColor: ok ? color.oliveWash : color.brickWash }, {
         opacity: v.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1] }),
         transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [80, 0] }) }],
       }]}
     >
       <View style={s.footInner}>
-        <View style={s.panelHead}>
-          <View style={{ marginTop: -space(4.5) }}>
-            <Socrates size={72} mood={mood} moodKey={fx} talking={typing} lookAt={typing ? "bubble" : undefined} />
+        <View style={[s.panelHead, short && { marginBottom: space(1) }]}>
+          <View>
+            <Socrates size={short ? 56 : 72} mood={mood} moodKey={fx} talking={typing} lookAt={typing ? "bubble" : undefined} />
             {ok && xp > 0 && (
               <FloatUp style={s.xpFloat}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -581,17 +586,38 @@ function ResultPanel({ ok, line, mood, fx, answer, combo, xp, busy, onNext, onAs
                 {ok ? (combo >= 2 ? `Right, ${combo} in a row` : "Right") : "Not quite"}
               </Text>
             </View>
-            {!ok && <Text style={[type.label, { marginTop: 2 }]}>The answer is {renderMath(answer)}</Text>}
-            <SocratesSays text={line} onTyping={setTyping} tail="none" textStyle={{ fontSize: 17, lineHeight: 24 }} style={{ marginTop: space(0.75) }} />
+            <SocratesSays text={line} onTyping={setTyping} tail="none" textStyle={type.socratesSmall} style={{ marginTop: space(0.75) }} />
           </View>
         </View>
-        {!ok && (onAsk || onSolution) && (
-          <View style={s.panelLinks}>
-            {onAsk && <TextButton title="Ask Socrates" onPress={onAsk} tone="ink" icon="quill" style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
-            {onSolution && <TextButton title="Show the solution" onPress={onSolution} tone="ink" style={{ paddingHorizontal: 0 }} />}
-          </View>
-        )}
-        <Button title={last ? "Finish" : "Continue"} onPress={onNext} disabled={busy} testID="continue" />
+        {(() => {
+          const reportBtn = (
+            <TextButton
+              title={reported ? "Reported" : "Report a problem"}
+              tone="soft"
+              disabled={reported}
+              onPress={onReport}
+              accessibilityLabel={reported ? "Question reported" : "Report a problem with this question"}
+              style={{ minHeight: 36, paddingHorizontal: 0 }}
+            />
+          );
+          const links = (!ok && onAsk) || onSolution;
+          // Short phones: the report link joins the links row, so the panel is one row shorter.
+          const inline = short && links;
+          return (
+            <>
+              {links && (
+                <View style={s.panelLinks}>
+                  {!ok && onAsk && <TextButton title="Ask Socrates" onPress={onAsk} tone="ink" style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
+                  {onSolution && <TextButton title="Show the solution" onPress={onSolution} tone="ink" style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
+                  {inline && reportBtn}
+                </View>
+              )}
+              <Button title={last ? "Finish" : "Continue"} onPress={onNext} disabled={busy} testID="continue" />
+              {!inline && <View style={s.panelReport}>{reportBtn}</View>}
+              {reportFailed && <Text style={[type.small, { color: color.brick, textAlign: "center" }]} accessibilityRole="alert">Couldn't send that. Try again?</Text>}
+            </>
+          );
+        })()}
       </View>
     </Animated.View>
   );
@@ -829,7 +855,7 @@ function Tutor({ item, response, visible, onClose, onSolution }: { item: Item; r
       const r = await api.socrates({ item_id: item.id, response, history });
       setTurns([...history, { role: "socrates", content: r.reply }]);
       if (r.done || r.error === "daily_limit") setEnded(true);
-      if (r.offline) setNote("Socrates is using his written notes right now.");
+      if (r.offline) setNote("Offline. Socrates is answering from saved hints.");
       else if (r.remaining_today != null && r.remaining_today <= 1)
         setNote(r.remaining_today === 0 ? "That's your last Socrates chat for today." : "One Socrates chat left today.");
     } catch (e) {
@@ -877,15 +903,11 @@ function Tutor({ item, response, visible, onClose, onSolution }: { item: Item; r
           <Socrates size={56} mood={mood} talking={typing} moodKey={turns.length} />
           <View style={{ flex: 1, marginLeft: space(1.5) }}>
             <Text style={type.heading}>Socrates</Text>
-            <Text style={type.small}>{waiting ? "Thinking…" : ended ? "Here's where we got to" : "Your turn"}</Text>
+            {waiting && <Text style={type.small}>Thinking…</Text>}
           </View>
-          <Pressable ref={closeRef} onPress={onClose} hitSlop={12} accessibilityRole="button" accessibilityLabel="Close Socrates" style={s.closeBtn}>
-            <Icon name="close" color={color.inkSoft} />
-          </Pressable>
+          <IconButton ref={closeRef} name="close" onPress={onClose} label="Close Socrates" tone={color.inkSoft} style={{ marginRight: -8 }} />
         </View>
         <ScrollView ref={scroll} style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: GUTTER, paddingVertical: space(2), gap: space(2) }}>
-          <Text style={[type.small]} numberOfLines={3}>{renderMath(item.stem)}</Text>
-          {note && <Text style={type.small}>{note}</Text>}
           {turns.map((t, i) =>
             t.role === "student" ? (
               <Rise key={i} style={s.msgMe}>
@@ -926,20 +948,22 @@ function Tutor({ item, response, visible, onClose, onSolution }: { item: Item; r
                   maxLength={500}
                   accessibilityLabel="Your reply"
                 />
-                <Press3D
+                <Pressable
                   onPress={submit}
                   disabled={!draft.trim() || waiting}
-                  edge={!draft.trim() || waiting ? color.rule : color.azureInk}
-                  radius={24}
+                  accessibilityRole="button"
                   accessibilityLabel="Send"
-                  face={[s.send, { backgroundColor: !draft.trim() || waiting ? color.paperDeep : color.azure }]}
+                  accessibilityState={{ disabled: !draft.trim() || waiting }}
+                  style={({ pressed }) => [s.send, { backgroundColor: !draft.trim() || waiting ? color.paperDeep : color.azure }, pressed && { transform: [{ scale: 0.96 }] }]}
                 >
                   <Icon name="send" color={!draft.trim() || waiting ? color.inkSoft : color.ink} strokeWidth={2.2} />
-                </Press3D>
+                </Pressable>
               </View>
+              {note && <Text style={[type.small, { marginTop: space(1) }]}>{note}</Text>}
               <TextButton title="Just show me the solution" tone="soft" onPress={onSolution} style={{ marginTop: space(0.5) }} />
             </>
           )}
+          {ended && note && <Text style={[type.small, { marginTop: space(1) }]}>{note}</Text>}
         </View>
       </Animated.View>
     </View>
@@ -949,11 +973,13 @@ function Tutor({ item, response, visible, onClose, onSolution }: { item: Item; r
 // Three ink dots, rising in turn, while Socrates writes.
 function ThinkingDots() {
   const t = useRef(new Animated.Value(0)).current;
+  const still = useReducedMotion();
   useEffect(() => {
+    if (still) return;
     const loop = Animated.loop(Animated.timing(t, { toValue: 1, duration: 1000, easing: Easing.linear, useNativeDriver: Platform.OS !== "web" }));
     loop.start();
     return () => loop.stop();
-  }, [t]);
+  }, [t, still]);
   return (
     <View style={{ flexDirection: "row", gap: 6, paddingVertical: 8 }}>
       {[0, 1, 2].map((i) => {
@@ -970,15 +996,17 @@ function ThinkingDots() {
 }
 
 const PANEL_R = radius.sheet;
+// One column for the lesson on wide screens: header, body, panel and tutor.
+const COLUMN = 680;
 
 const s = StyleSheet.create({
   center: { flex: 1, alignItems: "flex-start", justifyContent: "center", padding: GUTTER, maxWidth: 520, width: "100%", alignSelf: "center" },
-  head: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1), maxWidth: 680, width: "100%", alignSelf: "center" },
+  head: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   headRow: { flexDirection: "row", alignItems: "center", minHeight: 44 },
   timer: { flexDirection: "row", alignItems: "center", gap: 4 },
   timerText: { fontFamily: font.serifSemi, fontSize: 20, lineHeight: 24, color: color.ink },
-  body: { paddingHorizontal: GUTTER, paddingTop: space(2), maxWidth: 680, width: "100%", alignSelf: "center" },
-  say: { marginBottom: space(3) },
+  body: { paddingHorizontal: GUTTER, paddingTop: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  say: { marginBottom: space(2) },
   xpFloat: { position: "absolute", left: 18, top: -18 },
   stem: { marginBottom: space(2.5) },
   genRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: -space(1.5), marginBottom: space(2) },
@@ -998,15 +1026,15 @@ const s = StyleSheet.create({
     outlineColor: color.azure,
   } as object,
   inputMark: { position: "absolute", right: space(1.5), top: space(0.5), bottom: 0, justifyContent: "center" },
-  report: { marginTop: space(1), alignSelf: "flex-start", minHeight: 44, justifyContent: "center" },
   srOnly: { position: "absolute", width: 1, height: 1, overflow: "hidden", opacity: 0, left: 0, top: 0 },
   solution: { marginTop: space(3) },
   foot: { paddingHorizontal: GUTTER, paddingVertical: space(1.5), backgroundColor: color.paper },
-  footInner: { maxWidth: 640, width: "100%", alignSelf: "center" },
-  panel: { width: "100%", maxWidth: 720, alignSelf: "center", paddingHorizontal: GUTTER, paddingTop: space(2.5), paddingBottom: space(1.5), borderTopLeftRadius: PANEL_R, borderTopRightRadius: PANEL_R },
+  footInner: { maxWidth: COLUMN - 2 * GUTTER, width: "100%", alignSelf: "center" },
+  panel: { width: "100%", maxWidth: COLUMN, alignSelf: "center", paddingHorizontal: GUTTER, paddingTop: space(2.5), paddingBottom: space(1.5), borderTopLeftRadius: PANEL_R, borderTopRightRadius: PANEL_R },
   panelHead: { flexDirection: "row", alignItems: "flex-start", marginBottom: space(1.5) },
   panelTitle: { fontFamily: font.serifSemi, fontSize: 22, lineHeight: 28 },
   panelLinks: { flexDirection: "row", flexWrap: "wrap", marginBottom: space(1), marginTop: -space(0.5) },
+  panelReport: { alignItems: "center", marginTop: space(0.25) },
   table: { borderRadius: radius.small, overflow: "hidden", backgroundColor: color.sheet },
   th: { fontFamily: font.bold, backgroundColor: color.paperDeep },
   tr: { flexDirection: "row", alignItems: "stretch" },
@@ -1018,12 +1046,11 @@ const s = StyleSheet.create({
   td: { ...type.body, minWidth: 64, paddingHorizontal: space(1.5), paddingVertical: space(1), borderBottomWidth: 1, borderColor: color.rule, textAlign: "center" },
   overlay: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0, justifyContent: "flex-end", zIndex: 30 },
   legalLink: { color: color.azureInk, fontFamily: font.bold, textDecorationLine: "underline" },
-  tutor: { backgroundColor: color.sheet, borderTopLeftRadius: radius.sheet, borderTopRightRadius: radius.sheet, height: "86%", maxWidth: 640, width: "100%", alignSelf: "center", ...shadow.float },
+  tutor: { backgroundColor: color.sheet, borderTopLeftRadius: radius.sheet, borderTopRightRadius: radius.sheet, height: "86%", maxWidth: COLUMN, width: "100%", alignSelf: "center", ...shadow.float },
   tutorHead: { flexDirection: "row", alignItems: "center", paddingHorizontal: GUTTER, paddingTop: space(2), paddingBottom: space(1) },
-  closeBtn: { width: 40, height: 40, alignItems: "center", justifyContent: "center", marginRight: -8 },
   msgHim: { alignSelf: "stretch", paddingRight: space(4) },
-  msgMe: { alignSelf: "flex-end", maxWidth: "85%", backgroundColor: color.azureWash, paddingVertical: space(1.25), paddingHorizontal: space(1.75), borderRadius: 16, borderBottomRightRadius: 4 },
+  msgMe: { alignSelf: "flex-end", maxWidth: "85%", backgroundColor: color.azureWash, paddingVertical: space(1.25), paddingHorizontal: space(1.75), borderRadius: radius.row },
   dot: { width: 7, height: 7, borderRadius: 4, backgroundColor: color.inkSoft },
   tutorFoot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1.5) },
-  send: { width: 48, height: 48, borderRadius: 24, alignItems: "center", justifyContent: "center" },
+  send: { width: 48, height: 48, borderRadius: radius.input, alignItems: "center", justifyContent: "center" },
 });

@@ -23,9 +23,9 @@
       "Which rule from the second sentence does the weaver break?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the weaver's punishment sounds like a change in tone, but nothing contradicts the strict rules; the punishment confirms them.",
-      "In contrast,": "Picked because the weaver breaks the rules, but the sentence doesn't set up an opposing idea; it shows the rules being enforced.",
-      "Previously,": "Picked because the passage is about the past, but the weaver's case doesn't happen earlier than the rules; it happens under them."
+      "Nevertheless,": "The weaver's punishment sounds like a change in tone, but nothing contradicts the strict rules; the punishment confirms them.",
+      "In contrast,": "The weaver breaks the rules, but the sentence doesn't set up an opposing idea; it shows the rules being enforced.",
+      "Previously,": "The passage is about the past, but the weaver's case doesn't happen earlier than the rules; it happens under them."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -54,9 +54,9 @@
       "Would the researchers' caution follow from the finding, or is it a limit placed on it?"
     ],
     "wrong_reasons": {
-      "Consequently,": "Picked because the caution comes right after the findings, but the variation in the figures isn't caused by the findings; it limits them.",
-      "In other words,": "Picked because both sentences are about the same data, but the last sentence adds a warning; it doesn't restate the finding.",
-      "Likewise,": "Picked because both sentences challenge an assumption, but the last sentence pushes back against the new finding, so it isn't a parallel point."
+      "Consequently,": "The caution comes right after the findings, but the variation in the figures isn't caused by the findings; it limits them.",
+      "In other words,": "Both sentences are about the same data, but the last sentence adds a warning; it doesn't restate the finding.",
+      "Likewise,": "Both sentences challenge an assumption, but the last sentence pushes back against the new finding, so it isn't a parallel point."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -85,9 +85,9 @@
       "Does the last sentence support that conclusion or push back against it?"
     ],
     "wrong_reasons": {
-      "Accordingly,": "Picked because the last sentence seems to draw a conclusion, but having a placeholder sign doesn't cause or imply the Babylonians' failure to use it as a number.",
-      "That is,": "Picked because both sentences discuss the same Babylonian sign, but the last sentence denies something the earlier one might suggest; it doesn't restate it.",
-      "Indeed,": "Picked because the last sentence backs up the claim that the distinction is subtle, but it comes right after the point about the Babylonian sign and argues against what that point seems to show, so an intensifier doesn't fit."
+      "Accordingly,": "The last sentence seems to draw a conclusion, but having a placeholder sign doesn't cause or imply the Babylonians' failure to use it as a number.",
+      "That is,": "Both sentences discuss the same Babylonian sign, but the last sentence denies something the earlier one might suggest; it doesn't restate it.",
+      "Indeed,": "The last sentence backs up the claim that the distinction is subtle, but it comes right after the point about the Babylonian sign and argues against what that point seems to show, so an intensifier doesn't fit."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -116,9 +116,9 @@
       "Are the two sentences alike or opposed?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because the second sentence gives detail, but the winter crew isn't an example of summer activity.",
-      "Similarly,": "Picked because both sentences describe the stations, but a small winter crew is the opposite of a busy summer, not a similar case.",
-      "In addition,": "Picked because it adds another fact, but the fact contrasts with the first sentence instead of adding to it."
+      "For example,": "The second sentence gives detail, but the winter crew isn't an example of summer activity.",
+      "Similarly,": "Both sentences describe the stations, but a small winter crew is the opposite of a busy summer, not a similar case.",
+      "In addition,": "It adds another fact, but the fact contrasts with the first sentence instead of adding to it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -147,9 +147,9 @@
       "How do the two kinds of translation relate to each other?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Picked because the passage later uses \"therefore,\" but freer translations aren't a result of literal translations losing rhythm; they're the opposite approach.",
-      "For example,": "Picked because freer translations are a kind of translation, but they aren't an example of literal translation.",
-      "Specifically,": "Picked because the second sentence is detailed, but it describes a different approach; it doesn't give more detail about the first one."
+      "Therefore,": "The passage later uses \"therefore,\" but freer translations aren't a result of literal translations losing rhythm; they're the opposite approach.",
+      "For example,": "Freer translations are a kind of translation, but they aren't an example of literal translation.",
+      "Specifically,": "The second sentence is detailed, but it describes a different approach; it doesn't give more detail about the first one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -178,9 +178,9 @@
       "Did the events in the last sentence match that expectation?"
     ],
     "wrong_reasons": {
-      "Moreover,": "Picked because the last sentence adds more history, but it overturns the proprietors' prediction instead of adding a similar point.",
-      "In short,": "Picked because the last sentence seems to wrap up the story, but it introduces a new development rather than summarizing the earlier sentences.",
-      "Likewise,": "Picked because both sentences describe canal companies, but the railways' success is the opposite of what the proprietors predicted, not a parallel case."
+      "Moreover,": "The last sentence adds more history, but it overturns the proprietors' prediction instead of adding a similar point.",
+      "In short,": "The last sentence seems to wrap up the story, but it introduces a new development rather than summarizing the earlier sentences.",
+      "Likewise,": "Both sentences describe canal companies, but the railways' success is the opposite of what the proprietors predicted, not a parallel case."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -209,9 +209,9 @@
       "Is the last sentence a cause, a result, or a contrast?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because shallow water might sound like a limitation, but it follows from the corals' need for sunlight; it doesn't contradict anything.",
-      "For example,": "Picked because the last sentence is specific, but shallow water isn't an example of algae making sugar; it's a consequence.",
-      "Meanwhile,": "Picked because it connects two facts about the same corals, but it signals something happening at the same time, not a result."
+      "However,": "Shallow water might sound like a limitation, but it follows from the corals' need for sunlight; it doesn't contradict anything.",
+      "For example,": "The last sentence is specific, but shallow water isn't an example of algae making sugar; it's a consequence.",
+      "Meanwhile,": "It connects two facts about the same corals, but it signals something happening at the same time, not a result."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -240,9 +240,9 @@
       "Does the last sentence match that expectation?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences are about astronaut health, but needing rehabilitation isn't parallel to exercising; it shows the exercise falls short.",
-      "As a result,": "Picked because rehabilitation follows the mission, but the exercise doesn't cause the need for rehabilitation; weightlessness does, despite the exercise.",
-      "In other words,": "Picked because both sentences deal with muscle loss, but the last sentence adds a new fact rather than restating the exercise routine."
+      "Similarly,": "Both sentences are about astronaut health, but needing rehabilitation isn't parallel to exercising; it shows the exercise falls short.",
+      "As a result,": "Rehabilitation follows the mission, but the exercise doesn't cause the need for rehabilitation; weightlessness does, despite the exercise.",
+      "In other words,": "Both sentences deal with muscle loss, but the last sentence adds a new fact rather than restating the exercise routine."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -271,9 +271,9 @@
       "Does the last sentence argue against that evidence or interpret it?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the flowery image and the practical gardens are opposed, but the last sentence doesn't defend the romantic image despite the evidence; it explains the image using the evidence.",
-      "Similarly,": "Picked because the last sentence again questions the romantic image, but it isn't a parallel case; it's a conclusion drawn from the point before it.",
-      "For instance,": "Picked because the last sentence mentions specific writers and readers, but middle-class nostalgia isn't an example of food gardens; it's an interpretation."
+      "Nevertheless,": "The flowery image and the practical gardens are opposed, but the last sentence doesn't defend the romantic image despite the evidence; it explains the image using the evidence.",
+      "Similarly,": "The last sentence again questions the romantic image, but it isn't a parallel case; it's a conclusion drawn from the point before it.",
+      "For instance,": "The last sentence mentions specific writers and readers, but middle-class nostalgia isn't an example of food gardens; it's an interpretation."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -302,9 +302,9 @@
       "Do the two portrayals agree or disagree?"
     ],
     "wrong_reasons": {
-      "for example,": "Picked because modern retellings are specific works, but they aren't examples of the ancient version; they change it.",
-      "therefore,": "Picked because modern retellings come after the ancient myth, but the ancient portrayal doesn't cause the opposite portrayal.",
-      "similarly,": "Picked because both sentences retell the same myth, but presenting Medusa as a victim is the opposite of presenting her as a monster."
+      "for example,": "Modern retellings are specific works, but they aren't examples of the ancient version; they change it.",
+      "therefore,": "Modern retellings come after the ancient myth, but the ancient portrayal doesn't cause the opposite portrayal.",
+      "similarly,": "Both sentences retell the same myth, but presenting Medusa as a victim is the opposite of presenting her as a monster."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -333,9 +333,9 @@
       "Is the need for coordination caused by the division of labor, or does it contrast with it?"
     ],
     "wrong_reasons": {
-      "Instead,": "Picked because the last sentence describes how the operators work, but it doesn't replace the division of labor; it follows from it.",
-      "For example,": "Picked because the last sentence gives detail about the performance, but precise coordination isn't one example of who controls which limb.",
-      "Nevertheless,": "Picked because it seems surprising that audiences ignore three visible operators, but the coordination is a consequence of the split control, not something that happens despite it."
+      "Instead,": "The last sentence describes how the operators work, but it doesn't replace the division of labor; it follows from it.",
+      "For example,": "The last sentence gives detail about the performance, but precise coordination isn't one example of who controls which limb.",
+      "Nevertheless,": "It seems surprising that audiences ignore three visible operators, but the coordination is a consequence of the split control, not something that happens despite it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -365,9 +365,9 @@
       "Is the point about the graves the same kind of point as the one about the fires?"
     ],
     "wrong_reasons": {
-      "consequently,": "Picked because the clause ends with a reason (\"since...\"), but the uncertain fires don't cause the graves to be uncertain; the two points are parallel.",
-      "in contrast,": "Picked because burning suggests violence while empty graves suggest peace, but the writer treats both as equally ambiguous, not as opposites.",
-      "that is,": "Picked because both clauses question the peaceful reading, but the point about the graves is new evidence, not a restatement of the point about the fires."
+      "consequently,": "The clause ends with a reason (\"since...\"), but the uncertain fires don't cause the graves to be uncertain; the two points are parallel.",
+      "in contrast,": "Burning suggests violence while empty graves suggest peace, but the writer treats both as equally ambiguous, not as opposites.",
+      "that is,": "Both clauses question the peaceful reading, but the point about the graves is new evidence, not a restatement of the point about the fires."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -396,9 +396,9 @@
       "Does the waxy coating belong on the same list?"
     ],
     "wrong_reasons": {
-      "In contrast,": "Picked because the coating is a different body part, but it does the same job as the other features, so nothing is contrasted.",
-      "As a result,": "Picked because the coating helps save water, but it isn't caused by the stems or spines; it's another separate feature.",
-      "Instead,": "Picked because a new feature is named, but the coating doesn't replace the stems or spines; all of them work together."
+      "In contrast,": "The coating is a different body part, but it does the same job as the other features, so nothing is contrasted.",
+      "As a result,": "The coating helps save water, but it isn't caused by the stems or spines; it's another separate feature.",
+      "Instead,": "A new feature is named, but the coating doesn't replace the stems or spines; all of them work together."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -427,9 +427,9 @@
       "What happens to the principle in folded rock?"
     ],
     "wrong_reasons": {
-      "Thus,": "Picked because the last sentence seems to follow from the principle, but it describes where the principle breaks down, not a result of it.",
-      "Similarly,": "Picked because both sentences discuss rock layers, but folded rock is an exception to the principle, not a parallel case.",
-      "In other words,": "Picked because the last sentence again explains layer order, but it introduces a new situation rather than restating superposition."
+      "Thus,": "The last sentence seems to follow from the principle, but it describes where the principle breaks down, not a result of it.",
+      "Similarly,": "Both sentences discuss rock layers, but folded rock is an exception to the principle, not a parallel case.",
+      "In other words,": "The last sentence again explains layer order, but it introduces a new situation rather than restating superposition."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -458,9 +458,9 @@
       "Does the last sentence add a new fact, or explain what the previous one amounts to?"
     ],
     "wrong_reasons": {
-      "By contrast,": "Picked because the passage contrasts delicate interiors with bulky exteriors, but that contrast is inside the last sentence; the sentence itself restates the buttress's role rather than opposing it.",
-      "Even so,": "Picked because \"purchased with a bulk\" sounds like a drawback, but the last sentence doesn't go against the buttress's success; it explains what that success involved.",
-      "Specifically,": "Picked because the last sentence mentions details like pinnacles, but it steps back to sum up the trade-off rather than narrowing in on one part of the buttress."
+      "By contrast,": "The passage contrasts delicate interiors with bulky exteriors, but that contrast is inside the last sentence; the sentence itself restates the buttress's role rather than opposing it.",
+      "Even so,": "\"Purchased with a bulk\" sounds like a drawback, but the last sentence doesn't go against the buttress's success; it explains what that success involved.",
+      "Specifically,": "The last sentence mentions details like pinnacles, but it steps back to sum up the trade-off rather than narrowing in on one part of the buttress."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -489,9 +489,9 @@
       "Is the last sentence adding to that or replacing it?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because papermaking is an example, but the sentence as a whole isn't an example of trading goods; it adds a different kind of exchange.",
-      "Instead,": "Picked because ideas are different from goods, but they spread alongside trade, not in place of it.",
-      "In conclusion,": "Picked because the sentence comes last, but it adds new information instead of summing up the passage."
+      "For example,": "Papermaking is an example, but the sentence as a whole isn't an example of trading goods; it adds a different kind of exchange.",
+      "Instead,": "Ideas are different from goods, but they spread alongside trade, not in place of it.",
+      "In conclusion,": "The sentence comes last, but it adds new information instead of summing up the passage."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -520,9 +520,9 @@
       "Does the participants' confidence match that expectation?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Picked because the first sentence already mentions confidence, but inaccurate accounts don't cause high confidence; the confidence persists in spite of them.",
-      "For instance,": "Picked because the last sentence reports a study result, but high confidence isn't an example of accounts changing.",
-      "Moreover,": "Picked because it adds another finding, but the finding pulls against the previous one instead of extending it."
+      "Therefore,": "The first sentence already mentions confidence, but inaccurate accounts don't cause high confidence; the confidence persists in spite of them.",
+      "For instance,": "The last sentence reports a study result, but high confidence isn't an example of accounts changing.",
+      "Moreover,": "It adds another finding, but the finding pulls against the previous one instead of extending it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -551,9 +551,9 @@
       "Is the last sentence a conclusion from that, a concession, or a contrast?"
     ],
     "wrong_reasons": {
-      "Granted,": "Picked because \"arguably\" sounds cautious, but the sentence presses the writer's own point; it doesn't concede anything to the collectors.",
-      "Likewise,": "Picked because the last sentence again criticizes the collectors, but it isn't a parallel example; it draws a conclusion from the singers' practice.",
-      "Nevertheless,": "Picked because the collectors and singers are contrasted, but that contrast is in the earlier sentences; the last sentence follows from it rather than going against it."
+      "Granted,": "\"Arguably\" sounds cautious, but the sentence presses the writer's own point; it doesn't concede anything to the collectors.",
+      "Likewise,": "The last sentence again criticizes the collectors, but it isn't a parallel example; it draws a conclusion from the singers' practice.",
+      "Nevertheless,": "The collectors and singers are contrasted, but that contrast is in the earlier sentences; the last sentence follows from it rather than going against it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -582,9 +582,9 @@
       "Did things go the way she planned?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Picked because the events follow in time, but Priya's preparation didn't cause the projector to break.",
-      "For example,": "Picked because the last sentence gives a specific event, but the broken projector isn't an example of her preparing.",
-      "Similarly,": "Picked because all the sentences are about the meeting, but the projector failing is a setback, not something like her preparation."
+      "Therefore,": "The events follow in time, but Priya's preparation didn't cause the projector to break.",
+      "For example,": "The last sentence gives a specific event, but the broken projector isn't an example of her preparing.",
+      "Similarly,": "All the sentences are about the meeting, but the projector failing is a setback, not something like her preparation."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -613,9 +613,9 @@
       "Do the feathered fossils support the same claim or a different one?"
     ],
     "wrong_reasons": {
-      "Instead,": "Picked because feathers are a different kind of evidence, but they don't replace the bone evidence; they add to it.",
-      "For this reason,": "Picked because both facts support the same claim, but bone growth patterns don't cause feathers to be preserved.",
-      "Nevertheless,": "Picked because the old view is being challenged, but the feathered fossils agree with the bone evidence instead of going against it."
+      "Instead,": "Feathers are a different kind of evidence, but they don't replace the bone evidence; they add to it.",
+      "For this reason,": "Both facts support the same claim, but bone growth patterns don't cause feathers to be preserved.",
+      "Nevertheless,": "The old view is being challenged, but the feathered fossils agree with the bone evidence instead of going against it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -644,9 +644,9 @@
       "If the endings disappeared, what would speakers need to do instead?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the passage shifts from free word order to fixed word order, which feels like a contrast. But the fixed order is what you'd expect once the endings were lost, not something that happened despite it.",
-      "For instance,": "Picked because the last sentence gives concrete detail (subject-verb-object). But it states a new development caused by the loss of endings, not an example of endings wearing away.",
-      "Similarly,": "Picked because both sentences describe changes in English. But relying on word order is a response to the lost endings, not a parallel change."
+      "Nevertheless,": "The passage shifts from free word order to fixed word order, which feels like a contrast. But the fixed order is what you'd expect once the endings were lost, not something that happened despite it.",
+      "For instance,": "The last sentence gives concrete detail (subject-verb-object). But it states a new development caused by the loss of endings, not an example of endings wearing away.",
+      "Similarly,": "Both sentences describe changes in English. But relying on word order is a response to the lost endings, not a parallel change."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -677,9 +677,9 @@
       "What does the final clause say the design depends on?"
     ],
     "wrong_reasons": {
-      "Nonetheless,": "Picked because the last clause mentions something that 'would make little sense', which sounds like a contrast. But that clause refers to the old assumption; the design follows the study's finding rather than going against it.",
-      "In contrast,": "Picked because the passage contrasts heavy knives with balanced ones. But that contrast is already drawn inside the study's results; the newest line doesn't contrast with the finding, it applies it.",
-      "Moreover,": "Picked because the sentence gives more information about the studio. But it isn't a second finding added to the first; it is a design decision that results from the first."
+      "Nonetheless,": "The last clause mentions something that 'would make little sense', which sounds like a contrast. But that clause refers to the old assumption; the design follows the study's finding rather than going against it.",
+      "In contrast,": "The passage contrasts heavy knives with balanced ones. But that contrast is already drawn inside the study's results; the newest line doesn't contrast with the finding, it applies it.",
+      "Moreover,": "The sentence gives more information about the studio. But it isn't a second finding added to the first; it is a design decision that results from the first."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -708,9 +708,9 @@
       "Does the squash sentence continue the list or turn away from it?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because Tomas worried the squash would never sprout. But the squash actually grew well, so it continues the good news instead of contrasting with it.",
+      "However,": "Tomas worried the squash would never sprout. But the squash actually grew well, so it continues the good news instead of contrasting with it.",
       "Instead,": "Picked for the same 'worry' reason, as if the squash did something other than expected. But nothing is being replaced; the squash is simply one more plant that did well.",
-      "As a result,": "Picked because the plants seem connected. But the tall tomatoes and beans did not cause the squash to spread."
+      "As a result,": "The plants seem connected. But the tall tomatoes and beans did not cause the squash to spread."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -739,9 +739,9 @@
       "Why would that let geologists work out the glacier's path?"
     ],
     "wrong_reasons": {
-      "Nonetheless,": "Picked because 'long after a glacier has melted' sounds like an obstacle. But the sentence says geologists can reconstruct the path because of the parallel grooves, not in spite of anything.",
-      "In comparison,": "Picked because the sentence moves from the glacier to geologists. But nothing is being compared; the second idea follows from the first.",
-      "Meanwhile,": "Picked because it marks a shift to other people. But the geologists work 'long after' the glacier melted, not at the same time, and their method depends on the earlier fact."
+      "Nonetheless,": "'Long after a glacier has melted' sounds like an obstacle. But the sentence says geologists can reconstruct the path because of the parallel grooves, not in spite of anything.",
+      "In comparison,": "The sentence moves from the glacier to geologists. But nothing is being compared; the second idea follows from the first.",
+      "Meanwhile,": "It marks a shift to other people. But the geologists work 'long after' the glacier melted, not at the same time, and their method depends on the earlier fact."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -771,9 +771,9 @@
       "Which word signals a turn against the claim just before the blank?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because the sentence goes on talking about dust and its effects, which can look like more detail in support of the skeptics. But its point is that the predicted reddening is mostly missing, which undercuts their claim.",
-      "Thus,": "Picked because the first clause describes a physical result of dust scattering light. But that isn't a conclusion from the skeptics' claim; the sentence uses it to test the claim and finds it lacking.",
-      "Similarly,": "Picked because both sentences describe ways light from supernovae could be affected. But the last sentence argues against the dust idea instead of making a parallel point."
+      "Indeed,": "The sentence goes on talking about dust and its effects, which can look like more detail in support of the skeptics. But its point is that the predicted reddening is mostly missing, which undercuts their claim.",
+      "Thus,": "The first clause describes a physical result of dust scattering light. But that isn't a conclusion from the skeptics' claim; the sentence uses it to test the claim and finds it lacking.",
+      "Similarly,": "Both sentences describe ways light from supernovae could be affected. But the last sentence argues against the dust idea instead of making a parallel point."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -802,8 +802,8 @@
       "What does \"ma\" show about tonal languages?"
     ],
     "wrong_reasons": {
-      "Instead,": "Picked because the sentence lists different meanings, which can look like a replacement. But nothing is replacing the first idea; the sentence illustrates it.",
-      "Still,": "Picked because a word having several meanings might seem surprising. But the second sentence agrees with the first instead of going against it.",
+      "Instead,": "The sentence lists different meanings, which can look like a replacement. But nothing is replacing the first idea; the sentence illustrates it.",
+      "Still,": "A word having several meanings might seem surprising. But the second sentence agrees with the first instead of going against it.",
       "Afterward,": "Picked by readers who treat the sentences as a sequence. But nothing happens later in time; the sentence is an illustration."
     },
     "check": null,
@@ -833,9 +833,9 @@
       "How did that change after recordings, and is it the same or different?"
     ],
     "wrong_reasons": {
-      "Likewise,": "Picked because both sentences describe how songs reached people. But the second describes the opposite habit (listening instead of playing), not a similar one.",
-      "For this reason,": "Picked because the sentences are in time order and seem connected. But sheet music didn't cause recordings to spread or change how people listened.",
-      "In fact,": "Picked because the second sentence sounds like a stronger statement. But it doesn't back up or intensify the first; it describes a different situation."
+      "Likewise,": "Both sentences describe how songs reached people. But the second describes the opposite habit (listening instead of playing), not a similar one.",
+      "For this reason,": "The sentences are in time order and seem connected. But sheet music didn't cause recordings to spread or change how people listened.",
+      "In fact,": "The second sentence sounds like a stronger statement. But it doesn't back up or intensify the first; it describes a different situation."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -865,9 +865,9 @@
       "Is the final sentence an objection to the findings or a conclusion from them?"
     ],
     "wrong_reasons": {
-      "Admittedly,": "Picked because the final sentence says the idea 'complicates' the usual view, which sounds like a concession. But 'Admittedly' grants a point against the writer's own argument, and here the sentence is the writer's main conclusion.",
-      "Even so,": "Picked because the final sentence pushes against the traditional view. But that view was already overturned by 'however' in the previous sentence; the final sentence follows from the study, not in spite of it.",
-      "Conversely,": "Picked because the passage contrasts selfless and self-interested explanations. But 'Conversely' would set the final sentence against the study's findings, when it actually draws on them."
+      "Admittedly,": "The final sentence says the idea 'complicates' the usual view, which sounds like a concession. But 'Admittedly' grants a point against the writer's own argument, and here the sentence is the writer's main conclusion.",
+      "Even so,": "The final sentence pushes against the traditional view. But that view was already overturned by 'however' in the previous sentence; the final sentence follows from the study, not in spite of it.",
+      "Conversely,": "The passage contrasts selfless and self-interested explanations. But 'Conversely' would set the final sentence against the study's findings, when it actually draws on them."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -896,9 +896,9 @@
       "How long did the boycott last before the ruling?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because the ruling is a specific detail. But it isn't an example of the boycott; it is a later event in the story.",
-      "Instead,": "Picked because a court ruling is a different kind of action than a boycott. But the ruling didn't replace the boycott; it came after it.",
-      "Similarly,": "Picked because both the boycott and the ruling challenged segregation. But the sentence tells what happened next, not a parallel event."
+      "For example,": "The ruling is a specific detail. But it isn't an example of the boycott; it is a later event in the story.",
+      "Instead,": "A court ruling is a different kind of action than a boycott. But the ruling didn't replace the boycott; it came after it.",
+      "Similarly,": "Both the boycott and the ruling challenged segregation. But the sentence tells what happened next, not a parallel event."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -927,9 +927,9 @@
       "If they were painted, where did the white come from?"
     ],
     "wrong_reasons": {
-      "Moreover,": "Picked because the last sentence adds information. But it doesn't add a separate point; it draws a conclusion from the pigment evidence.",
-      "Nonetheless,": "Picked because the white statues seem to clash with the painted ones. But that clash was already marked by 'Yet'; the last sentence follows from the evidence instead of going against it.",
-      "For instance,": "Picked because the last sentence mentions specific details like weathering. But it isn't an example of painted statues; it explains what the evidence means."
+      "Moreover,": "The last sentence adds information. But it doesn't add a separate point; it draws a conclusion from the pigment evidence.",
+      "Nonetheless,": "The white statues seem to clash with the painted ones. But that clash was already marked by 'Yet'; the last sentence follows from the evidence instead of going against it.",
+      "For instance,": "The last sentence mentions specific details like weathering. But it isn't an example of painted statues; it explains what the evidence means."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -959,9 +959,9 @@
       "Which transition sets the truth against a mistaken belief?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because the passage opens by saying decks are vulnerable to wind, and the last sentence seems to back that up. But the sentence right before the blank describes the designers' assumption, and 'Indeed' would wrongly confirm that assumption.",
-      "Granted,": "Picked because the last sentence pushes back on the designers. But 'Granted' concedes a point the writer then argues against; here the sentence is the writer's own main claim, and no counterpoint follows it.",
-      "Accordingly,": "Picked because the last sentence includes a 'because' clause and sounds like a conclusion. But it doesn't follow from the designers' reasoning; it shows that reasoning was wrong."
+      "Indeed,": "The passage opens by saying decks are vulnerable to wind, and the last sentence seems to back that up. But the sentence right before the blank describes the designers' assumption, and 'Indeed' would wrongly confirm that assumption.",
+      "Granted,": "The last sentence pushes back on the designers. But 'Granted' concedes a point the writer then argues against; here the sentence is the writer's own main claim, and no counterpoint follows it.",
+      "Accordingly,": "The last sentence includes a 'because' clause and sounds like a conclusion. But it doesn't follow from the designers' reasoning; it shows that reasoning was wrong."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -990,9 +990,9 @@
       "Is seeing the village another hardship or the end of her search?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because the sentences all describe Lena's trip. But spotting the village is a relief, not one more hardship like aching feet.",
-      "For example,": "Picked because the last sentence has specific details. But seeing the village isn't an example of her tiredness.",
-      "In addition,": "Picked because it seems to add to the list of what happened. But the earlier details are problems, and this one ends them, so it isn't more of the same."
+      "Similarly,": "The sentences all describe Lena's trip. But spotting the village is a relief, not one more hardship like aching feet.",
+      "For example,": "The last sentence has specific details. But seeing the village isn't an example of her tiredness.",
+      "In addition,": "It seems to add to the list of what happened. But the earlier details are problems, and this one ends them, so it isn't more of the same."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1021,9 +1021,9 @@
       "Does having his phone support his excuse or weaken it?"
     ],
     "wrong_reasons": {
-      "For instance,": "Picked because having his phone sounds like a detail about the delay. But it isn't an example of the breakdown; it's a point against his own excuse.",
-      "In other words,": "Picked because Daniel seems to be explaining himself again. But 'I had my phone' doesn't restate that the train broke down; it says something different.",
-      "Similarly,": "Picked because both lines are about what happened that evening. But the train's delay excuses him, while having his phone admits fault, so they aren't parallel."
+      "For instance,": "Having his phone sounds like a detail about the delay. But it isn't an example of the breakdown; it's a point against his own excuse.",
+      "In other words,": "Daniel seems to be explaining himself again. But 'I had my phone' doesn't restate that the train broke down; it says something different.",
+      "Similarly,": "Both lines are about what happened that evening. But the train's delay excuses him, while having his phone admits fault, so they aren't parallel."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1053,9 +1053,9 @@
       "Which transition signals a summary?"
     ],
     "wrong_reasons": {
-      "Even so,": "Picked because the last sentence mentions that workers were 'constrained', which hints at a contrast. But that's a phrase inside the sentence; the sentence as a whole agrees with the strikes and petitions instead of going against them.",
-      "By contrast,": "Picked because the passage does contrast the workers' records with the historians' old view. But that contrast was already made; the sentence before the blank describes strikes and petitions, which the last sentence agrees with.",
-      "Subsequently,": "Picked because the passage moves through the 1830s and 1840s. But the last sentence isn't a later event; it describes what the records show as a whole."
+      "Even so,": "The last sentence mentions that workers were 'constrained', which hints at a contrast. But that's a phrase inside the sentence; the sentence as a whole agrees with the strikes and petitions instead of going against them.",
+      "By contrast,": "The passage does contrast the workers' records with the historians' old view. But that contrast was already made; the sentence before the blank describes strikes and petitions, which the last sentence agrees with.",
+      "Subsequently,": "The passage moves through the 1830s and 1840s. But the last sentence isn't a later event; it describes what the records show as a whole."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1085,8 +1085,8 @@
     ],
     "wrong_reasons": {
       "However,": "Picked by readers who expect a twist after 'too little light'. But plant life being near the surface is just what the lack of deep light predicts.",
-      "For example,": "Picked because the last sentence names a specific thing (plant life). But it's an effect of the earlier facts, not an example of them.",
-      "Similarly,": "Picked because all the sentences are about the ocean. But the last sentence follows from the others instead of making a parallel point."
+      "For example,": "The last sentence names a specific thing (plant life). But it's an effect of the earlier facts, not an example of them.",
+      "Similarly,": "All the sentences are about the ocean. But the last sentence follows from the others instead of making a parallel point."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1115,9 +1115,9 @@
       "Why would that change lead more people to vote in council races?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the first sentence says local turnout is usually low. But the turnout rose because of the city's change, not in spite of it.",
-      "In contrast,": "Picked because the passage contrasts local and national turnout. But the last sentence doesn't contrast with the sentence before it; it shows what that change caused.",
-      "Likewise,": "Picked because both the presidential and council races drew voters. But the last sentence isn't a similar event; it's the effect of combining the elections."
+      "Nevertheless,": "The first sentence says local turnout is usually low. But the turnout rose because of the city's change, not in spite of it.",
+      "In contrast,": "The passage contrasts local and national turnout. But the last sentence doesn't contrast with the sentence before it; it shows what that change caused.",
+      "Likewise,": "Both the presidential and council races drew voters. But the last sentence isn't a similar event; it's the effect of combining the elections."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1147,9 +1147,9 @@
       "Is the last sentence a concession, a parallel point, or a conclusion?"
     ],
     "wrong_reasons": {
-      "Granted,": "Picked because the passage begins with the managers' old view, and the last sentence seems to answer it. But 'Granted' concedes a point that goes against the writer, and the last sentence is the writer's own conclusion.",
-      "Likewise,": "Picked because the sentence before the blank lists animals in a series, and 'Likewise' seems to continue it. But the last sentence isn't another similar animal; it states what follows from the whole series.",
-      "Even so,": "Picked because the passage contrasts old and new views of snags. But the last sentence follows from the evidence about cavity-dwellers instead of going against it."
+      "Granted,": "The passage begins with the managers' old view, and the last sentence seems to answer it. But 'Granted' concedes a point that goes against the writer, and the last sentence is the writer's own conclusion.",
+      "Likewise,": "The sentence before the blank lists animals in a series, and 'Likewise' seems to continue it. But the last sentence isn't another similar animal; it states what follows from the whole series.",
+      "Even so,": "The passage contrasts old and new views of snags. But the last sentence follows from the evidence about cavity-dwellers instead of going against it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1178,9 +1178,9 @@
       "Why would teachers start using practice quizzes?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because the passage compares two groups. But the teachers' choice agrees with the finding instead of going against it.",
-      "Similarly,": "Picked because both the students and the teachers use quizzes. But the teachers' choice is caused by the finding; it isn't a separate, parallel fact.",
-      "For example,": "Picked because practice quizzes are a specific detail. But they aren't an example of the study's result; they are a response to it."
+      "However,": "The passage compares two groups. But the teachers' choice agrees with the finding instead of going against it.",
+      "Similarly,": "Both the students and the teachers use quizzes. But the teachers' choice is caused by the finding; it isn't a separate, parallel fact.",
+      "For example,": "Practice quizzes are a specific detail. But they aren't an example of the study's result; they are a response to it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1209,8 +1209,8 @@
       "How does the magma at Mount St. Helens behave, and is that the same or different?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences describe volcanoes and how gas escapes. But one describes gentle eruptions and the other violent ones, which is the opposite of similar.",
-      "Therefore,": "Picked because the last sentence explains a cause (trapped gas leading to explosions). But Hawaii's runny lava doesn't cause Mount St. Helens to explode.",
+      "Similarly,": "Both sentences describe volcanoes and how gas escapes. But one describes gentle eruptions and the other violent ones, which is the opposite of similar.",
+      "Therefore,": "The last sentence explains a cause (trapped gas leading to explosions). But Hawaii's runny lava doesn't cause Mount St. Helens to explode.",
       "For example,": "Picked by readers who link it to 'Not all volcanic eruptions are explosive.' But Mount St. Helens erupts explosively, so it isn't an example of that claim; Hawaii already was."
     },
     "check": null,
@@ -1241,9 +1241,9 @@
       "Which transition replaces a rejected explanation with the correct one?"
     ],
     "wrong_reasons": {
-      "Moreover,": "Picked because the last sentence seems to add another point about the geologists. But the previous sentence ruled out a reason; 'Moreover' would add to that instead of replacing it with the real one.",
-      "Nevertheless,": "Picked because the geologists rejected the idea despite strong evidence. But that tension was already marked by 'but' in the previous sentence; the last sentence explains the rejection rather than opposing it.",
-      "Indeed,": "Picked because the last sentence gives more detail about why geologists objected. But 'Indeed' would back up the sentence before it, which says what was NOT the reason, not what was."
+      "Moreover,": "The last sentence seems to add another point about the geologists. But the previous sentence ruled out a reason; 'Moreover' would add to that instead of replacing it with the real one.",
+      "Nevertheless,": "The geologists rejected the idea despite strong evidence. But that tension was already marked by 'but' in the previous sentence; the last sentence explains the rejection rather than opposing it.",
+      "Indeed,": "The last sentence gives more detail about why geologists objected. But 'Indeed' would back up the sentence before it, which says what was NOT the reason, not what was."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1892,9 +1892,9 @@
       "Is the head stand a solution to that problem or something opposed to it?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because the last sentence turns to something new (the stands). But the stands don't go against the long exposures; they are a response to them.",
-      "In contrast,": "Picked because the stands seem different from the camera. But nothing is being compared; the stands exist because of the exposure problem.",
-      "Meanwhile,": "Picked because the passage is about the same period, the 1840s. But 'Meanwhile' signals a separate, simultaneous event, and the stands are directly caused by the problem just described."
+      "However,": "The last sentence turns to something new (the stands). But the stands don't go against the long exposures; they are a response to them.",
+      "In contrast,": "The stands seem different from the camera. But nothing is being compared; the stands exist because of the exposure problem.",
+      "Meanwhile,": "The passage is about the same period, the 1840s. But 'Meanwhile' signals a separate, simultaneous event, and the stands are directly caused by the problem just described."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1924,9 +1924,9 @@
       "Are the two generations being shown as alike or as different?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences describe a generation of monarchs and their life cycles. But the details are opposites (weeks vs. months, early vs. delayed reproduction), not parallels.",
-      "For example,": "Picked because the late-summer butterflies are a specific case. But they don't illustrate the short summer lives just described; they break from them.",
-      "As a result,": "Picked because the long life seems to lead to the migration. But the blank connects to the previous sentence about summer butterflies, and their short lives don't cause the late generation's long ones."
+      "Similarly,": "Both sentences describe a generation of monarchs and their life cycles. But the details are opposites (weeks vs. months, early vs. delayed reproduction), not parallels.",
+      "For example,": "The late-summer butterflies are a specific case. But they don't illustrate the short summer lives just described; they break from them.",
+      "As a result,": "The long life seems to lead to the migration. But the blank connects to the previous sentence about summer butterflies, and their short lives don't cause the late generation's long ones."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -1956,8 +1956,8 @@
       "Does the last sentence follow from the rule, or go against it?"
     ],
     "wrong_reasons": {
-      "Even so,": "Picked because accepting skewed outlines sounds like a reluctant sacrifice. But 'Even so' means 'despite that,' and the sacrifice happens because of the result, not in spite of it.",
-      "Conversely,": "Picked because the passage sets conformal and equal-area projections against each other. But the last sentence doesn't state an opposite case; it applies the same rule to one choice.",
+      "Even so,": "Accepting skewed outlines sounds like a reluctant sacrifice. But 'Even so' means 'despite that,' and the sacrifice happens because of the result, not in spite of it.",
+      "Conversely,": "The passage sets conformal and equal-area projections against each other. But the last sentence doesn't state an opposite case; it applies the same rule to one choice.",
       "Meanwhile,": "Picked as a neutral way to move to a new point. But the last sentence is not a separate, simultaneous matter; it follows logically from the result just stated."
     },
     "check": null,
@@ -1987,8 +1987,8 @@
       "Is the last sentence an effect of the fast division or a contrast with it?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because 'millions' sounds surprising. But the large number is exactly what fast division would lead to, not a contradiction of it.",
-      "For example,": "Picked because the last sentence gives a specific number. But it doesn't illustrate binary fission; it describes what fast fission leads to.",
+      "However,": "'Millions' sounds surprising. But the large number is exactly what fast division would lead to, not a contradiction of it.",
+      "For example,": "The last sentence gives a specific number. But it doesn't illustrate binary fission; it describes what fast fission leads to.",
       "Instead,": "Picked as a way to introduce a new idea. But nothing earlier is being replaced; the cell still divides, and the millions of descendants follow from that."
     },
     "check": null,
@@ -2018,9 +2018,9 @@
       "Does it support the first finding or push against it?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the passage contrasts runners' belief with the research. But the blank links two research findings that point the same way, so there is no 'despite that' relationship.",
-      "For this reason,": "Picked because the findings seem connected. But failing to prevent injuries doesn't cause stretching to reduce strength; the second finding is an additional point, not an effect.",
-      "In contrast,": "Picked because of the earlier 'Yet,' which sets belief against evidence. But the sentence after the blank agrees with the sentence before it rather than contrasting with it."
+      "Nevertheless,": "The passage contrasts runners' belief with the research. But the blank links two research findings that point the same way, so there is no 'despite that' relationship.",
+      "For this reason,": "The findings seem connected. But failing to prevent injuries doesn't cause stretching to reduce strength; the second finding is an additional point, not an effect.",
+      "In contrast,": "Of the earlier 'Yet,' which sets belief against evidence. But the sentence after the blank agrees with the sentence before it rather than contrasting with it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2050,9 +2050,9 @@
       "Which phrase in the last sentence tells you the situation has flipped?"
     ],
     "wrong_reasons": {
-      "Nonetheless,": "Picked because rejecting eggs looks like a change from the tolerance just described. But 'Nonetheless' means 'in spite of that,' and the rejection is predicted by the same calculation, not a departure from it.",
-      "Likewise,": "Picked because both sentences apply the same cost-benefit reasoning. But the conditions (scarce vs. common cuckoos) and outcomes (tolerance vs. rejection) are opposites, not parallels.",
-      "In other words,": "Picked because the last sentence seems to sum up the 'calculation.' But it adds a new case with a new result rather than restating the previous sentence."
+      "Nonetheless,": "Rejecting eggs looks like a change from the tolerance just described. But 'Nonetheless' means 'in spite of that,' and the rejection is predicted by the same calculation, not a departure from it.",
+      "Likewise,": "Both sentences apply the same cost-benefit reasoning. But the conditions (scarce vs. common cuckoos) and outcomes (tolerance vs. rejection) are opposites, not parallels.",
+      "In other words,": "The last sentence seems to sum up the 'calculation.' But it adds a new case with a new result rather than restating the previous sentence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2081,9 +2081,9 @@
       "Is the feature after the blank a second feature or the opposite of the first?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because the passage earlier contrasts caged robots with cobots. But the two sentences around the blank both describe cobot safety features and don't conflict.",
-      "As a result,": "Picked because the features seem related. But slowing down near people doesn't cause the robot to stop when it bumps into something; they are separate features.",
-      "Instead,": "Picked because the word 'instead' appears earlier in the passage. But cobots don't stop rather than slowing down; they do both."
+      "However,": "The passage earlier contrasts caged robots with cobots. But the two sentences around the blank both describe cobot safety features and don't conflict.",
+      "As a result,": "The features seem related. But slowing down near people doesn't cause the robot to stop when it bumps into something; they are separate features.",
+      "Instead,": "The word 'instead' appears earlier in the passage. But cobots don't stop rather than slowing down; they do both."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2112,9 +2112,9 @@
       "Does the person's lack of symptoms follow from that fact or go against it?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because having a faulty gene but no symptoms sounds surprising. But it is exactly what the previous sentence predicts, not something that happens in spite of it.",
-      "Similarly,": "Picked because both sentences discuss gene copies. But the last sentence applies the earlier fact to a person; it isn't a parallel example.",
-      "In contrast,": "Picked because 'faulty' contrasts with 'working.' But the two sentences agree: one working copy is enough, so the person is healthy."
+      "Nevertheless,": "Having a faulty gene but no symptoms sounds surprising. But it is exactly what the previous sentence predicts, not something that happens in spite of it.",
+      "Similarly,": "Both sentences discuss gene copies. But the last sentence applies the earlier fact to a person; it isn't a parallel example.",
+      "In contrast,": "'Faulty' contrasts with 'working.' But the two sentences agree: one working copy is enough, so the person is healthy."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2143,9 +2143,9 @@
       "Does 'searing is far from pointless' agree with that expectation or push back against it?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because 'far from pointless' is emphatic, and 'Indeed' introduces emphasis. But 'Indeed' strengthens the previous point, and the previous point was that searing fails at its supposed purpose.",
-      "Accordingly,": "Picked because the last sentences explain what searing really does, which seems to follow from the tests. But the failed 'seal in' theory gives no reason to conclude that searing is worthwhile; the conclusion runs against it.",
-      "In other words,": "Picked because the writer seems to be summing up the tests. But 'searing is far from pointless' doesn't restate their finding; it turns away from it."
+      "Indeed,": "'Far from pointless' is emphatic, and 'Indeed' introduces emphasis. But 'Indeed' strengthens the previous point, and the previous point was that searing fails at its supposed purpose.",
+      "Accordingly,": "The last sentences explain what searing really does, which seems to follow from the tests. But the failed 'seal in' theory gives no reason to conclude that searing is worthwhile; the conclusion runs against it.",
+      "In other words,": "The writer seems to be summing up the tests. But 'searing is far from pointless' doesn't restate their finding; it turns away from it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2174,9 +2174,9 @@
       "Are they being compared as alike or as different in reliability?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because the last sentence sounds like a specific case. But a claim with several sources isn't an example of an unreliable single witness; it's the opposite case.",
-      "In addition,": "Picked because the last sentence adds information. But it doesn't add another weakness of single witnesses; it describes the stronger alternative.",
-      "Similarly,": "Picked because both sentences talk about sources. But one describes a weakness and the other a strength, so they are not similar."
+      "For example,": "The last sentence sounds like a specific case. But a claim with several sources isn't an example of an unreliable single witness; it's the opposite case.",
+      "In addition,": "The last sentence adds information. But it doesn't add another weakness of single witnesses; it describes the stronger alternative.",
+      "Similarly,": "Both sentences talk about sources. But one describes a weakness and the other a strength, so they are not similar."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2205,9 +2205,9 @@
       "Would you expect that reaction to help or hurt the style's success? What actually happened?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Picked because the popularity seems to follow the history described. But the adults' worries would not cause the style to become popular; the success came in spite of them.",
-      "Likewise,": "Picked because both sentences describe reactions to the new books. But worry and enthusiasm are opposite reactions, not similar ones.",
-      "For instance,": "Picked because the last sentence gives a specific outcome. But the books' popularity is not an example of the adults' worries."
+      "Therefore,": "The popularity seems to follow the history described. But the adults' worries would not cause the style to become popular; the success came in spite of them.",
+      "Likewise,": "Both sentences describe reactions to the new books. But worry and enthusiasm are opposite reactions, not similar ones.",
+      "For instance,": "The last sentence gives a specific outcome. But the books' popularity is not an example of the adults' worries."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2237,9 +2237,9 @@
       "What word signals that a writer is admitting a point before disagreeing?"
     ],
     "wrong_reasons": {
-      "Consequently,": "Picked because the scan's quality seems to follow from the curators' point about high-resolution images. But the sentence is not an effect of the argument; it is the writer conceding part of it before rebutting it.",
-      "In contrast,": "Picked because the passage does contain a contrast. But the contrast comes in the next sentence ('But'); the sentence with the blank agrees with the curators.",
-      "For instance,": "Picked because the scan's fidelity sounds like a detail. But it doesn't illustrate the curators' claim with a specific case; it judges how good scans are, setting up the writer's 'But.'"
+      "Consequently,": "The scan's quality seems to follow from the curators' point about high-resolution images. But the sentence is not an effect of the argument; it is the writer conceding part of it before rebutting it.",
+      "In contrast,": "The passage does contain a contrast. But the contrast comes in the next sentence ('But'); the sentence with the blank agrees with the curators.",
+      "For instance,": "The scan's fidelity sounds like a detail. But it doesn't illustrate the curators' claim with a specific case; it judges how good scans are, setting up the writer's 'But.'"
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2268,8 +2268,8 @@
       "Does the last sentence add a new idea or explain the same one again?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because the last sentence seems to illustrate the puzzle. But it gives no specific case; it restates the general point.",
-      "However,": "Picked because the second sentence contains a contrast ('but'). But the last sentence agrees with the second sentence rather than opposing it.",
+      "For example,": "The last sentence seems to illustrate the puzzle. But it gives no specific case; it restates the general point.",
+      "However,": "The second sentence contains a contrast ('but'). But the last sentence agrees with the second sentence rather than opposing it.",
       "Meanwhile,": "Picked as a neutral connector. But 'Meanwhile' introduces a separate point, and the last sentence restates the same one."
     },
     "check": null,
@@ -2299,9 +2299,9 @@
       "Does the zoning example follow that pattern or break it?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Picked because the passage is a chain of causes and effects. But the weak response isn't caused by developers' incentive to build; it happens despite it.",
-      "For instance,": "Picked because zoning-restricted cities are a specific case. But they don't illustrate the pattern of building more; they show the pattern failing.",
-      "Likewise,": "Picked because both sentences discuss how rents affect housing. But the zoning case works differently from the general case, not in the same way."
+      "Therefore,": "The passage is a chain of causes and effects. But the weak response isn't caused by developers' incentive to build; it happens despite it.",
+      "For instance,": "Zoning-restricted cities are a specific case. But they don't illustrate the pattern of building more; they show the pattern failing.",
+      "Likewise,": "Both sentences discuss how rents affect housing. But the zoning case works differently from the general case, not in the same way."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2331,9 +2331,9 @@
       "Is the blank linking back to the gardeners' view or to the description of the forest?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because earthworms do the same thing, eating organic matter, in both settings. But the effect in the forest is the opposite of the effect in a garden, and the sentence explains a result rather than drawing a parallel.",
-      "Nevertheless,": "Picked because 'destructive' clashes with the 'benefactors' of the first sentence. But the blank connects to the sentence just before it, which describes the forests' dependence on leaves, and the harm follows from that dependence rather than happening despite it.",
-      "In other words,": "Picked because the last sentence seems to sum up the forest description. But it adds a new claim, that the worms destroy habitat, which the previous sentence never stated."
+      "Similarly,": "Earthworms do the same thing, eating organic matter, in both settings. But the effect in the forest is the opposite of the effect in a garden, and the sentence explains a result rather than drawing a parallel.",
+      "Nevertheless,": "'Destructive' clashes with the 'benefactors' of the first sentence. But the blank connects to the sentence just before it, which describes the forests' dependence on leaves, and the harm follows from that dependence rather than happening despite it.",
+      "In other words,": "The last sentence seems to sum up the forest description. But it adds a new claim, that the worms destroy habitat, which the previous sentence never stated."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2362,9 +2362,9 @@
       "Did the narrator follow that advice?"
     ],
     "wrong_reasons": {
-      "As a result,": "Picked because the scratches are a result of wearing a T-shirt. But the blank connects to the warning, and the warning didn't cause the narrator to wear a T-shirt.",
-      "Likewise,": "Picked because both sentences describe what happened each summer. But ignoring advice is not similar to giving it.",
-      "For example,": "Picked because the yellow T-shirt is a specific detail. But wearing it is not an example of the grandmother's warning; it goes against the warning."
+      "As a result,": "The scratches are a result of wearing a T-shirt. But the blank connects to the warning, and the warning didn't cause the narrator to wear a T-shirt.",
+      "Likewise,": "Both sentences describe what happened each summer. But ignoring advice is not similar to giving it.",
+      "For example,": "The yellow T-shirt is a specific detail. But wearing it is not an example of the grandmother's warning; it goes against the warning."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2393,9 +2393,9 @@
       "Does the last sentence confirm that assumption or qualify it?"
     ],
     "wrong_reasons": {
-      "Likewise,": "Picked because both sentences describe isolated birds. But abnormal songs are not similar to the fact that the birds sing; they qualify it.",
-      "In addition,": "Picked because the last sentence adds detail about the songs. But it doesn't add another point in the same direction; it limits the good news that the birds still sing.",
-      "For instance,": "Picked because the long syllables and harsh structure are specific details. But abnormal songs are not an example of the birds still singing; they are a qualification of it."
+      "Likewise,": "Both sentences describe isolated birds. But abnormal songs are not similar to the fact that the birds sing; they qualify it.",
+      "In addition,": "The last sentence adds detail about the songs. But it doesn't add another point in the same direction; it limits the good news that the birds still sing.",
+      "For instance,": "The long syllables and harsh structure are specific details. But abnormal songs are not an example of the birds still singing; they are a qualification of it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2425,9 +2425,9 @@
       "Where in the last sentence does a contrast appear, and is it at the blank?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because of the 'graveyard' image and the warning about heat waves at the end. But reefs recovering is exactly what the previous sentence said could happen, so there is no 'in spite of that' relationship.",
-      "Instead,": "Picked because the passage replaces 'death' with 'starvation.' But that replacement already happened in the previous sentence; the blank introduces evidence for recovery, not an alternative.",
-      "Similarly,": "Picked because both sentences are about recovery. But the last sentence doesn't describe a separate, parallel case; it provides real-world evidence for the claim just made."
+      "Nevertheless,": "Of the 'graveyard' image and the warning about heat waves at the end. But reefs recovering is exactly what the previous sentence said could happen, so there is no 'in spite of that' relationship.",
+      "Instead,": "The passage replaces 'death' with 'starvation.' But that replacement already happened in the previous sentence; the blank introduces evidence for recovery, not an alternative.",
+      "Similarly,": "Both sentences are about recovery. But the last sentence doesn't describe a separate, parallel case; it provides real-world evidence for the claim just made."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2456,9 +2456,9 @@
       "Does the second sentence give specific cases of that idea?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because the first sentence contrasts complete streets with car-only roads. But the second sentence agrees with the first; it doesn't go against it.",
-      "In contrast,": "Picked because the features listed are different from car lanes. But the sentence isn't contrasting with the first sentence; it shows what the first sentence means.",
-      "Finally,": "Picked because the last sentence lists items. But 'Finally' marks the last step or point in a sequence, and there is no sequence here."
+      "However,": "The first sentence contrasts complete streets with car-only roads. But the second sentence agrees with the first; it doesn't go against it.",
+      "In contrast,": "The features listed are different from car lanes. But the sentence isn't contrasting with the first sentence; it shows what the first sentence means.",
+      "Finally,": "The last sentence lists items. But 'Finally' marks the last step or point in a sequence, and there is no sequence here."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2487,9 +2487,9 @@
       "How would a bank respond to a loan that seems risky and costly to evaluate?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because higher rates seem like a separate, harsh development. But the banks' terms are what you'd expect given the risks, not something that happens despite them.",
-      "In other words,": "Picked because the last sentence seems to rephrase 'harder to borrow money.' But it states a new consequence (higher rates, collateral) of the reasons just given rather than restating them.",
-      "Similarly,": "Picked because both sentences describe difficulties for small firms. But the banks' terms are caused by the lenders' concerns, not a parallel case."
+      "Nevertheless,": "Higher rates seem like a separate, harsh development. But the banks' terms are what you'd expect given the risks, not something that happens despite them.",
+      "In other words,": "The last sentence seems to rephrase 'harder to borrow money.' But it states a new consequence (higher rates, collateral) of the reasons just given rather than restating them.",
+      "Similarly,": "Both sentences describe difficulties for small firms. But the banks' terms are caused by the lenders' concerns, not a parallel case."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2518,9 +2518,9 @@
       "Is reusing parchment a response to its cost, or something that happens in spite of it?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because scraping off old writing seems like a surprising step, but reuse doesn't go against the high cost; it follows from it.",
-      "For example,": "Picked because palimpsests are a specific detail, but reusing parchment isn't an instance of parchment being costly; it's a response to that cost.",
-      "Likewise,": "Picked because both sentences concern parchment, but reuse isn't a parallel to the cost; it's caused by it."
+      "Nevertheless,": "Scraping off old writing seems like a surprising step, but reuse doesn't go against the high cost; it follows from it.",
+      "For example,": "Palimpsests are a specific detail, but reusing parchment isn't an instance of parchment being costly; it's a response to that cost.",
+      "Likewise,": "Both sentences concern parchment, but reuse isn't a parallel to the cost; it's caused by it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2550,9 +2550,9 @@
       "Does the second clause support the trade view or work against it?"
     ],
     "wrong_reasons": {
-      "moreover,": "Picked because both clauses describe villagers' habits, but the second doesn't add to the debt-like record-keeping; it undercuts what that record-keeping seems to imply.",
-      "for this reason,": "Picked because both clauses involve repayment, but keeping track of gifts doesn't cause people to see repayment as an insult; the reason given is the wish to sustain relationships.",
-      "in other words,": "Picked because the second clause explains the villagers' outlook, but it doesn't restate the first clause; it says something the first clause would not lead you to expect."
+      "moreover,": "Both clauses describe villagers' habits, but the second doesn't add to the debt-like record-keeping; it undercuts what that record-keeping seems to imply.",
+      "for this reason,": "Both clauses involve repayment, but keeping track of gifts doesn't cause people to see repayment as an insult; the reason given is the wish to sustain relationships.",
+      "in other words,": "The second clause explains the villagers' outlook, but it doesn't restate the first clause; it says something the first clause would not lead you to expect."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2581,9 +2581,9 @@
       "Is dividing an hour into 60 minutes a new idea, or a case of what the second sentence describes?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because modern clocks seem different from ancient numbers, but the last sentence supports the claim that base-60 survives instead of contradicting it.",
-      "Instead,": "Picked because the passage mentions sixties \"rather than\" tens, but the last sentence doesn't replace anything; it illustrates the survival of base 60.",
-      "Meanwhile,": "Picked because the passage moves from ancient times to today, but the last sentence isn't happening at the same time as something else; it is an example."
+      "However,": "Modern clocks seem different from ancient numbers, but the last sentence supports the claim that base-60 survives instead of contradicting it.",
+      "Instead,": "The passage mentions sixties \"rather than\" tens, but the last sentence doesn't replace anything; it illustrates the survival of base 60.",
+      "Meanwhile,": "The passage moves from ancient times to today, but the last sentence isn't happening at the same time as something else; it is an example."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2612,9 +2612,9 @@
       "Is the last sentence describing something separate from the bubble analysis, or what that analysis achieves?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because the passage lists several facts about ice cores, but the last sentence isn't a parallel fact; it states the outcome of the method just described.",
-      "Nonetheless,": "Picked because the last sentence mentions the limits of instrument measurements, but nothing in the passage is being contradicted or conceded.",
-      "By contrast,": "Picked because ice cores are set against instrument measurements within the last sentence, but that contrast is inside the sentence; its link to the previous sentence is one of means and result."
+      "Similarly,": "The passage lists several facts about ice cores, but the last sentence isn't a parallel fact; it states the outcome of the method just described.",
+      "Nonetheless,": "The last sentence mentions the limits of instrument measurements, but nothing in the passage is being contradicted or conceded.",
+      "By contrast,": "Ice cores are set against instrument measurements within the last sentence, but that contrast is inside the sentence; its link to the previous sentence is one of means and result."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2643,9 +2643,9 @@
       "Does the last sentence add to the reviewers' view, follow from it, or replace it?"
     ],
     "wrong_reasons": {
-      "Admittedly,": "Picked because the passage mentions reviewers' opinions, but \"Admittedly\" concedes a point against the writer's view, and the last sentence supports the writer's view.",
-      "Moreover,": "Picked because the last sentence gives more information about the decision, but it doesn't add to the previous sentence; it replaces the rejected explanation with the real one.",
-      "Consequently,": "Picked because Marchetti's conviction and her decision are linked by cause, but the conviction caused the decision; it isn't a result of the decision not being a compromise."
+      "Admittedly,": "The passage mentions reviewers' opinions, but \"Admittedly\" concedes a point against the writer's view, and the last sentence supports the writer's view.",
+      "Moreover,": "The last sentence gives more information about the decision, but it doesn't add to the previous sentence; it replaces the rejected explanation with the real one.",
+      "Consequently,": "Marchetti's conviction and her decision are linked by cause, but the conviction caused the decision; it isn't a result of the decision not being a compromise."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2674,9 +2674,9 @@
       "Does the last sentence agree with the first two or set up a difference?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences are about ships crossing the ocean, but steamships behave the opposite way from sailing ships.",
-      "For this reason,": "Picked because steamships came later and solved the problem, but unpredictable winds don't explain why steamships kept fixed schedules; their engines do.",
-      "In addition,": "Picked because the last sentence adds information, but it doesn't add another point about sailing ships; it presents a contrasting kind of ship."
+      "Similarly,": "Both sentences are about ships crossing the ocean, but steamships behave the opposite way from sailing ships.",
+      "For this reason,": "Steamships came later and solved the problem, but unpredictable winds don't explain why steamships kept fixed schedules; their engines do.",
+      "In addition,": "The last sentence adds information, but it doesn't add another point about sailing ships; it presents a contrasting kind of ship."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2705,9 +2705,9 @@
       "What would you expect to happen to an animal that loses its main food source for a long time?"
     ],
     "wrong_reasons": {
-      "Likewise,": "Picked because both sentences describe harm to coral, but starvation isn't a parallel harm; it follows from the loss of nutrition.",
-      "In other words,": "Picked because starvation and losing nutrition sound alike, but the last sentence adds a new outcome (death by starvation over time) rather than restating the loss.",
-      "Despite this,": "Picked because of \"even if its stony skeleton still appears intact,\" but that contrast is inside the last sentence; starvation doesn't go against the previous sentence."
+      "Likewise,": "Both sentences describe harm to coral, but starvation isn't a parallel harm; it follows from the loss of nutrition.",
+      "In other words,": "Starvation and losing nutrition sound alike, but the last sentence adds a new outcome (death by starvation over time) rather than restating the loss.",
+      "Despite this,": "Of \"even if its stony skeleton still appears intact,\" but that contrast is inside the last sentence; starvation doesn't go against the previous sentence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2736,9 +2736,9 @@
       "Is the last sentence's maneuver a restatement of that approach, or a replacement for it?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the last maneuver sounds surprising, but \"Nevertheless\" would mean the pursuer acts in spite of falling behind; actually it acts to avoid falling behind.",
-      "Similarly,": "Picked because both sentences describe engine burns, but firing backward is the reverse of firing forward, not a parallel to it.",
-      "In other words,": "Picked because the last sentence seems to explain the physics further, but it describes a new maneuver rather than restating why speeding up fails."
+      "Nevertheless,": "The last maneuver sounds surprising, but \"Nevertheless\" would mean the pursuer acts in spite of falling behind; actually it acts to avoid falling behind.",
+      "Similarly,": "Both sentences describe engine burns, but firing backward is the reverse of firing forward, not a parallel to it.",
+      "In other words,": "The last sentence seems to explain the physics further, but it describes a new maneuver rather than restating why speeding up fails."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2767,9 +2767,9 @@
       "Does the last sentence disagree with that claim or show it in action?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because the plants are different from one another, but the last sentence supports the claim that they help each other.",
-      "Instead,": "Picked because the plants do different jobs, but the last sentence doesn't replace anything mentioned before.",
-      "Afterward,": "Picked because farming happens in steps, but the last sentence doesn't describe something that happens later; it explains how the plants help."
+      "However,": "The plants are different from one another, but the last sentence supports the claim that they help each other.",
+      "Instead,": "The plants do different jobs, but the last sentence doesn't replace anything mentioned before.",
+      "Afterward,": "Farming happens in steps, but the last sentence doesn't describe something that happens later; it explains how the plants help."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2798,9 +2798,9 @@
       "Is the last sentence a new contrast, or the details of the reversal already announced?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because Lind's version differs from tradition, but that contrast was already made by \"reverses\"; the last sentence explains the reversal rather than opposing it.",
-      "Similarly,": "Picked because Eurydice still stays in the underworld, as in the myth, but the point of the sentence is how Lind's version differs, not how it matches.",
-      "Meanwhile,": "Picked because the scene happens as the couple climbs, but the last sentence doesn't describe something happening at the same time as the previous sentence."
+      "Nevertheless,": "Lind's version differs from tradition, but that contrast was already made by \"reverses\"; the last sentence explains the reversal rather than opposing it.",
+      "Similarly,": "Eurydice still stays in the underworld, as in the myth, but the point of the sentence is how Lind's version differs, not how it matches.",
+      "Meanwhile,": "The scene happens as the couple climbs, but the last sentence doesn't describe something happening at the same time as the previous sentence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2829,9 +2829,9 @@
       "Do the two groups agree about whether visible puppeteers weaken the illusion?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because \"Indeed\" sounds like a strong way to move an argument forward, but it confirms the previous point, and the last sentence rejects that point.",
-      "Accordingly,": "Picked because the last sentence responds to the previous one, but seasoned viewers' opinion doesn't follow from newcomers' doubts; it opposes them.",
-      "In short,": "Picked because the last sentence sounds like a conclusion about the effect, but it doesn't sum up what came before; it introduces a different view."
+      "Indeed,": "\"Indeed\" sounds like a strong way to move an argument forward, but it confirms the previous point, and the last sentence rejects that point.",
+      "Accordingly,": "The last sentence responds to the previous one, but seasoned viewers' opinion doesn't follow from newcomers' doubts; it opposes them.",
+      "In short,": "The last sentence sounds like a conclusion about the effect, but it doesn't sum up what came before; it introduces a different view."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2860,9 +2860,9 @@
       "Does the last sentence describe more of what the method can do, or something it can't do?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because stone tools are specific items, but they aren't examples of objects the method dates; they're exceptions.",
-      "Similarly,": "Picked because the last sentence also discusses objects archaeologists study, but it describes a limit, not something parallel to the method's uses.",
-      "Afterward,": "Picked because dating happens in steps, but the last sentence isn't a later step; it's a restriction on the method."
+      "For example,": "Stone tools are specific items, but they aren't examples of objects the method dates; they're exceptions.",
+      "Similarly,": "The last sentence also discusses objects archaeologists study, but it describes a limit, not something parallel to the method's uses.",
+      "Afterward,": "Dating happens in steps, but the last sentence isn't a later step; it's a restriction on the method."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2891,9 +2891,9 @@
       "Is the night-opening habit a second solution or the details of the one just mentioned?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the desert plants act differently from most plants, but the last sentence doesn't go against the previous one; it explains it.",
-      "In addition,": "Picked because the last sentence gives new information, but it isn't a second, separate point; it describes the \"unusual way\" already mentioned.",
-      "Likewise,": "Picked because the passage compares desert plants with most plants, but the last sentence describes the opposite of what most plants do, not a similar habit."
+      "Nevertheless,": "The desert plants act differently from most plants, but the last sentence doesn't go against the previous one; it explains it.",
+      "In addition,": "The last sentence gives new information, but it isn't a second, separate point; it describes the \"unusual way\" already mentioned.",
+      "Likewise,": "The passage compares desert plants with most plants, but the last sentence describes the opposite of what most plants do, not a similar habit."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2922,9 +2922,9 @@
       "Does \"fatally incomplete\" continue that judgment or push against it?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because \"fatally incomplete\" is emphatic, and \"Indeed\" introduces emphasis, but it would strengthen the praise of the method, which the last sentence undercuts.",
-      "Accordingly,": "Picked because the flaw is connected to how the method worked, but a reasonable premise and generous results don't lead to the method being incomplete.",
-      "Moreover,": "Picked because both sentences evaluate the method, but the last sentence doesn't add another strength; it identifies a fatal weakness."
+      "Indeed,": "\"Fatally incomplete\" is emphatic, and \"Indeed\" introduces emphasis, but it would strengthen the praise of the method, which the last sentence undercuts.",
+      "Accordingly,": "The flaw is connected to how the method worked, but a reasonable premise and generous results don't lead to the method being incomplete.",
+      "Moreover,": "Both sentences evaluate the method, but the last sentence doesn't add another strength; it identifies a fatal weakness."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2953,9 +2953,9 @@
       "Why would builders need arches outside the building?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences describe parts of the cathedral, but the buttresses aren't like the weak walls; they were added because of them.",
-      "For example,": "Picked because flying buttresses are a specific feature, but they aren't an example of weak walls; they're the solution to them.",
-      "In contrast,": "Picked because buttresses are strong while the walls were weak, but the sentence explains a response to the problem, not a difference."
+      "Similarly,": "Both sentences describe parts of the cathedral, but the buttresses aren't like the weak walls; they were added because of them.",
+      "For example,": "Flying buttresses are a specific feature, but they aren't an example of weak walls; they're the solution to them.",
+      "In contrast,": "Buttresses are strong while the walls were weak, but the sentence explains a response to the problem, not a difference."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2984,9 +2984,9 @@
       "Are ideas one of the goods listed, or another thing the routes carried?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because ideas are different from physical goods, but the passage presents them as one more thing the routes carried, not as a contrast with trade.",
-      "For instance,": "Picked because Buddhism is a specific example, but that example belongs to the last sentence's own claim; ideas aren't an instance of spices, glassware, horses, or paper.",
-      "In other words,": "Picked because the last sentence keeps describing what the routes carried, but carrying ideas is a new point, not a restatement of carrying goods."
+      "However,": "Ideas are different from physical goods, but the passage presents them as one more thing the routes carried, not as a contrast with trade.",
+      "For instance,": "Buddhism is a specific example, but that example belongs to the last sentence's own claim; ideas aren't an instance of spices, glassware, horses, or paper.",
+      "In other words,": "The last sentence keeps describing what the routes carried, but carrying ideas is a new point, not a restatement of carrying goods."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3016,9 +3016,9 @@
       "Is the last sentence an example, a contrast, or a conclusion?"
     ],
     "wrong_reasons": {
-      "Nonetheless,": "Picked because the last sentence contrasts with the old view that remembering is merely reading out a record, but that contrast is within the sentence; it follows from the reconsolidation finding instead of going against it.",
-      "For example,": "Picked because remembering sounds like a concrete case, but the last sentence is a broad conclusion drawn from the finding, not an instance of it.",
-      "Similarly,": "Picked because both sentences describe memory being modified, but the last sentence isn't a parallel finding; it states what the finding would imply."
+      "Nonetheless,": "The last sentence contrasts with the old view that remembering is merely reading out a record, but that contrast is within the sentence; it follows from the reconsolidation finding instead of going against it.",
+      "For example,": "Remembering sounds like a concrete case, but the last sentence is a broad conclusion drawn from the finding, not an instance of it.",
+      "Similarly,": "Both sentences describe memory being modified, but the last sentence isn't a parallel finding; it states what the finding would imply."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3047,9 +3047,9 @@
       "Does the last sentence add to that description or change direction?"
     ],
     "wrong_reasons": {
-      "However,": "Picked because food seems different from decorations, but the last sentence continues the description instead of contrasting with it.",
-      "For this reason,": "Picked because the altars honor relatives, but photographs and flowers aren't the reason families add food; it's another way of honoring them.",
-      "Instead,": "Picked because food is a different kind of item, but families add it along with the decorations, not in place of them."
+      "However,": "Food seems different from decorations, but the last sentence continues the description instead of contrasting with it.",
+      "For this reason,": "The altars honor relatives, but photographs and flowers aren't the reason families add food; it's another way of honoring them.",
+      "Instead,": "Food is a different kind of item, but families add it along with the decorations, not in place of them."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3078,9 +3078,9 @@
       "Does Marguerite give up, or keep going?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences describe moments in the presentation, but Marguerite's improvising isn't like the projector's failure; it's her response to it.",
-      "Meanwhile,": "Picked because the managers are watching at the same time, but the last sentence follows the setback as her reaction to it, not as something happening alongside it.",
-      "In other words,": "Picked because the last sentence continues the scene, but it doesn't restate the projector failure; it shows what Marguerite does next."
+      "Similarly,": "Both sentences describe moments in the presentation, but Marguerite's improvising isn't like the projector's failure; it's her response to it.",
+      "Meanwhile,": "The managers are watching at the same time, but the last sentence follows the setback as her reaction to it, not as something happening alongside it.",
+      "In other words,": "The last sentence continues the scene, but it doesn't restate the projector failure; it shows what Marguerite does next."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3109,9 +3109,9 @@
       "Does \"remain limited\" build on that success or qualify it?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because the last sentence adds detail about what melanosomes record, but \"Indeed\" would reinforce the claim of progress, while the sentence limits it.",
-      "Consequently,": "Picked because the limitation is tied to how melanosomes work, but being able to infer colors with some confidence doesn't cause the inferences to be limited.",
-      "In other words,": "Picked because both sentences explain what melanosomes can show, but the last sentence states a restriction the previous one didn't mention, not a restatement."
+      "Indeed,": "The last sentence adds detail about what melanosomes record, but \"Indeed\" would reinforce the claim of progress, while the sentence limits it.",
+      "Consequently,": "The limitation is tied to how melanosomes work, but being able to infer colors with some confidence doesn't cause the inferences to be limited.",
+      "In other words,": "Both sentences explain what melanosomes can show, but the last sentence states a restriction the previous one didn't mention, not a restatement."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3140,9 +3140,9 @@
       "Does the final sentence confirm or overturn the expectation that the word would drop out?"
     ],
     "wrong_reasons": {
-      "Accordingly,": "Tempting because the previous sentence contains \"then,\" which sounds like a chain of consequences; but persisting for centuries is not a consequence of the expectation, it contradicts it.",
-      "Indeed,": "Tempting because \"Indeed\" often adds emphasis in academic prose; but it would confirm the expectation that the word disappears, while the next sentence says it survives.",
-      "Likewise,": "Tempting because the passage discusses several similar words; but the last sentence does not describe a parallel case, it reverses the expectation just stated."
+      "Accordingly,": "The previous sentence contains \"then,\" which sounds like a chain of consequences; but persisting for centuries is not a consequence of the expectation, it contradicts it.",
+      "Indeed,": "\"Indeed\" often adds emphasis in academic prose; but it would confirm the expectation that the word disappears, while the next sentence says it survives.",
+      "Likewise,": "The passage discusses several similar words; but the last sentence does not describe a parallel case, it reverses the expectation just stated."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3171,8 +3171,8 @@
       "Is the second sentence a contrast, an example, or a consequence of the first?"
     ],
     "wrong_reasons": {
-      "However,": "Tempting because the second sentence describes a change from the early design; but adding cages does not contrast with the danger, it responds to it.",
-      "For example,": "Tempting because cages are a specific detail; but adding cages is not an example of blades being dangerous.",
+      "However,": "The second sentence describes a change from the early design; but adding cages does not contrast with the danger, it responds to it.",
+      "For example,": "Cages are a specific detail; but adding cages is not an example of blades being dangerous.",
       "Similarly,": "Tempting as a general connector; but the second sentence does not describe a parallel situation, it describes a result."
     },
     "check": null,
@@ -3202,9 +3202,9 @@
       "Is finding company more of the same, or a change from what came before?"
     ],
     "wrong_reasons": {
-      "In addition,": "Tempting because the letter keeps listing details of life at Carrow Point; but finding company does not add to the loneliness, it contrasts with it.",
-      "Similarly,": "Tempting because both sentences describe Teodor's social life; but one describes isolation and the other company, so they are not similar.",
-      "For instance,": "Tempting because the gulls and fishermen are specific examples; but they are examples of company, not of the loneliness described in the previous sentence."
+      "In addition,": "The letter keeps listing details of life at Carrow Point; but finding company does not add to the loneliness, it contrasts with it.",
+      "Similarly,": "Both sentences describe Teodor's social life; but one describes isolation and the other company, so they are not similar.",
+      "For instance,": "The gulls and fishermen are specific examples; but they are examples of company, not of the loneliness described in the previous sentence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3233,9 +3233,9 @@
       "Do the two cases make opposite points or the same point?"
     ],
     "wrong_reasons": {
-      "Conversely,": "Tempting because a retreating front seems like the opposite of a steady one; but the two cases make the same point, not reversed ones.",
-      "For example,": "Tempting because a retreating glacier is a specific case; but it is not an example of a terminus that \"holds steady,\" which is what the previous sentence describes.",
-      "Nevertheless,": "Tempting because \"need not be flowing backward\" sounds like a correction; but it does not push against the previous sentence, it extends the same idea to a new case."
+      "Conversely,": "A retreating front seems like the opposite of a steady one; but the two cases make the same point, not reversed ones.",
+      "For example,": "A retreating glacier is a specific case; but it is not an example of a terminus that \"holds steady,\" which is what the previous sentence describes.",
+      "Nevertheless,": "\"Need not be flowing backward\" sounds like a correction; but it does not push against the previous sentence, it extends the same idea to a new case."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3264,9 +3264,9 @@
       "Does the second sentence agree with the first or go against it?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Tempting because the first sentence contains \"so,\" a cause word; but Venus being hottest does not follow from Mercury being closest, it contradicts the expectation.",
-      "For example,": "Tempting because Venus is a specific planet; but Venus is not an example of Mercury being hottest.",
-      "Similarly,": "Tempting because both sentences are about hot planets; but the second sentence corrects the first instead of describing a similar case."
+      "Therefore,": "The first sentence contains \"so,\" a cause word; but Venus being hottest does not follow from Mercury being closest, it contradicts the expectation.",
+      "For example,": "Venus is a specific planet; but Venus is not an example of Mercury being hottest.",
+      "Similarly,": "Both sentences are about hot planets; but the second sentence corrects the first instead of describing a similar case."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3295,8 +3295,8 @@
       "Does pitch do the same thing or something different in Mandarin?"
     ],
     "wrong_reasons": {
-      "For instance,": "Tempting because the second sentence contains an example (\"ma\"); but Mandarin is not an example of the English pattern the first sentence describes.",
-      "Likewise,": "Tempting because both sentences are about pitch; but the point is that pitch works differently in the two languages, not similarly.",
+      "For instance,": "The second sentence contains an example (\"ma\"); but Mandarin is not an example of the English pattern the first sentence describes.",
+      "Likewise,": "Both sentences are about pitch; but the point is that pitch works differently in the two languages, not similarly.",
       "As a result,": "Tempting as a logical-sounding connector; but how pitch works in English does not cause how it works in Mandarin."
     },
     "check": null,
@@ -3326,9 +3326,9 @@
       "What role does the sentence with the blank play before the sentence that begins with \"But\"?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Tempting because the author is skeptical of the histories; but the sentence with the blank agrees with part of their claim, and the contrast only comes in the next sentence.",
-      "Consequently,": "Tempting because the passage describes cause and effect (hammers let players vary volume); but the piano's advantage is not a result of the histories' claim, it is a point the author concedes.",
-      "Instead,": "Tempting because the author offers an alternative account; but that alternative appears in the \"But\" sentence, while this sentence accepts part of the original view."
+      "Nevertheless,": "The author is skeptical of the histories; but the sentence with the blank agrees with part of their claim, and the contrast only comes in the next sentence.",
+      "Consequently,": "The passage describes cause and effect (hammers let players vary volume); but the piano's advantage is not a result of the histories' claim, it is a point the author concedes.",
+      "Instead,": "The author offers an alternative account; but that alternative appears in the \"But\" sentence, while this sentence accepts part of the original view."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3357,8 +3357,8 @@
       "How do the other workers find out where the flowers are?"
     ],
     "wrong_reasons": {
-      "However,": "Tempting because \"without ever having seen the flowers\" sounds surprising; but learning the route does not contrast with the dance, it is what the dance achieves.",
-      "For instance,": "Tempting because the last sentence is a specific detail; but it is not an example of the dance's angle or length, it is their result.",
+      "However,": "\"Without ever having seen the flowers\" sounds surprising; but learning the route does not contrast with the dance, it is what the dance achieves.",
+      "For instance,": "The last sentence is a specific detail; but it is not an example of the dance's angle or length, it is their result.",
       "Even so,": "Tempting for the same reason as \"However\"; but nothing in the earlier sentences would make the bees' learning unexpected."
     },
     "check": null,
@@ -3388,9 +3388,9 @@
       "Does the second sentence support that memory or complicate it?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Tempting because the carpool system led to the protest lasting a long time; but the need for organization is not a consequence of how the boycott is remembered.",
-      "Similarly,": "Tempting because both sentences describe the boycott; but the second sentence corrects the first instead of adding a parallel point.",
-      "For example,": "Tempting because the carpool system is a specific example; but it is an example of organization, not of the \"single act of defiance\" in the previous sentence."
+      "Therefore,": "The carpool system led to the protest lasting a long time; but the need for organization is not a consequence of how the boycott is remembered.",
+      "Similarly,": "Both sentences describe the boycott; but the second sentence corrects the first instead of adding a parallel point.",
+      "For example,": "The carpool system is a specific example; but it is an example of organization, not of the \"single act of defiance\" in the previous sentence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3419,9 +3419,9 @@
       "How does the evidence of paint change what that whiteness means?"
     ],
     "wrong_reasons": {
-      "Nonetheless,": "Tempting because the previous sentence contains \"however\"; but the final sentence does not push against the pigment evidence, it draws a conclusion from it.",
-      "Likewise,": "Tempting because the passage moves from one point about the statues to another; but the final sentence is not a parallel fact, it shows that the later artists' belief was mistaken.",
-      "For instance,": "Tempting because the final sentence gives specifics about the whiteness; but it is not an example of the pigment traces, it explains what they imply."
+      "Nonetheless,": "The previous sentence contains \"however\"; but the final sentence does not push against the pigment evidence, it draws a conclusion from it.",
+      "Likewise,": "The passage moves from one point about the statues to another; but the final sentence is not a parallel fact, it shows that the later artists' belief was mistaken.",
+      "For instance,": "The final sentence gives specifics about the whiteness; but it is not an example of the pigment traces, it explains what they imply."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3450,8 +3450,8 @@
       "Is the last sentence a contrast with, an example of, or a response to the earlier ones?"
     ],
     "wrong_reasons": {
-      "However,": "Tempting because expansion joints seem to work against the problem; but the sentence does not contrast with the earlier facts, it follows from them.",
-      "For example,": "Tempting because expansion joints are a specific detail; but they are not an example of materials expanding or shrinking.",
+      "However,": "Expansion joints seem to work against the problem; but the sentence does not contrast with the earlier facts, it follows from them.",
+      "For example,": "Expansion joints are a specific detail; but they are not an example of materials expanding or shrinking.",
       "Similarly,": "Tempting as a general connector; but the last sentence does not describe a parallel situation."
     },
     "check": null,
@@ -3481,9 +3481,9 @@
       "Does the last sentence happen at the same time as the rain, or after it?"
     ],
     "wrong_reasons": {
-      "Meanwhile,": "Tempting because it is a time word; but it means \"at the same time,\" and the arrival happens after the delays, not during them.",
-      "Likewise,": "Tempting because the story continues in the same tone; but reaching the pass is not similar to being pinned down by rain.",
-      "For instance,": "Tempting because the last sentence gives specific details; but reaching the pass is not an example of the mountain's \"other plans.\""
+      "Meanwhile,": "It is a time word; but it means \"at the same time,\" and the arrival happens after the delays, not during them.",
+      "Likewise,": "The story continues in the same tone; but reaching the pass is not similar to being pinned down by rain.",
+      "For instance,": "The last sentence gives specific details; but reaching the pass is not an example of the mountain's \"other plans.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3512,9 +3512,9 @@
       "Is the sentence with the blank a new idea, or the same idea put another way?"
     ],
     "wrong_reasons": {
-      "Even so,": "Tempting because Nina disagrees with Vera's \"absurd\"; but within Nina's own speech the sentence follows from her explanation instead of contrasting with it.",
-      "On the other hand,": "Tempting because Nina offers a view opposed to Vera's; but the transition links Nina's sentences to each other, and they agree.",
-      "Before long,": "Tempting because the scene involves the passage of years; but the sentence is not a later event, it explains what the receipts meant to him."
+      "Even so,": "Nina disagrees with Vera's \"absurd\"; but within Nina's own speech the sentence follows from her explanation instead of contrasting with it.",
+      "On the other hand,": "Nina offers a view opposed to Vera's; but the transition links Nina's sentences to each other, and they agree.",
+      "Before long,": "The scene involves the passage of years; but the sentence is not a later event, it explains what the receipts meant to him."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3543,9 +3543,9 @@
       "Did they get it quickly, or did it take a long time despite their efforts?"
     ],
     "wrong_reasons": {
-      "As a result,": "Tempting because the campaign eventually led to shorter hours; but the long delay is not a result of the campaign's popularity, it contrasts with it.",
-      "For example,": "Tempting because the last sentence names a specific date; but it is not an example of the slogan or the organizing.",
-      "In addition,": "Tempting because it adds another fact; but the fact works against what came before instead of adding to it."
+      "As a result,": "The campaign eventually led to shorter hours; but the long delay is not a result of the campaign's popularity, it contrasts with it.",
+      "For example,": "The last sentence names a specific date; but it is not an example of the slogan or the organizing.",
+      "In addition,": "It adds another fact; but the fact works against what came before instead of adding to it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3575,8 +3575,8 @@
     ],
     "wrong_reasons": {
       "Nevertheless,": "Tempting if a reader thinks of ice as floating; but the sinking water is the salty water left behind, and its sinking is expected, not surprising.",
-      "For instance,": "Tempting because the sinking water is a specific case; but it is not an example of wind or ice formation, it is their effect.",
-      "In contrast,": "Tempting because sinking and freezing seem like opposite processes; but the last sentence does not contrast with the earlier ones, it follows from them."
+      "For instance,": "The sinking water is a specific case; but it is not an example of wind or ice formation, it is their effect.",
+      "In contrast,": "Sinking and freezing seem like opposite processes; but the last sentence does not contrast with the earlier ones, it follows from them."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3605,9 +3605,9 @@
       "Is the number of people who actually vote consistent with that prediction?"
     ],
     "wrong_reasons": {
-      "Accordingly,": "Tempting because the passage follows a chain of reasoning (\"By this reasoning\"); but high turnout does not follow from the prediction, it contradicts it.",
-      "Indeed,": "Tempting because \"Indeed\" can introduce a striking fact; but it would confirm the prediction of negligible turnout, which the next sentence disproves.",
-      "In other words,": "Tempting because the passage restates ideas several times; but tens of millions voting is not a restatement of negligible turnout, it is the opposite."
+      "Accordingly,": "The passage follows a chain of reasoning (\"By this reasoning\"); but high turnout does not follow from the prediction, it contradicts it.",
+      "Indeed,": "\"Indeed\" can introduce a striking fact; but it would confirm the prediction of negligible turnout, which the next sentence disproves.",
+      "In other words,": "The passage restates ideas several times; but tens of millions voting is not a restatement of negligible turnout, it is the opposite."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3636,8 +3636,8 @@
       "Where do the new seedlings come from?"
     ],
     "wrong_reasons": {
-      "However,": "Tempting because new growth after a fire seems surprising; but the passage has already explained that fire releases the seeds, so the seedlings are expected.",
-      "For example,": "Tempting because seedlings are a specific detail; but they are not an example of cones being sealed or melting.",
+      "However,": "New growth after a fire seems surprising; but the passage has already explained that fire releases the seeds, so the seedlings are expected.",
+      "For example,": "Seedlings are a specific detail; but they are not an example of cones being sealed or melting.",
       "Similarly,": "Tempting as a general connector; but the last sentence is an effect of the fire, not a similar case."
     },
     "check": null,
@@ -3667,9 +3667,9 @@
       "Does the last sentence add new information or put the earlier findings more simply?"
     ],
     "wrong_reasons": {
-      "By contrast,": "Tempting because the previous sentence begins with \"Yet\"; but the last sentence agrees with the previous one instead of contrasting with it.",
+      "By contrast,": "The previous sentence begins with \"Yet\"; but the last sentence agrees with the previous one instead of contrasting with it.",
       "Even so,": "Tempting for the same reason; but the conclusion follows from the students' wrong predictions instead of going against them.",
-      "For example,": "Tempting because the last sentence draws on study results; but it is a general summary, not a specific example."
+      "For example,": "The last sentence draws on study results; but it is a general summary, not a specific example."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3698,9 +3698,9 @@
       "Are their eruptions similar, or opposite?"
     ],
     "wrong_reasons": {
-      "Likewise,": "Tempting because both sentences follow the same structure, linking viscosity to gas escape; but they describe opposite outcomes.",
-      "Consequently,": "Tempting because each sentence contains \"so\"; but the behavior of Hawaiian basalts is not a result of how silica-rich magma behaves.",
-      "In other words,": "Tempting because both sentences illustrate the opening principle; but the third sentence presents a new, opposite case instead of restating the second."
+      "Likewise,": "Both sentences follow the same structure, linking viscosity to gas escape; but they describe opposite outcomes.",
+      "Consequently,": "Each sentence contains \"so\"; but the behavior of Hawaiian basalts is not a result of how silica-rich magma behaves.",
+      "In other words,": "Both sentences illustrate the opening principle; but the third sentence presents a new, opposite case instead of restating the second."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3729,9 +3729,9 @@
       "Did other astronomers accept the idea right away?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Tempting because the old belief was widely held, which could explain resistance; but the sentence just before the blank presents Copernicus's carefully worked-out argument, and slow acceptance goes against what that argument might lead one to expect rather than following from it.",
-      "Likewise,": "Tempting because both sentences describe beliefs about the heavens; but the last sentence is not a parallel point.",
-      "For example,": "Tempting because the last sentence gives a detail about Copernicus; but it is not an example of his argument."
+      "Therefore,": "The old belief was widely held, which could explain resistance; but the sentence just before the blank presents Copernicus's carefully worked-out argument, and slow acceptance goes against what that argument might lead one to expect rather than following from it.",
+      "Likewise,": "Both sentences describe beliefs about the heavens; but the last sentence is not a parallel point.",
+      "For example,": "The last sentence gives a detail about Copernicus; but it is not an example of his argument."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3761,8 +3761,8 @@
     ],
     "wrong_reasons": {
       "However,": "Picked when a student expects a twist, but nothing in the second sentence contradicts the first.",
-      "In contrast,": "Picked because the sentences talk about different things (germs and campaigns), but the campaigns don't differ from the first idea; they result from it.",
-      "Similarly,": "Picked because both sentences are about handwashing, but the second isn't a parallel example; it's a consequence."
+      "In contrast,": "The sentences talk about different things (germs and campaigns), but the campaigns don't differ from the first idea; they result from it.",
+      "Similarly,": "Both sentences are about handwashing, but the second isn't a parallel example; it's a consequence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3791,9 +3791,9 @@
       "Is baking powder a kind of baking soda, a result of it, or something different from it?"
     ],
     "wrong_reasons": {
-      "for instance,": "Picked because baking powder looks like another example of a leavener, but the first sentence makes no general claim it could illustrate; it describes baking soda, which baking powder differs from.",
-      "as a result,": "Picked because the passage moves through a chemical process step by step, but baking powder's makeup isn't caused by how baking soda behaves.",
-      "likewise,": "Picked because both are leaveners that release carbon dioxide, but the point of the sentence is how baking powder is different: it carries its own acid."
+      "for instance,": "Baking powder looks like another example of a leavener, but the first sentence makes no general claim it could illustrate; it describes baking soda, which baking powder differs from.",
+      "as a result,": "The passage moves through a chemical process step by step, but baking powder's makeup isn't caused by how baking soda behaves.",
+      "likewise,": "Both are leaveners that release carbon dioxide, but the point of the sentence is how baking powder is different: it carries its own acid."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3822,9 +3822,9 @@
       "Does the authors' advice follow from the first-season result, or hold up in spite of it?"
     ],
     "wrong_reasons": {
-      "Consequently,": "Picked because the passage is full of cause and effect (residue ties up nitrogen, yields drop), but a yield drop would not cause researchers to keep recommending cover crops; their advice comes in spite of it.",
+      "Consequently,": "The passage is full of cause and effect (residue ties up nitrogen, yields drop), but a yield drop would not cause researchers to keep recommending cover crops; their advice comes in spite of it.",
       "In fact,": "Picked as an emphatic link, but \"in fact\" would strengthen the sentence before it, and the authors' refusal to drop the practice pushes against that drawback rather than reinforcing it.",
-      "Specifically,": "Picked because the rest of the sentence gives precise detail, but the authors' advice is a new point, not a closer look at the first-season yield result."
+      "Specifically,": "The rest of the sentence gives precise detail, but the authors' advice is a new point, not a closer look at the first-season yield result."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3853,8 +3853,8 @@
       "Does the sentence about cold deserts support that belief or challenge it?"
     ],
     "wrong_reasons": {
-      "Therefore,": "Picked because the text sounds like it is building an argument, but cold deserts are not a result of people thinking deserts are hot.",
-      "For example,": "Picked because Antarctica is an example later in the text, but the sentence right after the blank is not an example of hot deserts; it contradicts that idea.",
+      "Therefore,": "The text sounds like it is building an argument, but cold deserts are not a result of people thinking deserts are hot.",
+      "For example,": "Antarctica is an example later in the text, but the sentence right after the blank is not an example of hot deserts; it contradicts that idea.",
       "Additionally,": "Picked as a general add-on word, but the sentence doesn't add to the hot-desert picture; it goes against it."
     },
     "check": null,
@@ -3884,9 +3884,9 @@
       "Does Teodora agree with his reason, or does she think something else is going on?"
     ],
     "wrong_reasons": {
-      "In short,": "Picked because the last sentence sounds like a wrap-up, but it doesn't summarize the grandfather's claim; it offers a different reason.",
-      "As a result,": "Picked because his explanation seems to prompt her thinking, but his claim doesn't cause her suspicion; she doubts it.",
-      "Likewise,": "Picked because both sentences explain his behavior, but the phrase \"the real reason\" shows Teodora rejects his explanation instead of offering a matching one."
+      "In short,": "The last sentence sounds like a wrap-up, but it doesn't summarize the grandfather's claim; it offers a different reason.",
+      "As a result,": "His explanation seems to prompt her thinking, but his claim doesn't cause her suspicion; she doubts it.",
+      "Likewise,": "Both sentences explain his behavior, but the phrase \"the real reason\" shows Teodora rejects his explanation instead of offering a matching one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3915,9 +3915,9 @@
       "Does the heron's \"attention\" match that impression or overturn it?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because the sentence keeps describing stillness, but \"indeed\" would confirm the earlier impression of a forgotten, reed-like bird, while \"not rest but attention\" overturns it.",
-      "Thus,": "Picked because the long standing seems to lead into the next idea, but the river and minnows ignoring the heron is not a reason its stillness is attention.",
-      "In the same way,": "Picked because the passage builds image upon image, but the heron's watchfulness is not like the minnows mistaking it for a reed; it is the opposite of what they assume."
+      "Indeed,": "The sentence keeps describing stillness, but \"indeed\" would confirm the earlier impression of a forgotten, reed-like bird, while \"not rest but attention\" overturns it.",
+      "Thus,": "The long standing seems to lead into the next idea, but the river and minnows ignoring the heron is not a reason its stillness is attention.",
+      "In the same way,": "The passage builds image upon image, but the heron's watchfulness is not like the minnows mistaking it for a reed; it is the opposite of what they assume."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3947,8 +3947,8 @@
     ],
     "wrong_reasons": {
       "however,": "Picked by students who expect a contrast, but dopamine fits the first sentence's category instead of opposing it.",
-      "in contrast,": "Picked because dopamine is something specific while the first sentence is general, but dopamine belongs to the group; it doesn't differ from it.",
-      "therefore,": "Picked because science passages often show cause and effect, but neurons releasing neurotransmitters doesn't cause dopamine to be one."
+      "in contrast,": "Dopamine is something specific while the first sentence is general, but dopamine belongs to the group; it doesn't differ from it.",
+      "therefore,": "Science passages often show cause and effect, but neurons releasing neurotransmitters doesn't cause dopamine to be one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3977,9 +3977,9 @@
       "Is the last sentence adding a new problem or going back on an earlier one?"
     ],
     "wrong_reasons": {
-      "Nonetheless,": "Picked because the last sentence brings in people instead of equipment, which can feel like a turn, but declining careers fit with the problems already described rather than going against them.",
-      "In other words,": "Picked because both sentences describe difficulties, but actors losing their careers is a separate problem, not a restatement of the camera problem.",
-      "Previously,": "Picked because the passage is about history, but the actors' decline happened during the change to sound, not before it."
+      "Nonetheless,": "The last sentence brings in people instead of equipment, which can feel like a turn, but declining careers fit with the problems already described rather than going against them.",
+      "In other words,": "Both sentences describe difficulties, but actors losing their careers is a separate problem, not a restatement of the camera problem.",
+      "Previously,": "The passage is about history, but the actors' decline happened during the change to sound, not before it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4008,9 +4008,9 @@
       "Is the final sentence a new claim, a contrast, or a restatement?"
     ],
     "wrong_reasons": {
-      "Nevertheless,": "Picked because the alloy \"seems to yield\" but recovers, which feels like a contrast, but by the blank that contrast has already been explained; the final sentence agrees with the sentence before it.",
-      "Similarly,": "Picked because the passage compares the alloy with ordinary metals, but the final sentence describes the same alloy again, not a second, similar case.",
-      "Conversely,": "Picked because the passage sets ordinary metals against the alloy, but the final sentence doesn't reverse the mechanism just described; it sums it up."
+      "Nevertheless,": "The alloy \"seems to yield\" but recovers, which feels like a contrast, but by the blank that contrast has already been explained; the final sentence agrees with the sentence before it.",
+      "Similarly,": "The passage compares the alloy with ordinary metals, but the final sentence describes the same alloy again, not a second, similar case.",
+      "Conversely,": "The passage sets ordinary metals against the alloy, but the final sentence doesn't reverse the mechanism just described; it sums it up."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4039,9 +4039,9 @@
       "Do modern dancers do the same thing or something different?"
     ],
     "wrong_reasons": {
-      "for example,": "Picked because modern dance is another kind of dance, but modern dancers are not an example of ballet dancers wearing pointe shoes.",
-      "as a result,": "Picked because the text explains reasons, but ballet's shoes don't cause modern dancers to go barefoot.",
-      "in addition,": "Picked because the text adds information about dancers, but going barefoot is a difference from ballet, not one more point about it."
+      "for example,": "Modern dance is another kind of dance, but modern dancers are not an example of ballet dancers wearing pointe shoes.",
+      "as a result,": "The text explains reasons, but ballet's shoes don't cause modern dancers to go barefoot.",
+      "in addition,": "The text adds information about dancers, but going barefoot is a difference from ballet, not one more point about it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4070,9 +4070,9 @@
       "Does the two percent figure support that memory or correct it?"
     ],
     "wrong_reasons": {
-      "For this reason,": "Picked because the last sentence includes reasons for denial, but the low rejection rate isn't caused by popular memory.",
-      "Likewise,": "Picked because both sentences are about people being turned away, but \"only about two percent\" corrects the popular picture; it doesn't match it.",
-      "To illustrate,": "Picked because the last sentence has specific numbers and reasons, but a small rejection rate can't illustrate a claim that large numbers were turned away; it contradicts it."
+      "For this reason,": "The last sentence includes reasons for denial, but the low rejection rate isn't caused by popular memory.",
+      "Likewise,": "Both sentences are about people being turned away, but \"only about two percent\" corrects the popular picture; it doesn't match it.",
+      "To illustrate,": "The last sentence has specific numbers and reasons, but a small rejection rate can't illustrate a claim that large numbers were turned away; it contradicts it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4101,9 +4101,9 @@
       "How does what collectors value connect to what manufacturers do?"
     ],
     "wrong_reasons": {
-      "nevertheless,": "Picked because faking a mark of handwork with a machine seems ironic, but manufacturers copy the blur because collectors value it, not in spite of that.",
-      "by contrast,": "Picked because machine printing is the opposite of handweaving, but the manufacturers share the collectors' view of the blur instead of opposing it.",
-      "that is,": "Picked because the clause seems to explain the collectors' attitude, but what manufacturers do is a new development, not a restatement of what collectors value."
+      "nevertheless,": "Faking a mark of handwork with a machine seems ironic, but manufacturers copy the blur because collectors value it, not in spite of that.",
+      "by contrast,": "Machine printing is the opposite of handweaving, but the manufacturers share the collectors' view of the blur instead of opposing it.",
+      "that is,": "The clause seems to explain the collectors' attitude, but what manufacturers do is a new development, not a restatement of what collectors value."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4132,9 +4132,9 @@
       "Are the rent laws an example of that problem or an attempt to deal with it?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences are about rent, but the laws aren't another case of rising rents; they push back against them.",
-      "For example,": "Picked because the laws are specific, but they are not an example of residents being forced out.",
-      "Nevertheless,": "Picked because the laws work against rising rents, but they are a reaction to the problem, not something that happens despite it."
+      "Similarly,": "Both sentences are about rent, but the laws aren't another case of rising rents; they push back against them.",
+      "For example,": "The laws are specific, but they are not an example of residents being forced out.",
+      "Nevertheless,": "The laws work against rising rents, but they are a reaction to the problem, not something that happens despite it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4163,9 +4163,9 @@
       "Is the designers' choice caused by the problem or in spite of it?"
     ],
     "wrong_reasons": {
-      "Even so,": "Picked because light, suggestive pieces look very different from heavy walls, but designers choose them because of the problem, not despite it.",
-      "In other words,": "Picked because both sentences are about scene changes, but describing casters and doorframes adds a solution; it doesn't restate the problem.",
-      "Likewise,": "Picked because the last sentence continues the topic of set design, but light units are the answer to the problem of heavy walls, not a parallel example of it."
+      "Even so,": "Light, suggestive pieces look very different from heavy walls, but designers choose them because of the problem, not despite it.",
+      "In other words,": "Both sentences are about scene changes, but describing casters and doorframes adds a solution; it doesn't restate the problem.",
+      "Likewise,": "The last sentence continues the topic of set design, but light units are the answer to the problem of heavy walls, not a parallel example of it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4194,9 +4194,9 @@
       "Does pairing panels with storage make their value fall, like the planners' point, or rise?"
     ],
     "wrong_reasons": {
-      "As a result,": "Picked because the passage is a chain of causes (mismatch, surplus, diminishing returns), but diminishing returns don't cause storage to raise each panel's value; the storage point reverses that conclusion.",
-      "Similarly,": "Picked because both sentences are about adding to the grid, but one predicts falling value and the other rising value, so they are not parallel.",
-      "In other words,": "Picked because the last sentence elaborates on the phrase \"by itself,\" but it gives an alternative with the opposite outcome instead of restating the planners' claim."
+      "As a result,": "The passage is a chain of causes (mismatch, surplus, diminishing returns), but diminishing returns don't cause storage to raise each panel's value; the storage point reverses that conclusion.",
+      "Similarly,": "Both sentences are about adding to the grid, but one predicts falling value and the other rising value, so they are not parallel.",
+      "In other words,": "The last sentence elaborates on the phrase \"by itself,\" but it gives an alternative with the opposite outcome instead of restating the planners' claim."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4225,9 +4225,9 @@
       "Is the second sentence a cause or an effect of the first?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because the second sentence has specific details, but books being rare is not an example of hand copying; it's an effect of it.",
-      "In contrast,": "Picked because \"rare and expensive\" sounds negative, but it agrees with the first sentence instead of differing from it.",
-      "Meanwhile,": "Picked because both things happened in the same period, but the link is stronger than timing: slow copying caused the scarcity."
+      "For example,": "The second sentence has specific details, but books being rare is not an example of hand copying; it's an effect of it.",
+      "In contrast,": "\"Rare and expensive\" sounds negative, but it agrees with the first sentence instead of differing from it.",
+      "Meanwhile,": "Both things happened in the same period, but the link is stronger than timing: slow copying caused the scarcity."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4256,9 +4256,9 @@
       "Does the kidney sentence replace the seed explanation or add to it?"
     ],
     "wrong_reasons": {
-      "Instead,": "Picked because the kidneys are a different body part from the one handling seeds, but saving water works alongside getting water from seeds; it doesn't replace it.",
-      "Nevertheless,": "Picked because water-saving kidneys can seem surprising, but nothing earlier works against them; they support the same survival strategy.",
-      "In other words,": "Picked because both sentences are about water, but holding on to water is a new point, not a restatement of getting it from seeds."
+      "Instead,": "The kidneys are a different body part from the one handling seeds, but saving water works alongside getting water from seeds; it doesn't replace it.",
+      "Nevertheless,": "Water-saving kidneys can seem surprising, but nothing earlier works against them; they support the same survival strategy.",
+      "In other words,": "Both sentences are about water, but holding on to water is a new point, not a restatement of getting it from seeds."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4287,9 +4287,9 @@
       "Are those two reactions alike or opposed?"
     ],
     "wrong_reasons": {
-      "Accordingly,": "Picked because the musicians' freedom seems to follow from the change in drumming, but it doesn't follow from the listeners finding the music chaotic, which is the sentence right before the blank.",
-      "Indeed,": "Picked because \"indeed\" can introduce a stronger, more detailed claim, but the musicians' delight doesn't strengthen the listeners' complaint; it opposes it.",
-      "Similarly,": "Picked because both sentences describe reactions to bebop drumming, but the reactions point in opposite directions, chaos against liberation."
+      "Accordingly,": "The musicians' freedom seems to follow from the change in drumming, but it doesn't follow from the listeners finding the music chaotic, which is the sentence right before the blank.",
+      "Indeed,": "\"Indeed\" can introduce a stronger, more detailed claim, but the musicians' delight doesn't strengthen the listeners' complaint; it opposes it.",
+      "Similarly,": "Both sentences describe reactions to bebop drumming, but the reactions point in opposite directions, chaos against liberation."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4319,8 +4319,8 @@
     ],
     "wrong_reasons": {
       "However,": "Picked by students who expect a twist, but the ponds providing homes continues the chain; nothing is contradicted.",
-      "For instance,": "Picked because the last sentence lists specific animals, but the ponds giving homes is not an example of dams slowing water; it is the next effect.",
-      "In contrast,": "Picked because the last sentence shifts from beavers to other animals, but the animals benefit from the ponds; the ideas don't conflict."
+      "For instance,": "The last sentence lists specific animals, but the ponds giving homes is not an example of dams slowing water; it is the next effect.",
+      "In contrast,": "The last sentence shifts from beavers to other animals, but the animals benefit from the ponds; the ideas don't conflict."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4349,9 +4349,9 @@
       "Does the last sentence add a new idea or show exactly how that claim works?"
     ],
     "wrong_reasons": {
-      "Similarly,": "Picked because both sentences describe printmaking steps, but intaglio is described as the opposite of relief, so its steps aren't similar.",
-      "Nevertheless,": "Picked because the passage mentions an opposite, which feels like contrast, but the last sentence agrees with \"works the opposite way\"; it explains it.",
-      "As a result,": "Picked because the process unfolds step by step, but intaglio being opposite to relief doesn't cause the steps; the steps are what the opposition looks like."
+      "Similarly,": "Both sentences describe printmaking steps, but intaglio is described as the opposite of relief, so its steps aren't similar.",
+      "Nevertheless,": "The passage mentions an opposite, which feels like contrast, but the last sentence agrees with \"works the opposite way\"; it explains it.",
+      "As a result,": "The process unfolds step by step, but intaglio being opposite to relief doesn't cause the steps; the steps are what the opposition looks like."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4380,9 +4380,9 @@
       "Is the second sentence an example, a contrast, or a conclusion based on the first?"
     ],
     "wrong_reasons": {
-      "For instance,": "Picked because the portraits seem like a concrete case, but the sentence offers an interpretation drawn from the facts, not an example of them.",
+      "For instance,": "The portraits seem like a concrete case, but the sentence offers an interpretation drawn from the facts, not an example of them.",
       "Nevertheless,": "Picked by students who sense a shift from technology to people, but the sentence agrees with and follows from the first rather than going against it.",
-      "Meanwhile,": "Picked because both ideas concern the same era, but the sentence is not describing something happening at the same time; it explains a consequence."
+      "Meanwhile,": "Both ideas concern the same era, but the sentence is not describing something happening at the same time; it explains a consequence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4411,9 +4411,9 @@
       "Does Okafor abandon lab colonies, or does she keep using them with a precaution?"
     ],
     "wrong_reasons": {
-      "Moreover,": "Picked because the second sentence adds more information about lab chambers, but it adds a weakness, not a further reason the colonies are indispensable.",
-      "Consequently,": "Picked because the sentence ends with a result (\"so Okafor insists\"), but the chambers' constant conditions are not caused by the colonies being indispensable.",
-      "In other words,": "Picked because both sentences describe lab chambers, but the second does not restate the first; it introduces a new, opposing consideration."
+      "Moreover,": "The second sentence adds more information about lab chambers, but it adds a weakness, not a further reason the colonies are indispensable.",
+      "Consequently,": "The sentence ends with a result (\"so Okafor insists\"), but the chambers' constant conditions are not caused by the colonies being indispensable.",
+      "In other words,": "Both sentences describe lab chambers, but the second does not restate the first; it introduces a new, opposing consideration."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4442,9 +4442,9 @@
       "What about the second sentence?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because Greenland is a specific example, but the sentence as a whole isn't an example of the map's usefulness to sailors.",
+      "For example,": "Greenland is a specific example, but the sentence as a whole isn't an example of the map's usefulness to sailors.",
       "Therefore,": "Picked by students who expect one fact about the map to cause the next, but accurate angles don't make the map useful by distorting size.",
-      "Similarly,": "Picked because both sentences describe features of the map, but one is a strength and the other a flaw, so they aren't alike."
+      "Similarly,": "Both sentences describe features of the map, but one is a strength and the other a flaw, so they aren't alike."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4473,9 +4473,9 @@
       "Is the final sentence a new parallel case, or an effect of what came before?"
     ],
     "wrong_reasons": {
-      "In contrast,": "Picked because free-floating bacteria were contrasted with biofilms earlier, but the last sentence agrees with the earlier claims rather than opposing them.",
-      "Similarly,": "Picked because persistent infections seem like another case of hard-to-kill bacteria, but the sentence is the consequence of the mechanism just described, not a parallel example.",
-      "Even so,": "Picked because \"even after aggressive treatment\" sounds surprising, but given that antibiotics barely work on biofilms, persistence is expected, not a reversal."
+      "In contrast,": "Free-floating bacteria were contrasted with biofilms earlier, but the last sentence agrees with the earlier claims rather than opposing them.",
+      "Similarly,": "Persistent infections seem like another case of hard-to-kill bacteria, but the sentence is the consequence of the mechanism just described, not a parallel example.",
+      "Even so,": "\"Even after aggressive treatment\" sounds surprising, but given that antibiotics barely work on biofilms, persistence is expected, not a reversal."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4504,9 +4504,9 @@
       "Does the second clause add to that denial, or tell you what is true instead?"
     ],
     "wrong_reasons": {
-      "nevertheless,": "Picked because the passage overturns an old belief, but the second clause doesn't concede anything; it supports the claim that lactate isn't waste.",
-      "consequently,": "Picked because the clauses seem linked by cause, but the logic runs the other way: lactate isn't a dead end because it is used for fuel, not used for fuel because it isn't a dead end.",
-      "similarly,": "Picked because both clauses describe lactate, but the second does not offer a parallel case; it corrects the idea the first clause rejects."
+      "nevertheless,": "The passage overturns an old belief, but the second clause doesn't concede anything; it supports the claim that lactate isn't waste.",
+      "consequently,": "The clauses seem linked by cause, but the logic runs the other way: lactate isn't a dead end because it is used for fuel, not used for fuel because it isn't a dead end.",
+      "similarly,": "Both clauses describe lactate, but the second does not offer a parallel case; it corrects the idea the first clause rejects."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4536,7 +4536,7 @@
     ],
     "wrong_reasons": {
       "However,": "Picked out of habit, but the crows agree with the first sentence rather than going against it.",
-      "As a result,": "Picked because the crows' behavior seems to follow from being tool users, but the first sentence doesn't cause the crows' behavior; it summarizes it.",
+      "As a result,": "The crows' behavior seems to follow from being tool users, but the first sentence doesn't cause the crows' behavior; it summarizes it.",
       "Instead,": "Picked by students who see two different ideas, but nothing in the first sentence is being replaced."
     },
     "check": null,
@@ -4566,9 +4566,9 @@
       "Is the shift to legs a reaction to the problem in the second sentence?"
     ],
     "wrong_reasons": {
-      "Likewise,": "Picked because both wheels and legs are robot designs, but legged robots aren't a parallel case; they are a response to wheels' weakness.",
-      "Nonetheless,": "Picked because the word \"however\" in the second sentence primes a contrast, but turning to legs follows logically from rough terrain instead of going against it.",
-      "In summary,": "Picked because the last sentence wraps up the passage, but it adds a new development rather than summarizing earlier points."
+      "Likewise,": "Both wheels and legs are robot designs, but legged robots aren't a parallel case; they are a response to wheels' weakness.",
+      "Nonetheless,": "The word \"however\" in the second sentence primes a contrast, but turning to legs follows logically from rough terrain instead of going against it.",
+      "In summary,": "The last sentence wraps up the passage, but it adds a new development rather than summarizing earlier points."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4597,9 +4597,9 @@
       "Does the clause after the blank introduce a new point or explain the one just made?"
     ],
     "wrong_reasons": {
-      "nevertheless,": "Picked because the passage begins with a puzzle (\"yet\"), but the clause after the blank supports the explanation rather than conceding against it.",
-      "in contrast,": "Picked because neurons and liver cells are being contrasted, but the clause after the blank doesn't oppose the preceding clause; it explains it.",
-      "moreover,": "Picked because the clause adds detail, but it isn't a separate additional point; it unpacks the claim about gene use that was just made."
+      "nevertheless,": "The passage begins with a puzzle (\"yet\"), but the clause after the blank supports the explanation rather than conceding against it.",
+      "in contrast,": "Neurons and liver cells are being contrasted, but the clause after the blank doesn't oppose the preceding clause; it explains it.",
+      "moreover,": "The clause adds detail, but it isn't a separate additional point; it unpacks the claim about gene use that was just made."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4629,7 +4629,7 @@
     ],
     "wrong_reasons": {
       "However,": "Picked out of habit, but the bubbles agree with the reaction described rather than contrasting with it.",
-      "For example,": "Picked because pancakes are a specific food, but the bubbles are an effect of the reaction, not an example of it.",
+      "For example,": "Pancakes are a specific food, but the bubbles are an effect of the reaction, not an example of it.",
       "Instead,": "Picked by students who see a change from chemistry to cooking, but nothing is being replaced."
     },
     "check": null,
@@ -4659,9 +4659,9 @@
       "Is the second rule a case of the first, or a separate rule of the same type?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because both sentences show careful fact-checking, but a statistic isn't an example of a quotation; it is a separate, parallel rule.",
-      "Instead,": "Picked because the second rule concerns a different kind of material, but it is added to the first rule, not substituted for it.",
-      "As a result,": "Picked because one strict rule might seem to lead to another, but confirming quotes doesn't cause the rule about statistics."
+      "For example,": "Both sentences show careful fact-checking, but a statistic isn't an example of a quotation; it is a separate, parallel rule.",
+      "Instead,": "The second rule concerns a different kind of material, but it is added to the first rule, not substituted for it.",
+      "As a result,": "One strict rule might seem to lead to another, but confirming quotes doesn't cause the rule about statistics."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4690,9 +4690,9 @@
       "Does the last sentence push back against the argument, or complete it?"
     ],
     "wrong_reasons": {
-      "Even so,": "Picked because \"Yet\" in the second sentence primes a reversal, but the last sentence extends the argument instead of conceding against it.",
-      "For instance,": "Picked because the last sentence sounds like an illustration, but it is a general claim about the best picture books, not a specific case.",
-      "Conversely,": "Picked because words and images are described as opposite partners, but the last sentence doesn't reverse the previous point; it builds on it."
+      "Even so,": "\"Yet\" in the second sentence primes a reversal, but the last sentence extends the argument instead of conceding against it.",
+      "For instance,": "The last sentence sounds like an illustration, but it is a general claim about the best picture books, not a specific case.",
+      "Conversely,": "Words and images are described as opposite partners, but the last sentence doesn't reverse the previous point; it builds on it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4721,9 +4721,9 @@
       "Which choice signals that a belief is wrong?"
     ],
     "wrong_reasons": {
-      "For example,": "Picked because storage rooms are specific details, but the sentence corrects the assumption rather than illustrating it.",
-      "Similarly,": "Picked because both sentences are about museum collections, but they say opposite things.",
-      "As a result,": "Picked because the sentences seem connected, but visitors' assumptions don't cause museums to store objects."
+      "For example,": "Storage rooms are specific details, but the sentence corrects the assumption rather than illustrating it.",
+      "Similarly,": "Both sentences are about museum collections, but they say opposite things.",
+      "As a result,": "The sentences seem connected, but visitors' assumptions don't cause museums to store objects."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4752,8 +4752,8 @@
       "Is the last sentence a reason, a contrast, or a conclusion?"
     ],
     "wrong_reasons": {
-      "By contrast,": "Picked because physical facts and experience are being contrasted inside the sentence, but the sentence agrees with the philosophers' answer rather than opposing it.",
-      "For example,": "Picked because the thought experiment is an example, but the last sentence is a general conclusion, not an instance of anything.",
+      "By contrast,": "Physical facts and experience are being contrasted inside the sentence, but the sentence agrees with the philosophers' answer rather than opposing it.",
+      "For example,": "The thought experiment is an example, but the last sentence is a general conclusion, not an instance of anything.",
       "Even so,": "Picked by students who expect a twist after a question, but the conclusion follows from the philosophers' \"yes\" instead of going against it."
     },
     "check": null,
@@ -4783,9 +4783,9 @@
       "Which choice lets the writer accept the first claim but still push back?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because the sentence continues to discuss the same benefits, but \"Indeed\" would emphasize them, while the sentence limits them.",
-      "Hence,": "Picked because the passage reasons from cause to effect elsewhere, but the limits of agglomeration don't follow from its benefits.",
-      "For instance,": "Picked because the passage later lists specific costs, but \"these benefits are not unlimited\" is a general qualification, not an example of the first sentence."
+      "Indeed,": "The sentence continues to discuss the same benefits, but \"Indeed\" would emphasize them, while the sentence limits them.",
+      "Hence,": "The passage reasons from cause to effect elsewhere, but the limits of agglomeration don't follow from its benefits.",
+      "For instance,": "The passage later lists specific costs, but \"these benefits are not unlimited\" is a general qualification, not an example of the first sentence."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4814,9 +4814,9 @@
       "Is the second one a result of the first, or another separate benefit?"
     ],
     "wrong_reasons": {
-      "In contrast,": "Picked because tunneling and eating leaves are different activities, but both help the soil, so they don't contrast.",
-      "Therefore,": "Picked because both sentences are about benefits, but digging tunnels doesn't cause earthworms to eat leaves.",
-      "For instance,": "Picked because eating leaves is a specific behavior, but it's a new benefit, not an example of tunneling."
+      "In contrast,": "Tunneling and eating leaves are different activities, but both help the soil, so they don't contrast.",
+      "Therefore,": "Both sentences are about benefits, but digging tunnels doesn't cause earthworms to eat leaves.",
+      "For instance,": "Eating leaves is a specific behavior, but it's a new benefit, not an example of tunneling."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4845,9 +4845,9 @@
       "What phrase in the last sentence contrasts with the blank?"
     ],
     "wrong_reasons": {
-      "Afterward,": "Picked because the passage moves through time, but the hatred happened during the chore, not after it; the later moment comes in the final sentence.",
-      "For example,": "Picked because hating the job sounds like a detail, but it isn't an example of being assigned the chore.",
-      "Likewise,": "Picked because the sentence continues the memory, but hating the job isn't similar to the grandmother drying fruit; it's the narrator's reaction to it."
+      "Afterward,": "The passage moves through time, but the hatred happened during the chore, not after it; the later moment comes in the final sentence.",
+      "For example,": "Hating the job sounds like a detail, but it isn't an example of being assigned the chore.",
+      "Likewise,": "The sentence continues the memory, but hating the job isn't similar to the grandmother drying fruit; it's the narrator's reaction to it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4876,9 +4876,9 @@
       "Which word in the second sentence (\"much of\") hints that the success was incomplete?"
     ],
     "wrong_reasons": {
-      "In fact,": "Picked because the third sentence adds precise detail, but \"In fact\" would intensify the recordings' success, while the sentence points out their shortcoming.",
-      "Therefore,": "Picked because the passage moves from results to a conclusion, but the recordings' partial success doesn't cause them to fall short of a live tutor.",
-      "Similarly,": "Picked because both sentences compare kinds of training, but the third sentence reports a different, less favorable finding, not a parallel one."
+      "In fact,": "The third sentence adds precise detail, but \"In fact\" would intensify the recordings' success, while the sentence points out their shortcoming.",
+      "Therefore,": "The passage moves from results to a conclusion, but the recordings' partial success doesn't cause them to fall short of a live tutor.",
+      "Similarly,": "Both sentences compare kinds of training, but the third sentence reports a different, less favorable finding, not a parallel one."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4907,9 +4907,9 @@
       "Which choice signals a contrast?"
     ],
     "wrong_reasons": {
-      "for example,": "Picked because seahorses are one specific animal, but they're an exception to the pattern, not an example of it.",
-      "therefore,": "Picked because the passage gives a reason-like statement first, but the usual pattern doesn't cause seahorses to reverse it.",
-      "similarly,": "Picked because both sentences are about caring for young, but seahorses do the opposite of most animals."
+      "for example,": "Seahorses are one specific animal, but they're an exception to the pattern, not an example of it.",
+      "therefore,": "The passage gives a reason-like statement first, but the usual pattern doesn't cause seahorses to reverse it.",
+      "similarly,": "Both sentences are about caring for young, but seahorses do the opposite of most animals."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4938,9 +4938,9 @@
       "Is the new approach a response to what came before, or something unrelated?"
     ],
     "wrong_reasons": {
-      "In addition,": "Picked because the last sentence adds information, but transit and walkability replace road-widening rather than adding to it.",
-      "Nevertheless,": "Picked because the new approach differs from the old one, but the shift follows logically from induced demand instead of happening in spite of it.",
-      "For example,": "Picked because transit is a specific strategy, but the sentence is not an example of induced demand; it is a response to it."
+      "In addition,": "The last sentence adds information, but transit and walkability replace road-widening rather than adding to it.",
+      "Nevertheless,": "The new approach differs from the old one, but the shift follows logically from induced demand instead of happening in spite of it.",
+      "For example,": "Transit is a specific strategy, but the sentence is not an example of induced demand; it is a response to it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4969,9 +4969,9 @@
       "What advantage did the borrowers have that might explain their survival?"
     ],
     "wrong_reasons": {
-      "Indeed,": "Picked because the survey seems to challenge conventional advice, and \"Indeed\" would continue that challenge, but the sentence actually pulls back from it.",
-      "In other words,": "Picked because the sentence discusses the same survey, but saying it \"hardly vindicates\" borrowing doesn't restate the finding; it qualifies it.",
-      "As a result,": "Picked because the sentence contains an explanation, but the survey's finding doesn't cause it to fail to vindicate borrowing; a separate factor (location) does."
+      "Indeed,": "The survey seems to challenge conventional advice, and \"Indeed\" would continue that challenge, but the sentence actually pulls back from it.",
+      "In other words,": "The sentence discusses the same survey, but saying it \"hardly vindicates\" borrowing doesn't restate the finding; it qualifies it.",
+      "As a result,": "The sentence contains an explanation, but the survey's finding doesn't cause it to fail to vindicate borrowing; a separate factor (location) does."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

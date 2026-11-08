@@ -35,9 +35,11 @@ export const lines = {
     "A few you got wrong earlier. Let's see what stuck.",
   ],
   placement: [
-    "Answer what you can. A guess is fine, it still tells me something.",
-    "Easy to hard. Guessing is fine, I only want a rough picture.",
+    "Easy ones first. They get harder as you go.",
+    "Answer what you can.",
   ],
+  // Before a timed set.
+  timed: "About a minute and a half each. Skip one if it stalls you.",
   loading: [
     "Finding questions you haven't seen…",
     "Picking the next set…",

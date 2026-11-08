@@ -63,6 +63,8 @@ export const type = {
   title: { fontFamily: font.serifSemi, fontSize: 28, lineHeight: 34, color: color.ink },
   heading: { fontFamily: font.serifSemi, fontSize: 21, lineHeight: 27, color: color.ink },
   socrates: { fontFamily: font.serif, fontSize: 19, lineHeight: 27, color: color.ink },
+  // Socrates in tight places: the lesson's opener and the feedback panel.
+  socratesSmall: { fontFamily: font.serif, fontSize: 17, lineHeight: 24, color: color.ink },
   question: { fontFamily: font.semibold, fontSize: 19, lineHeight: 28, color: color.ink },
   body: { fontFamily: font.regular, fontSize: 17, lineHeight: 25, color: color.ink },
   label: { fontFamily: font.bold, fontSize: 15, lineHeight: 20, color: color.ink },

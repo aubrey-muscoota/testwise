@@ -6,9 +6,7 @@ import { getExam } from "../api";
 import { noOrphan } from "../copy";
 import { SocratesLine } from "../components/SocratesLine";
 import { Button, Rise, TextButton } from "../components/ui";
-import { color, GUTTER, space, type } from "../theme";
-
-const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+import { GUTTER, space, type } from "../theme";
 
 export function PlacementIntro({ onQuiz, onSkip }: { onQuiz: () => void; onSkip: () => void }) {
   const exam = getExam();
@@ -16,7 +14,7 @@ export function PlacementIntro({ onQuiz, onSkip }: { onQuiz: () => void; onSkip:
   const areas = sec?.domains.length ?? 0;
   const questions = areas * (exam?.placement.per_domain ?? 3);
   const minutes = Math.max(1, Math.round((questions * (exam?.placement.seconds_per_question ?? 25)) / 60));
-  const speech = (sec && exam?.voice.placement_intro?.[sec.id]) || "Already know some of this? Answer a few questions and I'll skip you past what you know.";
+  const speech = (sec && exam?.voice.placement_intro?.[sec.id]) || "Already know some of this?";
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={s.wrap}>
@@ -26,10 +24,7 @@ export function PlacementIntro({ onQuiz, onSkip }: { onQuiz: () => void; onSkip:
         <Rise delay={160} style={{ marginTop: space(4) }}>
           <Text style={type.title} accessibilityRole="header">{noOrphan(`Where should you start in ${sec?.name ?? "this section"}?`)}</Text>
           <Text style={[type.body, { marginTop: space(1.5) }]}>
-            {questions} questions, about {minutes} minutes, easy to hard across all {WORDS[areas] ?? areas} areas. Guessing is fine.
-          </Text>
-          <Text style={[type.body, { color: color.inkSoft, marginTop: space(1) }]}>
-            You can do the same for the other sections later, from Path.
+            {questions} questions, about {minutes} minutes. Guess if you're unsure.
           </Text>
         </Rise>
       </ScrollView>

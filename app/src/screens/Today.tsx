@@ -2,14 +2,14 @@
 // today's tasks from the plan with the next one emphasized, and one button
 // that starts it.
 import React from "react";
-import { Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { Animated, Pressable, RefreshControl, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 import { api, Exam, getExam, Plan, PlanTask, Tree } from "../api";
-import { listOf, longDay, minutes, plural, taskName } from "../copy";
+import { longDay, minutes, taskName } from "../copy";
 import { Icon } from "../components/icons";
 import { SocratesLine } from "../components/SocratesLine";
 import { useWide } from "../components/Shell";
-import { Bone, Button, ErrorState, ProgressBar, Rise, Skeleton, Stat, TextButton, decorative } from "../components/ui";
+import { Bone, Button, ErrorState, Rise, Skeleton, Stat, TextButton, Wordmark, decorative, usePop } from "../components/ui";
 import { LessonSource, practiceSource, useLoad } from "../nav";
 import { color, font, GUTTER, radius, space, tabular, type } from "../theme";
 
@@ -23,6 +23,9 @@ export function startLabel(t: PlanTask) {
   if (t.kind === "lesson") return `Start ${taskName(t.title)}`;
   return `Start ${t.title.charAt(0).toLowerCase()}${t.title.slice(1)}`;
 }
+
+// "Both done." for two tasks, "All 3 done." for more.
+const allDoneWords = (n: number) => (n === 1 ? "Done for today." : n === 2 ? "Both done." : `All ${n} done.`);
 
 // The big line at the top.
 export function countdown(plan: Plan, exam: Exam | null, narrow: boolean): { title: string; sub: string | null } {
@@ -64,7 +67,7 @@ export function Today({
   const head = countdown(plan, exam, narrow);
   const tasks = plan.today;
   const next = tasks.find((t) => !t.done && t.start);
-  const doneCount = tasks.filter((t) => t.done).length;
+  const anyDone = tasks.some((t) => t.done);
   const allDone = tasks.length > 0 && !tasks.some((t) => !t.done && t.start);
   const left = tasks.filter((t) => !t.done).reduce((a, t) => a + t.minutes, 0);
 
@@ -75,15 +78,15 @@ export function Today({
     ? restTask.why
     : allDone
       ? started.length
-        ? `That's today done. ${started[0].name} is still your shakiest skill, if you have ten more minutes.`
+        ? `${allDoneWords(tasks.length)} ${started[0].name} is still your shakiest skill. Ten more minutes on it?`
         : "That's today done. Come back tomorrow and the list will be new."
       : plan.status.message;
 
-  const more = practiceSource({ mode: "weak", n: 10 }, "Weak spots", started.length ? `Your lowest right now: ${listOf(started.slice(0, 3).map((x) => x.name))}.` : undefined);
+  const more = practiceSource({ mode: "weak", n: 10 }, "Weak spots");
   const cta = next
     ? <Button title={startLabel(next)} onPress={() => onStart(taskSource(next)!)} testID="start-next" />
     : allDone && !restTask
-      ? <Button title="Ten more minutes on weak spots" onPress={() => onStart(more)} testID="start-next" />
+      ? <Button title={started.length ? `Practice ${started[0].name}` : "Practice weak spots"} onPress={() => onStart(more)} testID="start-next" />
       : null;
 
   return (
@@ -93,18 +96,18 @@ export function Today({
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={async () => { setRefreshing(true); await reload(); setRefreshing(false); }} />}
       >
         <View style={s.topRow}>
-          {!wide && <Text style={s.mark} accessibilityRole="header">testwise</Text>}
+          {!wide && <Wordmark size={19} />}
           <View style={{ flex: 1 }} />
           {st.xp > 0 && (
             <View style={s.stats}>
-              {st.streak > 0 && <Stat icon="streak" value={st.streak} label={st.streak === 1 ? "day in a row" : "days in a row"} tint={color.terracotta} />}
+              {st.streak >= 2 && <Stat icon="streak" value={st.streak} label={st.streak === 1 ? "day in a row" : "days in a row"} tint={color.terracotta} />}
               <Stat icon="xp" value={st.xp} label="XP" tint={color.ochre} />
             </View>
           )}
         </View>
 
         <Rise>
-          <Text style={s.hero} accessibilityRole="header">{head.title}</Text>
+          <Text style={type.hero} accessibilityRole="header">{head.title}</Text>
           {head.sub ? (
             <Text style={[type.body, { color: color.inkSoft, marginTop: space(0.5) }]}>{head.sub}</Text>
           ) : (
@@ -121,18 +124,9 @@ export function Today({
 
         {tasks.length > 0 && (
           <Rise delay={140} style={{ marginTop: space(4) }}>
-            <View style={s.listHead}>
-              <Text style={type.heading}>{allDone ? "Done for today" : "Today"}</Text>
-              <Text style={[type.small, tabular]}>
-                {doneCount} of {tasks.length} done{left > 0 && !allDone ? ` · ${minutes(left, true)} left` : ""}
-              </Text>
-            </View>
-            {doneCount > 0 ? (
-              <View style={{ flexDirection: "row", marginTop: space(1), marginBottom: space(1.5) }}>
-                <ProgressBar value={doneCount / tasks.length} fill={allDone ? color.olive : color.azure} height={6} />
-              </View>
-            ) : (
-              <View style={{ height: space(1.5) }} />
+            {/* The rings and checks show progress; the heading only says the time. */}
+            {!allDone && left > 0 && (
+              <Text style={[type.heading, tabular, { marginBottom: space(1.5) }]}>{minutes(left)} {anyDone ? "left" : "today"}</Text>
             )}
             {tasks.map((t, i) => (
               <Rise key={t.id} delay={180 + i * 40}>
@@ -142,9 +136,9 @@ export function Today({
           </Rise>
         )}
 
-        <TextButton title="See the full plan" icon="arrow" onPress={onOpenPlan} align="left" style={{ marginTop: space(1.5), alignSelf: "flex-start", marginLeft: -space(1) }} />
+        {wide && cta && <View style={{ marginTop: space(3) }}>{cta}</View>}
 
-        {wide && cta && <View style={{ marginTop: space(3), maxWidth: 420 }}>{cta}</View>}
+        <TextButton title="See the full plan" icon="arrow" onPress={onOpenPlan} align="left" style={{ marginTop: space(1.5), alignSelf: "flex-start", marginLeft: -space(1) }} />
         <View style={{ height: space(4) }} />
       </ScrollView>
       {!wide && cta && <View style={s.foot}>{cta}</View>}
@@ -154,8 +148,10 @@ export function Today({
 
 // Done: a filled olive circle with a check. Next: an azure ring. Later: a light ring.
 function Mark({ state }: { state: "done" | "next" | "later" }) {
+  // The ring turning into a check pops once, so progress is felt, not counted.
+  const pop = usePop(state === "done", 1.18);
   return (
-    <View {...decorative} style={{ width: 28, height: 28 }}>
+    <Animated.View {...decorative} style={[{ width: 28, height: 28 }, pop]}>
       <Svg width={28} height={28} viewBox="0 0 28 28">
         {state === "done" ? (
           <>
@@ -163,10 +159,10 @@ function Mark({ state }: { state: "done" | "next" | "later" }) {
             <Path d="M8.4 14.4L12.2 18L19.6 10.1" stroke={color.sheet} strokeWidth={2.2} fill="none" strokeLinecap="round" strokeLinejoin="round" />
           </>
         ) : (
-          <Circle cx={14} cy={14} r={11} fill="none" stroke={state === "next" ? color.azure : color.rule} strokeWidth={state === "next" ? 2.5 : 2} />
+          <Circle cx={14} cy={14} r={11} fill="none" stroke={state === "next" ? color.azure : color.inkSoft} strokeWidth={state === "next" ? 2.5 : 1.75} />
         )}
       </Svg>
-    </View>
+    </Animated.View>
   );
 }
 
@@ -187,7 +183,7 @@ function TaskRow({ task, isNext, onPress }: { task: PlanTask; isNext: boolean; o
           <Text
             style={[isNext ? s.taskTitleNext : type.label, { flex: 1 }, task.done && { color: color.inkSoft }]}
           >
-            {task.title}
+            {task.kind === "lesson" ? taskName(task.title) : task.title}
           </Text>
           <Text style={[type.small, tabular, { marginLeft: space(1) }]}>{mins}</Text>
         </View>
@@ -227,14 +223,11 @@ function TodaySkeleton() {
 const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(2), maxWidth: 640, width: "100%", alignSelf: "center" },
   topRow: { flexDirection: "row", alignItems: "center", minHeight: 32, marginBottom: space(2.5) },
-  mark: { fontFamily: font.black, fontSize: 19, color: color.azureInk },
   stats: { flexDirection: "row", gap: space(2) },
-  hero: { fontFamily: font.serifSemi, fontSize: 38, lineHeight: 44, color: color.ink },
   subRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: space(0.5) },
   inlineLink: { minHeight: 32, paddingHorizontal: 0 },
-  listHead: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
   task: { flexDirection: "row", alignItems: "flex-start", paddingVertical: space(1.5), paddingHorizontal: space(1.5), marginHorizontal: -space(1.5), borderRadius: radius.row },
   taskNext: { backgroundColor: color.sheet, paddingVertical: space(2), marginVertical: space(0.5) },
   taskTitleNext: { fontFamily: font.serifSemi, fontSize: 21, lineHeight: 27, color: color.ink },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: 640, width: "100%", alignSelf: "center", ...(Platform.OS === "web" ? {} : {}) },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: 640, width: "100%", alignSelf: "center" },
 });

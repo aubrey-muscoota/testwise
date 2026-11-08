@@ -70,10 +70,10 @@ export function itemBrief(item, response, voice = {}) {
 export function offlineReply(item, studentTurns) {
   const hints = item.hints || [];
   if (studentTurns === 0) {
-    return "Hmm, not quite. Let's think it through together. " + (hints[0] || "What is the question really asking for?");
+    return hints[0] || "What is the question really asking for?";
   }
   if (studentTurns < hints.length) return hints[studentTurns];
-  return "Let's walk through it: " + item.explanation.join(" ") + ` So the answer is ${item.answer}. Mistakes are the path to mastery!`;
+  return "Let's walk through it: " + item.explanation.join(" ") + ` So the answer is ${item.answer}.`;
 }
 
 /**

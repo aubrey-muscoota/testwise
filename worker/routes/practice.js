@@ -118,12 +118,13 @@ export async function generateForSkill(env, { learnerId, day, skill, ctx, rating
   }
 }
 
+// Socrates speaks for himself, in the first person.
 const FALLBACK_NOTES = {
-  offline: "Socrates can't write new questions right now",
-  cap: "That's all the new questions Socrates can write today",
-  no_examples: "Socrates can't write questions for this skill yet",
-  error: "Socrates couldn't write new questions just now",
-  none_passed: "Socrates' new questions didn't pass the answer check this time",
+  offline: "I can't write new ones right now",
+  cap: "That's all the new ones I can write today",
+  no_examples: "I can't write questions for this skill yet",
+  error: "I couldn't write new ones just now",
+  none_passed: "My new ones didn't pass the answer check this time",
 };
 
 // POST /api/practice
@@ -166,8 +167,8 @@ export async function startPractice(env, request, learnerId, b, execCtx) {
     extra.fresh = freshIds.length > 0;
     extra.generated = freshIds.length;
     extra.note = gen.reason
-      ? `${FALLBACK_NOTES[gen.reason]}, so here are questions from the bank on ${skill.name}.`
-      : `Socrates just wrote ${freshIds.length} new ${freshIds.length === 1 ? "question" : "questions"} on ${skill.name}. A second solver checked each answer, but tap Report if one looks off.`;
+      ? `${FALLBACK_NOTES[gen.reason]}, so these are from the bank.`
+      : `I just wrote ${freshIds.length} new ${freshIds.length === 1 ? "question" : "questions"} on ${skill.name}. A second solver checked each answer, but tap Report if one looks off.`;
   }
 
   const plan = practiceSkills({
@@ -187,7 +188,7 @@ export async function startPractice(env, request, learnerId, b, execCtx) {
     ...pickPractice({ mode: mode === "fresh" ? "skill" : mode, plan, items, history: hist, ratings, n: n - freshIds.length, rand, exclude: new Set(freshIds) }),
   ];
   if (!picked.length) return fail(404, mode === "mistakes" ? "no mistakes to fix" : "no questions yet");
-  if (mode === "fresh" && !extra.fresh && picked.every((p) => p.seen)) extra.note = extra.note.replace("questions from the bank", "bank questions you've seen least recently");
+  if (mode === "fresh" && !extra.fresh && picked.every((p) => p.seen)) extra.note = extra.note.replace("these are from the bank", "these are bank questions you've seen least recently");
 
   const rows = (await env.DB.prepare(`SELECT * FROM items WHERE id IN (${inList(picked.map((p) => p.id))})`).bind(...picked.map((p) => p.id)).all()).results;
   const byId = new Map(rows.map((r) => [r.id, r]));
@@ -234,8 +235,11 @@ export async function practiceSummary(env, request, learnerId) {
     return { skill_id: s.id, name: s.name, section_id: s.section_id, ...r, started: s.started, unlocked: s.unlocked, low: lowUnseen(r) };
   });
   const sum = (k) => rows.reduce((a, r) => a + r[k], 0);
+  // What "My mistakes" can actually serve: misses in skills practice draws from
+  // (open or started), the same filter startPractice uses.
+  const fixable = rows.filter((r) => r.unlocked || r.started).reduce((a, r) => a + r.missed, 0);
   return json({
-    totals: { bank: sum("bank"), generated: sum("generated"), seen: sum("seen"), unseen: sum("unseen"), missed: sum("missed") },
+    totals: { bank: sum("bank"), generated: sum("generated"), seen: sum("seen"), unseen: sum("unseen"), missed: sum("missed"), fixable },
     skills: rows,
     fresh: {
       available: !!(makeClient(env) && generatorModel(env)),

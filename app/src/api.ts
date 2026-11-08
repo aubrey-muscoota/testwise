@@ -107,7 +107,8 @@ export type Plan = {
   skills_total: number;
   learn_by: string;
   test_ready_from: string;
-  weeks: { start: string; end: string; phase: PlanPhase; focus_skill_ids: string[]; goal: string }[];
+  // A week names its skills (focus_names) or, when there are none to name, its goal.
+  weeks: { start: string; end: string; phase: PlanPhase; focus_skill_ids: string[]; focus_names: string[]; goal: string | null }[];
 };
 
 export type SkillSummary = {
@@ -125,7 +126,8 @@ export type SkillSummary = {
 };
 
 export type PracticeSummary = {
-  totals: { bank: number; generated: number; seen: number; unseen: number; missed: number };
+  // fixable: misses "My mistakes" can serve (in open or started skills).
+  totals: { bank: number; generated: number; seen: number; unseen: number; missed: number; fixable?: number };
   skills: SkillSummary[];
   fresh: { available: boolean; generated_today: number; daily_limit: number };
 };

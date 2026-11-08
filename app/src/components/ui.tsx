@@ -8,6 +8,7 @@ import { buzz, isMuted, onMutedChange, play, setMuted } from "../motion/feedback
 import { Socrates, SocratesMood } from "../socrates/Socrates";
 import { color, font, GUTTER, radius, scrim, shadow, space, tabular, type } from "../theme";
 import { Icon, IconName } from "./icons";
+import { Portal } from "./portal";
 
 // ─── Reduced motion ──────────────────────────────────────────────────────────
 // One shared subscription to the OS "reduce motion" setting. When it is on,
@@ -141,7 +142,7 @@ export function TextButton({
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? title}
       accessibilityState={{ disabled }}
-      style={({ pressed }) => [s.textBtn, align === "left" && { justifyContent: "flex-start" }, pressed && { opacity: 0.6 }, style]}
+      style={({ pressed }) => [s.textBtn, align === "left" && { justifyContent: "flex-start" }, pressed && { backgroundColor: color.paperDeep, borderRadius: radius.small }, style]}
     >
       <Text style={[s.textBtnText, { color: c }]}>{title}</Text>
       {icon && <Icon name={icon} size={18} color={c} style={{ marginLeft: 6 }} />}
@@ -149,11 +150,12 @@ export function TextButton({
   );
 }
 
-export function IconButton({
-  name, onPress, label, size = 24, tone = color.ink, style,
-}: { name: IconName; onPress: () => void; label: string; size?: number; tone?: string; style?: StyleProp<ViewStyle> }) {
+export const IconButton = React.forwardRef<React.ComponentRef<typeof View>, {
+  name: IconName; onPress: () => void; label: string; size?: number; tone?: string; style?: StyleProp<ViewStyle>;
+}>(function IconButton({ name, onPress, label, size = 24, tone = color.ink, style }, ref) {
   return (
     <Pressable
+      ref={ref}
       onPress={onPress}
       hitSlop={10}
       accessibilityRole="button"
@@ -163,7 +165,7 @@ export function IconButton({
       <Icon name={name} size={size} color={tone} />
     </Pressable>
   );
-}
+});
 
 // ─── ProgressBar ─────────────────────────────────────────────────────────────
 // Flat, springs forward.
@@ -331,25 +333,27 @@ export function Sheet({
     return () => { window.removeEventListener("keydown", onKey); clearTimeout(t); };
   }, [onClose]);
   return (
-    <View style={s.overlay}>
-      <Animated.View style={[StyleSheet.absoluteFill, { opacity: v.interpolate({ inputRange: [0, 1], outputRange: [0, 1], extrapolate: "clamp" }) }]}>
-        <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: scrim }]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
-      </Animated.View>
-      <Animated.View
-        ref={ref}
-        role="dialog"
-        aria-modal
-        aria-label={label}
-        accessibilityViewIsModal
-        focusable={Platform.OS === "web"}
-        style={[s.sheet, maxHeight != null && { maxHeight }, {
-          transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [420, 0], extrapolateRight: "clamp" }) }],
-          opacity: still ? v : 1,
-        }, style]}
-      >
-        {children}
-      </Animated.View>
-    </View>
+    <Portal>
+      <View style={[s.overlay, Platform.OS === "web" && ({ position: "fixed" } as unknown as ViewStyle)]}>
+        <Animated.View style={[StyleSheet.absoluteFill, { opacity: v.interpolate({ inputRange: [0, 1], outputRange: [0, 1], extrapolate: "clamp" }) }]}>
+          <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: scrim }]} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" />
+        </Animated.View>
+        <Animated.View
+          ref={ref}
+          role="dialog"
+          aria-modal
+          aria-label={label}
+          accessibilityViewIsModal
+          focusable={Platform.OS === "web"}
+          style={[s.sheet, maxHeight != null && { maxHeight }, {
+            transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [420, 0], extrapolateRight: "clamp" }) }],
+            opacity: still ? v : 1,
+          }, style]}
+        >
+          {children}
+        </Animated.View>
+      </View>
+    </Portal>
   );
 }
 
@@ -412,9 +416,9 @@ export function Row({
       )}
       <View style={{ flex: 1 }}>
         <Text style={[emphasized ? s.rowTitleEmph : type.label, disabled && { color: color.inkSoft }]}>{title}</Text>
-        {detail ? <Text style={[type.small, { marginTop: 2 }]}>{detail}</Text> : null}
+        {detail ? <Text style={[type.small, tabular, { marginTop: 2 }]}>{detail}</Text> : null}
       </View>
-      {value ? <Text style={[type.body, { color: color.inkSoft, marginLeft: space(1) }, tabular]}>{value}</Text> : null}
+      {value ? <Text style={[type.label, { color: color.inkSoft, fontFamily: font.semibold, marginLeft: space(1) }, tabular]}>{value}</Text> : null}
       {accessory === "chevron" ? (
         onPress && !disabled ? <Icon name="chevron" size={20} color={color.inkSoft} style={{ marginLeft: space(1) }} /> : null
       ) : accessory === "none" ? null : accessory}
@@ -422,7 +426,7 @@ export function Row({
   );
 }
 
-export function Toggle({ value, onChange, label, testID }: { value: boolean; onChange: (v: boolean) => void; label: string; testID?: string }) {
+export function Toggle({ value, onChange, label, testID, disabled }: { value: boolean; onChange: (v: boolean) => void; label: string; testID?: string; disabled?: boolean }) {
   const v = useRef(new Animated.Value(value ? 1 : 0)).current;
   useEffect(() => {
     Animated.spring(v, { toValue: value ? 1 : 0, useNativeDriver: false, speed: 20, bounciness: 6 }).start();
@@ -431,9 +435,10 @@ export function Toggle({ value, onChange, label, testID }: { value: boolean; onC
     <Pressable
       testID={testID}
       onPress={() => { buzz.tap(); onChange(!value); }}
+      disabled={disabled}
       accessibilityRole="switch"
       accessibilityLabel={label}
-      accessibilityState={{ checked: value }}
+      accessibilityState={{ checked: value, disabled }}
       aria-checked={value}
       hitSlop={8}
     >
