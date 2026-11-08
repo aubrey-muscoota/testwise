@@ -83,6 +83,24 @@ backgrounds. Shadows only on things that float (sheets, the bottom bar), and sof
 - Stagger lists by 30 to 50 ms. Nothing loops forever except Socrates' breathing and blinking.
 - Respect reduced motion: Socrates holds a still frame, transitions become fades.
 
+## Do (positive rules)
+
+- Use the design system: tokens from `app/src/theme.ts` and shared components only, no one-off colors or sizes.
+- Show the actual product: real questions, real progress, Socrates himself. No decorative stand-ins.
+- Make the main thing big: the next task on Home, the question in a lesson. Everything else steps back.
+- Emphasize the one call to action in Azure; secondary actions stay quiet.
+- Make headlines specific ("41 days to your SAT", not "Your plan") and wrap them by hand where a break reads better
+  (no single orphan word on the last line).
+- Group with spacing. Delete filler badges and labels the content already says.
+- Nested corners: inner radius = outer radius − padding.
+- Text contrast at least 4.5:1 for body and 3:1 for large text, on paper as well as on sheets.
+- Tabular numbers (`fontVariant: ["tabular-nums"]`) wherever numbers change or line up: timers, counts, scores.
+- Align by eye, not pixels: optically center play icons and round shapes, hang punctuation in big quotes.
+- Keep icons one family: same stroke, size and corner style.
+- Every wait has a loading state (Socrates thinking, a skeleton of the real layout), and every action gets useful
+  animated feedback (a pressed state, a right/wrong response), never animation for its own sake.
+- Remove embellishments that don't carry information.
+
 ## Never (review checklist)
 
 Unless there's a specific design reason, and that reason is written in the PR:
@@ -103,3 +121,4 @@ Unless there's a specific design reason, and that reason is written in the PR:
 - [ ] Excessive italics, negative kerning, Instrument Serif, monospace fonts in the interface.
 - [ ] Over-detailed UI or diagrams; dithering; ASCII art.
 - [ ] Verbose or redundant text, code-like breadcrumbs (Home / Math / Algebra), periods at the end of titles.
+- [ ] Randomly italicized words; filler badges; labels that repeat what the content says.
