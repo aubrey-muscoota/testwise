@@ -11,6 +11,7 @@ import { Lesson, LessonResult } from "./src/screens/Lesson";
 import { Complete } from "./src/screens/Complete";
 import { PlacementIntro } from "./src/screens/PlacementIntro";
 import { AgeGate, TooYoung } from "./src/screens/AgeGate";
+import { SocratesLab } from "./src/screens/SocratesLab";
 import { initFeedback, preloadSounds } from "./src/motion/feedback";
 import { color } from "./src/theme";
 
@@ -24,7 +25,14 @@ type Screen =
   | { name: "lesson"; skill: Skill | null; placement?: string }
   | { name: "complete"; result: LessonResult };
 
+// Review page for the Socrates rig: web only, ?lab=socrates.
+const LAB = Platform.OS === "web" && typeof window !== "undefined" && /[?&]lab=socrates\b/.test(window.location.search);
+
 export default function App() {
+  return LAB ? <SocratesLab /> : <TestwiseApp />;
+}
+
+function TestwiseApp() {
   const [fontsLoaded] = useFonts({ Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold });
   const [screen, setScreen] = useState<Screen>({ name: "boot" });
 
