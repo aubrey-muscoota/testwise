@@ -28,7 +28,9 @@
     // Falls back to TUTOR_MODEL when unset.
     "GENERATOR_MODEL": "claude-opus-5-5",
     // Fresh questions written per UTC day across all learners (each learner: 20).
-    "GENERATOR_DAILY_CAP": "200"
+    "GENERATOR_DAILY_CAP": "200",
+    // Exam pack (exams/<id>/) for learners who haven't picked one.
+    "DEFAULT_EXAM": "sat"
   },
   "observability": { "enabled": true }
 }

@@ -1,23 +1,12 @@
 // Skill map with the exam specifics the plan and practice need: domain weights
-// and per-section pacing. Reads them from the database when the exam pack
-// provides them (domains.weight; sections.seconds_per_question and
-// sections.practice_minutes), else falls back to the SAT numbers below, else
-// equal weights and generic pacing.
-//
-// TODO(exam packs): once worker/lib/exam.js serves weights and pacing from
-// exams/<id>/exam.json, read them from there and delete the fallback maps.
+// and per-section pacing, all from the learner's exam pack (worker/lib/exam.js).
+// A section's timed pace is its seconds_per_question; its untimed practice
+// estimate is practice_minutes_per_question (default 1 minute). Domains with
+// no weight get an equal share of their section.
+import { examIdFor, getExam } from "./exam.js";
 
-// Fraction of its section, per domain (College Board's published SAT ranges, mid-points).
-const FALLBACK_DOMAIN_WEIGHTS = {
-  alg: 0.35, adv: 0.35, psda: 0.15, geo: 0.15,
-  "rw-ii": 0.26, "rw-cs": 0.28, "rw-eoi": 0.20, "rw-sec": 0.26,
-};
-// timed_seconds: test pace per question; practice_minutes: untimed estimate.
-const FALLBACK_PACE = {
-  "sat-math": { timed_seconds: 95, practice_minutes: 1.0 },
-  "sat-rw": { timed_seconds: 71, practice_minutes: 1.2 },
-};
-const GENERIC_PACE = { timed_seconds: 80, practice_minutes: 1.0 };
+const DEFAULT_PRACTICE_MINUTES = 1.0;
+const DEFAULT_TIMED_SECONDS = 80;
 
 const num = (v) => (typeof v === "number" && Number.isFinite(v) && v > 0 ? v : null);
 
@@ -25,10 +14,10 @@ const num = (v) => (typeof v === "number" && Number.isFinite(v) && v > 0 ? v : n
  * @returns {Promise<{exam:{id,name}|null, sections:{id,name}[], skills:object[], pace:Object<string,{timed_seconds,practice_minutes}>}>}
  * Skills only include those with live bank questions (like the tree).
  */
-export async function skillContext(env) {
-  // The configured exam if there is one, else the first exam that has skills.
-  const exam = (env.DEFAULT_EXAM && await env.DB.prepare("SELECT id, name FROM exams WHERE id = ?").bind(env.DEFAULT_EXAM).first())
-    || await env.DB.prepare("SELECT e.id, e.name FROM exams e WHERE EXISTS (SELECT 1 FROM skills s WHERE s.exam_id = e.id) ORDER BY e.id LIMIT 1").first();
+export async function skillContext(env, learnerId = null) {
+  const examId = await examIdFor(env, learnerId);
+  const pack = examId ? await getExam(env, examId) : null;
+  const exam = pack ? { id: pack.id, name: pack.name } : null;
   if (!exam) return { exam: null, sections: [], skills: [], pace: {} };
   const [sections, domains, skills, counts] = await Promise.all([
     env.DB.prepare("SELECT * FROM sections WHERE exam_id = ? ORDER BY position").bind(exam.id).all(),
@@ -41,10 +30,10 @@ export async function skillContext(env) {
   const domById = new Map(domains.results.map((d) => [d.id, d]));
   const pace = {};
   for (const s of sections.results) {
-    const fb = FALLBACK_PACE[s.id] || GENERIC_PACE;
+    const cfg = pack.sections.find((x) => x.id === s.id) || {};
     pace[s.id] = {
-      timed_seconds: num(s.seconds_per_question) ?? fb.timed_seconds,
-      practice_minutes: num(s.practice_minutes) ?? fb.practice_minutes,
+      timed_seconds: num(cfg.seconds_per_question) ?? DEFAULT_TIMED_SECONDS,
+      practice_minutes: num(cfg.practice_minutes_per_question) ?? DEFAULT_PRACTICE_MINUTES,
     };
   }
   const out = skills.results
@@ -58,7 +47,7 @@ export async function skillContext(env) {
         prereqs: JSON.parse(s.prereqs || "[]"),
         domain_id: d.id,
         domain_name: d.name,
-        domain_weight: num(d.weight) ?? FALLBACK_DOMAIN_WEIGHTS[d.id] ?? null,
+        domain_weight: num(d.weight) ?? null,
         section_id: d.section_id,
         section_name: secById.get(d.section_id)?.name || "",
         items: itemCount[s.id],

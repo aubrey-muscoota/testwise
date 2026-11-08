@@ -4,7 +4,7 @@ import {
   useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold,
 } from "@expo-google-fonts/nunito";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api, createLearner, forgetLearner, loadLearner, placementKey, Skill } from "./src/api";
+import { api, createLearner, forgetLearner, getExam, loadExam, loadLearner, placementKey, Skill } from "./src/api";
 import { Welcome } from "./src/screens/Welcome";
 import { Home } from "./src/screens/Home";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
@@ -50,6 +50,8 @@ export default function App() {
     (async () => {
       if (await ageBlocked()) return setScreen({ name: "tooYoung" });
       const id = await loadLearner();
+      // Exam name, sections and disclaimer come from the exam pack (GET /api/exam).
+      await loadExam();
       if (!id) return setScreen({ name: "welcome" });
       // Learners from before the age question answer it once.
       try {
@@ -99,7 +101,8 @@ export default function App() {
   } else if (screen.name === "tooYoung") {
     body = <TooYoung />;
   } else if (screen.name === "placement") {
-    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: "sat-math" })} onSkip={skipPlacement} />;
+    const section = getExam()?.default_section ?? "";
+    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", skill: null, placement: section })} onSkip={skipPlacement} />;
   } else if (screen.name === "home") {
     body = (
       <Home
@@ -115,7 +118,7 @@ export default function App() {
       <Lesson
         skill={screen.skill}
         placementSection={screen.placement}
-        onQuit={screen.placement === "sat-math" ? () => setScreen({ name: "placement" }) : goHome}
+        onQuit={screen.placement !== undefined && screen.placement === (getExam()?.default_section ?? "") ? () => setScreen({ name: "placement" }) : goHome}
         onDone={(result) => {
           if (result.placement) settlePlacement(screen.placement);
           setScreen({ name: "complete", result });
@@ -135,7 +138,7 @@ export default function App() {
 }
 
 // Remembers (per learner and section) that the placement offer was taken or declined.
-// SAT Math keeps the original key so existing learners aren't asked again.
+// The exam's default section keeps the original key so existing learners aren't asked again.
 let currentLearner: string | null = null;
 
 async function placementSettled(id: string) {
@@ -146,7 +149,7 @@ async function placementSettled(id: string) {
     return false;
   }
 }
-async function settlePlacement(section = "sat-math") {
+async function settlePlacement(section?: string) {
   try {
     const id = currentLearner ?? (await loadLearner());
     await AsyncStorage.setItem(placementKey(id, section), "1");

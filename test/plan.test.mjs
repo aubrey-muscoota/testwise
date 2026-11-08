@@ -5,12 +5,11 @@ import {
   buildPlan, addDays, daysBetween, effectiveExamDate, testReadyDays, prepareSkills, orderNewSkills, isDay,
 } from "../worker/plan.js";
 
-// The real SAT skill map, with the fallback domain weights.
-const W = { alg: 0.35, adv: 0.35, psda: 0.15, geo: 0.15, "rw-ii": 0.26, "rw-cs": 0.28, "rw-eoi": 0.2, "rw-sec": 0.26 };
-const map = JSON.parse(readFileSync(new URL("../content/skills.json", import.meta.url)));
+// The real SAT skill map and domain weights from the exam pack.
+const map = JSON.parse(readFileSync(new URL("../exams/sat/skills.json", import.meta.url)));
 const SKILLS = [];
-for (const sec of map.exams[0].sections) for (const d of sec.domains) for (const s of d.skills) {
-  SKILLS.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_weight: W[d.id], position: SKILLS.length });
+for (const sec of map.sections) for (const d of sec.domains) for (const s of d.skills) {
+  SKILLS.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_weight: d.weight, position: SKILLS.length });
 }
 const PACE = { "sat-math": { practice_minutes: 1, timed_seconds: 95 }, "sat-rw": { practice_minutes: 1.2, timed_seconds: 71 } };
 const TODAY = "2026-11-08";

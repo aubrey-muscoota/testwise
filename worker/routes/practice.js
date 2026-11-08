@@ -32,7 +32,7 @@ async function poolItems(env, skillIds) {
 
 // Skills with this learner's state, for practiceSkills/pickPractice.
 async function learnerSkills(env, learnerId) {
-  const [ctx, mastery, hist] = await Promise.all([skillContext(env), masteryMap(env, learnerId), history(env, learnerId)]);
+  const [ctx, mastery, hist] = await Promise.all([skillContext(env, learnerId), masteryMap(env, learnerId), history(env, learnerId)]);
   const mistakes = new Map();
   for (const h of hist.values()) if (!h.last_correct) mistakes.set(h.skill_id, (mistakes.get(h.skill_id) || 0) + 1);
   const raw = ctx.skills.map((s) => {

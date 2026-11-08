@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator, Alert, Animated, Easing, Image, Linking, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type ScrollViewInstance, type StyleProp, type ViewStyle,
 } from "react-native";
-import { api, currentLearnerId, legalUrl, placementKey, Skill, Tree } from "../api";
+import { api, currentLearnerId, getExam, legalUrl, placementKey, Skill, Tree } from "../api";
 import { Burst, Button, Card, Mascot, MuteToggle, Pill, PopIn, Press3D, ProgressBar, Pulse, Rise, SlideUp, Speech, logo } from "../components/ui";
 import { lines, pick } from "../copy";
 import { feedback } from "../motion/feedback";
@@ -68,17 +68,21 @@ export function Home({ onStartLesson, onStartPlacement, onReset }: { onStartLess
   const [tree, setTree] = useState<Tree | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<Skill | null>(null);
-  // Which section's path is showing (SAT Math or Reading and Writing). Remembered.
+  // Which section's path is showing (e.g. Math or Reading and Writing). Remembered.
   const [section, setSection] = useState<string | null>(null);
   useEffect(() => {
     AsyncStorage.getItem(SECTION_KEY).then((v) => v && setSection(v), () => {});
   }, []);
-  // Sections whose placement offer was taken or declined (SAT Math is offered at sign-up).
-  const [placed, setPlaced] = useState<Record<string, boolean>>({ "sat-math": true });
+  // Sections whose placement offer was taken or declined (the exam's default section is offered at sign-up).
+  const exam = getExam();
+  const [placed, setPlaced] = useState<Record<string, boolean>>(exam ? { [exam.default_section]: true } : {});
   useEffect(() => {
     const id = currentLearnerId();
-    AsyncStorage.getItem(placementKey(id, "sat-rw")).then((v) => v === "1" && setPlaced((p) => ({ ...p, "sat-rw": true })), () => {});
-  }, []);
+    for (const sec of exam?.sections ?? []) {
+      if (sec.id === exam?.default_section) continue;
+      AsyncStorage.getItem(placementKey(id, sec.id)).then((v) => v === "1" && setPlaced((p) => ({ ...p, [sec.id]: true })), () => {});
+    }
+  }, [exam]);
   const settleOffer = (sec: string) => {
     setPlaced((p) => ({ ...p, [sec]: true }));
     AsyncStorage.setItem(placementKey(currentLearnerId(), sec), "1").catch(() => {});
@@ -378,7 +382,7 @@ export function Home({ onStartLesson, onStartPlacement, onReset }: { onStartLess
         ))}
 
         <Text style={[type.caption, { textAlign: "center", marginTop: space(4) }]}>
-          Testwise is not affiliated with College Board. SAT is a trademark of College Board.
+          {exam?.publisher.disclaimer}
         </Text>
         <FooterLinks aiConsent={!!tree.learner?.ai_consent} onChanged={load} onDeleted={onReset} />
         <View style={{ height: selected ? 220 : space(4) }} />

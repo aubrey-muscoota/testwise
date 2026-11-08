@@ -16,7 +16,11 @@ function setup(envExtra = {}) {
   // Migration 0004 creates the SAT exam row; this test uses its own exam only.
   q("DELETE FROM sections WHERE exam_id = 'sat'");
   q("DELETE FROM exams WHERE id = 'sat'");
-  q("INSERT INTO exams (id, name) VALUES ('tx', 'Test Exam')");
+  q("INSERT INTO exams (id, name, config) VALUES ('tx', 'Test Exam', ?)", JSON.stringify({
+    name: "Test Exam", default_section: "tx-q",
+    sections: [{ id: "tx-q", name: "Quant", seconds_per_question: 80, practice_minutes_per_question: 1 }],
+    placement: {}, plan: {},
+  }));
   q("INSERT INTO sections (id, exam_id, name, position) VALUES ('tx-q', 'tx', 'Quant', 0)");
   q("INSERT INTO domains (id, exam_id, section_id, name, position) VALUES ('tx-d', 'tx', 'tx-q', 'Numbers', 0)");
   q("INSERT INTO skills (id, exam_id, domain_id, name, position, prereqs) VALUES ('tx-add', 'tx', 'tx-d', 'Adding', 0, '[]')");
@@ -31,7 +35,7 @@ function setup(envExtra = {}) {
     }
   }
   q("INSERT INTO learners (id, created_at, age_confirmed_at) VALUES (?, 0, 0)", L);
-  return { DB, ...envExtra };
+  return { DB, DEFAULT_EXAM: "tx", ...envExtra };
 }
 const req = (path = "/api/x") => new Request("http://local" + path, { headers: { "x-tz-offset": "0" } });
 const body = async (res) => ({ ...(await res.json()), http: res.status });

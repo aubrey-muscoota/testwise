@@ -69,7 +69,7 @@ export async function planInput(env, learnerId, day) {
   const notPlacement = "LEFT JOIN lessons l ON l.id = a.lesson_id WHERE a.learner_id = ? AND (l.kind IS NULL OR l.kind != 'placement')";
   const [profile, ctx, mastery, todayRes, spanRes, recentRes, due, reviewedToday, lessonsRes, activeRes, mistakesRow] = await Promise.all([
     getProfile(env, learnerId, day),
-    skillContext(env),
+    skillContext(env, learnerId),
     masteryMap(env, learnerId),
     env.DB.prepare(`SELECT a.skill_id, COUNT(*) AS n FROM attempts a ${notPlacement} AND a.local_day = ? GROUP BY a.skill_id`).bind(learnerId, day).all(),
     env.DB.prepare(`SELECT a.skill_id, MIN(a.local_day) AS first_day, MAX(a.local_day) AS last_day FROM attempts a ${notPlacement} GROUP BY a.skill_id`).bind(learnerId).all(),

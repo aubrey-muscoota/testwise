@@ -8,12 +8,12 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 
 | Path | What it is |
 | --- | --- |
-| `content/skills.json` | Skill map: exams → sections → domains → skills, with prerequisites (SAT Math: 19 skills; SAT Reading and Writing: 10) |
-| `content/ITEM_FORMAT.md`, `RW_FORMAT.md`, `FIGURE_FORMAT.md` | How questions, passages and figures are written |
-| `content/items/*.json` | Practice questions, one file per skill (format in `content/ITEM_FORMAT.md`) |
-| `content/reports/*.json` | Notes from the independent review of each skill's questions |
+| `exams/<id>/` | One exam pack per exam (only `sat` so far): `exam.json` (sections, timing, scoring, placement, plan defaults, disclaimer), `skills.json` (sections → domains with weights → skills with prerequisites; SAT Math: 19 skills, Reading and Writing: 10), `voice.json` (Socrates' exam lines), `items/<skill>.json`, `docs/` and `reports/`. How to add one: `docs/ADDING_AN_EXAM.md` |
+| `exams/ITEM_FORMAT.md`, `exams/FIGURE_FORMAT.md` | How questions and figures are written, for every exam (SAT passages: `exams/sat/docs/RW_FORMAT.md`) |
+| `exams/sat/reports/*.json` | Notes from the independent review of each skill's questions |
+| `scripts/new-exam.mjs` | `npm run new-exam -- <id> "<Name>"` scaffolds a disabled exam pack |
 | `scripts/check_items.py` | Validates every question and re-computes its answer with code |
-| `scripts/build-seed.mjs` | Turns the content files into `seed/seed.sql` for the database |
+| `scripts/build-seed.mjs` | Validates every enabled exam pack and turns it into `seed/seed.sql` for the database |
 | `migrations/` | D1 (SQLite) schema |
 | `worker/engine.js` | Adaptive engine: ratings, lesson picking, spaced review, streaks, answer checking |
 | `worker/socrates.js` | The tutor: prompt, Claude API call, and an offline fallback that walks through hints |
@@ -22,19 +22,22 @@ This is the v0 rebuild. The old version lives in `testwise-old` and is kept for 
 | `worker/generate.js` | Fresh questions: Claude writes a batch, a blind second call must agree, code checks the shape |
 | `docs/API.md` | Profile, plan and practice endpoints with request and response examples |
 | `worker/index.js` | API entry point (Cloudflare Worker, Hono router) |
+| `worker/lib/exam.js` | The learner's exam pack, read from D1 (`GET /api/exam`) |
 | `worker/routes/` | One module per API area: tree, lessons and placement, answers, Socrates, reports |
 | `worker/schemas.js` | Request body shapes (zod) |
 | `docs/PLAN.md` | Release checklist for v1 to v5 |
 | `app/src/figure/` | Draws question figures from their spec (react-native-svg) |
 | `app/src/text/` | Passages (blanks, underlines, notes) and the TeX-subset math renderer |
 | `app/` | Expo (React Native) app. Exports to web now; the same code builds for iOS later |
-| `test/` | Unit tests for the engine and an end-to-end API check |
+| `test/` | Unit tests for the engine and exam packs (with a test-only pack in `test/fixtures/exams/demo/`) and an end-to-end API check |
 
 ## How questions are made
 
+Each exam's questions live in its pack, `exams/<id>/items/`. `docs/ADDING_AN_EXAM.md` has the full pipeline for a new exam.
+
 1. A writer drafts questions per skill in even thirds of easy, medium and hard, each with a worked solution, Socratic hints and the misconception behind every wrong choice. Math questions (1,725: 75 per skill plus 300 with figures) also carry Python code that computes the answer independently. Reading and Writing has 1,600 (160 per skill), one question per passage.
-2. `check_items.py` runs that code and rejects any Math question whose code doesn't reproduce the key. It also checks figure specs, passage lengths, markup and that every wrong choice has a reason.
-3. A separate reviewer solves every question blind, without seeing the key, and fixes or removes any that are wrong, ambiguous, or off-level. The figure and Reading and Writing questions then got a second, adversarial review that looks for a defensible second answer, data that doesn't match, and factual errors.
+2. `check_items.py` runs that code and rejects any Math question whose code doesn't reproduce the key. It also checks figure specs, passage lengths, markup and that every wrong choice has a reason, with the rules for each section (item types, choice count, passages) taken from the pack's `exam.json`.
+3. A separate reviewer solves every question blind, without seeing the key, and fixes or removes any that are wrong, ambiguous, or off-level. The figure and Reading and Writing questions then got a second, adversarial review that looks for a defensible second answer, data that doesn't match, and factual errors. `balance_choices.py` then spreads the answer positions evenly.
 4. In the app, students can report a question. Reports are stored in `item_checks`.
 
 All questions are original. Testwise is not affiliated with College Board.
@@ -66,8 +69,8 @@ Without an `ANTHROPIC_API_KEY` secret, Socrates still works from the question's 
 npm install && (cd app && npm install)
 npm run build:app        # web export into app/dist
 npm run dev              # seeds a local D1 database and starts wrangler on :8787
-npm test                 # engine unit tests + question checker
-node test/e2e-api.mjs    # end-to-end API check against the dev server
+npm test                 # unit tests + question checker (several minutes)
+node test/e2e-api.mjs    # end-to-end API check against the dev server (or: node test/e2e-api.mjs http://localhost:8791)
 ```
 
 ## Deploy (Cloudflare)

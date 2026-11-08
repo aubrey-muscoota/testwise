@@ -1,6 +1,6 @@
 # SAT Reading and Writing items
 
-Same file layout as Math (`content/items/<skill-id>.json`, see ITEM_FORMAT.md), with these fields:
+Same file layout as Math (`exams/sat/items/<skill-id>.json`, see `exams/ITEM_FORMAT.md`), with these fields. The passage word limits that `check_items.py` enforces are the `passage` rules of the `sat-rw` section in `exams/sat/exam.json`.
 
 ```json
 {

@@ -1,9 +1,11 @@
 """Validate item files: schema, and that each item's `check` code reproduces its answer.
 
-Usage: python3 -I scripts/check_items.py content/items/*.json
+Usage: python3 -I scripts/check_items.py exams/*/items/*.json
+Exam-specific rules (item types, choice count, code checks, passage limits)
+come from the pack that holds each file: exams/<id>/exam.json and skills.json.
 Exits non-zero if any item fails. Prints one line per failure.
 """
-import json, sys, subprocess, re
+import json, os, sys, subprocess, re
 from fractions import Fraction
 
 REQ = ["id", "skill_id", "difficulty", "type", "stem", "answer", "explanation", "hints"]
@@ -97,33 +99,57 @@ def check_figure(fig):
                 errs.append(f"element {i} (function): {ex}")
     return errs
 
-RW_PREFIX = "rw-"
+def uncomment(v):
+    """Drops "//" comment keys, as scripts/lib/packs.mjs does."""
+    if isinstance(v, dict):
+        return {k: uncomment(x) for k, x in v.items() if not k.startswith("//")}
+    if isinstance(v, list):
+        return [uncomment(x) for x in v]
+    return v
 
-def check_rw(it):
+# Used when an item file isn't inside an exam pack.
+DEFAULT_SECTION = {"id": "?", "item_types": ["mc", "spr"], "choices": 4, "code_checks": True}
+_packs = {}
+
+PACK_OVERRIDE = None  # --pack <dir>: use this pack for every file (e.g. items piped on stdin)
+
+def section_rules(item_path):
+    """{skill_id: section config from exam.json} for the pack holding this item file."""
+    pack = PACK_OVERRIDE or os.path.dirname(os.path.dirname(os.path.abspath(item_path)))
+    if pack not in _packs:
+        rules = {}
+        try:
+            exam = uncomment(json.load(open(os.path.join(pack, "exam.json"))))
+            skills = uncomment(json.load(open(os.path.join(pack, "skills.json"))))
+            secs = {s["id"]: s for s in exam.get("sections", [])}
+            for sec in skills.get("sections", []):
+                for d in sec.get("domains", []):
+                    for sk in d.get("skills", []):
+                        rules[sk["id"]] = secs.get(sec["id"], DEFAULT_SECTION)
+        except (OSError, ValueError, KeyError):
+            pass
+        _packs[pack] = rules
+    return _packs[pack]
+
+def check_passage(it, rules):
+    """Passage rules for sections whose exam.json sets "passage": {"required": true, ...}."""
     errs = []
     p = it.get("passage")
     if not isinstance(p, str) or not p.strip():
-        return ["reading/writing item needs a passage"]
+        return ["items in this section need a passage"]
+    lo, hi, paired = rules.get("min_words", 20), rules.get("max_words", 165), rules.get("paired_max_words", 125)
     words = len(re.sub(r"<\/?u>", "", p).split())
-    limit = 110 if it.get("passage2") else 150
-    if words < 20 or words > limit + 15:
-        errs.append(f"passage has {words} words (want 25-{limit})")
+    limit = paired if it.get("passage2") else hi
+    if words < lo or words > limit:
+        errs.append(f"passage has {words} words (want {lo}-{limit})")
     if it.get("passage2") is not None:
         w2 = len(it["passage2"].split())
-        if w2 < 20 or w2 > 125:
-            errs.append(f"passage2 has {w2} words (want 25-110)")
+        if w2 < lo or w2 > paired:
+            errs.append(f"passage2 has {w2} words (want {lo}-{paired})")
     if re.search(r"<(?!/?u>)", p):
         errs.append("only <u>…</u> markup is allowed")
     if p.count("<u>") != p.count("</u>"):
         errs.append("unbalanced <u> tags")
-    if it["type"] != "mc":
-        errs.append("reading/writing items are mc")
-    if it.get("check"):
-        errs.append("reading/writing items have check: null")
-    wr = it.get("wrong_reasons") or {}
-    wrong = [c for c in it.get("choices") or [] if c != it["answer"]]
-    if set(wr) != set(wrong):
-        errs.append("wrong_reasons must cover exactly the 3 wrong choices")
     return errs
 
 def run_check(code):
@@ -156,17 +182,27 @@ def main(paths):
             if iid in ids:
                 print(f"FAIL {iid}: duplicate id"); fails += 1
             ids.add(iid)
-            if it["type"] == "mc":
-                ch = it.get("choices") or []
-                if len(ch) != 4 or it["answer"] not in ch or len(set(ch)) != 4:
-                    print(f"FAIL {iid}: mc needs 4 distinct choices containing the answer"); fails += 1; continue
-            elif it["type"] != "spr":
+            sec = section_rules(p).get(it.get("skill_id")) or DEFAULT_SECTION
+            if it["type"] not in ("mc", "spr"):
                 print(f"FAIL {iid}: bad type"); fails += 1; continue
+            if it["type"] not in sec.get("item_types", ["mc", "spr"]):
+                print(f"FAIL {iid}: type {it['type']} is not allowed in section {sec['id']}"); fails += 1; continue
+            if it["type"] == "mc":
+                n = sec.get("choices", 4)
+                ch = it.get("choices") or []
+                if len(ch) != n or it["answer"] not in ch or len(set(ch)) != n:
+                    print(f"FAIL {iid}: mc needs {n} distinct choices containing the answer"); fails += 1; continue
             extra = []
             if "figure" in it:
                 extra += check_figure(it["figure"])
-            if str(it.get("skill_id", "")).startswith(RW_PREFIX):
-                extra += check_rw(it)
+            if (sec.get("passage") or {}).get("required"):
+                extra += check_passage(it, sec["passage"])
+            if not sec.get("code_checks", True) and it.get("check"):
+                extra.append(f"items in section {sec['id']} have check: null")
+            if it["type"] == "mc":
+                wr = it.get("wrong_reasons") or {}
+                if set(wr) != set(c for c in it["choices"] if c != it["answer"]):
+                    extra.append("wrong_reasons must cover exactly the wrong choices")
             if extra:
                 print(f"FAIL {iid}: " + "; ".join(extra)); fails += 1; continue
             if it.get("check"):
@@ -180,4 +216,7 @@ def main(paths):
     return 1 if fails else 0
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    args = sys.argv[1:]
+    if args[:1] == ["--pack"]:
+        PACK_OVERRIDE, args = os.path.abspath(args[1]), args[2:]
+    sys.exit(main(args))

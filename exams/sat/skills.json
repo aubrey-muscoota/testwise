@@ -1,0 +1,260 @@
+{
+  "note": "Skill maps follow the public College Board content domains for the digital SAT. Not affiliated with College Board.",
+  "sections": [
+    {
+      "id": "sat-math",
+      "domains": [
+        {
+          "id": "alg",
+          "name": "Algebra",
+          "weight": 0.35,
+          "skills": [
+            {
+              "id": "alg-linear-eq-1var",
+              "name": "Linear equations in one variable",
+              "prereqs": []
+            },
+            {
+              "id": "alg-linear-func",
+              "name": "Linear functions",
+              "prereqs": [
+                "alg-linear-eq-1var"
+              ]
+            },
+            {
+              "id": "alg-linear-eq-2var",
+              "name": "Linear equations in two variables",
+              "prereqs": [
+                "alg-linear-eq-1var"
+              ]
+            },
+            {
+              "id": "alg-systems",
+              "name": "Systems of two linear equations",
+              "prereqs": [
+                "alg-linear-eq-2var"
+              ]
+            },
+            {
+              "id": "alg-inequalities",
+              "name": "Linear inequalities",
+              "prereqs": [
+                "alg-linear-eq-2var"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "adv",
+          "name": "Advanced Math",
+          "weight": 0.35,
+          "skills": [
+            {
+              "id": "adv-equiv-expr",
+              "name": "Equivalent expressions",
+              "prereqs": [
+                "alg-linear-eq-1var"
+              ]
+            },
+            {
+              "id": "adv-nonlinear-eq",
+              "name": "Nonlinear equations and systems",
+              "prereqs": [
+                "adv-equiv-expr",
+                "alg-systems"
+              ]
+            },
+            {
+              "id": "adv-nonlinear-func",
+              "name": "Nonlinear functions",
+              "prereqs": [
+                "adv-equiv-expr",
+                "alg-linear-func"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "psda",
+          "name": "Problem-Solving and Data Analysis",
+          "weight": 0.15,
+          "skills": [
+            {
+              "id": "psda-ratios",
+              "name": "Ratios, rates, proportions and units",
+              "prereqs": []
+            },
+            {
+              "id": "psda-percent",
+              "name": "Percentages",
+              "prereqs": [
+                "psda-ratios"
+              ]
+            },
+            {
+              "id": "psda-one-var-data",
+              "name": "One-variable data: center and spread",
+              "prereqs": []
+            },
+            {
+              "id": "psda-two-var-data",
+              "name": "Two-variable data: models and scatterplots",
+              "prereqs": [
+                "psda-one-var-data",
+                "alg-linear-func"
+              ]
+            },
+            {
+              "id": "psda-probability",
+              "name": "Probability and conditional probability",
+              "prereqs": [
+                "psda-ratios"
+              ]
+            },
+            {
+              "id": "psda-inference",
+              "name": "Inference from samples and margin of error",
+              "prereqs": [
+                "psda-one-var-data"
+              ]
+            },
+            {
+              "id": "psda-studies",
+              "name": "Evaluating statistical claims",
+              "prereqs": [
+                "psda-inference"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "geo",
+          "name": "Geometry and Trigonometry",
+          "weight": 0.15,
+          "skills": [
+            {
+              "id": "geo-area-volume",
+              "name": "Area and volume",
+              "prereqs": []
+            },
+            {
+              "id": "geo-lines-angles",
+              "name": "Lines, angles and triangles",
+              "prereqs": []
+            },
+            {
+              "id": "geo-right-trig",
+              "name": "Right triangles and trigonometry",
+              "prereqs": [
+                "geo-lines-angles"
+              ]
+            },
+            {
+              "id": "geo-circles",
+              "name": "Circles",
+              "prereqs": [
+                "geo-area-volume",
+                "geo-right-trig"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sat-rw",
+      "domains": [
+        {
+          "id": "rw-ii",
+          "name": "Information and Ideas",
+          "weight": 0.26,
+          "skills": [
+            {
+              "id": "rw-central-ideas",
+              "name": "Central ideas and details",
+              "prereqs": []
+            },
+            {
+              "id": "rw-command-evidence",
+              "name": "Command of evidence",
+              "prereqs": [
+                "rw-central-ideas"
+              ]
+            },
+            {
+              "id": "rw-inferences",
+              "name": "Inferences",
+              "prereqs": [
+                "rw-central-ideas"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rw-cs",
+          "name": "Craft and Structure",
+          "weight": 0.28,
+          "skills": [
+            {
+              "id": "rw-words-context",
+              "name": "Words in context",
+              "prereqs": []
+            },
+            {
+              "id": "rw-text-structure",
+              "name": "Text structure and purpose",
+              "prereqs": [
+                "rw-words-context"
+              ]
+            },
+            {
+              "id": "rw-cross-text",
+              "name": "Cross-text connections",
+              "prereqs": [
+                "rw-text-structure"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rw-eoi",
+          "name": "Expression of Ideas",
+          "weight": 0.2,
+          "skills": [
+            {
+              "id": "rw-transitions",
+              "name": "Transitions",
+              "prereqs": []
+            },
+            {
+              "id": "rw-rhetorical-synthesis",
+              "name": "Rhetorical synthesis",
+              "prereqs": [
+                "rw-transitions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rw-sec",
+          "name": "Standard English Conventions",
+          "weight": 0.26,
+          "skills": [
+            {
+              "id": "rw-boundaries",
+              "name": "Boundaries",
+              "prereqs": []
+            },
+            {
+              "id": "rw-form-structure",
+              "name": "Form, structure and sense",
+              "prereqs": [
+                "rw-boundaries"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

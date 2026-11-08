@@ -1,0 +1,28 @@
+[
+  {
+    "id": "demo-mult-001",
+    "skill_id": "demo-mult",
+    "difficulty": 1,
+    "type": "mc",
+    "stem": "What is 1/2 · 1/3?",
+    "choices": ["1/6", "2/5", "1/5"],
+    "answer": "1/6",
+    "explanation": ["Multiply the numerators: 1 · 1 = 1.", "Multiply the denominators: 2 · 3 = 6."],
+    "hints": ["What do you do with the tops, and what with the bottoms?"],
+    "wrong_reasons": { "2/5": "Added numerators and denominators", "1/5": "Added the denominators" },
+    "check": "from sympy import Rational\nresult = Rational(1, 2) * Rational(1, 3)"
+  },
+  {
+    "id": "demo-mult-002",
+    "skill_id": "demo-mult",
+    "difficulty": 3,
+    "type": "mc",
+    "stem": "What is 3/4 of 2/9?",
+    "choices": ["1/6", "6/13", "27/8"],
+    "answer": "1/6",
+    "explanation": ["\"Of\" means multiply: 3/4 · 2/9 = 6/36.", "6/36 simplifies to 1/6."],
+    "hints": ["What operation does \"of\" mean here?"],
+    "wrong_reasons": { "6/13": "Added the denominators instead of multiplying", "27/8": "Divided instead of multiplying" },
+    "check": "from sympy import Rational\nresult = Rational(3, 4) * Rational(2, 9)"
+  }
+]

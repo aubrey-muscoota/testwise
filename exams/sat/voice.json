@@ -1,0 +1,21 @@
+{
+  "persona_notes": [
+    "The digital SAT has two sections, Reading and Writing, then Math, each in two adaptive modules.",
+    "Students may use the built-in graphing calculator on all of Math, so suggesting a quick sketch or a calculator check is fine.",
+    "Reading and Writing questions each have one short passage (or a pair). The answer is always supported by the text, so point the student back to the words on the page."
+  ],
+  "terms": {
+    "spr": "grid-in",
+    "sections": { "sat-math": "Math", "sat-rw": "Reading and Writing" }
+  },
+  "placement_intro": {
+    "sat-math": "Already know some math? Answer a few questions and I'll skip you past what you know.",
+    "sat-rw": "Already a strong reader? Answer a few questions and I'll skip you past what you know."
+  },
+  "test_day_tips": [
+    "Answer every question. There's no penalty for guessing on the SAT.",
+    "Flag a hard one and come back. You can move freely between questions within a module.",
+    "In Math, plug the answer choices back in when you're stuck.",
+    "In Reading and Writing, find the words in the passage that prove your answer."
+  ]
+}
