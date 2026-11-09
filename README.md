@@ -30,6 +30,7 @@ Current status and handoff notes: `docs/HANDOFF.md`. The old prototype lives in 
 | `app/src/text/` | Passages (blanks, underlines, notes) and the TeX-subset math renderer |
 | `app/` | Expo (React Native) app. Exports to web now; the same code builds for iOS later |
 | `test/` | Unit tests for the engine and exam packs (with a test-only pack in `test/fixtures/exams/demo/`) and an end-to-end API check |
+| `test/ui/` | Screenshot checks of every item type renderer at 390x844, 375x667 and 1440x900 (`npx playwright test`); the fixtures are `app/src/lab/items.json`, drawn by the app at `?lab=renderers` |
 
 ## How questions are made
 
@@ -71,6 +72,7 @@ npm run build:app        # web export into app/dist
 npm run dev              # seeds a local D1 database and starts wrangler on :8787
 npm test                 # unit tests + question checker (several minutes)
 node test/e2e-api.mjs    # end-to-end API check against the dev server (or: node test/e2e-api.mjs http://localhost:8791)
+npx playwright test      # every item type at three screen sizes, against test/ui/__screenshots__ (needs app/dist)
 ```
 
 ## Deploy (Cloudflare)

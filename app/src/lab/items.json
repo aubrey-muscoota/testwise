@@ -1,0 +1,1015 @@
+[
+  {
+    "id": "mc-linear",
+    "title": "Linear equations",
+    "states": [
+      "idle",
+      "picked",
+      "right"
+    ],
+    "item": {
+      "id": "lab-mc-linear",
+      "skill_id": "alg-linear-eq-1var",
+      "difficulty": 1,
+      "type": "mc",
+      "stem": "If 3x − 7 = 11, what is the value of 6x − 2?",
+      "table": null,
+      "choices": [
+        "12",
+        "34",
+        "36",
+        "40"
+      ],
+      "answer": "34",
+      "accept": [],
+      "explanation": [
+        "Add 7 to both sides: 3x = 18.",
+        "Divide both sides by 3: x = 6.",
+        "Then 6x − 2 = 36 − 2 = 34."
+      ],
+      "hints": [
+        "What is x on its own?",
+        "Once you know x, what is 6x?"
+      ],
+      "wrong_reasons": {
+        "12": "Solved for x, then forgot to double it and subtract 2.",
+        "36": "Doubled x correctly but left off the − 2.",
+        "40": "Added 7 and 11 before dividing, so x came out too large."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "mc-tex",
+    "title": "Equivalent expressions",
+    "states": [
+      "idle",
+      "wrong",
+      "solution"
+    ],
+    "item": {
+      "id": "lab-mc-tex",
+      "skill_id": "adv-equiv-expr",
+      "difficulty": 2,
+      "type": "mc",
+      "stem": "Which expression is equivalent to $\\frac{x^2 - 9}{x + 3}$ for all values of $x \\ne -3$?",
+      "table": null,
+      "choices": [
+        "x − 3",
+        "x + 3",
+        "x² − 3",
+        "$\\frac{x - 3}{x + 3}$"
+      ],
+      "answer": "x − 3",
+      "accept": [],
+      "explanation": [
+        "Factor the numerator as a difference of squares: $x^2 - 9 = (x - 3)(x + 3)$.",
+        "Cancel the shared factor x + 3, which is allowed because x ≠ −3.",
+        "What remains is x − 3. Check with x = 1: $\\frac{1 - 9}{1 + 3} = \\frac{-8}{4} = -2$ and 1 − 3 = −2."
+      ],
+      "hints": [
+        "Does the numerator factor?",
+        "Which factor do the top and the bottom share?"
+      ],
+      "wrong_reasons": {
+        "x + 3": "Cancelled the wrong factor after factoring the numerator.",
+        "x² − 3": "Subtracted 3 from the numerator instead of factoring it.",
+        "$\\frac{x - 3}{x + 3}$": "Factored correctly but did not cancel the shared factor."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "spr-fraction",
+    "title": "Linear equations",
+    "states": [
+      "idle",
+      "right",
+      "wrong"
+    ],
+    "item": {
+      "id": "lab-spr-fraction",
+      "skill_id": "alg-linear-eq-1var",
+      "difficulty": 2,
+      "type": "spr",
+      "stem": "If $\\frac{2}{3}x + 4 = 10$, what is the value of x?",
+      "table": null,
+      "choices": null,
+      "answer": "9",
+      "accept": [
+        "9.0"
+      ],
+      "explanation": [
+        "Subtract 4 from both sides: $\\frac{2}{3}x = 6$.",
+        "Multiply both sides by $\\frac{3}{2}$: x = 9."
+      ],
+      "hints": [
+        "What happens if you subtract 4 from both sides first?",
+        "What do you multiply $\\frac{2}{3}$ by to get 1?"
+      ],
+      "wrong_reasons": {},
+      "review": false
+    }
+  },
+  {
+    "id": "mc-table",
+    "title": "Statistics",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-mc-table",
+      "skill_id": "psda-center-spread",
+      "difficulty": 1,
+      "type": "mc",
+      "stem": "The table shows the number of hours five students practiced in a week and their quiz scores. What is the median quiz score?",
+      "table": {
+        "title": "Weekly practice and quiz scores",
+        "headers": [
+          "Student",
+          "Hours",
+          "Score"
+        ],
+        "rows": [
+          [
+            "Ana",
+            "2",
+            "71"
+          ],
+          [
+            "Ben",
+            "4",
+            "78"
+          ],
+          [
+            "Cleo",
+            "5",
+            "84"
+          ],
+          [
+            "Dev",
+            "7",
+            "90"
+          ],
+          [
+            "Eli",
+            "3",
+            "75"
+          ]
+        ]
+      },
+      "choices": [
+        "75",
+        "78",
+        "79.6",
+        "84"
+      ],
+      "answer": "78",
+      "accept": [],
+      "explanation": [
+        "Order the scores: 71, 75, 78, 84, 90.",
+        "The middle value of five is the third one: 78."
+      ],
+      "hints": [
+        "Put the scores in order first.",
+        "Which score sits in the middle?"
+      ],
+      "wrong_reasons": {
+        "75": "Picked the second value instead of the middle one.",
+        "79.6": "Found the mean, not the median.",
+        "84": "Picked the fourth value instead of the middle one."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "mc-table-wide",
+    "title": "Percentages",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-mc-table-wide",
+      "skill_id": "psda-ratios-rates",
+      "difficulty": 2,
+      "type": "mc",
+      "stem": "The table shows a club's membership and the number of events it held in each year from 2019 to 2023. By what percent did membership increase from 2019 to 2023, to the nearest whole percent?",
+      "table": {
+        "headers": [
+          "",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "rows": [
+          [
+            "Members",
+            "1,240",
+            "1,310",
+            "1,455",
+            "1,602",
+            "1,780"
+          ],
+          [
+            "Events",
+            "18",
+            "12",
+            "21",
+            "24",
+            "27"
+          ]
+        ]
+      },
+      "choices": [
+        "30%",
+        "44%",
+        "54%",
+        "70%"
+      ],
+      "answer": "44%",
+      "accept": [],
+      "explanation": [
+        "The increase is 1,780 − 1,240 = 540 members.",
+        "Divide by the starting value: 540 ÷ 1,240 ≈ 0.435.",
+        "That is about 44%."
+      ],
+      "hints": [
+        "How many members were added over the four years?",
+        "A percent increase compares the change to the starting value."
+      ],
+      "wrong_reasons": {
+        "30%": "Divided the increase by the ending value instead of the starting value.",
+        "54%": "Added the yearly changes as percents instead of comparing the two endpoints.",
+        "70%": "Used the increase in events, not members."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "fig-function",
+    "title": "Nonlinear functions",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-fig-function",
+      "skill_id": "adv-nonlinear-fn",
+      "difficulty": 2,
+      "type": "mc",
+      "stem": "The graph of the function f is shown, along with the dashed line y = 2. For how many values of x in the interval shown is f(x) = 2?",
+      "table": null,
+      "figure": {
+        "alt": "A coordinate plane from −5 to 5 on the x-axis and −4 to 6 on the y-axis. A parabola labelled f opens upward with its vertex at (0, −2). A dashed horizontal line y = 2 crosses the parabola at two points.",
+        "aspect": 1,
+        "plane": {
+          "x": [
+            -5,
+            5
+          ],
+          "y": [
+            -4,
+            6
+          ],
+          "grid": 1,
+          "axes": true,
+          "ticks": 1,
+          "xlabel": "x",
+          "ylabel": "y"
+        },
+        "elements": [
+          {
+            "type": "function",
+            "expr": "0.5*x^2 - 2",
+            "domain": [
+              -4,
+              4
+            ],
+            "label": "f",
+            "labelAt": [
+              3.4,
+              3.8
+            ]
+          },
+          {
+            "type": "line",
+            "through": [
+              [
+                -5,
+                2
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            "dash": true,
+            "label": "y = 2"
+          },
+          {
+            "type": "point",
+            "at": [
+              0,
+              -2
+            ],
+            "label": "(0, −2)",
+            "labelPos": "se"
+          },
+          {
+            "type": "point",
+            "at": [
+              2.83,
+              2
+            ],
+            "open": true
+          },
+          {
+            "type": "point",
+            "at": [
+              -2.83,
+              2
+            ],
+            "open": true
+          }
+        ]
+      },
+      "choices": [
+        "None",
+        "One",
+        "Two",
+        "Three"
+      ],
+      "answer": "Two",
+      "accept": [],
+      "explanation": [
+        "f(x) = 2 wherever the graph of f meets the line y = 2.",
+        "The line crosses the parabola once on each side of the y-axis.",
+        "So there are two such values of x."
+      ],
+      "hints": [
+        "Where does the dashed line meet the curve?",
+        "Count the crossing points."
+      ],
+      "wrong_reasons": {
+        "None": "Looked for where the curve meets the x-axis instead of the line y = 2.",
+        "One": "Counted only one side of the parabola.",
+        "Three": "Counted the vertex as a crossing point too."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "fig-geometry",
+    "title": "Right triangles and trigonometry",
+    "states": [
+      "idle",
+      "wrong"
+    ],
+    "item": {
+      "id": "lab-fig-geometry",
+      "skill_id": "geo-right-tri-trig",
+      "difficulty": 2,
+      "type": "mc",
+      "stem": "In right triangle ABC shown, AB = 8 and AC = 10. What is the value of sin θ?",
+      "table": null,
+      "figure": {
+        "alt": "Right triangle ABC with the right angle at B. Side AB along the bottom is labelled 8 and the hypotenuse AC is labelled 10. The angle at A is marked θ.",
+        "aspect": 1.25,
+        "plane": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "axes": false
+        },
+        "elements": [
+          {
+            "type": "polygon",
+            "points": [
+              [
+                1,
+                1
+              ],
+              [
+                9,
+                1
+              ],
+              [
+                9,
+                7
+              ]
+            ],
+            "vertexLabels": [
+              "A",
+              "B",
+              "C"
+            ],
+            "sideLabels": [
+              "8",
+              "",
+              "10"
+            ]
+          },
+          {
+            "type": "angle",
+            "vertex": [
+              9,
+              1
+            ],
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              9,
+              7
+            ],
+            "right": true
+          },
+          {
+            "type": "angle",
+            "vertex": [
+              1,
+              1
+            ],
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              9,
+              7
+            ],
+            "label": "θ"
+          },
+          {
+            "type": "tick",
+            "on": [
+              [
+                9,
+                1
+              ],
+              [
+                9,
+                7
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "choices": [
+        "3/5",
+        "3/4",
+        "4/5",
+        "5/3"
+      ],
+      "answer": "3/5",
+      "accept": [],
+      "explanation": [
+        "By the Pythagorean theorem, BC² = 10² − 8² = 36, so BC = 6.",
+        "sin θ is the side opposite θ over the hypotenuse: BC ÷ AC.",
+        "That is 6/10 = 3/5."
+      ],
+      "hints": [
+        "Which side is opposite θ? Do you know its length yet?",
+        "Sine compares the opposite side to the hypotenuse."
+      ],
+      "wrong_reasons": {
+        "3/4": "Used the adjacent side instead of the hypotenuse, which gives tan θ.",
+        "4/5": "Used the adjacent side over the hypotenuse, which gives cos θ.",
+        "5/3": "Flipped the ratio."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "fig-circle",
+    "title": "Circles",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-fig-circle",
+      "skill_id": "geo-circles",
+      "difficulty": 3,
+      "type": "mc",
+      "stem": "The circle shown has center O and radius 4. What is the length of the arc from P counterclockwise to the point where the ray meets the circle?",
+      "table": null,
+      "figure": {
+        "alt": "A circle centered at O with radius 4 on a coordinate plane. Point P sits on the circle at the right. A ray from O makes a 45° angle with OP, and the arc between them is marked 45°.",
+        "aspect": 1,
+        "plane": {
+          "x": [
+            -6,
+            6
+          ],
+          "y": [
+            -6,
+            6
+          ],
+          "axes": true,
+          "ticks": 2
+        },
+        "elements": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 4
+          },
+          {
+            "type": "point",
+            "at": [
+              0,
+              0
+            ],
+            "label": "O",
+            "labelPos": "sw"
+          },
+          {
+            "type": "point",
+            "at": [
+              4,
+              0
+            ],
+            "label": "P",
+            "labelPos": "se"
+          },
+          {
+            "type": "ray",
+            "from": [
+              0,
+              0
+            ],
+            "through": [
+              2.83,
+              2.83
+            ]
+          },
+          {
+            "type": "arc",
+            "center": [
+              0,
+              0
+            ],
+            "r": 4,
+            "start": 0,
+            "end": 45,
+            "label": "45°"
+          },
+          {
+            "type": "text",
+            "at": [
+              -4.6,
+              4.8
+            ],
+            "text": "r = 4"
+          }
+        ]
+      },
+      "choices": [
+        "π/2",
+        "π",
+        "2π",
+        "4π"
+      ],
+      "answer": "π",
+      "accept": [],
+      "explanation": [
+        "A 45° angle is 45/360 = 1/8 of the full circle.",
+        "The circumference is 2π · 4 = 8π.",
+        "One eighth of 8π is π."
+      ],
+      "hints": [
+        "What fraction of the whole circle is 45°?",
+        "What is the circumference?"
+      ],
+      "wrong_reasons": {
+        "π/2": "Used the diameter's fraction instead of the circumference's.",
+        "2π": "Used a quarter of the circle instead of an eighth.",
+        "4π": "Halved the circumference instead of taking an eighth of it."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "fig-scatter",
+    "title": "Scatterplots",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-fig-scatter",
+      "skill_id": "psda-scatterplots",
+      "difficulty": 1,
+      "type": "mc",
+      "stem": "The scatterplot shows the hours ten students practiced and their quiz scores, with the line of best fit y = 4x + 5. What score does the line predict for a student who practiced 6 hours?",
+      "table": null,
+      "figure": {
+        "alt": "A scatterplot with hours from 0 to 10 on the x-axis and score from 0 to 50 on the y-axis. Ten points rise from lower left to upper right around a line of best fit that passes through (0, 5) and (10, 45).",
+        "aspect": 1.4,
+        "plane": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            50
+          ],
+          "grid": 5,
+          "axes": true,
+          "ticks": 5,
+          "xlabel": "Hours",
+          "ylabel": "Score"
+        },
+        "elements": [
+          {
+            "type": "scatter",
+            "points": [
+              [
+                1,
+                11
+              ],
+              [
+                2,
+                10
+              ],
+              [
+                2.5,
+                18
+              ],
+              [
+                3,
+                14
+              ],
+              [
+                4,
+                24
+              ],
+              [
+                5,
+                22
+              ],
+              [
+                6,
+                31
+              ],
+              [
+                7,
+                30
+              ],
+              [
+                8,
+                39
+              ],
+              [
+                9,
+                38
+              ]
+            ]
+          },
+          {
+            "type": "function",
+            "expr": "4*x + 5",
+            "domain": [
+              0,
+              10
+            ],
+            "label": "y = 4x + 5",
+            "labelAt": [
+              7.2,
+              40
+            ]
+          }
+        ]
+      },
+      "choices": [
+        "24",
+        "29",
+        "31",
+        "35"
+      ],
+      "answer": "29",
+      "accept": [],
+      "explanation": [
+        "Substitute x = 6 into y = 4x + 5.",
+        "y = 24 + 5 = 29."
+      ],
+      "hints": [
+        "The line, not the dots, gives the prediction.",
+        "What is 4 × 6 + 5?"
+      ],
+      "wrong_reasons": {
+        "24": "Forgot to add the intercept, 5.",
+        "31": "Read the nearest data point instead of the line.",
+        "35": "Substituted x = 7.5 or misread the axis."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "fig-wide",
+    "title": "Nonlinear functions",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-fig-wide",
+      "skill_id": "adv-nonlinear-fn",
+      "difficulty": 3,
+      "type": "mc",
+      "stem": "The graph of y = sin x is shown for −8 ≤ x ≤ 8, with the dashed line y = 1.5. The marked span of 4π covers two full periods. How many values of x in this interval satisfy sin x = 1.5?",
+      "table": null,
+      "figure": {
+        "alt": "A wide coordinate plane from −8 to 8 on the x-axis and −2 to 4 on the y-axis showing one wave of y = sin x between −1 and 1, a dashed horizontal line y = 1.5 that never touches the wave, and a double-arrow segment above them spanning two periods, labelled 4π.",
+        "aspect": 2.4,
+        "plane": {
+          "x": [
+            -8,
+            8
+          ],
+          "y": [
+            -2,
+            4
+          ],
+          "grid": 1,
+          "axes": true,
+          "ticks": 2
+        },
+        "elements": [
+          {
+            "type": "function",
+            "expr": "sin(x)",
+            "domain": [
+              -8,
+              8
+            ]
+          },
+          {
+            "type": "function",
+            "expr": "1.5",
+            "domain": [
+              -8,
+              8
+            ],
+            "dash": true,
+            "label": "y = 1.5",
+            "labelAt": [
+              6.4,
+              2.1
+            ]
+          },
+          {
+            "type": "text",
+            "at": [
+              -6.6,
+              -1.5
+            ],
+            "text": "y = sin x"
+          },
+          {
+            "type": "segment",
+            "from": [
+              -6.28,
+              3.0
+            ],
+            "to": [
+              6.28,
+              3.0
+            ],
+            "arrow": "both",
+            "label": "4π"
+          }
+        ]
+      },
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "4"
+      ],
+      "answer": "0",
+      "accept": [],
+      "explanation": [
+        "The sine function only takes values between −1 and 1.",
+        "The line y = 1.5 sits above that range, so it never meets the curve."
+      ],
+      "hints": [
+        "What is the largest value sin x ever reaches?",
+        "Does the dashed line ever touch the wave?"
+      ],
+      "wrong_reasons": {
+        "1": "Assumed the peak of the wave reaches the line.",
+        "2": "Counted the two peaks as if they touched the line.",
+        "4": "Counted crossings with the x-axis instead."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "rw-transition",
+    "title": "Transitions",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-rw-transition",
+      "skill_id": "rw-transitions",
+      "difficulty": 1,
+      "type": "mc",
+      "stem": "Which choice completes the text with the most logical transition?",
+      "table": null,
+      "passage": "Marine ecologist Dana Ruiz has argued that ocean policy works best when the communities who fish a coastline help write its rules. Her study of a small Caribbean island found that catches recovered within three years of local management taking hold. ______ the island's regulations were later adopted, almost word for word, by two neighboring governments.",
+      "choices": [
+        "Consequently,",
+        "By contrast,",
+        "For instance,",
+        "Nevertheless,"
+      ],
+      "answer": "Consequently,",
+      "accept": [],
+      "explanation": [
+        "The second sentence gives evidence that local management worked.",
+        "The third sentence describes a result of that success: neighbors copied the rules.",
+        "\"Consequently\" signals a result."
+      ],
+      "hints": [
+        "How does the last sentence relate to the one before it?",
+        "Is the last sentence a result, a contrast or an example?"
+      ],
+      "wrong_reasons": {
+        "By contrast,": "The last sentence agrees with, rather than opposes, the one before it.",
+        "For instance,": "The last sentence is a consequence, not an example of the recovery.",
+        "Nevertheless,": "Nothing in the text works against the adoption of the rules."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "rw-notes",
+    "title": "Rhetorical synthesis",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-rw-notes",
+      "skill_id": "rw-synthesis",
+      "difficulty": 2,
+      "type": "mc",
+      "stem": "The student wants to emphasize how unusual the 2015 bloom was. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "table": null,
+      "passage": "While researching a topic, a student has taken the following notes:\n• The Atacama Desert in Chile is one of the driest places on Earth.\n• Some parts of it receive less than 1 millimeter of rain in a year.\n• In 2015, unusually heavy rain caused wildflowers to bloom across large stretches of the desert.\n• Residents call the event a \"desierto florido,\" a flowering desert.\n• The seeds can lie dormant in the soil for years until there is enough moisture.",
+      "choices": [
+        "The Atacama Desert in Chile is one of the driest places on Earth, and residents call its rare wildflower bloom a \"desierto florido.\"",
+        "In 2015, heavy rain fell on a desert where some areas usually get less than 1 millimeter a year, and wildflowers whose seeds had lain dormant for years bloomed across it.",
+        "Wildflower seeds in the Atacama Desert can lie dormant in the soil for years until there is enough moisture.",
+        "A \"desierto florido,\" or flowering desert, is what residents of the Atacama Desert call a wildflower bloom."
+      ],
+      "answer": "In 2015, heavy rain fell on a desert where some areas usually get less than 1 millimeter a year, and wildflowers whose seeds had lain dormant for years bloomed across it.",
+      "accept": [],
+      "explanation": [
+        "The goal is to show the bloom was unusual.",
+        "The second choice contrasts the usual dryness (under 1 millimeter a year) and the years of dormant seeds with the 2015 rain and bloom.",
+        "The other choices define the term or state one fact without the contrast."
+      ],
+      "hints": [
+        "Which notes show that rain and flowers are rare there?",
+        "Which choice puts the rare event next to the usual conditions?"
+      ],
+      "wrong_reasons": {
+        "The Atacama Desert in Chile is one of the driest places on Earth, and residents call its rare wildflower bloom a \"desierto florido.\"": "Names the bloom but does not say what made 2015 unusual.",
+        "Wildflower seeds in the Atacama Desert can lie dormant in the soil for years until there is enough moisture.": "Explains the seeds without mentioning the 2015 event.",
+        "A \"desierto florido,\" or flowering desert, is what residents of the Atacama Desert call a wildflower bloom.": "Defines the term without any sense of rarity."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "rw-paired",
+    "title": "Cross-text connections",
+    "states": [
+      "idle",
+      "wrong"
+    ],
+    "item": {
+      "id": "lab-rw-paired",
+      "skill_id": "rw-cross-text",
+      "difficulty": 3,
+      "type": "mc",
+      "stem": "Based on the texts, how would the author of Text 2 most likely respond to the claim about reading speed in Text 1?",
+      "table": null,
+      "passage": "Courses that promise to triple a person's reading speed rest on a simple idea: the eye wastes time by pausing on every word, and training it to sweep across a line in fewer stops should let the mind take in whole phrases at once. Advocates point to trained readers who finish a page in seconds.",
+      "passage2": "Eye-tracking studies find that skilled readers do pause on most words, and that those pauses are where comprehension happens. When readers are pushed to take in two or three words per glance, their speed rises but their answers to questions about the passage fall to about the level of skimming. The limit lies in language processing, not in the eye.",
+      "choices": [
+        "By agreeing that trained readers can finish a page in seconds, while noting that such readers tend to understand less of what they read than untrained readers do.",
+        "By arguing that the pauses the courses try to remove are necessary for understanding, so faster sweeping comes at the cost of comprehension.",
+        "By suggesting that the courses underestimate how quickly the eye can move and that even greater speeds are possible with the right training.",
+        "By conceding that the eye is the main limit on reading speed but questioning whether most people would practice long enough to overcome it."
+      ],
+      "answer": "By arguing that the pauses the courses try to remove are necessary for understanding, so faster sweeping comes at the cost of comprehension.",
+      "accept": [],
+      "explanation": [
+        "Text 1 says the pauses waste time.",
+        "Text 2 says the pauses are where comprehension happens and that removing them lowers understanding.",
+        "So the author of Text 2 would say the pauses are necessary and speed costs comprehension."
+      ],
+      "hints": [
+        "What does Text 2 say the pauses are for?",
+        "Does Text 2 agree that the eye is the limit?"
+      ],
+      "wrong_reasons": {
+        "By agreeing that trained readers can finish a page in seconds, while noting that such readers tend to understand less of what they read than untrained readers do.": "Text 2 never compares trained with untrained readers.",
+        "By suggesting that the courses underestimate how quickly the eye can move and that even greater speeds are possible with the right training.": "Text 2 argues against faster sweeping, not for it.",
+        "By conceding that the eye is the main limit on reading speed but questioning whether most people would practice long enough to overcome it.": "Text 2 says the limit is language processing, not the eye."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "rw-underline",
+    "title": "Text structure and purpose",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-rw-underline",
+      "skill_id": "rw-structure-purpose",
+      "difficulty": 2,
+      "type": "mc",
+      "stem": "Which choice best describes the function of the underlined sentence in the text as a whole?",
+      "table": null,
+      "passage": "For decades, the standard account of the city's old aqueduct held that it had been built in a single season by a visiting engineer. <u>Recent excavation of its footings, however, turned up mortar from at least three distinct periods.</u> The structure now looks less like one person's feat and more like a century of repairs and extensions by people whose names were never recorded.",
+      "choices": [
+        "It introduces evidence that complicates the account presented in the first sentence.",
+        "It offers an example of the engineering feat described in the first sentence.",
+        "It summarizes the conclusion that the final sentence goes on to question.",
+        "It explains why the visiting engineer's name was never recorded."
+      ],
+      "answer": "It introduces evidence that complicates the account presented in the first sentence.",
+      "accept": [],
+      "explanation": [
+        "The first sentence states the standard account.",
+        "The underlined sentence begins with \"however\" and presents the excavation finding that does not fit that account.",
+        "The last sentence draws the new conclusion from it."
+      ],
+      "hints": [
+        "What does \"however\" signal about the sentence?",
+        "Does the finding support or challenge the first sentence?"
+      ],
+      "wrong_reasons": {
+        "It offers an example of the engineering feat described in the first sentence.": "The finding works against the single-season story, not as an example of it.",
+        "It summarizes the conclusion that the final sentence goes on to question.": "The final sentence builds on the finding rather than questioning it.",
+        "It explains why the visiting engineer's name was never recorded.": "The text does not explain that; it says the later builders' names were not recorded."
+      },
+      "review": false
+    }
+  },
+  {
+    "id": "mc-generated",
+    "title": "New from Socrates",
+    "states": [
+      "idle"
+    ],
+    "item": {
+      "id": "lab-mc-generated",
+      "skill_id": "psda-ratios-rates",
+      "difficulty": 2,
+      "type": "mc",
+      "source": "generated",
+      "stem": "A recipe for 12 muffins calls for $\\frac{3}{4}$ cup of sugar and $2\\frac{1}{2}$ cups of flour. A baker wants to make 30 muffins using the same recipe. How many more cups of flour than sugar will the baker need?",
+      "table": null,
+      "choices": [
+        "$1\\frac{3}{4}$",
+        "$4\\frac{3}{8}$",
+        "$6\\frac{1}{4}$",
+        "$8\\frac{1}{8}$"
+      ],
+      "answer": "$4\\frac{3}{8}$",
+      "accept": [],
+      "explanation": [
+        "30 muffins is 30/12 = 2.5 batches.",
+        "Sugar: 2.5 × 3/4 = 1 7/8 cups. Flour: 2.5 × 2 1/2 = 6 1/4 cups.",
+        "The difference is 6 1/4 − 1 7/8 = 4 3/8 cups."
+      ],
+      "hints": [
+        "How many batches of the recipe make 30 muffins?",
+        "Scale each ingredient by that many batches before subtracting."
+      ],
+      "wrong_reasons": {
+        "$1\\frac{3}{4}$": "Found the difference for one batch, not for 2.5 batches.",
+        "$6\\frac{1}{4}$": "Reported the flour alone instead of the difference.",
+        "$8\\frac{1}{8}$": "Added the two scaled amounts instead of subtracting."
+      },
+      "review": false
+    }
+  }
+]

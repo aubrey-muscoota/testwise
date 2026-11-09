@@ -18,6 +18,7 @@ import { Complete } from "./src/screens/Complete";
 import { PlacementIntro } from "./src/screens/PlacementIntro";
 import { AgeGate, TooYoung } from "./src/screens/AgeGate";
 import { SocratesLab } from "./src/screens/SocratesLab";
+import { RendererLab } from "./src/screens/RendererLab";
 import { Shell } from "./src/components/Shell";
 import { useReducedMotion } from "./src/components/ui";
 import { Socrates } from "./src/socrates/Socrates";
@@ -38,11 +39,13 @@ type Screen =
   | { name: "lesson"; source: LessonSource; back: Tab | "placement" }
   | { name: "complete"; result: LessonResult };
 
-// Review page for the Socrates rig: web only, ?lab=socrates.
-const LAB = Platform.OS === "web" && typeof window !== "undefined" && /[?&]lab=socrates\b/.test(window.location.search);
+// Review pages, web only: ?lab=socrates (the rig) and ?lab=renderers (every item type).
+const LAB = Platform.OS === "web" && typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("lab") : null;
 
 export default function App() {
-  return LAB ? <SocratesLab /> : <TestwiseApp />;
+  if (LAB === "socrates") return <SocratesLab />;
+  if (LAB === "renderers") return <RendererLab />;
+  return <TestwiseApp />;
 }
 
 function TestwiseApp() {

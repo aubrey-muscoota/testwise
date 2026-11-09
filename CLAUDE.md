@@ -5,7 +5,9 @@ checklist; do the next unchecked item of the current release) and `docs/DESIGN.m
 
 - Stack: Cloudflare Worker (Hono, zod) + D1 + Expo web app in `app/`. Exam specifics come from packs in `exams/<id>/`.
 - Checks before every PR: `node --test test/*.test.mjs`, `npm test` when items or packs change,
-  `(cd app && npx tsc --noEmit)`, and `node test/e2e-api.mjs` against `npm run dev`.
+  `(cd app && npx tsc --noEmit)`, `node test/e2e-api.mjs` against `npm run dev`, and when anything under `app/`
+  changes, `npm run build:app && npx playwright test` (every item type at the three widths against committed
+  screenshots; look at the diff images before `--update-snapshots`).
 - UI changes: follow `docs/DESIGN.md` exactly and check screenshots at 390x844, 375x667 and 1440x900
   (`scripts/ui-tour.cjs`). Nothing that reads as AI-generated: no pills, eyebrows, bordered cards, emoji icons,
   all-caps, gradients, opacity tints, pep talk.

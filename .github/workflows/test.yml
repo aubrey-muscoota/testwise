@@ -18,3 +18,26 @@ jobs:
         working-directory: app
       - run: npm test
       - run: cd app && npx tsc --noEmit && npm run --prefix .. build:app
+  # Every item type renderer at 390x844, 375x667 and 1440x900, against the
+  # baselines in test/ui/__screenshots__ (see test/ui/renderers.spec.mjs).
+  ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci
+      - run: npm ci
+        working-directory: app
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build:app
+      - run: npx playwright test
+        env: { CI: "1" }
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: ui-screenshots
+          path: |
+            test/ui/results
+            test/ui/report
+          retention-days: 7
