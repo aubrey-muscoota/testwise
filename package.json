@@ -8,7 +8,9 @@
     "seed": "node scripts/build-seed.mjs",
     "build:app": "cd app && npx expo export -p web --output-dir dist",
     "dev": "npm run seed && wrangler d1 migrations apply testwise --local && wrangler d1 execute testwise --local --file seed/seed.sql && wrangler dev",
-    "deploy": "npm run build:app && npm run seed && wrangler d1 migrations apply testwise --remote && wrangler d1 execute testwise --remote --file seed/seed.sql && wrangler deploy"
+    "deploy": "npm run build:app && npm run seed && wrangler d1 migrations apply testwise --remote && wrangler d1 execute testwise --remote --file seed/seed.sql && wrangler deploy",
+    "test:ui": "playwright test",
+    "serve:dist": "node scripts/serve-dist.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.0.0",
@@ -16,6 +18,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "wrangler": "^4.40.0"
   },
   "engines": {

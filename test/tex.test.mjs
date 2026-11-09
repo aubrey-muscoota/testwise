@@ -26,3 +26,9 @@ test("TeX spans still render, with operators glued to their operands", () => {
   assert.equal(renderMath("$\\frac{1}{2}$ of \\$10"), "1/2 of $10");
   assert.equal(texToText("a+b"), "a + b");
 });
+
+test("mixed numbers keep a thin space before the fraction", () => {
+  assert.equal(renderMath("$2\\frac{1}{2}$ cups"), "2\u20091/2 cups");
+  assert.equal(renderMath("$\\frac{3}{4}$ cup"), "3/4 cup");
+  assert.equal(renderMath("$x\\frac{1}{2}$"), "x1/2");
+});

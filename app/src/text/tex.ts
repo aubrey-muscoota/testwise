@@ -50,6 +50,8 @@ export function texToText(src: string): string {
         const [b, k] = group(src, j);
         i = k;
         const ta = texToText(a), tb = texToText(b);
+        // A mixed number ($2\frac{1}{2}$) keeps a thin space before its fraction: 2 1/2, not 21/2.
+        if (/\d$/.test(out)) out += "\u2009";
         out += `${simple(ta) ? ta : `(${ta})`}/${simple(tb) ? tb : `(${tb})`}`;
       } else if (name === "sqrt") {
         const [a, j] = group(src, i);

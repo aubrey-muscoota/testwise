@@ -28,6 +28,7 @@ Aubrey's original brand docs are on Google Drive: Nunito, Azure #58A6FF, Socrate
 | API | `docs/API.md` (profile, plan, practice endpoints) |
 | Adding an exam | `docs/ADDING_AN_EXAM.md` |
 | Screenshots of the current UI | Project files `testwise/v15-ui/` (390x844, 375x667, 1440x900) |
+| Renderer screenshot checks | `test/ui/renderers.spec.mjs` and its baselines in `test/ui/__screenshots__/` (CI job `ui`); fixtures `app/src/lab/items.json`; the page is `?lab=renderers` |
 | muscoota.com/testwise | A static info page on the Muscoota site (separate repo `aubrey-muscoota/muscoota-site`). There is no link or route from muscoota.com to the app, on purpose |
 
 Secrets (GitHub repo secrets, never in code or chat): `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`,
@@ -60,8 +61,10 @@ Secrets (GitHub repo secrets, never in code or chat): `CLOUDFLARE_API_TOKEN`, `C
 - **App** (`app/`): Expo SDK 58 (React Native 0.88, react-native-web), exported to web into `app/dist` and served by
   the Worker as static assets. The same code is meant to build for iOS through EAS in v2.
   - Screens (`app/src/screens/`): Welcome, AgeGate, Onboarding (test date, target score, daily minutes),
-    PlacementIntro, Today, PlanScreen, Practice, Path, Me, Lesson (also the tutor chat), Complete. `SocratesLab` is
-    a dev-only page at `?lab=socrates`.
+    PlacementIntro, Today, PlanScreen, Practice, Path, Me, Lesson, Complete. The lesson's parts live in
+    `app/src/lesson/`: `Question` (passage, figure, table, stem, choices, typed answer, solution), `ResultPanel`,
+    `Tutor` (the chat) and the consent and quit sheets. Dev-only pages: `?lab=socrates` (the rig) and
+    `?lab=renderers` (every item type, used by the screenshot checks).
   - Navigation: bottom tabs (Today, Practice, Path, Me) on phones, a left rail at 900 px and wider.
   - `app/src/socrates/`: the animated Socrates rig in react-native-svg (7 moods, breathing, blinking, glances,
     talking mouth). `SocratesAvatar` everywhere; `components/SocratesLine.tsx` types his words out.
@@ -126,7 +129,6 @@ These block the rest of v1. Don't build around them with throwaway work; ask.
 
 ## Known rough edges
 
-- `app/src/screens/Lesson.tsx` is large; split it before adding test mode.
 - On a 375x667 phone the wrong-answer panel is tall; the question behind it scrolls.
 - The recording in project files `testwise/v15-ui/today-to-lesson.webm` predates the review fixes.
 - Desktop: tab screens sit centred beside the rail at one 640 px column; full-screen flows (welcome, lesson) are
@@ -143,6 +145,8 @@ node --test test/*.test.mjs       # unit tests (fast, 75 tests)
 npm test                          # unit tests + item checker (slow)
 BASE=http://localhost:8787 node test/e2e-api.mjs
 (cd app && npx tsc --noEmit)
+npx playwright test               # every item type at 390x844, 375x667 and 1440x900 against test/ui/__screenshots__ (needs app/dist)
+npx playwright test --update-snapshots   # accept a change you have looked at (the diff images are in test/ui/results)
 BASE=http://localhost:8787 node scripts/ui-tour.cjs shots 390 844 2   # Playwright tour, ~38 screenshots, prints ERRORS [...]
 ```
 
@@ -166,8 +170,6 @@ Rules that have held so far:
 1. Once Aubrey supplies the Google client and email sender: accounts (email link and Google first, Apple after
    enrollment), anonymous progress carried over, data export. Migration 0007.
 2. PostHog events from the Quality section of the build plan, and Sentry for app and Worker.
-3. Screenshot tests for every item-type renderer at the three widths (a v1 acceptance criterion); `scripts/ui-tour.cjs`
-   is a starting point.
-4. Duplicate-item scan across the bank (another v1 acceptance criterion).
-5. Then v2: EAS build and TestFlight (the `aubrey-muscoota/ersatz-arcade` repo already has a working Expo/EAS
+3. Duplicate-item scan across the bank (a v1 acceptance criterion).
+4. Then v2: EAS build and TestFlight (the `aubrey-muscoota/ersatz-arcade` repo already has a working Expo/EAS
    pipeline to copy), reminders, full practice tests.

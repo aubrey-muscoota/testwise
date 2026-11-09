@@ -20,7 +20,7 @@ Goal: a student can prepare for the whole digital SAT, not just Math, and their 
 - [ ] Analytics (PostHog) and error tracking (Sentry); the event set in the Quality section.
 - [x] Placement quiz covers both SAT sections.
 - [ ] Pilot with 20 to 50 students for two weeks.
-Acceptance: every item-type renderer passes screenshot tests at iPhone SE, iPhone 15 and 1440px desktop widths; a student moves from web to a second browser and keeps all progress; the duplicate scan finds no pairs; day-7 retention among pilot students is measured, whatever it is.
+Acceptance: every item-type renderer passes screenshot tests at iPhone SE, iPhone 15 and 1440px desktop widths (in CI: `test/ui/renderers.spec.mjs`, 15 fixtures covering mc, typed answers, TeX, tables, every figure element, single and paired passages); a student moves from web to a second browser and keeps all progress; the duplicate scan finds no pairs; day-7 retention among pilot students is measured, whatever it is.
 ### v1.5: Depth and craft (done Nov 8, 2026)
 Goal: Testwise is worth opening every day until test day, looks made by people rather than generated, and the structure can be copied to a new exam without new code. Ships before accounts and the pilot.
 - [x] Exam packs: one folder per exam (`exams/<id>/`) with `exam.json`, skill map, items, format docs and Socrates' exam lines; the Worker and app read exam specifics from the pack; `npm run new-exam -- <id>` scaffold and `docs/ADDING_AN_EXAM.md`; a test-only exam proves a new pack needs no code changes.

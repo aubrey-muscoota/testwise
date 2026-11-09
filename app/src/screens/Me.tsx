@@ -9,7 +9,7 @@ import { Bone, ErrorState, Rise, Row, Skeleton, Toggle, TextButton, useMuted } f
 import { useLoad } from "../nav";
 import { color, GUTTER, space, type, COLUMN } from "../theme";
 import type { Field } from "./Onboarding";
-import { ConsentSheet } from "./Lesson";
+import { ConsentSheet } from "../lesson/sheets";
 
 function confirm(title: string, msg: string, yes: () => void) {
   if (Platform.OS === "web") {

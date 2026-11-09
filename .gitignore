@@ -7,3 +7,5 @@ app/.expo/
 seed/
 *.log
 .claude/worktrees/
+test/ui/results/
+test/ui/report/
