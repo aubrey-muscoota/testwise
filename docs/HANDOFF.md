@@ -85,7 +85,10 @@ Secrets (GitHub repo secrets, never in code or chat): `CLOUDFLARE_API_TOKEN`, `C
    adversarial audit (about 40 fixes, nothing dropped).
 4. `scripts/balance_choices.py` spreads answer positions (items whose explanation names a choice by letter keep their
    order).
-5. In the app, learners can report a question (`item_checks` table).
+5. `scripts/scan_duplicates.py` (`npm run scan:dupes`) fails on two items that are the same question (same answer, same
+   wording or template) and lists pairs that share a template or a passage subject. Reviewed pairs that are fine go in
+   `exams/sat/reports/duplicates-allowed.json`; the first pass (Nov 2026) is written up in `exams/sat/reports/duplicates-2026-11.json`.
+6. In the app, learners can report a question (`item_checks` table).
 
 Templated wrong-answer reasons ("Picked because...") were stripped by `scripts/strip-reason-templates.mjs`; a test
 guards against them coming back.

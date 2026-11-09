@@ -1,0 +1,54 @@
+{
+  "about": "The first duplicate scan of the SAT pack (scripts/scan_duplicates.py), Nov 9, 2026: what was compared, what it found, what was done.",
+  "compared": "Every pair of items within a section. Math by stem, table, figure elements and choices; Reading and Writing by passage, paired passage and choices (stems repeat by design). Word 3-shingles, Jaccard weighted by rarity, numbers kept (same) and folded (shape). Thresholds: duplicate = same answer with same ≥ 0.40 or shape ≥ 0.80; near-copy = same ≥ 0.50; template = shape ≥ 0.80 (listed only); topic = passages with same ≥ 0.15 (listed only).",
+  "found": {
+    "duplicates": [
+      [
+        "adv-equiv-expr-023",
+        "adv-nonlinear-eq-026",
+        "the same question word for word, across two skills"
+      ],
+      [
+        "geo-circles-f008",
+        "geo-circles-f030",
+        "the same circle and question"
+      ],
+      [
+        "geo-circles-f001",
+        "geo-circles-f016",
+        "the same circle and answer"
+      ],
+      [
+        "adv-nonlinear-func-f006",
+        "adv-nonlinear-func-f035",
+        "the same polynomial graph and answer"
+      ],
+      [
+        "geo-area-volume-f005",
+        "geo-area-volume-f019",
+        "the same cylinder (3 by 8) and answer"
+      ],
+      [
+        "alg-systems-f002",
+        "alg-systems-f017",
+        "the third 'how many solutions' graph answering Zero"
+      ]
+    ],
+    "near_copies": [
+      [
+        "geo-lines-angles-031",
+        "geo-lines-angles-046",
+        "clock-hand angles at 4:00 and 2:30; kept, see duplicates-allowed.json"
+      ],
+      [
+        "alg-linear-eq-1var-017",
+        "alg-systems-018",
+        "the same garden story in two skills (found in the listing under the threshold)"
+      ]
+    ],
+    "templates": "43 Math pairs share a template with different numbers and answers (systems of equations, 'what value of x satisfies', graph readings); kept, they are the skill's standard forms.",
+    "topics": "13 passage pairs share a subject and opening across skills: the Three Sisters planting (6 items), the Montgomery bus boycott (5), the Silk Road (3), Antarctic ice cores, arctic terns, bunraku, 1800s factory hours, bread yeast (2 each)."
+  },
+  "rewritten": "In progress: each duplicate and the passages in the topic clusters are being replaced through the pipeline below; the list of replaced items lands with them.",
+  "pipeline": "Each replacement: written to the item format with new content; check_items.py (schema, choices, figure, passage rules, check code); a blind solve by a separate reviewer that had to reach the key; an adversarial review for a second defensible answer, figure/stem/key agreement, factual errors, difficulty and closeness to siblings; the answer kept the old item's letter so the file's balance holds."
+}

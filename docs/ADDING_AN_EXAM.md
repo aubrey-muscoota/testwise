@@ -35,7 +35,7 @@ This is the pipeline the SAT's 3,325 questions went through. Run it per skill.
 3. **Blind solve.** A separate reviewer solves every question without seeing the key and fixes or removes any that are wrong, ambiguous or off-level. Their notes go in `reports/<skill>.json`.
 4. **Adversarial review.** A second reviewer looks for a defensible second answer, data or figures that don't match the stem, factual errors in passages and questions that are too close to each other. Notes in `reports/<skill>-batch2.json`.
 5. **Balance answer positions.** `python3 -I scripts/balance_choices.py exams/<id>/items/*.json` spreads the keys evenly across the letters (numeric choices are sorted ascending) and restores any question whose `check` depends on the order. Run `check_items.py` again afterwards.
-6. **Duplicate scan.** Compare every pair of stems within the exam (and against other exams for shared skills) after normalizing numbers and names; rewrite any near-duplicates. There is no script for this in the repo yet; record what was compared in `reports/`.
+6. **Duplicate scan.** `python3 -I scripts/scan_duplicates.py exams/<id>` compares every pair of items in a section (Math by stem, table, figure and choices; passage sections by passage and choices, since their stems repeat by design) and fails on a duplicate (the same answer with the same wording or the same template) or a near-copy. It also lists pairs that share a template and passages that share a subject; spread those out. Rewrite any duplicate through steps 1 to 5; a pair that is fine on reading goes in `reports/duplicates-allowed.json` with the reason. `npm run scan:dupes` runs it on the SAT pack.
 
 ## exam.json fields
 
@@ -65,7 +65,7 @@ Domain weights live on each domain in `skills.json`, so there is one source. The
 
 - [ ] `npm run seed` lists no problems and `npm test` passes with the pack enabled.
 - [ ] Every skill has at least 75 live questions in even thirds of difficulty (passage-based skills: 160, one question per passage), and every `mc` question has a reason for each wrong choice.
-- [ ] Every question passed the code check (where computable), the blind solve and the adversarial review, with notes in `reports/`; answer positions are balanced; the duplicate scan found no pairs.
+- [ ] Every question passed the code check (where computable), the blind solve and the adversarial review, with notes in `reports/`; answer positions are balanced; `scripts/scan_duplicates.py exams/<id>` passes (any pair it keeps is explained in `reports/duplicates-allowed.json`).
 - [ ] Domain weights match the publisher's published section breakdown.
 - [ ] Placement works for every section: the quiz starts, has `per_domain` questions per domain, easy to hard, and finishing it tests out skills.
 - [ ] The plan engine has what it needs: weights on every domain, section timing, `plan` defaults.
