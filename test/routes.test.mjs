@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { makeD1 } from "./d1-shim.mjs";
 import { startPractice, practiceSummary } from "../worker/routes/practice.js";
 import { planRoute, setProfile } from "../worker/routes/plan.js";
-import { deleteLearner } from "../worker/routes/learners.js";
+import { deleteLearner, exportLearner } from "../worker/routes/learners.js";
 import { answer } from "../worker/routes/answers.js";
 import { report } from "../worker/routes/reports.js";
 import { finishLesson } from "../worker/routes/lessons.js";
@@ -184,4 +184,26 @@ test("a timed set that ends with nothing answered earns nothing and isn't a fini
   const f2 = await body(await finishLesson(env, req(), L, { lesson_id: t2.lesson_id }));
   assert.ok(f2.xp > 0);
   assert.equal(f2.stats.lessons_today, 1);
+});
+
+test("the data export holds every table the learner appears in, and nothing after a delete", async () => {
+  const env = setup();
+  const l = await body(await startPractice(env, req(), L, { mode: "mixed", n: 4 }, null));
+  for (const it of l.items) await answer(env, req(), L, { lesson_id: l.lesson_id, item_id: it.id, response: it.answer, time_ms: 1000 });
+  await finishLesson(env, req(), L, { lesson_id: l.lesson_id });
+  await setProfile(env, req(), L, { daily_minutes: 30 });
+  const ex = await body(await exportLearner(env, L));
+  assert.equal(ex.http, 200);
+  assert.equal(ex.learner.id, L);
+  assert.equal(ex.learner.daily_minutes, 30);
+  assert.equal(ex.attempts.length, 4);
+  assert.ok(ex.attempts.every((a) => a.item_id && a.skill_id && typeof a.correct === "number"));
+  assert.equal(ex.lessons.length, 1);
+  assert.equal(ex.lessons[0].id, l.lesson_id);
+  assert.ok(ex.skills.length >= 1);
+  assert.ok(Array.isArray(ex.reviews) && Array.isArray(ex.tutor_turns) && Array.isArray(ex.generated_items));
+  // Nothing in it names a model.
+  assert.ok(!JSON.stringify(ex).includes("claude-"));
+  await deleteLearner(env, L);
+  assert.equal((await body(await exportLearner(env, L))).http, 401);
 });

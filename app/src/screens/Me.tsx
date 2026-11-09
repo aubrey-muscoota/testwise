@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Alert, Linking, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, legalUrl, Profile, Tree } from "../api";
-import { monthName, parseDay } from "../copy";
+import { monthName, parseDay, todayIso } from "../copy";
 import { useWide } from "../components/Shell";
 import { Bone, ErrorState, Rise, Row, Skeleton, Toggle, TextButton, useMuted } from "../components/ui";
 import { useLoad } from "../nav";
@@ -27,8 +27,8 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
   const [muted, setMuted] = useMuted();
   const [consentOpen, setConsentOpen] = useState(false);
   // One action at a time; failures say so in plain words under their group.
-  const [pending, setPending] = useState<null | "ai" | "delete">(null);
-  const [actErr, setActErr] = useState<null | { at: "ai" | "delete"; msg: string }>(null);
+  const [pending, setPending] = useState<null | "ai" | "export" | "delete">(null);
+  const [actErr, setActErr] = useState<null | { at: "ai" | "export" | "delete"; msg: string }>(null);
   const wide = useWide();
   const exam = getExam();
 
@@ -57,7 +57,20 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
       }
     });
   };
-  const errFor = (at: "ai" | "delete") =>
+  // Hands the learner a JSON file of everything stored about them.
+  const download = async () => {
+    setPending("export");
+    setActErr(null);
+    try {
+      const data = await api.exportMe();
+      saveJson(`testwise-data-${todayIso()}.json`, data);
+    } catch {
+      setActErr({ at: "export", msg: "I couldn't put your data together. Try again?" });
+    } finally {
+      setPending(null);
+    }
+  };
+  const errFor = (at: "ai" | "export" | "delete") =>
     actErr?.at === at ? <Text style={[type.body, { color: color.brick, marginTop: space(1) }]} accessibilityRole="alert">{actErr.msg}</Text> : null;
 
   return (
@@ -92,6 +105,16 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
         <Rise delay={140} style={{ marginTop: space(3), alignItems: "flex-start" }}>
           <TextButton title="Privacy policy" tone="ink" align="left" onPress={() => Linking.openURL(legalUrl("privacy"))} style={s.link} />
           <TextButton title="Terms" tone="ink" align="left" onPress={() => Linking.openURL(legalUrl("terms"))} style={s.link} />
+          <TextButton
+            title={pending === "export" ? "Putting it together…" : "Download my data"}
+            tone="ink"
+            align="left"
+            style={s.link}
+            disabled={pending === "export"}
+            accessibilityLabel="Download my data as a file"
+            onPress={download}
+          />
+          {errFor("export")}
           <TextButton
             title={pending === "delete" ? "Deleting…" : "Delete my data"}
             tone="brick"
@@ -138,6 +161,23 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
       )}
     </View>
   );
+}
+
+// On the web the browser saves the file; a phone build will share it instead.
+function saveJson(name: string, data: unknown) {
+  const text = JSON.stringify(data, null, 2);
+  if (Platform.OS !== "web") throw new Error("not on this platform yet");
+  const d = (globalThis as { document?: Document }).document;
+  const u = (globalThis as { URL?: typeof URL }).URL;
+  if (!d || !u) throw new Error("no document");
+  const url = u.createObjectURL(new Blob([text], { type: "application/json" }));
+  const a = d.createElement("a");
+  a.href = url;
+  a.download = name;
+  d.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => u.revokeObjectURL(url), 1000);
 }
 
 function MeSkeleton() {

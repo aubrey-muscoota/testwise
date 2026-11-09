@@ -292,6 +292,8 @@ export const api = {
     await call<{ ok: boolean }>("/api/learner/delete", { method: "POST", body: {} });
     await forgetLearner();
   },
+  // Everything stored about the learner, for them to keep (docs/API.md, "Your data").
+  exportMe: () => call<Record<string, unknown>>("/api/learner/export"),
   startLesson: (skillId: string | null) => call<Lesson>("/api/lessons", { method: "POST", body: { skill_id: skillId } }),
   answer: (b: { lesson_id: string; item_id: string; response: string; time_ms: number }) =>
     call<{ correct: boolean; answer: string; mastery: number; xp: number }>("/api/answers", { method: "POST", body: b }),

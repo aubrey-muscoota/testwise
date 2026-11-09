@@ -61,7 +61,7 @@ Without an `ANTHROPIC_API_KEY` secret, Socrates still works from the question's 
 
 - New learners answer a neutral "When were you born?" question first. Testwise only creates a learner for 13 or older and never stores the birthday. An under-13 answer closes the question on that device for a day. Learners from before this answer it once; if under 13, their data is deleted.
 - Socrates sends the question and the student's messages to Anthropic, so the app asks for a one-time OK before the first chat (App Store Guideline 5.1.2(i)). `POST /api/socrates` returns 403 `consent_required` until `POST /api/consent {"ai": true}`. Home has a link to turn it off.
-- "Delete my data" on Home calls `POST /api/learner/delete`, which removes the learner and all their progress and chats.
+- "Download my data" in Me calls `GET /api/learner/export` and saves everything stored about the learner as one JSON file (`docs/API.md`, "Your data"). "Delete my data" calls `POST /api/learner/delete`, which removes the learner and all their progress and chats.
 - The privacy policy and terms are static pages in `app/public/` (served at `/privacy` and `/terms`).
 
 ## Run it locally

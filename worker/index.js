@@ -12,7 +12,7 @@ import { startLesson, startPlacement, finishLesson } from "./routes/lessons.js";
 import { answer } from "./routes/answers.js";
 import { socrates } from "./routes/socrates.js";
 import { report } from "./routes/reports.js";
-import { createLearner, consentState, setConsent, deleteLearner } from "./routes/learners.js";
+import { createLearner, consentState, setConsent, deleteLearner, exportLearner } from "./routes/learners.js";
 import { profileRoute, setProfile, planRoute } from "./routes/plan.js";
 import { startPractice, practiceSummary } from "./routes/practice.js";
 import { learnerExam, publicExam } from "./lib/exam.js";
@@ -59,6 +59,7 @@ const route = (schema, handler) => (c) => {
 api.get("/tree", route(null, (env, request, learnerId) => tree(env, request, learnerId)));
 api.post("/consent", route(S.Consent, (env, request, learnerId, b) => setConsent(env, learnerId, b)));
 api.post("/learner/delete", route(null, (env, request, learnerId) => deleteLearner(env, learnerId)));
+api.get("/learner/export", route(null, (env, request, learnerId) => exportLearner(env, learnerId)));
 api.post("/lessons", route(S.LessonStart, (env, request, learnerId, b) => b.placement
   ? startPlacement(env, request, learnerId, b.section || null)
   : startLesson(env, request, learnerId, b.skill_id || null)));

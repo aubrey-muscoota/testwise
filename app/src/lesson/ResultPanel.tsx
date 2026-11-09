@@ -31,15 +31,15 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
   }, [v, still]);
   return (
     <Animated.View
-      style={[s.panel, short && { paddingTop: space(2) }, { backgroundColor: ok ? color.oliveWash : color.brickWash }, {
+      style={[s.panel, short && { paddingTop: space(1.5), paddingBottom: space(1) }, { backgroundColor: ok ? color.oliveWash : color.brickWash }, {
         opacity: v.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1] }),
         transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [80, 0] }) }],
       }]}
     >
       <View style={lessonShared.footInner}>
-        <View style={[s.panelHead, short && { marginBottom: space(1) }]}>
+        <View style={[s.panelHead, short && { marginBottom: space(0.75) }]}>
           <View>
-            <Socrates size={short ? 56 : 72} mood={mood} moodKey={fx} talking={typing} lookAt={typing ? "bubble" : undefined} />
+            <Socrates size={short ? 48 : 72} mood={mood} moodKey={fx} talking={typing} lookAt={typing ? "bubble" : undefined} />
             {ok && xp > 0 && (
               <FloatUp style={s.xpFloat}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -52,7 +52,7 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
           <View style={{ flex: 1, marginLeft: space(1.5) }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <DrawnMark ok={ok} size={26} />
-              <Text style={[s.panelTitle, { color: ok ? color.olive : color.brick, marginLeft: space(0.75) }]}>
+              <Text style={[s.panelTitle, short && s.panelTitleShort, { color: ok ? color.olive : color.brick, marginLeft: space(0.75) }]}>
                 {ok ? (combo >= 2 ? `Right, ${combo} in a row` : "Right") : "Not quite"}
               </Text>
             </View>
@@ -98,6 +98,7 @@ const s = StyleSheet.create({
   panel: { width: "100%", paddingHorizontal: GUTTER, paddingTop: space(2.5), paddingBottom: space(1.5), borderTopLeftRadius: PANEL_R, borderTopRightRadius: PANEL_R },
   panelHead: { flexDirection: "row", alignItems: "flex-start", marginBottom: space(1.5) },
   panelTitle: { fontFamily: font.serifSemi, fontSize: 22, lineHeight: 28 },
+  panelTitleShort: { fontSize: 20, lineHeight: 26 },
   panelLinks: { flexDirection: "row", flexWrap: "wrap", marginBottom: space(1), marginTop: -space(0.5) },
   panelReport: { alignItems: "center", marginTop: space(0.25) },
   xpFloat: { position: "absolute", left: 18, top: -18 },

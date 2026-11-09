@@ -39,3 +39,32 @@ export async function deleteLearner(env, learnerId) {
   ]);
   return json({ ok: true });
 }
+
+// Everything stored about this learner, as one JSON document they can keep
+// ("Download my data" in Me). Questions are referred to by id; their text is
+// content, not the learner's data.
+export async function exportLearner(env, learnerId) {
+  const q = (sql) => env.DB.prepare(sql).bind(learnerId);
+  const rows = async (sql) => (await q(sql).all()).results;
+  const learner = await q("SELECT id, created_at, age_confirmed_at, ai_consent_at, exam_id, exam_date, target_score, daily_minutes, plan_started_at FROM learners WHERE id = ?").first();
+  if (!learner) return fail(401, "unknown learner");
+  const [attempts, skills, reviews, lessons, tutor_turns, generated_items] = await Promise.all([
+    rows("SELECT item_id, skill_id, lesson_id, correct, response, time_ms, is_review, answered_at, local_day FROM attempts WHERE learner_id = ? ORDER BY answered_at, id"),
+    rows("SELECT skill_id, rating, attempts, correct, tested_out, updated_at FROM skill_mastery WHERE learner_id = ? ORDER BY skill_id"),
+    rows("SELECT item_id, skill_id, due_at, interval_days FROM reviews WHERE learner_id = ? ORDER BY due_at"),
+    rows("SELECT id, kind, mode, skill_id, section_id, started_at, completed_at, correct, total, xp, local_day FROM lessons WHERE learner_id = ? ORDER BY started_at"),
+    rows("SELECT item_id, local_day, role, content, created_at FROM tutor_turns WHERE learner_id = ? ORDER BY created_at, id"),
+    rows("SELECT id, skill_id, created_at FROM generated_items WHERE learner_id = ? ORDER BY created_at"),
+  ]);
+  return json({
+    exported_at: new Date().toISOString(),
+    about: "Your Testwise data. Times are milliseconds since 1970 (UTC); days are your local day. Questions are referred to by id.",
+    learner,
+    skills,
+    lessons,
+    attempts,
+    reviews,
+    tutor_turns,
+    generated_items,
+  });
+}

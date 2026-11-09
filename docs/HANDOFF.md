@@ -106,8 +106,9 @@ guards against them coming back.
 
 ## Where the plan stands
 
-- **v1 (complete SAT)**: content, rendering, figures, placement, age gate and consent are done. Open: accounts
-  (sign-in and cross-device progress), analytics and error tracking, the pilot. See `docs/PLAN.md`.
+- **v1 (complete SAT)**: content, rendering, figures, placement, age gate, consent, delete and data export are done,
+  and the renderer screenshot checks run in CI. Open: accounts (sign-in and cross-device progress), analytics and
+  error tracking, the pilot. See `docs/PLAN.md`.
 - **v1.5 (depth and craft)**: done Nov 8.
 - **v2 to v5**: not started. v2 iPhone app (EAS) and full practice tests; v3 GRE; v4 paid plans and GMAT; v5 CFA
   Level I, Android, scale. Note that v2's "exam date and target score at onboarding" item already shipped in v1.5.
@@ -129,10 +130,9 @@ These block the rest of v1. Don't build around them with throwaway work; ask.
 
 ## Known rough edges
 
-- On a 375x667 phone the wrong-answer panel is tall; the question behind it scrolls.
+- On a 375x667 phone the result panel still takes about two fifths of the screen (a smaller Socrates and tighter
+  spacing bought a little); the question behind it scrolls so the picked and the right tile stay in view.
 - The recording in project files `testwise/v15-ui/today-to-lesson.webm` predates the review fixes.
-- Desktop: tab screens sit centred beside the rail at one 640 px column; full-screen flows (welcome, lesson) are
-  centred on the page, so their left edges don't line up with the tab screens.
 - `scripts/trace_socrates.py` (used once to trace the art) needs numpy and OpenCV; it is not part of CI.
 
 ## How to work on it
