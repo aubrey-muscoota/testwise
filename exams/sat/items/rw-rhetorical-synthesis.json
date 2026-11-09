@@ -3054,28 +3054,28 @@
     "skill_id": "rw-rhetorical-synthesis",
     "difficulty": 1,
     "type": "mc",
-    "passage": "While researching a topic, a student has taken the following notes:\n• On December 1, 1955, Rosa Parks was arrested in Montgomery, Alabama, for refusing to give up her bus seat to a white passenger.\n• Days later, Black residents of Montgomery began a boycott of the city’s buses.\n• The boycott was organized by the Montgomery Improvement Association, led by Martin Luther King Jr.\n• The boycott lasted 381 days.\n• It ended in December 1956, after the US Supreme Court ruled that segregation on Montgomery’s buses was unconstitutional.",
-    "stem": "The student wants to describe the outcome of the Montgomery bus boycott. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "passage": "While researching a topic, a student has taken the following notes:\n• The steelpan is a percussion instrument that developed in Trinidad and Tobago in the mid-1900s.\n• Early makers built steelpans from discarded 55-gallon oil drums.\n• To start, a maker hammers the top of a drum into a shallow bowl, a step called sinking.\n• The maker then shapes separate areas of the bowl into notes and tunes each note by tapping it with a small hammer.\n• Today, steel bands compete each year in a contest held during Carnival in Trinidad.",
+    "stem": "The student wants to explain how a maker turns an oil drum into a steelpan. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "choices": [
-      "The Montgomery bus boycott began days after Rosa Parks was arrested for refusing to give up her bus seat to a white passenger.",
-      "The Montgomery bus boycott was organized by the Montgomery Improvement Association, led by Martin Luther King Jr.",
-      "The Montgomery bus boycott ended in December 1956, after the US Supreme Court ruled that segregation on the city’s buses was unconstitutional.",
-      "The Montgomery bus boycott lasted 381 days."
+      "The steelpan, a percussion instrument, developed in Trinidad and Tobago in the mid-1900s.",
+      "Each year during Carnival in Trinidad, steel bands compete in a contest.",
+      "A maker hammers the top of an oil drum into a shallow bowl and then shapes and tunes separate areas of the bowl into notes.",
+      "Early steelpans were built from discarded 55-gallon oil drums."
     ],
-    "answer": "The Montgomery bus boycott ended in December 1956, after the US Supreme Court ruled that segregation on the city’s buses was unconstitutional.",
+    "answer": "A maker hammers the top of an oil drum into a shallow bowl and then shapes and tunes separate areas of the bowl into notes.",
     "explanation": [
-      "An outcome is how something ended or what it led to.",
-      "The notes say the boycott ended in December 1956 after the Supreme Court ruled bus segregation unconstitutional.",
-      "Only the third choice gives this result."
+      "The goal asks how a drum is turned into an instrument, so the answer must describe the steps of making it.",
+      "The third and fourth notes give those steps: the maker hammers the drum top into a shallow bowl, then shapes and tunes areas of it into notes.",
+      "Only the third choice puts both steps together, so it explains the process."
     ],
     "hints": [
-      "Which note describes how the boycott ended?",
-      "Which choice tells what happened at the end rather than at the start?"
+      "Which notes describe something the maker does to the drum?",
+      "Does each choice tell what the drum is made into, or only something else about the instrument?"
     ],
     "wrong_reasons": {
-      "The Montgomery bus boycott began days after Rosa Parks was arrested for refusing to give up her bus seat to a white passenger.": "This tells what caused the boycott to begin, which is its starting point, not its outcome.",
-      "The Montgomery bus boycott was organized by the Montgomery Improvement Association, led by Martin Luther King Jr.": "This tells who organized the boycott, which is important, but it says nothing about how it ended.",
-      "The Montgomery bus boycott lasted 381 days.": "A student may choose this because it mentions the end of the boycott indirectly, but its length does not say what the boycott achieved."
+      "The steelpan, a percussion instrument, developed in Trinidad and Tobago in the mid-1900s.": "Treats background on where and when the instrument began as if it explained how one is made; it gives no making steps.",
+      "Each year during Carnival in Trinidad, steel bands compete in a contest.": "Confuses how the finished instrument is used with how it is built; the contest says nothing about the drum's transformation.",
+      "Early steelpans were built from discarded 55-gallon oil drums.": "Mistakes naming the starting material for describing the process; it mentions oil drums but not what the maker does to turn one into an instrument."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4983,29 +4983,30 @@
     "skill_id": "rw-rhetorical-synthesis",
     "difficulty": 3,
     "type": "mc",
-    "passage": "While researching a topic, a student has taken the following notes:\n• Bunraku is a form of Japanese puppet theater that developed in the 1600s.\n• Each major puppet is operated by three puppeteers working together.\n• The lead puppeteer controls the head and right hand; a second controls the left hand; a third controls the feet.\n• The two assistant puppeteers wear black hoods, while the lead puppeteer often performs with his face uncovered.\n• The puppeteers do not speak; a single narrator voices all the characters, accompanied by a shamisen, a three-stringed instrument.",
-    "stem": "The student wants to emphasize that both the movement and the voice of a single bunraku character are supplied by different performers. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "passage": "While researching a topic, a student has taken the following notes:\n• The fictional Tamsel Valley Seed Bank keeps seeds of local bean and squash varieties in cold, dry storage rooms.\n• Even in cold storage, seeds slowly lose their ability to sprout, so each stored batch must eventually be replaced with fresh seed.\n• Every five years, the seed bank's laboratory staff test a sample from each batch to find what share of its seeds still sprout.\n• When a batch falls below 80 percent, it is sent to a valley farmer, who plants it and harvests fresh seed to restock the storage rooms.\n• The seed bank pays the farmers for this work but owns no farmland of its own.",
+    "stem": "The student wants to emphasize that keeping a stored batch usable depends on two different groups, each carrying out a different task. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "choices": [
-      "In bunraku, the two assistant puppeteers who help operate each major puppet wear black hoods, while the lead puppeteer often performs with his face uncovered.",
-      "Bunraku, a form of Japanese puppet theater that developed in the 1600s, features puppets operated by three puppeteers working together.",
-      "In bunraku, a single narrator, accompanied by a three-stringed shamisen, voices all the characters in a performance.",
-      "In bunraku, a single character is brought to life by many performers: three puppeteers share control of the puppet's head, hands, and feet, while a separate narrator supplies its voice."
+      "Every five years, the Tamsel Valley Seed Bank's laboratory staff test a sample from each stored batch to find what share of its seeds still sprout, and any batch below 80 percent is replaced with fresh seed.",
+      "The Tamsel Valley Seed Bank, which owns no farmland of its own, pays valley farmers to plant any batch that has fallen below 80 percent and to harvest fresh seed to restock its storage rooms.",
+      "Because even seeds kept in cold, dry storage slowly lose their ability to sprout, the Tamsel Valley Seed Bank must eventually replace each stored batch with fresh seed, which it pays valley farmers to grow.",
+      "To keep a stored batch usable, the Tamsel Valley Seed Bank relies on two groups: laboratory staff test a sample of its seeds every five years, and when the batch falls below 80 percent, a valley farmer plants the batch to harvest fresh seed."
     ],
-    "answer": "In bunraku, a single character is brought to life by many performers: three puppeteers share control of the puppet's head, hands, and feet, while a separate narrator supplies its voice.",
+    "answer": "To keep a stored batch usable, the Tamsel Valley Seed Bank relies on two groups: laboratory staff test a sample of its seeds every five years, and when the batch falls below 80 percent, a valley farmer plants the batch to harvest fresh seed.",
     "explanation": [
-      "The goal covers both movement and voice, and stresses that different people supply them for one character.",
-      "Movement: three puppeteers split the head and right hand, left hand, and feet. Voice: a separate narrator, since the puppeteers do not speak.",
-      "Only the third choice covers both and frames them around a single character."
+      "The goal has two parts: two different groups, and a different task for each.",
+      "The notes assign the tasks: laboratory staff 'test a sample from each batch' every five years, and a batch below 80 percent 'is sent to a valley farmer, who plants it and harvests fresh seed.'",
+      "The choice in which laboratory staff test and a valley farmer plants matches both notes and keeps the two groups apart.",
+      "The other choices are accurate but each leaves out a group. One gives only the laboratory testing, one gives only the farmers' planting, and one explains why batches must be replaced without saying who tests them."
     ],
     "hints": [
-      "Which notes deal with a puppet's movement, and which with its voice?",
-      "Does the choice show that the voice comes from someone other than the puppeteers?",
-      "Is the choice focused on one character or on the performance as a whole?"
+      "According to the notes, who tests a batch, and who grows its fresh seed?",
+      "Which notes say who does each task, and does a choice draw on both of those notes?",
+      "Does the choice name both groups, and give each one its own task?"
     ],
     "wrong_reasons": {
-      "In bunraku, the two assistant puppeteers who help operate each major puppet wear black hoods, while the lead puppeteer often performs with his face uncovered.": "This distinguishes among the puppeteers, which suggests many performers, but it is about their appearance and mentions neither how movement is divided nor who supplies the voice.",
-      "Bunraku, a form of Japanese puppet theater that developed in the 1600s, features puppets operated by three puppeteers working together.": "This shows that movement is shared among three puppeteers, which is half the goal, but it leaves out the voice entirely.",
-      "In bunraku, a single narrator, accompanied by a three-stringed shamisen, voices all the characters in a performance.": "This addresses voice and mentions a separate performer, which is tempting, but it says nothing about movement, and its focus on one narrator voicing all characters stresses consolidation rather than division."
+      "Every five years, the Tamsel Valley Seed Bank's laboratory staff test a sample from each stored batch to find what share of its seeds still sprout, and any batch below 80 percent is replaced with fresh seed.": "Mentions only one group: the testing is accurate, but the replacement is left in the passive voice, so the farmers who grow the fresh seed never appear and two groups with different tasks are not shown.",
+      "The Tamsel Valley Seed Bank, which owns no farmland of its own, pays valley farmers to plant any batch that has fallen below 80 percent and to harvest fresh seed to restock its storage rooms.": "Mentions only the farmers: it accurately explains why the bank depends on farmers, but it leaves out the laboratory staff who test the batches, so it never pairs two groups with two different tasks.",
+      "Because even seeds kept in cold, dry storage slowly lose their ability to sprout, the Tamsel Valley Seed Bank must eventually replace each stored batch with fresh seed, which it pays valley farmers to grow.": "Answers a neighbouring goal: it accurately explains why batches must be replaced and even mentions the farmers, but it leaves out the laboratory testing, so it never shows two groups each doing a different task."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

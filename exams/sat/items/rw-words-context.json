@@ -1371,28 +1371,29 @@
     "skill_id": "rw-words-context",
     "difficulty": 1,
     "type": "mc",
-    "passage": "For centuries, many Indigenous farmers in North America have planted corn, beans, and squash together, a tradition known as the \"Three Sisters.\" The three plants ______ one another. The corn gives the beans a stalk to climb, the beans enrich the soil, and the broad squash leaves shade the ground and keep weeds down.",
+    "passage": "Hana Brill, a novelist in a short story about writers at work, never writes a book from start to finish. Instead, she writes each scene on its own index card and spreads the cards across her living room floor. Because the cards are loose, she can ______ them as often as she likes, putting the ending first one week and moving a quiet scene to the middle the next. Only when the order feels right does she begin typing a draft.",
     "stem": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
-      "support",
-      "ignore",
-      "resemble",
-      "replace"
+      "rearrange",
+      "discard",
+      "memorize",
+      "copy"
     ],
-    "answer": "support",
+    "answer": "rearrange",
     "explanation": [
-      "The last sentence lists how each plant helps the others.",
-      "Corn gives a stalk, beans enrich the soil, squash keeps weeds down.",
-      "Plants that help each other \"support\" one another."
+      "Right after the blank, the passage gives examples: \"putting the ending first one week and moving a quiet scene to the middle the next.\"",
+      "Both examples change where scenes fall, not whether they stay.",
+      "The last sentence confirms the goal: she waits until \"the order feels right.\"",
+      "Changing the order of the cards is to \"rearrange\" them."
     ],
     "hints": [
-      "What does each plant do for the others?",
-      "Which word describes plants that help one another grow?"
+      "What does Hana do with the cards in the examples that come right after the blank?",
+      "What is she waiting to get right before she starts typing?"
     ],
     "wrong_reasons": {
-      "ignore": "Students may think each plant grows on its own, but the passage lists specific ways the plants affect one another.",
-      "resemble": "The name \"Three Sisters\" suggests family resemblance, but corn, beans, and squash look different; the passage is about how they help each other.",
-      "replace": "Students may think of crops being swapped in a garden, but the plants grow together at the same time rather than taking each other's place."
+      "discard": "Loose cards are easy to throw away, but the examples show her keeping every scene and only moving it to a new place.",
+      "memorize": "She looks at the cards again and again, but the passage is about changing their order, not learning them by heart.",
+      "copy": "She later types the scenes into a draft, but the blank describes what she does before drafting, which is trying out different orders."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -2461,28 +2462,30 @@
     "skill_id": "rw-words-context",
     "difficulty": 2,
     "type": "mc",
-    "passage": "Ice cores drilled from the Antarctic ice sheet serve as an archive of Earth's past climate. Tiny bubbles trapped in the ice ______ samples of the ancient atmosphere, allowing researchers to measure how much carbon dioxide the air held hundreds of thousands of years ago.",
+    "passage": "Roman aqueducts carried water to cities across many kilometers with no pumps, relying on gravity alone. To make this work, builders gave each channel a slight, continuous downward slope, in places dropping less than half a meter over a full kilometer. To a traveler walking beside such a channel, this descent would have been ______: the water would seem to lie as flat as a pond, and a person could walk for an hour without sensing that the ground beside the channel had dropped at all. Yet that slight fall did essential work, keeping the water moving steadily toward the city.",
     "stem": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
-      "release",
-      "dilute",
-      "imitate",
-      "preserve"
+      "negligible",
+      "deliberate",
+      "unremarkable",
+      "imperceptible"
     ],
-    "answer": "preserve",
+    "answer": "imperceptible",
     "explanation": [
-      "The ice is called an \"archive,\" a place where records are kept.",
-      "The bubbles let researchers measure air from long ago, so they must have kept that air unchanged.",
-      "To keep something intact over time is to preserve it."
+      "The blank describes how the descent seemed \"to a traveler,\" so the word must be about what a person walking beside the channel could notice.",
+      "The colon explains it: the water \"would seem to lie as flat as a pond,\" and a person could walk for an hour \"without sensing\" that the ground \"had dropped at all.\"",
+      "A real slope that the senses cannot detect is imperceptible.",
+      "Negligible is wrong because the slight fall \"did essential work\"; unremarkable is wrong because the water \"would seem to\" lie flat, so the traveler never noticed the descent at all, ordinary or not; deliberate is wrong because the blank is about the traveler's view, not the builders' plan."
     ],
     "hints": [
-      "What does calling the ice an \"archive\" suggest about what it does?",
-      "How could researchers measure ancient air unless the bubbles kept it?"
+      "Is the blank describing the builders' choice of slope or how the slope appeared to someone walking beside it?",
+      "What does the text after the colon say the traveler would have experienced?",
+      "What does the last sentence say about whether the slight fall mattered?"
     ],
     "wrong_reasons": {
-      "release": "Bubbles do release gas when the ice melts, but the passage stresses that the air is \"trapped\" and stored for study.",
-      "dilute": "Mixing ancient air with other gases would ruin the measurements; the bubbles hold clean samples instead.",
-      "imitate": "The bubbles contain actual ancient air, not a copy of it."
+      "negligible": "Treats \"very small\" as the whole meaning, but negligible means too small to matter, and the last sentence says the slight fall \"did essential work.\"",
+      "deliberate": "Confuses the builders' intent with the traveler's view: the text says builders chose the slope, but the blank describes how the descent seemed \"to a traveler,\" and the colon is about what could be noticed.",
+      "unremarkable": "Assumes the traveler noticed the descent but thought it ordinary, yet the water \"would seem to lie as flat as a pond\" and a person could walk for an hour \"without sensing\" any drop."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3230,28 +3233,28 @@
     "skill_id": "rw-words-context",
     "difficulty": 1,
     "type": "mc",
-    "passage": "When bread dough rests in a warm kitchen, yeast feeds on sugars in the flour and gives off carbon dioxide gas. The gas becomes trapped in the stretchy dough, causing it to ______ until it is nearly twice its original size.",
+    "passage": "Before telephones were common, news often traveled by telegraph as a series of short and long clicks. A skilled operator listening at the receiving end could ______ those clicks by ear, turning each pattern back into a letter and writing down the message almost as fast as it arrived.",
     "stem": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
-      "shrink",
-      "rise",
-      "harden",
-      "melt"
+      "silence",
+      "decode",
+      "repair",
+      "invent"
     ],
-    "answer": "rise",
+    "answer": "decode",
     "explanation": [
-      "The gas is \"trapped\" inside the dough.",
-      "The dough ends up \"nearly twice its original size,\" so it grows bigger.",
-      "\"Rise\" describes dough swelling upward as it fills with gas."
+      "The operator is \"listening at the receiving end,\" so the clicks come from someone else.",
+      "The operator turns \"each pattern back into a letter\" and writes down the message.",
+      "\"Decode\" means to change coded signals back into ordinary words, which is exactly what the operator does."
     ],
     "hints": [
-      "What happens to the dough's size by the end of the passage?",
-      "What would trapped gas do to a stretchy dough?"
+      "What does the operator do with each pattern of clicks after hearing it?",
+      "Is the operator creating the message, stopping it, or making sense of it?"
     ],
     "wrong_reasons": {
-      "shrink": "Students may think of gas escaping, but the gas is trapped and the dough becomes twice as big, not smaller.",
-      "harden": "Bread does harden when baked, but this passage is about resting dough growing larger, not getting firmer.",
-      "melt": "A warm kitchen suggests melting, but dough doesn't melt, and melting wouldn't double its size."
+      "silence": "Students may think an operator listening closely would want to quiet the noise, but the operator needs the clicks to read the message, not to stop them.",
+      "repair": "Students may link telegraphs with machinery that needs fixing, but the passage is about understanding the clicks, not fixing equipment.",
+      "invent": "Students may think of the operator producing the written message, but the clicks arrive from the sender; the operator only turns existing patterns into letters."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

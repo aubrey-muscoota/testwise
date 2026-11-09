@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/*.test.mjs && python3 -I scripts/check_items.py exams/*/items/*.json test/fixtures/exams/*/items/*.json",
+    "test": "node --test test/*.test.mjs && python3 -I scripts/check_items.py exams/*/items/*.json test/fixtures/exams/*/items/*.json && python3 -I scripts/scan_duplicates.py exams/sat --allow exams/sat/reports/duplicates-allowed.json",
     "new-exam": "node scripts/new-exam.mjs",
     "seed": "node scripts/build-seed.mjs",
     "build:app": "cd app && npx expo export -p web --output-dir dist",

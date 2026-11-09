@@ -4759,28 +4759,29 @@
     "skill_id": "rw-central-ideas",
     "difficulty": 1,
     "type": "mc",
-    "passage": "The Montgomery bus boycott began in December 1955, after Rosa Parks was arrested for refusing to give up her seat on a city bus to a white passenger. For more than a year, most of the city's Black residents refused to ride the buses. Because many of them depended on the buses to get to work, organizers set up a large carpool system, and thousands of people walked miles each day instead. The boycott ended in December 1956, after the United States Supreme Court ruled that segregation on Montgomery's buses was unconstitutional.",
-    "stem": "According to the text, why did organizers of the Montgomery bus boycott set up a carpool system?",
+    "passage": "Before electric refrigerators became common, many American households kept food cold with blocks of ice. In the nineteenth century, workers cut this ice from frozen lakes and ponds each winter, sawing it into large blocks and dragging them ashore. The blocks were stacked inside icehouses, buildings with thick walls, and then buried in sawdust or straw. Because these materials slow the movement of heat, they kept much of the ice frozen through the spring and summer. When the weather turned warm, wagons carried the ice to homes, where it was placed in wooden iceboxes.",
+    "stem": "According to the text, why was the ice stored in icehouses buried in sawdust or straw?",
     "choices": [
-      "The city had stopped running buses in the neighborhoods where Black residents lived.",
-      "The Supreme Court required the city to provide another form of transportation.",
-      "Many residents who stopped riding the buses still needed a way to get to work.",
-      "Rosa Parks asked residents to avoid walking long distances during the boycott."
+      "Workers needed a soft layer to keep the heavy blocks from cracking when they were stacked.",
+      "Wagons could not carry ice to homes unless each block was wrapped in a protective covering.",
+      "The covering helped keep the ice from melting during the warmer months of the year.",
+      "Ice cut from lakes and ponds was dirty and had to be cleaned before it reached homes."
     ],
-    "answer": "Many residents who stopped riding the buses still needed a way to get to work.",
+    "answer": "The covering helped keep the ice from melting during the warmer months of the year.",
     "explanation": [
-      "Find the sentence that mentions the carpool system.",
-      "It begins 'Because many of them depended on the buses to get to work,' which gives the reason.",
-      "So the carpools gave boycotters who still needed to get to work another way to travel."
+      "Find the sentence that comes right after the one about sawdust and straw.",
+      "It begins 'Because these materials slow the movement of heat,' which gives the reason for the covering.",
+      "It adds that they kept much of the ice frozen through the spring and summer.",
+      "So the covering was there to keep the ice from melting in warm weather."
     ],
     "hints": [
-      "Which word in the third sentence signals a reason?",
-      "If people stopped riding the buses, what problem would they face?"
+      "Which sentence uses the word 'Because' to explain something about sawdust and straw?",
+      "What would happen to a block of ice left uncovered when spring arrived?"
     ],
     "wrong_reasons": {
-      "The city had stopped running buses in the neighborhoods where Black residents lived.": "The buses kept running; residents chose not to ride them. Nothing in the passage says service was cut.",
-      "The Supreme Court required the city to provide another form of transportation.": "The Supreme Court is mentioned only at the end, ruling that bus segregation was unconstitutional, not ordering other transportation.",
-      "Rosa Parks asked residents to avoid walking long distances during the boycott.": "Parks's arrest started the boycott, but the passage never says she asked anything of residents, and many people did walk miles."
+      "Workers needed a soft layer to keep the heavy blocks from cracking when they were stacked.": "Sawdust does sound like padding, so this is a sensible real-world guess, but the passage gives a different reason and never mentions cracking.",
+      "Wagons could not carry ice to homes unless each block was wrapped in a protective covering.": "The passage mentions wagons and the covering, but separately: the sawdust was used for storage in the icehouse, not as a requirement for delivery.",
+      "Ice cut from lakes and ponds was dirty and had to be cleaned before it reached homes.": "It is natural to wonder whether lake ice was clean, but the passage says nothing about dirt or cleaning, and burying ice in sawdust would not clean it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

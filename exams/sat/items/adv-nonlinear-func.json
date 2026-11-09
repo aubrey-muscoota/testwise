@@ -5097,41 +5097,42 @@
     "skill_id": "adv-nonlinear-func",
     "difficulty": 2,
     "type": "mc",
-    "stem": "The graph of the polynomial function y = f(x) is shown for −2.4 ≤ x ≤ 3.6. Which of the following could define f?",
+    "stem": "The graph of the polynomial function y = f(x) is shown for −2.3 ≤ x ≤ 2.5. Which of the following could define f?",
     "choices": [
-      "f(x) = (x − 2)(x + 1)(x + 3)",
-      "f(x) = (x + 2)(x + 1)(x − 3)",
-      "f(x) = (x − 2)(x − 1)(x + 3)",
-      "f(x) = (x + 2)(x − 1)(x − 3)"
+      "f(x) = (x + 1)²(x − 2)",
+      "f(x) = −(x − 1)²(x + 2)",
+      "f(x) = −(x + 1)(x − 2)²",
+      "f(x) = −(x + 1)²(x − 2)"
     ],
-    "answer": "f(x) = (x + 2)(x − 1)(x − 3)",
+    "answer": "f(x) = −(x + 1)²(x − 2)",
     "explanation": [
-      "The graph crosses the x-axis at x = −2, x = 1 and x = 3, so f has zeros −2, 1 and 3.",
-      "A zero at x = r comes from a factor (x − r): the factors are (x + 2), (x − 1) and (x − 3).",
-      "Check the y-intercept: (0 + 2)(0 − 1)(0 − 3) = 6, which matches (0, 6).",
-      "So f(x) = (x + 2)(x − 1)(x − 3)."
+      "The graph meets the x-axis at x = −1 and x = 2, so f(x) has the factors (x + 1) and (x − 2).",
+      "At x = −1 the graph touches the x-axis and turns back without crossing, so the factor (x + 1) appears an even number of times: (x + 1)². At x = 2 the graph crosses, so (x − 2) appears once.",
+      "The graph rises to the left and falls to the right, so the leading coefficient is negative: f(x) = −(x + 1)²(x − 2).",
+      "Check the y-intercept: −(0 + 1)²(0 − 2) = 2, which matches the point (0, 2)."
     ],
     "hints": [
-      "Where does the graph cross the x-axis?",
-      "If f(−2) = 0, which factor must f have: (x + 2) or (x − 2)?"
+      "At which x-values does the graph meet the x-axis, and at which of them does it cross rather than only touch?",
+      "What does a squared factor do to the graph at its zero?",
+      "For each choice, what is f(0), and does it match where the graph crosses the y-axis?"
     ],
     "wrong_reasons": {
-      "f(x) = (x − 2)(x + 1)(x + 3)": "Used factors (x + r) for each zero r, which gives zeros 2, −1 and −3",
-      "f(x) = (x + 2)(x + 1)(x − 3)": "Switched the sign of the factor for the zero at x = 1",
-      "f(x) = (x − 2)(x − 1)(x + 3)": "Switched the signs of the factors for the zeros at −2 and 3"
+      "f(x) = (x + 1)²(x − 2)": "Matched the zeros and the touch at x = −1 but missed the negative leading coefficient; this graph would fall to the left and rise to the right, with f(0) = −2",
+      "f(x) = −(x − 1)²(x + 2)": "Wrote each factor with the zero's own sign, which puts the zeros at 1 and −2",
+      "f(x) = −(x + 1)(x − 2)²": "Squared the wrong factor; this graph would cross the x-axis at x = −1 and touch it at x = 2, with f(0) = −4"
     },
-    "check": "from sympy import *\nx=symbols('x')\nc=[('(x+2)(x-1)(x-3)', '(x+2)*(x-1)*(x-3)'), ('(x-2)(x+1)(x+3)', '(x-2)*(x+1)*(x+3)'), ('(x+2)(x+1)(x-3)', '(x+2)*(x+1)*(x-3)'), ('(x-2)(x-1)(x+3)', '(x-2)*(x-1)*(x+3)')]\nok=[s for s,e in c if set(solve(sympify(e),x))=={-2,1,3} and sympify(e).subs(x,0)==6]\nassert len(ok)==1\nresult='f(x)='+ok[0]",
+    "check": "from sympy import *\nx=symbols('x')\nc=[('-(x+1)²(x-2)', -(x+1)**2*(x-2)), ('(x+1)²(x-2)', (x+1)**2*(x-2)), ('-(x-1)²(x+2)', -(x-1)**2*(x+2)), ('-(x+1)(x-2)²', -(x+1)*(x-2)**2)]\npts=[(-1,0),(2,0),(0,2),(1,4)]\nok=[s for s,e in c if all(e.subs(x,a)==b for a,b in pts) and roots(e,x)=={-1:2,2:1} and Poly(e,x).LC()<0]\nassert len(ok)==1\nresult='f(x)='+ok[0]",
     "figure": {
-      "alt": "A coordinate plane with x from −4 to 5 and y from −8 to 10, grid lines every 1 unit and axis labels every 2 units. A curve rises from the lower left, crosses the x-axis at (−2, 0), crosses the y-axis at (0, 6), reaches a high point between x = −1 and x = 0, falls to cross the x-axis at (1, 0), reaches a low point between x = 2 and x = 3, and rises to cross the x-axis again at (3, 0), continuing upward to the right.",
+      "alt": "A coordinate plane with x from −4 to 4 and y from −8 to 8, grid lines every 1 unit and axis labels every 2 units. A curve comes down from the upper left, touches the x-axis at (−1, 0) without crossing it and turns back upward, passes through (0, 2) on the y-axis, reaches a high point at (1, 4), then falls to cross the x-axis at (2, 0) and continues downward to the lower right.",
       "aspect": 0.8,
       "plane": {
         "x": [
           -4,
-          5
+          4
         ],
         "y": [
           -8,
-          10
+          8
         ],
         "grid": 1,
         "axes": true,
@@ -5142,47 +5143,47 @@
       "elements": [
         {
           "type": "function",
-          "expr": "(x+2)*(x-1)*(x-3)",
+          "expr": "-(x+1)^2*(x-2)",
           "domain": [
-            -2.4,
-            3.6
+            -2.3,
+            2.5
           ]
         },
         {
           "type": "point",
           "at": [
-            -2,
+            -1,
             0
           ],
-          "label": "(−2, 0)",
-          "labelPos": "nw"
-        },
-        {
-          "type": "point",
-          "at": [
-            1,
-            0
-          ],
-          "label": "(1, 0)",
-          "labelPos": "ne"
-        },
-        {
-          "type": "point",
-          "at": [
-            3,
-            0
-          ],
-          "label": "(3, 0)",
-          "labelPos": "se"
+          "label": "(−1, 0)",
+          "labelPos": "s"
         },
         {
           "type": "point",
           "at": [
             0,
-            6
+            2
           ],
-          "label": "(0, 6)",
-          "labelPos": "e"
+          "label": "(0, 2)",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            1,
+            4
+          ],
+          "label": "(1, 4)",
+          "labelPos": "n"
+        },
+        {
+          "type": "point",
+          "at": [
+            2,
+            0
+          ],
+          "label": "(2, 0)",
+          "labelPos": "ne"
         }
       ]
     },

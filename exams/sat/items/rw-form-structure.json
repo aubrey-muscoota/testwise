@@ -1467,28 +1467,28 @@
     "skill_id": "rw-form-structure",
     "difficulty": 1,
     "type": "mc",
-    "passage": "Arctic terns make the longest known migration of any bird. Each year, these small seabirds ______ from their breeding grounds in the Arctic to the waters around Antarctica and back again, a round trip that can exceed 70,000 kilometers.",
+    "passage": "Ancient Roman floor mosaics were built from thousands of small cubes of stone and glass called tesserae. To make a floor, workers ______ each cube into a bed of wet mortar, setting the pieces so closely together that the finished surface could look almost like a painting.",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
-      "flying",
-      "fly",
-      "to fly",
-      "having flown"
+      "pressing",
+      "pressed",
+      "to press",
+      "having pressed"
     ],
-    "answer": "fly",
+    "answer": "pressed",
     "explanation": [
-      "The second sentence has a subject, \"these small seabirds,\" but needs a main verb.",
-      "Only \"fly\" is a finite verb that can serve as the main verb of the sentence.",
-      "The other choices are -ing forms or an infinitive, which leave the sentence without a main verb."
+      "In the second sentence, the subject is \"workers,\" and the blank must supply its main verb.",
+      "\"To make a floor\" is only an introductory phrase, and \"setting the pieces...\" is a modifier, so neither gives the sentence a verb.",
+      "Only \"pressed\" is a finite verb, so it completes the sentence: workers pressed each cube into the mortar."
     ],
     "hints": [
-      "What is the subject of the second sentence, and what action does it perform?",
-      "Which choice could stand alone as the verb after \"these small seabirds\"?"
+      "Who is doing something in the second sentence, and which word tells what they did?",
+      "If you remove \"To make a floor\" and the \"setting...\" phrase, what is left of the sentence, and does it have a verb?"
     ],
     "wrong_reasons": {
-      "flying": "An -ing form sounds active, but on its own it cannot be the main verb, so the sentence becomes a fragment.",
-      "to fly": "The infinitive names the action but is not a finite verb, so the sentence has no main verb.",
-      "having flown": "It suggests a completed journey, but it is a participle phrase, not a main verb, leaving a fragment."
+      "pressing": "It matches the -ing form of \"setting\" later in the sentence, but an -ing word alone cannot be a main verb, so the sentence becomes a fragment.",
+      "to press": "It echoes the infinitive \"To make\" at the start, but an infinitive is not a finite verb, so \"workers\" is left without a main verb.",
+      "having pressed": "It sounds like a finished past action, but it is a participle phrase rather than a main verb, so the sentence is still a fragment."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -4914,28 +4914,28 @@
     "skill_id": "rw-form-structure",
     "difficulty": 1,
     "type": "mc",
-    "passage": "The Silk Road was not a single road but a vast network of overland routes linking China with Central Asia, the Middle East, and the Mediterranean world. For centuries, merchants along these routes ______ silk, spices, paper, and many other goods.",
+    "passage": "A geyser is a hot spring that erupts from time to time, shooting water and steam high into the air. Deep underground, water seeps into cracks in hot rock and is heated well past its usual boiling point. Eventually, the pressure of the expanding steam bubbles ______ the water above them up through a narrow opening at the surface.",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
-      "trades",
-      "is trading",
-      "has traded",
-      "traded"
+      "push",
+      "have pushed",
+      "were pushing",
+      "pushes"
     ],
-    "answer": "traded",
+    "answer": "pushes",
     "explanation": [
-      "The subject \"merchants\" is plural.",
-      "The passage describes the past: \"was not a single road,\" \"For centuries.\"",
-      "\"traded\" is past tense and works with a plural subject."
+      "The subject of the verb is \"the pressure,\" which is singular; \"of the expanding steam bubbles\" only describes it.",
+      "The passage explains how geysers work in general, in the present tense: \"is,\" \"erupts,\" \"seeps,\" \"is heated.\"",
+      "\"pushes\" is a singular, present-tense verb, so it fits both the subject and the time frame."
     ],
     "hints": [
-      "Who is doing the trading, and is that word singular or plural?",
-      "Is the passage about the past or the present?"
+      "What is doing the pushing: the pressure, or the steam bubbles?",
+      "Do the other verbs in the passage describe something that happens in general or something that happened once?"
     ],
     "wrong_reasons": {
-      "trades": "Singular and present tense; it agrees neither with \"merchants\" nor with the historical time frame.",
-      "is trading": "\"Is\" is singular and present, so it's wrong in number and tense.",
-      "has traded": "\"Has\" is singular, and the present perfect suggests the trading is still going on."
+      "push": "Agrees with the nearby plural \"bubbles\" instead of the singular subject \"pressure.\"",
+      "have pushed": "\"Have\" is plural, matching \"bubbles\" rather than \"pressure,\" and the present perfect breaks the passage's simple present description.",
+      "were pushing": "Plural and past tense, so it is wrong in number for \"pressure\" and shifts away from the present-tense account of how geysers work."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

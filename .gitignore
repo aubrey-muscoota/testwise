@@ -9,3 +9,4 @@ seed/
 .claude/worktrees/
 test/ui/results/
 test/ui/report/
+__pycache__/
