@@ -1,8 +1,8 @@
 # Testwise
 
-Short daily SAT Math practice. Lessons adapt to each learner, questions they miss come back as spaced review, and Socrates, an AI tutor, helps them reason through a wrong answer instead of just showing the solution.
+Short daily SAT practice (Math and Reading and Writing), built around a plan that works back from the student's test date. Lessons adapt to each learner, questions they miss come back as spaced review, and Socrates, an AI tutor, helps them reason through a wrong answer instead of just showing the solution.
 
-This is the v0 rebuild. The old version lives in `testwise-old` and is kept for reference only.
+Current status and handoff notes: `docs/HANDOFF.md`. The old prototype lives in `testwise-old` and is kept for reference only.
 
 ## What's here
 
