@@ -15,9 +15,12 @@ export default defineConfig({
   reporter: process.env.CI ? [["list"], ["html", { open: "never", outputFolder: "test/ui/report" }]] : "list",
   expect: {
     toHaveScreenshot: {
-      // Allow for anti-aliasing differences between Chromium builds, not layout changes.
-      maxDiffPixelRatio: 0.002,
-      threshold: 0.3,
+      // Text is rasterized a little differently from one Linux box to the next
+      // (a run on GitHub's runner against baselines made elsewhere differed by 1
+      // to 3% of pixels, all in glyph edges). The margin below is above that and
+      // well below any layout change: one wrapped line moves far more pixels.
+      maxDiffPixelRatio: 0.04,
+      threshold: 0.35,
       animations: "disabled",
       caret: "hide",
     },
@@ -29,6 +32,8 @@ export default defineConfig({
     colorScheme: "light",
     locale: "en-US",
     timezoneId: "America/New_York",
+    // Hinting and LCD filtering are what differ between machines; turn them off.
+    launchOptions: { args: ["--font-render-hinting=none", "--disable-lcd-text", "--disable-font-subpixel-positioning"] },
   },
   webServer: {
     command: `node scripts/serve-dist.mjs ${PORT}`,
