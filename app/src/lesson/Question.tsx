@@ -212,6 +212,8 @@ export function DataTable({ table }: { table: NonNullable<Item["table"]> }) {
   const n = Math.max(table.headers.length, ...table.rows.map((r) => r.length));
   const cols = Array.from({ length: n }, (_, ci) => ci);
   const cell = (r: (string | number)[], ci: number) => (r[ci] == null ? "" : String(r[ci]));
+  // In the column-stacked layout an empty cell must still take a line, or the column shifts up.
+  const line = (v: string) => (v.trim() === "" ? "\u00a0" : v);
   const titleEl = table.title ? <Text style={[type.label, { marginBottom: space(1) }]}>{table.title}</Text> : null;
 
   if (n <= 4) {
@@ -245,9 +247,9 @@ export function DataTable({ table }: { table: NonNullable<Item["table"]> }) {
         <View style={{ flexDirection: "row" }}>
           {cols.map((ci) => (
             <View key={ci} style={{ flexGrow: 1 }}>
-              <Text numberOfLines={1} style={[s.td, tabular, s.th]}>{table.headers[ci] ?? ""}</Text>
+              <Text numberOfLines={1} style={[s.td, tabular, s.th]}>{line(table.headers[ci] ?? "")}</Text>
               {table.rows.map((r, ri) => (
-                <Text key={ri} numberOfLines={1} style={[s.td, tabular, ri === table.rows.length - 1 && s.tdBottom]}>{cell(r, ci)}</Text>
+                <Text key={ri} numberOfLines={1} style={[s.td, tabular, ri === table.rows.length - 1 && s.tdBottom]}>{line(cell(r, ci))}</Text>
               ))}
             </View>
           ))}
