@@ -261,3 +261,25 @@ For the practice screen ("3,317 questions you haven't seen").
 When a learner asks (`mode: "fresh"`), or a skill they practice has under 10% unseen questions left, the Worker asks Claude for a small batch (up to 5) on that skill, at a difficulty near the learner's level, with two bank questions as examples. Only text and table questions, no figures. A second, separate call solves each question without the key; a question is kept only if the solver picks the same answer (numerically equal for grid-ins) and the question passes the shape checks in code (4 distinct choices, the key among them, a reason for every wrong choice, 2–6 steps, 2–3 hints, passage length for Reading and Writing). Kept questions are stored as items with `source = 'generated'` and served by practice only (never in lessons). One learner report pulls a generated question.
 
 Caps: 20 per learner per day, and `GENERATOR_DAILY_CAP` (default 200) across everyone per UTC day. The model is `GENERATOR_MODEL` (falls back to `TUTOR_MODEL`) in `wrangler.jsonc`. Without `ANTHROPIC_API_KEY`, or when a call fails or nothing passes, `fresh` returns bank questions with `fresh: false` and a `note`.
+
+## Your data
+
+### `GET /api/learner/export`
+
+Everything stored about the learner, as one JSON document ("Download my data" in Me). Questions are referred to by id; their text is content, not the learner's data.
+
+```json
+{
+  "exported_at": "2026-11-09T04:00:00.000Z",
+  "about": "Your Testwise data. …",
+  "learner": { "id": "…", "created_at": 1762650000000, "age_confirmed_at": 1762650000000, "ai_consent_at": null, "exam_id": null, "exam_date": "2027-03-13", "target_score": 1400, "daily_minutes": 20, "plan_started_at": "2026-11-08" },
+  "skills": [{ "skill_id": "alg-linear-eq-1var", "rating": 0.42, "attempts": 16, "correct": 13, "tested_out": 0, "updated_at": 1762650000000 }],
+  "lessons": [{ "id": "…", "kind": "skill", "mode": null, "skill_id": "alg-linear-eq-1var", "section_id": null, "started_at": 1762650000000, "completed_at": 1762650300000, "correct": 6, "total": 8, "xp": 75, "local_day": "2026-11-08" }],
+  "attempts": [{ "item_id": "alg-linear-eq-1var-012", "skill_id": "alg-linear-eq-1var", "lesson_id": "…", "correct": 1, "response": "7", "time_ms": 21000, "is_review": 0, "answered_at": 1762650010000, "local_day": "2026-11-08" }],
+  "reviews": [{ "item_id": "…", "skill_id": "…", "due_at": 1762736400000, "interval_days": 1 }],
+  "tutor_turns": [{ "item_id": "…", "local_day": "2026-11-08", "role": "student", "content": "I think I mixed up the sign", "created_at": 1762650020000 }],
+  "generated_items": [{ "id": "gen-…", "skill_id": "…", "created_at": 1762650030000 }]
+}
+```
+
+`POST /api/learner/delete` removes all of it.

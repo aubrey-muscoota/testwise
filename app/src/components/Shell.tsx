@@ -3,7 +3,7 @@
 import React from "react";
 import { Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import type { Tab } from "../nav";
-import { color, font, radius, shadow, space } from "../theme";
+import { color, COLUMN, font, radius, shadow, space } from "../theme";
 import { Icon, IconName } from "./icons";
 import { Wordmark } from "./ui";
 import { buzz } from "../motion/feedback";
@@ -16,12 +16,18 @@ const TABS: { id: Tab; label: string; icon: IconName }[] = [
 ];
 
 export const WIDE = 900;
+const RAIL = 232;
 export function useWide() {
   return useWindowDimensions().width >= WIDE;
 }
 
 export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => void; children: React.ReactNode }) {
-  const wide = useWide();
+  const { width } = useWindowDimensions();
+  const wide = width >= WIDE;
+  // With room to spare, the screen's column sits in the middle of the page, as it
+  // does in a lesson, so the left edge holds still between the two. On narrower
+  // desktops the rail takes its share and the column centres in what is left.
+  const symmetric = width >= RAIL * 2 + COLUMN;
   if (wide) {
     return (
       <View style={s.wideRoot}>
@@ -44,7 +50,7 @@ export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => v
             );
           })}
         </View>
-        <View style={s.wideMain}>{children}</View>
+        <View style={[s.wideMain, symmetric && { paddingRight: RAIL }]}>{children}</View>
       </View>
     );
   }
@@ -85,7 +91,7 @@ const s = StyleSheet.create({
   barLabel: { fontFamily: font.semibold, fontSize: 12, lineHeight: 16, color: color.inkSoft },
   barLabelOn: { fontFamily: font.bold, color: color.azureInk },
   wideRoot: { flex: 1, flexDirection: "row" },
-  rail: { width: 232, paddingHorizontal: space(2), paddingTop: space(4), gap: space(0.5) },
+  rail: { width: RAIL, paddingHorizontal: space(2), paddingTop: space(4), gap: space(0.5) },
   railHead: { paddingHorizontal: space(1.5), marginBottom: space(3) },
   railItem: { flexDirection: "row", alignItems: "center", gap: space(1.5), paddingHorizontal: space(1.5), minHeight: 48, borderRadius: radius.row },
   railItemOn: { backgroundColor: color.azureWash },

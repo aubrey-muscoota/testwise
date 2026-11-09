@@ -275,6 +275,19 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
   assert.equal(plan.exam_date_assumed, true);
 }
 
+// The export carries everything above.
+{
+  const ex = await call("/api/learner/export");
+  assert.equal(ex.status, 200);
+  assert.equal(ex.data.learner.id, learner);
+  assert.ok(ex.data.attempts.length >= 18, "attempts exported");
+  assert.ok(ex.data.lessons.length >= 2, "lessons exported");
+  assert.ok(Array.isArray(ex.data.tutor_turns), "Socrates chats exported (this learner had none)");
+  assert.ok(ex.data.skills.length >= 1);
+  assert.equal(ex.data.learner.not_booked, undefined);
+  assert.equal(ex.data.learner.exam_date, null, "the learner just switched to not booked");
+}
+
 // Deleting a learner removes them.
 assert.equal((await call("/api/learner/delete", {})).status, 200);
 assert.equal((await call("/api/tree")).status, 401, "deleted learner is gone");

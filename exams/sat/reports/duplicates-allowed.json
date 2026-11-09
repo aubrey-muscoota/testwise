@@ -1,0 +1,12 @@
+{
+  "about": "Pairs scripts/scan_duplicates.py flags that were looked at and kept, with the reason. Add a pair here only after reading both items.",
+  "pairs": [
+    {
+      "ids": [
+        "geo-lines-angles-031",
+        "geo-lines-angles-046"
+      ],
+      "reason": "Both ask for the angle between clock hands, but at 4:00 (the hour hand sits on a number) and at 2:30 (it is halfway between two): a different step is needed and the answers differ, 120° and 105°."
+    }
+  ]
+}
