@@ -1,4 +1,4 @@
-# Testwise handoff (Nov 9, 2026)
+# Testwise handoff (Nov 9, 2026, evening)
 
 This is the current status of Testwise and everything a new Claude Code session needs to keep building it. Read this
 first, then `docs/PLAN.md` (release checklist) and `docs/DESIGN.md` (design rules). `CLAUDE.md` at the repo root holds
@@ -106,6 +106,10 @@ guards against them coming back.
 | #7 | Nov 6 | Multi-exam content model: sections, passages, figure specs, TeX subset |
 | #8 | Nov 6 | 1,600 R&W items, 300 Math figure items, placement per section |
 | #9 | Nov 8 | v1.5 "Depth and craft": exam packs, test-date plan, practice modes, fresh questions, animated Socrates, full redesign to `docs/DESIGN.md` after a strict review (95 findings, 57 fixed, then 18 more) |
+| #10 | Nov 9 | Handoff doc and `CLAUDE.md` |
+| #11 | Nov 9 | Lesson screen split into `app/src/lesson/`; renderer screenshot checks (15 fixtures, 3 widths) in CI; two renderer fixes they found |
+| #12 | Nov 9 | "Download my data" export; one left edge on wide desktops; a lower result panel on 375x667; the duplicate scan script |
+| #13 | Nov 9 | 20 items replaced after the duplicate scan (6 duplicates, 1 reused story, 13 passages on shared subjects), each through write, code check, blind solve and adversarial review; the scan joins `npm test` |
 
 ## Where the plan stands
 
@@ -171,8 +175,7 @@ Rules that have held so far:
 ## Suggested next steps
 
 1. Once Aubrey supplies the Google client and email sender: accounts (email link and Google first, Apple after
-   enrollment), anonymous progress carried over, data export. Migration 0007.
+   enrollment), anonymous progress carried over. Migration 0007.
 2. PostHog events from the Quality section of the build plan, and Sentry for app and Worker.
-3. Duplicate-item scan across the bank (a v1 acceptance criterion).
-4. Then v2: EAS build and TestFlight (the `aubrey-muscoota/ersatz-arcade` repo already has a working Expo/EAS
+3. Then v2: EAS build and TestFlight (the `aubrey-muscoota/ersatz-arcade` repo already has a working Expo/EAS
    pipeline to copy), reminders, full practice tests.
