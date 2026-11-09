@@ -478,28 +478,30 @@
     "skill_id": "rw-text-structure",
     "difficulty": 1,
     "type": "mc",
-    "passage": "Many Indigenous farmers in North America traditionally planted corn, beans, and squash together in a method often called the \"Three Sisters.\" The tall corn stalks give the climbing beans something to grow on. The beans add nitrogen to the soil, which helps all three plants. The wide squash leaves shade the ground, keeping it moist and blocking weeds. Together, the three crops grow better than any one of them would alone.",
+    "passage": "On long winter hunting trips, Inuit travelers in the Arctic traditionally built snow houses, often called igloos. Builders cut blocks from firm, wind-packed snow and stack them in a rising spiral, so each block leans on the one before it and the dome holds itself up as it grows. The entrance is a short tunnel dug lower than the floor; because cold air sinks, it stays in the tunnel instead of flowing inside. A raised sleeping platform sits where the warmest air collects. With only a small lamp burning, the thick snow walls hold in enough heat to keep the inside far warmer than the air outdoors.",
     "stem": "Which choice best describes the overall structure of the text?",
     "choices": [
-      "It describes a problem with a farming method and then offers a solution.",
-      "It compares two farming methods and explains why one is better.",
-      "It tells the history of how the Three Sisters method was invented.",
-      "It introduces a planting method and then explains how each plant helps the others."
+      "It presents a common belief about snow houses and then shows why that belief is mistaken.",
+      "It argues that snow houses are better than every other kind of winter shelter.",
+      "It follows a group of hunters on a journey and describes each place where they stopped.",
+      "It introduces a type of shelter and then explains how its features keep it sturdy and warm."
     ],
-    "answer": "It introduces a planting method and then explains how each plant helps the others.",
+    "answer": "It introduces a type of shelter and then explains how its features keep it sturdy and warm.",
     "explanation": [
-      "The first sentence introduces the Three Sisters planting method.",
-      "The next three sentences each explain what one plant (corn, beans, squash) does for the others.",
-      "The last sentence sums up that the crops grow better together."
+      "The first sentence introduces the snow house, a shelter built on winter hunting trips.",
+      "The middle sentences each take one feature (the spiral of blocks, the low tunnel, the raised platform) and say what it does.",
+      "The last sentence sums up that the walls keep the inside far warmer than outdoors.",
+      "So the text introduces a shelter and explains how its features keep it sturdy and warm."
     ],
     "hints": [
       "What does the first sentence introduce?",
-      "What do the middle sentences each focus on?"
+      "What does each of the middle sentences focus on?",
+      "Does the text ever mention another kind of shelter or a belief it disagrees with?"
     ],
     "wrong_reasons": {
-      "It describes a problem with a farming method and then offers a solution.": "Weeds and dry soil are mentioned, but as problems the method avoids, not as a problem with the method itself.",
-      "It compares two farming methods and explains why one is better.": "The last sentence compares growing together with growing alone, but the text describes only one method.",
-      "It tells the history of how the Three Sisters method was invented.": "The text says the method was traditional but gives no history of how or when it began."
+      "It presents a common belief about snow houses and then shows why that belief is mistaken.": "Snow keeping a house warm may sound surprising, but the text never states a belief that people hold and then corrects it.",
+      "It argues that snow houses are better than every other kind of winter shelter.": "The text says the inside is warmer than the air outdoors, but it compares the house with the outside air, not with other shelters, and makes no argument.",
+      "It follows a group of hunters on a journey and describes each place where they stopped.": "The first sentence mentions hunting trips, but the text describes how one kind of shelter is built, not a particular journey."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

@@ -3876,40 +3876,40 @@
     "skill_id": "geo-circles",
     "difficulty": 1,
     "type": "mc",
-    "stem": "Which equation represents the circle shown in the xy-plane?",
+    "stem": "The circle shown in the xy-plane has center C, and point P lies on the circle. Both C and P are at points with integer coordinates. What is the diameter of the circle?",
     "choices": [
-      "(x − 2)² + (y + 1)² = 9",
-      "(x + 2)² + (y − 1)² = 9",
-      "(x − 2)² + (y + 1)² = 3",
-      "(x + 2)² + (y − 1)² = 3"
+      "10",
+      "5",
+      "7",
+      "25"
     ],
-    "answer": "(x − 2)² + (y + 1)² = 9",
+    "answer": "10",
     "explanation": [
-      "The center of the circle is at the grid point (2, −1).",
-      "The circle passes through (5, −1), which is 3 units to the right of the center, so r = 3.",
-      "Standard form (x − h)² + (y − k)² = r² gives (x − 2)² + (y + 1)² = 9."
+      "From the grid, C = (5, 1) and P = (8, 5).",
+      "CP = √((8 − 5)² + (5 − 1)²) = √(9 + 16) = √25 = 5, so the radius is 5.",
+      "A diameter is twice the radius: 2 · 5 = 10."
     ],
     "hints": [
-      "Which grid point is the center of the circle?",
-      "How far is the center from the rightmost point of the circle, and how does that distance appear in the equation?"
+      "How can you find the distance from C to P when they are not on the same grid line?",
+      "How is a diameter related to the radius?"
     ],
     "wrong_reasons": {
-      "(x + 2)² + (y − 1)² = 9": "Used the signs of the center's coordinates inside the parentheses instead of their opposites",
-      "(x − 2)² + (y + 1)² = 3": "Put the radius on the right side instead of the radius squared",
-      "(x + 2)² + (y − 1)² = 3": "Reversed the signs of the center and used r instead of r²"
+      "5": "Gave the radius CP instead of the diameter",
+      "7": "Added the horizontal and vertical distances 3 + 4 instead of using the distance formula",
+      "25": "Squared the radius, as in the circle's equation, instead of doubling it"
     },
-    "check": "from sympy import *\ndef eq(h,k,r2):\n    def t(v,n):\n        return n if v==0 else '('+n+('-' if v>0 else '+')+str(abs(v))+')'\n    return t(h,'x')+'²+'+t(k,'y')+'²='+str(r2)\nh,k=2,-1\nright=(5,-1)\nr=right[0]-h\nresult=eq(h,k,r**2)",
+    "check": "from sympy import *\nC=Point(5,1)\nP=Point(8,5)\nresult=2*C.distance(P)",
     "figure": {
-      "alt": "A coordinate plane with x from −4 to 8 and y from −7 to 5, grid lines every 1 unit. A circle is drawn with its center marked at the point (2, −1). The circle passes through the grid points (−1, −1), (5, −1), (2, 2), and (2, −4).",
-      "aspect": 1.0,
+      "alt": "A coordinate plane with x from −1 to 11 and y from −5 to 7, grid lines every 1 unit. A circle is drawn with its center marked and labeled C at the point (5, 1). A point labeled P on the circle is at (8, 5).",
+      "aspect": 1,
       "plane": {
         "x": [
-          -4,
-          8
+          -1,
+          11
         ],
         "y": [
-          -7,
-          5
+          -5,
+          7
         ],
         "grid": 1,
         "axes": true,
@@ -3921,17 +3921,26 @@
         {
           "type": "circle",
           "center": [
-            2,
-            -1
+            5,
+            1
           ],
-          "r": 3
+          "r": 5
         },
         {
           "type": "point",
           "at": [
-            2,
-            -1
-          ]
+            5,
+            1
+          ],
+          "label": "C"
+        },
+        {
+          "type": "point",
+          "at": [
+            8,
+            5
+          ],
+          "label": "P"
         }
       ]
     }
@@ -5476,41 +5485,43 @@
     "skill_id": "geo-circles",
     "difficulty": 3,
     "type": "mc",
-    "stem": "An equation of the circle shown in the xy-plane can be written in the form x² + y² + ax + by + c = 0, where a, b, and c are constants. What is the value of c?",
+    "stem": "The circle shown in the xy-plane has center C, and point P lies on the circle; both have integer coordinates. A line is drawn tangent to the circle at P. At what y-value does this tangent line cross the y-axis?",
     "choices": [
-      "−29",
-      "−3",
-      "3",
-      "13"
+      "5/3",
+      "−1",
+      "7/3",
+      "5"
     ],
-    "answer": "−3",
+    "answer": "−1",
     "explanation": [
-      "From the graph, the center is (−2, 3) and the circle passes through (2, 3), so r = 4.",
-      "In standard form: (x + 2)² + (y − 3)² = 16.",
-      "Expanding: x² + 4x + 4 + y² − 6y + 9 = 16, so x² + y² + 4x − 6y − 3 = 0.",
-      "So c = 4 + 9 − 16 = −3."
+      "From the graph, C = (−4, 1) and P = (−1, 2).",
+      "The slope of radius CP is (2 − 1)/(−1 − (−4)) = 1/3.",
+      "A tangent line is perpendicular to the radius at the point of tangency, so the tangent's slope is the negative reciprocal of 1/3, which is −3.",
+      "The tangent passes through P: y − 2 = −3(x + 1), which simplifies to y = −3x − 1.",
+      "On the y-axis x = 0, so the line crosses at (0, −1); the y-value is −1."
     ],
     "hints": [
-      "What are the center and radius of the circle shown?",
-      "After expanding the standard form, what constant is left on the left side once 16 is moved over?"
+      "How is a tangent line related to the radius drawn to the point of tangency?",
+      "Once you know the tangent line’s slope, which point on that line do you already know?",
+      "What is the x-coordinate of every point on the y-axis?"
     ],
     "wrong_reasons": {
-      "−29": "Subtracted all three numbers, −(4 + 9 + 16), instead of computing 4 + 9 − 16",
-      "3": "Moved r² to the wrong side, getting 16 − 4 − 9",
-      "13": "Expanded the squares but forgot to subtract r² = 16"
+      "5": "Used slope 3, the reciprocal of the radius's slope without the sign change",
+      "5/3": "Used slope −1/3, the radius's slope with the sign changed but not reciprocated",
+      "7/3": "Used the radius's slope, 1/3, as the slope of the tangent line"
     },
-    "check": "from sympy import *\nx,y=symbols('x y')\nh,k=-2,3\nedge=(2,3)\nr=edge[0]-h\nexpr=expand((x-h)**2+(y-k)**2-r**2)\nresult=expr.subs({x:0,y:0})",
+    "check": "from sympy import *\nC=Point(-4,1)\nP=Point(-1,2)\ntangent=Line(C,P).perpendicular_line(P)\nyaxis=Line(Point(0,0),Point(0,1))\nresult=tangent.intersection(yaxis)[0].y",
     "figure": {
-      "alt": "A coordinate plane with x from −8 to 4 and y from −3 to 9, grid lines every 1 unit. A circle has its center marked at (−2, 3) and radius 4. It passes through the grid points (2, 3), (−6, 3), (−2, 7), and (−2, −1).",
-      "aspect": 1.0,
+      "alt": "A coordinate plane with x from −9 to 3 and y from −4 to 8, grid lines every 1 unit. A circle has its center C marked at the grid point (−4, 1). Point P is marked on the circle at the grid point (−1, 2), which is 3 units to the right of and 1 unit above C, and radius CP is drawn. The circle also passes through the grid points (−3, 4), (−5, 4), (−7, 2), (−1, 0), (−7, 0), (−3, −2), and (−5, −2), and it lies entirely to the left of the y-axis. The tangent line at P is not drawn.",
+      "aspect": 1,
       "plane": {
         "x": [
-          -8,
-          4
+          -9,
+          3
         ],
         "y": [
-          -3,
-          9
+          -4,
+          8
         ],
         "grid": 1,
         "axes": true,
@@ -5522,17 +5533,39 @@
         {
           "type": "circle",
           "center": [
-            -2,
-            3
+            -4,
+            1
           ],
-          "r": 4
+          "r": 3.1623
+        },
+        {
+          "type": "segment",
+          "from": [
+            -4,
+            1
+          ],
+          "to": [
+            -1,
+            2
+          ]
         },
         {
           "type": "point",
           "at": [
-            -2,
-            3
-          ]
+            -4,
+            1
+          ],
+          "label": "C",
+          "labelPos": "se"
+        },
+        {
+          "type": "point",
+          "at": [
+            -1,
+            2
+          ],
+          "label": "P",
+          "labelPos": "n"
         }
       ]
     }

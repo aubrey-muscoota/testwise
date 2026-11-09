@@ -2748,28 +2748,28 @@
     "skill_id": "rw-transitions",
     "difficulty": 1,
     "type": "mc",
-    "passage": "Many Indigenous farmers in North America traditionally planted corn, beans, and squash together, a method often called the Three Sisters. Each of the three plants helps the others grow. ______ the tall corn stalks give the bean vines something to climb, and the broad squash leaves shade the soil and keep weeds from sprouting.",
+    "passage": "Before newspapers were common and when many people could not read, English towns often employed a town crier to spread news. The crier walked through the streets ringing a handbell and calling out announcements in a loud, clear voice. These announcements covered many kinds of local business. ______ a crier might tell listeners about an upcoming market day, a new town rule, or a lost horse whose owner was offering a reward.",
     "stem": "Which choice completes the text with the most logical transition?",
     "choices": [
       "For example,",
       "However,",
-      "Instead,",
-      "Afterward,"
+      "As a result,",
+      "Instead,"
     ],
     "answer": "For example,",
     "explanation": [
-      "The second sentence makes a general claim: each plant helps the others.",
-      "The last sentence gives specific ways the plants help: corn supports beans, and squash shades the soil.",
-      "Specific cases of a general claim call for \"For example,\"."
+      "The third sentence makes a general claim: the announcements \"covered many kinds of local business.\"",
+      "The last sentence lists specific kinds: a market day, a new town rule, and a lost horse.",
+      "Specific cases that illustrate a general claim call for \"For example,\"."
     ],
     "hints": [
-      "What general claim does the second sentence make?",
-      "Does the last sentence disagree with that claim or show it in action?"
+      "What general claim does the sentence just before the blank make?",
+      "Does the last sentence challenge that claim, follow from it, or show it with particular cases?"
     ],
     "wrong_reasons": {
-      "However,": "The plants are different from one another, but the last sentence supports the claim that they help each other.",
-      "Instead,": "The plants do different jobs, but the last sentence doesn't replace anything mentioned before.",
-      "Afterward,": "Farming happens in steps, but the last sentence doesn't describe something that happens later; it explains how the plants help."
+      "However,": "Assumes the varied topics clash with what came before, but the last sentence supports the claim that the announcements covered many kinds of business.",
+      "As a result,": "Treats the list as a consequence of the announcements, but the market day, rule and lost horse are what the announcements were about, not something they caused.",
+      "Instead,": "Reads the last sentence as replacing an earlier option, but nothing before the blank is set aside; the sentence adds detail to the claim."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3369,28 +3369,28 @@
     "skill_id": "rw-transitions",
     "difficulty": 2,
     "type": "mc",
-    "passage": "The Montgomery bus boycott, which began in December 1955, is often remembered as a protest sparked by a single act of defiance on a city bus. ______ the boycott depended on months of careful organization: volunteers ran a carpool system that carried thousands of Black residents to and from work each day, allowing the protest to continue for more than a year.",
+    "passage": "Because the Inca Empire, which stretched along the Andes in the fifteenth and early sixteenth centuries, had no writing system of the familiar kind, it is sometimes assumed that its officials kept few records. ______ Inca administrators tracked population counts, labor obligations, and the contents of storehouses on khipus, bundles of knotted cords in which the type and position of each knot stood for a number.",
     "stem": "Which choice completes the text with the most logical transition?",
     "choices": [
       "However,",
-      "Therefore,",
-      "Similarly,",
-      "For example,"
+      "As a result,",
+      "In addition,",
+      "For instance,"
     ],
     "answer": "However,",
     "explanation": [
-      "The first sentence gives the common memory: a protest sparked by \"a single act of defiance.\"",
-      "The second sentence stresses what that memory leaves out: \"months of careful organization.\"",
-      "The second sentence qualifies the popular view, so a contrast transition, \"However,\", fits."
+      "The first sentence reports an assumption: the Inca \"kept few records\" because they lacked familiar writing.",
+      "The second sentence shows the opposite: administrators recorded population counts, labor obligations, and storehouse contents on khipus.",
+      "The second sentence contradicts the assumption, so a contrast transition, \"However,\", fits."
     ],
     "hints": [
-      "Which words in the first sentence show that it describes how people usually remember the boycott?",
-      "Does the second sentence support that memory or complicate it?"
+      "What does the first sentence say people sometimes assume about Inca record-keeping?",
+      "Does the detailed list of records in the second sentence back up that assumption or undercut it?"
     ],
     "wrong_reasons": {
-      "Therefore,": "The carpool system led to the protest lasting a long time; but the need for organization is not a consequence of how the boycott is remembered.",
-      "Similarly,": "Both sentences describe the boycott; but the second sentence corrects the first instead of adding a parallel point.",
-      "For example,": "The carpool system is a specific example; but it is an example of organization, not of the \"single act of defiance\" in the previous sentence."
+      "As a result,": "The first sentence opens with \"Because,\" which suggests a chain of cause and effect; but keeping detailed records on khipus is not a consequence of lacking writing or of the assumption about few records.",
+      "In addition,": "Both sentences are about Inca record-keeping, so the second can look like one more point on the same topic; but it overturns the first sentence's assumption rather than adding to it.",
+      "For instance,": "The second sentence lists specific kinds of records, which looks like an example; but those records are not an instance of keeping few records, the claim the first sentence makes."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"
@@ -3524,7 +3524,7 @@
     "skill_id": "rw-transitions",
     "difficulty": 1,
     "type": "mc",
-    "passage": "For much of the 1800s, many factory workers in the United States labored twelve hours a day or more, six days a week. Workers organized to demand shorter hours, and the slogan \"Eight hours for work, eight hours for rest, eight hours for what we will\" became a popular rallying cry. ______ the eight-hour workday did not become standard for most American workers until the twentieth century.",
+    "passage": "Three-toed sloths spend nearly their whole lives high in the rainforest canopy, where their slow movements and greenish, algae-covered fur help them avoid the notice of predators. On the ground, a sloth can barely crawl, which makes it easy prey. ______ about once a week, a sloth climbs all the way down its tree to relieve itself at the base of the trunk, a habit that puts it in real danger.",
     "stem": "Which choice completes the text with the most logical transition?",
     "choices": [
       "As a result,",
@@ -3534,18 +3534,18 @@
     ],
     "answer": "Even so,",
     "explanation": [
-      "The passage describes workers organizing and rallying for an eight-hour day.",
-      "The last sentence says that goal took until the twentieth century to reach.",
-      "That slow progress is surprising given the popular campaign, so a contrast transition, \"Even so,\", fits."
+      "The first two sentences say the canopy keeps sloths safe and the ground is where they are \"easy prey.\"",
+      "The last sentence says a sloth still climbs down about once a week, a habit that \"puts it in real danger.\"",
+      "Going to the ground despite that danger is unexpected, so a contrast transition, \"Even so,\", fits."
     ],
     "hints": [
-      "What did workers want, according to the second sentence?",
-      "Did they get it quickly, or did it take a long time despite their efforts?"
+      "According to the second sentence, what happens to a sloth on the ground?",
+      "Is the weekly trip down the tree what you would expect from an animal in that situation, or does it go against it?"
     ],
     "wrong_reasons": {
-      "As a result,": "The campaign eventually led to shorter hours; but the long delay is not a result of the campaign's popularity, it contrasts with it.",
-      "For example,": "The last sentence names a specific date; but it is not an example of the slogan or the organizing.",
-      "In addition,": "It adds another fact; but the fact works against what came before instead of adding to it."
+      "As a result,": "Treats the trip down as caused by the danger on the ground; but that danger is a reason to stay up, not a reason to climb down.",
+      "For example,": "Treats the trip down as one instance of the sloth's hiding or slowness; but it is a behavior that goes against staying safe, not an example of it.",
+      "In addition,": "Reads the last sentence as one more fact of the same kind; but it works against the earlier point about safety instead of adding to it."
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

@@ -49,6 +49,62 @@
     "templates": "43 Math pairs share a template with different numbers and answers (systems of equations, 'what value of x satisfies', graph readings); kept, they are the skill's standard forms.",
     "topics": "13 passage pairs share a subject and opening across skills: the Three Sisters planting (6 items), the Montgomery bus boycott (5), the Silk Road (3), Antarctic ice cores, arctic terns, bunraku, 1800s factory hours, bread yeast (2 each)."
   },
-  "rewritten": "In progress: each duplicate and the passages in the topic clusters are being replaced through the pipeline below; the list of replaced items lands with them.",
+  "rewritten": {
+    "about": "Twenty items replaced on Nov 9, 2026. Each went through: a writer (new content, same id, skill, difficulty, type and answer letter), check_items.py, a blind solve by a separate reviewer that had to reach the key, and an adversarial review; items the review sent back were revised and solved again. Three small final touches were made by hand after the reviews (a figure label moved clear of a tick label, a hint reworded so it no longer assumed the lines meet, and two pronouns replaced with 'the batch'), each re-checked with check_items.py.",
+    "math": {
+      "adv-nonlinear-eq-026": "stopping-distance model, solve a quadratic for a positive speed (was the x + 1/x item shared with adv-equiv-expr-023)",
+      "geo-circles-f030": "tangent line's y-intercept from a circle drawn on the grid (was the c-in-general-form item shared with f008)",
+      "geo-circles-f016": "diameter from a center and a lattice point on the circle (was the equation item shared with f001)",
+      "adv-nonlinear-func-f035": "a cubic with a double root; which factored form fits the graph (was the same graph as f006)",
+      "geo-area-volume-f019": "surface area of a cube drawn in perspective (was the 3 by 8 cylinder shared with f005)",
+      "alg-systems-018": "hardcovers and paperbacks on a shelf, typed answer (was the garden story shared with alg-linear-eq-1var-017)",
+      "alg-systems-f017": "two lines that meet outside the window; which statement about the system is true (was a third zero-solution graph)"
+    },
+    "reading_and_writing": {
+      "rw-boundaries-140": "a Javanese gamelan ensemble (was Three Sisters)",
+      "rw-transitions-089": "English town criers before newspapers (was Three Sisters)",
+      "rw-words-context-045": "a fictional novelist's working method (was Three Sisters)",
+      "rw-text-structure-016": "Inuit snow houses on winter journeys (was Three Sisters)",
+      "rw-rhetorical-synthesis-098": "how a steelpan is made from an oil drum (was Montgomery)",
+      "rw-transitions-109": "the Inca road network (was Montgomery)",
+      "rw-central-ideas-152": "icehouses before refrigeration (was Montgomery)",
+      "rw-form-structure-158": "how a geyser erupts (was the Silk Road)",
+      "rw-words-context-080": "the slope of Roman aqueducts (was Antarctic ice cores)",
+      "rw-form-structure-048": "Roman floor mosaics (was arctic terns)",
+      "rw-rhetorical-synthesis-160": "a fictional seed bank's testing and regrowing (was bunraku)",
+      "rw-transitions-114": "three-toed sloths (was 1800s factory hours)",
+      "rw-words-context-105": "the telegraph and Morse code (was bread yeast)"
+    },
+    "kept": {
+      "Three Sisters": [
+        "rw-boundaries-060",
+        "rw-inferences-114"
+      ],
+      "Montgomery bus boycott": [
+        "rw-transitions-029",
+        "rw-boundaries-080"
+      ],
+      "Silk Road": [
+        "rw-transitions-016",
+        "rw-rhetorical-synthesis-045"
+      ],
+      "ice cores": [
+        "rw-boundaries-055"
+      ],
+      "arctic tern": [
+        "rw-boundaries-037"
+      ],
+      "bunraku": [
+        "rw-rhetorical-synthesis-080"
+      ],
+      "factory hours": [
+        "rw-inferences-139"
+      ],
+      "bread yeast": [
+        "rw-form-structure-051"
+      ]
+    },
+    "after": "The scan reports no duplicate, near-copy or shared-subject pair beyond the one allowed pair; 42 Math pairs still share a template with different numbers and answers, which is how drill items are."
+  },
   "pipeline": "Each replacement: written to the item format with new content; check_items.py (schema, choices, figure, passage rules, check code); a blind solve by a separate reviewer that had to reach the key; an adversarial review for a second defensible answer, figure/stem/key agreement, factual errors, difficulty and closeness to siblings; the answer kept the old item's letter so the file's balance holds."
 }

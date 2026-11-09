@@ -4327,28 +4327,30 @@
     "skill_id": "rw-boundaries",
     "difficulty": 2,
     "type": "mc",
-    "passage": "Many Indigenous farmers of North America planted corn, beans, and squash together in a system often called the Three Sisters. Each crop helps the ______ cornstalks give the bean vines something to climb, the beans add nitrogen to the soil, and the broad squash leaves shade out weeds.",
+    "passage": "In a Javanese gamelan ensemble, no single musician carries the piece alone. Each group of instruments has its own ______ mark the ends of the long musical phrases; the rows of bronze keys play the core melody; and the drums set the tempo and signal the changes that the whole ensemble follows.",
     "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
-      "others, cornstalks",
-      "others cornstalks",
-      "others: cornstalks",
-      "others: cornstalks,"
+      "role, the large gongs",
+      "role the large gongs",
+      "role: the large gongs",
+      "role: the large gongs,"
     ],
-    "answer": "others: cornstalks",
+    "answer": "role: the large gongs",
     "explanation": [
-      "\"Each crop helps the others\" is a complete clause.",
-      "What follows explains how each crop helps the others.",
-      "A colon after a complete clause introduces such an explanation."
+      "\"Each group of instruments has its own role\" is a complete independent clause.",
+      "What follows spells out those roles in a series of clauses separated by semicolons, one group of instruments at a time.",
+      "A colon after a complete clause introduces such an explanation.",
+      "After the colon, \"the large gongs\" is the subject of \"mark,\" so no comma belongs between them."
     ],
     "hints": [
-      "Can \"Each crop helps the others\" stand alone as a sentence?",
-      "Does what follows explain that claim?"
+      "Can \"Each group of instruments has its own role\" stand alone as a sentence?",
+      "Does what follows the blank explain that claim, or start an unrelated thought?",
+      "What is the verb that goes with \"the large gongs\"?"
     ],
     "wrong_reasons": {
-      "others, cornstalks": "The explanation seems closely tied to the claim, but a comma alone between two independent clauses is a comma splice.",
-      "others cornstalks": "\"Others cornstalks\" reads quickly, but with no punctuation the independent clauses run together.",
-      "others: cornstalks,": "The colon is correct, but the comma after \"cornstalks\" separates the subject from its verb \"give.\""
+      "role, the large gongs": "The explanation feels closely tied to the claim it explains, but a comma alone between two independent clauses is a comma splice.",
+      "role the large gongs": "The sentence seems to read straight through, but with no punctuation \"role the large gongs mark\" runs two independent clauses together.",
+      "role: the large gongs,": "The colon is correct, but the comma after \"gongs\" separates the subject \"the large gongs\" from its verb \"mark.\""
     },
     "check": null,
     "check_note": "verbal item: verified by blind solve"

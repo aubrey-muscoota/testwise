@@ -4509,119 +4509,149 @@
     "skill_id": "geo-area-volume",
     "difficulty": 1,
     "type": "mc",
-    "stem": "The right circular cylinder shown has the dimensions labeled, in inches. What is the volume of the cylinder, in cubic inches?",
+    "stem": "The solid shown is a cube with edges 9 centimeters long, as labeled. What is the total surface area of the cube, in square centimeters?",
     "choices": [
-      "72π",
-      "24π",
-      "48π",
-      "192π"
+      "486",
+      "81",
+      "324",
+      "729"
     ],
-    "answer": "72π",
+    "answer": "486",
     "explanation": [
-      "The volume of a cylinder is V = πr²h.",
-      "Here r = 3 and h = 8.",
-      "V = π(3²)(8) = π(9)(8) = 72π cubic inches."
+      "Every face of a cube is a square whose side is the edge of the cube, so each face has area 9² = 81 square centimeters.",
+      "A cube has 6 faces: the front, back, left, right, top and bottom.",
+      "The total surface area is 6 × 81 = 486 square centimeters."
     ],
     "hints": [
-      "What is the area of the circular base?",
-      "How many copies of that base stack up to the height?"
+      "What shape is each face of the cube, and how could you find its area?",
+      "How many faces does the cube have, counting the ones hidden behind the figure?"
     ],
     "wrong_reasons": {
-      "24π": "Used πrh, forgetting to square the radius",
-      "48π": "Computed 2πrh, the area of the curved side, instead of the volume",
-      "192π": "Swapped the radius and height, computing π(8²)(3)"
+      "81": "Found the area of one face, 9², instead of the area of all the faces",
+      "324": "Counted only the four side faces, leaving out the top and the bottom",
+      "729": "Computed the volume, 9³, instead of the surface area"
     },
-    "check": "from sympy import *\nr,h=3,8\nV=pi*r**2*h\nresult=f\"{V/pi}π\"",
+    "check": "e=9\nresult=6*e**2",
     "figure": {
-      "alt": "A right circular cylinder standing upright. A segment from the center of the top circular face to its edge is labeled 3 (the radius). The vertical side of the cylinder is labeled 8 (the height).",
-      "aspect": 0.833,
+      "alt": "A cube drawn in perspective with its hidden edges dashed. The front bottom edge is labeled 9, and every edge of the cube has that same length.",
+      "aspect": 1.12,
       "plane": {
         "x": [
-          -5,
-          5
+          -1.5,
+          16
         ],
         "y": [
-          -2,
-          10
+          -1.5,
+          14.125
         ],
         "grid": 0,
         "axes": false
       },
       "elements": [
         {
-          "type": "function",
-          "expr": "8 + 0.8*sqrt(1 - (x/3)^2)",
-          "domain": [
-            -3,
-            3
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              0,
+              9
+            ]
+          ],
+          "sideLabels": [
+            "9",
+            "",
+            "",
+            ""
           ]
         },
         {
-          "type": "function",
-          "expr": "8 - 0.8*sqrt(1 - (x/3)^2)",
-          "domain": [
-            -3,
-            3
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              9
+            ],
+            [
+              5.4,
+              12.6
+            ],
+            [
+              14.4,
+              12.6
+            ],
+            [
+              9,
+              9
+            ]
           ]
         },
         {
-          "type": "function",
-          "expr": "0 - 0.8*sqrt(1 - (x/3)^2)",
-          "domain": [
-            -3,
-            3
+          "type": "polygon",
+          "points": [
+            [
+              9,
+              0
+            ],
+            [
+              14.4,
+              3.6
+            ],
+            [
+              14.4,
+              12.6
+            ],
+            [
+              9,
+              9
+            ]
           ]
         },
         {
-          "type": "function",
-          "expr": "0 + 0.8*sqrt(1 - (x/3)^2)",
-          "domain": [
-            -3,
-            3
+          "type": "segment",
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            5.4,
+            3.6
           ],
           "dash": true
         },
         {
           "type": "segment",
           "from": [
-            -3,
-            0
+            5.4,
+            3.6
           ],
           "to": [
-            -3,
-            8
-          ]
+            14.4,
+            3.6
+          ],
+          "dash": true
         },
         {
           "type": "segment",
           "from": [
-            3,
-            0
+            5.4,
+            3.6
           ],
           "to": [
-            3,
-            8
+            5.4,
+            12.6
           ],
-          "label": "8"
-        },
-        {
-          "type": "point",
-          "at": [
-            0,
-            8
-          ]
-        },
-        {
-          "type": "segment",
-          "from": [
-            0,
-            8
-          ],
-          "to": [
-            3,
-            8
-          ],
-          "label": "3"
+          "dash": true
         }
       ]
     }

@@ -678,30 +678,31 @@
     "skill_id": "adv-nonlinear-eq",
     "difficulty": 3,
     "type": "mc",
-    "stem": "If x + 1/x = 5, what is the value of x² + 1/x²?",
+    "stem": "A driving-safety course models the stopping distance d, in feet, of a car traveling at v miles per hour as d = 0.05v² + v. According to the model, a car traveling at 40 miles per hour has a stopping distance of 120 feet. At what speed, in miles per hour, does the model give a stopping distance twice that long?",
     "choices": [
-      "10",
-      "23",
-      "25",
-      "27"
+      "40√2",
+      "60",
+      "80",
+      "120"
     ],
-    "answer": "23",
+    "answer": "60",
     "explanation": [
-      "Square both sides: (x + 1/x)² = 25.",
-      "Expand the left side: x² + 2(x)(1/x) + 1/x² = x² + 2 + 1/x².",
-      "So x² + 2 + 1/x² = 25.",
-      "Therefore x² + 1/x² = 23."
+      "Twice 120 feet is 240 feet, so set d = 240: 0.05v² + v = 240.",
+      "Multiply both sides by 20 to clear the decimal: v² + 20v = 4,800, so v² + 20v − 4,800 = 0.",
+      "Factor: (v + 80)(v − 60) = 0, so v = −80 or v = 60.",
+      "A speed is positive, so v = 60. Check: 0.05(60)² + 60 = 180 + 60 = 240."
     ],
     "hints": [
-      "Is there a way to get x² and 1/x² to show up without solving for x?",
-      "When you square a sum, what middle term appears, and what does x · (1/x) simplify to?"
+      "What stopping distance are you looking for, and what equation do you get when you set the model equal to it?",
+      "If the speed doubled, would the model's distance double? What does the v² term do to that?",
+      "Once you have two values of v, which one can be a speed?"
     ],
     "wrong_reasons": {
-      "10": "Doubled 5 instead of squaring the expression",
-      "25": "Squared each term separately and forgot the middle term",
-      "27": "Added the middle term 2 instead of subtracting it"
+      "80": "Assumed doubling the stopping distance means doubling the speed, as if the model were linear",
+      "120": "Did not divide by 2a in the quadratic formula, taking −20 + 140 as the speed",
+      "40√2": "Treated stopping distance as proportional to v² and ignored the linear term, so doubling d multiplies v by √2"
     },
-    "check": "from sympy import *\nx,y,t,p,w,k,a=symbols('x y t p w k a')\nr=[v for v in solve(x+1/x-5,x)]\nvals=set(simplify(v**2+1/v**2) for v in r)\nassert len(vals)==1\nresult=vals.pop()"
+    "check": "from sympy import *\nx,y,t,p,w,k,a,b,c,u,v,s=symbols('x y t p w k a b c u v s')\nd=Rational(1,20)*v**2+v\nassert d.subs(v,40)==120\nr=[q for q in solve(Eq(d,2*d.subs(v,40)),v) if q>0]\nassert len(r)==1\nresult=r[0]"
   },
   {
     "id": "adv-nonlinear-eq-027",

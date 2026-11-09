@@ -492,19 +492,20 @@
     "skill_id": "alg-systems",
     "difficulty": 2,
     "type": "spr",
-    "stem": "A rectangular garden has a length that is 3 feet more than twice its width. The perimeter of the garden is 54 feet. What is the length of the garden, in feet?",
-    "answer": "19",
+    "stem": "A shelf that is 120 centimeters long is exactly filled by a row of 18 hardcover books and 24 paperback books. A second shelf that is 100 centimeters long is exactly filled by a row of 10 hardcover books and 30 paperback books. All the hardcovers have the same thickness, and all the paperbacks have the same thickness. What is the thickness, in centimeters, of one hardcover book?",
+    "answer": "4",
     "explanation": [
-      "Let l be the length and w the width: l = 2w + 3 and 2l + 2w = 54.",
-      "Divide the perimeter equation by 2: l + w = 27.",
-      "Substitute: (2w + 3) + w = 27, so 3w = 24 and w = 8.",
-      "Then l = 2(8) + 3 = 19 feet."
+      "Let a be the thickness of one hardcover and b the thickness of one paperback, in centimeters: 18a + 24b = 120 and 10a + 30b = 100.",
+      "Divide the second equation by 10: a + 3b = 10, so a = 10 − 3b.",
+      "Substitute into the first equation: 18(10 − 3b) + 24b = 120, so 180 − 30b = 120 and b = 2.",
+      "Then a = 10 − 3(2) = 4 centimeters. Check: 18(4) + 24(2) = 120 and 10(4) + 30(2) = 100."
     ],
     "hints": [
-      "What two facts does the problem give you, and how can each be written as an equation?",
-      "After you find one dimension, does it answer the question that was asked?"
+      "What are the two unknowns, and what equation does each shelf give you?",
+      "Can one of the equations be simplified so that you can write one thickness in terms of the other?",
+      "Does the value you found answer the question that was asked?"
     ],
-    "check": "from sympy import *\nl,w=symbols('l w')\nresult=solve([l-(2*w+3),2*l+2*w-54],[l,w])[l]"
+    "check": "from sympy import *\na,b=symbols('a b')\nresult=solve([18*a+24*b-120,10*a+30*b-100],[a,b])[a]"
   },
   {
     "id": "alg-systems-019",
@@ -3519,34 +3520,35 @@
     "skill_id": "alg-systems",
     "difficulty": 2,
     "type": "mc",
-    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Each line passes through the two marked points on it. How many solutions does the system have?",
+    "stem": "The graph of a system of two linear equations is shown in the xy-plane. Each line passes through the two marked points on it. Which statement about the system is true?",
     "choices": [
-      "Exactly one",
-      "Exactly two",
-      "Infinitely many",
-      "Zero"
+      "The system has no solution, because the lines are parallel.",
+      "The system has infinitely many solutions, because both lines rise from left to right.",
+      "The system has exactly one solution, (3, 3).",
+      "The system has exactly one solution, (9, 5)."
     ],
-    "answer": "Zero",
+    "answer": "The system has exactly one solution, (9, 5).",
     "explanation": [
-      "The first line goes from (0, 1) to (2, 4): it rises 3 for a run of 2, so its slope is 3/2.",
-      "The second line goes from (0, −2) to (2, 1): it also rises 3 for a run of 2, so its slope is 3/2.",
-      "The slopes are equal but the y-intercepts (1 and −2) are different, so the lines are parallel and never meet.",
-      "A system whose lines never meet has zero solutions."
+      "The first line goes from (0, −1) to (3, 1): it rises 2 over a run of 3, so its slope is 2/3 and its equation is y = (2/3)x − 1.",
+      "The second line goes from (0, 2) to (3, 3): it rises 1 over a run of 3, so its slope is 1/3 and its equation is y = (1/3)x + 2.",
+      "The slopes are different, so the lines are not parallel and must cross at exactly one point, even though the crossing is outside the window shown.",
+      "Setting (2/3)x − 1 = (1/3)x + 2 gives (1/3)x = 3, so x = 9, and y = (1/3)(9) + 2 = 5. Both equations hold at (9, 5), so the system has exactly one solution, (9, 5)."
     ],
     "hints": [
-      "Use the marked points to find the slope of each line. How do they compare?",
-      "If two lines have the same slope, what decides whether they are the same line or never touch?"
+      "Read the two marked points on each line. What does each pair of points tell you about its line?",
+      "Use the marked points to find the slope of each line. What do the two slopes tell you about whether the lines meet?",
+      "Write an equation for each line and set the two expressions for y equal. Does the point you get lie on both lines?"
     ],
     "wrong_reasons": {
-      "Exactly one": "Assumed two different lines must cross somewhere, without comparing slopes",
-      "Exactly two": "Counted one solution for each equation instead of the shared points",
-      "Infinitely many": "Saw equal slopes and concluded the lines are the same, ignoring the different y-intercepts"
+      "The system has no solution, because the lines are parallel.": "Judged the lines parallel because they do not cross inside the window shown, without comparing the slopes 2/3 and 1/3",
+      "The system has infinitely many solutions, because both lines rise from left to right.": "Treated two lines that both rise as the same line, and counted every point on a line as a solution instead of only the points on both lines",
+      "The system has exactly one solution, (3, 3).": "Took a marked point as the solution, but (3, 3) lies only on the second line: the first line has y = 1 at x = 3"
     },
-    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ndef count(a,b):\n    s=solve([a,b],[x,y],dict=True)\n    if not s: return 'Zero'\n    if len(s[0])<2: return 'Infinitely many'\n    return 'Exactly one'\nresult=count(L((0,1),(2,4)),L((0,-2),(2,1)))",
+    "check": "from sympy import *\nx,y=symbols('x y')\ndef L(p,q):\n    m=Rational(q[1]-p[1],q[0]-p[0])\n    return y-(m*(x-p[0])+p[1])\ne1=L((0,-1),(3,1))\ne2=L((0,2),(3,3))\ns=solve([e1,e2],[x,y],dict=True)\nassert len(s)==1 and len(s[0])==2\nresult='The system has exactly one solution, (%s, %s).'%(s[0][x],s[0][y])",
     "table": null,
     "figure": {
-      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn, both rising from left to right. The first line passes through the marked points (0, 1) and (2, 4). The second line passes through the marked points (0, −2) and (2, 1). The second line is 3 units directly below the first line everywhere.",
-      "aspect": 1.0,
+      "alt": "A coordinate plane from −5 to 5 on both axes, with grid lines every 1 unit. Two lines are drawn, both rising from left to right. The first line passes through the marked points (0, −1) and (3, 1). The second line passes through the marked points (0, 2) and (3, 3). The first line is steeper, and the second line is above the first everywhere in the window; the vertical gap between them shrinks from 3 units at x = 0 to about 1.3 units at x = 5, and the lines do not cross inside the window.",
+      "aspect": 1,
       "plane": {
         "x": [
           -5,
@@ -3568,11 +3570,11 @@
           "through": [
             [
               0,
-              1
+              -1
             ],
             [
-              2,
-              4
+              3,
+              1
             ]
           ]
         },
@@ -3581,11 +3583,11 @@
           "through": [
             [
               0,
-              -2
+              2
             ],
             [
-              2,
-              1
+              3,
+              3
             ]
           ]
         },
@@ -3593,28 +3595,28 @@
           "type": "point",
           "at": [
             0,
-            1
+            -1
           ]
         },
         {
           "type": "point",
           "at": [
-            2,
-            4
+            3,
+            1
           ]
         },
         {
           "type": "point",
           "at": [
             0,
-            -2
+            2
           ]
         },
         {
           "type": "point",
           "at": [
-            2,
-            1
+            3,
+            3
           ]
         }
       ]
