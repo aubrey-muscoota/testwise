@@ -12,7 +12,9 @@ checklist; do the next unchecked item of the current release) and `docs/DESIGN.m
   (`scripts/ui-tour.cjs`). Nothing that reads as AI-generated: no pills, eyebrows, bordered cards, emoji icons,
   all-caps, gradients, opacity tints, pep talk.
 - Item checks run in CI with only sympy installed: never import numpy in item code.
-- Merging to `main` deploys to the live preview. Aubrey allows merging Testwise PRs once CI is green.
+- Merging to `main` deploys to staging (testwise-staging on workers.dev). Aubrey allows merging Testwise PRs once CI is
+  green. Production updates only when Aubrey publishes a GitHub release: never publish a release or run "Deploy
+  production" without her OK (README, "Deploy").
 - Never put secrets, API keys or model names in code comments, commits, PRs or docs. Model ids live only in
   `wrangler.jsonc` vars.
 - No link or route from muscoota.com to the app, and no public launch, without Aubrey's OK.

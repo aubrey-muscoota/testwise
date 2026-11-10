@@ -1,0 +1,17 @@
+# Every merge to main goes to staging first:
+# https://testwise-staging.aubrey-9f5.workers.dev
+name: Deploy staging
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency: deploy-staging
+jobs:
+  staging:
+    uses: ./.github/workflows/deploy-reusable.yml
+    with:
+      target: staging
+      ref: ${{ github.sha }}
+    secrets: inherit

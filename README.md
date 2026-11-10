@@ -78,15 +78,30 @@ npx playwright test      # every item type at three screen sizes, against test/u
 
 ## Deploy (Cloudflare)
 
-Deploys run from GitHub Actions on every merge to `main` (`.github/workflows/deploy.yml`), the same way Reed does.
+Testwise runs in two places, each with its own Worker and its own D1 database:
+
+| | Address | Database | Updates when |
+| --- | --- | --- | --- |
+| Staging | `testwise-staging.<your-subdomain>.workers.dev` | `testwise-staging` | Every merge to `main` (`.github/workflows/deploy-staging.yml`) |
+| Production | `testwise.<your-subdomain>.workers.dev` | `testwise` | A GitHub release is published, or the "Deploy production" workflow is run by hand (`.github/workflows/deploy-production.yml`) |
+
+Production is what students use. Staging is where each change lands first, so it can be tried before students see it. The two never share data. Both workflows run the same steps (`.github/workflows/deploy-reusable.yml`): tests, web build, create the D1 database if missing, apply migrations, load the questions, deploy the Worker, and pass the API key to it as a Worker secret. In `wrangler.jsonc`, the top level is production and `env.staging` is staging; wrangler doesn't carry vars or databases into an env, so staging repeats them (a test checks the var names match).
 
 One-time setup:
 
 1. Cloudflare: My Profile, API Tokens, Create Custom Token, with Account permissions **Workers Scripts: Edit** and **D1: Edit**. Copy the token and your Account ID (shown on the Workers & Pages overview).
-2. Anthropic Console: create an API key for Socrates and set a monthly spend limit.
+2. Anthropic Console: create an API key for Socrates and set a monthly spend limit. Staging and production share it.
 3. This repo: Settings, Secrets and variables, Actions. Add `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and `CLAUDE_API_KEY` (your Claude API key; the deploy hands it to the Worker as `ANTHROPIC_API_KEY`).
-4. Merge to `main`, or run the Deploy workflow by hand. It runs the tests, builds the web app, creates the D1 database if missing, applies migrations, loads the questions, deploys the Worker, and passes the API key to it as a Worker secret.
+4. Merge to `main`: staging deploys and creates its database the first time.
 
-The preview runs on `testwise.<your-subdomain>.workers.dev`. The deploy log prints the exact URL. The app also works mounted at `muscoota.com/testwise`, but no route is configured until that's approved.
+Releasing to production:
+
+1. Try the change on staging.
+2. On GitHub, open Releases, click "Draft a new release", create a new tag such as `v1.6.0` on `main`, and click "Publish release". The "Deploy production" workflow starts on its own. A release marked "Set as a pre-release" does not deploy.
+3. To roll back, open Actions, pick "Deploy production", click "Run workflow" and enter the older release tag. Migrations only move forward, so a migration must keep working with the previous release's code (add columns and tables, don't drop or rename them in the same release that stops using them).
+
+To require a second click before production deploys, open Settings, Environments, "production" (or create it with "New environment" before the first release) and add yourself under "Required reviewers". GitHub offers this on public repos and, for private repos, only on some paid plans. Without it, the gate is who can publish releases or run workflows, which is everyone with write access to the repo.
+
+The app also works mounted at `muscoota.com/testwise`, but no route is configured until that's approved.
 
 Socrates' model is the `TUTOR_MODEL` variable in `wrangler.jsonc`. Without `ANTHROPIC_API_KEY`, Socrates walks through each question's written hints instead.

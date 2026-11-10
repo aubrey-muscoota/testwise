@@ -18,6 +18,10 @@ jobs:
         working-directory: app
       - run: npm test
       - run: cd app && npx tsc --noEmit && npm run --prefix .. build:app
+      - name: Check both deploy targets build (no upload)
+        run: |
+          npx wrangler deploy --dry-run --outdir /tmp/dry-prod --env=
+          npx wrangler deploy --dry-run --outdir /tmp/dry-staging --env=staging
   # Every item type renderer at 390x844, 375x667 and 1440x900, against the
   # baselines in test/ui/__screenshots__ (see test/ui/renderers.spec.mjs).
   ui:
