@@ -111,6 +111,7 @@ guards against them coming back.
 | #11 | Nov 9 | Lesson screen split into `app/src/lesson/`; renderer screenshot checks (15 fixtures, 3 widths) in CI; two renderer fixes they found |
 | #12 | Nov 9 | "Download my data" export; one left edge on wide desktops; a lower result panel on 375x667; the duplicate scan script |
 | #13 | Nov 9 | 20 items replaced after the duplicate scan (6 duplicates, 1 reused story, 13 passages on shared subjects), each through write, code check, blind solve and adversarial review; the scan joins `npm test` |
+| #14 | Nov 10 | Staging and production split: merges deploy `testwise-staging`, production deploys on a published release |
 
 ## Where the plan stands
 
