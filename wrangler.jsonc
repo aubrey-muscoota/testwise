@@ -4,7 +4,8 @@
   "main": "worker/index.js",
   "compatibility_date": "2025-10-01",
   "compatibility_flags": ["nodejs_compat"],
-  // Preview lives on workers.dev. A muscoota.com/testwise route gets added
+  // Production lives on workers.dev (testwise); staging is env.staging below.
+  // A muscoota.com/testwise route gets added
   // only once Aubrey approves putting Testwise on the site.
   "workers_dev": true,
   "assets": {

@@ -8,7 +8,6 @@
     "seed": "node scripts/build-seed.mjs",
     "build:app": "cd app && npx expo export -p web --output-dir dist",
     "dev": "npm run seed && wrangler d1 migrations apply testwise --local && wrangler d1 execute testwise --local --file seed/seed.sql && wrangler dev",
-    "deploy": "npm run build:app && npm run seed && wrangler d1 migrations apply testwise --remote && wrangler d1 execute testwise --remote --file seed/seed.sql && wrangler deploy",
     "test:ui": "playwright test",
     "serve:dist": "node scripts/serve-dist.mjs",
     "scan:dupes": "python3 -I scripts/scan_duplicates.py exams/sat --allow exams/sat/reports/duplicates-allowed.json"

@@ -22,7 +22,7 @@ Aubrey's original brand docs are on Google Drive: Nunito, Azure #58A6FF, Socrate
 | Production | https://testwise.aubrey-9f5.workers.dev (Cloudflare Workers + D1 + static assets), database `testwise` |
 | Staging | https://testwise-staging.aubrey-9f5.workers.dev, database `testwise-staging` (its own data, never shared) |
 | Deploys | Every merge to `main` deploys staging (`deploy-staging.yml`). Production deploys when Aubrey publishes a GitHub release (`deploy-production.yml`; run it by hand with an older tag to roll back). Both call `deploy-reusable.yml`: tests, web build, D1 migrations, seed, `wrangler deploy`, API key to Worker secret. README, "Deploy" |
-| CI on PRs | Same workflow file, `test` job: `npm test`, `tsc`, web build |
+| CI on PRs | `.github/workflows/test.yml`: job `test` (`npm test`, `tsc`, web build, `wrangler deploy --dry-run` for production and staging) and job `ui` (renderer screenshots) |
 | Full build plan (v0 to v5, architecture, content pipeline, quality gates, business, risks) | Claude Doc "Testwise build plan: v0 to v5": https://claude.ai/artifact/EfYH3r2gBRBcNnUPTvGauJ |
 | Release checklist | `docs/PLAN.md` (tick items in the PR that finishes them) |
 | Design rules | `docs/DESIGN.md` (palette, type, layout, voice, motion, Do list, Never checklist) |

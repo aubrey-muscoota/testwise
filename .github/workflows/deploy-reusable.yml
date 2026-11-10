@@ -17,8 +17,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # A GitHub environment per target: its page lists every deploy, and
-    # required reviewers can be added to production in the repo settings.
+    # A GitHub environment per target: its page lists every deploy. Where the
+    # GitHub plan allows it, production can also require a reviewer (README).
     environment:
       name: ${{ inputs.target }}
       url: ${{ inputs.target == 'production' && 'https://testwise.aubrey-9f5.workers.dev' || 'https://testwise-staging.aubrey-9f5.workers.dev' }}
@@ -34,6 +34,14 @@ jobs:
             staging|production) ;;
             *) echo "Unknown target ${{ inputs.target }}"; exit 1 ;;
           esac
+      - name: Check the ref
+        env: { REF: "${{ inputs.ref }}" }
+        run: |
+          # actions/checkout reads a short commit SHA as a branch name and fails.
+          if printf '%s' "$REF" | grep -Eq '^[0-9a-f]{7,39}$'; then
+            echo "\"$REF\" looks like a short commit SHA. Use the release tag or the full 40-character SHA."
+            exit 1
+          fi
       - uses: actions/checkout@v4
         with: { ref: "${{ inputs.ref }}" }
       - uses: actions/setup-node@v4

@@ -3,8 +3,8 @@
 // The two places Testwise runs. Production is the top level of wrangler.jsonc,
 // staging is env.staging.
 export const TARGETS = {
-  production: { database: "testwise", envFlag: [] },
-  staging: { database: "testwise-staging", envFlag: ["--env", "staging"] },
+  production: { database: "testwise" },
+  staging: { database: "testwise-staging" },
 };
 
 // Strip // and /* */ comments so JSON.parse can read wrangler.jsonc. Leaves

@@ -97,12 +97,10 @@ One-time setup:
 Releasing to production:
 
 1. Try the change on staging.
-2. On GitHub, open Releases, click "Draft a new release", create a new tag such as `v1.6.0` on `main`, and click "Publish release". The "Deploy production" workflow starts on its own.
+2. On GitHub, open Releases, click "Draft a new release", create a new tag such as `v1.6.0` on `main`, and click "Publish release". The "Deploy production" workflow starts on its own. A release marked "Set as a pre-release" does not deploy.
 3. To roll back, open Actions, pick "Deploy production", click "Run workflow" and enter the older release tag. Migrations only move forward, so a migration must keep working with the previous release's code (add columns and tables, don't drop or rename them in the same release that stops using them).
 
-To require a second click before production deploys, open Settings, Environments, "production" and add yourself under "Required reviewers". GitHub creates the environment on the first production deploy.
-
-`npm run deploy` deploys production from your own machine, skipping the release step. Prefer the release.
+To require a second click before production deploys, open Settings, Environments, "production" (or create it with "New environment" before the first release) and add yourself under "Required reviewers". GitHub offers this on public repos and, for private repos, only on some paid plans. Without it, the gate is who can publish releases or run workflows, which is everyone with write access to the repo.
 
 The app also works mounted at `muscoota.com/testwise`, but no route is configured until that's approved.
 
