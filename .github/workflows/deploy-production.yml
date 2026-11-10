@@ -1,0 +1,23 @@
+# Production (https://testwise.aubrey-9f5.workers.dev) updates only when
+# Aubrey publishes a GitHub release, or runs this workflow by hand. To roll
+# back, run it by hand with an older release tag as the ref.
+name: Deploy production
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Release tag, branch or commit to put live
+        required: true
+        default: main
+permissions:
+  contents: read
+concurrency: deploy-production
+jobs:
+  production:
+    uses: ./.github/workflows/deploy-reusable.yml
+    with:
+      target: production
+      ref: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.ref }}
+    secrets: inherit

@@ -19,8 +19,9 @@ Aubrey's original brand docs are on Google Drive: Nunito, Azure #58A6FF, Socrate
 | What | Where |
 | --- | --- |
 | Repo | `aubrey-muscoota/testwise`, default branch `main` |
-| Live preview | https://testwise.aubrey-9f5.workers.dev (Cloudflare Workers + D1 + static assets) |
-| Deploys | GitHub Actions `.github/workflows/deploy.yml` on every merge to `main`: tests, web build, D1 migrations, seed, `wrangler deploy`, API key to Worker secret |
+| Production | https://testwise.aubrey-9f5.workers.dev (Cloudflare Workers + D1 + static assets), database `testwise` |
+| Staging | https://testwise-staging.aubrey-9f5.workers.dev, database `testwise-staging` (its own data, never shared) |
+| Deploys | Every merge to `main` deploys staging (`deploy-staging.yml`). Production deploys when Aubrey publishes a GitHub release (`deploy-production.yml`; run it by hand with an older tag to roll back). Both call `deploy-reusable.yml`: tests, web build, D1 migrations, seed, `wrangler deploy`, API key to Worker secret. README, "Deploy" |
 | CI on PRs | Same workflow file, `test` job: `npm test`, `tsc`, web build |
 | Full build plan (v0 to v5, architecture, content pipeline, quality gates, business, risks) | Claude Doc "Testwise build plan: v0 to v5": https://claude.ai/artifact/EfYH3r2gBRBcNnUPTvGauJ |
 | Release checklist | `docs/PLAN.md` (tick items in the PR that finishes them) |
@@ -163,7 +164,8 @@ Reseed after changing items or packs:
 Rules that have held so far:
 
 - Work on a branch, open a PR, let CI pass, squash-merge. Aubrey gave standing permission (Nov 5) to merge and deploy
-  Testwise PRs once CI is green. A merge to `main` deploys to the live preview.
+  Testwise PRs once CI is green. A merge to `main` deploys to staging; production updates only on a GitHub release,
+  which Aubrey publishes (or OKs). Keep migrations backward-compatible with the previous release so a rollback works.
 - Never put secrets, API keys or model names in code comments, commits, PRs or docs (model ids only in
   `wrangler.jsonc` vars).
 - Every UI change is checked against `docs/DESIGN.md` (both the Do list and the Never checklist) with screenshots at

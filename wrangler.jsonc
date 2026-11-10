@@ -32,5 +32,31 @@
     // Exam pack (exams/<id>/) for learners who haven't picked one.
     "DEFAULT_EXAM": "sat"
   },
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Staging: every merge to main deploys here first (testwise-staging on
+  // workers.dev, with its own database). The top level above is production,
+  // which only updates when Aubrey publishes a release. Wrangler doesn't copy
+  // vars or databases into an env, so they're repeated here; a test checks
+  // the var names match.
+  "env": {
+    "staging": {
+      "name": "testwise-staging",
+      "workers_dev": true,
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "testwise-staging",
+          "database_id": "00000000-0000-0000-0000-000000000000",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "vars": {
+        "TUTOR_MODEL": "claude-opus-5-5",
+        "GENERATOR_MODEL": "claude-opus-5-5",
+        // Lower than production: staging is for trying changes, not volume.
+        "GENERATOR_DAILY_CAP": "50",
+        "DEFAULT_EXAM": "sat"
+      }
+    }
+  }
 }
