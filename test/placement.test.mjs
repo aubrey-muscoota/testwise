@@ -83,3 +83,32 @@ test("Reading and Writing placement probes every domain, easy first", () => {
   const out = placementTestOut(rwProbes, new Map(rwProbes.map((x) => [x.skill_id, true])), rwSkills);
   assert.equal(out.length, rwSkills.length);
 });
+
+// ─── Setup's "Find my level": one quiz over every section ───────────────────
+import { placementPerDomain } from "../worker/engine.js";
+
+test("an all-sections quiz probes every domain of both sections, 2 a domain within max_questions", () => {
+  const every = packSkills(pack);
+  const domains = pack.skills.sections.flatMap((s) => s.domains);
+  assert.equal(pack.exam.placement.max_questions, 16);
+  assert.equal(placementPerDomain(domains.length, pack.exam.placement), 2);
+  const q = pickPlacementProbes(every, pack.exam.placement);
+  assert.equal(q.length, 16);
+  assert.deepEqual(new Set(q.map((p) => p.domain_id)), new Set(domains.map((d) => d.id)));
+  for (const d of domains) {
+    assert.deepEqual(q.filter((p) => p.domain_id === d.id).map((p) => p.difficulty), [1, 3], `${d.id}: easiest and hardest`);
+  }
+  // Easy first, and the sections take turns within a level.
+  assert.deepEqual(q.map((p) => p.level), [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1]);
+  assert.deepEqual(q.slice(0, 4).map((p) => p.section_id), ["sat-math", "sat-rw", "sat-math", "sat-rw"]);
+  // All right tests out skills in both sections.
+  const out = placementTestOut(q, new Map(q.map((p) => [p.skill_id, true])), every);
+  assert.ok(out.some((id) => id.startsWith("rw-")) && out.some((id) => !id.startsWith("rw-")));
+});
+
+test("max_questions only ever lowers the per-domain count, never below 1", () => {
+  assert.equal(placementPerDomain(4, { per_domain: 3, max_questions: 16 }), 3);
+  assert.equal(placementPerDomain(8, { per_domain: 3, max_questions: 16 }), 2);
+  assert.equal(placementPerDomain(20, { per_domain: 3, max_questions: 16 }), 1);
+  assert.equal(placementPerDomain(8, { per_domain: 3 }), 3);
+});

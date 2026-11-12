@@ -205,11 +205,13 @@ test("the data export holds every table the learner appears in, and nothing afte
   const l = await body(await startPractice(env, req(), L, { mode: "mixed", n: 4 }, null));
   for (const it of l.items) await answer(env, req(), L, { lesson_id: l.lesson_id, item_id: it.id, response: it.answer, time_ms: 1000 });
   await finishLesson(env, req(), L, { lesson_id: l.lesson_id });
-  await setProfile(env, req(), L, { daily_minutes: 30 });
+  await setProfile(env, req(), L, { daily_minutes: 15 });
+  // A time stored before today's options stays as it was in the export.
+  env.DB.raw.prepare("UPDATE learners SET daily_minutes = 45 WHERE id = ?").run(L);
   const ex = await body(await exportLearner(env, L));
   assert.equal(ex.http, 200);
   assert.equal(ex.learner.id, L);
-  assert.equal(ex.learner.daily_minutes, 30);
+  assert.equal(ex.learner.daily_minutes, 45);
   assert.equal(ex.attempts.length, 4);
   assert.ok(ex.attempts.every((a) => a.item_id && a.skill_id && typeof a.correct === "number"));
   assert.equal(ex.lessons.length, 1);
@@ -297,4 +299,170 @@ test("practice mode review serves a due miss first and counts as the plan's revi
   const review = p.today.find((t) => t.kind === "review");
   assert.ok(review?.done, JSON.stringify(p.today.map((t) => [t.id, t.done])));
   assert.equal(p.date, day);
+});
+
+// ─── Setup: the test picker, test dates, a learner made with a profile ──────
+import worker from "../worker/index.js";
+import { profileRoute } from "../worker/routes/plan.js";
+import { upcomingTestDates, _clearExamCache } from "../worker/lib/exam.js";
+import { startPlacement } from "../worker/routes/lessons.js";
+import { mock } from "node:test";
+
+const TX_DATES = {
+  source: "https://example.org/dates", checked: "2026-11-12",
+  dates: [{ date: "2026-12-05", register_by: "2026-11-20" }, { date: "2027-03-06", register_by: "2027-02-19" }, { date: "2027-08-28", anticipated: true }, { date: "2029-01-06" }],
+};
+// The test exam with two sections (numbers, words), test dates, and two stubs.
+function setupCatalog() {
+  const env = setup();
+  const q = (sql, ...a) => env.DB.raw.prepare(sql).run(...a);
+  q("UPDATE exams SET short_name = 'TX', position = 0, config = ? WHERE id = 'tx'", JSON.stringify({
+    name: "Test Exam", short_name: "TX", default_section: "tx-q",
+    sections: [{ id: "tx-q", name: "Quant", kind: "numbers", seconds_per_question: 80 }, { id: "tx-v", name: "Verbal", kind: "words", seconds_per_question: 60 }],
+    score: { min: 0, max: 60, step: 1, targets: [{ value: 40 }, { value: 50 }] },
+    placement: { per_domain: 3, difficulties: [1, 2, 3], max_questions: 4 },
+    plan: { daily_minutes: [5, 10, 15, 20], default_daily_minutes: 10 },
+    test_dates: TX_DATES,
+  }));
+  q("INSERT INTO sections (id, exam_id, name, position) VALUES ('tx-v', 'tx', 'Verbal', 1)");
+  q("INSERT INTO domains (id, exam_id, section_id, name, position) VALUES ('tx-w', 'tx', 'tx-v', 'Words', 1)");
+  q("INSERT INTO skills (id, exam_id, domain_id, name, position, prereqs) VALUES ('tx-syn', 'tx', 'tx-w', 'Synonyms', 2, '[]')");
+  q("INSERT INTO skills (id, exam_id, domain_id, name, position, prereqs) VALUES ('tx-ant', 'tx', 'tx-w', 'Antonyms', 3, '[\"tx-syn\"]')");
+  for (const skill of ["tx-syn", "tx-ant"]) {
+    for (let i = 0; i < 6; i++) {
+      q(`INSERT INTO items (id, skill_id, difficulty, type, stem, choices, answer, explanation, hints, wrong_reasons, rating, status)
+         VALUES (?, ?, ?, 'mc', ?, '["a","b","c","d"]', 'a', '["a"]', '["h"]', '{}', 0, 'live')`, `${skill}-${i}`, skill, 1 + (i % 3), `Word ${skill} ${i}?`);
+    }
+  }
+  q("INSERT INTO exams (id, name, short_name, position, enabled) VALUES ('gre', 'GRE General Test', 'GRE', 1, 0)");
+  q("INSERT INTO exams (id, name, short_name, position, enabled) VALUES ('cfa', 'CFA Level I', 'CFA', 3, 0)");
+  q("INSERT INTO exams (id, name, short_name, position, enabled) VALUES ('gmat', 'GMAT Focus Edition', 'GMAT', 2, 0)");
+  _clearExamCache();
+  return { ...env, DEFAULT_EXAM: undefined, ASSETS: { fetch: async () => new Response("") } };
+}
+const call = async (env, path, { body: b, learner, tz = "0" } = {}) => {
+  const res = await worker.fetch(new Request(`http://local${path}`, {
+    method: b ? "POST" : "GET",
+    headers: { "content-type": "application/json", "x-tz-offset": tz, ...(learner ? { "x-learner": learner } : {}) },
+    body: b ? JSON.stringify(b) : undefined,
+  }), env, {});
+  return { ...(await res.json()), http: res.status };
+};
+
+test("GET /api/exams lists every pack in picker order; not-ready ones carry only their names", async () => {
+  const env = setupCatalog();
+  const r = await call(env, "/api/exams");
+  assert.equal(r.http, 200);
+  assert.deepEqual(r.exams, [
+    { id: "tx", name: "Test Exam", short_name: "TX", ready: true, sections: ["Quant", "Verbal"] },
+    { id: "gre", name: "GRE General Test", short_name: "GRE", ready: false },
+    { id: "gmat", name: "GMAT Focus Edition", short_name: "GMAT", ready: false },
+    { id: "cfa", name: "CFA Level I", short_name: "CFA", ready: false },
+  ]);
+  // A ready pack that was turned off isn't offered.
+  env.DB.raw.prepare("UPDATE exams SET enabled = 0 WHERE id = 'tx'").run();
+  assert.equal((await call(env, "/api/exams")).exams[0].ready, false);
+});
+
+test("GET /api/exam?exam= loads a ready exam without a learner, never a stub", async () => {
+  const env = setupCatalog();
+  const tx = await call(env, "/api/exam?exam=tx");
+  assert.equal(tx.http, 200);
+  assert.equal(tx.id, "tx");
+  assert.deepEqual(tx.sections.map((x) => x.kind), ["numbers", "words"]);
+  assert.equal((await call(env, "/api/exam?exam=gre")).http, 404);
+  assert.equal((await call(env, "/api/exam?exam=nope")).http, 404);
+  assert.equal((await call(env, "/api/exam?exam=BAD!")).http, 404);
+  // Without ?exam= it is the default (first ready) exam.
+  assert.equal((await call(env, "/api/exam")).id, "tx");
+});
+
+test("test dates are filtered by the learner's local day, and a passed deadline drops", async () => {
+  const env = setupCatalog();
+  // 03:00 UTC on Dec 5: still Dec 4 in New York (offset 300), already Dec 5 in Paris (offset -60).
+  mock.timers.enable({ apis: ["Date"], now: Date.parse("2026-12-05T03:00:00Z") });
+  try {
+    const ny = await call(env, "/api/exam", { tz: "300" });
+    assert.deepEqual(ny.test_dates.map((d) => d.date), ["2026-12-05", "2027-03-06", "2027-08-28"], "two years out at most");
+    assert.equal(ny.test_dates[0].register_by, undefined, "Nov 20 has passed");
+    assert.equal(ny.test_dates[1].register_by, "2027-02-19");
+    assert.equal(ny.test_dates[2].anticipated, true);
+    const paris = await call(env, "/api/exam", { tz: "-60" });
+    assert.deepEqual(paris.test_dates.map((d) => d.date), ["2027-03-06", "2027-08-28"]);
+  } finally {
+    mock.timers.reset();
+  }
+  assert.deepEqual(upcomingTestDates({ test_dates: TX_DATES }, "2026-11-20")[0], { date: "2026-12-05", register_by: "2026-11-20" }, "the deadline day itself still counts");
+  assert.deepEqual(upcomingTestDates({}, "2026-11-20"), []);
+});
+
+test("POST /api/learners makes the learner with its exam and profile in one call", async () => {
+  const env = setupCatalog();
+  const day = new Date().toISOString().slice(0, 10);
+  const date = new Date(Date.now() + 30 * 86_400_000).toISOString().slice(0, 10);
+  const r = await call(env, "/api/learners", { body: { age_13_plus: true, exam_id: "tx", profile: { exam_date: date, daily_minutes: 5, target_score: 50 } } });
+  assert.equal(r.http, 200);
+  const row = env.DB.raw.prepare("SELECT exam_id, exam_date, daily_minutes, target_score, plan_started_at FROM learners WHERE id = ?").get(r.id);
+  assert.deepEqual({ ...row }, { exam_id: "tx", exam_date: date, daily_minutes: 5, target_score: 50, plan_started_at: day });
+  const prof = await body(await profileRoute(env, req(), r.id));
+  assert.equal(prof.onboarded, true);
+  // Not booked: no date, the default time.
+  const nb = await call(env, "/api/learners", { body: { age_13_plus: true, exam_id: "tx", profile: { not_booked: true, target_score: null } } });
+  assert.deepEqual({ ...env.DB.raw.prepare("SELECT exam_date, daily_minutes, plan_started_at FROM learners WHERE id = ?").get(nb.id) }, { exam_date: null, daily_minutes: 10, plan_started_at: day });
+  const count = () => env.DB.raw.prepare("SELECT COUNT(*) AS n FROM learners").get().n;
+  const before = count();
+  for (const [bad, want] of [
+    [{ age_13_plus: true, exam_id: "gre" }, "exam_id is not available"],
+    [{ age_13_plus: true, exam_id: "nope" }, "exam_id is not available"],
+    [{ age_13_plus: true, exam_id: "Bad id" }, "exam_id is not available"],
+    [{ age_13_plus: true, exam_id: "tx", profile: { daily_minutes: 30 } }, "daily_minutes must be one of 5, 10, 15, 20"],
+    [{ age_13_plus: true, exam_id: "tx", profile: { exam_date: "2020-01-01" } }, "exam_date is in the past"],
+  ]) {
+    const res = await call(env, "/api/learners", { body: bad });
+    assert.equal(res.http, 400, JSON.stringify(bad));
+    assert.equal(res.error, want);
+  }
+  assert.equal(count(), before, "no learner made on a 400");
+  assert.equal((await call(env, "/api/learners", { body: { exam_id: "tx" } })).http, 403, "the age answer is still needed");
+  // Old builds: only the age answer.
+  const old = await call(env, "/api/learners", { body: { age_13_plus: true } });
+  assert.equal(old.http, 200);
+  assert.deepEqual({ ...env.DB.raw.prepare("SELECT exam_id, plan_started_at FROM learners WHERE id = ?").get(old.id) }, { exam_id: null, plan_started_at: null });
+});
+
+test("daily time: 5 and 15 save, 30 doesn't, and a stored 45 reads back as 20", async () => {
+  const env = setupCatalog();
+  for (const m of [5, 15]) assert.equal((await body(await setProfile(env, req(), L, { daily_minutes: m }))).daily_minutes, m);
+  const bad = await body(await setProfile(env, req(), L, { daily_minutes: 30 }));
+  assert.equal(bad.http, 400);
+  env.DB.raw.prepare("UPDATE learners SET daily_minutes = 45 WHERE id = ?").run(L);
+  assert.equal((await body(await profileRoute(env, req(), L))).daily_minutes, 20);
+  const plan = await body(await planRoute(env, req(), L));
+  assert.equal(plan.daily_minutes, 20);
+});
+
+test("placement over every section probes both sections and tests out skills in each", async () => {
+  const env = setupCatalog();
+  const quiz = await body(await startPlacement(env, req(), L, { all: true }));
+  assert.equal(quiz.http, 200);
+  // max_questions 4 over 2 domains: 2 probes a domain, sections taking turns.
+  const skillOf = (id) => env.DB.raw.prepare("SELECT skill_id FROM items WHERE id = ?").get(id).skill_id;
+  assert.deepEqual(quiz.items.map((i) => skillOf(i.id)), ["tx-add", "tx-syn", "tx-mul", "tx-ant"]);
+  const row = env.DB.raw.prepare("SELECT kind, mode, section_id FROM lessons WHERE id = ?").get(quiz.lesson_id);
+  assert.deepEqual({ ...row }, { kind: "placement", mode: "all", section_id: null });
+  for (const it of quiz.items) await answer(env, req(), L, { lesson_id: quiz.lesson_id, item_id: it.id, response: it.answer, time_ms: 1000 });
+  const done = await body(await finishLesson(env, req(), L, { lesson_id: quiz.lesson_id }));
+  assert.deepEqual(done.placement.tested_out.map((x) => x.id).sort(), ["tx-add", "tx-ant", "tx-mul", "tx-syn"]);
+  assert.equal(done.placement.total_skills, 4, "the whole exam");
+  // A one-section quiz still works (older app builds).
+  const one = await body(await startPlacement(env, req(), L, "tx-v"));
+  assert.equal(one.http, 200);
+  assert.ok(one.items.every((i) => skillOf(i.id).startsWith("tx-syn") || skillOf(i.id).startsWith("tx-ant")));
+});
+
+test("the path colours each unit by its section's kind", async () => {
+  const env = setupCatalog();
+  const p = await body(await pathRoute(env, req(), L));
+  assert.deepEqual([...new Set(p.units.map((u) => `${u.section_id}:${u.section_kind}`))].sort(), ["tx-q:numbers", "tx-v:words"]);
+  PathResponse.parse(p);
 });

@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  buildPlan, addDays, daysBetween, effectiveExamDate, testReadyDays, prepareSkills, unitOrder, pathOrder, isDay,
+  buildPlan, addDays, daysBetween, effectiveExamDate, testReadyDays, prepareSkills, unitOrder, pathOrder, isDay, normalizeMinutes,
 } from "../worker/plan.js";
 
 // The real SAT skill map and domain weights from the exam pack.
@@ -73,8 +73,8 @@ test("after the test date: gentle message, practice still offered, no weeks", ()
 
 test("today's tasks add up to the daily time (±25%) across phases and settings", () => {
   const cases = [];
-  for (const minutes of [10, 20, 30, 45]) {
-    for (const [left, skills, reviews] of [[90, fresh(), 0], [60, fresh(), 6], [40, allStarted(), 9], [8, allStarted(), 4], [200, fresh(), 0]]) {
+  for (const minutes of [5, 10, 15, 20]) {
+    for (const [left, skills, reviews] of [[90, fresh(), 0], [60, fresh(), 6], [40, allStarted(), 9], [8, allStarted(), 4], [3, allStarted(), 4], [200, fresh(), 0]]) {
       cases.push({ minutes, left, skills, reviews });
     }
   }
@@ -83,6 +83,30 @@ test("today's tasks add up to the daily time (±25%) across phases and settings"
     const sum = p.today.reduce((a, t) => a + t.minutes, 0);
     assert.ok(Math.abs(sum - c.minutes) <= 0.25 * c.minutes, `${c.minutes} min, ${c.left} days, ${p.phase}: planned ${sum} (${p.today.map((t) => `${t.id}:${t.minutes}`).join(" ")})`);
     assert.equal(p.minutes_planned, Math.round(sum * 10) / 10);
+  }
+});
+
+test("daily time is read as one of today's options: 30 and 45 become 20", () => {
+  for (const [m, want] of [[5, 5], [10, 10], [15, 15], [20, 20], [30, 20], [45, 20], [12, 10], [3, 5], [null, null], [undefined, null]]) {
+    assert.equal(normalizeMinutes(m, [5, 10, 15, 20]), want, `${m}`);
+  }
+  assert.equal(normalizeMinutes(20, [15, 30]), 15, "another pack's options");
+  assert.equal(normalizeMinutes(45), 20, "the fallback options");
+  // The plan paces an old 45-minute learner as a 20-minute one.
+  const old = plan({ exam_date: examIn(90), plan_started_at: TODAY, skills: fresh(), daily_minutes: 45 });
+  assert.equal(old.daily_minutes, 20);
+});
+
+test("each daily goal's setup description matches a first learn day", () => {
+  // The words in the app's goal step (app/src/setup/GoalStep.tsx): lessons on day one.
+  const lessons = { 5: 1, 10: 1, 15: 1, 20: 2 };
+  for (const [m, n] of Object.entries(lessons)) {
+    const p = plan({ exam_date: examIn(90), plan_started_at: TODAY, skills: fresh(), daily_minutes: Number(m) });
+    assert.equal(p.phase, "learn");
+    assert.equal(p.today.filter((t) => t.kind === "lesson").length, n, `${m} minutes`);
+    const other = p.today.filter((t) => t.kind !== "lesson");
+    if (Number(m) === 5) assert.equal(other.length, 0, "5 minutes is one lesson and nothing else");
+    else assert.ok(other.length >= 1, `${m} minutes has more than the lesson`);
   }
 });
 

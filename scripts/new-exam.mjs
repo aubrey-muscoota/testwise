@@ -3,21 +3,31 @@
 // Usage: npm run new-exam -- <id> "<Name>" [--dir <examsDir>]
 //   e.g. npm run new-exam -- gre "GRE General Test"
 //
-// The pack starts with "enabled": false, so the seed skips it until it is ready.
-// Every file is valid as written: flip "enabled" to true and the seed loads the
+// The pack starts with "enabled": false, so the test picker lists it as not
+// ready yet and the seed loads nothing else from it until it is ready. Every
+// file is valid as written: flip "enabled" to true and the seed loads the
 // example skill and question, which is a quick way to see a new exam in the app.
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+// A stub folder (only an exam.json listing, like exams/gre/) is filled in,
+// keeping its name, short name and order.
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const json = (v) => JSON.stringify(v, null, 2) + "\n";
 
-/** Writes the pack files and returns the folder. Throws on a bad id or an existing folder. */
+/** Writes the pack files and returns the folder. Throws on a bad id or an existing pack. */
 export function scaffoldExam(id, name, examsDir = "exams") {
   if (!/^[a-z][a-z0-9-]{1,15}$/.test(id || "")) throw new Error(`exam id must be 2-16 lowercase letters, digits or hyphens, starting with a letter (got ${JSON.stringify(id)})`);
-  if (!name?.trim()) throw new Error('give the exam a name, e.g. npm run new-exam -- gre "GRE General Test"');
   const dir = join(examsDir, id);
-  if (existsSync(dir)) throw new Error(`${dir} already exists`);
+  // A stub (listed as not ready, nothing else yet) is filled in; anything more is left alone.
+  let stub = null;
+  if (existsSync(dir)) {
+    try { stub = JSON.parse(readFileSync(join(dir, "exam.json"), "utf8")); } catch { stub = null; }
+    if (!stub || stub.enabled !== false || existsSync(join(dir, "skills.json"))) throw new Error(`${dir} already exists`);
+    name = name?.trim() ? name : stub.name;
+  }
+  if (!name?.trim()) throw new Error('give the exam a name, e.g. npm run new-exam -- gre "GRE General Test"');
+  const shortName = stub?.short_name || id.toUpperCase().slice(0, 5);
   const section = `${id}-section1`;
   const domain = `${id}-domain1`;
   const skill = `${id}-skill1`;
@@ -28,18 +38,22 @@ export function scaffoldExam(id, name, examsDir = "exams") {
     "// enabled": "false keeps this pack out of the seed (and the app) until it meets the definition of ready.",
     enabled: false,
     name,
-    short_name: id.toUpperCase(),
+    "// short_name": "Up to 5 characters: the test picker shows it as the test's mark.",
+    short_name: shortName,
+    "// order": "Place in the test picker (lowest first).",
+    order: stub?.order ?? 99,
     "// tagline": "Welcome screen headline.",
-    tagline: `A daily ${id.toUpperCase()} plan, built from your test date`,
+    tagline: `${shortName} practice in five minutes a day, with Socrates`,
     "// audience": "Who studies for it, as Socrates should picture them (\"high school students\", \"graduate school applicants\").",
     audience: "test takers",
     publisher: {
       name: "The publisher",
       "// disclaimer": "Shown on Welcome and Home. Name the trademark owner.",
-      disclaimer: `Testwise is not affiliated with the publisher of the ${id.toUpperCase()}.`,
+      disclaimer: `Testwise is not affiliated with the publisher of the ${shortName}.`,
     },
-    "// score": "Total score scale.",
-    score: { min: 0, max: 100, step: 1 },
+    "// score": "Total score scale. targets: the target-score choices in setup, lowest first (label is shown instead of the number when set).",
+    score: { min: 0, max: 100, step: 1, targets: [{ value: 60 }, { value: 75 }, { value: 90, label: "90+" }] },
+    "// test_dates": "Optional. Official test days ({date, register_by?, anticipated?}, in order) and where they were read. Setup offers the ones still ahead; without it, setup shows a calendar.",
     "// default_section": "The section the sign-up placement quiz covers and the path Home opens on.",
     default_section: section,
     sections: [
@@ -47,6 +61,8 @@ export function scaffoldExam(id, name, examsDir = "exams") {
         "// id": "Globally unique (prefix it with the exam id). skills.json lists its domains under the same id.",
         id: section,
         name: "Section one",
+        "// kind": "numbers or words: the kind of thinking. It picks the section's colour (blue for numbers, teal for words).",
+        kind: "numbers",
         "// minutes, questions, modules": "As on the real test. seconds_per_question is the pacing target for timed sets.",
         minutes: 30,
         questions: 20,
@@ -62,13 +78,13 @@ export function scaffoldExam(id, name, examsDir = "exams") {
         "// passage": "Optional. {\"required\": true, \"min_words\": 20, \"max_words\": 165, \"paired_max_words\": 125} makes check_items enforce a passage per item.",
       },
     ],
-    "// placement": "Sign-up quiz: per_domain questions per domain, from early to late skills, at these difficulties (1 easy, 2 medium, 3 hard).",
-    placement: { per_domain: 3, difficulties: [1, 2, 3], seconds_per_question: 25 },
+    "// placement": "Sign-up quiz over every section: per_domain questions per domain, from early to late skills, at these difficulties (1 easy, 2 medium, 3 hard); max_questions caps the whole quiz.",
+    placement: { per_domain: 3, difficulties: [1, 2, 3], seconds_per_question: 25, max_questions: 16 },
     "// plan": "Study plan defaults: weeks when there's no test date, daily time options, and how the weeks split into phases (shares add up to 1).",
     plan: {
       default_weeks: 8,
-      daily_minutes: [10, 20, 30, 45],
-      default_daily_minutes: 20,
+      daily_minutes: [5, 10, 15, 20],
+      default_daily_minutes: 10,
       rest_days_per_week: 1,
       phases: [
         { id: "learn", name: "Learn", share: 0.5 },
@@ -97,8 +113,10 @@ export function scaffoldExam(id, name, examsDir = "exams") {
 
   const voice = {
     "//": "Socrates' exam-specific lines. persona_notes go into his system prompt; the app reads placement_intro and test_day_tips.",
-    persona_notes: [`The ${id.toUpperCase()} has one section so far. Replace this with what a tutor should know about the test.`],
+    persona_notes: [`The ${shortName} has one section so far. Replace this with what a tutor should know about the test.`],
     terms: { spr: "student-produced response", sections: { [section]: "Section one" } },
+    "// setup": "Socrates' setup questions (optional; the app has plain fallbacks).",
+    setup: { date: `When's your ${shortName}?`, goal: "How much time can you give it on a normal day?", score: "What score are you aiming for?", start: "Where do you want to start?" },
     placement_intro: { [section]: "Answer what you can and I'll skip what you already know." },
     test_day_tips: ["Answer every question if there's no penalty for guessing."],
   };

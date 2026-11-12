@@ -10,12 +10,13 @@
     "name": "Demo Board",
     "disclaimer": "Testwise is not affiliated with Demo Board."
   },
-  "score": { "min": 0, "max": 60, "step": 1 },
+  "score": { "min": 0, "max": 60, "step": 1, "targets": [{ "value": 40 }, { "value": 50 }, { "value": 60, "label": "A perfect 60" }] },
   "default_section": "demo-quant",
   "sections": [
     {
       "id": "demo-quant",
       "name": "Quantitative",
+      "kind": "numbers",
       "minutes": 30,
       "questions": 20,
       "seconds_per_question": 90,

@@ -203,9 +203,10 @@ export function isCorrect(item, response) {
 }
 
 // ─── Placement quiz ──────────────────────────────────────────────────────────
-// A short quiz for new learners: three questions per domain (the exam pack's
-// "placement": per_domain, difficulties), from an early, a middle and a late
-// skill, at easy, medium and hard difficulty. A passed
+// A short quiz for new learners: a few questions per domain (the exam pack's
+// "placement": per_domain, difficulties, max_questions), from early to late
+// skills, easy to hard. Setup's "Find my level" runs it over every section of
+// the exam; older app builds run it one section at a time. A passed
 // question "tests out" that skill and everything it builds on, so the learner
 // skips ahead instead of starting at the very first skill.
 
@@ -230,14 +231,24 @@ export function skillDepths(skills) {
   return depth;
 }
 
+/** Probes per domain: per_domain, cut so the whole quiz stays within max_questions (at least 1). */
+export function placementPerDomain(domainCount, opts = {}) {
+  const perDomain = opts.per_domain || PLACEMENT_PER_DOMAIN;
+  if (!opts.max_questions || !domainCount) return perDomain;
+  return Math.min(perDomain, Math.max(1, Math.floor(opts.max_questions / domainCount)));
+}
+
 /**
- * Which skills to probe. Skills carry {id, domain_id, prereqs, position}.
- * Returns probes ordered easy → hard (all easy ones first), so the quiz warms up.
- * @param {{per_domain?: number, difficulties?: number[]}} [opts]  exam.json "placement"
- * @returns {{skill_id:string, domain_id:string, difficulty:number, level:number}[]}
+ * Which skills to probe. Skills carry {id, domain_id, prereqs, position} and,
+ * for a quiz over several sections, section_id.
+ * Returns probes ordered easy → hard (all easy ones first), so the quiz warms
+ * up, with the sections taking turns within each level. Each probe level's
+ * difficulty is spread over `difficulties`, so two probes a domain are the
+ * easiest and the hardest.
+ * @param {{per_domain?: number, difficulties?: number[], max_questions?: number}} [opts]  exam.json "placement"
+ * @returns {{skill_id:string, domain_id:string, section_id?:string, difficulty:number, level:number}[]}
  */
 export function pickPlacementProbes(skills, opts = {}) {
-  const perDomain = opts.per_domain || PLACEMENT_PER_DOMAIN;
   const diffs = opts.difficulties?.length ? opts.difficulties : PLACEMENT_DIFFICULTIES;
   const depth = skillDepths(skills);
   const domains = new Map();
@@ -245,16 +256,30 @@ export function pickPlacementProbes(skills, opts = {}) {
     if (!domains.has(s.domain_id)) domains.set(s.domain_id, []);
     domains.get(s.domain_id).push(s);
   }
+  const perDomain = placementPerDomain(domains.size, opts);
+  const diffAt = (level) => diffs[Math.round((level * (diffs.length - 1)) / Math.max(1, perDomain - 1))] ?? diffs[diffs.length - 1];
   const probes = [];
   for (const [domainId, list] of domains) {
     const sorted = [...list].sort((a, b) => depth.get(a.id) - depth.get(b.id) || a.position - b.position);
     const n = Math.min(perDomain, sorted.length);
     const picks = n === 1 ? [0] : Array.from({ length: n }, (_, k) => Math.round((k * (sorted.length - 1)) / (n - 1)));
     picks.forEach((idx, level) => {
-      probes.push({ skill_id: sorted[idx].id, domain_id: domainId, difficulty: diffs[Math.min(level, diffs.length - 1)], level });
+      const s = sorted[idx];
+      probes.push({ skill_id: s.id, domain_id: domainId, ...(s.section_id ? { section_id: s.section_id } : {}), difficulty: diffAt(level), level });
     });
   }
-  return probes.sort((a, b) => a.level - b.level);
+  // Easy to hard; within a level the sections take turns (first section first).
+  const sectionOrder = [...new Set(skills.map((s) => s.section_id ?? ""))];
+  const turn = new Map();
+  const keyed = probes.map((p, i) => {
+    const sec = p.section_id ?? "";
+    const k = `${p.level}|${sec}`;
+    const nth = turn.get(k) ?? 0;
+    turn.set(k, nth + 1);
+    return { p, i, nth, sec: sectionOrder.indexOf(sec) };
+  });
+  keyed.sort((a, b) => a.p.level - b.p.level || a.nth - b.nth || a.sec - b.sec || a.i - b.i);
+  return keyed.map((k) => k.p);
 }
 
 /**

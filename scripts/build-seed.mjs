@@ -1,5 +1,9 @@
-// Builds seed/seed.sql from every enabled exam pack in exams/<id>/
+// Builds seed/seed.sql from the exam packs in exams/<id>/
 // (exam.json, skills.json, voice.json, items/*.json; see docs/ADDING_AN_EXAM.md).
+// Enabled packs are loaded whole. A pack that isn't enabled only gets its
+// listing (name, short name, place) so the test picker can show it as not
+// ready yet; its config is never touched, so a pack that was live and is
+// turned off keeps working for the learners already on it.
 // Content rows are upserted, so re-running keeps learner progress and
 // adaptive item ratings. Items removed from content files are retired, not deleted.
 //
@@ -18,21 +22,35 @@ const j = (v) => (v == null ? "NULL" : q(JSON.stringify(v)));
  * @param {{examsDir?: string}} [o]
  * @returns {{ok: true, sql: string, summary: string, packs: object[]} | {ok: false, problems: string[]}}
  */
-export function buildSeed({ examsDir = "exams" } = {}) {
-  const packs = loadPacks(examsDir);
+export function buildSeed({ examsDir = "exams", today = new Date().toISOString().slice(0, 10) } = {}) {
+  const every = loadPacks(examsDir, { enabledOnly: false });
+  const packs = every.filter((p) => p.exam?.enabled === true);
   if (!packs.length) return { ok: false, problems: [`${examsDir}: no exam pack has "enabled": true`] };
-  const problems = validatePacks(packs);
+  const problems = validatePacks(every);
   if (problems.length) return { ok: false, problems };
 
+  // The picker's order: the pack's "order", then its id.
+  const place = new Map([...every]
+    .sort((a, b) => (a.exam.order ?? 1e6) - (b.exam.order ?? 1e6) || a.exam.id.localeCompare(b.exam.id))
+    .map((p, i) => [p.exam.id, i]));
   const out = [];
+  for (const { exam } of every.filter((p) => p.exam.enabled !== true)) {
+    out.push(`INSERT INTO exams (id, name, short_name, position, enabled) VALUES (${q(exam.id)}, ${q(exam.name)}, ${q(exam.short_name)}, ${place.get(exam.id)}, 0) ON CONFLICT (id) DO UPDATE SET name = excluded.name, short_name = excluded.short_name, position = excluded.position, enabled = 0;`);
+  }
+  // Official test dates run out; say so while there's time to add the next year's.
+  const warnings = [];
+  for (const { exam } of packs) {
+    const ahead = (exam.test_dates?.dates || []).filter((d) => d.date > today).length;
+    if (exam.test_dates && ahead < 2) warnings.push(`exams/${exam.id}: only ${ahead} test date${ahead === 1 ? "" : "s"} left after ${today}; add the next ones to exam.json "test_dates"`);
+  }
   let pos = 0;
   let dpos = 0;
   let nDomains = 0;
   const ids = [];
-  packs.forEach((pack, ei) => {
+  packs.forEach((pack) => {
     const { exam, skills, voice } = pack;
     // The whole exam.json and voice.json go into the exams row; the Worker reads them from there (worker/lib/exam.js).
-    out.push(`INSERT INTO exams (id, name, config, voice, position) VALUES (${q(exam.id)}, ${q(exam.name)}, ${j(exam)}, ${j(voice)}, ${ei}) ON CONFLICT (id) DO UPDATE SET name = excluded.name, config = excluded.config, voice = excluded.voice, position = excluded.position;`);
+    out.push(`INSERT INTO exams (id, name, short_name, config, voice, position, enabled) VALUES (${q(exam.id)}, ${q(exam.name)}, ${q(exam.short_name)}, ${j(exam)}, ${j(voice)}, ${place.get(exam.id)}, 1) ON CONFLICT (id) DO UPDATE SET name = excluded.name, short_name = excluded.short_name, config = excluded.config, voice = excluded.voice, position = excluded.position, enabled = 1;`);
     const names = new Map(exam.sections.map((s) => [s.id, s.name]));
     const order = new Map(exam.sections.map((s, i) => [s.id, i]));
     for (const sec of skills.sections) {
@@ -56,8 +74,10 @@ export function buildSeed({ examsDir = "exams" } = {}) {
   });
   if (ids.length) out.push(`UPDATE items SET status = 'retired' WHERE id NOT IN (${ids.map(q).join(", ")});`);
   const files = packs.reduce((n, p) => n + p.files.length, 0);
-  const summary = `${packs.length} exam${packs.length > 1 ? "s" : ""} (${packs.map((p) => p.exam.id).join(", ")}): ${nDomains} domains, ${pos} skills, ${ids.length} items from ${files} files`;
-  return { ok: true, sql: out.join("\n") + "\n", summary, packs };
+  const listed = every.length - packs.length;
+  const summary = `${packs.length} exam${packs.length > 1 ? "s" : ""} (${packs.map((p) => p.exam.id).join(", ")}): ${nDomains} domains, ${pos} skills, ${ids.length} items from ${files} files` +
+    (listed ? `; ${listed} listed as not ready (${every.filter((p) => p.exam.enabled !== true).map((p) => p.exam.id).join(", ")})` : "");
+  return { ok: true, sql: out.join("\n") + "\n", summary, packs, warnings };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
@@ -75,4 +95,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   mkdirSync(dirname(outFile), { recursive: true });
   writeFileSync(outFile, res.sql);
   console.log(`${outFile}: ${res.summary}`);
+  for (const w of res.warnings) console.warn(`Reminder: ${w}`);
 }

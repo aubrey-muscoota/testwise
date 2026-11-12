@@ -53,13 +53,16 @@ export async function startLesson(env, request, learnerId, skillId, node = null)
 
 // Placement quiz: a few questions per domain, easy to hard, so a learner who
 // already knows the basics can skip ahead. Answers go through /api/answers.
-// The section defaults to the exam pack's default_section; other exams' sections are refused.
+// `requested` is { all: true } for a quiz over every section of the learner's
+// exam (setup's "Find my level"), else a section id; no section means the exam
+// pack's default_section, and other exams' sections are refused.
 export async function startPlacement(env, request, learnerId, requested = null) {
   const now = Date.now();
   const today = E.localDay(now, tzOffset(request));
   const exam = await learnerExam(env, learnerId);
-  const sectionId = sectionOf(exam, requested)?.id;
-  const skills = sectionId ? await allSkills(env, sectionId) : [];
+  const all = typeof requested === "object" && requested?.all === true;
+  const sectionId = all ? null : sectionOf(exam, requested)?.id;
+  const skills = all ? await allSkills(env, { examId: exam.id }) : sectionId ? await allSkills(env, { sectionId }) : [];
   if (!skills.length) return fail(404, "unknown section");
   const probes = E.pickPlacementProbes(skills, exam.placement);
   const ids = [...new Set(probes.map((p) => p.skill_id))];
@@ -81,8 +84,8 @@ export async function startPlacement(env, request, learnerId, requested = null) 
   ).bind(...chosen).all()).results;
   const byId = new Map(rows.map((r) => [r.id, r]));
   await env.DB.prepare(
-    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, kind, section_id) VALUES (?, ?, NULL, ?, ?, 'placement', ?)",
-  ).bind(lessonId, learnerId, now, today, sectionId).run();
+    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, kind, section_id, mode) VALUES (?, ?, NULL, ?, ?, 'placement', ?, ?)",
+  ).bind(lessonId, learnerId, now, today, sectionId, all ? "all" : null).run();
   return json({
     lesson_id: lessonId,
     skill_id: null,
@@ -91,12 +94,18 @@ export async function startPlacement(env, request, learnerId, requested = null) 
   });
 }
 
+// The skills a placement lesson covered: the whole exam (mode "all"), its
+// section, or, for lessons from before sections were stored (no section_id),
+// the exam's default section.
+const placementSkills = (env, exam, lesson) => (lesson.mode === "all"
+  ? allSkills(env, { examId: exam.id })
+  : allSkills(env, { sectionId: lesson.section_id || exam.default_section }));
+
 // Tests out the skills a finished placement quiz showed the learner knows.
 // Only ever raises progress, so finishing twice (or late) is harmless.
-// Placement lessons from before sections were stored have no section_id; they
-// were for the exam's default section.
-async function applyPlacement(env, exam, learnerId, lessonId, sectionId) {
-  const skills = await allSkills(env, sectionId || exam.default_section);
+async function applyPlacement(env, exam, learnerId, lesson) {
+  const lessonId = lesson.id;
+  const skills = await placementSkills(env, exam, lesson);
   const probes = E.pickPlacementProbes(skills, exam.placement);
   const first = (await env.DB.prepare(
     `SELECT a.skill_id, a.correct FROM attempts a WHERE a.lesson_id = ? AND a.answered_at =
@@ -117,8 +126,8 @@ async function applyPlacement(env, exam, learnerId, lessonId, sectionId) {
   return out;
 }
 
-async function placementSummary(env, exam, learnerId, sectionId) {
-  const skills = await allSkills(env, sectionId || exam.default_section);
+async function placementSummary(env, exam, learnerId, lesson) {
+  const skills = await placementSkills(env, exam, lesson);
   const mastery = await masteryMap(env, learnerId);
   const name = (s) => ({ id: s.id, name: s.name });
   const m = (s) => mastery[s.id] || { rating: 0, attempts: 0 };
@@ -168,8 +177,8 @@ export async function finishLesson(env, request, learnerId, b) {
   const extra = {};
   if (lesson.kind === "placement") {
     const exam = await learnerExam(env, learnerId);
-    if (!lesson.completed_at) await applyPlacement(env, exam, learnerId, lesson.id, lesson.section_id);
-    extra.placement = await placementSummary(env, exam, learnerId, lesson.section_id);
+    if (!lesson.completed_at) await applyPlacement(env, exam, learnerId, lesson);
+    extra.placement = await placementSummary(env, exam, learnerId, lesson);
   }
   return json({ ...done, ...extra, stats: await stats(env, learnerId, today) });
 }

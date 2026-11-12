@@ -3,15 +3,45 @@ import * as E from "../engine.js";
 import { json, fail, masteryMap, today as localToday } from "../lib/http.js";
 import { skillContext } from "../lib/skill-context.js";
 import { learnerExam } from "../lib/exam.js";
-import { buildPlan, addDays, daysBetween, isDay, effectiveExamDate, DAILY_MINUTES_OPTIONS, DEFAULT_DAILY_MINUTES } from "../plan.js";
+import { buildPlan, addDays, daysBetween, isDay, effectiveExamDate, normalizeMinutes, minutesOptions, DEFAULT_DAILY_MINUTES } from "../plan.js";
 
 export const MAX_EXAM_DAYS = 730; // a test date at most 2 years out
 export const INVALID = "__invalid__";
 
+/**
+ * Checks a profile body (POST /api/profile, or the profile in POST
+ * /api/learners) against the current values. Only given fields change.
+ * @returns {{error: string} | {exam_date: string|null, target_score: number|null, daily_minutes: number|null}}
+ */
+export function checkProfile(b, cur, day, minutes) {
+  let examDate = cur.exam_date ?? null;
+  if (b.not_booked === true) examDate = null;
+  else if (b.exam_date !== undefined) {
+    if (b.exam_date === null) examDate = null;
+    else if (b.exam_date === INVALID || !isDay(b.exam_date)) return { error: "exam_date must be YYYY-MM-DD" };
+    else if (daysBetween(day, b.exam_date) < 0) return { error: "exam_date is in the past" };
+    else if (daysBetween(day, b.exam_date) > MAX_EXAM_DAYS) return { error: "exam_date is more than 2 years away" };
+    else examDate = b.exam_date;
+  }
+  let target = cur.target_score ?? null;
+  if (b.target_score !== undefined) {
+    if (b.target_score === null) target = null;
+    else if (!Number.isInteger(b.target_score) || b.target_score < 1 || b.target_score > 10000) return { error: "target_score must be a whole number" };
+    else target = b.target_score;
+  }
+  let dailyMinutes = cur.daily_minutes ?? null;
+  if (b.daily_minutes !== undefined) {
+    if (!minutes.options.includes(b.daily_minutes)) return { error: `daily_minutes must be one of ${minutes.options.join(", ")}` };
+    dailyMinutes = b.daily_minutes;
+  }
+  return { exam_date: examDate, target_score: target, daily_minutes: dailyMinutes };
+}
+
 export async function getProfile(env, learnerId, day) {
-  const r = await env.DB.prepare(
-    "SELECT exam_date, target_score, daily_minutes, plan_started_at FROM learners WHERE id = ?",
-  ).bind(learnerId).first();
+  const [r, exam] = await Promise.all([
+    env.DB.prepare("SELECT exam_date, target_score, daily_minutes, plan_started_at FROM learners WHERE id = ?").bind(learnerId).first(),
+    learnerExam(env, learnerId).catch(() => null),
+  ]);
   const onboarded = !!r?.plan_started_at;
   const eff = day && onboarded ? effectiveExamDate({ exam_date: r.exam_date, plan_started_at: r.plan_started_at, today: day }) : null;
   return {
@@ -20,7 +50,8 @@ export async function getProfile(env, learnerId, day) {
     not_booked: onboarded && !r?.exam_date,
     assumed_exam_date: eff?.assumed ? eff.date : null,
     target_score: r?.target_score ?? null,
-    daily_minutes: r?.daily_minutes ?? null,
+    // A time from before today's options (30, 45) reads as the nearest one below.
+    daily_minutes: normalizeMinutes(r?.daily_minutes ?? null, minutesOptions(exam).options),
     plan_started_at: r?.plan_started_at ?? null,
   };
 }
@@ -32,35 +63,19 @@ export async function profileRoute(env, request, learnerId) {
 // POST /api/profile. Every field is optional; only given fields change.
 export async function setProfile(env, request, learnerId, b) {
   const day = localToday(request);
-  const cur = await env.DB.prepare(
-    "SELECT exam_date, target_score, daily_minutes, plan_started_at FROM learners WHERE id = ?",
-  ).bind(learnerId).first();
-  let examDate = cur.exam_date;
-  if (b.not_booked === true) examDate = null;
-  else if (b.exam_date !== undefined) {
-    if (b.exam_date === null) examDate = null;
-    else if (b.exam_date === INVALID || !isDay(b.exam_date)) return fail(400, "exam_date must be YYYY-MM-DD");
-    else if (daysBetween(day, b.exam_date) < 0) return fail(400, "exam_date is in the past");
-    else if (daysBetween(day, b.exam_date) > MAX_EXAM_DAYS) return fail(400, "exam_date is more than 2 years away");
-    else examDate = b.exam_date;
-  }
-  let target = cur.target_score;
-  if (b.target_score !== undefined) {
-    if (b.target_score === null) target = null;
-    else if (!Number.isInteger(b.target_score) || b.target_score < 1 || b.target_score > 10000) return fail(400, "target_score must be a whole number");
-    else target = b.target_score;
-  }
-  let minutes = cur.daily_minutes;
-  if (b.daily_minutes !== undefined) {
-    if (!DAILY_MINUTES_OPTIONS.includes(b.daily_minutes)) return fail(400, `daily_minutes must be one of ${DAILY_MINUTES_OPTIONS.join(", ")}`);
-    minutes = b.daily_minutes;
-  }
+  const [cur, exam] = await Promise.all([
+    env.DB.prepare("SELECT exam_date, target_score, daily_minutes, plan_started_at FROM learners WHERE id = ?").bind(learnerId).first(),
+    learnerExam(env, learnerId).catch(() => null),
+  ]);
+  const minutes = minutesOptions(exam);
+  const v = checkProfile(b, cur, day, minutes);
+  if (v.error) return fail(400, v.error);
   // A new (or first) test date starts a new plan from today, so pacing and
   // "behind" are measured from when the learner committed to that date.
-  const started = !cur.plan_started_at || examDate !== cur.exam_date ? day : cur.plan_started_at;
+  const started = !cur.plan_started_at || v.exam_date !== cur.exam_date ? day : cur.plan_started_at;
   await env.DB.prepare(
     "UPDATE learners SET exam_date = ?, target_score = ?, daily_minutes = ?, plan_started_at = ? WHERE id = ?",
-  ).bind(examDate, target, minutes ?? DEFAULT_DAILY_MINUTES, started, learnerId).run();
+  ).bind(v.exam_date, v.target_score, v.daily_minutes ?? minutes.default, started, learnerId).run();
   return json(await getProfile(env, learnerId, day));
 }
 
@@ -114,7 +129,8 @@ export async function planInput(env, learnerId, day) {
       today: day,
       exam_date: profile.exam_date,
       plan_started_at: profile.plan_started_at,
-      daily_minutes: profile.daily_minutes ?? DEFAULT_DAILY_MINUTES,
+      daily_minutes: profile.daily_minutes ?? ctx.minutes?.default ?? DEFAULT_DAILY_MINUTES,
+      minutes_options: ctx.minutes?.options,
       skills,
       reviews_due: Object.values(dueBy).reduce((a, n) => a + n, 0),
       reviews_due_by_skill: dueBy,

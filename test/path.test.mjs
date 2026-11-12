@@ -14,7 +14,7 @@ function load(dir) {
   for (const sec of map.sections) for (const d of sec.domains) for (const s of d.skills) {
     skills.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_name: d.name, domain_weight: d.weight, position: skills.length });
   }
-  return { skills, sections: exam.sections.map((s) => ({ id: s.id, name: s.name })) };
+  return { skills, sections: exam.sections.map((s) => ({ id: s.id, name: s.name, kind: s.kind })) };
 }
 const SAT = load("../exams/sat");
 const DEMO = load("./fixtures/exams/demo");
@@ -43,6 +43,8 @@ test("units are the domains, sections interleaved, prerequisites always earlier"
     "Problem-Solving and Data Analysis", "Standard English Conventions", "Geometry and Trigonometry", "Expression of Ideas",
   ]);
   assert.deepEqual(p.units.map((u) => u.section_index), [0, 1, 0, 1, 0, 1, 0, 1]);
+  // The colour comes from the kind of thinking, from the pack.
+  assert.deepEqual(p.units.map((u) => u.section_kind), ["numbers", "words", "numbers", "words", "numbers", "words", "numbers", "words"]);
   assert.deepEqual(p.units.map((u) => u.section_name), ["Math", "Reading and Writing", "Math", "Reading and Writing", "Math", "Reading and Writing", "Math", "Reading and Writing"]);
   const order = nodes(p).filter((n) => n.kind === "skill").map((n) => n.skill_id);
   assert.equal(order.length, SAT.skills.length);
@@ -282,6 +284,7 @@ test("exam-neutral: another pack and a one-section exam carry only their own nam
   assert.doesNotMatch(text, /SAT|Math\b|Reading/);
   assert.deepEqual(p.units.map((u) => u.name), ["Arithmetic", "Algebra"]);
   assert.ok(p.units.every((u) => u.section_index === 0));
+  assert.ok(p.units.every((u) => u.section_kind === "numbers"));
   assert.equal(p.current, "skill:demo-add");
   assert.ok(PathResponse.safeParse(p).success);
   // Without section names the unit still says which section it's in.

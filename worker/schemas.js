@@ -14,8 +14,10 @@ export const LessonStart = z.object({
   skill_id: optString,
   placement: z.coerce.boolean().catch(false).default(false),
   section: z.string().regex(/^[a-z0-9-]{1,40}$/).optional().catch(undefined),
+  // Placement over every section of the exam (setup's "Find my level").
+  all_sections: z.coerce.boolean().catch(false).default(false),
   node: optNode,
-}).catch({ placement: false });
+}).catch({ placement: false, all_sections: false });
 
 export const Answer = z.object({
   item_id: optString,
@@ -48,6 +50,15 @@ export const Profile = z.object({
   not_booked: z.boolean().optional().catch(undefined),
   target_score: present(z.union([z.number(), z.null()])),
   daily_minutes: present(z.number()),
+}).catch({});
+
+// POST /api/learners: the age answer, and from setup the picked exam and the
+// profile, so the learner is created with them in one call. Old app builds
+// send only age_13_plus. A malformed exam_id becomes "__invalid__" (400).
+export const NewLearner = z.object({
+  age_13_plus: optBool,
+  exam_id: z.string().regex(/^[a-z0-9-]{1,40}$/).optional().catch("__invalid__"),
+  profile: Profile.optional().catch(undefined),
 }).catch({});
 
 // v1.5 practice sessions.
@@ -85,7 +96,7 @@ export const PathResponse = z.object({
   stats: z.object({ xp: z.number(), streak: z.number(), xp_today: z.number(), reviews_due: z.number() }),
   current: z.string(),
   units: z.array(z.object({
-    id: z.string(), name: z.string(), section_id: z.string(), section_name: z.string(), section_index: z.number().int().min(0),
+    id: z.string(), name: z.string(), section_id: z.string(), section_name: z.string(), section_index: z.number().int().min(0), section_kind: z.enum(["numbers", "words"]),
     number: z.number().int().min(1), of: z.number().int().min(1), done: z.number().int().min(0), total: z.number().int().min(1),
     nodes: z.array(PathNode).min(1),
   })),

@@ -13,7 +13,7 @@ const SKILLS = [];
 for (const sec of map.sections) for (const d of sec.domains) for (const s of d.skills) {
   SKILLS.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_name: d.name, domain_weight: d.weight, position: SKILLS.length, attempts: 0, mastery: 0 });
 }
-const sections = exam.sections.map((s) => ({ id: s.id, name: s.name }));
+const sections = exam.sections.map((s) => ({ id: s.id, name: s.name, kind: s.kind }));
 const learned = (ids, mastery = 55) => SKILLS.map((s) => (ids.includes(s.id) ? { ...s, attempts: 10, mastery } : s));
 const base = { today: "2026-11-12", exam_date: "2027-03-13", plan_started_at: "2026-11-01", daily_minutes: 20, reviews_due: 0, sections, skill_about: voice.skill_about };
 const path = (o) => buildPath({ ...base, ...o });
@@ -27,7 +27,7 @@ const out = {
   exam: {
     id: exam.id, name: exam.name, short_name: exam.short_name, default_section: exam.default_section,
     publisher: exam.publisher, placement: exam.placement,
-    sections: exam.sections.map((s) => ({ id: s.id, name: s.name, domains: map.sections.find((x) => x.id === s.id).domains.map((d) => ({ id: d.id, name: d.name, weight: d.weight })) })),
+    sections: exam.sections.map((s) => ({ id: s.id, name: s.name, kind: s.kind, domains: map.sections.find((x) => x.id === s.id).domains.map((d) => ({ id: d.id, name: d.name, weight: d.weight })) })),
   },
   states: {
     fresh: path({ skills: SKILLS, stats: { xp: 0, streak: 0, xp_today: 0, reviews_due: 0 } }),

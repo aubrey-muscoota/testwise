@@ -5,7 +5,7 @@
 // Each handler lives in routes/ and takes (env, request, learnerId, body).
 
 import { Hono } from "hono";
-import { json, fail, requireLearner } from "./lib/http.js";
+import { json, fail, requireLearner, today as localToday } from "./lib/http.js";
 import * as S from "./schemas.js";
 import { tree } from "./routes/tree.js";
 import { startLesson, startPlacement, finishLesson } from "./routes/lessons.js";
@@ -16,7 +16,7 @@ import { createLearner, consentState, setConsent, deleteLearner, exportLearner }
 import { profileRoute, setProfile, planRoute } from "./routes/plan.js";
 import { startPractice, practiceSummary } from "./routes/practice.js";
 import { pathRoute, checkedNode } from "./routes/path.js";
-import { learnerExam, publicExam } from "./lib/exam.js";
+import { getExam, isReady, learnerExam, listExams, publicExam } from "./lib/exam.js";
 
 async function readBody(request) {
   try {
@@ -30,14 +30,26 @@ const api = new Hono().basePath("/api");
 
 api.get("/health", () => json({ ok: true }));
 
-api.post("/learners", async (c) => createLearner(c.env, S.Consent.parse(await readBody(c.req.raw))));
+api.post("/learners", async (c) => createLearner(c.env, c.req.raw, S.NewLearner.parse(await readBody(c.req.raw))));
+
+// The test picker: every exam pack, ready or not yet (docs/API.md, "Exams").
+// Open without a learner: setup shows it before anyone exists.
+api.get("/exams", async (c) => json({ exams: await listExams(c.env) }));
 
 // The exam pack (exams/<id>/exam.json + voice.json + domain weights). Open
-// without a learner so Welcome can show the exam's name and disclaimer; with
-// one, it is that learner's exam.
+// without a learner so setup can show the picked exam's name, dates and
+// disclaimer (?exam=<id>, a ready exam); with one, it is always that
+// learner's exam. Test dates are filtered by the caller's local day.
 api.get("/exam", async (c) => {
   const learner = await requireLearner(c.env, c.req.header("x-learner") || c.req.query("learner"));
-  return json(publicExam(await learnerExam(c.env, learner?.id ?? null)));
+  const asked = c.req.query("exam");
+  let exam = null;
+  if (!learner && asked) {
+    if (!/^[a-z0-9-]{1,40}$/.test(asked) || !(await isReady(c.env, asked))) return fail(404, "unknown exam");
+    exam = await getExam(c.env, asked);
+  }
+  exam ??= await learnerExam(c.env, learner?.id ?? null);
+  return json(publicExam(exam, localToday(c.req.raw)));
 });
 
 // Everything else needs a known learner id, from the header, query or body.
@@ -64,7 +76,7 @@ api.get("/learner/export", route(null, (env, request, learnerId) => exportLearne
 // A start may name its path circle only if the path offers that exact start
 // (routes/path.js checkedNode); otherwise the node is dropped.
 api.post("/lessons", route(S.LessonStart, async (env, request, learnerId, b) => b.placement
-  ? startPlacement(env, request, learnerId, b.section || null)
+  ? startPlacement(env, request, learnerId, b.all_sections ? { all: true } : b.section || null)
   : startLesson(env, request, learnerId, b.skill_id || null, await checkedNode(env, request, learnerId, b.node, "/api/lessons", b))));
 api.post("/answers", route(S.Answer, answer));
 api.post("/lessons/finish", route(S.Finish, finishLesson));
