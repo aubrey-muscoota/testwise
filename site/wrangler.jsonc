@@ -24,9 +24,9 @@
   "vars": {
     // Where "Open Testwise" goes. Change this one line when the app moves.
     "APP_URL": "https://testwise.aubrey-9f5.workers.dev",
-    // Shown on every "write to us" link once set, e.g. "support@example.com".
-    // Empty: those links point to muscoota.com.
-    "CONTACT_EMAIL": "",
+    // The address on every "write to us" link (pages carry it too; this
+    // rewrites them if it changes before the pages do).
+    "CONTACT_EMAIL": "aubrey@muscoota.com",
     // "off" keeps search engines away (X-Robots-Tag and robots.txt) until
     // Aubrey approves a public launch. Set to "on" at launch.
     "INDEXING": "off"
