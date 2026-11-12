@@ -221,3 +221,80 @@ test("the data export holds every table the learner appears in, and nothing afte
   await deleteLearner(env, L);
   assert.equal((await body(await exportLearner(env, L))).http, 401);
 });
+
+// ─── The Learn path ─────────────────────────────────────────────────────────
+import { pathRoute } from "../worker/routes/path.js";
+import { startLesson } from "../worker/routes/lessons.js";
+import { PathResponse } from "../worker/schemas.js";
+
+async function finishWith(env, start, right = true) {
+  const l = await body(start.path === "/api/lessons"
+    ? await startLesson(env, req(), L, start.body.skill_id ?? null, start.body.node ?? null)
+    : await startPractice(env, req(), L, start.body, null));
+  assert.equal(l.http, 200, JSON.stringify(l));
+  for (const it of l.items) await answer(env, req(), L, { lesson_id: l.lesson_id, item_id: it.id, response: right ? it.answer : "nope", time_ms: 1000 });
+  return { lesson: l, finish: await body(await finishLesson(env, req(), L, { lesson_id: l.lesson_id })) };
+}
+
+test("path: one unit; finish the current circle and the next one opens, then the check pays a bonus once", async () => {
+  const env = setup();
+  let p = await body(await pathRoute(env, req("/api/path"), L));
+  assert.equal(p.http, 200);
+  assert.ok(PathResponse.safeParse(p).success);
+  assert.equal(p.units.length, 1);
+  assert.equal(p.units[0].name, "Numbers");
+  assert.equal(p.units[0].section_name, "Quant");
+  assert.deepEqual(p.units[0].nodes.map((n) => n.id), ["skill:tx-add", "skill:tx-mul", "check:tx-d"]);
+  assert.equal(p.current, "skill:tx-add");
+  assert.equal(p.stats.xp, 0);
+
+  await finishWith(env, p.units[0].nodes[0].start);
+  assert.equal(env.DB.raw.prepare("SELECT node FROM lessons WHERE skill_id = 'tx-add'").get().node, "skill:tx-add");
+  p = await body(await pathRoute(env, req("/api/path"), L));
+  assert.equal(p.units[0].nodes[0].state, "done");
+  assert.equal(p.current, "skill:tx-mul");
+  assert.ok(p.stats.xp > 0);
+
+  await finishWith(env, p.units[0].nodes[1].start);
+  p = await body(await pathRoute(env, req("/api/path"), L));
+  assert.equal(p.current, "check:tx-d");
+  const check = p.units[0].nodes[2];
+  assert.equal(check.start.body.mode, "mixed");
+  const one = await finishWith(env, check.start);
+  assert.equal(one.finish.xp, one.finish.correct * 10 + 15 + 20, "unit check bonus");
+  p = await body(await pathRoute(env, req("/api/path"), L));
+  assert.equal(p.units[0].nodes[2].state, "done");
+  assert.equal(p.current, "end");
+  const again = await finishWith(env, check.start);
+  assert.equal(again.finish.xp, again.finish.correct * 10 + 15, "the bonus is paid once");
+  // The export carries the node, and the end circle starts something.
+  const ex = await body(await exportLearner(env, L));
+  assert.ok(ex.lessons.some((l) => l.node === "check:tx-d"));
+  assert.ok(p.end.start);
+  await finishWith(env, p.end.start);
+});
+
+test("practice mode review serves a due miss first and counts as the plan's review", async () => {
+  const env = setup();
+  const day = new Date().toISOString().slice(0, 10);
+  const later = new Date(Date.now() + 40 * 86_400_000).toISOString().slice(0, 10);
+  await setProfile(env, req(), L, { exam_date: later, daily_minutes: 20 });
+  // Learn tx-add, missing everything, then make one miss due now.
+  const { lesson } = await finishWith(env, { path: "/api/lessons", body: { skill_id: "tx-add" } }, false);
+  const missed = lesson.items[3].id;
+  env.DB.raw.prepare("UPDATE reviews SET due_at = 0 WHERE learner_id = ? AND item_id = ?").run(L, missed);
+  env.DB.raw.prepare("UPDATE reviews SET due_at = ? WHERE learner_id = ? AND item_id != ?").run(Date.now() + 86_400_000, L, missed);
+  const r = await body(await startPractice(env, req(), L, { mode: "review", skill_ids: ["tx-add"], n: 6, node: "review:tx-d:1" }, null));
+  assert.equal(r.http, 200);
+  assert.equal(r.items.length, 6);
+  assert.equal(r.items[0].id, missed);
+  assert.equal(r.items[0].review, true);
+  assert.ok(r.items.slice(1).every((i) => !i.review && i.id !== missed));
+  assert.equal(env.DB.raw.prepare("SELECT node, mode FROM lessons WHERE id = ?").get(r.lesson_id).node, "review:tx-d:1");
+  for (const it of r.items) await answer(env, req(), L, { lesson_id: r.lesson_id, item_id: it.id, response: it.answer, time_ms: 1000 });
+  await finishLesson(env, req(), L, { lesson_id: r.lesson_id });
+  const p = await body(await planRoute(env, req(), L));
+  const review = p.today.find((t) => t.kind === "review");
+  assert.ok(review?.done, JSON.stringify(p.today.map((t) => [t.id, t.done])));
+  assert.equal(p.date, day);
+});

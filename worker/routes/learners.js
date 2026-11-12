@@ -52,7 +52,7 @@ export async function exportLearner(env, learnerId) {
     rows("SELECT item_id, skill_id, lesson_id, correct, response, time_ms, is_review, answered_at, local_day FROM attempts WHERE learner_id = ? ORDER BY answered_at, id"),
     rows("SELECT skill_id, rating, attempts, correct, tested_out, updated_at FROM skill_mastery WHERE learner_id = ? ORDER BY skill_id"),
     rows("SELECT item_id, skill_id, due_at, interval_days FROM reviews WHERE learner_id = ? ORDER BY due_at"),
-    rows("SELECT id, kind, mode, skill_id, section_id, started_at, completed_at, correct, total, xp, local_day FROM lessons WHERE learner_id = ? ORDER BY started_at"),
+    rows("SELECT id, kind, mode, node, skill_id, section_id, started_at, completed_at, correct, total, xp, local_day FROM lessons WHERE learner_id = ? ORDER BY started_at"),
     rows("SELECT item_id, local_day, role, content, created_at FROM tutor_turns WHERE learner_id = ? ORDER BY created_at, id"),
     rows("SELECT id, skill_id, created_at FROM generated_items WHERE learner_id = ? ORDER BY created_at"),
   ]);

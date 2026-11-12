@@ -1,6 +1,6 @@
-# Testwise API: plan and practice (v1.5)
+# Testwise API: plan, path and practice
 
-Endpoints for the test-date profile, the personalized plan and practice mode. All live under `/api/` on the Worker, like the rest of the API.
+Endpoints for the test-date profile, the personalized plan, the Learn path and practice mode. All live under `/api/` on the Worker, like the rest of the API.
 
 Every request needs the learner id in the `x-learner` header (or `?learner=` / a `learner` body field). Send `x-tz-offset` with the device's `new Date().getTimezoneOffset()` (minutes behind UTC, New York is `300`): "today", the test countdown and which tasks are done all use the learner's local day.
 
@@ -116,7 +116,7 @@ Works before onboarding too (as "not booked", 20 minutes a day), so Home can sho
   "learn_by": "2027-01-21",
   "test_ready_from": "2027-03-02",
   "weeks": [
-    { "start": "2026-11-08", "end": "2026-11-14", "phase": "learn", "focus_skill_ids": ["rw-boundaries", "alg-linear-eq-1var", "geo-area-volume", "rw-transitions", "geo-lines-angles"], "goal": "Start 5 new skills: Boundaries, Linear equations in one variable, Area and volume, and more." },
+    { "start": "2026-11-08", "end": "2026-11-14", "phase": "learn", "focus_skill_ids": ["alg-linear-eq-1var", "alg-linear-func", "alg-linear-eq-2var", "alg-systems", "alg-inequalities"], "goal": null },
     { "start": "2027-01-24", "end": "2027-01-30", "phase": "strengthen", "focus_skill_ids": ["rw-form-structure", "adv-equiv-expr", "adv-nonlinear-eq"], "goal": "Raise Form, structure and sense, Equivalent expressions, Nonlinear equations and systems, plus mixed sets." },
     { "start": "2027-03-02", "end": "2027-03-08", "phase": "test_ready", "focus_skill_ids": ["rw-form-structure", "adv-equiv-expr", "adv-nonlinear-eq"], "goal": "Timed mixed sets at test pace, and a last pass on your weakest skills." },
     { "start": "2027-03-12", "end": "2027-03-13", "phase": "rest", "focus_skill_ids": [], "goal": "Rest, then the test." }
@@ -167,17 +167,83 @@ Task fields (every task has `id`, `kind`, `minutes`, `title`, `why`, `done`, `st
 | `mode` | Practice: `weak`, `mixed`, `timed` or `mistakes`. |
 | `skill_ids` | Practice `weak`: the skills it targets (already in `start.body`). |
 
-How tasks are marked done: a lesson task is done when a lesson on that skill finished today; review tasks are done one per finished review lesson (`POST /api/lessons` with `skill_id: null`), or when nothing is due any more; a practice task is done when a practice session of the same mode finished today. Unfinished sessions don't count. A lesson the learner started today stays on the list as done, so the list doesn't reshuffle while they work through it.
+How tasks are marked done: a lesson task is done when a lesson on that skill finished today; review tasks are done one per finished review lesson (`POST /api/lessons` with `skill_id: null`) or review circle on the path (practice `mode: "review"`), or when nothing is due any more; a practice task is done when a practice session of the same mode finished today. Unfinished sessions don't count. A lesson the learner started today stays on the list as done, so the list doesn't reshuffle while they work through it.
 
 What each phase puts in `today`:
 
-- learn: new-skill lessons (spread so every skill is started by `learn_by`, Math and Reading and Writing interleaved, never a locked skill), due reviews, then a mixed set (or weak spots once a started skill is under 60%).
+- learn: new-skill lessons (spread so every skill is started by `learn_by`), due reviews, then a mixed set (or weak spots once a started skill is under 60%).
 - strengthen: reviews, weak spots (by weight × (1 − mastery)), then a mixed set, or "My mistakes" every other day when 5+ are waiting.
 - test_ready: a little review, a timed set at test pace, then weak spots or mistakes.
 - rest: the day before, up to 5 reviews and a `rest` task; test day, just the `rest` task.
 - after: reviews and a mixed set, with a gentle message.
 
-Short runways compress (5 days: start the skills worth the most points, 2 test-ready days, then rest). Long runways (5+ months) start at most one new skill a day, spaced every few days, and lean on review.
+New skills follow the path (`GET /api/path`): the next ones not yet started, in path order, each one's prerequisites started or earlier in today's list (one lesson opens what depends on it, so a day can chain them). The week-by-week `focus_skill_ids` follow the same order. The path interleaves the sections unit by unit, not skill by skill, so a week can stay in one unit.
+
+Short runways compress (5 days: start the skills worth the most points, 2 test-ready days, then rest). A runway that was already too short to start every skill when the plan began orders the units by points per lesson; that order is fixed from the plan's start, so the path doesn't reshuffle when a learner falls behind. Long runways (5+ months) start at most one new skill a day, spaced every few days, and lean on review.
+
+## Path
+
+### `GET /api/path`
+
+The Learn tab: one path through the whole test, built from the plan. One unit per domain, in the order the plan starts them (sections interleaved unit by unit, a section's units heaviest first, prerequisites always earlier), each with its skills, a review circle after every 3 skills (not at a unit's end) and a unit check at the end. One `end` circle follows the last unit.
+
+```json
+{
+  "date": "2026-11-12",
+  "exam_date": "2027-03-13",
+  "exam_date_assumed": false,
+  "days_left": 121,
+  "phase": "learn",
+  "stats": { "xp": 75, "streak": 1, "xp_today": 75, "reviews_due": 2 },
+  "current": "skill:alg-linear-func",
+  "units": [
+    {
+      "id": "alg", "name": "Algebra", "section_id": "sat-math", "section_name": "Math", "section_index": 0,
+      "number": 1, "of": 8, "done": 1, "total": 5,
+      "nodes": [
+        { "id": "skill:alg-linear-eq-1var", "kind": "skill", "state": "done", "title": "Linear equations in one variable",
+          "why": "Solving for x when it shows up on both sides. 8 questions, about 6 minutes.",
+          "skill_id": "alg-linear-eq-1var", "mastery": 41, "tested_out": false, "questions": 8, "minutes": 6,
+          "start": { "method": "POST", "path": "/api/lessons", "body": { "skill_id": "alg-linear-eq-1var", "node": "skill:alg-linear-eq-1var" } } },
+        { "id": "skill:alg-linear-func", "kind": "skill", "state": "current", "…": "…" },
+        { "id": "skill:alg-linear-eq-2var", "kind": "skill", "state": "open", "…": "…" },
+        { "id": "review:alg:1", "kind": "review", "state": "locked", "title": "Review",
+          "why": "2 questions you missed are due, then a mix of the 3 skills above.",
+          "skill_ids": ["alg-linear-eq-1var", "alg-linear-func", "alg-linear-eq-2var"], "due": 2, "questions": 8, "minutes": 8,
+          "locked_reason": "Opens after Linear equations in two variables", "start": null },
+        { "id": "skill:alg-systems", "kind": "skill", "state": "locked", "locked_reason": "Opens after Linear equations in two variables", "start": null, "…": "…" },
+        { "id": "skill:alg-inequalities", "kind": "skill", "state": "locked", "…": "…" },
+        { "id": "check:alg", "kind": "check", "state": "locked", "title": "Unit check",
+          "why": "10 questions across Algebra. Finish it to close the unit.",
+          "skill_ids": ["alg-linear-eq-1var", "…"], "questions": 10, "minutes": 10,
+          "locked_reason": "Opens when you finish the 4 lessons above", "start": null }
+      ]
+    }
+  ],
+  "end": { "id": "end", "kind": "end", "state": "locked", "title": "Test-day practice",
+           "why": "Timed sets, mixed practice and your weak spots, once every unit is done.",
+           "task_title": "Mixed practice", "locked_reason": "Opens when every unit is done", "start": null }
+}
+```
+
+| Field | Meaning |
+| --- | --- |
+| `current` | The id of the one circle in `state: "current"`: the first open circle in path order. There is always exactly one. |
+| `units[]` | In path order. `section_index` is the section's place in the exam (the app colors units by it); `done` / `total` count the unit's finished skills. |
+| `nodes[].id` | Stable: `skill:<skill id>`, `review:<domain id>:<k>`, `check:<domain id>`, and `end`. |
+| `nodes[].kind` | `skill` (a lesson), `review` (practice `mode: "review"` over the skills since the last review), `check` (practice `mode: "mixed"` over the unit's skills, 8–12 questions). |
+| `nodes[].state` | `done`, `current`, `open` or `locked`. |
+| `nodes[].start` | The request that starts it (post it as is; the body carries `node`). `null` when locked. Done circles keep theirs, for practicing again. |
+| `nodes[].why`, `locked_reason` | What it is, and for a locked circle what opens it. Written from the exam pack's names and `skill_about`. |
+| `end` | Opens once every circle is done and starts the plan's first unfinished practice or review task (weak spots when there is none). On a rest day it can have no `start`. `task_title` names what it starts. |
+
+States, in path order:
+
+- A skill is `done` once it is tested out, mastered, or has 8+ answers (one lesson, which is also what opens the skills that depend on it). It is `open` when its prerequisites have 8+ answers each and its unit is at or before the first unit with an unfinished skill; otherwise `locked`. So later units wait for the ones before them, even when the engine would allow a lesson there (the Practice tab can still drill those).
+- A review or unit check is `done` once a session started from it finished, when every skill it covers was tested out (placement skipped them), or when a skill later on the path was learned (not just tested out), so learners who moved on aren't sent back. It is `open` once every skill it covers is done.
+- The first open circle becomes `current`. If nothing can open (a broken prerequisite chain in a pack), the `end` circle is current.
+
+A finished unit check pays 20 bonus XP, once per unit. It counts as mixed practice for the day's plan.
 
 ## Practice
 
@@ -196,10 +262,11 @@ A practice session is a lesson with `kind = 'practice'`. The response has the sa
 
 | Field | Meaning |
 | --- | --- |
-| `mode` | `weak` (lowest weighted mastery among started skills), `mixed` (all started skills), `skill` (one skill drill, needs `skill_id`), `timed` (mixed, weighted like the test, with a time limit), `mistakes` (questions answered wrong and not answered right since), `fresh` (new questions written by Socrates). Default `mixed`. |
+| `mode` | `weak` (lowest weighted mastery among started skills), `mixed` (all started skills), `skill` (one skill drill, needs `skill_id`), `timed` (mixed, weighted like the test, with a time limit), `mistakes` (questions answered wrong and not answered right since), `fresh` (new questions written by Socrates), `review` (a review circle on the path: due spaced-review questions in its skills first, oldest due first, flagged `review: true`, then a mix like `mixed`; never "nothing due"). Default `mixed`. |
 | `n` | Questions, 3–30. Default 10 (`fresh`: 5). |
 | `skill_id` | Required for `skill`; optional for `fresh` (otherwise the skill whose unseen questions are running out). |
-| `skill_ids` | Optional: limit `weak`/`mixed`/`timed` to these skills (plan tasks pass it). |
+| `skill_ids` | Optional: limit `weak`/`mixed`/`timed`/`review` to these skills (plan tasks and path circles pass it). |
+| `node` | Optional: the path circle it was started from (path starts pass it). `POST /api/lessons` takes it too. |
 | `section` | Optional: limit to one section, e.g. `sat-math`. |
 
 Before the learner has started anything, `weak`/`mixed`/`timed` fall back to the open skills of their current section.
@@ -274,7 +341,7 @@ Everything stored about the learner, as one JSON document ("Download my data" in
   "about": "Your Testwise data. …",
   "learner": { "id": "…", "created_at": 1762650000000, "age_confirmed_at": 1762650000000, "ai_consent_at": null, "exam_id": null, "exam_date": "2027-03-13", "target_score": 1400, "daily_minutes": 20, "plan_started_at": "2026-11-08" },
   "skills": [{ "skill_id": "alg-linear-eq-1var", "rating": 0.42, "attempts": 16, "correct": 13, "tested_out": 0, "updated_at": 1762650000000 }],
-  "lessons": [{ "id": "…", "kind": "skill", "mode": null, "skill_id": "alg-linear-eq-1var", "section_id": null, "started_at": 1762650000000, "completed_at": 1762650300000, "correct": 6, "total": 8, "xp": 75, "local_day": "2026-11-08" }],
+  "lessons": [{ "id": "…", "kind": "skill", "mode": null, "node": "skill:alg-linear-eq-1var", "skill_id": "alg-linear-eq-1var", "section_id": null, "started_at": 1762650000000, "completed_at": 1762650300000, "correct": 6, "total": 8, "xp": 75, "local_day": "2026-11-08" }],
   "attempts": [{ "item_id": "alg-linear-eq-1var-012", "skill_id": "alg-linear-eq-1var", "lesson_id": "…", "correct": 1, "response": "7", "time_ms": 21000, "is_review": 0, "answered_at": 1762650010000, "local_day": "2026-11-08" }],
   "reviews": [{ "item_id": "…", "skill_id": "…", "due_at": 1762736400000, "interval_days": 1 }],
   "tutor_turns": [{ "item_id": "…", "local_day": "2026-11-08", "role": "student", "content": "I think I mixed up the sign", "created_at": 1762650020000 }],

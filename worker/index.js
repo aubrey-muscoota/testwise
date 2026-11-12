@@ -15,6 +15,7 @@ import { report } from "./routes/reports.js";
 import { createLearner, consentState, setConsent, deleteLearner, exportLearner } from "./routes/learners.js";
 import { profileRoute, setProfile, planRoute } from "./routes/plan.js";
 import { startPractice, practiceSummary } from "./routes/practice.js";
+import { pathRoute } from "./routes/path.js";
 import { learnerExam, publicExam } from "./lib/exam.js";
 
 async function readBody(request) {
@@ -62,7 +63,7 @@ api.post("/learner/delete", route(null, (env, request, learnerId) => deleteLearn
 api.get("/learner/export", route(null, (env, request, learnerId) => exportLearner(env, learnerId)));
 api.post("/lessons", route(S.LessonStart, (env, request, learnerId, b) => b.placement
   ? startPlacement(env, request, learnerId, b.section || null)
-  : startLesson(env, request, learnerId, b.skill_id || null)));
+  : startLesson(env, request, learnerId, b.skill_id || null, b.node ?? null)));
 api.post("/answers", route(S.Answer, answer));
 api.post("/lessons/finish", route(S.Finish, finishLesson));
 // Socrates sends the question and the student's messages to Anthropic, so it
@@ -76,6 +77,8 @@ api.post("/reports", route(S.Report, (env, request, learnerId, b) => report(env,
 api.get("/profile", route(null, profileRoute));
 api.post("/profile", route(S.Profile, setProfile));
 api.get("/plan", route(null, planRoute));
+// The Learn tab's one path (docs/API.md, "Path").
+api.get("/path", route(null, pathRoute));
 api.get("/practice/summary", route(null, practiceSummary));
 api.post("/practice", (c) => {
   let execCtx = null;

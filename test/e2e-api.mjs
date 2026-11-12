@@ -2,6 +2,7 @@
 // Usage: node test/e2e-api.mjs [baseUrl]   (or BASE=http://localhost:8791 node test/e2e-api.mjs)
 // Expects the SAT pack to be seeded.
 import assert from "node:assert/strict";
+import { PathResponse } from "../worker/schemas.js";
 
 const BASE = process.argv[2] || process.env.BASE || "http://localhost:8787";
 let learner;
@@ -290,6 +291,50 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
   assert.ok(ex.data.skills.length >= 1);
   assert.equal(ex.data.learner.not_booked, undefined);
   assert.equal(ex.data.learner.exam_date, null, "the learner just switched to not booked");
+}
+
+// The Learn path: one current circle; finish it and the next one opens.
+{
+  learner = (await call("/api/learners", { age_13_plus: true })).data.id;
+  const finish = async (start) => {
+    const l = await call(start.path, start.body);
+    assert.equal(l.status, 200, JSON.stringify(l.data));
+    for (const it of l.data.items) await call("/api/answers", { lesson_id: l.data.lesson_id, item_id: it.id, response: it.answer, time_ms: 3000 });
+    return (await call("/api/lessons/finish", { lesson_id: l.data.lesson_id })).data;
+  };
+  const nodes = (p) => [...p.units.flatMap((u) => u.nodes), p.end];
+  let p = (await call("/api/path")).data;
+  assert.ok(PathResponse.safeParse(p).success, JSON.stringify(PathResponse.safeParse(p).error?.issues?.slice(0, 3)));
+  assert.equal(nodes(p).filter((n) => n.state === "current").length, 1);
+  assert.equal(p.current, `skill:${p.units[0].nodes[0].skill_id}`, "the first unit's first skill");
+  assert.equal(p.current, "skill:alg-linear-eq-1var");
+  assert.equal(p.units.length, 8);
+  assert.equal(p.stats.xp, 0);
+  // Walk the first three circles, then the review after them.
+  for (let i = 0; i < 3; i++) {
+    const cur = nodes(p).find((n) => n.state === "current");
+    assert.equal(cur.kind, "skill");
+    await finish(cur.start);
+    const next = (await call("/api/path")).data;
+    assert.equal(nodes(next).find((n) => n.id === cur.id).state, "done", `${cur.id} done`);
+    assert.notEqual(next.current, cur.id);
+    p = next;
+  }
+  assert.equal(p.current, "review:alg:1");
+  const review = nodes(p).find((n) => n.id === p.current);
+  assert.equal(review.start.body.mode, "review");
+  const rf = await finish(review.start);
+  assert.ok(rf.total > 0);
+  p = (await call("/api/path")).data;
+  assert.equal(nodes(p).find((n) => n.id === "review:alg:1").state, "done");
+  assert.equal(p.current, "skill:alg-systems");
+  assert.ok(p.stats.xp > 0 && p.stats.streak === 1);
+  // A skill the engine keeps locked still refuses a lesson, path or not.
+  assert.equal((await call("/api/lessons", { skill_id: "adv-nonlinear-eq", node: "skill:adv-nonlinear-eq" })).status, 403);
+  assert.equal((await call("/api/practice", { mode: "review", n: 5 })).status, 200, "review practice works without skill ids");
+  // The plan's lessons today are the path's.
+  const plan = (await call("/api/plan")).data;
+  assert.ok(plan.today.filter((t) => t.kind === "lesson").every((t) => t.skill_id.startsWith("alg-")));
 }
 
 // Deleting a learner removes them.

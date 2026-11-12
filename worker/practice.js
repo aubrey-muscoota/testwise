@@ -8,6 +8,8 @@
 //   timed     like mixed, weighted like the real test, with a time limit
 //   mistakes  questions answered wrong and not answered right since
 //   fresh     new questions written by Claude (see generate.js); topped up with bank questions
+//   review    a review circle on the Learn path: due spaced-review items first
+//             (the route picks those), then a mix like "mixed" over skill_ids
 //
 // Questions per skill: unseen first (near the learner's level), then ones
 // they missed, then the ones seen longest ago. Never the same one twice in a
@@ -15,7 +17,7 @@
 
 import { TARGET_P } from "./engine.js";
 
-export const MODES = ["weak", "mixed", "skill", "timed", "mistakes", "fresh"];
+export const MODES = ["weak", "mixed", "skill", "timed", "mistakes", "fresh", "review"];
 export const DEFAULT_N = 10;
 export const DEFAULT_FRESH_N = 5;
 export const MAX_N = 30;
@@ -63,7 +65,7 @@ export function practiceSkills({ mode, skills, skill_id, skill_ids, section, cur
     const total = top.reduce((a, s) => a + prio(s), 0) || 1;
     return top.map((s) => ({ id: s.id, share: prio(s) / total }));
   }
-  // mixed, timed, fresh without a skill
+  // mixed, review, timed, fresh without a skill
   const from = started.length ? started : fallback();
   if (!from.length) return [];
   if (mode === "timed") {

@@ -106,3 +106,9 @@ test("bank summary counts unseen, seen and missed; low when under 10% unseen", (
   assert.equal(lowUnseen(by.get("a")), true);
   assert.equal(lowUnseen(by.get("b")), false);
 });
+
+test("review (a path review circle) mixes like mixed, over the circle's skills", () => {
+  const ids = skills.filter((s) => s.started).slice(0, 2).map((s) => s.id);
+  assert.deepEqual(practiceSkills({ mode: "review", skills, skill_ids: ids }), practiceSkills({ mode: "mixed", skills, skill_ids: ids }));
+  assert.deepEqual(practiceSkills({ mode: "review", skills, skill_ids: ids }).map((p) => p.id), ids);
+});
