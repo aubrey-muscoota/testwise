@@ -64,8 +64,8 @@ ${body.trim()}
 </main>
 <footer class="wrap site-foot">
 <nav class="foot-links" aria-label="More">${links(FOOT)}</nav>
-<p>Testwise is not affiliated with College Board. SAT is a trademark of College Board.</p>
-<p>© 2026 Muscoota</p>
+<p>Testwise is not affiliated with or endorsed by College Board, ETS, GMAC or CFA Institute. SAT, GRE, GMAT and CFA are trademarks of their owners.</p>
+<p>© 2026 Muscoota Ventures LLC</p>
 </footer>
 ${script ? `<script src="${script}" defer></script>\n` : ""}</body>
 </html>
