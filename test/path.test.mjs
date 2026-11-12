@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { buildPath, REVIEW_EVERY } from "../worker/path.js";
+import { buildPath, nodeAllowed, REVIEW_EVERY } from "../worker/path.js";
 import { buildPlan, pathOrder, prepareSkills, addDays } from "../worker/plan.js";
 import { PathResponse } from "../worker/schemas.js";
 
@@ -144,6 +144,77 @@ test("a review is passed by a later skill learned, not by one tested out", () =>
   assert.equal(nodes(path({ skills, nodes_done: ["review:alg:1"] })).find((n) => n.id === "review:alg:1").state, "done");
 });
 
+test("work in another unit closes neither a review nor a unit check", () => {
+  // A new learner drills a Reading and Writing skill from Practice.
+  const drilled = learn(fresh(), "rw-words-context");
+  const p = path({ skills: drilled });
+  const at = (q, id) => allNodes(q).find((n) => n.id === id).state;
+  assert.equal(p.current, "skill:alg-linear-eq-1var");
+  assert.equal(at(p, "review:alg:1"), "locked");
+  assert.equal(at(p, "check:alg"), "locked");
+  // Algebra's skills done, then a lesson in the next unit: the check still waits.
+  let skills = fresh();
+  for (const s of SAT.skills.filter((x) => x.domain_id === "alg")) skills = learn(skills, s.id);
+  skills = learn(skills, "rw-words-context");
+  const q = path({ skills });
+  assert.equal(at(q, "check:alg"), "current");
+  assert.equal(at(q, "review:alg:1"), "done", "passed by later Algebra lessons");
+  // Everything learned and no checks taken: every check is still there to take.
+  let all = fresh();
+  for (const s of SAT.skills) all = learn(all, s.id);
+  const r = path({ skills: all });
+  assert.ok(nodes(r).filter((n) => n.kind === "check").every((n) => n.state !== "done"));
+  assert.equal(r.current, "check:alg");
+  // Taken: done.
+  assert.equal(at(path({ skills, nodes_done: ["check:alg"] }), "check:alg"), "done");
+});
+
+test("due reviews: a review circle before the current one takes the glow", () => {
+  let skills = fresh();
+  for (const id of ["alg-linear-eq-1var", "alg-linear-func"]) skills = learn(skills, id);
+  const p = path({ skills, reviews_due_by_skill: { "alg-linear-func": 3, "alg-linear-eq-1var": 0 }, reviews_due: 3 });
+  assert.equal(p.current, "due");
+  assert.equal(currentOf(p).length, 1);
+  const alg = p.units[0];
+  const i = alg.nodes.findIndex((n) => n.id === "due");
+  assert.equal(alg.nodes[i + 1].id, "skill:alg-linear-eq-2var");
+  assert.equal(alg.nodes[i + 1].state, "open");
+  const due = alg.nodes[i];
+  assert.equal(due.kind, "review");
+  assert.equal(due.due, 3);
+  assert.deepEqual(due.start, { method: "POST", path: "/api/lessons", body: { skill_id: null, node: "due" } });
+  assert.match(due.why, /^3 questions you missed before are due today\./);
+  assert.ok(PathResponse.safeParse(p).success);
+  // Nothing due: no circle.
+  assert.ok(!allNodes(path({ skills })).some((n) => n.id === "due"));
+  // Everything walked: it sits before the end circle.
+  const doneAll = [];
+  let all = fresh();
+  for (const s of SAT.skills) all = learn(all, s.id);
+  for (const n of nodes(path({ skills: all }))) if (n.kind !== "skill") doneAll.push(n.id);
+  const q = path({ skills: all, nodes_done: doneAll, reviews_due_by_skill: { "geo-circles": 1 } });
+  assert.equal(q.current, "due");
+  assert.equal(q.end.state, "open");
+  assert.equal(q.units.at(-1).nodes.at(-1).id, "due");
+});
+
+test("a start records its circle only when the path offers that start", () => {
+  let skills = fresh();
+  for (const id of ["alg-linear-eq-1var", "alg-linear-func", "alg-linear-eq-2var"]) skills = learn(skills, id);
+  const p = path({ skills });
+  const review = nodes(p).find((n) => n.id === "review:alg:1");
+  assert.ok(nodeAllowed(p, "review:alg:1", "/api/practice", review.start.body));
+  assert.ok(nodeAllowed(p, "review:alg:1", "/api/practice", { ...review.start.body, n: 12 }));
+  assert.ok(!nodeAllowed(p, "review:alg:1", "/api/practice", { ...review.start.body, n: 1 }), "fewer questions");
+  assert.ok(!nodeAllowed(p, "review:alg:1", "/api/practice", { ...review.start.body, mode: "weak" }), "another mode");
+  assert.ok(!nodeAllowed(p, "review:alg:1", "/api/lessons", review.start.body), "another endpoint");
+  assert.ok(!nodeAllowed(p, "check:alg", "/api/practice", { mode: "weak", n: 1, node: "check:alg" }), "locked check");
+  assert.ok(!nodeAllowed(p, "check:nope", "/api/practice", { mode: "mixed" }), "no such circle");
+  assert.ok(nodeAllowed(p, "skill:alg-systems", "/api/lessons", { skill_id: "alg-systems" }));
+  assert.ok(!nodeAllowed(p, "skill:alg-systems", "/api/lessons", { skill_id: "alg-linear-func" }), "another skill");
+  assert.ok(nodeAllowed(p, "skill:alg-linear-func", "/api/lessons", { skill_id: "alg-linear-func" }), "a done circle, again");
+});
+
 test("what each circle starts", () => {
   let skills = fresh();
   for (const s of SAT.skills.filter((x) => x.domain_id === "alg")) skills = learn(skills, s.id);
@@ -157,7 +228,9 @@ test("what each circle starts", () => {
   assert.equal(review.due, 2);
   assert.match(review.why, /^2 questions you missed are due, then a mix of the 3 skills above\.$/);
   const check = alg.nodes.at(-1);
-  assert.equal(check.state, "current");
+  // With questions due, the due review before it has the glow.
+  assert.equal(check.state, "open");
+  assert.equal(p.current, "due");
   assert.equal(check.start.body.mode, "mixed");
   assert.deepEqual(check.start.body.skill_ids, SAT.skills.filter((x) => x.domain_id === "alg").map((x) => x.id).sort((a, b) => check.skill_ids.indexOf(a) - check.skill_ids.indexOf(b)));
   assert.equal(check.skill_ids.length, 5);

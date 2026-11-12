@@ -79,7 +79,7 @@ export async function planInput(env, learnerId, day) {
          SELECT a.skill_id, a.correct, ROW_NUMBER() OVER (PARTITION BY a.skill_id ORDER BY a.answered_at DESC, a.id DESC) AS rn
          FROM attempts a ${notPlacement}) WHERE rn <= 8 GROUP BY skill_id`,
     ).bind(learnerId).all(),
-    env.DB.prepare("SELECT COUNT(*) AS n FROM reviews WHERE learner_id = ? AND due_at <= ?").bind(learnerId, now).first(),
+    env.DB.prepare("SELECT skill_id, COUNT(*) AS n FROM reviews WHERE learner_id = ? AND due_at <= ? GROUP BY skill_id").bind(learnerId, now).all(),
     env.DB.prepare("SELECT COUNT(DISTINCT item_id) AS n FROM attempts WHERE learner_id = ? AND local_day = ? AND is_review = 1").bind(learnerId, day).first(),
     env.DB.prepare("SELECT kind, mode, skill_id, completed_at FROM lessons WHERE learner_id = ? AND local_day = ?").bind(learnerId, day).all(),
     env.DB.prepare("SELECT DISTINCT local_day FROM lessons WHERE learner_id = ? AND completed_at IS NOT NULL AND local_day >= ?").bind(learnerId, addDays(day, -14)).all(),
@@ -88,6 +88,7 @@ export async function planInput(env, learnerId, day) {
        FROM attempts WHERE learner_id = ?) WHERE rn = 1 AND correct = 0`,
     ).bind(learnerId).first(),
   ]);
+  const dueBy = Object.fromEntries(due.results.map((r) => [r.skill_id, r.n]));
   const todayBy = Object.fromEntries(todayRes.results.map((r) => [r.skill_id, r.n]));
   const spanBy = Object.fromEntries(spanRes.results.map((r) => [r.skill_id, r]));
   const recentBy = Object.fromEntries(recentRes.results.map((r) => [r.skill_id, { correct: r.correct || 0, total: r.total }]));
@@ -115,7 +116,8 @@ export async function planInput(env, learnerId, day) {
       plan_started_at: profile.plan_started_at,
       daily_minutes: profile.daily_minutes ?? DEFAULT_DAILY_MINUTES,
       skills,
-      reviews_due: due.n,
+      reviews_due: Object.values(dueBy).reduce((a, n) => a + n, 0),
+      reviews_due_by_skill: dueBy,
       reviews_done_today: reviewedToday.n,
       mistakes: mistakesRow.n,
       lessons_today: lessonsRes.results.map((l) => ({ kind: l.kind, mode: l.mode, skill_id: l.skill_id, completed: !!l.completed_at })),

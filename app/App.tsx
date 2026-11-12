@@ -4,7 +4,7 @@ import {
   useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black,
 } from "@expo-google-fonts/nunito";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api, createLearner, forgetLearner, getExam, loadExam, loadLearner, placementKey, Profile } from "./src/api";
+import { api, createLearner, forgetLearner, getExam, loadExam, loadLearner, placementKey, Profile, refreshPathSummary } from "./src/api";
 import { Welcome } from "./src/screens/Welcome";
 import { Learn } from "./src/screens/Learn";
 import { Progress } from "./src/screens/Progress";
@@ -61,7 +61,12 @@ function TestwiseApp() {
     preloadSounds();
   }, []);
 
-  const home = useCallback((tab: Tab = "learn") => setScreen({ name: "main", tab, key: Math.random() }), []);
+  // Learn loads the path itself; any other tab refreshes the top bar's numbers,
+  // which a saved test date, a lesson or a quit may have changed.
+  const home = useCallback((tab: Tab = "learn") => {
+    if (tab !== "learn") refreshPathSummary();
+    setScreen({ name: "main", tab, key: Math.random() });
+  }, []);
 
   // Where a returning learner lands: the test-date questions once, then the
   // placement offer if they never chose, else Learn.

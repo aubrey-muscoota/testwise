@@ -13,7 +13,8 @@ const SEEDED_RANDOM = `(() => { let s = 20261112; Math.random = () => { s = (s *
 
 const CASES = [
   { name: "fresh", state: "fresh" },
-  { name: "mid-card", state: "mid", open: fixtures.states.mid.current },
+  { name: "mid-card", state: "mid", open: "skill:alg-linear-eq-2var" },
+  { name: "due-card", state: "mid", open: fixtures.states.mid.current },
   { name: "locked-card", state: "mid", open: "skill:alg-systems" },
   { name: "review-card", state: "mid", open: "review:alg:1" },
   { name: "teal", state: "teal" },
@@ -50,5 +51,25 @@ for (const c of CASES) {
     }
     await expect(page).toHaveScreenshot(`path-${c.name}.png`);
     expect(errors, "console errors").toEqual([]);
+  });
+}
+
+// A card that hangs below its unit (a unit check is always last) must take a
+// real tap on its button: nothing under the card may sit on top of it.
+for (const open of ["check:alg", "end"]) {
+  test(`path ${open} card's button takes a tap`, async ({ page }) => {
+    await page.goto(`/?lab=path&state=done&open=${open}`);
+    await page.getByTestId("lab-ready").waitFor({ timeout: 30_000 });
+    const btn = page.getByTestId("node-start");
+    await expect(btn).toBeVisible();
+    await page.waitForTimeout(400);
+    const box = await btn.boundingBox();
+    const hit = await page.evaluate(({ x, y }) => {
+      const el = document.elementFromPoint(x, y);
+      return !!el?.closest('[data-testid="node-start"]');
+    }, { x: box.x + box.width / 2, y: box.y + box.height / 2 });
+    expect(hit, "the button's center is the button").toBe(true);
+    // Without trial, a real click must not time out on an element in the way.
+    await btn.click({ trial: true, timeout: 5000 });
   });
 }

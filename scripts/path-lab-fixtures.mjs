@@ -20,6 +20,8 @@ const path = (o) => buildPath({ ...base, ...o });
 
 const alg = SKILLS.filter((s) => s.domain_id === "alg").map((s) => s.id);
 const all = SKILLS.map((s) => s.id);
+// Every review and unit check, taken.
+const circles = path({ skills: SKILLS }).units.flatMap((u) => u.nodes).filter((n) => n.kind !== "skill").map((n) => n.id);
 const out = {
   // Shown by the lab's top bar and disclaimer.
   exam: {
@@ -41,7 +43,7 @@ const out = {
     }),
     done: path({
       skills: learned(all, 85).map((s) => ({ ...s, mastered: true })),
-      nodes_done: ["check:rw-eoi"],
+      nodes_done: circles,
       stats: { xp: 4210, streak: 41, xp_today: 120, reviews_due: 4 },
     }),
   },

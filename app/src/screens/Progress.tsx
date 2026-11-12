@@ -2,7 +2,7 @@
 // from today to the test, week by week, with the skills each week focuses on
 // (for now the old plan screen under the countdown; step 5 rebuilds this tab).
 // Each phase is a heavy heading over a cream well of weeks; this week sits in the blue "current"
-// wash, and skills already finished (mastered or tested out) are ticked in gold.
+// wash, and skills already finished (done on the Learn path) are ticked in gold.
 import React from "react";
 import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { api, getExam, Plan, PlanPhase } from "../api";
@@ -25,8 +25,9 @@ const PHASE_FALLBACK: Record<PlanPhase, string> = {
 
 export function Progress({ onEditDate }: { onEditDate: () => void }) {
   const { data, error, reload } = useLoad(async () => {
-    const [plan, tree] = await Promise.all([api.plan(), api.tree().catch(() => null)]);
-    const done = new Set((tree?.domains ?? []).flatMap((d) => d.skills).filter((sk) => sk.mastered || sk.tested_out).map((sk) => sk.id));
+    // Ticked the same way as on the Learn path: a skill circle that is done.
+    const [plan, path] = await Promise.all([api.plan(), api.path().catch(() => null)]);
+    const done = new Set((path?.units ?? []).flatMap((u) => u.nodes).flatMap((n) => (n.kind === "skill" && n.state === "done" ? [n.skill_id] : [])));
     return { plan, done };
   });
   const wide = useWide();
@@ -57,7 +58,7 @@ export function Progress({ onEditDate }: { onEditDate: () => void }) {
   const track = plan.phase === "after"
     ? count
     : !plan.status.on_track
-      ? `${count} ${plan.status.behind_by_lessons > 0 ? `${plural(plan.status.behind_by_lessons, "lesson")} behind, so today's list leans on new skills to catch up.` : "A little behind. A few days in a row will fix it."}`
+      ? `${count} ${plan.status.behind_by_lessons > 0 ? `${plural(plan.status.behind_by_lessons, "lesson")} behind. Your path puts new skills first until you catch up.` : "A little behind. A few days in a row will fix it."}`
       : allStarted
         ? `${count} Timed sets from ${day(plan.test_ready_from)}.`
         : `${count} All of them by ${day(plan.learn_by)}, then timed sets from ${day(plan.test_ready_from)}.`;

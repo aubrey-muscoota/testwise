@@ -313,14 +313,21 @@ export function legalUrl(page: "privacy" | "terms") {
 }
 
 // The last path loaded, for the top bar (days to the test, streak, XP), which
-// sits outside the screens. Every api.path() call refreshes it.
+// sits outside the screens. Every api.path() call refreshes it; the app calls
+// refreshPathSummary() whenever it lands on a tab other than Learn (after a
+// tab change, a saved test date, a quit or finished lesson), and Learn loads
+// the path itself.
 let lastPath: LearnPath | null = null;
+let pathInFlight: Promise<LearnPath> | null = null;
 const pathListeners = new Set<(p: LearnPath | null) => void>();
 const setLastPath = (p: LearnPath | null) => { lastPath = p; pathListeners.forEach((l) => l(p)); };
 // The path review page (?lab=path) shows fixtures without a learner.
 export function primeForLab(p: LearnPath, e: Exam) {
   exam = e;
   setLastPath(p);
+}
+export function refreshPathSummary() {
+  if (learnerId) api.path().catch(() => {});
 }
 export function usePathSummary() {
   const [p, setP] = useState(lastPath);
@@ -362,10 +369,15 @@ export const api = {
   saveProfile: (b: { exam_date?: string | null; not_booked?: true; target_score?: number | null; daily_minutes?: number }) =>
     call<Profile>("/api/profile", { method: "POST", body: b }),
   plan: () => call<Plan>("/api/plan"),
-  path: async () => {
-    const p = await call<LearnPath>("/api/path");
-    setLastPath(p);
-    return p;
+  // Calls made while one is in flight share it (the top bar and Learn both ask on open).
+  path: () => {
+    if (!pathInFlight) {
+      pathInFlight = call<LearnPath>("/api/path").then(
+        (p) => { pathInFlight = null; setLastPath(p); return p; },
+        (e) => { pathInFlight = null; throw e; },
+      );
+    }
+    return pathInFlight;
   },
   practiceSummary: () => call<PracticeSummary>("/api/practice/summary"),
   practice: (b: { mode: PracticeMode; n?: number; skill_id?: string; skill_ids?: string[]; section?: string; node?: string }) =>

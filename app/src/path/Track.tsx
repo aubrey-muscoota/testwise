@@ -44,8 +44,11 @@ export function Track({
   const soc = ci >= 0
     ? { x: pts[ci].x <= 0 ? pts[ci].x + NODE_W / 2 + space(3) : pts[ci].x - NODE_W / 2 - space(3) - SOC, y: pts[ci].y - SOC / 2 }
     : null;
+  // The open card hangs below the track when its circle is near the unit's
+  // end; lifting the track keeps the card above the room made under it.
+  const raised = !!selectedId && nodes.some((n) => n.id === selectedId);
   return (
-    <View style={{ height }} onLayout={onLayout}>
+    <View style={[{ height }, raised && { zIndex: 1 }]} onLayout={onLayout}>
       {soc && (
         <View {...decorative} pointerEvents="none" style={{ position: "absolute", left: "50%", marginLeft: soc.x, top: soc.y }}>
           <Socrates size={SOC} mood="idle" />

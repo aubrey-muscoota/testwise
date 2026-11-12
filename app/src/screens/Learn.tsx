@@ -8,14 +8,13 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { LayoutChangeEvent, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, currentLearnerId, getExam, LearnPath, PathNode, PathUnit, placementKey } from "../api";
 import { useWide } from "../components/Shell";
-import { Bone, Button, ErrorState, Rise, Skeleton, TextButton, isReduceMotion } from "../components/ui";
+import { Bone, ErrorState, Rise, Skeleton, TextButton, isReduceMotion } from "../components/ui";
 import { feedback } from "../motion/feedback";
 import { LessonSource, nodeSource, useLoad } from "../nav";
 import { NodeCard, cardTop } from "../path/NodeCard";
 import { layoutTrack, Point, Track } from "../path/Track";
 import { UnitBanner } from "../path/UnitBanner";
 import { accentFor, NODE_H, NODE_W, ROW, XS } from "../path/shared";
-import { Socrates } from "../socrates/Socrates";
 import { color, COLUMN, GUTTER, radius, space, type } from "../theme";
 
 // Remembered between visits (per learner, on this device) so the path can
@@ -250,19 +249,16 @@ export function Learn({
               style={[{ marginTop: gi === 0 ? space(2) : space(1) }, sel && { zIndex: 10 }]}
             >
               {offer && sec && (
+                // Quiet on purpose: the current circle and its card's button are
+                // the one focal point and the one primary; Socrates stays by the circle.
                 <Rise style={s.offer}>
-                  <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
-                    <Socrates size={64} mood="idle" />
-                    <View style={{ flex: 1, marginLeft: space(1.5) }}>
-                      <Text style={type.heading}>New to {sec.name}?</Text>
-                      <Text style={[type.body, { marginTop: space(0.5) }]}>
-                        Answer about {(sec.domains.length || 4) * (exam?.placement.per_domain ?? 3)} questions and I'll skip you past what you already know.
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: space(1), marginTop: space(2) }}>
-                    <Button title="Find my level" onPress={() => onStartPlacement(sec.id, sec.name)} style={{ flex: 1 }} />
-                    <TextButton title="Not now" tone="soft" onPress={() => settleOffer(sec.id)} />
+                  <Text style={type.heading}>New to {sec.name}?</Text>
+                  <Text style={[type.body, { color: color.ink2, marginTop: space(0.5) }]}>
+                    Answer about {(sec.domains.length || 4) * (exam?.placement.per_domain ?? 3)} questions and your path skips what you already know.
+                  </Text>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: space(2), marginTop: space(1) }}>
+                    <TextButton title="Find my level" align="left" onPress={() => onStartPlacement(sec.id, sec.name)} testID="placement-offer" />
+                    <TextButton title="Not now" tone="soft" align="left" onPress={() => settleOffer(sec.id)} />
                   </View>
                 </Rise>
               )}
@@ -280,7 +276,7 @@ export function Learn({
                 {sel && selNode && <NodeCard node={selNode} at={sel.at} onStart={() => start(selNode)} onLayout={cardLayout(g.id, sel.at)} />}
               </Track>
               {sel && cardH > 0 && (
-                <View style={{ height: Math.max(0, cardTop(sel.at) + cardH + space(2) - layoutTrack(g.nodes, from).height) }} />
+                <View pointerEvents="none" style={{ height: Math.max(0, cardTop(sel.at) + cardH + space(2) - layoutTrack(g.nodes, from).height) }} />
               )}
             </View>
           );

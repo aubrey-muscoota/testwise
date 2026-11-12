@@ -228,10 +228,10 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
 
 | Field | Meaning |
 | --- | --- |
-| `current` | The id of the one circle in `state: "current"`: the first open circle in path order. There is always exactly one. |
+| `current` | The id of the one circle in `state: "current"`: the first open circle in path order, or `due` on a day with reviews due. There is always exactly one. |
 | `units[]` | In path order. `section_index` is the section's place in the exam (the app colors units by it); `done` / `total` count the unit's finished skills. |
-| `nodes[].id` | Stable: `skill:<skill id>`, `review:<domain id>:<k>`, `check:<domain id>`, and `end`. |
-| `nodes[].kind` | `skill` (a lesson), `review` (practice `mode: "review"` over the skills since the last review), `check` (practice `mode: "mixed"` over the unit's skills, 8–12 questions). |
+| `nodes[].id` | Stable: `skill:<skill id>`, `review:<domain id>:<k>`, `check:<domain id>`, `due` and `end`. |
+| `nodes[].kind` | `skill` (a lesson), `review` (practice `mode: "review"` over the skills since the last review), `check` (practice `mode: "mixed"` over the unit's skills, 8–12 questions). The `due` circle is also `kind: "review"`, but starts a review lesson (`POST /api/lessons` with `skill_id: null`) over every due question. |
 | `nodes[].state` | `done`, `current`, `open` or `locked`. |
 | `nodes[].start` | The request that starts it (post it as is; the body carries `node`). `null` when locked. Done circles keep theirs, for practicing again. |
 | `nodes[].why`, `locked_reason` | What it is, and for a locked circle what opens it. Written from the exam pack's names and `skill_about`. |
@@ -240,8 +240,12 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
 States, in path order:
 
 - A skill is `done` once it is tested out, mastered, or has 8+ answers (one lesson, which is also what opens the skills that depend on it). It is `open` when its prerequisites have 8+ answers each and its unit is at or before the first unit with an unfinished skill; otherwise `locked`. So later units wait for the ones before them, even when the engine would allow a lesson there (the Practice tab can still drill those).
-- A review or unit check is `done` once a session started from it finished, when every skill it covers was tested out (placement skipped them), or when a skill later on the path was learned (not just tested out), so learners who moved on aren't sent back. It is `open` once every skill it covers is done.
+- A review is `done` once a session started from it finished, when every skill it covers was tested out (placement skipped them), or when every skill it covers is done and a later skill in the same unit was learned (not just tested out), so learners who moved on aren't sent back. Work in another unit or from the Practice tab doesn't close it. It is `open` once every skill it covers is done.
+- A unit check is `done` only once a session started from it finished, or every skill in the unit was tested out. Lessons in the next unit don't close it.
 - The first open circle becomes `current`. If nothing can open (a broken prerequisite chain in a pack), the `end` circle is current.
+- When spaced-review questions are due (`stats.reviews_due > 0`, not on a rest day), a `due` circle is placed right before that circle and takes `current`; the circle after it is `open`. It is gone once nothing is due.
+
+A start's `node` is recorded only when the path offers that exact start: the circle exists and isn't locked, the endpoint and every body field match its `start` (`n` may be larger). Otherwise the node is dropped and the session runs as a plain lesson or practice set, without the unit-check bonus.
 
 A finished unit check pays 20 bonus XP, once per unit. It counts as mixed practice for the day's plan.
 

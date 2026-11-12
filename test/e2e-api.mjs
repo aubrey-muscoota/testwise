@@ -337,6 +337,29 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
   assert.ok(plan.today.filter((t) => t.kind === "lesson").every((t) => t.skill_id.startsWith("alg-")));
 }
 
+// A start can't claim a circle the path doesn't offer, and work elsewhere closes no circle.
+{
+  learner = (await call("/api/learners", { age_13_plus: true })).data.id;
+  const run = async (body) => {
+    const l = await call("/api/practice", body);
+    assert.equal(l.status, 200, JSON.stringify(l.data));
+    for (const it of l.data.items) await call("/api/answers", { lesson_id: l.data.lesson_id, item_id: it.id, response: it.answer, time_ms: 3000 });
+    return (await call("/api/lessons/finish", { lesson_id: l.data.lesson_id })).data;
+  };
+  const state = (p, id) => [...p.units.flatMap((u) => u.nodes), p.end].find((n) => n.id === id).state;
+  await run({ mode: "weak", n: 1, node: "check:alg" });
+  let p = (await call("/api/path")).data;
+  assert.equal(state(p, "check:alg"), "locked", "a locked check isn't recorded");
+  // A Practice drill in the next unit closes neither Algebra's review nor its check.
+  await run({ mode: "skill", skill_id: "rw-words-context", n: 8 });
+  p = (await call("/api/path")).data;
+  assert.equal(state(p, "review:alg:1"), "locked");
+  assert.equal(state(p, "check:alg"), "locked");
+  assert.equal(p.current, "skill:alg-linear-eq-1var");
+  const ex = (await call("/api/learner/export")).data;
+  assert.ok(ex.lessons.every((l) => l.node == null), "no node recorded, so no unit-check bonus either");
+}
+
 // Deleting a learner removes them.
 assert.equal((await call("/api/learner/delete", {})).status, 200);
 assert.equal((await call("/api/tree")).status, 401, "deleted learner is gone");

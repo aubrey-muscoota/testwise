@@ -49,9 +49,10 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
   const [path, setPath] = useState<LearnPath | null>(null);
   useEffect(() => {
     feedback.complete();
-    // The top bar's numbers and, after placement, where the path picks up.
-    api.path().then(setPath, () => {});
-  }, []);
+    // After placement, where the path picks up. (Continue lands on a tab,
+    // which refreshes the top bar's numbers.)
+    if (result.placement) api.path().then(setPath, () => {});
+  }, [result.placement]);
 
   const { streak, lessons_today, lessons_today_no_placement } = result.stats;
   const placed = result.placement;

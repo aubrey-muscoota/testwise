@@ -7,7 +7,7 @@ const optString = z.preprocess((v) => (v == null ? undefined : String(v)), z.str
 
 // Which circle on the Learn path a lesson or practice set was started from
 // (GET /api/path gives it in each circle's start body). Anything else is dropped.
-export const NODE_RE = /^(skill|review|check):[a-z0-9-]{1,60}(:\d{1,2})?$|^end$/;
+export const NODE_RE = /^(skill|review|check):[a-z0-9-]{1,60}(:\d{1,2})?$|^end$|^due$/;
 const optNode = z.string().regex(NODE_RE).optional().catch(undefined);
 
 export const LessonStart = z.object({
