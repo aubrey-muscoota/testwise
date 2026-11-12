@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Linking, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Linking, ScrollView, StyleSheet, Text, TextInput, useWindowDimensions, View } from "react-native";
 import { Button, Press3D, Rise } from "../components/ui";
 import { legalUrl } from "../api";
+import { noOrphan } from "../copy";
 import { Socrates } from "../socrates/Socrates";
+import { SocratesLine } from "../components/SocratesLine";
 import { buzz } from "../motion/feedback";
 import { BORDER, color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 
@@ -23,19 +25,20 @@ export function AgeGate({ onAnswer }: { onAnswer: (age13Plus: boolean) => void }
   const [year, setYear] = useState("");
   const thisYear = new Date().getFullYear();
   const y = Number(year);
+  const short = useWindowDimensions().height < 720;
   const valid = month != null && /^\d{4}$/.test(year) && y >= thisYear - 100 && y <= thisYear;
 
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={s.wrap} keyboardShouldPersistTaps="handled">
         <Rise>
-          <Socrates size={88} mood="listening" />
-          <Text style={[type.title, { marginTop: space(2) }]} accessibilityRole="header">When were you born?</Text>
-          <Text style={[type.body, { color: color.ink2, marginTop: space(1) }]}>
-            We ask everyone. Testwise doesn't keep your birthday.
-          </Text>
+          {/* The same setup pattern as the steps after it: Socrates asks, in a bubble. */}
+          <View accessibilityRole="header">
+            <SocratesLine text="When were you born?" size={short ? 56 : 72} mood="listening" />
+          </View>
+          <Text style={[type.small, { marginTop: space(1.5) }]}>{noOrphan("We ask everyone. Testwise doesn't keep your birthday.")}</Text>
         </Rise>
-        <Rise delay={80} style={{ marginTop: space(3) }}>
+        <Rise delay={80} style={{ marginTop: space(short ? 2 : 3) }}>
           <Text style={[type.label, { marginBottom: space(1) }]}>Month</Text>
           <View style={s.months} accessibilityRole="radiogroup" accessibilityLabel="Birth month">
             {MONTHS.map((m, i) => {

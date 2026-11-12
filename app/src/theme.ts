@@ -11,7 +11,7 @@ export const color = {
   well: "#FEF9E7", // sunken: passages, inputs, skeletons, pressed rows (Socrates' toga cream)
   ink: "#2D2A23", // text and icons (Socrates' outline)
   ink2: "#6B6558", // secondary text, inactive tabs (5.8:1 on bg)
-  ink3: "#A39E92", // disabled labels and quiet marks only, never readable text (2.7:1)
+  ink3: "#A39E92", // quiet marks only (disabled icons, past days), never readable text (2.7:1)
   line: "#E9E6DF", // card borders, the tab bar's top edge, speech bubbles
   white: "#FFFFFF", // labels and marks on a filled color
 
@@ -38,6 +38,7 @@ export const color = {
 
   teal: "#12A08F", // the second section (Reading and Writing)
   tealDark: "#0B7A6D", // teal's edge; teal text on white (5.2:1)
+  tealWash: "#DDF3EF", // the ring around the current Reading and Writing node
 };
 
 export const font = {

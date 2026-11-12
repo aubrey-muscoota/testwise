@@ -125,7 +125,8 @@ export function Button({
   tone?: keyof typeof BUTTON_TONES;
 }) {
   const t = BUTTON_TONES[tone];
-  const fg = disabled ? color.ink3 : color.white;
+  // Disabled labels still carry state ("Check" before an answer, "Checking…"), so ink2: 4.8:1 on lock.
+  const fg = disabled ? color.ink2 : color.white;
   return (
     <Press3D
       testID={testID}
@@ -148,7 +149,8 @@ export function TextButton({
   title: string; onPress?: () => void; tone?: "blue" | "ink" | "soft" | "bad" | "good"; disabled?: boolean; style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string; icon?: IconName; align?: "center" | "left"; testID?: string; underline?: boolean;
 }) {
-  const c = disabled ? color.ink3
+  // ink2, not ink3: "Reported" and "Deleting…" are statuses the learner reads.
+  const c = disabled ? color.ink2
     : tone === "blue" ? color.blueDark : tone === "bad" ? color.badInk : tone === "good" ? color.goodInk : tone === "soft" ? color.ink2 : color.ink;
   return (
     <Pressable

@@ -43,12 +43,12 @@ export function useTypewriter(text: string, enabled = true) {
 
 // The tail: a square turned 45 degrees, bordered on the two sides that face
 // Socrates, overlapping the bubble's border so the two read as one outline.
-function Tail({ side, x }: { side: "left" | "top"; x?: number }) {
+function Tail({ side, x }: { side: "left" | "top"; x?: number | "center" }) {
   return (
     <View
       {...decorative}
       pointerEvents="none"
-      style={side === "left" ? st.tailLeft : [st.tailTop, x != null && { left: x }]}
+      style={side === "left" ? st.tailLeft : [st.tailTop, x === "center" ? { left: "50%", marginLeft: -TAIL / 2 } : x != null && { left: x }]}
     />
   );
 }
@@ -59,7 +59,8 @@ export function SocratesSays({
   text: string; typewriter?: boolean; style?: StyleProp<ViewStyle>; textStyle?: StyleProp<TextStyle>;
   // "none": the words without a bubble, for places that already frame them
   // (the result panel, the tutor chat).
-  onTyping?: (typing: boolean) => void; tail?: "left" | "top" | "none"; tailX?: number;
+  // tailX "center": the tail points up from the middle, for a bubble centered under him.
+  onTyping?: (typing: boolean) => void; tail?: "left" | "top" | "none"; tailX?: number | "center";
 }) {
   // No single word alone on the last line.
   const text = noOrphan(raw);

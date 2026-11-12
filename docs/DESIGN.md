@@ -24,7 +24,9 @@ The target look is the clickable prototype (project files `testwise/redesign/pro
 - Lessons: a close button and a thick green progress bar on top, the question in the middle, the Check button at the
   bottom. After Check, a band in the answer's color rises from the bottom with Socrates, a short reason and Continue.
 - Answer choices are full-width cards, stacked, with the letter key on the left.
-- The path is a column of round nodes on a winding line; the next one is filled and ringed.
+- The path is a stack of units: a banner in the section's color (blue for Math, teal for Reading and Writing) on its
+  darker edge, then the unit's skills as big oval nodes in a centered zigzag. The next one is ringed, with a "Start"
+  bubble above it and Socrates beside it. Names, status and mastery are in the sheet a node opens.
 - Navigation: bottom tabs on phones (icon in a wash when current), a left rail at 900 px and wider.
 - Left-aligned text with a 20 px gutter. Center only a single number or word that is the point.
 
@@ -38,7 +40,7 @@ Tied to Socrates: his outline is the ink, his toga cream is the well, his skin a
 | well | #FEF9E7 | Sunken areas: passages, table headers, skeletons, pressed rows (his toga) |
 | ink | #2D2A23 | Text and icons (his outline) |
 | ink2 | #6B6558 | Secondary text, inactive tabs (5.8:1 on white) |
-| ink3 | #A39E92 | Disabled labels and quiet marks only, never text that must be read (2.7:1) |
+| ink3 | #A39E92 | Quiet marks only: disabled icons, past days in the date picker. Never text that must be read (2.7:1) |
 | line | #E9E6DF | Card and input borders, the tab bar's top edge, speech bubbles |
 | white | #FFFFFF | Labels and marks on a filled color |
 | blue / blueDark / blueWash | #2E7BFF / #1C5FD6 / #E3EEFF | Primary action, selection, current. blueDark is the button edge and every blue text |
@@ -46,7 +48,7 @@ Tied to Socrates: his outline is the ink, his toga cream is the well, his skin a
 | good / goodDark / goodWash / goodInk | #1FB46B / #168A52 / #DFF6EA / #0F7A45 | Right answers, progress bars, toggles on |
 | bad / badDark / badWash / badInk | #F0524F / #C93A37 / #FDE6E5 / #B02F2C | Wrong answers, destructive links, errors |
 | lock / lockDark | #ECEAE4 / #D3D0C7 | Locked and disabled faces, empty progress track, a toggle that is off |
-| teal / tealDark | #12A08F / #0B7A6D | The second section (Reading and Writing) on the path |
+| teal / tealDark / tealWash | #12A08F / #0B7A6D / #DDF3EF | The second section (Reading and Writing) on the path; tealWash is its "current" ring, as blueWash is for Math |
 
 Rules:
 
@@ -72,7 +74,7 @@ Rules:
 
 - Radii: buttons and cards 16, rows and inputs 14, sheets 24, small things 10. Nested corners: inner = outer − padding.
 - **Primary button**: blue face on a 4 px blueDark edge; pressing pushes the face down onto the edge. Disabled: lock
-  face, lockDark edge, ink3 label. In the result band the button takes the answer's color (goodDark or bad).
+  face, lockDark edge, ink2 label (4.8:1 on lock; a disabled label still says something, like "Checking…"). In the result band the button takes the answer's color (goodDark or bad).
 - **Answer cards**: white, 2 px line border with a 4 px bottom; the letter sits in a small bordered key. Selected:
   blue border, blueWash fill, blueDark text. Right: good border, goodWash, goodInk. Wrong: bad border, badWash, badInk.
   Pressing flattens the bottom border. The same card is used for any single choice (minutes a day, birth month).
@@ -80,9 +82,11 @@ Rules:
 - **Inputs**: white, 2 px line border, blue focus outline.
 - **Rows**: title 17 black, detail small; an icon, when it helps recognition, sits in a 44 px blueWash circle.
 - **Toggles**: good when on, lockDark when off, white knob.
-- **Path nodes**: round buttons on a 5 px edge. Next: the section's color (blue or teal) with a ring in its wash.
-  Finished: gold with a white check. In progress: white with the mastery arc. Open: white with a line border. Locked:
-  lock grey with a lock.
+- **Path nodes**: 70 x 62 ovals on a 7 px edge. Open and started: the section's color (blue or teal) with a white
+  play mark. Next: the same, ringed in the section's wash (blueWash or tealWash). Finished: gold with a white check.
+  Locked: lock grey with a lock. No numbers on nodes; mastery is a bar in the skill's sheet.
+- **Unit banners**: the domain name and "3 of 5" (finished skills) in 19 px black white on the section's color, on a
+  4 px edge in its dark shade.
 - Icons: one hand-drawn line family (`app/src/components/icons.tsx`), 24 px grid, 2.25 px stroke, round caps. No emoji
   in the interface, ever (emoji in a learner's own typed text are fine).
 

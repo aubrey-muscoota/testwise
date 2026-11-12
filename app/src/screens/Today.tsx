@@ -236,8 +236,10 @@ const s = StyleSheet.create({
   inlineLink: { minHeight: 32, paddingHorizontal: 0 },
   task: { flexDirection: "row", alignItems: "flex-start", paddingVertical: space(1.5), paddingHorizontal: space(1.5), marginHorizontal: -space(1.5), borderRadius: radius.row },
   // The next task is the one card on the screen: a 2 px border, thicker at the bottom.
+  // Borderless rows hang their padding into the gutter so their text lines up with
+  // the heading; the card doesn't, so its edge lines up with the button instead.
   taskNext: {
-    backgroundColor: color.bg, paddingVertical: space(2) - BORDER, paddingHorizontal: space(1.5) - BORDER, marginVertical: space(0.75),
+    backgroundColor: color.bg, paddingVertical: space(2) - BORDER, paddingHorizontal: space(2) - BORDER, marginHorizontal: 0, marginVertical: space(0.75),
     borderWidth: BORDER, borderBottomWidth: BORDER * 2, borderColor: color.line, borderRadius: radius.card,
   },
   taskTitleNext: { fontFamily: font.black, fontSize: 20, lineHeight: 26, color: color.ink },
