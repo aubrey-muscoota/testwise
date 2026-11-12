@@ -1,0 +1,83 @@
+/* Testwise — generated from tokens.json */
+:root, [data-theme="light"] {
+  --bg: #FFFFFF;
+  --page: #EEF1F7;
+  --well: #FEF9E7;
+  --ink: #2D2A23;
+  --ink-2: #6B6558;
+  --ink-3: #A39E92;
+  --line: #E9E6DF;
+  --blue: #2E7BFF;
+  --blue-dark: #1C5FD6;
+  --blue-wash: #E3EEFF;
+  --gold: #FEB16C;
+  --gold-dark: #E68133;
+  --gold-ink: #B35A12;
+  --teal: #12A08F;
+  --teal-dark: #0B7A6D;
+  --good: #1FB46B;
+  --good-dark: #168A52;
+  --good-wash: #DFF6EA;
+  --good-ink: #0F7A45;
+  --bad: #F0524F;
+  --bad-dark: #C93A37;
+  --bad-wash: #FDE6E5;
+  --bad-ink: #B02F2C;
+  --lock: #ECEAE4;
+  --lock-dark: #D3D0C7;
+  --lock-icon: #B9B5AA;
+  --on-fill: #FFFFFF;
+  --ledge-blue: 0 4px 0 #1C5FD6;
+  --ledge-good: 0 4px 0 #0F7A45;
+  --ledge-bad: 0 4px 0 #C93A37;
+  --ledge-lock: 0 4px 0 #D3D0C7;
+  --ledge-node: 0 7px 0 #1C5FD6;
+  --ledge-pressed: 0 0 0 #1C5FD6;
+  --float: 0 2px 4px rgba(30,40,70,.08), 0 24px 60px rgba(30,40,70,.18);
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --radius-sm: 8px;
+  --radius-key: 9px;
+  --radius-md: 12px;
+  --radius-input: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 18px;
+  --radius-round: 999px;
+  --width-app: 390px;
+  --width-app-max: 480px;
+  --width-reading: 640px;
+  --width-wide: 1120px;
+  --dur-press: 80ms;
+  --dur-screen: 280ms;
+  --dur-sheet: 300ms;
+  --dur-progress: 350ms;
+  --dur-pop: 500ms;
+  --dur-hop: 700ms;
+  --ease-enter: cubic-bezier(.2,.8,.2,1);
+  --ease-spring: cubic-bezier(.3,1.3,.5,1);
+  --ease-rise: cubic-bezier(.2,1.2,.4,1);
+  --ease-hop: cubic-bezier(.3,1.4,.5,1);
+  --font-sans: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.hero { font-family: var(--font-sans); font-size: 56px; line-height: 60px; font-weight: 900; }
+.streak-number { font-family: var(--font-sans); font-size: 96px; line-height: 1; font-weight: 900; }
+.big-number { font-family: var(--font-sans); font-size: 64px; line-height: 1; font-weight: 900; }
+.display { font-family: var(--font-sans); font-size: 34px; line-height: 40px; font-weight: 900; }
+.title { font-family: var(--font-sans); font-size: 28px; line-height: 34px; font-weight: 900; }
+.page-title { font-family: var(--font-sans); font-size: 26px; line-height: 32px; font-weight: 900; }
+.question { font-family: var(--font-sans); font-size: 22px; line-height: 28px; font-weight: 900; }
+.heading { font-family: var(--font-sans); font-size: 19px; line-height: 24px; font-weight: 900; }
+.speech { font-family: var(--font-sans); font-size: 18px; line-height: 24px; font-weight: 800; }
+.option { font-family: var(--font-sans); font-size: 17px; line-height: 22px; font-weight: 800; }
+.body { font-family: var(--font-sans); font-size: 16px; line-height: 25px; font-weight: 600; }
+.label { font-family: var(--font-sans); font-size: 15px; line-height: 20px; font-weight: 800; }
+.small { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 700; }
+.tab { font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 800; }

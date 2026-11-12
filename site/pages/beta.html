@@ -1,0 +1,62 @@
+<!-- title: Join the Testwise beta -->
+<!-- description: Try Testwise before it opens to everyone. Leave your email and test date and we'll send your invite. -->
+<!-- script: /beta.js -->
+<div class="wrap page">
+  <div class="reading">
+    <h1>Join the Testwise beta</h1>
+    <p class="lead">The SAT course is complete and we're polishing the app. Tell us when you test and we'll email your invite, then the iPhone app when it's ready.</p>
+
+    <form class="signup" id="signup" action="/api/beta" method="post" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="email-err">
+        <p class="err" id="email-err" hidden></p>
+      </div>
+      <div class="field">
+        <label for="test_month">When is your SAT?</label>
+        <select id="test_month" name="test_month">
+          <option value="2026-12">December 2026</option>
+          <option value="2027-03">March 2027</option>
+          <option value="2027-05">May 2027</option>
+          <option value="2027-06">June 2027</option>
+          <option value="later">August 2027 or later</option>
+          <option value="unbooked" selected>Not booked yet</option>
+        </select>
+      </div>
+      <label class="check"><input type="checkbox" name="age_ok" id="age_ok" required aria-describedby="age-err"> I'm 13 or older</label>
+      <p class="err form-error" id="age-err" hidden></p>
+      <div class="trap" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <button class="tw-btn" type="submit">Join the beta</button>
+      <p class="form-error" id="form-err" role="alert" hidden></p>
+      <p class="note">We use your email only for the beta and Testwise news, and delete it when you ask.</p>
+    </form>
+
+    <div class="done" id="done" tabindex="-1" hidden>
+      <img src="/img/socrates/happy.svg" width="120" height="120" alt="Socrates, happy">
+      <div>
+        <h2>You're on the list</h2>
+        <p>We'll email <strong id="done-email"></strong> when your invite is ready.</p>
+      </div>
+    </div>
+
+    <h2>Start today on the web</h2>
+    <p>You don't have to wait for the invite. Testwise already works in your browser: open it, answer the age question, and take the placement quiz. Until sign-in arrives, your progress stays on the device you use.</p>
+    <p><a href="/open">Open Testwise</a></p>
+
+    <h2>What helps us most</h2>
+    <ul>
+      <li>Questions that look wrong or unclear. Use the report button in the lesson, so we see the exact question.</li>
+      <li>Screens where you weren't sure what to do next.</li>
+      <li>Whether Socrates' questions helped you find your mistake, or just got in the way.</li>
+      <li>If something broke: your phone or computer and browser, and what you tapped.</li>
+    </ul>
+    <p>Send notes to us: <a data-contact href="https://muscoota.com">muscoota.com</a>. Please leave out anything personal.</p>
+
+    <h2>Good to know</h2>
+    <ul>
+      <li>It's a beta: things will change, and now and then something will break.</li>
+      <li>You can download or delete your practice data from the Me tab at any time. <a href="/delete-data/">How deleting works</a></li>
+      <li>To take your email off the beta list, write to us and we'll remove it.</li>
+    </ul>
+  </div>
+</div>

@@ -22,6 +22,8 @@ jobs:
         run: |
           npx wrangler deploy --dry-run --outdir /tmp/dry-prod --env=
           npx wrangler deploy --dry-run --outdir /tmp/dry-staging --env=staging
+      - name: Check the website builds (no upload)
+        run: node site/build.mjs && (cd site && npx wrangler deploy --dry-run --outdir /tmp/dry-site)
   # Every item type renderer at 390x844, 375x667 and 1440x900, against the
   # baselines in test/ui/__screenshots__ (see test/ui/renderers.spec.mjs).
   ui:
