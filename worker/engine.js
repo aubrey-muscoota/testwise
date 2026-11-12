@@ -159,6 +159,19 @@ export function streak(daysWithLessons, today) {
   return n;
 }
 
+// The days among the last `n` (today included) that have a completed lesson,
+// oldest first, so the streak screen can mark the week without guessing.
+export function recentDays(daysWithLessons, today, n = 7) {
+  const set = new Set(daysWithLessons);
+  const out = [];
+  let day = today;
+  for (let i = 0; i < n; i++) {
+    if (set.has(day)) out.unshift(day);
+    day = prevDay(day);
+  }
+  return out;
+}
+
 // Answer checking. Multiple choice: exact choice. Grid-in: numeric equivalence
 // (so "0.5", ".5" and "1/2" all match "1/2"), or one of the accepted forms.
 export function parseNumber(s) {

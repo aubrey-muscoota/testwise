@@ -38,7 +38,7 @@ export const color = {
 
   teal: "#12A08F", // the second section (Reading and Writing)
   tealDark: "#0B7A6D", // teal's edge; teal text on white (5.2:1)
-  tealWash: "#DDF3EF", // the ring around the current Reading and Writing node
+  tealWash: "#D7F3EE", // the ring around the current Reading and Writing node
 };
 
 export const font = {

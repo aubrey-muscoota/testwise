@@ -65,13 +65,18 @@ export async function stats(env, learnerId, day) {
   const [xpRow, daysRes, todayRow, dueRow] = await Promise.all([
     env.DB.prepare("SELECT COALESCE(SUM(xp),0) AS xp FROM lessons WHERE learner_id = ? AND completed_at IS NOT NULL").bind(learnerId).first(),
     env.DB.prepare("SELECT DISTINCT local_day FROM lessons WHERE learner_id = ? AND completed_at IS NOT NULL ORDER BY local_day DESC LIMIT 400").bind(learnerId).all(),
-    env.DB.prepare("SELECT COUNT(*) AS n, COALESCE(SUM(xp),0) AS xp FROM lessons WHERE learner_id = ? AND completed_at IS NOT NULL AND local_day = ?").bind(learnerId, day).first(),
+    env.DB.prepare("SELECT COUNT(*) AS n, COALESCE(SUM(CASE WHEN kind = 'placement' THEN 0 ELSE 1 END),0) AS learned, COALESCE(SUM(xp),0) AS xp FROM lessons WHERE learner_id = ? AND completed_at IS NOT NULL AND local_day = ?").bind(learnerId, day).first(),
     env.DB.prepare("SELECT COUNT(*) AS n FROM reviews WHERE learner_id = ? AND due_at <= ?").bind(learnerId, Date.now()).first(),
   ]);
+  const days = daysRes.results.map((r) => r.local_day);
   return {
     xp: xpRow.xp,
-    streak: E.streak(daysRes.results.map((r) => r.local_day), day),
+    streak: E.streak(days, day),
+    recent_days: E.recentDays(days, day),
     lessons_today: todayRow.n,
+    // Placement counts for the streak but isn't a lesson: the streak screen
+    // follows the first of these each day.
+    lessons_today_no_placement: todayRow.learned,
     xp_today: todayRow.xp,
     reviews_due: dueRow.n,
   };

@@ -54,9 +54,11 @@ function Tail({ side, x }: { side: "left" | "top"; x?: number | "center" }) {
 }
 
 export function SocratesSays({
-  text: raw, typewriter = true, style, textStyle, onTyping, tail = "left", tailX,
+  text: raw, typewriter = true, style, textStyle, onTyping, tail = "left", tailX, after, lines,
 }: {
-  text: string; typewriter?: boolean; style?: StyleProp<ViewStyle>; textStyle?: StyleProp<TextStyle>;
+  // `after`: words that follow the line in the same paragraph, shown whole once it has typed.
+  // `lines`: at most this many lines on screen; a tap once it has typed shows the rest.
+  text: string; typewriter?: boolean; after?: React.ReactNode; lines?: number; style?: StyleProp<ViewStyle>; textStyle?: StyleProp<TextStyle>;
   // "none": the words without a bubble, for places that already frame them
   // (the result panel, the tutor chat).
   // tailX "center": the tail points up from the middle, for a bubble centered under him.
@@ -69,10 +71,12 @@ export function SocratesSays({
   cb.current = onTyping;
   useEffect(() => { cb.current?.(typing); }, [typing]);
   const web = Platform.OS === "web";
+  const [open, setOpen] = useState(false);
+  const clamp = lines && !open ? lines : undefined;
   return (
     <Pressable
-      onPress={skip}
-      disabled={!typing}
+      onPress={typing ? skip : () => setOpen(true)}
+      disabled={!typing && !clamp}
       accessibilityRole="text"
       accessibilityLabel={web ? undefined : text}
       style={[{ flexShrink: 1 }, style]}
@@ -82,8 +86,8 @@ export function SocratesSays({
         {/* The whole line reserves its space so nothing reflows while it types.
             On web it is also the copy screen readers get, whole and once. */}
         <View>
-          <Text style={[type.socrates, textStyle, st.wrap, { opacity: 0 }]} {...(web ? { "aria-live": "polite" as const } : decorative)}>{text}</Text>
-          <Text {...decorative} style={[type.socrates, textStyle, st.wrap, st.typed]}>{shown}</Text>
+          <Text style={[type.socrates, textStyle, st.wrap, { opacity: 0 }]} numberOfLines={clamp} {...(web ? { "aria-live": "polite" as const } : decorative)}>{text}{after}</Text>
+          <Text {...decorative} numberOfLines={clamp} style={[type.socrates, textStyle, st.wrap, st.typed]}>{shown}{!typing && after}</Text>
         </View>
       </View>
     </Pressable>

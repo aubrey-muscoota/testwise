@@ -97,6 +97,8 @@ export function Press3D({
         accessibilityRole={accessibilityRole}
         accessibilityLabel={accessibilityLabel}
         accessibilityState={{ disabled, ...accessibilityState }}
+        // The web build only reads the aria form of a checked state.
+        aria-checked={accessibilityState?.checked}
         style={{ borderRadius: r }}
       >
         <Animated.View style={[{ borderRadius: r, transform: [{ translateY: y }] }, border != null && { borderWidth: BORDER, borderColor: border }, face]}>{children}</Animated.View>

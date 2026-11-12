@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   pCorrect, updateLearner, updateItem, masteryPct, isMastered, isUnlocked,
-  pickLesson, nextReview, streak, localDay, isCorrect, seededRandom, DAY_MS, LESSON_SIZE,
+  pickLesson, nextReview, streak, recentDays, localDay, isCorrect, seededRandom, DAY_MS, LESSON_SIZE,
 } from "../worker/engine.js";
 
 test("pCorrect is 0.5 at equal ratings and rises with learner rating", () => {
@@ -84,6 +84,12 @@ test("streaks count consecutive days and survive until the day ends", () => {
   assert.equal(streak(["2026-11-03", "2026-11-02"], "2026-11-04"), 2);
   assert.equal(streak(["2026-11-02"], "2026-11-04"), 0);
   assert.equal(streak(["2026-03-01", "2026-02-28"], "2026-03-01"), 2);
+});
+
+test("recent days lists the last week's lesson days, oldest first", () => {
+  assert.deepEqual(recentDays([], "2026-11-04"), []);
+  assert.deepEqual(recentDays(["2026-11-04", "2026-11-02", "2026-10-29", "2026-10-28"], "2026-11-04"), ["2026-10-29", "2026-11-02", "2026-11-04"]);
+  assert.deepEqual(recentDays(["2026-03-01", "2026-02-28", "2026-02-22"], "2026-03-01"), ["2026-02-28", "2026-03-01"]);
 });
 
 test("local day respects the learner's time zone", () => {

@@ -41,7 +41,7 @@ export type Domain = { id: string; name: string; section_id?: string; weight?: n
 
 export type Section = { id: string; name: string; domains: string[] };
 
-export type Stats = { xp: number; streak: number; lessons_today: number; xp_today: number; reviews_due: number };
+export type Stats = { xp: number; streak: number; lessons_today: number; lessons_today_no_placement?: number; recent_days?: string[]; xp_today: number; reviews_due: number };
 
 export type Consent = { age_confirmed: boolean; ai_consent: boolean };
 
