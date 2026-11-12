@@ -9,7 +9,8 @@ import { ScrollView, ScrollViewInstance, StyleSheet, Text, View } from "react-na
 import type { Item } from "../api";
 import { SocratesLine } from "../components/SocratesLine";
 import { Button, SlideIn } from "../components/ui";
-import { Phase, Question, Solution } from "../lesson/Question";
+import { Measurable, Phase, Question, Solution } from "../lesson/Question";
+import { revealAnswer } from "../lesson/reveal";
 import { LessonHead } from "../lesson/LessonHead";
 import { ResultPanel } from "../lesson/ResultPanel";
 import { answerName } from "./Lesson";
@@ -65,6 +66,22 @@ function Frame({ fixture, state }: { fixture: Fixture; state: LabState }) {
   const checked = p.phase !== "answering";
   const response = item.type === "mc" ? choice : typed.trim();
   const scrollRef = useRef<ScrollViewInstance>(null);
+  const innerRef = useRef<Measurable>(null);
+  const stemRef = useRef<Measurable>(null);
+  const tileRefs = useRef<(Measurable | null)[]>([]);
+  const [pad, setPad] = useState(0);
+  const lastH = useRef(0);
+  // As in the lesson: the picked and the right tile show above the band. The
+  // solution state shows the solution, at the end.
+  const settle = (h: number) => {
+    if (!checked) return;
+    if (p.solution) { scrollRef.current?.scrollToEnd({ animated: false }); return; }
+    void revealAnswer({
+      inner: innerRef.current, scroll: scrollRef.current as never, stem: stemRef.current, tiles: tileRefs.current,
+      choices: item.type === "mc" ? item.choices ?? undefined : undefined, answer: item.answer, picked: choice,
+      viewH: 0, contentH: h, scrollY: -2, addPad: (px) => setPad((v) => v + px), animated: false,
+    });
+  };
   const why = p.phase === "wrong" ? item.wrong_reasons[response ?? ""] || "Not this one. Read the question once more, slowly." : "Yes. That's the one.";
   return (
     <>
@@ -73,8 +90,10 @@ function Frame({ fixture, state }: { fixture: Fixture; state: LabState }) {
         ref={scrollRef}
         testID="lab-body"
         contentContainerStyle={lessonShared.body}
-        onContentSizeChange={() => { if (checked) scrollRef.current?.scrollToEnd({ animated: false }); }}
+        onContentSizeChange={(_, h) => { lastH.current = h; settle(h); }}
+        onLayout={() => settle(lastH.current)}
       >
+        <View ref={innerRef}>
         {!checked && (
           <View style={{ marginBottom: space(2) }}>
             <SocratesLine text="Read each one to the end before the choices." mood="thinking" size={64} textStyle={type.socratesSmall} />
@@ -91,10 +110,13 @@ function Frame({ fixture, state }: { fixture: Fixture; state: LabState }) {
             reported={false}
             reportFailed={false}
             onReport={() => {}}
+            stemRef={stemRef}
+            tileRefs={tileRefs}
           />
         </SlideIn>
         {checked && p.solution && item.explanation.length > 0 && <Solution steps={item.explanation} />}
-        <View style={{ height: checked ? space(6) : space(3) }} />
+        <View style={{ height: (checked ? space(6) : space(3)) + pad }} />
+        </View>
       </ScrollView>
       {!checked ? (
         <View style={lessonShared.foot}>

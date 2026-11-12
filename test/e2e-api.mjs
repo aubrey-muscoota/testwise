@@ -62,6 +62,7 @@ assert.equal(f1.total, 8);
 assert.equal(f1.xp, 6 * 10 + 15);
 assert.equal(f1.stats.streak, 1);
 assert.equal(f1.stats.lessons_today, 1);
+assert.equal(f1.stats.lessons_today_no_placement, 1);
 assert.equal(f1.stats.recent_days.length, 1, "today is a lesson day");
 // Finishing twice doesn't double XP.
 assert.equal((await call("/api/lessons/finish", { lesson_id: l1.lesson_id })).data.stats.xp, 75);
@@ -124,6 +125,8 @@ for (const it of pq.items) {
 }
 const pf = (await call("/api/lessons/finish", { lesson_id: pq.lesson_id })).data;
 assert.equal(pf.correct, 12);
+assert.equal(pf.stats.lessons_today, 1, "placement keeps the streak");
+assert.equal(pf.stats.lessons_today_no_placement, 0, "but isn't the day's first lesson");
 assert.ok(pf.placement.tested_out.length >= 12, "probed skills and their prerequisites are tested out");
 assert.ok(pf.placement.next.length >= 1, "something is left to learn");
 tree = (await call("/api/tree")).data;

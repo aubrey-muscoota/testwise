@@ -14,6 +14,7 @@ import { LessonSource } from "../nav";
 import { Measurable, Phase, Question, Solution } from "../lesson/Question";
 import { LessonHead } from "../lesson/LessonHead";
 import { ResultPanel } from "../lesson/ResultPanel";
+import { revealAnswer as revealShown } from "../lesson/reveal";
 import { lessonShared } from "../lesson/shared";
 import { ConsentSheet, QuitSheet } from "../lesson/sheets";
 import { Tutor } from "../lesson/Tutor";
@@ -69,12 +70,14 @@ function openingLine(src: LessonSource, l: LessonT) {
 }
 
 // The right answer as the wrong-answer band names it: the value when it is
-// short, otherwise its letter (the card itself is marked right just above).
+// short. A long choice isn't named: after Check the view scrolls so its card,
+// marked right, is in view just above the band (lesson/reveal.ts), and a letter
+// would name a key the checked card no longer shows.
 export function answerName(item: Item) {
   const a = item.answer;
   if (item.type !== "mc") return a;
   const i = item.choices?.indexOf(a) ?? -1;
-  if (a.length > 28 && i >= 0) return "ABCDEFGH"[i];
+  if (a.length > 28 && i >= 0) return undefined;
   return /^[-−+$\d.,/%\s]+$/.test(a) ? a : `“${a}”`;
 }
 
@@ -301,46 +304,23 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
     setShowSolution(true);
   }
 
-  // After Check, show the answer area above the feedback panel. The view's top
-  // edge stops at the start of the stem or of a choice, never partway through a
-  // line of the passage.
-  // Positions are measured now rather than kept from onLayout: on web, onLayout
-  // only reports size changes, and the folded Socrates row moves things without
-  // resizing them.
-  async function revealAnswer() {
-    const inner = innerRef.current;
-    const sv = scrollRef.current as unknown as { getScrollableNode?: () => { clientHeight: number; scrollHeight: number } } | null;
-    if (!inner || !sv) return;
-    const node = Platform.OS === "web" ? sv.getScrollableNode?.() : null;
-    const vh = node ? node.clientHeight : viewH.current;
-    const ch = node ? node.scrollHeight : contentH.current;
-    if (!vh) return;
-    const top = (r: Measurable | null) => new Promise<{ y: number; h: number } | null>((res) => {
-      if (!r) return res(null);
-      try { r.measureLayout(inner as never, (_x, y, _w, h) => res({ y, h }), () => res(null)); } catch { res(null); }
-    });
-    const [stem, ...tiles] = await Promise.all([top(stemRef.current), ...tileRefs.current.map(top)]);
-    const parts = [stem, ...tiles].filter((x): x is { y: number; h: number } => !!x);
-    if (!parts.length) return;
-    const m = space(2);
-    // The tiles that must stay in view: the one picked and the right one.
+  // After Check, show the answer area above the feedback panel (see reveal.ts).
+  function revealAnswer() {
     const it = current?.item;
-    const keep = it?.type === "mc" && it.choices
-      ? it.choices.map((c, i) => (c === it.answer || c === choice ? tiles[i] : null)).filter((x): x is { y: number; h: number } => !!x)
-      : [];
-    const must = keep.length ? keep : [parts[parts.length - 1]];
-    const mustTop = Math.max(0, Math.min(...must.map((p) => p.y)) - m);
-    const mustBottom = Math.max(...must.map((p) => p.y + p.h));
-    const want = Math.max(0, mustBottom + m - vh);
-    const max = Math.max(0, ch - vh);
-    const edges = parts.map((p) => Math.max(0, p.y - m));
-    // The first clean edge at or past where those tiles fit, but never past the
-    // top of the higher one. When the content is too short to scroll that far,
-    // room is added under it.
-    const clean = want === 0 ? 0 : edges.find((e) => e >= want) ?? want;
-    const to = clean > mustTop ? Math.max(want, mustTop) : clean;
-    const go = () => { if (Math.abs(to - scrollY.current) > 1) scrollRef.current?.scrollTo({ y: to, animated: true }); };
-    if (to > max) { setTailPad((p) => p + Math.ceil(to - max)); setTimeout(go, 60); } else go();
+    if (!it) return;
+    void revealShown({
+      inner: innerRef.current,
+      scroll: scrollRef.current as never,
+      stem: stemRef.current,
+      tiles: tileRefs.current,
+      choices: it.type === "mc" ? it.choices ?? undefined : undefined,
+      answer: it.answer,
+      picked: choice,
+      viewH: viewH.current,
+      contentH: contentH.current,
+      scrollY: scrollY.current,
+      addPad: (px) => setTailPad((p) => p + px),
+    });
   }
   useEffect(() => {
     if (phase === "answering") return;

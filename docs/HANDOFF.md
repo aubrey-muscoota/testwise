@@ -139,9 +139,9 @@ These block the rest of v1. Don't build around them with throwaway work; ask.
 
 ## Known rough edges
 
-- On a 375x667 phone the result band is about a quarter of the screen after a right answer and up to two fifths after
-  a wrong one with a long reason (it names the right answer too). The question behind it scrolls so the picked and the
-  right tile stay in view, even when the other choices go under the band.
+- On a 375x667 phone the result band is about a quarter of the screen after a right answer and about a third after a
+  wrong one (two-line reason: 32%; a four-line reason, the most it shows there, about 38%; a tap shows the rest). The
+  question behind it scrolls so the picked and the right tile stay in view; when both can't fit, the right one does.
 - The recording in project files `testwise/v15-ui/today-to-lesson.webm` predates the review fixes.
 - `scripts/trace_socrates.py` (used once to trace the art) needs numpy and OpenCV; it is not part of CI.
 

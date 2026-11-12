@@ -52,14 +52,16 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
     api.plan().then(setPlan, () => setPlanFailed(true));
   }, []);
 
-  const { streak, lessons_today } = result.stats;
+  const { streak, lessons_today, lessons_today_no_placement } = result.stats;
   const placed = result.placement;
   // A timed set that ran out with nothing answered: no score, and the next
   // step is the same set again, not today's list.
   const empty = !!result.timeUp && result.answered === 0;
   // The first finished lesson of the learner's day moves the streak: whatever
-  // they press next, the streak screen comes first, then that.
-  const streakDue = lessons_today === 1 && streak >= 1 && !empty;
+  // they press next, the streak screen comes first, then that. The placement
+  // quiz keeps the day but isn't a lesson, so it never shows the screen and
+  // the first real lesson after it still does.
+  const streakDue = !placed && !empty && streak >= 1 && (lessons_today_no_placement ?? lessons_today) === 1;
   const [after, setAfter] = useState<(() => void) | null>(null);
   const go = (fn: () => void) => () => (streakDue ? setAfter(() => fn) : fn());
   const next = empty ? undefined : plan?.today.find((t) => !t.done && t.start);

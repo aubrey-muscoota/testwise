@@ -22,10 +22,13 @@ The target look is the clickable prototype (project files `testwise/redesign/pro
 - One job per screen and one primary button, full width, anchored at the bottom on phones. Secondary actions are text
   buttons under it.
 - Lessons: a close button and a thick green progress bar on top, the question in the middle, the Check button at the
-  bottom. After Check, a band in the answer's color rises from the bottom with Socrates, a short reason, the right
-  answer when it was wrong, and Continue. On the web, 1 to 4 or A to D pick a choice and Enter checks, then continues.
+  bottom. After Check, a band in the answer's color rises from the bottom with Socrates, a short reason ending in the
+  right answer when it was wrong ("The answer is ..."; a long choice isn't named, its card is in view and marked
+  right), one row of links (Ask Socrates, Show the solution, Report) and Continue. Keep it near a third of the screen
+  at 375x667: on short phones Socrates joins the title row and the reason shows at most four lines (tap for the rest).
+  Focus moves to the band after Check. On the web, 1 to 4 or A to D pick a choice and Enter checks, then continues.
 - The finish: a lesson-done screen (Socrates celebrating, the title, right, XP and time, one button), then, after the
-  first lesson of the learner's day, the streak screen (the count in goldInk, Socrates, this week's days, Continue).
+  first lesson of the learner's day (the placement quiz keeps the streak but doesn't count), the streak screen (the count in goldInk, Socrates, this week's days, Continue).
 - Answer choices are full-width cards, stacked, with the letter key on the left.
 - The path is a stack of units: a banner in the section's color (blue for Math, teal for Reading and Writing) on its
   darker edge, then the unit's skills as big oval nodes in a centered zigzag. The next one is ringed, with a "Start"
