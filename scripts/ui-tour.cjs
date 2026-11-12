@@ -43,7 +43,15 @@ fs.mkdirSync(out, { recursive: true });
     const stem = await page.locator("[data-testid=stem]").first().innerText().catch(() => "");
     return lessonItems.find((it) => stem && stem.trim().startsWith(it.stem.replace(/\$[^$]*\$/g, "").trim().slice(0, 12))) || null;
   };
-  const answer = async (right) => {
+  // The streak screen follows the first finished lesson of the day, whichever button led off the finish.
+  const streakIfShown = async (name) => {
+    const c = page.getByTestId("streak-continue");
+    if (await c.waitFor({ timeout: 2500 }).then(() => true, () => false)) {
+      await shot(name, 2200);
+      await c.click();
+    }
+  };
+  const answer = async (right, pickedShot) => {
     // Find item by matching radios.
     const radios = page.getByRole("radio");
     const count = await radios.count();
@@ -62,6 +70,7 @@ fs.mkdirSync(out, { recursive: true });
       if (!item) item = lessonItems.find((it) => it.type === "spr");
       await input.fill(right ? item.answer : "99999");
     }
+    if (pickedShot) await shot(pickedShot, 700);
     await btn("Check").click();
     return item;
   };
@@ -114,6 +123,7 @@ fs.mkdirSync(out, { recursive: true });
     }
     await shot("placement-done", 2500);
     await page.getByTestId("complete-continue").click();
+    await streakIfShown("placement-streak");
   });
   await step("today", async () => {
     await page.getByTestId("start-next").waitFor({ timeout: 15000 });
@@ -123,7 +133,7 @@ fs.mkdirSync(out, { recursive: true });
     await page.getByTestId("start-next").click();
     await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
     await shot("lesson-question", 1800);
-    await answer(true);
+    await answer(true, "lesson-picked");
     await shot("lesson-right", 1200);
     await page.getByTestId("continue").click();
     await page.waitForTimeout(400);
@@ -157,6 +167,7 @@ fs.mkdirSync(out, { recursive: true });
     await page.getByText(/^Next: |^Today's list is done/).first().waitFor({ timeout: 15000 });
     await shot("complete", 2200);
     await btn("Back to today").click();
+    await streakIfShown("streak");
     await page.getByTestId("start-next").waitFor({ timeout: 15000 });
     await shot("today-after", 3500);
   });

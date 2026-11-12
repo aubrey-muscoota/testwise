@@ -22,7 +22,10 @@ The target look is the clickable prototype (project files `testwise/redesign/pro
 - One job per screen and one primary button, full width, anchored at the bottom on phones. Secondary actions are text
   buttons under it.
 - Lessons: a close button and a thick green progress bar on top, the question in the middle, the Check button at the
-  bottom. After Check, a band in the answer's color rises from the bottom with Socrates, a short reason and Continue.
+  bottom. After Check, a band in the answer's color rises from the bottom with Socrates, a short reason, the right
+  answer when it was wrong, and Continue. On the web, 1 to 4 or A to D pick a choice and Enter checks, then continues.
+- The finish: a lesson-done screen (Socrates celebrating, the title, right, XP and time, one button), then, after the
+  first lesson of the learner's day, the streak screen (the count in goldInk, Socrates, this week's days, Continue).
 - Answer choices are full-width cards, stacked, with the letter key on the left.
 - The path is a stack of units: a banner in the section's color (blue for Math, teal for Reading and Writing) on its
   darker edge, then the unit's skills as big oval nodes in a centered zigzag. The next one is ringed, with a "Start"
@@ -48,7 +51,7 @@ Tied to Socrates: his outline is the ink, his toga cream is the well, his skin a
 | good / goodDark / goodWash / goodInk | #1FB46B / #168A52 / #DFF6EA / #0F7A45 | Right answers, progress bars, toggles on |
 | bad / badDark / badWash / badInk | #F0524F / #C93A37 / #FDE6E5 / #B02F2C | Wrong answers, destructive links, errors |
 | lock / lockDark | #ECEAE4 / #D3D0C7 | Locked and disabled faces, empty progress track, a toggle that is off |
-| teal / tealDark / tealWash | #12A08F / #0B7A6D / #DDF3EF | The second section (Reading and Writing) on the path; tealWash is its "current" ring, as blueWash is for Math |
+| teal / tealDark / tealWash | #12A08F / #0B7A6D / #D7F3EE | The second section (Reading and Writing) on the path; tealWash is its "current" ring, as blueWash is for Math |
 
 Rules:
 

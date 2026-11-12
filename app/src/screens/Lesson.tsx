@@ -6,19 +6,19 @@ import {
   AccessibilityInfo, Animated, KeyboardAvoidingView, Platform, ScrollView, ScrollViewInstance, StyleSheet, Text, View,
 } from "react-native";
 import { api, getConsent, Item, Lesson as LessonT, Placement, Stats } from "../api";
-import { Icon } from "../components/icons";
 import { SocratesLine } from "../components/SocratesLine";
-import { Button, IconButton, ProgressBar, SlideIn, TextButton, useShake } from "../components/ui";
-import { clock, lines, pick } from "../copy";
+import { Button, SlideIn, TextButton, useShake } from "../components/ui";
+import { lines, pick } from "../copy";
 import { feedback } from "../motion/feedback";
 import { LessonSource } from "../nav";
 import { Measurable, Phase, Question, Solution } from "../lesson/Question";
+import { LessonHead } from "../lesson/LessonHead";
 import { ResultPanel } from "../lesson/ResultPanel";
 import { lessonShared } from "../lesson/shared";
 import { ConsentSheet, QuitSheet } from "../lesson/sheets";
 import { Tutor } from "../lesson/Tutor";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
-import { color, font, GUTTER, space, tabular, topLine, type } from "../theme";
+import { color, GUTTER, space, topLine, type } from "../theme";
 
 export type LessonResult = {
   correct: number;
@@ -35,6 +35,8 @@ export type LessonResult = {
   answered: number;
   planned: number;
 };
+
+type KeyEv = { key: string; metaKey: boolean; ctrlKey: boolean; altKey: boolean; repeat: boolean; target: unknown; preventDefault: () => void };
 
 const COMBO_MILESTONES = [3, 5, 8];
 
@@ -64,6 +66,16 @@ function openingLine(src: LessonSource, l: LessonT) {
   if (l.time_limit_seconds) return lines.timed;
   if (src.kind === "skill" || lessonTask || (src.kind === "task" && src.mode === "skill")) return "Read each one to the end before the choices.";
   return "";
+}
+
+// The right answer as the wrong-answer band names it: the value when it is
+// short, otherwise its letter (the card itself is marked right just above).
+export function answerName(item: Item) {
+  const a = item.answer;
+  if (item.type !== "mc") return a;
+  const i = item.choices?.indexOf(a) ?? -1;
+  if (a.length > 28 && i >= 0) return "ABCDEFGH"[i];
+  return /^[-−+$\d.,/%\s]+$/.test(a) ? a : `“${a}”`;
 }
 
 export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDone: (r: LessonResult) => void; onQuit: () => void }) {
@@ -311,13 +323,22 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
     const parts = [stem, ...tiles].filter((x): x is { y: number; h: number } => !!x);
     if (!parts.length) return;
     const m = space(2);
-    const last = parts[parts.length - 1];
-    const want = Math.max(0, last.y + last.h + m - vh);
+    // The tiles that must stay in view: the one picked and the right one.
+    const it = current?.item;
+    const keep = it?.type === "mc" && it.choices
+      ? it.choices.map((c, i) => (c === it.answer || c === choice ? tiles[i] : null)).filter((x): x is { y: number; h: number } => !!x)
+      : [];
+    const must = keep.length ? keep : [parts[parts.length - 1]];
+    const mustTop = Math.max(0, Math.min(...must.map((p) => p.y)) - m);
+    const mustBottom = Math.max(...must.map((p) => p.y + p.h));
+    const want = Math.max(0, mustBottom + m - vh);
     const max = Math.max(0, ch - vh);
     const edges = parts.map((p) => Math.max(0, p.y - m));
-    // The first clean edge at or past where the last choice fits. When the
-    // content is too short to scroll that far, room is added under it.
-    const to = want === 0 ? 0 : edges.find((e) => e >= want) ?? want;
+    // The first clean edge at or past where those tiles fit, but never past the
+    // top of the higher one. When the content is too short to scroll that far,
+    // room is added under it.
+    const clean = want === 0 ? 0 : edges.find((e) => e >= want) ?? want;
+    const to = clean > mustTop ? Math.max(want, mustTop) : clean;
     const go = () => { if (Math.abs(to - scrollY.current) > 1) scrollRef.current?.scrollTo({ y: to, animated: true }); };
     if (to > max) { setTailPad((p) => p + Math.ceil(to - max)); setTimeout(go, 60); } else go();
   }
@@ -344,6 +365,39 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
     }
     wasTutorOpen.current = tutorOpen;
   }, [tutorOpen, quitOpen, consentOpen]);
+
+  // Keys on the web: 1 to 4 or A to D pick a choice, Enter checks, then continues.
+  const keys = useRef<(e: KeyEv) => void>(() => {});
+  keys.current = (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || tutorOpen || quitOpen || consentOpen || !current) return;
+    const el = e.target as { closest?: (q: string) => unknown; readOnly?: boolean } | null;
+    // A checked typed answer stays focused but read-only; Enter then continues.
+    const typing = !!el?.closest?.("input, textarea, [contenteditable=true]") && !el?.readOnly;
+    const onButton = !!el?.closest?.("[role=button], a, button");
+    const it = current.item;
+    if (e.key === "Enter") {
+      if (typing || onButton || e.repeat) return;
+      if (phase === "answering") { if (response) { e.preventDefault(); check(); } }
+      else if (!busy) { e.preventDefault(); next(); }
+      return;
+    }
+    if (typing || phase !== "answering" || it.type !== "mc" || !it.choices) return;
+    const k = e.key.toLowerCase();
+    const i = /^[1-8]$/.test(k) ? Number(k) - 1 : /^[a-h]$/.test(k) ? k.charCodeAt(0) - 97 : -1;
+    const c = it.choices[i];
+    if (c == null) return;
+    e.preventDefault();
+    if (choice !== c) feedback.select();
+    setChoice(c);
+  };
+  useEffect(() => {
+    if (Platform.OS !== "web") return;
+    const d = (globalThis as { document?: { addEventListener: (t: string, f: (e: KeyEv) => void) => void; removeEventListener: (t: string, f: (e: KeyEv) => void) => void } }).document;
+    if (!d) return;
+    const on = (e: KeyEv) => keys.current(e);
+    d.addEventListener("keydown", on);
+    return () => d.removeEventListener("keydown", on);
+  }, []);
 
   // Socrates needs a one-time OK, because it sends the question and the
   // learner's messages to Anthropic (App Store Guideline 5.1.2(i)).
@@ -388,29 +442,23 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
   const progress = (done + (counts ? 1 : 0)) / total;
   const liveText = phase === "right" ? "Correct" : phase === "wrong" ? `Not quite. The answer is ${item.answer}` : "";
   const modalOpen = tutorOpen || quitOpen || consentOpen;
-  const mood: SocratesMood = phase === "answering" ? "thinking" : phase === "right" ? (cheer ? "celebrate" : "happy") : "concerned";
-  const lowTime = left != null && left <= 60;
+  // Thinking while the learner works it out, listening once an answer waits for Check.
+  const mood: SocratesMood = phase === "answering" ? (response ? "listening" : "thinking") : phase === "right" ? (cheer ? "celebrate" : "happy") : "concerned";
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <View ref={contentRef} style={{ flex: 1 }} aria-hidden={modalOpen || undefined} importantForAccessibility={modalOpen ? "no-hide-descendants" : "auto"}>
-        <View style={lessonShared.head}>
-          <View style={lessonShared.headRow}>
-            <IconButton name="close" onPress={requestQuit} label={placement ? "Quit placement quiz" : "Quit lesson"} style={{ marginLeft: -8 }} />
-            <Text style={[type.label, { flex: 1, marginLeft: space(1) }]} numberOfLines={1} accessibilityRole="header">{title}</Text>
-            {left != null ? (
-              <View style={s.timer} accessible accessibilityLabel={`${Math.floor(left / 60)} minutes ${left % 60} seconds left`}>
-                <Icon name="clock" size={20} color={lowTime ? color.badInk : color.ink2} />
-                <Text style={[s.timerText, tabular, lowTime && { color: color.badInk }]}>{clock(left)}</Text>
-              </View>
-            ) : (
-              <Text style={[type.small, tabular]}>{Math.min(done + 1, total)} of {total}</Text>
-            )}
-          </View>
-          <View style={{ flexDirection: "row", marginTop: space(1) }}>
-            <ProgressBar value={progress} />
-          </View>
-        </View>
+        {/* Like the prototype: the close button and a thick progress bar, nothing else.
+            The set's name and the count are still read out to screen readers. */}
+        <LessonHead
+          title={title}
+          question={Math.min(done + 1, total)}
+          total={total}
+          progress={progress}
+          left={left}
+          onQuit={requestQuit}
+          quitLabel={placement ? "Quit placement quiz" : "Quit lesson"}
+        />
 
         <ScrollView
           ref={scrollRef}
@@ -482,7 +530,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
             line={line}
             mood={mood}
             fx={fx}
-            answer={item.answer}
+            answer={phase === "wrong" ? answerName(item) : undefined}
             combo={phase === "right" && !current.retry ? combo : 0}
             xp={xpGain}
             busy={busy}
@@ -541,8 +589,6 @@ function FadeWhen({ hidden, children, style }: { hidden: boolean; children: Reac
 
 const s = StyleSheet.create({
   center: { flex: 1, alignItems: "flex-start", justifyContent: "center", padding: GUTTER, maxWidth: 520, width: "100%", alignSelf: "center" },
-  timer: { flexDirection: "row", alignItems: "center", gap: 4 },
-  timerText: { fontFamily: font.black, fontSize: 20, lineHeight: 24, color: color.ink },
   // Same height as the line it swaps with, so the bar never jumps.
   footFlat: { borderTopWidth: 2, borderTopColor: color.bg },
   say: { marginBottom: space(2) },

@@ -8,12 +8,14 @@ import { useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito
 import { ScrollView, ScrollViewInstance, StyleSheet, Text, View } from "react-native";
 import type { Item } from "../api";
 import { SocratesLine } from "../components/SocratesLine";
-import { Button, IconButton, ProgressBar, SlideIn } from "../components/ui";
+import { Button, SlideIn } from "../components/ui";
 import { Phase, Question, Solution } from "../lesson/Question";
+import { LessonHead } from "../lesson/LessonHead";
 import { ResultPanel } from "../lesson/ResultPanel";
+import { answerName } from "./Lesson";
 import { lessonShared } from "../lesson/shared";
 import fixtures from "../lab/items.json";
-import { color, font, GUTTER, space, tabular, type } from "../theme";
+import { color, font, GUTTER, space, type } from "../theme";
 
 type Fixture = { id: string; title: string; states: LabState[]; item: Item };
 export type LabState = "idle" | "picked" | "right" | "wrong" | "solution";
@@ -66,16 +68,7 @@ function Frame({ fixture, state }: { fixture: Fixture; state: LabState }) {
   const why = p.phase === "wrong" ? item.wrong_reasons[response ?? ""] || "Not this one. Read the question once more, slowly." : "Yes. That's the one.";
   return (
     <>
-      <View style={lessonShared.head}>
-        <View style={lessonShared.headRow}>
-          <IconButton name="close" onPress={() => {}} label="Quit lesson" style={{ marginLeft: -8 }} />
-          <Text style={[type.label, { flex: 1, marginLeft: space(1) }]} numberOfLines={1} accessibilityRole="header">{fixture.title}</Text>
-          <Text style={[type.small, tabular]}>3 of 8</Text>
-        </View>
-        <View style={{ flexDirection: "row", marginTop: space(1) }}>
-          <ProgressBar value={(2 + (checked ? 1 : 0)) / 8} />
-        </View>
-      </View>
+      <LessonHead title={fixture.title} question={3} total={8} progress={(2 + (checked ? 1 : 0)) / 8} onQuit={() => {}} quitLabel="Quit lesson" />
       <ScrollView
         ref={scrollRef}
         testID="lab-body"
@@ -115,7 +108,7 @@ function Frame({ fixture, state }: { fixture: Fixture; state: LabState }) {
           line={why}
           mood={p.phase === "right" ? "happy" : "concerned"}
           fx={1}
-          answer={item.answer}
+          answer={p.phase === "wrong" ? answerName(item) : undefined}
           combo={0}
           xp={p.phase === "right" ? 10 : 0}
           busy={false}

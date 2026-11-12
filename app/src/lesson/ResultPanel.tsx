@@ -9,9 +9,10 @@ import { Socrates, SocratesMood } from "../socrates/Socrates";
 import { color, font, GUTTER, space, tabular, type } from "../theme";
 import { DrawnMark } from "./Question";
 import { lessonShared } from "./shared";
+import { RichText } from "../text/Passage";
 
-export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk, onSolution, last, reported, reportFailed, onReport }: {
-  ok: boolean; line: string; mood: SocratesMood; fx: number; answer: string; combo: number; xp: number; busy: boolean;
+export function ResultPanel({ ok, line, mood, fx, answer, combo, xp, busy, onNext, onAsk, onSolution, last, reported, reportFailed, onReport }: {
+  ok: boolean; line: string; mood: SocratesMood; fx: number; answer?: string; combo: number; xp: number; busy: boolean;
   onNext: () => void; onAsk?: () => void; onSolution?: () => void; last: boolean;
   reported: boolean; reportFailed: boolean; onReport: () => void;
 }) {
@@ -31,7 +32,7 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
   }, [v, still]);
   return (
     <Animated.View
-      style={[s.panel, short && { paddingTop: space(1.5), paddingBottom: space(1) }, { backgroundColor: ok ? color.goodWash : color.badWash }, {
+      style={[s.panel, short && { paddingTop: space(1.25), paddingBottom: space(1) }, { backgroundColor: ok ? color.goodWash : color.badWash }, {
         opacity: v.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1] }),
         transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [80, 0] }) }],
       }]}
@@ -57,12 +58,13 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
               </Text>
             </View>
             <SocratesSays text={line} onTyping={setTyping} tail="none" textStyle={[s.panelLine, { color: ink }]} style={{ marginTop: space(0.5) }} />
+            {!ok && answer ? <RichText text={`The answer is ${answer}`} style={[s.panelAnswer, short && { marginTop: 0 }, { color: ink }]} /> : null}
           </View>
         </View>
         {(() => {
           const reportBtn = (
             <TextButton
-              title={reported ? "Reported" : "Report a problem"}
+              title={reported ? "Reported" : short ? "Report" : "Report a problem"}
               tone={tone}
               disabled={reported}
               onPress={onReport}
@@ -77,8 +79,8 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
             <>
               {links && (
                 <View style={s.panelLinks}>
-                  {!ok && onAsk && <TextButton title="Ask Socrates" onPress={onAsk} tone={tone} underline style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
-                  {onSolution && <TextButton title="Show the solution" onPress={onSolution} tone={tone} underline style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
+                  {!ok && onAsk && <TextButton title="Ask Socrates" onPress={onAsk} tone={tone} underline style={{ paddingHorizontal: 0, marginRight: space(short ? 2 : 3) }} />}
+                  {onSolution && <TextButton title="Show the solution" onPress={onSolution} tone={tone} underline style={{ paddingHorizontal: 0, marginRight: space(short ? 2 : 3) }} />}
                   {inline && reportBtn}
                 </View>
               )}
@@ -99,6 +101,7 @@ const s = StyleSheet.create({
   panelHead: { flexDirection: "row", alignItems: "flex-start", marginBottom: space(1.5) },
   panelTitle: { fontFamily: font.black, fontSize: 22, lineHeight: 28 },
   panelLine: { fontFamily: font.bold, fontSize: 16, lineHeight: 22 },
+  panelAnswer: { fontFamily: font.black, fontSize: 16, lineHeight: 22, marginTop: space(0.5) },
   panelTitleShort: { fontSize: 20, lineHeight: 26 },
   panelLinks: { flexDirection: "row", flexWrap: "wrap", marginBottom: space(1), marginTop: -space(0.5) },
   panelReport: { alignItems: "center", marginTop: space(0.25) },

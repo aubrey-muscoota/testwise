@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Platform, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { api, Plan } from "../api";
 import { clock, noOrphan, taskName } from "../copy";
-import { Icon } from "../components/icons";
 import { SocratesSays } from "../components/SocratesLine";
 import { Socrates } from "../socrates/Socrates";
 import { Bone, Button, CountUp, Rise, TextButton } from "../components/ui";
@@ -13,6 +12,7 @@ import { LessonSource } from "../nav";
 import { color, font, GUTTER, space, type, COLUMN } from "../theme";
 import type { LessonResult } from "./Lesson";
 import { taskSource } from "./Today";
+import { Streak } from "./Streak";
 
 const low = (n: string) => n.charAt(0).toLowerCase() + n.slice(1);
 
@@ -53,11 +53,15 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
   }, []);
 
   const { streak, lessons_today } = result.stats;
-  const streakStarted = lessons_today === 1 && streak >= 1;
   const placed = result.placement;
   // A timed set that ran out with nothing answered: no score, and the next
   // step is the same set again, not today's list.
   const empty = !!result.timeUp && result.answered === 0;
+  // The first finished lesson of the learner's day moves the streak: whatever
+  // they press next, the streak screen comes first, then that.
+  const streakDue = lessons_today === 1 && streak >= 1 && !empty;
+  const [after, setAfter] = useState<(() => void) | null>(null);
+  const go = (fn: () => void) => () => (streakDue ? setAfter(() => fn) : fn());
   const next = empty ? undefined : plan?.today.find((t) => !t.done && t.start);
   const names = placed?.next.map((n) => n.name) ?? [];
   const placedFirst = placed?.tested_out.length ? placed.next[0]?.id : undefined;
@@ -68,6 +72,8 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
 
   const [typing, setTyping] = useState(true);
   const mood = empty ? "concerned" : "celebrate";
+
+  if (after) return <Streak stats={result.stats} onContinue={after} />;
 
   return (
     <View style={{ flex: 1 }}>
@@ -104,15 +110,6 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
             <Text style={type.number}>{result.seconds >= 60 ? clock(result.seconds) : result.seconds}</Text>
           </NumberCell>
         </Rise>}
-
-        {streakStarted && !placed && !empty && (
-          <Rise delay={560} style={s.streak}>
-            <Icon name="streak" color={color.goldDark} strokeWidth={2.5} />
-            <Text style={[type.label, { marginLeft: space(1), color: color.goldInk }]}>
-              {streak === 1 ? "Day one of a streak" : `${streak} days in a row`}
-            </Text>
-          </Rise>
-        )}
 
         {placed && (
           <Rise delay={600} style={{ marginTop: space(3) }}>
@@ -155,11 +152,11 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
           </>
         ) : next && !placed ? (
           <>
-            <Button title="Start the next one" onPress={() => onStart(taskSource(next)!)} testID="complete-next" />
-            <TextButton title="Back to today" onPress={onContinue} tone="soft" style={{ marginTop: space(0.5) }} />
+            <Button title="Start the next one" onPress={go(() => onStart(taskSource(next)!))} testID="complete-next" />
+            <TextButton title="Back to today" onPress={go(onContinue)} tone="soft" style={{ marginTop: space(0.5) }} />
           </>
         ) : (
-          <Button title={placed ? "See today's plan" : "Back to today"} onPress={onContinue} testID="complete-continue" />
+          <Button title={placed ? "See today's plan" : "Back to today"} onPress={go(onContinue)} testID="complete-continue" />
         )}
       </Rise>
     </View>
@@ -183,7 +180,6 @@ const s = StyleSheet.create({
   centerText: { textAlign: "center", ...(Platform.OS === "web" ? ({ textWrap: "balance" } as object) : null) },
   title: { fontFamily: font.black, fontSize: 28, lineHeight: 34, color: color.ink, textAlign: "center", ...(Platform.OS === "web" ? ({ textWrap: "balance" } as object) : null) },
   numbers: { flexDirection: "row", justifyContent: "space-around", marginTop: space(2.5), width: "100%", maxWidth: 420, alignSelf: "center" },
-  streak: { flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: space(2.5) },
   foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1.5), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });
 
