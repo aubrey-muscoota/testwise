@@ -62,6 +62,7 @@ assert.equal(f1.total, 8);
 assert.equal(f1.xp, 6 * 10 + 15);
 assert.equal(f1.stats.streak, 1);
 assert.equal(f1.stats.lessons_today, 1);
+assert.equal(f1.stats.recent_days.length, 1, "today is a lesson day");
 // Finishing twice doesn't double XP.
 assert.equal((await call("/api/lessons/finish", { lesson_id: l1.lesson_id })).data.stats.xp, 75);
 

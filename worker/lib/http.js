@@ -68,9 +68,11 @@ export async function stats(env, learnerId, day) {
     env.DB.prepare("SELECT COUNT(*) AS n, COALESCE(SUM(xp),0) AS xp FROM lessons WHERE learner_id = ? AND completed_at IS NOT NULL AND local_day = ?").bind(learnerId, day).first(),
     env.DB.prepare("SELECT COUNT(*) AS n FROM reviews WHERE learner_id = ? AND due_at <= ?").bind(learnerId, Date.now()).first(),
   ]);
+  const days = daysRes.results.map((r) => r.local_day);
   return {
     xp: xpRow.xp,
-    streak: E.streak(daysRes.results.map((r) => r.local_day), day),
+    streak: E.streak(days, day),
+    recent_days: E.recentDays(days, day),
     lessons_today: todayRow.n,
     xp_today: todayRow.xp,
     reviews_due: dueRow.n,

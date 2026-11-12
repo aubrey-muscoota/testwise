@@ -181,7 +181,7 @@ Short runways compress (5 days: start the skills worth the most points, 2 test-r
 
 ## Practice
 
-A practice session is a lesson with `kind = 'practice'`. The response has the same shape as `POST /api/lessons`, so the lesson screen runs it unchanged: answers go to `POST /api/answers` with the `lesson_id`, and `POST /api/lessons/finish` ends it. Ratings, the review queue, XP and the streak update exactly as for a lesson.
+A practice session is a lesson with `kind = 'practice'`. The response has the same shape as `POST /api/lessons`, so the lesson screen runs it unchanged: answers go to `POST /api/answers` with the `lesson_id`, and `POST /api/lessons/finish` ends it. Ratings, the review queue, XP and the streak update exactly as for a lesson. The `stats` that `POST /api/lessons/finish` returns carry `streak`, `lessons_today` and `recent_days` (the learner's local days among the last seven, today included, with a finished lesson, oldest first), which the streak screen uses to mark the week.
 
 ### `POST /api/practice`
 

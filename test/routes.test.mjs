@@ -176,6 +176,7 @@ test("a timed set that ends with nothing answered earns nothing and isn't a fini
   assert.equal(f.stats.xp, 0);
   assert.equal(f.stats.lessons_today, 0);
   assert.equal(f.stats.streak, 0);
+  assert.deepEqual(f.stats.recent_days, []);
   assert.equal(env.DB.raw.prepare("SELECT completed_at FROM lessons WHERE id = ?").get(t.lesson_id).completed_at, null);
 
   // One answer is enough to count.
@@ -184,6 +185,7 @@ test("a timed set that ends with nothing answered earns nothing and isn't a fini
   const f2 = await body(await finishLesson(env, req(), L, { lesson_id: t2.lesson_id }));
   assert.ok(f2.xp > 0);
   assert.equal(f2.stats.lessons_today, 1);
+  assert.deepEqual(f2.stats.recent_days, [new Date().toISOString().slice(0, 10)]);
 });
 
 test("the data export holds every table the learner appears in, and nothing after a delete", async () => {
