@@ -11,7 +11,7 @@ import { SocratesLine } from "../components/SocratesLine";
 import { useWide } from "../components/Shell";
 import { Bone, Button, ErrorState, Rise, Skeleton, Stat, TextButton, Wordmark, decorative, usePop } from "../components/ui";
 import { LessonSource, practiceSource, useLoad } from "../nav";
-import { color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
+import { BORDER, color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 
 export function taskSource(t: PlanTask): LessonSource | null {
   if (!t.start) return null;
@@ -105,8 +105,8 @@ export function Today({
           <View style={{ flex: 1 }} />
           {st.xp > 0 && (
             <View style={s.stats}>
-              {st.streak >= 2 && <Stat icon="streak" value={st.streak} label={st.streak === 1 ? "day in a row" : "days in a row"} tint={color.terracotta} />}
-              <Stat icon="xp" value={st.xp} label="XP" tint={color.ochre} />
+              {st.streak >= 2 && <Stat icon="streak" value={st.streak} label={st.streak === 1 ? "day in a row" : "days in a row"} tone="gold" />}
+              <Stat icon="xp" value={st.xp} label="XP" tone="blue" />
             </View>
           )}
         </View>
@@ -114,10 +114,10 @@ export function Today({
         <Rise>
           <Text style={type.hero} accessibilityRole="header">{head.title}</Text>
           {head.sub ? (
-            <Text style={[type.body, { color: color.inkSoft, marginTop: space(0.5) }]}>{head.sub}</Text>
+            <Text style={[type.body, { color: color.ink2, marginTop: space(0.5) }]}>{head.sub}</Text>
           ) : (
             <View style={s.subRow}>
-              <Text style={[type.body, { color: color.inkSoft }]}>No test date yet. </Text>
+              <Text style={[type.body, { color: color.ink2 }]}>No test date yet. </Text>
               <TextButton title="Set it" onPress={onEditDate} style={s.inlineLink} accessibilityLabel="Set your test date" />
             </View>
           )}
@@ -151,7 +151,7 @@ export function Today({
   );
 }
 
-// Done: a filled olive circle with a check. Next: an azure ring. Later: a light ring.
+// Done: a gold disc with a check (finished things are gold). Next: a blue ring. Later: a quiet ring.
 function Mark({ state }: { state: "done" | "next" | "later" }) {
   // The ring turning into a check pops once, so progress is felt, not counted.
   const pop = usePop(state === "done", 1.18);
@@ -160,11 +160,11 @@ function Mark({ state }: { state: "done" | "next" | "later" }) {
       <Svg width={28} height={28} viewBox="0 0 28 28">
         {state === "done" ? (
           <>
-            <Circle cx={14} cy={14} r={12} fill={color.olive} />
-            <Path d="M8.4 14.4L12.2 18L19.6 10.1" stroke={color.sheet} strokeWidth={2.2} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <Circle cx={14} cy={14} r={12.5} fill={color.gold} stroke={color.goldDark} strokeWidth={1.5} />
+            <Path d="M8.4 14.4L12.2 18L19.6 10.1" stroke={color.white} strokeWidth={3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
           </>
         ) : (
-          <Circle cx={14} cy={14} r={11} fill="none" stroke={state === "next" ? color.azure : color.inkSoft} strokeWidth={state === "next" ? 2.5 : 1.75} />
+          <Circle cx={14} cy={14} r={11.5} fill="none" stroke={state === "next" ? color.blue : color.lockDark} strokeWidth={3} />
         )}
       </Svg>
     </Animated.View>
@@ -178,7 +178,7 @@ function TaskRow({ task, isNext, onPress }: { task: PlanTask; isNext: boolean; o
     <Pressable
       onPress={onPress}
       disabled={!onPress}
-      style={({ pressed }) => [s.task, isNext && s.taskNext, pressed && { backgroundColor: isNext ? color.azureWash : color.paperDeep }]}
+      style={({ pressed }) => [s.task, isNext && s.taskNext, pressed && { backgroundColor: isNext ? color.blueWash : color.well }]}
       accessibilityRole={onPress ? "button" : "text"}
       accessibilityLabel={`${task.title}, ${mins}${task.done ? ", done" : ""}. ${task.why}`}
     >
@@ -186,7 +186,7 @@ function TaskRow({ task, isNext, onPress }: { task: PlanTask; isNext: boolean; o
       <View style={{ flex: 1, marginLeft: space(1.5) }}>
         <View style={{ flexDirection: "row", alignItems: "baseline" }}>
           <Text
-            style={[isNext ? s.taskTitleNext : type.label, { flex: 1 }, task.done && { color: color.inkSoft }]}
+            style={[isNext ? s.taskTitleNext : type.label, { flex: 1 }, task.done && { color: color.ink2 }]}
           >
             {task.kind === "lesson" ? taskName(task.title) : task.title}
           </Text>
@@ -194,7 +194,7 @@ function TaskRow({ task, isNext, onPress }: { task: PlanTask; isNext: boolean; o
         </View>
         {/* Once it's checked off, the reason has done its job. */}
         {!task.done && (
-          <Text style={[isNext ? type.body : type.small, isNext ? { marginTop: space(0.5) } : { marginTop: 2 }, !isNext && { color: color.inkSoft }]} numberOfLines={isNext ? undefined : 2}>
+          <Text style={[isNext ? type.body : type.small, isNext ? { marginTop: space(0.5) } : { marginTop: 2 }, !isNext && { color: color.ink2 }]} numberOfLines={isNext ? undefined : 2}>
             {task.why}
           </Text>
         )}
@@ -235,7 +235,11 @@ const s = StyleSheet.create({
   subRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: space(0.5) },
   inlineLink: { minHeight: 32, paddingHorizontal: 0 },
   task: { flexDirection: "row", alignItems: "flex-start", paddingVertical: space(1.5), paddingHorizontal: space(1.5), marginHorizontal: -space(1.5), borderRadius: radius.row },
-  taskNext: { backgroundColor: color.sheet, paddingVertical: space(2), marginVertical: space(0.5) },
-  taskTitleNext: { fontFamily: font.serifSemi, fontSize: 21, lineHeight: 27, color: color.ink },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  // The next task is the one card on the screen: a 2 px border, thicker at the bottom.
+  taskNext: {
+    backgroundColor: color.bg, paddingVertical: space(2) - BORDER, paddingHorizontal: space(1.5) - BORDER, marginVertical: space(0.75),
+    borderWidth: BORDER, borderBottomWidth: BORDER * 2, borderColor: color.line, borderRadius: radius.card,
+  },
+  taskTitleNext: { fontFamily: font.black, fontSize: 20, lineHeight: 26, color: color.ink },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.bg, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });

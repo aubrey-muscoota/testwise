@@ -13,7 +13,7 @@ import { Bone, Button, ErrorState, Rise, Sheet, Skeleton, TextButton, decorative
 import { feedback } from "../motion/feedback";
 import { LessonSource, practiceSource, useLoad } from "../nav";
 import { Socrates } from "../socrates/Socrates";
-import { color, font, GUTTER, space, tabular, type, COLUMN } from "../theme";
+import { BORDER, color, font, GUTTER, space, tabular, type, COLUMN } from "../theme";
 
 const SECTION_KEY = "testwise.section";
 // Remembered between visits so the path can mark newly opened skills.
@@ -23,8 +23,15 @@ const ROW = 92;
 // The line wobbles in a narrow band, so skill names get most of a phone's width.
 const XS = [38, 62, 80, 56, 34, 50, 74, 46];
 const LABEL_X = 124;
-const R = 26;
+const R = 28;
 const R_NEXT = 32;
+
+// The first section is blue; the second (Reading and Writing) is teal.
+type Accent = { fill: string; edge: string; wash: string; ink: string };
+const ACCENTS: Accent[] = [
+  { fill: color.blue, edge: color.blueDark, wash: color.blueWash, ink: color.blueDark },
+  { fill: color.teal, edge: color.tealDark, wash: color.line, ink: color.tealDark },
+];
 
 type State = "locked" | "mastered" | "tested" | "progress" | "open";
 function stateOf(sk: Skill): State {
@@ -95,6 +102,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
   const started = all.filter((sk) => sk.attempts > 0 || sk.tested_out || sk.mastered).length;
   const showOffer = sec && !placed[sec.id] && all.every((sk) => sk.attempts === 0 && !sk.tested_out);
   const byId = new Map(tree.domains.flatMap((d) => d.skills).map((sk) => [sk.id, sk] as const));
+  const accent = ACCENTS[Math.max(0, sections.indexOf(sec!)) % ACCENTS.length];
 
   return (
     <View style={{ flex: 1 }}>
@@ -139,6 +147,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
               onOpen={setSelected}
               byId={byId}
               missed={data!.missed}
+              accent={accent}
             />
           </View>
         ))}
@@ -162,11 +171,15 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
 
 // One domain's skills along an inked line.
 function Track({
-  skills, offset, nextId, newIds, onOpen, byId, missed,
-}: { skills: Skill[]; offset: number; nextId?: string; newIds: Set<string>; onOpen: (sk: Skill) => void; byId: Map<string, Skill>; missed: Map<string, number> }) {
+  skills, offset, nextId, newIds, onOpen, byId, missed, accent,
+}: {
+  skills: Skill[]; offset: number; nextId?: string; newIds: Set<string>; onOpen: (sk: Skill) => void; byId: Map<string, Skill>; missed: Map<string, number>;
+  accent: Accent;
+}) {
   const pts = skills.map((_, i) => ({ x: XS[(i + offset) % XS.length], y: ROW * i + ROW / 2 }));
   const h = ROW * skills.length;
   // Segments, each a little uneven; solid up to open skills, dotted to locked ones.
+  // Drawn in the locked grey, thick and round, so the nodes stay the loud part.
   const segs = useMemo(
     () => pts.slice(1).map((p, i) => {
       const a = pts[i];
@@ -181,12 +194,12 @@ function Track({
       <View {...decorative} pointerEvents="none" style={StyleSheet.absoluteFill}>
         <Svg width={LABEL_X} height={h}>
           {segs.map((sg, i) => (
-            <SvgPath key={i} d={sg.d} stroke={sg.open ? color.ink : color.inkSoft} strokeWidth={sg.open ? 2 : 1.75} strokeDasharray={sg.open ? undefined : "1 7"} strokeLinecap="round" fill="none" />
+            <SvgPath key={i} d={sg.d} stroke={color.lockDark} strokeWidth={4} strokeDasharray={sg.open ? undefined : "1 10"} strokeLinecap="round" fill="none" />
           ))}
         </Svg>
       </View>
       {skills.map((sk, i) => (
-        <SkillNode key={sk.id} skill={sk} x={pts[i].x} y={pts[i].y} isNext={sk.id === nextId} isNew={newIds.has(sk.id)} onPress={() => onOpen(sk)} byId={byId} missed={missed.get(sk.id) ?? 0} />
+        <SkillNode key={sk.id} skill={sk} x={pts[i].x} y={pts[i].y} isNext={sk.id === nextId} isNew={newIds.has(sk.id)} onPress={() => onOpen(sk)} byId={byId} missed={missed.get(sk.id) ?? 0} accent={accent} />
       ))}
     </View>
   );
@@ -210,13 +223,15 @@ function statusLine(sk: Skill, isNext: boolean, byId: Map<string, Skill>, missed
   return isNext ? "Start here" : "Not started";
 }
 
-function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId, missed }: { skill: Skill; x: number; y: number; isNext: boolean; isNew: boolean; onPress: () => void; byId: Map<string, Skill>; missed: number }) {
+function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId, missed, accent }: {
+  skill: Skill; x: number; y: number; isNext: boolean; isNew: boolean; onPress: () => void; byId: Map<string, Skill>; missed: number; accent: Accent;
+}) {
   const st = stateOf(sk);
   const r = isNext ? R_NEXT : R;
   const pop = usePop(isNew, 1.18);
   const status = statusLine(sk, isNext, byId, missed);
   const label = `${sk.name}, ${st === "progress" ? `${sk.mastery}%, ` : ""}${status}${isNew ? ", new" : ""}`;
-  // Both the node and its label press together: the node shrinks, the name turns azure.
+  // Both the node and its label press together: the node presses onto its edge, the name turns blue.
   const [down, setDown] = useState(false);
   const press = { onPressIn: () => setDown(true), onPressOut: () => setDown(false) };
   return (
@@ -226,18 +241,16 @@ function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId, missed }: { 
         onPress={onPress}
         accessibilityRole="button"
         accessibilityLabel={label}
-        style={{ position: "absolute", left: x - r - 4, top: y - r - 4, width: r * 2 + 8, height: r * 2 + 8, alignItems: "center", justifyContent: "center" }}
+        style={{ position: "absolute", left: x - r - 4, top: y - r - 4 - NODE_EDGE / 2, width: r * 2 + 8, height: r * 2 + 8 + NODE_EDGE, alignItems: "center", justifyContent: "center" }}
       >
-        <View style={[{ transform: [{ scale: down ? 0.94 : 1 }] }]}>
-          <NodeArt state={st} r={r} mastery={sk.mastery} pop={pop} isNext={isNext} />
-        </View>
+        <NodeArt state={st} r={r} mastery={sk.mastery} pop={pop} isNext={isNext} accent={accent} down={down} />
       </Pressable>
       <Pressable {...press} onPress={onPress} accessible={false} focusable={false} style={[s.label, { top: y - 36, height: 72 }]}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text style={[type.label, st === "locked" && { color: color.inkSoft }, down && { color: color.azureInk }, { flexShrink: 1 }]} numberOfLines={2}>{noOrphan(sk.name)}</Text>
-          {isNew && <Icon name="dot" size={14} color={color.terracotta} style={{ marginLeft: 4 }} />}
+          <Text style={[type.label, st === "locked" && { color: color.ink2 }, down && { color: color.blueDark }, { flexShrink: 1 }]} numberOfLines={2}>{noOrphan(sk.name)}</Text>
+          {isNew && <Icon name="dot" size={14} color={color.goldDark} style={{ marginLeft: 4 }} />}
         </View>
-        <Text style={[type.small, tabular, isNext && { color: color.azureInk, fontFamily: font.bold }]} numberOfLines={2}>
+        <Text style={[type.small, tabular, isNext && { color: accent.ink, fontFamily: font.extra }]} numberOfLines={2}>
           {isNew && st !== "progress" ? "Just opened" : status}
         </Text>
       </Pressable>
@@ -245,45 +258,62 @@ function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId, missed }: { 
   );
 }
 
-// Only the next skill is a solid azure disc with a play mark; other open
-// skills are a plain ring, so "Start here" is the one thing that stands out.
-function NodeArt({ state, r, mastery, pop, isNext }: { state: State; r: number; mastery: number; pop: object; isNext: boolean }) {
+// Nodes are chunky round buttons on a darker edge, like the primary button.
+// Only the next skill is filled with the section's color, with a ring of its
+// wash around it, so "Start here" is the one thing that stands out. Finished
+// skills (mastered or tested out) are gold; open ones are white with a line
+// border; skills in progress show their mastery as an arc; locked ones are grey.
+const NODE_EDGE = 5;
+
+function NodeArt({ state, r, mastery, pop, isNext, accent, down }: {
+  state: State; r: number; mastery: number; pop: object; isNext: boolean; accent: Accent; down: boolean;
+}) {
   const size = r * 2;
   const c = r;
+  const look =
+    state === "mastered" || state === "tested" ? { face: color.gold, edge: color.goldDark, border: undefined }
+    : state === "locked" ? { face: color.lock, edge: color.lockDark, border: undefined }
+    : state === "open" && isNext ? { face: accent.fill, edge: accent.edge, border: undefined }
+    : { face: color.bg, edge: color.line, border: color.line };
+  let mark: React.ReactNode = null;
   if (state === "progress") {
-    const rr = r - 3;
+    const rr = r - 7;
     const len = 2 * Math.PI * rr;
-    return (
-      <Animated.View style={[{ width: size, height: size, alignItems: "center", justifyContent: "center" }, pop]}>
+    mark = (
+      <>
         <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
-          <Circle cx={c} cy={c} r={r} fill={color.sheet} />
-          <Circle cx={c} cy={c} r={rr} stroke={color.paperDeep} strokeWidth={5} fill="none" />
+          <Circle cx={c} cy={c} r={rr} stroke={color.lock} strokeWidth={5} fill="none" />
           <Circle
-            cx={c} cy={c} r={rr} stroke={color.azure} strokeWidth={5} fill="none" strokeLinecap="round"
+            cx={c} cy={c} r={rr} stroke={accent.fill} strokeWidth={5} fill="none" strokeLinecap="round"
             strokeDasharray={`${len} ${len}`} strokeDashoffset={len * (1 - Math.max(0.04, mastery / 100))}
             transform={`rotate(-90 ${c} ${c})`}
           />
         </Svg>
-        <Text style={[type.small, { color: color.ink, fontFamily: font.black }, tabular]}>{mastery}%</Text>
-      </Animated.View>
+        <Text style={[s.pct, tabular]}>{mastery}%</Text>
+      </>
     );
+  } else if (state === "mastered" || state === "tested") {
+    mark = <Icon name="check" size={r} color={color.white} strokeWidth={3.25} />;
+  } else if (state === "open") {
+    mark = <Icon name="play" size={r * 0.9} color={isNext ? color.white : accent.ink} strokeWidth={2.75} />;
+  } else {
+    mark = <Icon name="lock" size={r * 0.8} color={color.ink2} strokeWidth={2.5} />;
   }
-  if (state === "open" && !isNext) {
-    return (
-      <Animated.View style={[{ width: size, height: size }, pop]}>
-        <Svg width={size} height={size}>
-          <Circle cx={c} cy={c} r={r - 1} fill={color.sheet} stroke={color.ink} strokeWidth={2} />
-        </Svg>
-      </Animated.View>
-    );
-  }
-  const fill = state === "mastered" ? color.olive : state === "open" ? color.azure : state === "tested" ? color.oliveWash : color.paperDeep;
   return (
-    <Animated.View style={[{ width: size, height: size, borderRadius: r, backgroundColor: fill, alignItems: "center", justifyContent: "center" }, pop]}>
-      {state === "mastered" && <Icon name="check" size={r} color={color.sheet} strokeWidth={2.4} />}
-      {state === "tested" && <Icon name="check" size={r} color={color.olive} strokeWidth={2.4} />}
-      {state === "open" && <Icon name="play" size={r * 0.9} color={color.ink} strokeWidth={2} />}
-      {state === "locked" && <Icon name="lock" size={r * 0.8} color={color.inkSoft} />}
+    <Animated.View style={[{ alignItems: "center" }, pop]}>
+      {/* The current skill gets a ring in its wash, like the current tab. */}
+      {isNext && state === "open" && <View style={[s.halo, { width: size + 20, height: size + 20 + NODE_EDGE, borderRadius: r + 10, borderColor: accent.wash }]} />}
+      <View style={{ width: size, height: size + NODE_EDGE, borderRadius: r, backgroundColor: look.edge }}>
+        <View
+          style={{
+            width: size, height: size, borderRadius: r, backgroundColor: look.face, alignItems: "center", justifyContent: "center",
+            transform: [{ translateY: down ? NODE_EDGE - 1 : 0 }],
+            ...(look.border ? { borderWidth: BORDER, borderColor: look.border } : null),
+          }}
+        >
+          {mark}
+        </View>
+      </View>
     </Animated.View>
   );
 }
@@ -340,4 +370,6 @@ const s = StyleSheet.create({
   // Grouped by space only: no card around the offer.
   offer: { marginTop: space(3) },
   label: { position: "absolute", left: LABEL_X, right: 0, minHeight: 44, justifyContent: "center" },
+  pct: { fontFamily: font.black, fontSize: 13, lineHeight: 17, color: color.ink },
+  halo: { position: "absolute", top: -10, borderWidth: 6 },
 });

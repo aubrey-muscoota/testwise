@@ -27,11 +27,11 @@ export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
         </Rise>
         <Rise delay={240} style={{ marginTop: space(4) }}>
           <Text style={type.title} accessibilityRole="header">{noOrphan(exam?.tagline ?? `A daily ${name} plan, built from your test date`)}</Text>
-          <Text style={[type.body, { color: color.inkSoft, marginTop: space(1) }]}>
+          <Text style={[type.body, { color: color.ink2, marginTop: space(1) }]}>
             No account needed. Your progress stays on this device.
           </Text>
         </Rise>
-        {error && <Text style={[type.body, { color: color.brick, marginTop: space(2) }]} accessibilityRole="alert">{error}</Text>}
+        {error && <Text style={[type.body, { color: color.badInk, marginTop: space(2) }]} accessibilityRole="alert">{error}</Text>}
       </ScrollView>
       <View style={s.foot}>
         <Button

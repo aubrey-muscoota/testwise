@@ -1,10 +1,9 @@
-// Math / Reading and Writing: two words, the chosen one underlined by hand.
+// Math / Reading and Writing: two words side by side. The chosen one sits in
+// a blue wash, the same mark as the current tab.
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Svg, { Path } from "react-native-svg";
-import { color, font, space } from "../theme";
+import { color, font, radius, space } from "../theme";
 import { buzz } from "../motion/feedback";
-import { decorative } from "./ui";
 
 export function SectionSwitch({
   sections, value, onChange,
@@ -21,22 +20,9 @@ export function SectionSwitch({
             accessibilityRole="tab"
             accessibilityState={{ selected: on }}
             accessibilityLabel={x.name}
-            style={s.tab}
+            style={({ pressed }) => [s.tab, on && s.tabOn, pressed && !on && { backgroundColor: color.well }]}
           >
-            {({ pressed }) => (
-              // Sized to the word, so the hand-drawn underline is exactly as wide as it.
-              // Absolutely placed, so the Svg can't widen the word's box.
-              <View style={{ alignSelf: "flex-start", paddingBottom: 8 }}>
-                <Text style={[s.text, (on || pressed) && s.on]}>{x.name}</Text>
-                <View {...decorative} style={s.underline}>
-                  {on && (
-                    <Svg width="100%" height={8} viewBox="0 0 100 8" preserveAspectRatio="none">
-                      <Path d="M1.5 5.2C20 3.4 46 2.6 70 3.6C82 4.1 91 4.6 98.5 3.2" stroke={color.azure} strokeWidth={2.6} fill="none" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                    </Svg>
-                  )}
-                </View>
-              </View>
-            )}
+            <Text style={[s.text, on && s.on]}>{x.name}</Text>
           </Pressable>
         );
       })}
@@ -45,9 +31,10 @@ export function SectionSwitch({
 }
 
 const s = StyleSheet.create({
-  row: { flexDirection: "row", gap: space(3) },
-  tab: { paddingTop: space(1), minHeight: 44, justifyContent: "flex-end" },
-  text: { fontFamily: font.bold, fontSize: 17, lineHeight: 22, color: color.inkSoft },
-  on: { color: color.ink },
-  underline: { position: "absolute", left: 0, right: 0, bottom: 0, height: 8 },
+  // Pulled left by the tab's padding, so the first word lines up with the title.
+  row: { flexDirection: "row", gap: space(0.5), marginLeft: -space(1.5) },
+  tab: { minHeight: 44, justifyContent: "center", paddingHorizontal: space(1.5), borderRadius: radius.row },
+  tabOn: { backgroundColor: color.blueWash },
+  text: { fontFamily: font.extra, fontSize: 17, lineHeight: 22, color: color.ink2 },
+  on: { color: color.blueDark },
 });

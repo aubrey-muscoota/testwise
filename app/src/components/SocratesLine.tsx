@@ -1,13 +1,12 @@
-// Socrates says something: the rig, and his words in Fraunces beside or under
-// him, typed out at a human pace (quick through words, a beat on commas and
-// full stops). Tap the words to skip to the end. His mouth moves while they
-// type. No bubble box: just a small hand-drawn tail stroke pointing at him.
+// Socrates says something: the rig, and his words in a speech bubble beside
+// or under him (white, a 2 px line border, a tail pointing at him, no shadow),
+// typed out at a human pace (quick through words, a beat on commas and full
+// stops). Tap the words to skip to the end. His mouth moves while they type.
 import React, { useEffect, useRef, useState } from "react";
 import { Platform, Pressable, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
-import Svg, { Path } from "react-native-svg";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
 import { noOrphan } from "../copy";
-import { color, space, type } from "../theme";
+import { BORDER, color, radius, space, type } from "../theme";
 import { decorative, useReducedMotion } from "./ui";
 
 // Delay after character `c` (ms).
@@ -42,26 +41,25 @@ export function useTypewriter(text: string, enabled = true) {
   return { shown: text.slice(0, n), typing: n < text.length, skip: () => skip.current() };
 }
 
-// The tail: one ink stroke curving back toward Socrates.
-function Tail({ side, x, lift }: { side: "left" | "top"; x?: number; lift?: boolean }) {
+// The tail: a square turned 45 degrees, bordered on the two sides that face
+// Socrates, overlapping the bubble's border so the two read as one outline.
+function Tail({ side, x }: { side: "left" | "top"; x?: number }) {
   return (
-    <View {...decorative} pointerEvents="none" style={side === "left" ? [st.tailLeft, lift && { top: 40 }] : [st.tailTop, x != null && { left: x }]}>
-      <Svg width={22} height={18} viewBox="0 0 22 18">
-        {side === "left" ? (
-          <Path d="M21 3.5C14.6 4.4 8.6 6.6 2.2 12.8C7.9 10.6 13.6 10.8 20.6 12.4" stroke={color.inkSoft} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        ) : (
-          <Path d="M4 17.4C6.6 12.6 8.4 7.6 8.8 1.8C11 7.2 13.6 11.8 17.8 16.6" stroke={color.inkSoft} strokeWidth={1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        )}
-      </Svg>
-    </View>
+    <View
+      {...decorative}
+      pointerEvents="none"
+      style={side === "left" ? st.tailLeft : [st.tailTop, x != null && { left: x }]}
+    />
   );
 }
 
 export function SocratesSays({
-  text: raw, typewriter = true, style, textStyle, onTyping, tail = "left", tailX, tailLift,
+  text: raw, typewriter = true, style, textStyle, onTyping, tail = "left", tailX,
 }: {
   text: string; typewriter?: boolean; style?: StyleProp<ViewStyle>; textStyle?: StyleProp<TextStyle>;
-  onTyping?: (typing: boolean) => void; tail?: "left" | "top" | "none"; tailX?: number; tailLift?: boolean;
+  // "none": the words without a bubble, for places that already frame them
+  // (the result panel, the tutor chat).
+  onTyping?: (typing: boolean) => void; tail?: "left" | "top" | "none"; tailX?: number;
 }) {
   // No single word alone on the last line.
   const text = noOrphan(raw);
@@ -78,12 +76,14 @@ export function SocratesSays({
       accessibilityLabel={web ? undefined : text}
       style={[{ flexShrink: 1 }, style]}
     >
-      <View>
-        {tail !== "none" && <Tail side={tail} x={tailX} lift={tailLift} />}
+      <View style={tail !== "none" && st.bubble}>
+        {tail !== "none" && <Tail side={tail} x={tailX} />}
         {/* The whole line reserves its space so nothing reflows while it types.
             On web it is also the copy screen readers get, whole and once. */}
-        <Text style={[type.socrates, textStyle, st.wrap, { opacity: 0 }]} {...(web ? { "aria-live": "polite" as const } : decorative)}>{text}</Text>
-        <Text {...decorative} style={[type.socrates, textStyle, st.wrap, st.typed]}>{shown}</Text>
+        <View>
+          <Text style={[type.socrates, textStyle, st.wrap, { opacity: 0 }]} {...(web ? { "aria-live": "polite" as const } : decorative)}>{text}</Text>
+          <Text {...decorative} style={[type.socrates, textStyle, st.wrap, st.typed]}>{shown}</Text>
+        </View>
       </View>
     </Pressable>
   );
@@ -106,22 +106,38 @@ export function SocratesLine({
         typewriter={typewriter}
         onTyping={setTyping}
         tail={beside ? "left" : "top"}
-        tailX={beside ? undefined : Math.round(size * 0.4)}
-        tailLift={mood === "celebrate"}
+        tailX={beside ? undefined : Math.max(12, Math.round(size * 0.4) - 7)}
         textStyle={textStyle}
-        style={beside ? { flex: 1, marginLeft: space(2), paddingTop: Math.max(0, size * 0.12) } : { marginTop: space(2), alignSelf: "stretch" }}
+        style={beside ? { flex: 1, marginLeft: space(1.75) } : { marginTop: space(2), alignSelf: "stretch" }}
       />
     </View>
   );
 }
 
+const TAIL = 14;
+
 const st = StyleSheet.create({
-  beside: { flexDirection: "row", alignItems: "flex-start" },
+  // Beside: the bubble centers on him, so the tail points at his middle.
+  beside: { flexDirection: "row", alignItems: "center" },
   under: { alignItems: "flex-start" },
+  bubble: {
+    backgroundColor: color.bg,
+    borderWidth: BORDER,
+    borderColor: color.line,
+    borderRadius: radius.card,
+    paddingVertical: space(1.25),
+    paddingHorizontal: space(1.75),
+    alignSelf: "flex-start",
+  },
   typed: { position: "absolute", left: 0, right: 0, top: 0 },
   // Both layers wrap the same way, so the typed text never reflows.
   wrap: (Platform.OS === "web" ? { textWrap: "pretty" } : {}) as TextStyle,
-  // The tail sits closer to him than to the words, with air before the first glyph.
-  tailLeft: { position: "absolute", left: -30, top: 9 },
-  tailTop: { position: "absolute", left: 40, top: -19 },
+  tailLeft: {
+    position: "absolute", left: -TAIL / 2 - BORDER, top: "50%", marginTop: -TAIL / 2, width: TAIL, height: TAIL,
+    backgroundColor: color.bg, borderLeftWidth: BORDER, borderBottomWidth: BORDER, borderColor: color.line, transform: [{ rotate: "45deg" }],
+  },
+  tailTop: {
+    position: "absolute", top: -TAIL / 2 - BORDER, left: 24, width: TAIL, height: TAIL,
+    backgroundColor: color.bg, borderLeftWidth: BORDER, borderTopWidth: BORDER, borderColor: color.line, transform: [{ rotate: "45deg" }],
+  },
 });

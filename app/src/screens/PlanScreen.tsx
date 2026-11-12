@@ -82,7 +82,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
         {groups.map((g, gi) => (
           <Rise key={`${g.phase}-${gi}`} delay={60 + gi * 50} style={{ marginTop: space(5) }}>
             <Text style={type.heading} accessibilityRole="header">{phaseName(g.phase)}</Text>
-            {phaseLine[g.phase] && <Text style={[type.body, { color: color.inkSoft, marginTop: 2 }]}>{phaseLine[g.phase]}</Text>}
+            {phaseLine[g.phase] && <Text style={[type.body, { color: color.ink2, marginTop: 2 }]}>{phaseLine[g.phase]}</Text>}
             <View style={{ marginTop: space(1.5) }}>
               {g.weeks.map((w, wi) => {
                 const now = gi === 0 && wi === 0;
@@ -96,7 +96,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
                 return (
                   <View key={w.start} style={[s.week, now && s.weekNow]}>
                     <View style={s.weekDate}>
-                      <Text style={[type.label, tabular, now && { color: color.azureInk }]}>{now ? "This week" : shortDay(w.start)}</Text>
+                      <Text style={[type.label, tabular, now && { color: color.blueDark }]}>{now ? "This week" : shortDay(w.start)}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                       {w.focus_names.length
@@ -116,7 +116,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
 
         {plan.phase !== "after" && (
           <View style={s.end}>
-            <Icon name="flag" color={color.terracotta} />
+            <Icon name="flag" color={color.goldDark} />
             <Text style={[type.label, { marginLeft: space(1.5), flex: 1 }]}>
               {exam?.short_name ?? "Test"} day, {longDay(plan.exam_date)}
             </Text>

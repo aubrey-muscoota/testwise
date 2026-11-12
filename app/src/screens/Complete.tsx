@@ -84,7 +84,7 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
           )}
           {!empty && !placed && (
             <NumberCell label="XP" delay={400}>
-              <CountUp value={result.xp} delay={400} duration={700} prefix="+" style={s.big} />
+              <CountUp value={result.xp} delay={400} duration={700} prefix="+" style={[s.big, { color: color.blue }]} />
             </NumberCell>
           )}
           <NumberCell label={result.seconds >= 60 ? "time" : "seconds"} delay={500}>
@@ -94,8 +94,8 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
 
         {streakStarted && !placed && !empty && (
           <Rise delay={560} style={s.streak}>
-            <Icon name="streak" color={color.terracotta} />
-            <Text style={[type.label, { marginLeft: space(1) }]}>
+            <Icon name="streak" color={color.goldDark} strokeWidth={2.5} />
+            <Text style={[type.label, { marginLeft: space(1), color: color.goldInk }]}>
               {streak === 1 ? "Day one of a streak" : `${streak} days in a row`}
             </Text>
           </Rise>
@@ -168,8 +168,8 @@ function NumberCell({ label, children, delay }: { label: string; children: React
 const s = StyleSheet.create({
   wrap: { flexGrow: 1, paddingHorizontal: GUTTER, paddingTop: space(5), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   numbers: { flexDirection: "row", flexWrap: "wrap", marginTop: space(2.5) },
-  big: { fontFamily: font.serifSemi, fontSize: 36, lineHeight: 42, color: color.ink },
-  of: { fontSize: 22, color: color.inkSoft },
+  big: { fontFamily: font.black, fontSize: 36, lineHeight: 42, color: color.ink },
+  of: { fontSize: 22, color: color.ink2 },
   streak: { flexDirection: "row", alignItems: "center", marginTop: space(2.5) },
   foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1.5), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });

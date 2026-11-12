@@ -82,7 +82,6 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
             <Row
               testID="mode-weak"
               icon="target"
-              iconTint={color.terracotta}
               title="Weak spots"
               detail={weakNames.length ? `${weakNames[0]}${started.length > 1 ? ` and ${started.length - 1} more` : ""}` : "Your first open skills, until you've tried a few"}
               onPress={() => go("weak")}
@@ -92,7 +91,6 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
             <Row
               testID="mode-mistakes"
               icon="redo"
-              iconTint={color.brick}
               title="My mistakes"
               detail={mistakesDetail}
               disabled={!fixable}
@@ -120,7 +118,6 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
             <Row
               testID="mode-fresh"
               icon="quill"
-              iconTint={color.azureInk}
               title="New questions from Socrates"
               detail={freshLeft > 0 ? `5 written for you, ${freshLeft} left today` : "That's today's 20. More tomorrow"}
               disabled={freshLeft === 0}
@@ -169,7 +166,7 @@ function SkillPicker({
               if (!locked.length) return null;
               return (
                 <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: space(1.25) }}>
-                  <Icon name="lock" size={18} color={color.inkSoft} />
+                  <Icon name="lock" size={18} color={color.ink2} />
                   <Text style={[type.small, { marginLeft: space(1), flex: 1 }]}>
                     {locked.length === d.skills.length ? "All" : locked.length} {locked.length === 1 ? "skill opens" : "skills open"} as you finish the ones before {locked.length === 1 ? "it" : "them"}
                   </Text>
@@ -203,6 +200,6 @@ function PracticeSkeleton() {
 
 const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.paper, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.bg, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });
 

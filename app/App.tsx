@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Animated, Easing, Platform, SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import {
-  useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold,
+  useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black,
 } from "@expo-google-fonts/nunito";
-import { Fraunces_400Regular, Fraunces_600SemiBold } from "@expo-google-fonts/fraunces";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api, createLearner, forgetLearner, getExam, loadExam, loadLearner, placementKey, Profile } from "./src/api";
 import { Welcome } from "./src/screens/Welcome";
@@ -50,7 +49,7 @@ export default function App() {
 
 function TestwiseApp() {
   const [fontsLoaded] = useFonts({
-    Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Fraunces_400Regular, Fraunces_600SemiBold,
+    Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black,
   });
   const [screen, setScreen] = useState<Screen>({ name: "boot" });
 
@@ -250,7 +249,7 @@ function ScreenTransition({ children }: { children: React.ReactNode }) {
 }
 
 const s = StyleSheet.create({
-  root: { flex: 1, backgroundColor: color.paper, ...(Platform.OS === "web" ? { minHeight: "100%" as unknown as number } : {}) },
+  root: { flex: 1, backgroundColor: color.bg, ...(Platform.OS === "web" ? { minHeight: "100%" as unknown as number } : {}) },
   screen: { flex: 1 },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
 });

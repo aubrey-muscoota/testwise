@@ -44,11 +44,11 @@ export function QuitSheet({ placement, onStay, onLeave }: { placement: boolean; 
         {placement ? "If you stop now, nothing gets skipped and you start from the first skills." : "Answers so far are saved, but the set won't count toward today until you finish it."}
       </Text>
       <Button title="Keep going" onPress={onStay} />
-      <TextButton title={placement ? "End the quiz" : "End lesson"} tone="brick" onPress={onLeave} style={{ marginTop: space(0.5) }} />
+      <TextButton title={placement ? "End the quiz" : "End lesson"} tone="bad" onPress={onLeave} style={{ marginTop: space(0.5) }} />
     </Sheet>
   );
 }
 
 const s = StyleSheet.create({
-  legalLink: { color: color.azureInk, fontFamily: font.bold, textDecorationLine: "underline" },
+  legalLink: { color: color.blueDark, fontFamily: font.extra, textDecorationLine: "underline" },
 });

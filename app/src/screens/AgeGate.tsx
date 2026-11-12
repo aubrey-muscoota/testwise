@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import { Button, Rise } from "../components/ui";
+import { Linking, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Press3D, Rise } from "../components/ui";
 import { legalUrl } from "../api";
 import { Socrates } from "../socrates/Socrates";
 import { buzz } from "../motion/feedback";
-import { color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
+import { BORDER, color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -31,7 +31,7 @@ export function AgeGate({ onAnswer }: { onAnswer: (age13Plus: boolean) => void }
         <Rise>
           <Socrates size={88} mood="listening" />
           <Text style={[type.title, { marginTop: space(2) }]} accessibilityRole="header">When were you born?</Text>
-          <Text style={[type.body, { color: color.inkSoft, marginTop: space(1) }]}>
+          <Text style={[type.body, { color: color.ink2, marginTop: space(1) }]}>
             We ask everyone. Testwise doesn't keep your birthday.
           </Text>
         </Rise>
@@ -41,16 +41,23 @@ export function AgeGate({ onAnswer }: { onAnswer: (age13Plus: boolean) => void }
             {MONTHS.map((m, i) => {
               const on = month === i + 1;
               return (
-                <Pressable
+                <Press3D
                   key={m}
                   onPress={() => { buzz.tap(); setMonth(i + 1); }}
+                  sound={false}
+                  haptic={false}
                   accessibilityRole="radio"
-                  accessibilityState={{ checked: on }}
+                  accessibilityState={{ checked: on, selected: on }}
                   accessibilityLabel={MONTH_NAMES[i]}
-                  style={({ pressed }) => [s.month, on && s.monthOn, pressed && !on && { backgroundColor: color.azureWash }]}
+                  edge={on ? color.blue : color.line}
+                  border={on ? color.blue : color.line}
+                  depth={BORDER}
+                  radius={radius.input}
+                  style={s.month}
+                  face={[s.monthFace, { backgroundColor: on ? color.blueWash : color.bg }]}
                 >
-                  <Text style={[s.monthText, on && { fontFamily: font.black }]}>{m}</Text>
-                </Pressable>
+                  <Text style={[s.monthText, on && { color: color.blueDark }]}>{m}</Text>
+                </Press3D>
               );
             })}
           </View>
@@ -61,7 +68,7 @@ export function AgeGate({ onAnswer }: { onAnswer: (age13Plus: boolean) => void }
             inputMode="numeric"
             keyboardType="number-pad"
             placeholder="2009"
-            placeholderTextColor={color.inkSoft}
+            placeholderTextColor={color.ink2}
             accessibilityLabel="Birth year"
             maxLength={4}
             style={[s.year, tabular]}
@@ -87,7 +94,7 @@ export function TooYoung() {
     <View style={[s.wrap, { flex: 1, justifyContent: "center" }]}>
       <Socrates size={104} mood="idle" />
       <Text style={[type.title, { marginTop: space(2) }]} accessibilityRole="header">Thanks for stopping by</Text>
-      <Text style={[type.body, { color: color.inkSoft, marginTop: space(1) }]}>
+      <Text style={[type.body, { color: color.ink2, marginTop: space(1) }]}>
         Testwise is for students 13 and older, so we haven't kept anything about you.
       </Text>
     </View>
@@ -98,12 +105,13 @@ const s = StyleSheet.create({
   wrap: { flexGrow: 1, paddingHorizontal: GUTTER, paddingTop: space(4), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   months: { flexDirection: "row", flexWrap: "wrap", gap: space(1) },
-  month: { width: "22%", flexGrow: 1, minHeight: 44, alignItems: "center", justifyContent: "center", borderRadius: radius.input, backgroundColor: color.paperDeep },
-  monthOn: { backgroundColor: color.azure },
-  monthText: { fontFamily: font.bold, fontSize: 15, color: color.ink },
+  month: { width: "22%", flexGrow: 1 },
+  monthFace: { minHeight: 44, alignItems: "center", justifyContent: "center" },
+  monthText: { fontFamily: font.extra, fontSize: 16, color: color.ink },
   year: {
-    fontFamily: font.bold, fontSize: 20, color: color.ink, borderRadius: radius.input, minHeight: 52,
-    paddingHorizontal: space(2), paddingVertical: space(1.25), backgroundColor: color.paperDeep, outlineColor: color.azure,
+    fontFamily: font.extra, fontSize: 20, color: color.ink, borderRadius: radius.input, minHeight: 54,
+    paddingHorizontal: space(2), paddingVertical: space(1.25), backgroundColor: color.bg,
+    borderWidth: BORDER, borderColor: color.line, outlineColor: color.blue,
   } as object,
-  link: { color: color.azureInk, fontFamily: font.bold, textDecorationLine: "underline" },
+  link: { color: color.blueDark, fontFamily: font.extra, textDecorationLine: "underline" },
 });
