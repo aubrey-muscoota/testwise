@@ -1,16 +1,14 @@
-// The panel that rises after Check: right or not, Socrates' reaction, and the
-// links to the tutor, the solution and the report.
+// The band that rises after Check, in the answer's color: right or not,
+// Socrates' reaction, and the links to the tutor, the solution and the report.
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Platform, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { Icon } from "../components/icons";
 import { SocratesSays } from "../components/SocratesLine";
 import { Button, FloatUp, TextButton, useReducedMotion } from "../components/ui";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
-import { color, font, GUTTER, radius, space, tabular, type } from "../theme";
+import { color, font, GUTTER, space, tabular, type } from "../theme";
 import { DrawnMark } from "./Question";
 import { lessonShared } from "./shared";
-
-const PANEL_R = radius.sheet;
 
 export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk, onSolution, last, reported, reportFailed, onReport }: {
   ok: boolean; line: string; mood: SocratesMood; fx: number; answer: string; combo: number; xp: number; busy: boolean;
@@ -23,6 +21,8 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
   const v = useRef(new Animated.Value(0)).current;
   const still = useReducedMotion();
   const [typing, setTyping] = useState(true);
+  const ink = ok ? color.goodInk : color.badInk;
+  const tone = ok ? "good" : "bad";
   useEffect(() => {
     (still
       ? Animated.timing(v, { toValue: 1, duration: 160, useNativeDriver: Platform.OS !== "web" })
@@ -31,7 +31,7 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
   }, [v, still]);
   return (
     <Animated.View
-      style={[s.panel, short && { paddingTop: space(1.5), paddingBottom: space(1) }, { backgroundColor: ok ? color.oliveWash : color.brickWash }, {
+      style={[s.panel, short && { paddingTop: space(1.5), paddingBottom: space(1) }, { backgroundColor: ok ? color.goodWash : color.badWash }, {
         opacity: v.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1] }),
         transform: still ? [] : [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [80, 0] }) }],
       }]}
@@ -43,8 +43,8 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
             {ok && xp > 0 && (
               <FloatUp style={s.xpFloat}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Icon name="xp" size={18} color={color.ochre} />
-                  <Text style={[type.label, tabular, { marginLeft: 3 }]}>+{xp}</Text>
+                  <Icon name="xp" size={18} color={color.blue} strokeWidth={2.5} />
+                  <Text style={[type.label, tabular, { marginLeft: 3, color: color.blueDark }]}>+{xp}</Text>
                 </View>
               </FloatUp>
             )}
@@ -52,18 +52,18 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
           <View style={{ flex: 1, marginLeft: space(1.5) }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <DrawnMark ok={ok} size={26} />
-              <Text style={[s.panelTitle, short && s.panelTitleShort, { color: ok ? color.olive : color.brick, marginLeft: space(0.75) }]}>
+              <Text style={[s.panelTitle, short && s.panelTitleShort, { color: ink, marginLeft: space(0.75) }]}>
                 {ok ? (combo >= 2 ? `Right, ${combo} in a row` : "Right") : "Not quite"}
               </Text>
             </View>
-            <SocratesSays text={line} onTyping={setTyping} tail="none" textStyle={type.socratesSmall} style={{ marginTop: space(0.75) }} />
+            <SocratesSays text={line} onTyping={setTyping} tail="none" textStyle={[s.panelLine, { color: ink }]} style={{ marginTop: space(0.5) }} />
           </View>
         </View>
         {(() => {
           const reportBtn = (
             <TextButton
               title={reported ? "Reported" : "Report a problem"}
-              tone="soft"
+              tone={tone}
               disabled={reported}
               onPress={onReport}
               accessibilityLabel={reported ? "Question reported" : "Report a problem with this question"}
@@ -77,14 +77,14 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
             <>
               {links && (
                 <View style={s.panelLinks}>
-                  {!ok && onAsk && <TextButton title="Ask Socrates" onPress={onAsk} tone="ink" style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
-                  {onSolution && <TextButton title="Show the solution" onPress={onSolution} tone="ink" style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
+                  {!ok && onAsk && <TextButton title="Ask Socrates" onPress={onAsk} tone={tone} underline style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
+                  {onSolution && <TextButton title="Show the solution" onPress={onSolution} tone={tone} underline style={{ paddingHorizontal: 0, marginRight: space(3) }} />}
                   {inline && reportBtn}
                 </View>
               )}
-              <Button title={last ? "Finish" : "Continue"} onPress={onNext} disabled={busy} testID="continue" />
+              <Button title={last ? "Finish" : "Continue"} onPress={onNext} disabled={busy} testID="continue" tone={tone} />
               {!inline && <View style={s.panelReport}>{reportBtn}</View>}
-              {reportFailed && <Text style={[type.small, { color: color.brick, textAlign: "center" }]} accessibilityRole="alert">Couldn't send that. Try again?</Text>}
+              {reportFailed && <Text style={[type.small, { color: color.badInk, textAlign: "center" }]} accessibilityRole="alert">Couldn't send that. Try again?</Text>}
             </>
           );
         })()}
@@ -95,9 +95,10 @@ export function ResultPanel({ ok, line, mood, fx, combo, xp, busy, onNext, onAsk
 
 const s = StyleSheet.create({
   // Full width; its contents line up with the lesson column through footInner.
-  panel: { width: "100%", paddingHorizontal: GUTTER, paddingTop: space(2.5), paddingBottom: space(1.5), borderTopLeftRadius: PANEL_R, borderTopRightRadius: PANEL_R },
+  panel: { width: "100%", paddingHorizontal: GUTTER, paddingTop: space(2.5), paddingBottom: space(1.5) },
   panelHead: { flexDirection: "row", alignItems: "flex-start", marginBottom: space(1.5) },
-  panelTitle: { fontFamily: font.serifSemi, fontSize: 22, lineHeight: 28 },
+  panelTitle: { fontFamily: font.black, fontSize: 22, lineHeight: 28 },
+  panelLine: { fontFamily: font.bold, fontSize: 16, lineHeight: 22 },
   panelTitleShort: { fontSize: 20, lineHeight: 26 },
   panelLinks: { flexDirection: "row", flexWrap: "wrap", marginBottom: space(1), marginTop: -space(0.5) },
   panelReport: { alignItems: "center", marginTop: space(0.25) },

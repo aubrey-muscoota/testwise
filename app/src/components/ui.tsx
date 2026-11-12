@@ -1,12 +1,12 @@
 // Shared pieces. Everything here uses the tokens in theme.ts (docs/DESIGN.md):
-// paper, ink and one blue; sentence case; no borders, pills or badges.
+// chunky pressable buttons and cards on white, sentence case, no pills or badges.
 import React, { useEffect, useRef, useState } from "react";
 import {
   AccessibilityInfo, Animated, Easing, LayoutChangeEvent, Platform, Pressable, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle,
 } from "react-native";
 import { buzz, isMuted, onMutedChange, play, setMuted } from "../motion/feedback";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
-import { color, font, GUTTER, radius, scrim, shadow, space, tabular, type } from "../theme";
+import { BORDER, color, EDGE, font, GUTTER, radius, scrim, shadow, space, tabular, type } from "../theme";
 import { Icon, IconName } from "./icons";
 import { Portal } from "./portal";
 
@@ -55,11 +55,13 @@ export const decorative = {
 } as const;
 
 // ─── Press3D ─────────────────────────────────────────────────────────────────
-// A face sitting on a slightly darker edge; pressing pushes the face down onto
-// the edge. Used by the primary button and answer choices.
+// A face sitting on a darker edge; pressing pushes the face down onto the
+// edge. Buttons are a filled face on a 4 px edge. Cards (answer choices) pass
+// `border`: a 2 px border all round, sitting on 2 px of edge in the same
+// color, so the bottom reads as one 4 px border that flattens when pressed.
 
 export function Press3D({
-  children, onPress, disabled, edge, face, style, depth = 3, radius: r = radius.button, sound = true,
+  children, onPress, disabled, edge, face, style, depth = EDGE, radius: r = radius.button, sound = true, border,
   accessibilityLabel, accessibilityRole = "button", accessibilityState, haptic = true, testID,
 }: {
   children: React.ReactNode;
@@ -69,6 +71,7 @@ export function Press3D({
   face: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
   depth?: number;
+  border?: string;
   radius?: number;
   sound?: boolean;
   haptic?: boolean;
@@ -96,43 +99,59 @@ export function Press3D({
         accessibilityState={{ disabled, ...accessibilityState }}
         style={{ borderRadius: r }}
       >
-        <Animated.View style={[{ borderRadius: r, transform: [{ translateY: y }] }, face]}>{children}</Animated.View>
+        <Animated.View style={[{ borderRadius: r, transform: [{ translateY: y }] }, border != null && { borderWidth: BORDER, borderColor: border }, face]}>{children}</Animated.View>
       </Pressable>
     </View>
   );
 }
 
 // ─── Buttons ─────────────────────────────────────────────────────────────────
-// One primary style (Azure, ink label for contrast, a small 3D press). Every
-// other action is a text button.
+// One primary style: blue, a white label big enough to count as large text,
+// sitting on a 4 px darker edge that it presses down onto. In the lesson's
+// result panel the button takes the answer's color (`tone`). Every other
+// action is a text button.
+
+const BUTTON_TONES = {
+  blue: { face: color.blue, edge: color.blueDark },
+  // goodDark, not good: white on the brighter green is too faint to read.
+  good: { face: color.goodDark, edge: color.goodInk },
+  bad: { face: color.bad, edge: color.badDark },
+};
 
 export function Button({
-  title, onPress, disabled, style, testID, icon, accessibilityLabel,
-}: { title: string; onPress?: () => void; disabled?: boolean; style?: StyleProp<ViewStyle>; testID?: string; icon?: IconName; accessibilityLabel?: string }) {
+  title, onPress, disabled, style, testID, icon, accessibilityLabel, tone = "blue",
+}: {
+  title: string; onPress?: () => void; disabled?: boolean; style?: StyleProp<ViewStyle>; testID?: string; icon?: IconName; accessibilityLabel?: string;
+  tone?: keyof typeof BUTTON_TONES;
+}) {
+  const t = BUTTON_TONES[tone];
+  // Disabled labels still carry state ("Check" before an answer, "Checking…"), so ink2: 4.8:1 on lock.
+  const fg = disabled ? color.ink2 : color.white;
   return (
     <Press3D
       testID={testID}
       onPress={onPress}
       disabled={disabled}
-      depth={3}
-      edge={disabled ? color.rule : color.azureInk}
+      edge={disabled ? color.lockDark : t.edge}
       style={style}
       accessibilityLabel={accessibilityLabel ?? title}
-      face={[s.btn, { backgroundColor: disabled ? color.paperDeep : color.azure }]}
+      face={[s.btn, { backgroundColor: disabled ? color.lock : t.face }]}
     >
-      <Text style={[s.btnText, disabled && { color: color.inkSoft }]} numberOfLines={2}>{title}</Text>
-      {icon && <Icon name={icon} size={20} color={disabled ? color.inkSoft : color.ink} style={{ marginLeft: space(1) }} />}
+      <Text style={[s.btnText, { color: fg }]} numberOfLines={2}>{title}</Text>
+      {icon && <Icon name={icon} size={22} color={fg} strokeWidth={2.5} style={{ marginLeft: space(1) }} />}
     </Press3D>
   );
 }
 
 export function TextButton({
-  title, onPress, tone = "azure", disabled, style, accessibilityLabel, icon, align = "center", testID,
+  title, onPress, tone = "blue", disabled, style, accessibilityLabel, icon, align = "center", testID, underline,
 }: {
-  title: string; onPress?: () => void; tone?: "azure" | "ink" | "soft" | "brick"; disabled?: boolean; style?: StyleProp<ViewStyle>;
-  accessibilityLabel?: string; icon?: IconName; align?: "center" | "left"; testID?: string;
+  title: string; onPress?: () => void; tone?: "blue" | "ink" | "soft" | "bad" | "good"; disabled?: boolean; style?: StyleProp<ViewStyle>;
+  accessibilityLabel?: string; icon?: IconName; align?: "center" | "left"; testID?: string; underline?: boolean;
 }) {
-  const c = disabled ? color.inkSoft : tone === "azure" ? color.azureInk : tone === "brick" ? color.brick : tone === "soft" ? color.inkSoft : color.ink;
+  // ink2, not ink3: "Reported" and "Deleting…" are statuses the learner reads.
+  const c = disabled ? color.ink2
+    : tone === "blue" ? color.blueDark : tone === "bad" ? color.badInk : tone === "good" ? color.goodInk : tone === "soft" ? color.ink2 : color.ink;
   return (
     <Pressable
       testID={testID}
@@ -142,10 +161,10 @@ export function TextButton({
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? title}
       accessibilityState={{ disabled }}
-      style={({ pressed }) => [s.textBtn, align === "left" && { justifyContent: "flex-start" }, pressed && { backgroundColor: color.paperDeep, borderRadius: radius.small }, style]}
+      style={({ pressed }) => [s.textBtn, align === "left" && { justifyContent: "flex-start" }, pressed && { backgroundColor: color.well, borderRadius: radius.small }, style]}
     >
-      <Text style={[s.textBtnText, { color: c }]}>{title}</Text>
-      {icon && <Icon name={icon} size={18} color={c} style={{ marginLeft: 6 }} />}
+      <Text style={[s.textBtnText, { color: c }, underline && s.underline]}>{title}</Text>
+      {icon && <Icon name={icon} size={18} color={c} strokeWidth={2.5} style={{ marginLeft: 6 }} />}
     </Pressable>
   );
 }
@@ -160,17 +179,17 @@ export const IconButton = React.forwardRef<React.ComponentRef<typeof View>, {
       hitSlop={10}
       accessibilityRole="button"
       accessibilityLabel={label}
-      style={({ pressed }) => [s.iconBtn, pressed && { backgroundColor: color.paperDeep }, style]}
+      style={({ pressed }) => [s.iconBtn, pressed && { backgroundColor: color.well }, style]}
     >
-      <Icon name={name} size={size} color={tone} />
+      <Icon name={name} size={size} color={tone} strokeWidth={2.5} />
     </Pressable>
   );
 });
 
 // ─── ProgressBar ─────────────────────────────────────────────────────────────
-// Flat, springs forward.
+// Thick and round, springs forward. Green in lessons and setup.
 
-export function ProgressBar({ value, fill = color.azure, height = 8, track = color.paperDeep }: { value: number; fill?: string; height?: number; track?: string }) {
+export function ProgressBar({ value, fill = color.good, height = 16, track = color.lock }: { value: number; fill?: string; height?: number; track?: string }) {
   const w = useRef(new Animated.Value(value)).current;
   useEffect(() => {
     Animated.spring(w, { toValue: value, useNativeDriver: false, speed: 12, bounciness: 4 }).start();
@@ -361,7 +380,7 @@ export function Sheet({
 
 // A block in the shape of what is loading.
 export function Bone({ w = "100%", h = 16, r = radius.small, style }: { w?: number | `${number}%`; h?: number; r?: number; style?: StyleProp<ViewStyle> }) {
-  return <View {...decorative} style={[{ width: w, height: h, borderRadius: r, backgroundColor: color.paperDeep }, style]} />;
+  return <View {...decorative} style={[{ width: w, height: h, borderRadius: r, backgroundColor: color.well }, style]} />;
 }
 
 // While a screen loads: its skeleton fades in gently, so quick loads don't flash.
@@ -388,12 +407,11 @@ export function ErrorState({ message, onRetry, mood = "concerned" }: { message: 
 // ─── Rows, toggles ───────────────────────────────────────────────────────────
 
 export function Row({
-  icon, iconTint = color.ink, title, detail, value, onPress, accessory = "chevron", emphasized, disabled, accessibilityLabel, testID,
+  icon, iconTint = color.blueDark, title, detail, value, onPress, accessory = "chevron", disabled, accessibilityLabel, testID,
 }: {
   icon?: IconName; iconTint?: string; title: string; detail?: string; value?: string; onPress?: () => void;
-  accessory?: "chevron" | "none" | React.ReactNode; emphasized?: boolean; disabled?: boolean; accessibilityLabel?: string; testID?: string;
+  accessory?: "chevron" | "none" | React.ReactNode; disabled?: boolean; accessibilityLabel?: string; testID?: string;
 }) {
-  const pad = emphasized ? space(2) : space(1.5);
   return (
     <Pressable
       testID={testID}
@@ -402,25 +420,21 @@ export function Row({
       accessibilityRole={onPress ? "button" : undefined}
       accessibilityLabel={accessibilityLabel ?? [title, detail, value].filter(Boolean).join(", ")}
       accessibilityState={{ disabled: disabled || !onPress }}
-      style={({ pressed }) => [
-        s.row,
-        { paddingVertical: pad },
-        emphasized && s.rowEmph,
-        pressed && { backgroundColor: emphasized ? color.azureWash : color.paperDeep },
-      ]}
+      style={({ pressed }) => [s.row, pressed && { backgroundColor: color.well }]}
     >
+      {/* The icon sits in a round blue wash, so a list of modes scans by shape. */}
       {icon && (
-        <View style={s.rowIcon}>
-          <Icon name={icon} color={disabled ? color.inkSoft : iconTint} />
+        <View style={[s.rowIcon, disabled && { backgroundColor: color.lock }]}>
+          <Icon name={icon} color={disabled ? color.ink2 : iconTint} strokeWidth={2.25} />
         </View>
       )}
       <View style={{ flex: 1 }}>
-        <Text style={[emphasized ? s.rowTitleEmph : type.label, disabled && { color: color.inkSoft }]}>{title}</Text>
+        <Text style={[s.rowTitle, disabled && { color: color.ink2 }]}>{title}</Text>
         {detail ? <Text style={[type.small, tabular, { marginTop: 2 }]}>{detail}</Text> : null}
       </View>
-      {value ? <Text style={[type.label, { color: color.inkSoft, fontFamily: font.semibold, marginLeft: space(1) }, tabular]}>{value}</Text> : null}
+      {value ? <Text style={[type.label, { color: color.ink2, fontFamily: font.bold, marginLeft: space(1) }, tabular]}>{value}</Text> : null}
       {accessory === "chevron" ? (
-        onPress && !disabled ? <Icon name="chevron" size={20} color={color.inkSoft} style={{ marginLeft: space(1) }} /> : null
+        onPress && !disabled ? <Icon name="chevron" size={20} color={color.ink2} strokeWidth={2.5} style={{ marginLeft: space(1) }} /> : null
       ) : accessory === "none" ? null : accessory}
     </Pressable>
   );
@@ -442,8 +456,8 @@ export function Toggle({ value, onChange, label, testID, disabled }: { value: bo
       aria-checked={value}
       hitSlop={8}
     >
-      <Animated.View style={[s.track, { backgroundColor: v.interpolate({ inputRange: [0, 1], outputRange: [color.rule, color.azure] }) }]}>
-        <Animated.View style={[s.knob, { transform: [{ translateX: v.interpolate({ inputRange: [0, 1], outputRange: [0, 18] }) }] }]} />
+      <Animated.View style={[s.track, { backgroundColor: v.interpolate({ inputRange: [0, 1], outputRange: [color.lockDark, color.good] }) }]}>
+        <Animated.View style={[s.knob, { transform: [{ translateX: v.interpolate({ inputRange: [0, 1], outputRange: [0, 20] }) }] }]} />
       </Animated.View>
     </Pressable>
   );
@@ -457,13 +471,13 @@ export function useMuted() {
 
 export function MuteToggle() {
   const [m, set] = useMuted();
-  return <IconButton name={m ? "soundOff" : "soundOn"} label={m ? "Turn sound on" : "Turn sound off"} onPress={() => set(!m)} tone={color.inkSoft} />;
+  return <IconButton name={m ? "soundOff" : "soundOn"} label={m ? "Turn sound on" : "Turn sound off"} onPress={() => set(!m)} tone={color.ink2} />;
 }
 
 // The name, set in type rather than the old raster logo, so it sits in the palette.
 export function Wordmark({ size = 22 }: { size?: number }) {
   return (
-    <Text accessibilityRole="header" aria-level={1} style={{ fontFamily: font.black, fontSize: size, lineHeight: size * 1.2, color: color.azureInk }}>
+    <Text accessibilityRole="header" aria-level={1} style={{ fontFamily: font.black, fontSize: size, lineHeight: size * 1.2, color: color.blueDark }}>
       testwise
     </Text>
   );
@@ -471,13 +485,19 @@ export function Wordmark({ size = 22 }: { size?: number }) {
 
 // ─── Small pieces ────────────────────────────────────────────────────────────
 
-// A quiet count with its mark: streak or XP. Only shown once the learner has activity.
-export function Stat({ icon, value, label, tint }: { icon: IconName; value: number; label: string; tint: string }) {
+// A count with its mark, in its color: the streak in gold, XP in blue. Only
+// shown once the learner has activity.
+const STAT_TONES = {
+  gold: { mark: color.goldDark, text: color.goldInk },
+  blue: { mark: color.blue, text: color.blueDark },
+};
+export function Stat({ icon, value, label, tone }: { icon: IconName; value: number; label: string; tone: keyof typeof STAT_TONES }) {
   const pop = usePop(value, 1.2);
+  const t = STAT_TONES[tone];
   return (
     <Animated.View style={[s.stat, pop]} accessible accessibilityLabel={`${value} ${label}`}>
-      <Icon name={icon} size={20} color={tint} />
-      <Text style={[type.label, tabular, { marginLeft: 4 }]}>{value}</Text>
+      <Icon name={icon} size={22} color={t.mark} strokeWidth={2.5} />
+      <Text style={[s.statText, tabular, { color: t.text }]}>{value}</Text>
     </Animated.View>
   );
 }
@@ -486,21 +506,22 @@ const BTN_R = radius.button;
 
 const s = StyleSheet.create({
   btn: {
-    minHeight: 52,
-    paddingVertical: 13,
+    minHeight: 54,
+    paddingVertical: 14,
     paddingHorizontal: space(2.5),
     borderRadius: BTN_R,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
   },
-  btnText: { fontFamily: font.bold, fontSize: 17, lineHeight: 22, color: color.ink, textAlign: "center", flexShrink: 1 },
+  btnText: { ...type.button, textAlign: "center", flexShrink: 1 },
   textBtn: { minHeight: 44, flexDirection: "row", alignItems: "center", justifyContent: "center", paddingHorizontal: space(1) },
-  textBtnText: { fontFamily: font.bold, fontSize: 16, lineHeight: 21 },
-  iconBtn: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center" },
+  textBtnText: { fontFamily: font.extra, fontSize: 16, lineHeight: 21 },
+  underline: { textDecorationLine: "underline" },
+  iconBtn: { width: 40, height: 40, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   overlay: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0, justifyContent: "flex-end", zIndex: 30 },
   sheet: {
-    backgroundColor: color.sheet,
+    backgroundColor: color.bg,
     borderTopLeftRadius: radius.sheet,
     borderTopRightRadius: radius.sheet,
     paddingHorizontal: GUTTER,
@@ -513,11 +534,11 @@ const s = StyleSheet.create({
     ...shadow.float,
   } as ViewStyle,
   center: { flex: 1, alignItems: "flex-start", justifyContent: "center", padding: GUTTER, maxWidth: 520, width: "100%", alignSelf: "center" },
-  row: { flexDirection: "row", alignItems: "center", paddingHorizontal: space(1.5), marginHorizontal: -space(1.5), borderRadius: radius.row },
-  rowEmph: { backgroundColor: color.sheet },
-  rowIcon: { width: 28, alignItems: "center", justifyContent: "center", marginRight: space(1.75), alignSelf: "flex-start", paddingTop: 1 },
-  rowTitleEmph: { fontFamily: font.bold, fontSize: 17, lineHeight: 23, color: color.ink },
-  track: { width: 46, height: 28, borderRadius: 14, padding: 3 },
-  knob: { width: 22, height: 22, borderRadius: 11, backgroundColor: color.sheet },
+  row: { flexDirection: "row", alignItems: "center", paddingVertical: space(1.5), paddingHorizontal: space(1), marginHorizontal: -space(1), borderRadius: radius.row },
+  rowIcon: { width: 44, height: 44, borderRadius: 22, backgroundColor: color.blueWash, alignItems: "center", justifyContent: "center", marginRight: space(1.75) },
+  rowTitle: { fontFamily: font.black, fontSize: 17, lineHeight: 23, color: color.ink },
+  track: { width: 50, height: 30, borderRadius: 15, padding: 3 },
+  knob: { width: 24, height: 24, borderRadius: 12, backgroundColor: color.white },
   stat: { flexDirection: "row", alignItems: "center" },
+  statText: { fontFamily: font.black, fontSize: 17, lineHeight: 22, marginLeft: 4 },
 });

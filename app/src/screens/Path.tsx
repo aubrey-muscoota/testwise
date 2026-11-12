@@ -1,38 +1,50 @@
-// Path: the skill map for one section, drawn as an inked line through the
-// skills. State reads from the node and one plain sentence, not badges.
+// Path: the skill map for one section. Each domain is a unit: a banner in the
+// section's color, then its skills as big pressable nodes in a centered
+// zigzag (the prototype's Learn home). A node's color is its state; its name,
+// status and mastery live in the sheet it opens.
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import Svg, { Circle, Path as SvgPath } from "react-native-svg";
 import { api, currentLearnerId, getExam, placementKey, Skill, Tree } from "../api";
 import { noOrphan, skillStatus } from "../copy";
 import { Icon } from "../components/icons";
 import { SectionSwitch } from "../components/SectionSwitch";
 import { useWide } from "../components/Shell";
-import { Bone, Button, ErrorState, Rise, Sheet, Skeleton, TextButton, decorative, usePop } from "../components/ui";
+import { Bone, Button, ErrorState, ProgressBar, Rise, Sheet, Skeleton, TextButton, decorative, usePop } from "../components/ui";
 import { feedback } from "../motion/feedback";
 import { LessonSource, practiceSource, useLoad } from "../nav";
 import { Socrates } from "../socrates/Socrates";
-import { color, font, GUTTER, space, tabular, type, COLUMN } from "../theme";
+import { BORDER, color, EDGE, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 
 const SECTION_KEY = "testwise.section";
 // Remembered between visits so the path can mark newly opened skills.
 const unlockedKey = (learner: string | null) => `testwise.unlocked.${learner ?? "anon"}`;
 
-const ROW = 92;
-// The line wobbles in a narrow band, so skill names get most of a phone's width.
-const XS = [38, 62, 80, 56, 34, 50, 74, 46];
-const LABEL_X = 124;
-const R = 26;
-const R_NEXT = 32;
+// Nodes are 70 x 62 ovals on a 7 px edge, one per row, swinging left and right
+// of the column's center (the prototype's zigzag, then its mirror).
+const NODE_W = 70;
+const NODE_H = 62;
+const NODE_EDGE = 7;
+const ROW = 86;
+// Extra room above the next skill for its "Start" bubble.
+const NEXT_ROOM = 40;
+const XS = [0, -64, -32, 40, 0, 64, 32, -40];
+const SOC = 96;
+
+// The first section is blue; the second (Reading and Writing) is teal.
+type Accent = { fill: string; edge: string; wash: string; ink: string };
+const ACCENTS: Accent[] = [
+  { fill: color.blue, edge: color.blueDark, wash: color.blueWash, ink: color.blueDark },
+  { fill: color.teal, edge: color.tealDark, wash: color.tealWash, ink: color.tealDark },
+];
 
 type State = "locked" | "mastered" | "tested" | "progress" | "open";
 function stateOf(sk: Skill): State {
   if (!sk.unlocked) return "locked";
   if (sk.mastered) return "mastered";
-  const answered = sk.answered ?? sk.attempts;
-  if (sk.tested_out && answered === 0) return "tested";
-  return answered > 0 ? "progress" : "open";
+  // Tested out stays finished (gold) even after it's been practiced, as the unit banner counts it.
+  if (sk.tested_out) return "tested";
+  return (sk.answered ?? sk.attempts) > 0 ? "progress" : "open";
 }
 
 function sectionDomains(tree: Tree, id: string | null) {
@@ -95,6 +107,7 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
   const started = all.filter((sk) => sk.attempts > 0 || sk.tested_out || sk.mastered).length;
   const showOffer = sec && !placed[sec.id] && all.every((sk) => sk.attempts === 0 && !sk.tested_out);
   const byId = new Map(tree.domains.flatMap((d) => d.skills).map((sk) => [sk.id, sk] as const));
+  const accent = ACCENTS[Math.max(0, sections.indexOf(sec!)) % ACCENTS.length];
 
   return (
     <View style={{ flex: 1 }}>
@@ -129,8 +142,8 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
         )}
 
         {domains.map((d, di) => (
-          <View key={`${sec?.id}-${d.id}`} style={{ marginTop: space(di === 0 ? 4 : 3) }}>
-            <Text style={type.heading} accessibilityRole="header">{d.name}</Text>
+          <View key={`${sec?.id}-${d.id}`} style={{ marginTop: space(di === 0 ? 3 : 4) }}>
+            <UnitBanner name={d.name} done={d.skills.filter((sk) => sk.mastered || sk.tested_out).length} total={d.skills.length} accent={accent} />
             <Track
               skills={d.skills}
               offset={di * 3}
@@ -139,6 +152,8 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
               onOpen={setSelected}
               byId={byId}
               missed={data!.missed}
+              accent={accent}
+              socrates={!showOffer}
             />
           </View>
         ))}
@@ -160,33 +175,48 @@ export function PathScreen({ onStart, onStartPlacement }: { onStart: (s: LessonS
   );
 }
 
-// One domain's skills along an inked line.
-function Track({
-  skills, offset, nextId, newIds, onOpen, byId, missed,
-}: { skills: Skill[]; offset: number; nextId?: string; newIds: Set<string>; onOpen: (sk: Skill) => void; byId: Map<string, Skill>; missed: Map<string, number> }) {
-  const pts = skills.map((_, i) => ({ x: XS[(i + offset) % XS.length], y: ROW * i + ROW / 2 }));
-  const h = ROW * skills.length;
-  // Segments, each a little uneven; solid up to open skills, dotted to locked ones.
-  const segs = useMemo(
-    () => pts.slice(1).map((p, i) => {
-      const a = pts[i];
-      const j = ((i * 37 + offset * 11) % 9) - 4;
-      return { d: `M${a.x} ${a.y}C${a.x + j} ${a.y + ROW * 0.55},${p.x - j * 0.6} ${p.y - ROW * 0.5},${p.x} ${p.y}`, open: skills[i + 1].unlocked };
-    }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [skills, offset],
-  );
+// A unit's banner: the domain on a filled face in the section's color, sitting
+// on its darker edge like a button, with how many of its skills are finished.
+// Both are 19 px black, so white passes on blue and teal as large text.
+function UnitBanner({ name, done, total, accent }: { name: string; done: number; total: number; accent: Accent }) {
   return (
-    <View style={{ height: h, marginTop: space(0.5) }}>
-      <View {...decorative} pointerEvents="none" style={StyleSheet.absoluteFill}>
-        <Svg width={LABEL_X} height={h}>
-          {segs.map((sg, i) => (
-            <SvgPath key={i} d={sg.d} stroke={sg.open ? color.ink : color.inkSoft} strokeWidth={sg.open ? 2 : 1.75} strokeDasharray={sg.open ? undefined : "1 7"} strokeLinecap="round" fill="none" />
-          ))}
-        </Svg>
+    <View style={[s.unitEdge, { backgroundColor: accent.edge }]} accessibilityRole="header" accessibilityLabel={`${name}, ${done} of ${total} skills finished`}>
+      <View style={[s.unit, { backgroundColor: accent.fill }]}>
+        <Text style={[s.unitText, { flex: 1 }]}>{name}</Text>
+        <Text style={[s.unitText, tabular, { marginLeft: space(1.5) }]} {...decorative}>{done} of {total}</Text>
       </View>
+    </View>
+  );
+}
+
+// One unit's skills in a zigzag down the middle of the column.
+function Track({
+  skills, offset, nextId, newIds, onOpen, byId, missed, accent, socrates,
+}: {
+  skills: Skill[]; offset: number; nextId?: string; newIds: Set<string>; onOpen: (sk: Skill) => void; byId: Map<string, Skill>; missed: Map<string, number>;
+  accent: Accent; socrates: boolean;
+}) {
+  // Each node's center; the next skill gets extra room above for its bubble.
+  let y = space(3);
+  const pts = skills.map((sk, i) => {
+    if (sk.id === nextId) y += NEXT_ROOM;
+    const p = { x: XS[(i + offset) % XS.length], y: y + NODE_H / 2 };
+    y += ROW;
+    return p;
+  });
+  const h = y - ROW + NODE_H + NODE_EDGE + space(1);
+  const ni = skills.findIndex((sk) => sk.id === nextId);
+  // Socrates keeps the learner company beside the next skill, on the roomier side.
+  const soc = socrates && ni >= 0 ? { x: pts[ni].x <= 0 ? pts[ni].x + NODE_W / 2 + space(3) : pts[ni].x - NODE_W / 2 - space(3) - SOC, y: pts[ni].y - SOC / 2 } : null;
+  return (
+    <View style={{ height: h }}>
+      {soc && (
+        <View {...decorative} pointerEvents="none" style={{ position: "absolute", left: "50%", marginLeft: soc.x, top: soc.y }}>
+          <Socrates size={SOC} mood="idle" />
+        </View>
+      )}
       {skills.map((sk, i) => (
-        <SkillNode key={sk.id} skill={sk} x={pts[i].x} y={pts[i].y} isNext={sk.id === nextId} isNew={newIds.has(sk.id)} onPress={() => onOpen(sk)} byId={byId} missed={missed.get(sk.id) ?? 0} />
+        <SkillNode key={sk.id} skill={sk} x={pts[i].x} y={pts[i].y} isNext={sk.id === nextId} isNew={newIds.has(sk.id)} onPress={() => onOpen(sk)} byId={byId} missed={missed.get(sk.id) ?? 0} accent={accent} />
       ))}
     </View>
   );
@@ -210,80 +240,73 @@ function statusLine(sk: Skill, isNext: boolean, byId: Map<string, Skill>, missed
   return isNext ? "Start here" : "Not started";
 }
 
-function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId, missed }: { skill: Skill; x: number; y: number; isNext: boolean; isNew: boolean; onPress: () => void; byId: Map<string, Skill>; missed: number }) {
+function SkillNode({ skill: sk, x, y, isNext, isNew, onPress, byId, missed, accent }: {
+  skill: Skill; x: number; y: number; isNext: boolean; isNew: boolean; onPress: () => void; byId: Map<string, Skill>; missed: number; accent: Accent;
+}) {
   const st = stateOf(sk);
-  const r = isNext ? R_NEXT : R;
   const pop = usePop(isNew, 1.18);
   const status = statusLine(sk, isNext, byId, missed);
-  const label = `${sk.name}, ${st === "progress" ? `${sk.mastery}%, ` : ""}${status}${isNew ? ", new" : ""}`;
-  // Both the node and its label press together: the node shrinks, the name turns azure.
+  const label = `${sk.name}, ${st === "progress" ? `${sk.mastery}%, ` : ""}${isNew && st !== "progress" ? "just opened" : status}`;
   const [down, setDown] = useState(false);
-  const press = { onPressIn: () => setDown(true), onPressOut: () => setDown(false) };
   return (
     <>
+      {isNext && <StartBubble x={x} y={y} ink={accent.ink} />}
       <Pressable
-        {...press}
+        onPressIn={() => setDown(true)}
+        onPressOut={() => setDown(false)}
         onPress={onPress}
         accessibilityRole="button"
         accessibilityLabel={label}
-        style={{ position: "absolute", left: x - r - 4, top: y - r - 4, width: r * 2 + 8, height: r * 2 + 8, alignItems: "center", justifyContent: "center" }}
+        style={{ position: "absolute", left: "50%", marginLeft: x - NODE_W / 2, top: y - NODE_H / 2, width: NODE_W, height: NODE_H + NODE_EDGE }}
       >
-        <View style={[{ transform: [{ scale: down ? 0.94 : 1 }] }]}>
-          <NodeArt state={st} r={r} mastery={sk.mastery} pop={pop} isNext={isNext} />
-        </View>
-      </Pressable>
-      <Pressable {...press} onPress={onPress} accessible={false} focusable={false} style={[s.label, { top: y - 36, height: 72 }]}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text style={[type.label, st === "locked" && { color: color.inkSoft }, down && { color: color.azureInk }, { flexShrink: 1 }]} numberOfLines={2}>{noOrphan(sk.name)}</Text>
-          {isNew && <Icon name="dot" size={14} color={color.terracotta} style={{ marginLeft: 4 }} />}
-        </View>
-        <Text style={[type.small, tabular, isNext && { color: color.azureInk, fontFamily: font.bold }]} numberOfLines={2}>
-          {isNew && st !== "progress" ? "Just opened" : status}
-        </Text>
+        <NodeArt state={st} pop={pop} isNext={isNext} isNew={isNew} accent={accent} down={down} />
       </Pressable>
     </>
   );
 }
 
-// Only the next skill is a solid azure disc with a play mark; other open
-// skills are a plain ring, so "Start here" is the one thing that stands out.
-function NodeArt({ state, r, mastery, pop, isNext }: { state: State; r: number; mastery: number; pop: object; isNext: boolean }) {
-  const size = r * 2;
-  const c = r;
-  if (state === "progress") {
-    const rr = r - 3;
-    const len = 2 * Math.PI * rr;
-    return (
-      <Animated.View style={[{ width: size, height: size, alignItems: "center", justifyContent: "center" }, pop]}>
-        <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
-          <Circle cx={c} cy={c} r={r} fill={color.sheet} />
-          <Circle cx={c} cy={c} r={rr} stroke={color.paperDeep} strokeWidth={5} fill="none" />
-          <Circle
-            cx={c} cy={c} r={rr} stroke={color.azure} strokeWidth={5} fill="none" strokeLinecap="round"
-            strokeDasharray={`${len} ${len}`} strokeDashoffset={len * (1 - Math.max(0.04, mastery / 100))}
-            transform={`rotate(-90 ${c} ${c})`}
-          />
-        </Svg>
-        <Text style={[type.small, { color: color.ink, fontFamily: font.black }, tabular]}>{mastery}%</Text>
-      </Animated.View>
-    );
-  }
-  if (state === "open" && !isNext) {
-    return (
-      <Animated.View style={[{ width: size, height: size }, pop]}>
-        <Svg width={size} height={size}>
-          <Circle cx={c} cy={c} r={r - 1} fill={color.sheet} stroke={color.ink} strokeWidth={2} />
-        </Svg>
-      </Animated.View>
-    );
-  }
-  const fill = state === "mastered" ? color.olive : state === "open" ? color.azure : state === "tested" ? color.oliveWash : color.paperDeep;
+// "Start" over the next skill: a small bubble whose tail points down at it.
+function StartBubble({ x, y, ink }: { x: number; y: number; ink: string }) {
   return (
-    <Animated.View style={[{ width: size, height: size, borderRadius: r, backgroundColor: fill, alignItems: "center", justifyContent: "center" }, pop]}>
-      {state === "mastered" && <Icon name="check" size={r} color={color.sheet} strokeWidth={2.4} />}
-      {state === "tested" && <Icon name="check" size={r} color={color.olive} strokeWidth={2.4} />}
-      {state === "open" && <Icon name="play" size={r * 0.9} color={color.ink} strokeWidth={2} />}
-      {state === "locked" && <Icon name="lock" size={r * 0.8} color={color.inkSoft} />}
+    <View {...decorative} pointerEvents="none" style={[s.start, { left: "50%", marginLeft: x - 40, top: y - NODE_H / 2 - 52 }]}>
+      <View style={s.startTail} />
+      <Text style={[s.startText, { color: ink }]}>Start</Text>
+    </View>
+  );
+}
+
+// Nodes are chunky ovals on a darker edge, like the primary button. Finished
+// skills (mastered or tested out) are gold with a check; open and started ones
+// are the section's color; locked ones are grey with a lock. The next skill
+// also gets a ring in the section's wash, like the current tab. Mastery is in
+// the sheet, not on the node.
+function NodeArt({ state, pop, isNext, isNew, accent, down }: {
+  state: State; pop: object; isNext: boolean; isNew: boolean; accent: Accent; down: boolean;
+}) {
+  const look =
+    state === "mastered" || state === "tested" ? { face: color.gold, edge: color.goldDark }
+    : state === "locked" ? { face: color.lock, edge: color.lockDark }
+    : { face: accent.fill, edge: accent.edge };
+  const mark =
+    state === "mastered" || state === "tested" ? <Icon name="check" size={30} color={color.white} strokeWidth={3.5} />
+    : state === "locked" ? <Icon name="lock" size={26} color={color.ink2} strokeWidth={2.5} />
+    // Nudged right: a triangle's visual center sits left of its box's.
+    : <Icon name="play" size={28} color={color.white} strokeWidth={3} style={{ marginLeft: 3 }} />;
+  return (
+    <Animated.View style={pop}>
+      {isNext && <View style={[s.halo, { borderColor: accent.wash }]} />}
+      <View style={{ width: NODE_W, height: NODE_H + NODE_EDGE, borderRadius: NODE_W / 2, backgroundColor: look.edge }}>
+        <View
+          style={{
+            width: NODE_W, height: NODE_H, borderRadius: NODE_W / 2, backgroundColor: look.face, alignItems: "center", justifyContent: "center",
+            transform: [{ translateY: down ? NODE_EDGE - 2 : 0 }],
+          }}
+        >
+          {mark}
+        </View>
+      </View>
+      {/* A skill that opened since the last visit: a gold dot, like a fresh notification. */}
+      {isNew && <View style={s.newDot} />}
     </Animated.View>
   );
 }
@@ -302,7 +325,13 @@ function SkillSheet({ skill: sk, byId, missed, onClose, onLesson, onDrill }: { s
   return (
     <Sheet onClose={onClose} label={sk.name}>
       <Text style={type.title}>{sk.name}</Text>
-      <Text style={[type.body, { marginTop: space(1) }]}>{noOrphan(body)}</Text>
+      {(st === "progress" || st === "mastered" || (st === "tested" && (sk.answered ?? sk.attempts) > 0)) && (
+        <View style={{ flexDirection: "row", alignItems: "center", marginTop: space(1.5) }} accessibilityLabel={`${sk.mastery}% mastered`}>
+          <ProgressBar value={sk.mastery / 100} fill={st === "progress" ? color.good : color.gold} />
+          <Text style={[type.label, tabular, { marginLeft: space(1.5), minWidth: 44, textAlign: "right" }]}>{sk.mastery}%</Text>
+        </View>
+      )}
+      <Text style={[type.body, { marginTop: space(1.5) }]}>{noOrphan(body)}</Text>
       <View style={{ marginTop: space(3), gap: space(1) }}>
         {st === "locked" ? (
           <TextButton title="OK" onPress={onClose} />
@@ -323,11 +352,10 @@ function PathSkeleton() {
       <View style={s.scroll}>
         <Bone w={240} h={30} />
         <View style={{ flexDirection: "row", gap: 24, marginTop: 20 }}><Bone w={50} h={18} /><Bone w={150} h={18} /></View>
-        <Bone w={180} h={22} style={{ marginTop: 36 }} />
+        <Bone h={56} r={radius.card} style={{ marginTop: 24 }} />
         {[0, 1, 2, 3].map((i) => (
-          <View key={i} style={{ flexDirection: "row", alignItems: "center", height: ROW }}>
-            <View style={{ width: LABEL_X }}><Bone w={52} h={52} r={26} style={{ marginLeft: XS[i] - 26 }} /></View>
-            <View style={{ flex: 1, gap: 8 }}><Bone w="70%" h={16} /><Bone w="40%" h={12} /></View>
+          <View key={i} style={{ height: ROW, justifyContent: "center", alignItems: "center", paddingTop: i ? 0 : space(3) }}>
+            <Bone w={NODE_W} h={NODE_H} r={NODE_W / 2} style={{ marginLeft: XS[i] * 2 }} />
           </View>
         ))}
       </View>
@@ -339,5 +367,19 @@ const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   // Grouped by space only: no card around the offer.
   offer: { marginTop: space(3) },
-  label: { position: "absolute", left: LABEL_X, right: 0, minHeight: 44, justifyContent: "center" },
+  unitEdge: { borderRadius: radius.card, paddingBottom: EDGE },
+  unit: { flexDirection: "row", alignItems: "center", borderRadius: radius.card, paddingVertical: space(2), paddingHorizontal: space(2) },
+  unitText: { fontFamily: font.black, fontSize: 19, lineHeight: 24, color: color.white },
+  halo: { position: "absolute", left: -10, top: -10, width: NODE_W + 20, height: NODE_H + NODE_EDGE + 20, borderRadius: (NODE_W + 20) / 2, borderWidth: 6 },
+  newDot: { position: "absolute", right: -2, top: -2, width: 18, height: 18, borderRadius: 9, backgroundColor: color.gold, borderWidth: 3, borderColor: color.bg },
+  // The "Start" bubble: the speech-bubble look (white, 2 px line border), small.
+  start: {
+    position: "absolute", width: 80, height: 38, alignItems: "center", justifyContent: "center",
+    backgroundColor: color.bg, borderWidth: BORDER, borderColor: color.line, borderRadius: 12,
+  },
+  startTail: {
+    position: "absolute", bottom: -7 - BORDER, left: 40 - 7 - BORDER, width: 14, height: 14, backgroundColor: color.bg,
+    borderRightWidth: BORDER, borderBottomWidth: BORDER, borderColor: color.line, transform: [{ rotate: "45deg" }],
+  },
+  startText: { fontFamily: font.black, fontSize: 16, lineHeight: 21 },
 });

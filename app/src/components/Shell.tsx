@@ -3,7 +3,7 @@
 import React from "react";
 import { Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import type { Tab } from "../nav";
-import { color, COLUMN, font, radius, shadow, space } from "../theme";
+import { color, COLUMN, font, radius, space, topLine } from "../theme";
 import { Icon, IconName } from "./icons";
 import { Wordmark } from "./ui";
 import { buzz } from "../motion/feedback";
@@ -42,10 +42,10 @@ export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => v
                 accessibilityRole="tab"
                 accessibilityLabel={t.label}
                 accessibilityState={{ selected: on }}
-                style={({ pressed }) => [s.railItem, on && s.railItemOn, pressed && !on && { backgroundColor: color.paperDeep }]}
+                style={({ pressed }) => [s.railItem, on && s.railItemOn, pressed && !on && { backgroundColor: color.well }]}
               >
-                <Icon name={t.icon} color={on ? color.azureInk : color.inkSoft} />
-                <Text style={[s.railLabel, on && { color: color.ink }]}>{t.label}</Text>
+                <Icon name={t.icon} color={on ? color.blueDark : color.ink2} strokeWidth={2.25} />
+                <Text style={[s.railLabel, on && { color: color.blueDark }]}>{t.label}</Text>
               </Pressable>
             );
           })}
@@ -67,10 +67,17 @@ export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => v
               accessibilityRole="tab"
               accessibilityLabel={t.label}
               accessibilityState={{ selected: on }}
-              style={({ pressed }) => [s.barItem, pressed && !on && { backgroundColor: color.paperDeep, borderRadius: radius.row }]}
+              style={s.barItem}
             >
-              <Icon name={t.icon} color={on ? color.azureInk : color.inkSoft} strokeWidth={on ? 2 : 1.75} />
-              <Text style={[s.barLabel, on && s.barLabelOn]}>{t.label}</Text>
+              {({ pressed }) => (
+                <>
+                  {/* The current tab's icon sits in a blue wash. */}
+                  <View style={[s.barIcon, on && { backgroundColor: color.blueWash }, pressed && !on && { backgroundColor: color.well }]}>
+                    <Icon name={t.icon} color={on ? color.blueDark : color.ink2} strokeWidth={2.25} />
+                  </View>
+                  <Text style={[s.barLabel, on && s.barLabelOn]}>{t.label}</Text>
+                </>
+              )}
             </Pressable>
           );
         })}
@@ -82,19 +89,21 @@ export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => v
 const s = StyleSheet.create({
   bar: {
     flexDirection: "row",
-    backgroundColor: color.sheet,
+    backgroundColor: color.bg,
     paddingTop: space(1),
-    paddingBottom: Platform.OS === "ios" ? space(0.5) : space(1),
-    ...shadow.bar,
+    paddingBottom: Platform.OS === "ios" ? space(0.5) : space(1.25),
+    paddingHorizontal: space(0.75),
+    ...topLine,
   },
-  barItem: { flex: 1, alignItems: "center", justifyContent: "center", minHeight: 52, gap: 2 },
-  barLabel: { fontFamily: font.semibold, fontSize: 12, lineHeight: 16, color: color.inkSoft },
-  barLabelOn: { fontFamily: font.bold, color: color.azureInk },
+  barItem: { flex: 1, alignItems: "center", justifyContent: "center", minHeight: 52, gap: 3 },
+  barIcon: { width: 48, height: 32, borderRadius: 12, alignItems: "center", justifyContent: "center" },
+  barLabel: { fontFamily: font.extra, fontSize: 12, lineHeight: 16, color: color.ink2 },
+  barLabelOn: { color: color.blueDark },
   wideRoot: { flex: 1, flexDirection: "row" },
-  rail: { width: RAIL, paddingHorizontal: space(2), paddingTop: space(4), gap: space(0.5) },
+  rail: { width: RAIL, paddingHorizontal: space(2), paddingTop: space(4), gap: space(0.5), borderRightWidth: 2, borderRightColor: color.line },
   railHead: { paddingHorizontal: space(1.5), marginBottom: space(3) },
   railItem: { flexDirection: "row", alignItems: "center", gap: space(1.5), paddingHorizontal: space(1.5), minHeight: 48, borderRadius: radius.row },
-  railItemOn: { backgroundColor: color.azureWash },
-  railLabel: { fontFamily: font.bold, fontSize: 16, color: color.inkSoft },
+  railItemOn: { backgroundColor: color.blueWash },
+  railLabel: { fontFamily: font.extra, fontSize: 16, color: color.ink2 },
   wideMain: { flex: 1 },
 });

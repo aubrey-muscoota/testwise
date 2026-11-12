@@ -1,4 +1,5 @@
-// Line icons, one family: 24 px grid, 1.75 px stroke, round caps and joins.
+// Line icons, one family: 24 px grid, a 2.25 px stroke (heavier where they
+// sit beside black type), round caps and joins.
 // Drawn by hand with small irregularities on purpose (lines a touch off-axis,
 // curves not quite symmetric), so they sit with Socrates and the inked path
 // instead of looking like a stock set. No emoji anywhere in the interface.
@@ -108,7 +109,7 @@ const ICONS = {
 export type IconName = keyof typeof ICONS;
 
 export function Icon({
-  name, size = 24, color: c = color.ink, strokeWidth = 1.75, style,
+  name, size = 24, color: c = color.ink, strokeWidth = 2.25, style,
 }: { name: IconName; size?: number; color?: string; strokeWidth?: number; style?: StyleProp<ViewStyle> }) {
   return (
     <Svg

@@ -71,7 +71,7 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
     }
   };
   const errFor = (at: "ai" | "export" | "delete") =>
-    actErr?.at === at ? <Text style={[type.body, { color: color.brick, marginTop: space(1) }]} accessibilityRole="alert">{actErr.msg}</Text> : null;
+    actErr?.at === at ? <Text style={[type.body, { color: color.badInk, marginTop: space(1) }]} accessibilityRole="alert">{actErr.msg}</Text> : null;
 
   return (
     <View style={{ flex: 1 }}>
@@ -81,20 +81,18 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
         </Rise>
 
         <Rise delay={60} style={{ marginTop: space(3) }}>
-          <Row icon="calendar" title="Test date" value={dateText} onPress={() => onEdit("date", profile)} accessibilityLabel={`Test date, ${dateText}. Change`} />
-          <Row icon="target" title="Target score" value={profile.target_score ? String(profile.target_score) : "None"} onPress={() => onEdit("score", profile)} accessibilityLabel={`Target score, ${profile.target_score ?? "none"}. Change`} />
-          <Row icon="clock" title="Time each day" value={`${profile.daily_minutes ?? exam?.plan.default_daily_minutes ?? 20} min`} onPress={() => onEdit("minutes", profile)} accessibilityLabel={`Time each day, ${profile.daily_minutes ?? 20} minutes. Change`} />
+          <Row title="Test date" value={dateText} onPress={() => onEdit("date", profile)} accessibilityLabel={`Test date, ${dateText}. Change`} />
+          <Row title="Target score" value={profile.target_score ? String(profile.target_score) : "None"} onPress={() => onEdit("score", profile)} accessibilityLabel={`Target score, ${profile.target_score ?? "none"}. Change`} />
+          <Row title="Time each day" value={`${profile.daily_minutes ?? exam?.plan.default_daily_minutes ?? 20} min`} onPress={() => onEdit("minutes", profile)} accessibilityLabel={`Time each day, ${profile.daily_minutes ?? 20} minutes. Change`} />
         </Rise>
 
         <Rise delay={100} style={{ marginTop: space(3) }}>
           <Row
-            icon={muted ? "soundOff" : "soundOn"}
             title="Sound"
             detail="Chimes for right and wrong answers"
             accessory={<Toggle value={!muted} onChange={(v) => setMuted(!v)} label="Sound" testID="sound-toggle" />}
           />
           <Row
-            icon="quill"
             title="Socrates AI"
             detail={ai ? "He chats with you about missed questions. Chats go to Anthropic." : "Off. He uses his written notes instead."}
             accessory={<Toggle value={ai} onChange={setAi} label="Socrates AI" testID="ai-toggle" disabled={pending === "ai"} />}
@@ -117,7 +115,7 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
           {errFor("export")}
           <TextButton
             title={pending === "delete" ? "Deleting…" : "Delete my data"}
-            tone="brick"
+            tone="bad"
             align="left"
             style={s.link}
             disabled={pending === "delete"}
@@ -187,7 +185,6 @@ function MeSkeleton() {
         <Bone w={240} h={30} />
         {[0, 1, 2, 3, 4].map((i) => (
           <View key={i} style={{ flexDirection: "row", gap: 14, marginTop: i ? 26 : 36 }}>
-            <Bone w={24} h={24} r={12} />
             <Bone w="40%" h={16} />
           </View>
         ))}

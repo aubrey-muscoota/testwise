@@ -4,8 +4,7 @@
 //   ?lab=renderers&item=<id>&state=<s>   one fixture; s = idle, picked, right, wrong, solution
 // The fixtures live in app/src/lab/items.json.
 import React, { useRef, useState } from "react";
-import { useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from "@expo-google-fonts/nunito";
-import { Fraunces_400Regular, Fraunces_600SemiBold } from "@expo-google-fonts/fraunces";
+import { useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black } from "@expo-google-fonts/nunito";
 import { ScrollView, ScrollViewInstance, StyleSheet, Text, View } from "react-native";
 import type { Item } from "../api";
 import { SocratesLine } from "../components/SocratesLine";
@@ -14,7 +13,7 @@ import { Phase, Question, Solution } from "../lesson/Question";
 import { ResultPanel } from "../lesson/ResultPanel";
 import { lessonShared } from "../lesson/shared";
 import fixtures from "../lab/items.json";
-import { color, GUTTER, space, tabular, type } from "../theme";
+import { color, font, GUTTER, space, tabular, type } from "../theme";
 
 type Fixture = { id: string; title: string; states: LabState[]; item: Item };
 export type LabState = "idle" | "picked" | "right" | "wrong" | "solution";
@@ -41,7 +40,7 @@ function pose(item: Item, state: LabState): { phase: Phase; choice: string | nul
 
 export function RendererLab() {
   const [fontsLoaded] = useFonts({
-    Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Fraunces_400Regular, Fraunces_600SemiBold,
+    Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black,
   });
   if (!fontsLoaded) return <View style={st.root} />;
   const id = param("item");
@@ -74,7 +73,7 @@ function Frame({ fixture, state }: { fixture: Fixture; state: LabState }) {
           <Text style={[type.small, tabular]}>3 of 8</Text>
         </View>
         <View style={{ flexDirection: "row", marginTop: space(1) }}>
-          <ProgressBar value={(2 + (checked ? 1 : 0)) / 8} height={8} fill={color.azure} />
+          <ProgressBar value={(2 + (checked ? 1 : 0)) / 8} />
         </View>
       </View>
       <ScrollView
@@ -150,7 +149,7 @@ function Index() {
                 key={s}
                 accessibilityRole="link"
                 {...({ href: `?lab=renderers&item=${f.id}&state=${s}` } as object)}
-                style={[type.body, { color: color.azureInk, marginRight: space(2), fontFamily: f.states.includes(s) ? "Nunito_700Bold" : "Nunito_400Regular" }]}
+                style={[type.body, { color: color.blueDark, marginRight: space(2), fontFamily: f.states.includes(s) ? font.extra : font.regular }]}
               >
                 {s}
               </Text>
@@ -163,6 +162,6 @@ function Index() {
 }
 
 const st = StyleSheet.create({
-  root: { flex: 1, backgroundColor: color.paper, minHeight: "100%" } as object,
+  root: { flex: 1, backgroundColor: color.bg, minHeight: "100%" } as object,
   index: { padding: GUTTER, paddingTop: space(4), maxWidth: 640, width: "100%", alignSelf: "center" },
 });

@@ -18,7 +18,7 @@ import { lessonShared } from "../lesson/shared";
 import { ConsentSheet, QuitSheet } from "../lesson/sheets";
 import { Tutor } from "../lesson/Tutor";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
-import { color, font, GUTTER, shadow, space, tabular, type } from "../theme";
+import { color, font, GUTTER, space, tabular, topLine, type } from "../theme";
 
 export type LessonResult = {
   correct: number;
@@ -374,7 +374,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
     return (
       <View style={s.center}>
         <Socrates size={104} mood="thinking" />
-        <Text style={[type.socrates, { marginTop: space(2), color: color.inkSoft }]} accessibilityRole="progressbar" aria-busy>
+        <Text style={[type.socrates, { marginTop: space(2), color: color.ink2 }]} accessibilityRole="progressbar" aria-busy>
           {source.kind === "task" && source.mode === "fresh" ? "Writing you some new questions. This takes a few seconds…" : pick(lines.loading, 0)}
         </Text>
       </View>
@@ -400,15 +400,15 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
             <Text style={[type.label, { flex: 1, marginLeft: space(1) }]} numberOfLines={1} accessibilityRole="header">{title}</Text>
             {left != null ? (
               <View style={s.timer} accessible accessibilityLabel={`${Math.floor(left / 60)} minutes ${left % 60} seconds left`}>
-                <Icon name="clock" size={20} color={lowTime ? color.brick : color.inkSoft} />
-                <Text style={[s.timerText, tabular, lowTime && { color: color.brick }]}>{clock(left)}</Text>
+                <Icon name="clock" size={20} color={lowTime ? color.badInk : color.ink2} />
+                <Text style={[s.timerText, tabular, lowTime && { color: color.badInk }]}>{clock(left)}</Text>
               </View>
             ) : (
               <Text style={[type.small, tabular]}>{Math.min(done + 1, total)} of {total}</Text>
             )}
           </View>
           <View style={{ flexDirection: "row", marginTop: space(1) }}>
-            <ProgressBar value={progress} height={8} fill={color.azure} />
+            <ProgressBar value={progress} />
           </View>
         </View>
 
@@ -470,7 +470,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
         </ScrollView>
 
         {phase === "answering" ? (
-          <View key="foot" style={[lessonShared.foot, moreBelow && shadow.bar]}>
+          <View key="foot" style={[lessonShared.foot, moreBelow ? topLine : s.footFlat]}>
             <View style={lessonShared.footInner}>
               <Button title={busy ? "Checking…" : "Check"} disabled={!response || busy} onPress={check} />
             </View>
@@ -542,7 +542,9 @@ function FadeWhen({ hidden, children, style }: { hidden: boolean; children: Reac
 const s = StyleSheet.create({
   center: { flex: 1, alignItems: "flex-start", justifyContent: "center", padding: GUTTER, maxWidth: 520, width: "100%", alignSelf: "center" },
   timer: { flexDirection: "row", alignItems: "center", gap: 4 },
-  timerText: { fontFamily: font.serifSemi, fontSize: 20, lineHeight: 24, color: color.ink },
+  timerText: { fontFamily: font.black, fontSize: 20, lineHeight: 24, color: color.ink },
+  // Same height as the line it swaps with, so the bar never jumps.
+  footFlat: { borderTopWidth: 2, borderTopColor: color.bg },
   say: { marginBottom: space(2) },
   srOnly: { position: "absolute", width: 1, height: 1, overflow: "hidden", opacity: 0, left: 0, top: 0 },
 });

@@ -7,7 +7,7 @@ import { SocratesSays } from "../components/SocratesLine";
 import { Button, IconButton, PopIn, Rise, TextButton, useReducedMotion } from "../components/ui";
 import { lines } from "../copy";
 import { Socrates, SocratesMood } from "../socrates/Socrates";
-import { color, GUTTER, radius, scrim, shadow, space, type, COLUMN } from "../theme";
+import { BORDER, color, GUTTER, radius, scrim, shadow, space, type, COLUMN } from "../theme";
 import { lessonShared } from "./shared";
 
 export function Tutor({ item, response, visible, onClose, onSolution }: { item: Item; response: string; visible: boolean; onClose: () => void; onSolution: () => void }) {
@@ -101,7 +101,7 @@ export function Tutor({ item, response, visible, onClose, onSolution }: { item: 
             <Text style={type.heading}>Socrates</Text>
             {waiting && <Text style={type.small}>Thinking…</Text>}
           </View>
-          <IconButton ref={closeRef} name="close" onPress={onClose} label="Close Socrates" tone={color.inkSoft} style={{ marginRight: -8 }} />
+          <IconButton ref={closeRef} name="close" onPress={onClose} label="Close Socrates" tone={color.ink2} style={{ marginRight: -8 }} />
         </View>
         <ScrollView ref={scroll} style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: GUTTER, paddingVertical: space(2), gap: space(2) }}>
           {turns.map((t, i) =>
@@ -137,7 +137,7 @@ export function Tutor({ item, response, visible, onClose, onSolution }: { item: 
                   value={draft}
                   onChangeText={setDraft}
                   placeholder="Tell him what you think"
-                  placeholderTextColor={color.inkSoft}
+                  placeholderTextColor={color.ink2}
                   onSubmitEditing={submit}
                   style={[lessonShared.input, { flex: 1, marginTop: 0 }]}
                   editable={!waiting}
@@ -150,9 +150,9 @@ export function Tutor({ item, response, visible, onClose, onSolution }: { item: 
                   accessibilityRole="button"
                   accessibilityLabel="Send"
                   accessibilityState={{ disabled: !draft.trim() || waiting }}
-                  style={({ pressed }) => [s.send, { backgroundColor: !draft.trim() || waiting ? color.paperDeep : color.azure }, pressed && { transform: [{ scale: 0.96 }] }]}
+                  style={({ pressed }) => [s.send, { backgroundColor: !draft.trim() || waiting ? color.lock : color.blue }, pressed && { transform: [{ scale: 0.96 }] }]}
                 >
-                  <Icon name="send" color={!draft.trim() || waiting ? color.inkSoft : color.ink} strokeWidth={2.2} />
+                  <Icon name="send" color={!draft.trim() || waiting ? color.ink3 : color.white} strokeWidth={2.75} />
                 </Pressable>
               </View>
               {note && <Text style={[type.small, { marginTop: space(1) }]}>{note}</Text>}
@@ -193,11 +193,15 @@ function ThinkingDots() {
 
 const s = StyleSheet.create({
   overlay: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0, justifyContent: "flex-end", zIndex: 30 },
-  tutor: { backgroundColor: color.sheet, borderTopLeftRadius: radius.sheet, borderTopRightRadius: radius.sheet, height: "86%", maxWidth: COLUMN, width: "100%", alignSelf: "center", ...shadow.float },
+  tutor: { backgroundColor: color.bg, borderTopLeftRadius: radius.sheet, borderTopRightRadius: radius.sheet, height: "86%", maxWidth: COLUMN, width: "100%", alignSelf: "center", ...shadow.float },
   tutorHead: { flexDirection: "row", alignItems: "center", paddingHorizontal: GUTTER, paddingTop: space(2), paddingBottom: space(1) },
-  msgHim: { alignSelf: "stretch", paddingRight: space(4) },
-  msgMe: { alignSelf: "flex-end", maxWidth: "85%", backgroundColor: color.azureWash, paddingVertical: space(1.25), paddingHorizontal: space(1.75), borderRadius: radius.row },
-  dot: { width: 7, height: 7, borderRadius: 4, backgroundColor: color.inkSoft },
+  // His words in a speech bubble (white, line border); the learner's in a blue wash.
+  msgHim: {
+    alignSelf: "flex-start", maxWidth: "88%", backgroundColor: color.bg, borderWidth: BORDER, borderColor: color.line,
+    paddingVertical: space(1.25), paddingHorizontal: space(1.75), borderRadius: radius.card,
+  },
+  msgMe: { alignSelf: "flex-end", maxWidth: "85%", backgroundColor: color.blueWash, paddingVertical: space(1.25), paddingHorizontal: space(1.75), borderRadius: radius.card },
+  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: color.ink2 },
   tutorFoot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1.5) },
   send: { width: 48, height: 48, borderRadius: radius.input, alignItems: "center", justifyContent: "center" },
 });

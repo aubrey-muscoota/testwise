@@ -47,11 +47,11 @@ export function Passage({ text, label }: { text: string; label?: string }) {
 }
 
 const st = StyleSheet.create({
-  // A sunken well: paperDeep, no border.
-  box: { backgroundColor: color.paperDeep, borderRadius: radius.well, padding: space(2), marginBottom: space(2), gap: space(0.75) },
-  label: { fontFamily: font.bold, fontSize: 13, lineHeight: 18, color: color.inkSoft, marginBottom: space(0.25) },
+  // A sunken well in Socrates' toga cream, no border.
+  box: { backgroundColor: color.well, borderRadius: radius.well, padding: space(2), marginBottom: space(2), gap: space(0.75) },
+  label: { fontFamily: font.extra, fontSize: 14, lineHeight: 19, color: color.ink2, marginBottom: space(0.25) },
   text: { fontSize: 17, lineHeight: 26 },
   bullet: { flexDirection: "row", gap: space(1) },
-  u: { textDecorationLine: "underline", textDecorationColor: color.azureInk, fontFamily: font.semibold },
+  u: { textDecorationLine: "underline", textDecorationColor: color.blueDark, fontFamily: font.extra },
   blank: { textDecorationLine: "underline", textDecorationColor: color.ink, letterSpacing: 2 },
 });

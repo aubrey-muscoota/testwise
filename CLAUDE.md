@@ -9,8 +9,9 @@ checklist; do the next unchecked item of the current release) and `docs/DESIGN.m
   changes, `npm run build:app && npx playwright test` (every item type at the three widths against committed
   screenshots; look at the diff images before `--update-snapshots`).
 - UI changes: follow `docs/DESIGN.md` exactly and check screenshots at 390x844, 375x667 and 1440x900
-  (`scripts/ui-tour.cjs`). Nothing that reads as AI-generated: no pills, eyebrows, bordered cards, emoji icons,
-  all-caps, gradients, opacity tints, pep talk.
+  (`scripts/ui-tour.cjs`). Nothing that reads as AI-generated: no pills, eyebrows, emoji icons, all-caps,
+  gradients, opacity tints, pep talk. Chunky bordered answer cards and pressable buttons are part of the design;
+  other borders only on inputs and speech bubbles (see the Never list).
 - Item checks run in CI with only sympy installed: never import numpy in item code.
 - Merging to `main` deploys to staging (testwise-staging on workers.dev). Aubrey allows merging Testwise PRs once CI is
   green. Production updates only when Aubrey publishes a GitHub release: never publish a release or run "Deploy

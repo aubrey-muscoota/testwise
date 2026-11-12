@@ -1,14 +1,16 @@
 // The full plan: phases from today to the test, week by week, with the skills
-// each week focuses on and whether the learner is on track.
+// each week focuses on and whether the learner is on track. Each phase is a
+// heavy heading over a cream well of weeks; this week sits in the blue "current"
+// wash, and skills already finished (mastered or tested out) are ticked in gold.
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, Plan, PlanPhase } from "../api";
 import { longDay, parseDay, plural, shortDay, shortMonth } from "../copy";
 import { Icon } from "../components/icons";
 import { useWide } from "../components/Shell";
-import { Bone, ErrorState, IconButton, Rise, Skeleton, TextButton } from "../components/ui";
+import { Bone, decorative, ErrorState, IconButton, Rise, Skeleton, TextButton } from "../components/ui";
 import { useLoad } from "../nav";
-import { color, GUTTER, space, tabular, type, COLUMN } from "../theme";
+import { BORDER, color, font, GUTTER, inner, radius, space, tabular, type, COLUMN } from "../theme";
 
 const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven"];
 
@@ -21,7 +23,11 @@ const PHASE_FALLBACK: Record<PlanPhase, string> = {
 };
 
 export function PlanScreen({ onBack }: { onBack: () => void }) {
-  const { data, error, reload } = useLoad(async () => ({ plan: await api.plan() }));
+  const { data, error, reload } = useLoad(async () => {
+    const [plan, tree] = await Promise.all([api.plan(), api.tree().catch(() => null)]);
+    const done = new Set((tree?.domains ?? []).flatMap((d) => d.skills).filter((sk) => sk.mastered || sk.tested_out).map((sk) => sk.id));
+    return { plan, done };
+  });
   const wide = useWide();
   const exam = getExam();
   const [all, setAll] = React.useState(false);
@@ -35,7 +41,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
   if (error && !data) return <View style={{ flex: 1 }}>{header}<ErrorState message="I couldn't load your plan. Try again?" onRetry={reload} /></View>;
   if (!data) return <View style={{ flex: 1 }}>{header}<PlanSkeleton /></View>;
 
-  const { plan }: { plan: Plan } = data;
+  const { plan, done } = data;
   const phaseName = (p: PlanPhase) => exam?.plan.phases.find((x) => x.id === p)?.name ?? PHASE_FALLBACK[p];
 
   // Group the weeks into runs of the same phase, in order.
@@ -80,10 +86,10 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
         </Rise>
 
         {groups.map((g, gi) => (
-          <Rise key={`${g.phase}-${gi}`} delay={60 + gi * 50} style={{ marginTop: space(5) }}>
+          <Rise key={`${g.phase}-${gi}`} delay={60 + gi * 50} style={{ marginTop: space(4) }}>
             <Text style={type.heading} accessibilityRole="header">{phaseName(g.phase)}</Text>
-            {phaseLine[g.phase] && <Text style={[type.body, { color: color.inkSoft, marginTop: 2 }]}>{phaseLine[g.phase]}</Text>}
-            <View style={{ marginTop: space(1.5) }}>
+            {phaseLine[g.phase] && <Text style={[type.small, { marginTop: 2 }]}>{phaseLine[g.phase]}</Text>}
+            <View style={s.well}>
               {g.weeks.map((w, wi) => {
                 const now = gi === 0 && wi === 0;
                 const idx = plan.weeks.indexOf(w);
@@ -96,11 +102,11 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
                 return (
                   <View key={w.start} style={[s.week, now && s.weekNow]}>
                     <View style={s.weekDate}>
-                      <Text style={[type.label, tabular, now && { color: color.azureInk }]}>{now ? "This week" : shortDay(w.start)}</Text>
+                      <Text style={[type.label, tabular, now && { color: color.blueDark, fontFamily: font.black }]}>{now ? "This week" : shortDay(w.start)}</Text>
                     </View>
-                    <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, gap: space(1) }}>
                       {w.focus_names.length
-                        ? w.focus_names.map((n, ni) => <Text key={n} style={[type.body, ni > 0 && s.nextSkill]}>{n}</Text>)
+                        ? w.focus_names.map((n, ni) => <SkillLine key={n} name={n} done={done.has(w.focus_skill_ids[ni])} />)
                         : <Text style={type.body}>{w.goal}</Text>}
                     </View>
                   </View>
@@ -116,7 +122,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
 
         {plan.phase !== "after" && (
           <View style={s.end}>
-            <Icon name="flag" color={color.terracotta} />
+            <Icon name="flag" color={color.goldDark} />
             <Text style={[type.label, { marginLeft: space(1.5), flex: 1 }]}>
               {exam?.short_name ?? "Test"} day, {longDay(plan.exam_date)}
             </Text>
@@ -124,6 +130,18 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
         )}
         <View style={{ height: space(4) }} />
       </ScrollView>
+    </View>
+  );
+}
+
+// A skill in a week: a gold tick once it's finished, an empty ring until then.
+function SkillLine({ name, done }: { name: string; done: boolean }) {
+  return (
+    <View style={{ flexDirection: "row", alignItems: "flex-start" }} accessibilityLabel={done ? `${name}, finished` : name}>
+      <View style={[s.mark, done && s.markDone]} {...decorative}>
+        {done && <Icon name="check" size={14} color={color.white} strokeWidth={3.5} />}
+      </View>
+      <Text style={[type.body, { flex: 1 }]}>{name}</Text>
     </View>
   );
 }
@@ -161,9 +179,9 @@ function PlanSkeleton() {
         <Bone h={16} style={{ marginTop: 14 }} />
         <Bone w="70%" h={16} style={{ marginTop: 8 }} />
         {[0, 1].map((g) => (
-          <View key={g} style={{ marginTop: space(5), gap: 14 }}>
+          <View key={g} style={{ marginTop: space(4), gap: 10 }}>
             <Bone w={120} h={22} />
-            {[0, 1, 2].map((i) => <View key={i} style={{ flexDirection: "row", gap: 16 }}><Bone w={80} h={16} /><Bone w="60%" h={16} /></View>)}
+            <Bone h={120} r={radius.well} style={{ marginTop: 4 }} />
           </View>
         ))}
       </View>
@@ -174,11 +192,14 @@ function PlanSkeleton() {
 const s = StyleSheet.create({
   head: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
-  week: { flexDirection: "row", paddingVertical: space(1.25) },
-  weekNow: {},
-  // A little air between skills, so a name that wraps still reads as one.
-  nextSkill: { marginTop: space(0.75) },
+  // A sunken well holds a phase's weeks; rows inside follow its corner (16 − 6).
+  well: { backgroundColor: color.well, borderRadius: radius.well, padding: space(0.75), marginTop: space(1.5) },
+  week: { flexDirection: "row", paddingVertical: space(1.5), paddingHorizontal: space(1.5), borderRadius: inner(radius.well, space(0.75)) },
+  // This week: the same blue wash as the current tab and the current node.
+  weekNow: { backgroundColor: color.blueWash },
   // Nudged down so the label sits on the first body line's baseline.
-  weekDate: { width: 96, paddingRight: space(1), paddingTop: 3 },
+  weekDate: { width: 92, paddingRight: space(1), paddingTop: 3 },
+  mark: { width: 22, height: 22, borderRadius: 11, borderWidth: BORDER, borderColor: color.lockDark, marginTop: 2, marginRight: space(1.25), alignItems: "center", justifyContent: "center" },
+  markDone: { backgroundColor: color.gold, borderColor: color.goldDark },
   end: { flexDirection: "row", alignItems: "center", marginTop: space(4) },
 });

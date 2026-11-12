@@ -7,9 +7,9 @@ import { api, Exam, getExam, Profile } from "../api";
 import { daysBetween, isoDay, longDay, monthName, parseDay, plural, todayIso } from "../copy";
 import { Icon } from "../components/icons";
 import { SocratesLine } from "../components/SocratesLine";
-import { Button, IconButton, ProgressBar, Rise, TextButton, usePop } from "../components/ui";
+import { Button, IconButton, Press3D, ProgressBar, Rise, TextButton, usePop } from "../components/ui";
 import { buzz } from "../motion/feedback";
-import { color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
+import { BORDER, color, font, GUTTER, radius, space, tabular, type, COLUMN } from "../theme";
 import { Animated } from "react-native";
 
 export type Field = "date" | "score" | "minutes";
@@ -57,8 +57,8 @@ export function DatePick({ value, onChange }: { value: string | null; onChange: 
     <View>
       <View style={s.calHead}>
         <Text style={[type.heading, { flex: 1 }]} accessibilityRole="header" aria-live="polite">{monthName(view.m)} {view.y}</Text>
-        <IconButton name="back" label="Previous month" onPress={() => canBack && shift(-1)} tone={canBack ? color.ink : color.rule} />
-        <IconButton name="chevron" label="Next month" onPress={() => canFwd && shift(1)} tone={canFwd ? color.ink : color.rule} />
+        <IconButton name="back" label="Previous month" onPress={() => canBack && shift(-1)} tone={canBack ? color.ink : color.ink3} />
+        <IconButton name="chevron" label="Next month" onPress={() => canFwd && shift(1)} tone={canFwd ? color.ink : color.ink3} />
       </View>
       <View style={s.calRow} {...{ "aria-hidden": true }}>
         {WEEKDAYS.map((d, i) => <Text key={i} style={[type.small, s.calWeekday]}>{d}</Text>)}
@@ -95,8 +95,8 @@ function DayDot({ day, on, ok, isToday, label, onPress }: { day: number; on: boo
   return (
     <Pressable onPress={onPress} disabled={!ok} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ selected: on, disabled: !ok }} hitSlop={2}>
       {({ pressed }) => (
-        <Animated.View style={[s.day, on && { backgroundColor: color.azure }, pressed && !on && { backgroundColor: color.paperDeep }, pop]}>
-          <Text style={[s.dayText, tabular, !ok && { color: color.inkSoft, fontFamily: font.regular }, on && { fontFamily: font.black }, isToday && !on && { color: color.azureInk, fontFamily: font.black }]}>
+        <Animated.View style={[s.day, on && s.dayOn, pressed && !on && { backgroundColor: color.well }, pop]}>
+          <Text style={[s.dayText, tabular, !ok && { color: color.ink3, fontFamily: font.semibold }, on && { color: color.blueDark, fontFamily: font.black }, isToday && !on && { color: color.blueDark, fontFamily: font.black }]}>
             {day}
           </Text>
         </Animated.View>
@@ -143,9 +143,9 @@ export function ScoreStepper({ value, onChange }: { value: number; onChange: (n:
       disabled={disabled}
       accessibilityRole="button"
       accessibilityLabel={label}
-      style={({ pressed }) => [s.step, pressed && { backgroundColor: color.azureWash }]}
+      style={({ pressed }) => [s.step, pressed && !disabled && { backgroundColor: color.blueWash, borderColor: color.blue }]}
     >
-      <Icon name={name} size={26} color={disabled ? color.inkSoft : color.ink} strokeWidth={2} />
+      <Icon name={name} size={26} color={disabled ? color.ink3 : color.blueDark} strokeWidth={3} />
     </Pressable>
   );
   return (
@@ -176,24 +176,30 @@ export function MinutesChoice({ value, onChange }: { value: number; onChange: (m
   const exam = getExam();
   const opts = exam?.plan.daily_minutes ?? [10, 20, 30, 45];
   return (
-    <View accessibilityRole="radiogroup" accessibilityLabel="Minutes a day" style={{ gap: space(0.5) }}>
+    <View accessibilityRole="radiogroup" accessibilityLabel="Minutes a day" style={{ gap: space(1.25) }}>
       {opts.map((m) => {
         const on = m === value;
         return (
-          <Pressable
+          <Press3D
             key={m}
             onPress={() => { buzz.tap(); onChange(m); }}
+            sound={false}
+            haptic={false}
             accessibilityRole="radio"
-            accessibilityState={{ checked: on }}
+            accessibilityState={{ checked: on, selected: on }}
             accessibilityLabel={`${m} minutes. ${minutesDetail(m)}`}
-            style={({ pressed }) => [s.minRow, on && { backgroundColor: color.azureWash }, pressed && !on && { backgroundColor: color.paperDeep }]}
+            edge={on ? color.blue : color.line}
+            border={on ? color.blue : color.line}
+            depth={BORDER}
+            radius={radius.card}
+            face={[s.minRow, { backgroundColor: on ? color.blueWash : color.bg }]}
           >
             <View style={{ flex: 1 }}>
-              <Text style={[type.label, tabular]}>{m} minutes</Text>
-              <Text style={[type.small, { marginTop: 2 }]}>{minutesDetail(m)}</Text>
+              <Text style={[s.minTitle, tabular, on && { color: color.blueDark }]}>{m} minutes</Text>
+              <Text style={[type.small, { marginTop: 2 }, on && { color: color.blueDark }]}>{minutesDetail(m)}</Text>
             </View>
-            <View style={{ width: 24 }}>{on && <Icon name="check" color={color.azureInk} strokeWidth={2.2} />}</View>
-          </Pressable>
+            <View style={{ width: 24 }}>{on && <Icon name="check" color={color.blueDark} strokeWidth={3} />}</View>
+          </Press3D>
         );
       })}
     </View>
@@ -305,7 +311,7 @@ export function Onboarding({ initial, onDone, only, onCancel }: {
           <>
             {i > 0 && <IconButton name="back" label="Previous step" onPress={() => setI(i - 1)} style={{ marginLeft: -8 }} />}
             <View style={{ flex: 1, flexDirection: "row", marginLeft: i > 0 ? space(1.5) : 0, marginRight: space(1.5) }}>
-              <ProgressBar value={(i + 1) / steps.length} height={6} />
+              <ProgressBar value={(i + 1) / steps.length} />
             </View>
             <Text style={[type.small, tabular, { width: 40, textAlign: "right" }]}>{i + 1} of {steps.length}</Text>
           </>
@@ -318,7 +324,7 @@ export function Onboarding({ initial, onDone, only, onCancel }: {
           </View>
           <View style={{ height: shortScreen ? space(2) : space(3) }} />
           {body}
-          {error && <Text style={[type.body, { color: color.brick, marginTop: space(2) }]} accessibilityRole="alert">{error}</Text>}
+          {error && <Text style={[type.body, { color: color.badInk, marginTop: space(2) }]} accessibilityRole="alert">{error}</Text>}
         </Rise>
       </ScrollView>
       <View style={s.foot}>
@@ -340,9 +346,16 @@ const s = StyleSheet.create({
   calCell: { width: CELL, alignItems: "center", justifyContent: "center", minHeight: CELL },
   calWeekday: { width: CELL, minHeight: 24, textAlign: "center" },
   day: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center" },
-  dayText: { fontFamily: font.bold, fontSize: 16, color: color.ink },
+  // The chosen day: the same blue wash and border as a chosen answer.
+  dayOn: { backgroundColor: color.blueWash, borderWidth: BORDER, borderColor: color.blue },
+  dayText: { fontFamily: font.extra, fontSize: 16, color: color.ink },
   scoreRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: space(2) },
-  score: { fontFamily: font.serifSemi, fontSize: 64, lineHeight: 74, color: color.ink, textAlign: "center", flex: 1 },
-  step: { width: 60, height: 60, borderRadius: 30, backgroundColor: color.paperDeep, alignItems: "center", justifyContent: "center" },
-  minRow: { flexDirection: "row", alignItems: "center", paddingVertical: space(1.5), paddingHorizontal: space(1.5), marginHorizontal: -space(1.5), borderRadius: radius.row },
+  score: { fontFamily: font.black, fontSize: 64, lineHeight: 74, color: color.blue, textAlign: "center", flex: 1 },
+  // Chunky round steppers: a 2 px border, thicker at the bottom.
+  step: {
+    width: 60, height: 60, borderRadius: 30, backgroundColor: color.bg, alignItems: "center", justifyContent: "center",
+    borderWidth: BORDER, borderBottomWidth: BORDER * 2, borderColor: color.line,
+  },
+  minRow: { flexDirection: "row", alignItems: "center", paddingVertical: space(1.5) - BORDER, paddingHorizontal: space(2) - BORDER },
+  minTitle: { fontFamily: font.black, fontSize: 17, lineHeight: 23, color: color.ink },
 });

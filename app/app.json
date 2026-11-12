@@ -23,8 +23,8 @@
       "favicon": "./assets/favicon.png",
       "name": "Testwise",
       "shortName": "Testwise",
-      "themeColor": "#58A6FF",
-      "backgroundColor": "#FAFCFF",
+      "themeColor": "#2E7BFF",
+      "backgroundColor": "#FFFFFF",
       "description": "Short daily SAT Math practice with Socrates, your tutor."
     }
   }
