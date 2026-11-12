@@ -30,10 +30,22 @@ The target look is the clickable prototype (project files `testwise/redesign/pro
 - The finish: a lesson-done screen (Socrates celebrating, the title, right, XP and time, one button), then, after the
   first lesson of the learner's day (the placement quiz keeps the streak but doesn't count), the streak screen (the count in goldInk, Socrates, this week's days, Continue).
 - Answer choices are full-width cards, stacked, with the letter key on the left.
-- The path is a stack of units: a banner in the section's color (blue for Math, teal for Reading and Writing) on its
-  darker edge, then the unit's skills as big oval nodes in a centered zigzag. The next one is ringed, with a "Start"
-  bubble above it and Socrates beside it. Names, status and mastery are in the sheet a node opens.
-- Navigation: bottom tabs on phones (icon in a wash when current), a left rail at 900 px and wider.
+- The Learn tab is one path: a stack of units, one per domain, the sections interleaved. Each unit is a banner in the
+  section's color (blue for the first section, teal for the second) on its darker edge, then its nodes as big ovals
+  in a centered zigzag: lessons, a review after every three lessons, and a unit check last; a flag closes the path.
+  Exactly one node is current: ringed, with a "Start" bubble above it and Socrates beside it on the roomier side. The
+  tab opens scrolled to it. Names, status and mastery are in the card a node opens.
+- A node's card opens right under it: the speech-bubble look (white, 2 px line border, 18 radius, a tail pointing up
+  at the circle), the title in 19 black, a mastery bar for a started lesson, one line of why in ink2, and one primary
+  button ("Start lesson", "Start review", "Start unit check", "Practice again" once done). A locked node's card says
+  what opens it and has no button. Tapping outside or Escape closes it; focus returns to the circle.
+- When a lesson opens the next node, the path comes back on the old current node, scrolls to the new one, which pops
+  (scale 1.18) as its ring and bubble fade in. With reduced motion it just appears, already ringed.
+- The top bar, over every tab: days to the test (calendar, ink; "Set date" when there is none), the streak (goldDark
+  mark, goldInk count) and XP (blue mark, blueDark count), counts in 16 black tabular figures, a 2 px line under it.
+  Streak and XP appear after the first lesson. Each count opens Progress.
+- Navigation: four tabs, Learn, Practice, Progress and Me: bottom tabs on phones (icon in a wash when current), a left
+  rail at 900 px and wider. Progress holds the countdown, the plan's track sentence and the weeks.
 - Left-aligned text with a 20 px gutter. Center only a single number or word that is the point.
 
 ## Color (`app/src/theme.ts`)
@@ -88,11 +100,13 @@ Rules:
 - **Inputs**: white, 2 px line border, blue focus outline.
 - **Rows**: title 17 black, detail small; an icon, when it helps recognition, sits in a 44 px blueWash circle.
 - **Toggles**: good when on, lockDark when off, white knob.
-- **Path nodes**: 70 x 62 ovals on a 7 px edge. Open and started: the section's color (blue or teal) with a white
-  play mark. Next: the same, ringed in the section's wash (blueWash or tealWash). Finished: gold with a white check.
-  Locked: lock grey with a lock. No numbers on nodes; mastery is a bar in the skill's sheet.
-- **Unit banners**: the domain name and "3 of 5" (finished skills) in 19 px black white on the section's color, on a
-  4 px edge in its dark shade.
+- **Path nodes**: 70 x 62 ovals on a 7 px edge. Open: the section's color (blue or teal) with a white mark. Current:
+  the same, ringed (6 px, 10 px out) in the section's wash (blueWash or tealWash). Finished: gold on goldDark.
+  Locked: lock grey on lockDark, the mark in ink2. The mark says what it is: play for a lesson (a check once
+  finished, a lock while locked), redo for a review, a chest for the unit check, a flag at the end. No numbers on
+  nodes; mastery is a bar in the node's card.
+- **Unit banners**: the domain name and "3 of 5" (finished nodes) in 19 px black, then "Section, unit 2 of 8" in
+  19 px 800, white on the section's color, radius 18, on a 7 px edge in its dark shade.
 - Icons: one hand-drawn line family (`app/src/components/icons.tsx`), 24 px grid, 2.25 px stroke, round caps. No emoji
   in the interface, ever (emoji in a learner's own typed text are fine).
 

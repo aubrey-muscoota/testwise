@@ -2,7 +2,7 @@ import * as E from "../engine.js";
 import { json, fail, parseItem, tzOffset, masteryMap, allSkills, stats } from "../lib/http.js";
 import { learnerExam, sectionOf } from "../lib/exam.js";
 
-export async function startLesson(env, request, learnerId, skillId) {
+export async function startLesson(env, request, learnerId, skillId, node = null) {
   const now = Date.now();
   const today = E.localDay(now, tzOffset(request));
   const mastery = await masteryMap(env, learnerId);
@@ -40,8 +40,8 @@ export async function startLesson(env, request, learnerId, skillId) {
     : dueIds.map((id) => ({ id, review: true }));
 
   await env.DB.prepare(
-    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day) VALUES (?, ?, ?, ?, ?)",
-  ).bind(lessonId, learnerId, skillId || null, now, today).run();
+    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, node) VALUES (?, ?, ?, ?, ?, ?)",
+  ).bind(lessonId, learnerId, skillId || null, now, today, node).run();
 
   const byId = new Map(items.map((r) => [r.id, r]));
   return json({
@@ -150,7 +150,14 @@ export async function finishLesson(env, request, learnerId, b) {
       `SELECT COUNT(*) AS n FROM attempts a WHERE lesson_id = ? AND correct = 1 AND answered_at =
         (SELECT MIN(answered_at) FROM attempts b WHERE b.lesson_id = a.lesson_id AND b.item_id = a.item_id)`,
     ).bind(lesson.id).first();
-    const xp = (r.total || 0) > 0 ? firstTry.n * E.XP_CORRECT + E.XP_LESSON : 0;
+    let xp = (r.total || 0) > 0 ? firstTry.n * E.XP_CORRECT + E.XP_LESSON : 0;
+    // A unit check on the path pays a bonus the first time it's finished.
+    if (xp && typeof lesson.node === "string" && lesson.node.startsWith("check:")) {
+      const before = await env.DB.prepare(
+        "SELECT COUNT(*) AS n FROM lessons WHERE learner_id = ? AND node = ? AND completed_at IS NOT NULL AND id != ?",
+      ).bind(learnerId, lesson.node, lesson.id).first();
+      if (!before.n) xp += E.XP_UNIT_CHECK;
+    }
     const today = E.localDay(Date.now(), tzOffset(request));
     await env.DB.prepare(
       "UPDATE lessons SET completed_at = ?, correct = ?, total = ?, xp = ?, local_day = ? WHERE id = ?",

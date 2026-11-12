@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 import { Platform } from "react-native";
 import type { FigureSpec } from "./figure/Figure";
 
@@ -47,7 +48,7 @@ export type Consent = { age_confirmed: boolean; ai_consent: boolean };
 
 export type Tree = { exam: { id: string; name: string }; sections?: Section[]; domains: Domain[]; stats: Stats; learner?: Consent; profile?: Profile };
 
-export type PracticeMode = "weak" | "mixed" | "skill" | "timed" | "mistakes" | "fresh";
+export type PracticeMode = "weak" | "mixed" | "skill" | "timed" | "mistakes" | "fresh" | "review";
 
 export type Lesson = {
   lesson_id: string;
@@ -111,6 +112,38 @@ export type Plan = {
   test_ready_from: string;
   // A week names its skills (focus_names) or, when there are none to name, its goal.
   weeks: { start: string; end: string; phase: PlanPhase; focus_skill_ids: string[]; focus_names: string[]; goal: string | null }[];
+};
+
+// The Learn path (GET /api/path, docs/API.md "Path").
+export type NodeState = "done" | "current" | "open" | "locked";
+type NodeBase = { id: string; state: NodeState; title: string; why: string; locked_reason?: string; start: StartRequest | null };
+export type PathNode =
+  | (NodeBase & { kind: "skill"; skill_id: string; mastery: number; tested_out: boolean; questions: number; minutes: number })
+  | (NodeBase & { kind: "review"; skill_ids: string[]; due: number; questions: number; minutes: number })
+  | (NodeBase & { kind: "check"; skill_ids: string[]; questions: number; minutes: number })
+  | (NodeBase & { kind: "end"; task_title: string | null });
+export type PathUnit = {
+  id: string;
+  name: string;
+  section_id: string;
+  section_name: string;
+  section_index: number;
+  number: number;
+  of: number;
+  done: number;
+  total: number;
+  nodes: PathNode[];
+};
+export type LearnPath = {
+  date: string;
+  exam_date: string;
+  exam_date_assumed: boolean;
+  days_left: number;
+  phase: PlanPhase;
+  stats: { xp: number; streak: number; xp_today: number; reviews_due: number };
+  current: string;
+  units: PathUnit[];
+  end: PathNode & { kind: "end" };
 };
 
 export type SkillSummary = {
@@ -237,6 +270,7 @@ export async function createLearner(): Promise<string> {
 
 export async function forgetLearner() {
   learnerId = null;
+  setLastPath(null);
   consent = null;
   try {
     await AsyncStorage.removeItem(KEY);
@@ -278,6 +312,34 @@ export function legalUrl(page: "privacy" | "terms") {
   return `${Platform.OS === "web" ? base() : "https://testwise.aubrey-9f5.workers.dev"}/${page}.html`;
 }
 
+// The last path loaded, for the top bar (days to the test, streak, XP), which
+// sits outside the screens. Every api.path() call refreshes it; the app calls
+// refreshPathSummary() whenever it lands on a tab other than Learn (after a
+// tab change, a saved test date, a quit or finished lesson), and Learn loads
+// the path itself.
+let lastPath: LearnPath | null = null;
+let pathInFlight: Promise<LearnPath> | null = null;
+const pathListeners = new Set<(p: LearnPath | null) => void>();
+const setLastPath = (p: LearnPath | null) => { lastPath = p; pathListeners.forEach((l) => l(p)); };
+// The path review page (?lab=path) shows fixtures without a learner.
+export function primeForLab(p: LearnPath, e: Exam) {
+  exam = e;
+  setLastPath(p);
+}
+export function refreshPathSummary() {
+  if (learnerId) api.path().catch(() => {});
+}
+export function usePathSummary() {
+  const [p, setP] = useState(lastPath);
+  useEffect(() => {
+    pathListeners.add(setP);
+    setP(lastPath);
+    if (!lastPath && learnerId) api.path().catch(() => {});
+    return () => { pathListeners.delete(setP); };
+  }, []);
+  return p;
+}
+
 export const api = {
   tree: async () => {
     const t = await call<Tree>("/api/tree");
@@ -307,8 +369,18 @@ export const api = {
   saveProfile: (b: { exam_date?: string | null; not_booked?: true; target_score?: number | null; daily_minutes?: number }) =>
     call<Profile>("/api/profile", { method: "POST", body: b }),
   plan: () => call<Plan>("/api/plan"),
+  // Calls made while one is in flight share it (the top bar and Learn both ask on open).
+  path: () => {
+    if (!pathInFlight) {
+      pathInFlight = call<LearnPath>("/api/path").then(
+        (p) => { pathInFlight = null; setLastPath(p); return p; },
+        (e) => { pathInFlight = null; throw e; },
+      );
+    }
+    return pathInFlight;
+  },
   practiceSummary: () => call<PracticeSummary>("/api/practice/summary"),
-  practice: (b: { mode: PracticeMode; n?: number; skill_id?: string; skill_ids?: string[]; section?: string }) =>
+  practice: (b: { mode: PracticeMode; n?: number; skill_id?: string; skill_ids?: string[]; section?: string; node?: string }) =>
     call<Lesson>("/api/practice", { method: "POST", body: b }),
   // Starts a plan task with the request the plan gave. Only lesson and practice starts are allowed.
   start: (r: StartRequest) => {

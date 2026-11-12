@@ -1,17 +1,18 @@
 // After a lesson or set: Socrates celebrates, the real numbers count up, and
-// the plan is re-fetched so the learner sees what changed today.
+// Continue goes back where the lesson started (the Learn path shows the next
+// circle opening). After placement, the path is re-fetched to say where it
+// picks up.
 import React, { useEffect, useState } from "react";
 import { Platform, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
-import { api, Plan } from "../api";
-import { clock, noOrphan, taskName } from "../copy";
+import { api, LearnPath, PathNode } from "../api";
+import { clock, noOrphan } from "../copy";
 import { SocratesSays } from "../components/SocratesLine";
 import { Socrates } from "../socrates/Socrates";
-import { Bone, Button, CountUp, Rise, TextButton } from "../components/ui";
+import { Button, CountUp, Rise, TextButton } from "../components/ui";
 import { feedback } from "../motion/feedback";
 import { LessonSource } from "../nav";
 import { color, font, GUTTER, space, type, COLUMN } from "../theme";
 import type { LessonResult } from "./Lesson";
-import { taskSource } from "./Today";
 import { Streak } from "./Streak";
 
 const low = (n: string) => n.charAt(0).toLowerCase() + n.slice(1);
@@ -45,12 +46,13 @@ function titleOf(r: LessonResult) {
 }
 
 export function Complete({ result, onContinue, onStart }: { result: LessonResult; onContinue: () => void; onStart: (s: LessonSource) => void }) {
-  const [plan, setPlan] = useState<Plan | null>(null);
-  const [planFailed, setPlanFailed] = useState(false);
+  const [path, setPath] = useState<LearnPath | null>(null);
   useEffect(() => {
     feedback.complete();
-    api.plan().then(setPlan, () => setPlanFailed(true));
-  }, []);
+    // After placement, where the path picks up. (Continue lands on a tab,
+    // which refreshes the top bar's numbers.)
+    if (result.placement) api.path().then(setPath, () => {});
+  }, [result.placement]);
 
   const { streak, lessons_today, lessons_today_no_placement } = result.stats;
   const placed = result.placement;
@@ -64,13 +66,11 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
   const streakDue = !placed && !empty && streak >= 1 && (lessons_today_no_placement ?? lessons_today) === 1;
   const [after, setAfter] = useState<(() => void) | null>(null);
   const go = (fn: () => void) => () => (streakDue ? setAfter(() => fn) : fn());
-  const next = empty ? undefined : plan?.today.find((t) => !t.done && t.start);
   const names = placed?.next.map((n) => n.name) ?? [];
   const placedFirst = placed?.tested_out.length ? placed.next[0]?.id : undefined;
-  const planNext = plan?.today.find((t) => !t.done && t.start && t.kind === "lesson");
+  const pathNext = path ? [...path.units.flatMap((u) => u.nodes), path.end as PathNode].find((n) => n.id === path.current) : undefined;
   const more = names.length - 3;
   const short = useWindowDimensions().height < 720;
-  const retryPlan = () => { setPlanFailed(false); api.plan().then(setPlan, () => setPlanFailed(true)); };
 
   const [typing, setTyping] = useState(true);
   const mood = empty ? "concerned" : "celebrate";
@@ -120,45 +120,24 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
                 {noOrphan(names.length > 2 ? `Then ${low(names[1])} and ${low(names[2])}${more > 0 ? `, and ${more} more` : ""}.` : `Then ${low(names[1])}.`)}
               </Text>
             )}
-            {/* Today's list can lead with another section; say so, so the title isn't contradicted. */}
-            {placedFirst && planNext && planNext.skill_id !== placedFirst && (
+            {/* The path can pick up somewhere else (another section's unit); say so, so the title isn't contradicted. */}
+            {placedFirst && pathNext && !(pathNext.kind === "skill" && pathNext.skill_id === placedFirst) && (
               <Text style={[type.body, s.centerText, { marginTop: space(1.5) }]}>
-                {noOrphan(`Today's list opens with ${low(taskName(planNext.title))}, then ${sectionWord(result).trim() || "these"}.`)}
+                {noOrphan(`Your path picks up at ${pathNext.kind === "skill" ? low(pathNext.title) : `the ${low(pathNext.title)}`}.`)}
               </Text>
             )}
           </Rise>
         )}
 
-        {!placed && !empty && (
-          <Rise delay={640} style={{ marginTop: space(3), alignItems: "center" }}>
-            {plan ? (
-              <Text style={[type.label, s.centerText, { color: color.ink2 }]}>{next ? `Next: ${next.title}` : "Today's list is done"}</Text>
-            ) : planFailed ? (
-              <View style={{ alignItems: "center" }}>
-                <Text style={type.small}>I couldn't refresh today's list.</Text>
-                <TextButton title="Try again" onPress={retryPlan} />
-              </View>
-            ) : (
-              <View accessibilityLabel="Updating today's plan">
-                <Bone w={200} h={20} />
-              </View>
-            )}
-          </Rise>
-        )}
       </ScrollView>
       <Rise delay={700} style={s.foot}>
         {empty ? (
           <>
             <Button title="Try the timed set again" onPress={() => onStart(result.source)} testID="complete-retry" />
-            <TextButton title="Back to today" onPress={onContinue} tone="soft" style={{ marginTop: space(0.5) }} />
-          </>
-        ) : next && !placed ? (
-          <>
-            <Button title="Start the next one" onPress={go(() => onStart(taskSource(next)!))} testID="complete-next" />
-            <TextButton title="Back to today" onPress={go(onContinue)} tone="soft" style={{ marginTop: space(0.5) }} />
+            <TextButton title="Back" onPress={onContinue} tone="soft" style={{ marginTop: space(0.5) }} />
           </>
         ) : (
-          <Button title={placed ? "See today's plan" : "Back to today"} onPress={go(onContinue)} testID="complete-continue" />
+          <Button title={placed ? "See your path" : "Continue"} onPress={go(onContinue)} testID="complete-continue" />
         )}
       </Rise>
     </View>

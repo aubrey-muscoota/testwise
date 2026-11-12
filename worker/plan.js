@@ -129,41 +129,81 @@ export function prepareSkills(skills) {
 const unlockedBy = (skill, attemptsOf) => skill.prereqs.every((p) => attemptsOf(p) >= UNLOCK_ATTEMPTS || attemptsOf(p) === Infinity);
 
 /**
- * New skills in the order the plan starts them: open (prerequisites done)
- * skills first by prerequisite depth, then by weight; the two sections are
- * interleaved so neither falls behind. With `byWeight` (a runway too short to
- * start everything) weight comes before depth.
+ * The path's units in order: one unit per domain, its skills by prerequisite
+ * depth then position, so a unit's own prerequisites always come first. The
+ * sections are interleaved unit by unit, picking the section with the lowest
+ * share of its skills placed so far (ties go to the section that comes first
+ * in the exam). A unit is ready once every prerequisite it has in another
+ * domain is in a unit already placed; within a section the ready unit with the
+ * most weight goes first. With `byWeight` (a runway too short to start
+ * everything) it is the most weight per skill, so the points per lesson lead.
+ * Skills come from prepareSkills. A pack with a cross-domain cycle still gets
+ * an order: the unit with the fewest unmet prerequisites goes next.
+ * @returns {{id:string, name:string, section_id:string, skills:object[]}[]}
  */
-export function orderNewSkills(skills, startedIds, attemptsOf, { byWeight = false } = {}) {
-  const open = skills.filter((s) => !startedIds.has(s.id) && unlockedBy(s, attemptsOf));
-  const cmp = byWeight
-    ? (a, b) => b.weight - a.weight || a.depth - b.depth || a.position - b.position
-    : (a, b) => a.depth - b.depth || b.weight - a.weight || a.position - b.position;
-  const queues = new Map();
-  for (const s of [...open].sort(cmp)) {
-    if (!queues.has(s.section_id)) queues.set(s.section_id, []);
-    queues.get(s.section_id).push(s);
-  }
-  const totalIn = new Map();
-  const doneIn = new Map();
+export function unitOrder(skills, { byWeight = false } = {}) {
+  const domainOf = new Map(skills.map((s) => [s.id, s.domain_id]));
+  const units = new Map();
   for (const s of skills) {
-    totalIn.set(s.section_id, (totalIn.get(s.section_id) || 0) + 1);
-    if (startedIds.has(s.id)) doneIn.set(s.section_id, (doneIn.get(s.section_id) || 0) + 1);
+    if (!units.has(s.domain_id)) units.set(s.domain_id, { id: s.domain_id, name: s.domain_name || s.domain_id, section_id: s.section_id, skills: [], weight: 0, position: s.position });
+    const u = units.get(s.domain_id);
+    u.skills.push(s);
+    u.weight += s.weight;
+    u.position = Math.min(u.position, s.position);
   }
+  for (const u of units.values()) {
+    u.skills.sort((a, b) => a.depth - b.depth || a.position - b.position);
+    u.perSkill = u.weight / u.skills.length;
+    u.needs = new Set(u.skills.flatMap((s) => s.prereqs).filter((p) => domainOf.has(p) && domainOf.get(p) !== u.id).map((p) => domainOf.get(p)));
+  }
+  const secPos = new Map();
+  for (const s of [...skills].sort((a, b) => a.position - b.position)) if (!secPos.has(s.section_id)) secPos.set(s.section_id, secPos.size);
+  const totalIn = new Map();
+  for (const s of skills) totalIn.set(s.section_id, (totalIn.get(s.section_id) || 0) + 1);
+  const placedIn = new Map();
+  const placed = new Set();
+  const left = new Set(units.values());
   const order = [];
-  while ([...queues.values()].some((q) => q.length)) {
-    let best = null;
-    let bestFrac = Infinity;
-    for (const [sec, q] of queues) {
-      if (!q.length) continue;
-      const frac = (doneIn.get(sec) || 0) / totalIn.get(sec);
-      if (frac < bestFrac - 1e-9) { best = sec; bestFrac = frac; }
+  const unmet = (u) => [...u.needs].filter((d) => !placed.has(d)).length;
+  const better = (a, b) => (byWeight ? b.perSkill - a.perSkill : b.weight - a.weight) || a.position - b.position;
+  while (left.size) {
+    let pool = [...left].filter((u) => unmet(u) === 0);
+    if (!pool.length) {
+      const least = Math.min(...[...left].map(unmet));
+      pool = [...left].filter((u) => unmet(u) === least);
     }
-    const s = queues.get(best).shift();
-    order.push(s);
-    doneIn.set(best, (doneIn.get(best) || 0) + 1);
+    const share = (sec) => (placedIn.get(sec) || 0) / totalIn.get(sec);
+    const sec = [...new Set(pool.map((u) => u.section_id))]
+      .sort((a, b) => share(a) - share(b) || secPos.get(a) - secPos.get(b))[0];
+    const u = pool.filter((x) => x.section_id === sec).sort(better)[0];
+    left.delete(u);
+    placed.add(u.id);
+    placedIn.set(sec, (placedIn.get(sec) || 0) + u.skills.length);
+    order.push(u);
   }
-  return order;
+  return order.map(({ id, name, section_id, skills: list }) => ({ id, name, section_id, skills: list }));
+}
+
+/** Every skill in path order (the units of unitOrder, one after another). */
+export const pathOrder = (skills, opts) => unitOrder(skills, opts).flatMap((u) => u.skills);
+
+/**
+ * The next new skills to start: the first `n` not yet started in path order
+ * whose prerequisites are done, counting the ones picked before them as done
+ * (one lesson is enough answers to open what depends on it), so a day can
+ * chain a skill and the one it opens.
+ */
+export function pickNewSkills(order, startedIds, attemptsOf, n) {
+  const picked = [];
+  const chosen = new Set();
+  const att = (id) => (chosen.has(id) ? Math.max(attemptsOf(id), LESSON_QUESTIONS) : attemptsOf(id));
+  for (const s of order) {
+    if (picked.length >= n) break;
+    if (startedIds.has(s.id) || !unlockedBy(s, att)) continue;
+    picked.push(s);
+    chosen.add(s.id);
+  }
+  return picked;
 }
 
 // Weak-spot priority: points at stake.
@@ -253,6 +293,35 @@ function weakWhy(list) {
 }
 
 /**
+ * What the plan and the path both start from: the day, the daily time, the
+ * runway to the test, the skills as of the start of today, new-skill pacing,
+ * and the path order. The order uses the runway as it was when the plan
+ * started (too short to start every skill means the heaviest units go first),
+ * so it doesn't reshuffle as a learner falls behind; the "isn't enough to
+ * start all N skills" message still looks at today (`shortRunway`).
+ */
+export function runwayContext(o) {
+  const today = o.today;
+  const minutes = DAILY_MINUTES_OPTIONS.includes(o.daily_minutes) ? o.daily_minutes : DEFAULT_DAILY_MINUTES;
+  const pace = o.pace || {};
+  const planStart = o.plan_started_at && daysBetween(o.plan_started_at, today) >= 0 ? o.plan_started_at : today;
+  const exam = effectiveExamDate({ exam_date: o.exam_date, plan_started_at: planStart, today });
+  const tl = timeline({ today, exam: exam.date, planStart });
+  const skills = prepareSkills(o.skills || []);
+  const startedSod = new Set(skills.filter((s) => s.started_sod).map((s) => s.id));
+  const unstartedSod = skills.filter((s) => !s.started_sod);
+  const lastNewDay = skills
+    .filter((s) => s.started_sod && !s.tested_out && s.first_day && s.first_day < today)
+    .map((s) => s.first_day).sort().pop() || null;
+  const shortRunway = unstartedSod.length > lessonCap(minutes, tl.daysLeft) * Math.max(1, daysBetween(today, tl.lastPrep) + 1);
+  const atStart = timeline({ today: planStart, exam: exam.date, planStart });
+  const orderByWeight = skills.length > lessonCap(minutes, atStart.daysLeft) * Math.max(1, daysBetween(planStart, atStart.lastPrep) + 1);
+  const units = unitOrder(skills, { byWeight: orderByWeight });
+  const order = units.flatMap((u) => u.skills);
+  return { today, minutes, pace, planStart, exam, tl, skills, startedSod, unstartedSod, lastNewDay, shortRunway, orderByWeight, units, order };
+}
+
+/**
  * Today's plan.
  * @param {object} o
  * @param {string} o.today                 learner's local day, YYYY-MM-DD
@@ -271,29 +340,13 @@ function weakWhy(list) {
  * @param {Object<string,string>} [o.skill_about] skill id → what it covers (from the exam's voice.json)
  */
 export function buildPlan(o) {
-  const today = o.today;
-  const minutes = DAILY_MINUTES_OPTIONS.includes(o.daily_minutes) ? o.daily_minutes : DEFAULT_DAILY_MINUTES;
-  const pace = o.pace || {};
-  const planStart = o.plan_started_at && daysBetween(o.plan_started_at, today) >= 0 ? o.plan_started_at : today;
-  const exam = effectiveExamDate({ exam_date: o.exam_date, plan_started_at: planStart, today });
-  const tl = timeline({ today, exam: exam.date, planStart });
-  const skills = prepareSkills(o.skills || []);
+  const { today, minutes, pace, planStart, exam, tl, skills, startedSod, unstartedSod, lastNewDay, shortRunway, order } = runwayContext(o);
   const byId = new Map(skills.map((s) => [s.id, s]));
   const lessonsToday = o.lessons_today || [];
   const done = lessonsToday.filter((l) => l.completed);
   const active = new Set(o.active_days || []);
-
-  const startedSod = new Set(skills.filter((s) => s.started_sod).map((s) => s.id));
-  const unstartedSod = skills.filter((s) => !s.started_sod);
   const phase = phaseOn(tl.daysLeft, tl.tr, unstartedSod.length > 0);
-
-  // New-skill pacing (as of the start of today).
-  const lastNewDay = skills
-    .filter((s) => s.started_sod && !s.tested_out && s.first_day && s.first_day < today)
-    .map((s) => s.first_day).sort().pop() || null;
-  const shortRunway = unstartedSod.length > lessonCap(minutes, tl.daysLeft) * Math.max(1, daysBetween(today, tl.lastPrep) + 1);
   const sodAttempts = (id) => byId.get(id)?.sod_attempts ?? Infinity;
-  const candidates = orderNewSkills(skills, startedSod, sodAttempts, { byWeight: shortRunway });
 
   // Behind: the even pace line from plan start vs skills started by today.
   const learnLen = Math.max(1, daysBetween(planStart, tl.learnEnd) + 1);
@@ -317,7 +370,8 @@ export function buildPlan(o) {
 
   // Review tasks (due at start of day ≈ due now + answered today).
   const reviewsSod = (o.reviews_due || 0) + (o.reviews_done_today || 0);
-  const reviewLessonsDone = done.filter((l) => l.kind !== "practice" && l.kind !== "placement" && !l.skill_id).length;
+  // A review lesson, or a review circle on the path (practice in mode "review").
+  const reviewLessonsDone = done.filter((l) => (l.kind !== "practice" && l.kind !== "placement" && !l.skill_id) || (l.kind === "practice" && l.mode === "review")).length;
   const addReview = (cap) => {
     const n = Math.min(reviewsSod, cap, Math.floor(Math.max(0, budget) / MINUTES.review));
     for (let i = 0, left = n; left > 0; i++, left -= REVIEW_CHUNK) {
@@ -380,11 +434,11 @@ export function buildPlan(o) {
     let L = newLessonsOn({ day: today, unstarted: unstartedSod.length, tl, minutes, lastNewDay });
     if (!startedSod.size) L =Math.max(L, Math.min(lessonCap(minutes, tl.daysLeft), Math.floor(minutes / MINUTES.lesson)));
     for (const id of newDoneToday) add(lessonTask(byId.get(id), true));
-    for (const s of candidates) {
-      if (tasks.filter((t) => t.kind === "lesson").length >= L) break;
-      if (newDoneToday.includes(s.id)) continue;
-      add(lessonTask(s, false));
-    }
+    // The next skills on the path, as of the start of today.
+    const left = Math.max(0, L - newDoneToday.length);
+    const notYet = new Set([...startedSod, ...newDoneToday]);
+    const att = (id) => (newDoneToday.includes(id) ? Math.max(sodAttempts(id), LESSON_QUESTIONS) : sodAttempts(id));
+    for (const s of pickNewSkills(order, notYet, att, left)) add(lessonTask(s, false));
     addReview(tl.daysLeft > LONG_RUNWAY_DAYS ? 16 : Math.max(5, Math.floor((0.3 * minutes) / MINUTES.review)));
     // Practice fills the rest: skills already started plus today's new ones.
     const todayIds = new Set(tasks.filter((t) => t.kind === "lesson").map((t) => t.skill_id));
@@ -495,7 +549,7 @@ export function buildPlan(o) {
   const onTrack = behind === 0 && !missedTwo;
   // The weeks ahead, and from them the one date every skill is started by, so
   // Today, the plan header and the weekly list never disagree.
-  const weeks = phase === "after" ? [] : projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSod, todayNew: tasks.filter((t) => t.kind === "lesson").map((t) => t.skill_id), shortRunway });
+  const weeks = phase === "after" ? [] : projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSod, todayNew: tasks.filter((t) => t.kind === "lesson").map((t) => t.skill_id), order });
   const learnWeeks = weeks.filter((w) => w.phase === "learn");
   const learnBy = learnWeeks.length ? learnWeeks[learnWeeks.length - 1].end : tl.learnEnd;
   const assumedNote = exam.assumed ? ` (We're assuming a test around ${shortDate(exam.date)} until you pick a date.)` : "";
@@ -547,7 +601,7 @@ export function buildPlan(o) {
  * simulation grouped into blocks of up to 7 days that never cross a phase
  * boundary.
  */
-export function projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSod, todayNew, shortRunway }) {
+export function projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSod, todayNew, order }) {
   const exam = addDays(tl.start, tl.total);
   const started = new Set(startedSod);
   const attempts = new Map(skills.map((s) => [s.id, s.sod_attempts]));
@@ -565,7 +619,7 @@ export function projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSo
       if (i === 0) newIds = todayNew;
       else {
         const L = newLessonsOn({ day, unstarted, tl, minutes, lastNewDay: last });
-        newIds = orderNewSkills(skills, started, attemptsOf, { byWeight: shortRunway }).slice(0, L).map((s) => s.id);
+        newIds = pickNewSkills(order, started, attemptsOf, L).map((s) => s.id);
       }
     }
     for (const id of newIds) {

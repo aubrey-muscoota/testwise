@@ -15,6 +15,7 @@ import { report } from "./routes/reports.js";
 import { createLearner, consentState, setConsent, deleteLearner, exportLearner } from "./routes/learners.js";
 import { profileRoute, setProfile, planRoute } from "./routes/plan.js";
 import { startPractice, practiceSummary } from "./routes/practice.js";
+import { pathRoute, checkedNode } from "./routes/path.js";
 import { learnerExam, publicExam } from "./lib/exam.js";
 
 async function readBody(request) {
@@ -60,9 +61,11 @@ api.get("/tree", route(null, (env, request, learnerId) => tree(env, request, lea
 api.post("/consent", route(S.Consent, (env, request, learnerId, b) => setConsent(env, learnerId, b)));
 api.post("/learner/delete", route(null, (env, request, learnerId) => deleteLearner(env, learnerId)));
 api.get("/learner/export", route(null, (env, request, learnerId) => exportLearner(env, learnerId)));
-api.post("/lessons", route(S.LessonStart, (env, request, learnerId, b) => b.placement
+// A start may name its path circle only if the path offers that exact start
+// (routes/path.js checkedNode); otherwise the node is dropped.
+api.post("/lessons", route(S.LessonStart, async (env, request, learnerId, b) => b.placement
   ? startPlacement(env, request, learnerId, b.section || null)
-  : startLesson(env, request, learnerId, b.skill_id || null)));
+  : startLesson(env, request, learnerId, b.skill_id || null, await checkedNode(env, request, learnerId, b.node, "/api/lessons", b))));
 api.post("/answers", route(S.Answer, answer));
 api.post("/lessons/finish", route(S.Finish, finishLesson));
 // Socrates sends the question and the student's messages to Anthropic, so it
@@ -76,11 +79,15 @@ api.post("/reports", route(S.Report, (env, request, learnerId, b) => report(env,
 api.get("/profile", route(null, profileRoute));
 api.post("/profile", route(S.Profile, setProfile));
 api.get("/plan", route(null, planRoute));
+// The Learn tab's one path (docs/API.md, "Path").
+api.get("/path", route(null, pathRoute));
 api.get("/practice/summary", route(null, practiceSummary));
-api.post("/practice", (c) => {
+api.post("/practice", async (c) => {
   let execCtx = null;
   try { execCtx = c.executionCtx; } catch { /* not available outside a Worker */ }
-  return startPractice(c.env, c.req.raw, c.get("learner"), S.Practice.parse(c.get("body")), execCtx);
+  const b = S.Practice.parse(c.get("body"));
+  b.node = await checkedNode(c.env, c.req.raw, c.get("learner"), b.node, "/api/practice", b);
+  return startPractice(c.env, c.req.raw, c.get("learner"), b, execCtx);
 });
 
 api.notFound(() => fail(404, "not found"));

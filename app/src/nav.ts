@@ -1,6 +1,6 @@
 // What the lesson screen runs, and the tabs of the main shell.
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { PracticeMode, StartRequest } from "./api";
+import type { PathNode, PracticeMode, StartRequest } from "./api";
 
 export type LessonSource =
   | { kind: "skill"; skillId: string; name: string }
@@ -9,7 +9,7 @@ export type LessonSource =
   // A plan task or a practice mode: the request that starts it.
   | { kind: "task"; start: StartRequest; title: string; why?: string; mode?: PracticeMode };
 
-export type Tab = "today" | "practice" | "path" | "me";
+export type Tab = "learn" | "practice" | "progress" | "me";
 
 export const MODE_TITLE: Record<PracticeMode, string> = {
   weak: "Weak spots",
@@ -18,7 +18,18 @@ export const MODE_TITLE: Record<PracticeMode, string> = {
   timed: "Timed set",
   mistakes: "My mistakes",
   fresh: "New from Socrates",
+  review: "Review",
 };
+
+// What a circle on the Learn path starts: the request the path gave, under the
+// circle's name (a skill lesson keeps the skill's name, so the lesson header
+// and the finish say it).
+export function nodeSource(n: PathNode): LessonSource | null {
+  if (!n.start) return null;
+  const body = n.start.body as { mode?: PracticeMode };
+  const title = n.kind === "end" ? n.task_title ?? n.title : n.title;
+  return { kind: "task", start: n.start, title, why: n.why, mode: body.mode };
+}
 
 export function practiceSource(
   body: { mode: PracticeMode; n?: number; skill_id?: string; section?: string },

@@ -122,12 +122,7 @@ export function noOrphan(t: string) {
   return i > 0 && t.length - i < 14 ? `${t.slice(0, i)}\u00a0${t.slice(i + 1)}` : t;
 }
 
-// A plan task title without its "Learn: " prefix.
-export function taskName(title: string) {
-  return title.replace(/^(Learn|Review|Practice):\s*/i, "");
-}
-
-// One status line for a skill, the same on Path and in the skill picker:
+// One status line for a skill, in the Practice skill picker:
 // misses to fix first, then how far along it is. `pct` adds the mastery
 // percentage where no ring shows it.
 export function skillStatus(
@@ -143,4 +138,23 @@ export function skillStatus(
   else if (sk.tested_out) parts.push("Tested out");
   const line = parts.join(", ");
   return line ? line.charAt(0).toUpperCase() + line.slice(1) : "";
+}
+
+// The big countdown line (Progress): "41 days to your SAT". The test's short
+// name comes from the exam pack.
+export function countdown(
+  plan: { days_left: number; phase: string; exam_date: string; exam_date_assumed: boolean },
+  shortName: string | undefined,
+  narrow: boolean,
+): { title: string; sub: string | null } {
+  const name = shortName ?? "test";
+  const d = plan.days_left;
+  const br = narrow ? "\n" : " ";
+  if (plan.phase === "after" || d < 0) return { title: `How did the${br}${name} go?`, sub: "Taking it again? Set a new date in Me." };
+  if (d === 0) return { title: "Test day", sub: longDay(plan.exam_date) };
+  if (d === 1) return { title: `Your ${name} is${br}tomorrow`, sub: longDay(plan.exam_date) };
+  if (plan.exam_date_assumed) {
+    return { title: d >= 14 ? `About ${Math.round(d / 7)} weeks${br}to go` : `About ${d} days${br}to go`, sub: null };
+  }
+  return { title: `${d} days${br}to your ${name}`, sub: longDay(plan.exam_date) };
 }

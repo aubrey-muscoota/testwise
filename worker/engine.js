@@ -21,6 +21,7 @@ export const MAX_REVIEW_INTERVAL_DAYS = 30;
 
 export const XP_CORRECT = 10;
 export const XP_LESSON = 15;
+export const XP_UNIT_CHECK = 20; // once per unit, the first time its check on the path is finished
 
 export function pCorrect(learnerRating, itemRating) {
   return 1 / (1 + Math.exp(-(learnerRating - itemRating)));

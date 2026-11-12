@@ -183,9 +183,21 @@ export async function startPractice(env, request, learnerId, b, execCtx) {
   if (!plan.length) return fail(404, mode === "mistakes" ? "no mistakes to fix" : "no skills to practice yet");
   const items = await poolItems(env, plan.map((p) => p.id));
   const ratings = Object.fromEntries(skills.map((s) => [s.id, s.rating]));
+  // A review circle serves the due spaced-review items in its skills first,
+  // oldest due first, and fills up with a mix of those skills.
+  let dueIds = [];
+  if (mode === "review") {
+    const ids = plan.map((p) => p.id);
+    dueIds = (await env.DB.prepare(
+      `SELECT r.item_id FROM reviews r JOIN items i ON i.id = r.item_id
+       WHERE r.learner_id = ? AND r.due_at <= ? AND i.status = 'live' AND r.skill_id IN (${inList(ids)}) ORDER BY r.due_at LIMIT ?`,
+    ).bind(learnerId, now, ...ids, n).all()).results.map((r) => r.item_id);
+  }
+  const head = [...freshIds, ...dueIds];
   const picked = [
     ...freshIds.map((id) => ({ id, skill_id: skillId, seen: false })),
-    ...pickPractice({ mode: mode === "fresh" ? "skill" : mode, plan, items, history: hist, ratings, n: n - freshIds.length, rand, exclude: new Set(freshIds) }),
+    ...dueIds.map((id) => ({ id, review: true })),
+    ...pickPractice({ mode: mode === "fresh" ? "skill" : mode === "review" ? "mixed" : mode, plan, items, history: hist, ratings, n: n - head.length, rand, exclude: new Set(head) }),
   ];
   if (!picked.length) return fail(404, mode === "mistakes" ? "no mistakes to fix" : "no questions yet");
   if (mode === "fresh" && !extra.fresh && picked.every((p) => p.seen)) extra.note = extra.note.replace("these are from the bank", "these are bank questions you've seen least recently");
@@ -195,8 +207,8 @@ export async function startPractice(env, request, learnerId, b, execCtx) {
   const lessonId = crypto.randomUUID();
   const sectionOf = new Map(skills.map((s) => [s.id, s.section_id]));
   const stmts = [env.DB.prepare(
-    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, kind, section_id, mode) VALUES (?, ?, ?, ?, ?, 'practice', ?, ?)",
-  ).bind(lessonId, learnerId, plan.length === 1 ? plan[0].id : null, now, day, b.section || null, mode)];
+    "INSERT INTO lessons (id, learner_id, skill_id, started_at, local_day, kind, section_id, mode, node) VALUES (?, ?, ?, ?, ?, 'practice', ?, ?, ?)",
+  ).bind(lessonId, learnerId, plan.length === 1 ? plan[0].id : null, now, day, b.section || null, mode, b.node ?? null)];
   const genServed = picked.filter((p) => byId.get(p.id)?.source === "generated").map((p) => p.id);
   if (genServed.length) stmts.push(env.DB.prepare(`UPDATE generated_items SET served_count = served_count + 1 WHERE id IN (${inList(genServed)})`).bind(...genServed));
   await env.DB.batch(stmts);
@@ -219,7 +231,7 @@ export async function startPractice(env, request, learnerId, b, execCtx) {
     practice: true,
     mode,
     ...extra,
-    items: picked.map((p) => ({ ...parseItem(byId.get(p.id)), review: false, source: byId.get(p.id).source })),
+    items: picked.map((p) => ({ ...parseItem(byId.get(p.id)), review: !!p.review, source: byId.get(p.id).source })),
   });
 }
 
