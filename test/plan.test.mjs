@@ -2,14 +2,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  buildPlan, addDays, daysBetween, effectiveExamDate, testReadyDays, prepareSkills, orderNewSkills, isDay,
+  buildPlan, addDays, daysBetween, effectiveExamDate, testReadyDays, prepareSkills, unitOrder, pathOrder, isDay,
 } from "../worker/plan.js";
 
 // The real SAT skill map and domain weights from the exam pack.
 const map = JSON.parse(readFileSync(new URL("../exams/sat/skills.json", import.meta.url)));
 const SKILLS = [];
 for (const sec of map.sections) for (const d of sec.domains) for (const s of d.skills) {
-  SKILLS.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_weight: d.weight, position: SKILLS.length });
+  SKILLS.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_name: d.name, domain_weight: d.weight, position: SKILLS.length });
 }
 const PACE = { "sat-math": { practice_minutes: 1, timed_seconds: 95 }, "sat-rw": { practice_minutes: 1.2, timed_seconds: 71 } };
 const TODAY = "2026-11-08";
@@ -113,16 +113,26 @@ test("weak spots are chosen by weight × (1 − mastery)", () => {
   assert.ok(weak.skill_ids.includes("geo-circles"));
 });
 
-test("learn phase: new skills are interleaved across sections and respect prerequisites", () => {
+test("learn phase: sections alternate unit by unit, and today's lessons follow the path", () => {
   const skills = prepareSkills(fresh());
-  const order = orderNewSkills(skills, new Set(), (id) => skills.find((s) => s.id === id).sod_attempts);
-  assert.ok(order.every((s) => s.prereqs.length === 0), "only open skills are offered");
-  const secs = order.slice(0, 4).map((s) => s.section_id);
-  assert.ok(secs.includes("sat-math") && secs.includes("sat-rw"), secs.join());
+  const units = unitOrder(skills);
+  // Sections take turns by share of skills placed; Math comes first in the exam.
+  assert.deepEqual(units.map((u) => u.id), ["alg", "rw-cs", "adv", "rw-ii", "psda", "rw-sec", "geo", "rw-eoi"]);
   const p = plan({ exam_date: examIn(90), plan_started_at: TODAY, skills: fresh() });
-  const lessons = p.today.filter((t) => t.kind === "lesson");
+  const lessons = p.today.filter((t) => t.kind === "lesson").map((t) => t.skill_id);
   assert.ok(lessons.length >= 1);
-  assert.ok(lessons.every((t) => SKILLS.find((s) => s.id === t.skill_id).prereqs.length === 0));
+  // The first lessons of the path, each one's prerequisites started or earlier in today's list.
+  assert.deepEqual(lessons, pathOrder(skills).slice(0, lessons.length).map((s) => s.id));
+  for (const [i, id] of lessons.entries()) {
+    const pre = SKILLS.find((s) => s.id === id).prereqs;
+    assert.ok(pre.every((x) => lessons.slice(0, i).includes(x)), `${id} needs ${pre}`);
+  }
+});
+
+test("the weeks start skills in path order", () => {
+  const p = plan({ exam_date: examIn(90), plan_started_at: TODAY, skills: fresh() });
+  const started = p.weeks.filter((w) => w.phase === "learn").flatMap((w) => w.focus_skill_ids);
+  assert.deepEqual(started, pathOrder(prepareSkills(fresh())).map((s) => s.id));
 });
 
 test("all skills are covered before strengthen, by about 60% of the runway", () => {
@@ -162,12 +172,18 @@ test("short runway (5 days) compresses: learn the heaviest skills, then test-rea
   const phases = p.weeks.map((w) => w.phase);
   assert.deepEqual([...new Set(phases)], ["learn", "test_ready", "rest"]);
   const lessons = p.today.filter((t) => t.kind === "lesson");
-  // Each lesson is the heaviest open skill in its section.
+  // The first lesson is the heaviest open skill of the first section, and the
+  // units go by points per lesson within each section.
   const prepared = prepareSkills(fresh());
-  for (const t of lessons) {
-    const s = prepared.find((x) => x.id === t.skill_id);
-    const open = prepared.filter((x) => x.section_id === s.section_id && !x.prereqs.length);
-    assert.equal(s.weight, Math.max(...open.map((x) => x.weight)), t.skill_id);
+  const first = prepared.find((x) => x.id === lessons[0].skill_id);
+  const open = prepared.filter((x) => x.section_id === "sat-math" && !x.prereqs.length);
+  assert.equal(first.section_id, "sat-math");
+  assert.equal(first.weight, Math.max(...open.map((x) => x.weight)));
+  const units = unitOrder(prepared, { byWeight: true });
+  for (const sec of ["sat-math", "sat-rw"]) {
+    const per = units.filter((u) => u.section_id === sec && !u.skills.some((s) => s.prereqs.some((x) => !u.skills.some((y) => y.id === x))))
+      .map((u) => u.skills[0].weight);
+    assert.deepEqual(per, [...per].sort((x, y) => y - x), sec);
   }
 });
 
