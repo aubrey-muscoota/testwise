@@ -1,14 +1,15 @@
-// The full plan: phases from today to the test, week by week, with the skills
-// each week focuses on and whether the learner is on track. Each phase is a
-// heavy heading over a cream well of weeks; this week sits in the blue "current"
+// Progress: the countdown to the test, where the learner stands, and the plan
+// from today to the test, week by week, with the skills each week focuses on
+// (for now the old plan screen under the countdown; step 5 rebuilds this tab).
+// Each phase is a heavy heading over a cream well of weeks; this week sits in the blue "current"
 // wash, and skills already finished (mastered or tested out) are ticked in gold.
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { api, getExam, Plan, PlanPhase } from "../api";
-import { longDay, parseDay, plural, shortDay, shortMonth } from "../copy";
+import { countdown, longDay, parseDay, plural, shortDay, shortMonth } from "../copy";
 import { Icon } from "../components/icons";
 import { useWide } from "../components/Shell";
-import { Bone, decorative, ErrorState, IconButton, Rise, Skeleton, TextButton } from "../components/ui";
+import { Bone, decorative, ErrorState, Rise, Skeleton, TextButton } from "../components/ui";
 import { useLoad } from "../nav";
 import { BORDER, color, font, GUTTER, inner, radius, space, tabular, type, COLUMN } from "../theme";
 
@@ -22,7 +23,7 @@ const PHASE_FALLBACK: Record<PlanPhase, string> = {
   after: "After the test",
 };
 
-export function PlanScreen({ onBack }: { onBack: () => void }) {
+export function Progress({ onEditDate }: { onEditDate: () => void }) {
   const { data, error, reload } = useLoad(async () => {
     const [plan, tree] = await Promise.all([api.plan(), api.tree().catch(() => null)]);
     const done = new Set((tree?.domains ?? []).flatMap((d) => d.skills).filter((sk) => sk.mastered || sk.tested_out).map((sk) => sk.id));
@@ -31,15 +32,10 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
   const wide = useWide();
   const exam = getExam();
   const [all, setAll] = React.useState(false);
+  const narrow = useWindowDimensions().width < 520;
 
-  const header = (
-    <View style={s.head}>
-      <IconButton name="back" label="Back to Today" onPress={onBack} style={{ marginLeft: -8 }} />
-    </View>
-  );
-
-  if (error && !data) return <View style={{ flex: 1 }}>{header}<ErrorState message="I couldn't load your plan. Try again?" onRetry={reload} /></View>;
-  if (!data) return <View style={{ flex: 1 }}>{header}<PlanSkeleton /></View>;
+  if (error && !data) return <ErrorState message="I couldn't load your plan. Try again?" onRetry={reload} />;
+  if (!data) return <PlanSkeleton />;
 
   const { plan, done } = data;
   const phaseName = (p: PlanPhase) => exam?.plan.phases.find((x) => x.id === p)?.name ?? PHASE_FALLBACK[p];
@@ -52,8 +48,7 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
     else groups.push({ phase: w.phase, weeks: [w] });
   }
 
-  const date = shortDay(plan.exam_date);
-  const title = plan.phase === "after" ? "Your plan is done" : `${plan.exam_date_assumed ? "About " : ""}${plural(plan.days_left, "day")} to ${date}`;
+  const head = countdown(plan, exam?.short_name, narrow);
   // Dates never break across lines ("Mar" / "2").
   const day = (iso: string) => shortDay(iso).replace(" ", "\u00a0");
   // One sentence owns the count, the learn-by date and the timed-sets date.
@@ -78,11 +73,18 @@ export function PlanScreen({ onBack }: { onBack: () => void }) {
 
   return (
     <View style={{ flex: 1 }}>
-      {header}
       <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(2) }]}>
         <Rise>
-          <Text style={type.title} accessibilityRole="header">{title}</Text>
-          <Text style={[type.body, { marginTop: space(1) }]}>{track}{assumed ? ` ${assumed}` : ""}</Text>
+          <Text style={type.hero} accessibilityRole="header">{head.title}</Text>
+          {head.sub ? (
+            <Text style={[type.body, { color: color.ink2, marginTop: space(0.5) }]}>{head.sub}</Text>
+          ) : (
+            <View style={s.subRow}>
+              <Text style={[type.body, { color: color.ink2 }]}>No test date yet. </Text>
+              <TextButton title="Set it" onPress={onEditDate} style={s.inlineLink} accessibilityLabel="Set your test date" />
+            </View>
+          )}
+          <Text style={[type.body, { marginTop: space(2) }]}>{track}{assumed ? ` ${assumed}` : ""}</Text>
         </Rise>
 
         {groups.map((g, gi) => (
@@ -190,8 +192,9 @@ function PlanSkeleton() {
 }
 
 const s = StyleSheet.create({
-  head: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
-  scroll: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  subRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: space(0.5) },
+  inlineLink: { minHeight: 32, paddingHorizontal: 0 },
   // A sunken well holds a phase's weeks; rows inside follow its corner (16 − 6).
   well: { backgroundColor: color.well, borderRadius: radius.well, padding: space(0.75), marginTop: space(1.5) },
   week: { flexDirection: "row", paddingVertical: space(1.5), paddingHorizontal: space(1.5), borderRadius: inner(radius.well, space(0.75)) },

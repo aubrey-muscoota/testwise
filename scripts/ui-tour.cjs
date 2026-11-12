@@ -1,4 +1,7 @@
-// Playwright tour of the app screens. Usage: BASE=http://localhost:8787 node scripts/ui-tour.cjs <outdir> <w> <h> <dpr> [video]
+// Playwright tour of the app screens: setup, placement, the Learn path (a
+// node's card, a locked one, a lesson from the current circle and the next one
+// opening, a review circle, a unit check), Progress, Practice and Me.
+// Usage: BASE=http://localhost:8787 node scripts/ui-tour.cjs <outdir> <w> <h> <dpr> [video]
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
@@ -125,12 +128,52 @@ fs.mkdirSync(out, { recursive: true });
     await page.getByTestId("complete-continue").click();
     await streakIfShown("placement-streak");
   });
-  await step("today", async () => {
-    await page.getByTestId("start-next").waitFor({ timeout: 15000 });
-    await shot("today", 4000);
+  const tab = (name) => page.getByRole("tab", { name, exact: true }).click();
+  const current = () => page.locator('[aria-label$=", start here"]').first();
+  // Walk the path through the API: finish the current circle `k` times (a miss every fifth answer).
+  const walk = (k) => page.evaluate(async (k) => {
+    const id = localStorage.getItem("testwise.learner");
+    const h = { "content-type": "application/json", "x-learner": id, "x-tz-offset": String(new Date().getTimezoneOffset()) };
+    const done = [];
+    for (let round = 0; round < k; round++) {
+      const p = await (await fetch("/api/path", { headers: h })).json();
+      const n = [...p.units.flatMap((u) => u.nodes), p.end].find((x) => x.id === p.current);
+      if (!n?.start) break;
+      const l = await (await fetch(n.start.path, { method: "POST", headers: h, body: JSON.stringify(n.start.body) })).json();
+      for (const [i, it] of l.items.entries()) {
+        await fetch("/api/answers", { method: "POST", headers: h, body: JSON.stringify({ lesson_id: l.lesson_id, item_id: it.id, response: i % 5 === 4 && it.choices ? it.choices.find((c) => c !== it.answer) : it.answer, time_ms: 20000 }) });
+      }
+      await fetch("/api/lessons/finish", { method: "POST", headers: h, body: JSON.stringify({ lesson_id: l.lesson_id }) });
+      done.push(n.id);
+    }
+    return done;
+  }, k);
+  const currentId = () => page.evaluate(async () => {
+    const id = localStorage.getItem("testwise.learner");
+    const p = await (await fetch("/api/path", { headers: { "x-learner": id, "x-tz-offset": String(new Date().getTimezoneOffset()) } })).json();
+    return p.current;
   });
+
+  await step("learn", async () => {
+    await current().waitFor({ timeout: 15000 });
+    await shot("learn", 3000);
+    await current().click();
+    await page.getByTestId("node-card").waitFor();
+    await shot("learn-card", 900);
+    await page.keyboard.press("Escape");
+    const locked = page.locator('[aria-label$=", locked"]').first();
+    await locked.scrollIntoViewIfNeeded();
+    await locked.click();
+    await page.getByTestId("node-card").waitFor();
+    await shot("learn-locked", 900);
+    await page.keyboard.press("Escape");
+  });
+  let before = null;
   await step("lesson", async () => {
-    await page.getByTestId("start-next").click();
+    before = await currentId();
+    await current().scrollIntoViewIfNeeded();
+    await current().click();
+    await page.getByTestId("node-start").click();
     await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
     await shot("lesson-question", 1800);
     await answer(true, "lesson-picked");
@@ -157,29 +200,62 @@ fs.mkdirSync(out, { recursive: true });
     for (let i = 0; i < 20; i++) {
       if (await page.getByTestId("continue").count()) await page.getByTestId("continue").click();
       await page.waitForTimeout(500);
-      if (await page.getByTestId("complete-next").count() || await page.getByTestId("complete-continue").count()) break;
+      if (await page.getByTestId("complete-continue").count()) break;
       if (!(await page.getByRole("button", { name: "Check" }).count())) { await page.waitForTimeout(800); continue; }
       await answer(true);
       await page.waitForTimeout(300);
     }
   });
   await step("complete", async () => {
-    await page.getByText(/^Next: |^Today's list is done/).first().waitFor({ timeout: 15000 });
+    await page.getByTestId("complete-continue").waitFor({ timeout: 15000 });
     await shot("complete", 2200);
-    await btn("Back to today").click();
+    await page.getByTestId("complete-continue").click();
     await streakIfShown("streak");
-    await page.getByTestId("start-next").waitFor({ timeout: 15000 });
-    await shot("today-after", 3500);
+    // Back on Learn: the circle just finished turns gold and the next one opens.
+    await current().waitFor({ timeout: 15000 });
+    await shot("learn-unlock", 300);
+    await shot("learn-after", 2200);
+    const after = await currentId();
+    if (after === before) throw new Error(`the next circle didn't open (still ${after})`);
+    console.log("current", before, "->", after);
   });
-  await step("plan", async () => {
-    await btn("See the full plan").click();
-    await page.getByRole("button", { name: "Back to Today" }).waitFor();
-    await shot("plan", 1500);
+  await step("rw-placement", async () => {
+    await tab("Learn");
+    await current().waitFor({ timeout: 15000 });
+    const offer = btn("Find my level");
+    if (!(await offer.count())) { console.log("no second-section offer"); return; }
+    await offer.scrollIntoViewIfNeeded();
+    await shot("learn-rw-offer", 1200);
+    await offer.click();
+    await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
+    await shot("placement-rw-question", 2500);
+    await page.getByRole("button", { name: "Quit placement quiz" }).click();
+    await current().waitFor({ timeout: 15000 });
+  });
+  await step("review", async () => {
+    // Walk on until a review circle is current, then look at it on Learn.
+    for (let i = 0; i < 8 && !(await currentId()).startsWith("review:"); i++) await walk(1);
+    await tab("Practice");
+    await page.waitForTimeout(400);
+    await tab("Learn");
+    await current().waitFor({ timeout: 15000 });
+    await shot("learn-review", 2500);
+    await current().click();
+    await page.getByTestId("node-card").waitFor();
+    await shot("learn-review-card", 900);
+    await page.getByTestId("node-start").click();
+    await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
+    await shot("review-question", 1800);
+    await page.getByRole("button", { name: "Quit lesson" }).click();
+    await current().waitFor({ timeout: 15000 });
+  });
+  await step("progress", async () => {
+    await tab("Progress");
+    await page.getByText("Show every week").or(page.getByText(/^This week/)).first().waitFor({ timeout: 15000 });
+    await shot("progress", 1500);
     await page.mouse.wheel(0, 900);
-    await shot("plan-scrolled", 800);
-    await page.getByRole("button", { name: "Back to Today" }).click();
+    await shot("progress-scrolled", 800);
   });
-  const tab = (name) => page.getByRole("tab", { name, exact: true }).click();
   await step("practice", async () => {
     await tab("Practice");
     await page.getByTestId("mode-timed").waitFor({ timeout: 15000 });
@@ -208,18 +284,6 @@ fs.mkdirSync(out, { recursive: true });
     await shot("practice-skill", 2000);
     await page.getByRole("button", { name: "Quit lesson" }).click();
   });
-  await step("path", async () => {
-    await tab("Path");
-    await page.getByRole("tab", { name: "Math" }).waitFor({ timeout: 15000 });
-    await shot("path-math", 2000);
-    await page.getByRole("tab", { name: "Reading and Writing" }).click();
-    await shot("path-rw", 1500);
-    await page.getByRole("tab", { name: "Math" }).click();
-    await page.waitForTimeout(500);
-    await page.getByRole("button", { name: /Linear functions/ }).first().click();
-    await shot("path-sheet", 900);
-    await page.keyboard.press("Escape");
-  });
   await step("me", async () => {
     await tab("Me");
     await page.getByRole("button", { name: /^Test date/ }).waitFor({ timeout: 15000 });
@@ -228,57 +292,20 @@ fs.mkdirSync(out, { recursive: true });
     await shot("me-edit-score", 2500);
     await page.getByRole("button", { name: "Back" }).first().click();
   });
-  await step("rw-placement", async () => {
-    await tab("Path");
-    await page.getByRole("tab", { name: "Reading and Writing" }).click();
-    await page.waitForTimeout(600);
-    if (!(await btn("Find my level").count())) await page.getByRole("tab", { name: "Math" }).click();
-    await page.waitForTimeout(600);
-    if (!(await btn("Find my level").count())) return;
-    await btn("Find my level").click();
-    await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
-    await shot("placement-rw-question", 2500);
-    await page.getByRole("button", { name: "Quit placement quiz" }).click();
-    await page.getByRole("tab", { name: "Math" }).waitFor({ timeout: 15000 });
-  });
-  await step("all-done", async () => {
-    // Finish every task on today's list through the API, then look at Today and Path.
-    await page.evaluate(async () => {
-      const id = localStorage.getItem("testwise.learner");
-      const h = { "content-type": "application/json", "x-learner": id, "x-tz-offset": String(new Date().getTimezoneOffset()) };
-      for (let round = 0; round < 6; round++) {
-        const plan = await (await fetch("/api/plan", { headers: h })).json();
-        const t = plan.today.find((x) => !x.done && x.start);
-        if (!t) break;
-        const l = await (await fetch(t.start.path, { method: "POST", headers: h, body: JSON.stringify(t.start.body) })).json();
-        for (const [i, it] of l.items.entries()) {
-          await fetch("/api/answers", { method: "POST", headers: h, body: JSON.stringify({ lesson_id: l.lesson_id, item_id: it.id, response: i % 5 === 4 && it.choices ? it.choices.find((c) => c !== it.answer) : it.answer, time_ms: 20000 }) });
-        }
-        await fetch("/api/lessons/finish", { method: "POST", headers: h, body: JSON.stringify({ lesson_id: l.lesson_id }) });
-      }
-    });
+  await step("learn-later", async () => {
+    // Further along: a unit check, then the second section's unit.
+    for (let i = 0; i < 12 && !(await currentId()).startsWith("check:"); i++) await walk(1);
     await tab("Practice");
-    await page.waitForTimeout(500);
-    await tab("Today");
-    await page.getByText(/(Both|All \d+) done\.|Done for today\.|That.s today done/).first().waitFor({ timeout: 15000 });
-    await shot("today-all-done", 3500);
-    await tab("Path");
-    await page.getByRole("tab", { name: "Math" }).waitFor({ timeout: 15000 });
-    await shot("path-progress", 2000);
-    await page.getByRole("tab", { name: "Reading and Writing" }).click();
-    await page.mouse.wheel(0, 1300);
-    await shot("path-rw-progress", 1500);
+    await page.waitForTimeout(400);
+    await tab("Learn");
+    await current().waitFor({ timeout: 15000 });
+    await shot("learn-check", 2500);
+    await walk(2);
     await tab("Practice");
-    await page.getByTestId("mode-timed").waitFor({ timeout: 15000 });
-    await shot("practice-after", 1500);
-    const best = page.getByTestId("practice-best");
-    const fix = /^Fix /.test((await best.getAttribute("aria-label").catch(() => "")) || "") ? best : page.getByTestId("mode-mistakes");
-    if ((await fix.count()) && (await fix.getAttribute("aria-disabled")) !== "true") {
-      await fix.click();
-      await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
-      await shot("practice-mistakes", 2500);
-      await page.getByRole("button", { name: "Quit lesson" }).click();
-    }
+    await page.waitForTimeout(400);
+    await tab("Learn");
+    await current().waitFor({ timeout: 15000 });
+    await shot("learn-next-unit", 2500);
   });
   await step("timeup", async () => {
     await tab("Practice");

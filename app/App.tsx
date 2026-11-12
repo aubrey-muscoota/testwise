@@ -6,10 +6,9 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api, createLearner, forgetLearner, getExam, loadExam, loadLearner, placementKey, Profile } from "./src/api";
 import { Welcome } from "./src/screens/Welcome";
-import { Today } from "./src/screens/Today";
-import { PlanScreen } from "./src/screens/PlanScreen";
+import { Learn } from "./src/screens/Learn";
+import { Progress } from "./src/screens/Progress";
 import { Practice } from "./src/screens/Practice";
-import { PathScreen } from "./src/screens/Path";
 import { Me } from "./src/screens/Me";
 import { Field, Onboarding } from "./src/screens/Onboarding";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
@@ -18,6 +17,7 @@ import { PlacementIntro } from "./src/screens/PlacementIntro";
 import { AgeGate, TooYoung } from "./src/screens/AgeGate";
 import { SocratesLab } from "./src/screens/SocratesLab";
 import { RendererLab } from "./src/screens/RendererLab";
+import { PathLab } from "./src/screens/PathLab";
 import { Shell } from "./src/components/Shell";
 import { useReducedMotion } from "./src/components/ui";
 import { Socrates } from "./src/socrates/Socrates";
@@ -33,17 +33,19 @@ type Screen =
   | { name: "onboarding"; then: "placement" | "home" }
   | { name: "placement" }
   | { name: "main"; tab: Tab; key: number }
-  | { name: "plan" }
-  | { name: "edit"; field: Field; profile: Profile }
+  | { name: "edit"; field: Field; profile: Profile; back: Tab }
   | { name: "lesson"; source: LessonSource; back: Tab | "placement" }
-  | { name: "complete"; result: LessonResult };
+  // Continue goes back to the tab the lesson started from (Learn after placement).
+  | { name: "complete"; result: LessonResult; back: Tab };
 
-// Review pages, web only: ?lab=socrates (the rig) and ?lab=renderers (every item type).
+// Review pages, web only: ?lab=socrates (the rig), ?lab=renderers (every item
+// type) and ?lab=path (the Learn path from fixtures).
 const LAB = Platform.OS === "web" && typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("lab") : null;
 
 export default function App() {
   if (LAB === "socrates") return <SocratesLab />;
   if (LAB === "renderers") return <RendererLab />;
+  if (LAB === "path") return <PathLab />;
   return <TestwiseApp />;
 }
 
@@ -59,10 +61,10 @@ function TestwiseApp() {
     preloadSounds();
   }, []);
 
-  const home = useCallback((tab: Tab = "today") => setScreen({ name: "main", tab, key: Math.random() }), []);
+  const home = useCallback((tab: Tab = "learn") => setScreen({ name: "main", tab, key: Math.random() }), []);
 
   // Where a returning learner lands: the test-date questions once, then the
-  // placement offer if they never chose, else Today.
+  // placement offer if they never chose, else Learn.
   const resume = useCallback(async (id: string) => {
     let needsPlacement = false;
     if (!(await placementSettled(id))) {
@@ -120,7 +122,7 @@ function TestwiseApp() {
   let body: React.ReactNode;
   const booting = !fontsLoaded || screen.name === "boot";
   // Changes whenever the visible screen changes, so the transition replays.
-  const inShell = screen.name === "main" || screen.name === "plan" || screen.name === "edit";
+  const inShell = screen.name === "main" || screen.name === "edit";
   const screenId = booting ? "boot" : inShell ? "shell" : screen.name;
   if (booting) {
     body = (
@@ -143,30 +145,31 @@ function TestwiseApp() {
     const section = exam?.default_section ?? "";
     const name = exam?.sections.find((x) => x.id === section)?.name ?? "";
     body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "placement" })} onSkip={skipPlacement} />;
-  } else if (screen.name === "main" || screen.name === "plan" || screen.name === "edit") {
-    const tab: Tab = screen.name === "main" ? screen.tab : screen.name === "plan" ? "today" : "me";
+  } else if (screen.name === "main" || screen.name === "edit") {
+    const tab: Tab = screen.name === "main" ? screen.tab : screen.back;
     let inner: React.ReactNode;
-    if (screen.name === "plan") inner = <PlanScreen onBack={() => home("today")} />;
-    else if (screen.name === "edit") {
-      inner = <Onboarding only={screen.field} initial={screen.profile} onDone={() => home("me")} onCancel={() => home("me")} />;
-    } else if (tab === "today") {
-      inner = <Today key={screen.key} onStart={startFrom("today")} onOpenPlan={() => setScreen({ name: "plan" })} onEditDate={() => editField("date")} onUnauthorized={reset} />;
-    } else if (tab === "practice") {
-      inner = <Practice key={screen.key} onStart={startFrom("practice")} />;
-    } else if (tab === "path") {
+    if (screen.name === "edit") {
+      const back = screen.back;
+      inner = <Onboarding only={screen.field} initial={screen.profile} onDone={() => home(back)} onCancel={() => home(back)} />;
+    } else if (tab === "learn") {
       inner = (
-        <PathScreen
+        <Learn
           key={screen.key}
-          onStart={startFrom("path")}
-          onStartPlacement={(section, name) => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "path" })}
+          onStart={startFrom("learn")}
+          onStartPlacement={(section, name) => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "learn" })}
+          onUnauthorized={reset}
         />
       );
+    } else if (tab === "practice") {
+      inner = <Practice key={screen.key} onStart={startFrom("practice")} />;
+    } else if (tab === "progress") {
+      inner = <Progress key={screen.key} onEditDate={() => editField("date", "progress")} />;
     } else {
-      inner = <Me key={screen.key} onEdit={(field, profile) => setScreen({ name: "edit", field, profile })} onDeleted={reset} />;
+      inner = <Me key={screen.key} onEdit={(field, profile) => setScreen({ name: "edit", field, profile, back: "me" })} onDeleted={reset} />;
     }
-    const innerId = screen.name === "main" ? `${screen.tab}-${screen.key}` : screen.name === "edit" ? `edit-${screen.field}` : "plan";
+    const innerId = screen.name === "main" ? `${screen.tab}-${screen.key}` : `edit-${screen.field}`;
     body = (
-      <Shell tab={tab} onTab={(t) => home(t)}>
+      <Shell tab={tab} onTab={(t) => home(t)} onEditDate={() => editField("date", tab)}>
         <ScreenTransition key={innerId}>{inner}</ScreenTransition>
       </Shell>
     );
@@ -178,16 +181,17 @@ function TestwiseApp() {
         onQuit={() => (back === "placement" ? setScreen({ name: "placement" }) : home(back))}
         onDone={(result) => {
           if (result.placement && source.kind === "placement") settlePlacement(source.section);
-          setScreen({ name: "complete", result });
+          setScreen({ name: "complete", result, back: back === "placement" ? "learn" : back });
         }}
       />
     );
   } else {
-    body = <Complete result={screen.result} onContinue={() => home("today")} onStart={startFrom("today")} />;
+    const back = screen.back;
+    body = <Complete result={screen.result} onContinue={() => home(back)} onStart={startFrom(back)} />;
   }
 
-  function editField(field: Field) {
-    api.profile().then((p) => setScreen({ name: "edit", field, profile: p }), () => {});
+  function editField(field: Field, back: Tab) {
+    api.profile().then((p) => setScreen({ name: "edit", field, profile: p, back }), () => {});
   }
 
   return (

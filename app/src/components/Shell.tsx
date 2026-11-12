@@ -1,17 +1,19 @@
-// The main frame: a bottom tab bar on phones, a left rail on wide screens
-// (900 px and up), with the screen in a readable column.
+// The main frame: the top bar (days to the test, streak, XP), then the screen,
+// with a bottom tab bar on phones and a left rail on wide screens (900 px and
+// up), the screen in a readable column.
 import React from "react";
 import { Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import type { Tab } from "../nav";
 import { color, COLUMN, font, radius, space, topLine } from "../theme";
 import { Icon, IconName } from "./icons";
+import { TopBar } from "./TopBar";
 import { Wordmark } from "./ui";
 import { buzz } from "../motion/feedback";
 
 const TABS: { id: Tab; label: string; icon: IconName }[] = [
-  { id: "today", label: "Today", icon: "today" },
+  { id: "learn", label: "Learn", icon: "path" },
   { id: "practice", label: "Practice", icon: "practice" },
-  { id: "path", label: "Path", icon: "path" },
+  { id: "progress", label: "Progress", icon: "flag" },
   { id: "me", label: "Me", icon: "me" },
 ];
 
@@ -21,7 +23,7 @@ export function useWide() {
   return useWindowDimensions().width >= WIDE;
 }
 
-export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => void; children: React.ReactNode }) {
+export function Shell({ tab, onTab, onEditDate, children }: { tab: Tab; onTab: (t: Tab) => void; onEditDate: () => void; children: React.ReactNode }) {
   const { width } = useWindowDimensions();
   const wide = width >= WIDE;
   // With room to spare, the screen's column sits in the middle of the page, as it
@@ -50,12 +52,16 @@ export function Shell({ tab, onTab, children }: { tab: Tab; onTab: (t: Tab) => v
             );
           })}
         </View>
-        <View style={[s.wideMain, symmetric && { paddingRight: RAIL }]}>{children}</View>
+        <View style={[s.wideMain, symmetric && { paddingRight: RAIL }]}>
+          <TopBar wide onProgress={() => onTab("progress")} onEditDate={onEditDate} />
+          <View style={{ flex: 1 }}>{children}</View>
+        </View>
       </View>
     );
   }
   return (
     <View style={{ flex: 1 }}>
+      <TopBar wide={false} onProgress={() => onTab("progress")} onEditDate={onEditDate} />
       <View style={{ flex: 1 }}>{children}</View>
       <View style={s.bar} accessibilityRole="tablist" aria-label="Sections">
         {TABS.map((t) => {

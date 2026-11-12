@@ -13,14 +13,6 @@ type Shape = (c: string) => React.ReactNode;
 const P = (d: string) => (c: string) => <Path d={d} stroke={c} fill="none" />;
 
 const ICONS = {
-  // Sunrise over a line: today.
-  today: (c: string) => (
-    <>
-      <Path d="M3.2 17.6L20.8 17.3" stroke={c} fill="none" />
-      <Path d="M7.4 17.4C7.5 14.8 9.5 12.8 12.1 12.8C14.6 12.8 16.6 14.9 16.6 17.4" stroke={c} fill="none" />
-      <Path d="M12 5.9V8.7M5.2 10.3L6.9 11.9M18.9 10.1L17.2 11.8M7.4 20.7H16.8" stroke={c} fill="none" />
-    </>
-  ),
   // A pencil: practice.
   practice: P("M4.3 19.7L5.1 15.7L15.7 5C16.5 4.2 17.6 4.2 18.4 5L19.1 5.7C19.9 6.5 19.9 7.6 19.1 8.4L8.4 19L4.3 19.7ZM13.8 6.9L17.1 10.2"),
   // A winding path between two stops.
@@ -103,6 +95,14 @@ const ICONS = {
   book: P("M12 6.7C10 5.2 7.4 4.8 4 5.3V18.4C7.4 18 10 18.4 12 19.8C14 18.4 16.6 18 20 18.4V5.3C16.6 4.8 14 5.2 12 6.7ZM12 6.7V19.6"),
   // Socrates writes: a quill.
   quill: P("M19.6 4.4C13.1 4.9 8.2 9.7 6.9 16.3L5 19.7M6.9 16.3C12.6 15.8 16.9 11.6 19.6 4.4M9.6 12.8H13.5"),
+  // A unit check on the path: a chest, its lid rounded, a latch at the seam.
+  chest: (c: string) => (
+    <>
+      <Path d="M4.2 11.3V9.7C4.2 7.4 6 5.6 8.3 5.5H15.8C18 5.6 19.8 7.4 19.8 9.6V11.2" stroke={c} fill="none" />
+      <Path d="M4.2 11.3H19.8V18.1C19.8 19.2 18.9 20.1 17.8 20.1H6.3C5.1 20.1 4.2 19.2 4.2 18.1V11.3Z" stroke={c} fill="none" />
+      <Path d="M10.7 10.4H13.4V13.8C13.4 14.2 13.1 14.5 12.7 14.5H11.3C10.9 14.5 10.6 14.2 10.6 13.8L10.7 10.4Z" stroke={c} fill="none" />
+    </>
+  ),
   flag: P("M5.6 20.4V4.6M5.8 5.1C9.2 3.4 11.2 6.6 14.6 5.4C16 4.9 17.2 4.6 18.6 4.9V13.1C17.2 12.8 16 13.1 14.6 13.6C11.2 14.8 9.2 11.6 5.8 13.3"),
 } satisfies Record<string, Shape>;
 
