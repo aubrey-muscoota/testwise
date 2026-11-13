@@ -7,17 +7,9 @@ import type { Exam } from "../api";
 import { OptionCard, Options } from "./OptionCard";
 import { SetupFrame } from "./SetupFrame";
 import { buttonOf, frameOf, setupLine, StepProps } from "./shared";
+import { goalDetail } from "./goal-copy";
 
 const FALLBACK_OPTIONS = [5, 10, 15, 20];
-
-// Lessons are about 6 minutes and may use about three quarters of the day.
-export function goalDetail(m: number) {
-  const lessons = Math.max(1, Math.floor((0.75 * m) / 6));
-  if (lessons >= 2) return `${lessons === 2 ? "Two" : lessons} lessons and a practice set`;
-  if (m < 10) return "One lesson";
-  if (m < 15) return "A lesson and a few more questions";
-  return "A lesson, then reviews and a short set";
-}
 
 export function minutesOptions(exam: Exam | null) {
   const options = exam?.plan.daily_minutes?.length ? exam.plan.daily_minutes : FALLBACK_OPTIONS;

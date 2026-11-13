@@ -312,3 +312,19 @@ test("the response shape", () => {
   assert.equal(p.days_left, 120);
   assert.equal(p.phase, "learn");
 });
+
+// Exam names, sections and dates come from the packs: the setup screens and
+// the Worker never name a test or its sections themselves.
+test("exam-neutral: setup and Worker code name no test or section", async () => {
+  const { readdirSync, readFileSync, statSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const root = new URL("..", import.meta.url).pathname;
+  const files = (dir) => readdirSync(join(root, dir)).flatMap((f) => {
+    const p = join(dir, f);
+    return statSync(join(root, p)).isDirectory() ? files(p) : /\.(m?js|tsx?)$/.test(f) ? [p] : [];
+  });
+  for (const f of [...files("app/src/setup"), ...files("worker")]) {
+    const code = readFileSync(join(root, f), "utf8").split("\n").filter((l) => !/^\s*(\/\/|\*|\/\*)/.test(l)).join("\n");
+    assert.doesNotMatch(code, /\b(SAT|GRE|GMAT|CFA|PSAT)\b|College Board|Reading and Writing|"Math"|'Math'/, f);
+  }
+});

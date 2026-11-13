@@ -323,3 +323,19 @@ test("a lesson task's why doesn't repeat the skills count", () => {
   const p = plan({ exam_date: examIn(75), plan_started_at: TODAY, skills: fresh() });
   for (const t of p.today.filter((t) => t.kind === "lesson")) assert.doesNotMatch(t.why, /left to start/);
 });
+
+// The daily goal cards (app/src/setup/goal-copy.ts) say what a learning day
+// gives at each goal; check those words against the plan itself.
+test("each daily goal's description matches the plan's learning day", async () => {
+  const { lessonsFor, goalDetail } = await import("../app/src/setup/goal-copy.ts");
+  for (const minutes of [5, 10, 15, 20]) {
+    const p = plan({ exam_date: examIn(60), plan_started_at: TODAY, skills: fresh(), daily_minutes: minutes, reviews_due: 3 });
+    assert.equal(p.phase, "learn");
+    const lessons = p.today.filter((t) => t.kind === "lesson").length;
+    assert.equal(lessons, lessonsFor(minutes), `${minutes} min: ${goalDetail(minutes)}`);
+    const words = { 1: /^(One lesson|A lesson)/, 2: /^Two lessons/ }[lessons];
+    assert.match(goalDetail(minutes), words);
+    // Anything past "one lesson" promises more than the lesson.
+    if (minutes >= 10) assert.ok(p.today.some((t) => t.kind !== "lesson"), `${minutes} min has more than lessons`);
+  }
+});
