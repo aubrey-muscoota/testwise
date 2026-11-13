@@ -155,6 +155,7 @@ function TestwiseApp() {
     body = (
       <Setup
         steps={screen.steps}
+        remember={screen.steps[0] === "picker"}
         onPickExam={async (examId) => {
           const e = await loadExam(examId);
           if (e?.id !== examId) throw new Error("exam not loaded");

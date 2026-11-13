@@ -101,3 +101,33 @@ test("a test date the server refuses sends setup back to the date step, in plain
   await expect(page.getByRole("alert")).toContainText("too far away");
   await expect(page.getByText("exam_date")).toHaveCount(0);
 });
+
+test("a reload before the birthday keeps the step and every answer; the birthday clears them", async ({ page }) => {
+  await page.clock.install({ time: NOW });
+  const calls = await mockApi(page, freshRoutes([400, { error: "exam_date is in the past" }]));
+  await page.goto("/");
+  await toDateStep(page);
+  const first = fixtures.exam.test_dates.find((d) => d.date > "2026-11-12").date;
+  await page.getByTestId(`date-${first}`).click();
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId("goal-15").click();
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId(`score-${SCORE}`).waitFor();
+  await page.reload();
+  await expect(page.getByTestId(`score-${SCORE}`)).toBeVisible();
+  await page.getByRole("button", { name: "Back" }).click();
+  await expect(page.getByTestId("goal-15")).toHaveAttribute("aria-checked", "true");
+  await page.getByRole("button", { name: "Back" }).click();
+  await expect(page.getByTestId(`date-${first}`)).toHaveAttribute("aria-checked", "true");
+  // Nothing about the learner reached the server before the birthday.
+  expect(calls.filter((c) => c.startsWith("POST"))).toEqual([]);
+  // The birthday's answer (here, under 13) clears the draft.
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId("score-none").click();
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId("age-month-3").click();
+  await page.getByTestId("age-year").fill("2020");
+  await page.getByTestId("age-continue").click();
+  expect(await page.evaluate(() => sessionStorage.getItem("testwise.setupDraft"))).toBeNull();
+});

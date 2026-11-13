@@ -1,8 +1,12 @@
 // Setup in under a minute: the test picker, Welcome, then one question a
 // screen (test date, daily goal, target score, birthday, where to start),
 // each asked by Socrates, with a back arrow and the progress bar. Answers are
-// held here until the birthday is answered, so nothing is stored about
-// someone who turns out to be under 13. Back keeps every answer.
+// held here until the birthday is answered, so the server stores nothing about
+// someone who turns out to be under 13. Back keeps every answer. On a fresh
+// install (`remember`), the step and answers are also kept in this tab's
+// sessionStorage, which stays on the device and is gone when the tab closes,
+// so a reload before the birthday picks up where it was; the birthday's
+// answer clears it.
 //
 // A fresh install walks every step. A returning learner without a profile
 // gets the date, goal and score (saved with POST /api/profile), and the start
@@ -41,8 +45,29 @@ export function profileOf(a: SetupAnswers): ProfileAnswers {
   };
 }
 
-export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart, onDone }: {
+// The fresh-install draft, in sessionStorage (web only; elsewhere nothing is kept).
+const DRAFT = "testwise.setupDraft";
+type Draft = { step: SetupStep; answers: SetupAnswers };
+function readDraft(): Draft | null {
+  try {
+    const v = typeof sessionStorage === "undefined" ? null : sessionStorage.getItem(DRAFT);
+    return v ? (JSON.parse(v) as Draft) : null;
+  } catch {
+    return null;
+  }
+}
+function writeDraft(d: Draft | null) {
+  try {
+    if (typeof sessionStorage === "undefined") return;
+    if (d) sessionStorage.setItem(DRAFT, JSON.stringify(d));
+    else sessionStorage.removeItem(DRAFT);
+  } catch {}
+}
+
+export function Setup({ steps, remember = false, onPickExam, onAge, onSaveProfile, onStart, onDone }: {
   steps: SetupStep[];
+  // Keep the answers across a reload until the birthday (a fresh install).
+  remember?: boolean;
   // Loads the picked exam's pack (getExam() then returns it).
   onPickExam: (examId: string) => Promise<void>;
   // The birthday's answer, with everything before it. Resolves once the learner is made.
@@ -56,6 +81,28 @@ export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart, onDone
 }) {
   const [i, setI] = useState(0);
   const [answers, setAnswers] = useState<SetupAnswers>({ examId: null, date: null, minutes: null, score: undefined });
+  const ageAt = steps.indexOf("age");
+  // A draft from before a reload: load its exam's pack, then go back to its step.
+  const [restoring, setRestoring] = useState(() => remember && !!readDraft()?.answers?.examId);
+  useEffect(() => {
+    if (!restoring) return;
+    const d = readDraft();
+    const at = d ? steps.indexOf(d.step) : -1;
+    if (!d?.answers.examId || at < 0 || at > ageAt) {
+      writeDraft(null);
+      setRestoring(false);
+      return;
+    }
+    onPickExam(d.answers.examId)
+      .then(() => { setAnswers(d.answers); setI(at); })
+      .catch(() => writeDraft(null))
+      .finally(() => setRestoring(false));
+    // Once, on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (remember && !restoring && i <= ageAt) writeDraft({ step: steps[i], answers });
+  }, [remember, restoring, i, answers, steps, ageAt]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const step = steps[i];
@@ -98,6 +145,7 @@ export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart, onDone
   };
   const frame = { progress, onBack: back, buttonTitle: "Continue", busy, error };
 
+  if (restoring) return null;
   switch (step) {
     case "picker":
       return <TestPicker initial={answers.examId} onPick={async (id) => { await onPickExam(id); setAnswers((a) => ({ ...a, examId: id })); next(); }} />;
@@ -138,6 +186,7 @@ export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart, onDone
               }
               throw e;
             }
+            writeDraft(null);
             if (ok) next();
           })}
         />
