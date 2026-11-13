@@ -252,6 +252,31 @@ test("missed days put the learner behind and today's plan catches up", () => {
   assert.ok(n(behind) >= n(onPace) && n(behind) >= 2, `${n(behind)} vs ${n(onPace)} (started ${started})`);
 });
 
+test("ahead counts skills started past the even pace by tonight, and only when not behind", () => {
+  // 2 days into a 90-day plan: the even pace line asks for a skill or two by
+  // tonight, so 6 started is 4 to 6 ahead.
+  const skills = fresh().map((s, i) => (i < 6 ? { ...s, attempts: 8, mastery: 50, first_day: addDays(TODAY, -1) } : s));
+  const p = buildPlan({
+    today: TODAY, exam_date: examIn(88), plan_started_at: addDays(TODAY, -2), daily_minutes: 20,
+    skills, reviews_due: 0, pace: PACE, active_days: [addDays(TODAY, -1)],
+  });
+  assert.equal(p.phase, "learn");
+  assert.equal(p.status.on_track, true);
+  assert.equal(p.status.behind_by_lessons, 0);
+  assert.ok(p.status.ahead_by_lessons >= 4 && p.status.ahead_by_lessons <= 6, JSON.stringify(p.status));
+  // A fresh learner on day one is neither ahead nor behind.
+  const f = plan({ exam_date: examIn(90), plan_started_at: TODAY, skills: fresh() });
+  assert.equal(f.status.ahead_by_lessons, 0);
+  assert.equal(f.status.behind_by_lessons, 0);
+  // Behind is never also ahead.
+  const late = buildPlan({
+    today: TODAY, exam_date: examIn(60), plan_started_at: addDays(TODAY, -30), daily_minutes: 20,
+    skills: fresh(), reviews_due: 0, pace: PACE, active_days: [],
+  });
+  assert.ok(late.status.behind_by_lessons > 0);
+  assert.equal(late.status.ahead_by_lessons, 0);
+});
+
 test("work done today marks tasks done without changing the list", () => {
   const base = { exam_date: examIn(90), plan_started_at: addDays(TODAY, -5), skills: fresh(), reviews_due: 5 };
   const before = plan(base);

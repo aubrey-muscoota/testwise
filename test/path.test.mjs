@@ -305,10 +305,11 @@ test("a pack with a prerequisite loop doesn't throw and still has one current ci
 });
 
 test("the response shape", () => {
-  const p = path({ stats: { xp: 75, streak: 1, xp_today: 75, reviews_due: 2 } });
+  const p = path({ stats: { xp: 75, streak: 1, xp_today: 75, reviews_due: 2, month_days: ["2026-11-03", "2026-11-12"] } });
   const r = PathResponse.safeParse(p);
   assert.ok(r.success, JSON.stringify(r.error?.issues?.slice(0, 3)));
-  assert.deepEqual(p.stats, { xp: 75, streak: 1, xp_today: 75, reviews_due: 2 });
+  assert.deepEqual(p.stats, { xp: 75, streak: 1, xp_today: 75, reviews_due: 2, month_days: ["2026-11-03", "2026-11-12"] });
+  assert.deepEqual(path({}).stats.month_days, [], "no lessons, an empty month");
   assert.equal(p.days_left, 120);
   assert.equal(p.phase, "learn");
 });

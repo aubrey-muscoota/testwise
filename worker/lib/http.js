@@ -73,6 +73,9 @@ export async function stats(env, learnerId, day) {
     xp: xpRow.xp,
     streak: E.streak(days, day),
     recent_days: E.recentDays(days, day),
+    // This month's days with a finished lesson (placement included, as for the
+    // streak), oldest first: the calendar on Progress.
+    month_days: days.filter((d) => d.slice(0, 7) === day.slice(0, 7) && d <= day).sort(),
     lessons_today: todayRow.n,
     // Placement counts for the streak but isn't a lesson: the streak screen
     // follows the first of these each day.

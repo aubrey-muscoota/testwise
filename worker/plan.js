@@ -376,6 +376,9 @@ export function buildPlan(o) {
   let behind = 0;
   if (phase === "learn") behind = Math.max(0, expected - startedSod.size);
   else if (phase === "test_ready" || phase === "rest") behind = unstartedSod.length;
+  // Ahead: skills started so far (today's lessons included) past where the
+  // even pace line is by the end of today. Learn phase only.
+  const expectedTonight = Math.floor(skills.length * Math.min(1, (elapsed + 1) / learnLen));
 
   const tasks = [];
   let budget = minutes;
@@ -610,7 +613,13 @@ export function buildPlan(o) {
     exam_date_assumed: exam.assumed,
     days_left: tl.daysLeft,
     phase,
-    status: { on_track: onTrack, behind_by_lessons: behind, missed_yesterday: missedYesterday, message },
+    status: {
+      on_track: onTrack,
+      behind_by_lessons: behind,
+      ahead_by_lessons: phase === "learn" && !behind ? Math.max(0, skills.filter((s) => s.started).length - expectedTonight) : 0,
+      missed_yesterday: missedYesterday,
+      message,
+    },
     today_tasks_done: tasks.filter((t) => t.done).length,
     today: tasks,
     minutes_planned: round1(tasks.reduce((a, t) => a + t.minutes, 0)),
