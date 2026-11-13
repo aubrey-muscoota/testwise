@@ -1,4 +1,5 @@
-// The calendar for a test date: today to two years out, one month at a time.
+// The calendar for a test date: today to 730 days out (the Worker's limit,
+// MAX_EXAM_DAYS in worker/routes/plan.js), one month at a time.
 // Used by setup's "Another date" and when an exam has no official dates.
 import React, { useState } from "react";
 import { Animated, Pressable, StyleSheet, Text, View } from "react-native";
@@ -7,6 +8,7 @@ import { IconButton, usePop } from "../components/ui";
 import { buzz } from "../motion/feedback";
 import { BORDER, color, font, tabular, type, space } from "../theme";
 
+const MAX_DAYS = 730;
 const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
 const WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -14,7 +16,7 @@ export function DatePick({ value, onChange }: { value: string | null; onChange: 
   const today = todayIso();
   const start = parseDay(value ?? today);
   const [view, setView] = useState({ y: start.getFullYear(), m: start.getMonth() });
-  const max = (() => { const d = parseDay(today); d.setFullYear(d.getFullYear() + 2); return isoDay(d); })();
+  const max = (() => { const d = parseDay(today); d.setDate(d.getDate() + MAX_DAYS); return isoDay(d); })();
   const t = parseDay(today);
   const canBack = view.y > t.getFullYear() || (view.y === t.getFullYear() && view.m > t.getMonth());
   const mx = parseDay(max);

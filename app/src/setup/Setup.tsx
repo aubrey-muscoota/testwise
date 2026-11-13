@@ -22,6 +22,8 @@ export type SetupStep = "picker" | "welcome" | "date" | "goal" | "score" | "age"
 // The steps the progress bar counts.
 const COUNTED: SetupStep[] = ["date", "goal", "score", "age", "start"];
 
+const DATE_REFUSED = "That date is too far away to plan for. Pick one in the next two years, or say you haven't booked it yet.";
+
 export type SetupAnswers = {
   examId: string | null;
   date: { exam_date: string | null; not_booked: boolean } | null;
@@ -122,7 +124,22 @@ export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart, onDone
           onBack={back}
           busy={busy}
           error={error}
-          onAnswer={(ok) => run(async () => { await onAge(ok, answers); if (ok) next(); })}
+          onAnswer={(ok) => run(async () => {
+            try {
+              await onAge(ok, answers);
+            } catch (e) {
+              // The server refused the test date (say, past its two-year limit):
+              // that's fixed on the date step, so go back there and say so plainly.
+              const err = e as { status?: number; message?: string };
+              const d = steps.indexOf("date");
+              if (err.status === 400 && /exam_date/.test(err.message ?? "") && d >= 0) {
+                setI(d);
+                throw Object.assign(new Error(DATE_REFUSED), { status: 400 });
+              }
+              throw e;
+            }
+            if (ok) next();
+          })}
         />
       );
     case "start":

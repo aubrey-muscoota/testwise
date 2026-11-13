@@ -10,8 +10,8 @@ const fixtures = JSON.parse(readFileSync(new URL("../../app/src/lab/setup.json",
 const NOW = new Date("2026-11-12T12:00:00-05:00");
 const SCORE = fixtures.exam.score.targets[0].value;
 
-// Answers the app's API calls from `routes` ("GET /api/profile": body or
-// (request) => [status, body]); anything else gets a 500. Returns the calls made.
+// Answers the app's API calls from `routes` ("GET /api/profile": a body, or
+// [status, body]); anything else gets a 500. Returns the calls made.
 async function mockApi(page, routes) {
   const calls = [];
   await page.route("**/api/**", async (route) => {
@@ -19,7 +19,7 @@ async function mockApi(page, routes) {
     const key = `${req.method()} ${new URL(req.url()).pathname}`;
     calls.push(key);
     const r = routes[key];
-    const [status, body] = typeof r === "function" ? r(req) : r !== undefined ? [200, r] : [500, { error: "not mocked" }];
+    const [status, body] = Array.isArray(r) ? r : r !== undefined ? [200, r] : [500, { error: "not mocked" }];
     await route.fulfill({ status, contentType: "application/json", body: JSON.stringify(body) });
   });
   return calls;
@@ -54,4 +54,50 @@ test("a returning learner with XP and no profile goes on to Learn after the scor
   await expect(page.getByTestId(`score-${SCORE}`)).toHaveCount(0);
   await expect(page.getByRole("tab", { name: /Learn/ }).first()).toBeVisible();
   expect(calls.filter((c) => c === "POST /api/profile")).toHaveLength(1);
+});
+
+// A fresh install: the picker and the exam come from the mock; POST /api/learners is up to the test.
+function freshRoutes(learners) {
+  return {
+    "GET /api/exams": { exams: fixtures.exams },
+    "GET /api/exam": fixtures.exam,
+    "POST /api/learners": learners,
+  };
+}
+async function toDateStep(page) {
+  await page.getByTestId(`test-${fixtures.exam.id}`).click();
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId("welcome-start").click();
+}
+async function answerBirthday(page) {
+  await page.getByTestId("age-month-3").click();
+  await page.getByTestId("age-year").fill("2009");
+  await page.getByTestId("age-continue").click();
+}
+
+test("the calendar stops at the server's limit, 730 days out", async ({ page }) => {
+  await page.clock.install({ time: NOW });
+  await mockApi(page, freshRoutes([500, {}]));
+  await page.goto("/");
+  await toDateStep(page);
+  await page.getByTestId("date-other").click();
+  for (let k = 0; k < 24; k++) await page.getByRole("button", { name: "Next month" }).click();
+  await expect(page.getByRole("button", { name: "Saturday, November 11" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "Sunday, November 12" })).toBeDisabled();
+});
+
+test("a test date the server refuses sends setup back to the date step, in plain words", async ({ page }) => {
+  await page.clock.install({ time: NOW });
+  await mockApi(page, freshRoutes([400, { error: "exam_date is more than 2 years away" }]));
+  await page.goto("/");
+  await toDateStep(page);
+  await page.locator("[data-testid^=date-2]").first().click();
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId("setup-next").click();
+  await page.getByTestId("score-none").click();
+  await page.getByTestId("setup-next").click();
+  await answerBirthday(page);
+  await expect(page.getByTestId("date-none")).toBeVisible();
+  await expect(page.getByRole("alert")).toContainText("too far away");
+  await expect(page.getByText("exam_date")).toHaveCount(0);
 });
