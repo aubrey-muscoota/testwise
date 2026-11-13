@@ -343,6 +343,7 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
   assert.equal(p.current, "skill:alg-linear-eq-1var");
   assert.equal(p.units.length, 8);
   assert.equal(p.stats.xp, 0);
+  assert.deepEqual(p.stats.month_days, [], "an empty calendar before any lesson");
   // Walk the first three circles, then the review after them.
   for (let i = 0; i < 3; i++) {
     const cur = nodes(p).find((n) => n.state === "current");
@@ -362,11 +363,16 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
   assert.equal(nodes(p).find((n) => n.id === "review:alg:1").state, "done");
   assert.equal(p.current, "skill:alg-systems");
   assert.ok(p.stats.xp > 0 && p.stats.streak === 1);
+  assert.deepEqual(p.stats.month_days, [p.date], "today is marked on the calendar");
+  // Progress' skills-done counts are the units' counts: 3 Algebra skills done.
+  assert.equal(p.units.filter((u) => u.section_id === p.units[0].section_id).reduce((a, u) => a + u.done, 0), 3);
   // A skill the engine keeps locked still refuses a lesson, path or not.
   assert.equal((await call("/api/lessons", { skill_id: "adv-nonlinear-eq", node: "skill:adv-nonlinear-eq" })).status, 403);
   assert.equal((await call("/api/practice", { mode: "review", n: 5 })).status, 200, "review practice works without skill ids");
   // The plan's lessons today are the path's.
   const plan = (await call("/api/plan")).data;
+  assert.equal(typeof plan.status.ahead_by_lessons, "number");
+  assert.equal(plan.days_left, p.days_left, "Progress and the top bar count the same days");
   assert.ok(plan.today.filter((t) => t.kind === "lesson").every((t) => t.skill_id.startsWith("alg-")));
 }
 

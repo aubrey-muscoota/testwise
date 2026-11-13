@@ -1,18 +1,22 @@
 // Practice: questions on demand, any day, even when every lesson is done.
-// Each mode is a row with real counts from /api/practice/summary.
+// One button on top fixes the learner's mistakes (questions they missed and
+// haven't got right since); the other sets are rows under it. Counts come
+// from /api/practice/summary.
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, PracticeSummary, Tree } from "../api";
-import { lines, minutes, noOrphan, plural, skillStatus } from "../copy";
+import { lines, minutes, plural, skillStatus } from "../copy";
 import { Icon } from "../components/icons";
 import { SectionSwitch } from "../components/SectionSwitch";
 import { useWide } from "../components/Shell";
+import { SocratesLine } from "../components/SocratesLine";
 import { Bone, Button, ErrorState, IconButton, Rise, Row, Skeleton } from "../components/ui";
 import { LessonSource, practiceSource, useLoad } from "../nav";
 import { color, GUTTER, space, type, COLUMN } from "../theme";
 
 const TIMED_N = 10;
+const SET_N = 10;
 const SECTION_KEY = "testwise.section";
 
 export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
@@ -35,7 +39,6 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
   const t = summary.totals;
   const skills = tree.domains.flatMap((d) => d.skills);
   const started = skills.filter((sk) => (sk.answered ?? sk.attempts) > 0 && !sk.mastered).sort((a, b) => a.mastery - b.mastery);
-  const weakNames = started.slice(0, 3).map((sk) => sk.name);
   const anyStarted = skills.some((sk) => sk.attempts > 0 || sk.tested_out);
 
   // Test pace across sections, for the timed set's length.
@@ -47,56 +50,60 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
 
   // Misses the mistakes set can serve (in open skills), and how many one set holds.
   const fixable = t.fixable ?? t.missed;
-  const serve = Math.min(10, fixable);
+  const serve = Math.min(SET_N, fixable);
   const go = (mode: "weak" | "mixed" | "timed" | "mistakes" | "fresh", why?: string) => {
-    const n = mode === "timed" ? TIMED_N : mode === "fresh" ? 5 : mode === "mistakes" ? Math.max(3, serve) : 10;
+    const n = mode === "timed" ? TIMED_N : mode === "fresh" ? 5 : mode === "mistakes" ? Math.max(3, serve) : SET_N;
     onStart(practiceSource({ mode, n }, undefined, why));
   };
   const mistakesWhy = "You missed these and haven't got them right since. Shall we see what tripped you?";
 
-  // The mode worth doing first is the screen's one button; the rest are rows.
-  const best = fixable >= 5 ? "mistakes" : started.length ? "weak" : "mixed";
-  const headline =
-    best === "mistakes" ? `${fixable} questions you missed are waiting`
-    : best === "weak" ? `${weakNames[0]} is your weakest skill`
-    : "Practice anything, any day";
-  const cta =
-    best === "mistakes" ? <Button title={`Fix ${serve} mistakes`} onPress={() => go("mistakes", mistakesWhy)} testID="practice-best" />
-    // One named skill on the button, so the set it opens carries that name too.
-    : best === "weak" ? <Button title={`Practice ${weakNames[0]}`} onPress={() => onStart(practiceSource({ mode: "skill", skill_id: started[0].id, n: 10 }, started[0].name))} testID="practice-best" />
-    : <Button title="Start a mixed set" onPress={() => go("mixed")} testID="practice-best" />;
-  const mistakesDetail = !fixable
-    ? t.missed ? `${plural(t.missed, "miss", "misses")} in skills that aren't open yet` : "Nothing to fix right now"
-    : serve < t.missed ? `Fix ${serve} of your ${t.missed} misses` : `${plural(serve, "question")} to fix`;
+  // Nothing to fix: Socrates says why the button isn't there, and what fills it.
+  const empty = !fixable
+    ? t.missed
+      ? `Your ${plural(t.missed, "miss", "misses")} ${t.missed === 1 ? "is in a skill that isn't" : "are in skills that aren't"} open yet. ${t.missed === 1 ? "It waits" : "They wait"} here until ${t.missed === 1 ? "it opens" : "they open"}.`
+      : anyStarted
+        ? "No mistakes to fix. When you miss a question, it waits here until you get it right."
+        : "Questions you miss will wait here until you get them right."
+    : null;
 
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}>
         <Rise>
-          <Text style={type.title} accessibilityRole="header">{noOrphan(headline)}</Text>
-          {wide && <View style={{ marginTop: space(3) }}>{cta}</View>}
+          <Text style={type.title} accessibilityRole="header">Practice</Text>
+          <Text style={[type.body, { color: color.ink2, marginTop: space(0.5) }]}>Extra sets, any time, on the skills you've opened</Text>
         </Rise>
 
-        <Rise delay={80} style={{ marginTop: space(3.5), gap: space(0.5) }}>
-          {best !== "weak" && (
-            <Row
-              testID="mode-weak"
-              icon="target"
-              title="Weak spots"
-              detail={weakNames.length ? `${weakNames[0]}${started.length > 1 ? ` and ${started.length - 1} more` : ""}` : "Your first open skills, until you've tried a few"}
-              onPress={() => go("weak")}
-            />
+        <Rise delay={50} style={{ marginTop: space(3) }}>
+          {fixable ? (
+            <>
+              <Button
+                title={`Fix ${plural(serve, "mistake")}`}
+                accessibilityLabel={`Fix my mistakes, ${plural(serve, "question")}`}
+                onPress={() => go("mistakes", mistakesWhy)}
+                testID="practice-mistakes"
+              />
+              <Text style={[type.small, { marginTop: space(1) }]}>
+                {fixable > serve
+                  ? `${serve} of the ${fixable} questions you missed and haven't got right since`
+                  : `${serve === 1 ? "A question" : "Questions"} you missed and haven't got right since`}
+              </Text>
+            </>
+          ) : (
+            <View testID="practice-no-mistakes">
+              <SocratesLine text={empty!} mood={t.missed ? "thinking" : "happy"} size={64} textStyle={type.socratesSmall} />
+            </View>
           )}
-          {best !== "mistakes" && (
-            <Row
-              testID="mode-mistakes"
-              icon="redo"
-              title="My mistakes"
-              detail={mistakesDetail}
-              disabled={!fixable}
-              onPress={() => go("mistakes", mistakesWhy)}
-            />
-          )}
+        </Rise>
+
+        <Rise delay={100} style={{ marginTop: space(3), gap: space(0.5) }}>
+          <Row
+            testID="mode-weak"
+            icon="target"
+            title="Weak spots"
+            detail={started.length ? `${started[0].name}${started.length > 1 ? ` and ${started.length - 1} more` : ""}` : "Your first open skills, until you've tried a few"}
+            onPress={() => go("weak")}
+          />
           <Row
             testID="mode-timed"
             icon="clock"
@@ -104,16 +111,14 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
             detail={`${TIMED_N} questions at test pace, ${lo === hi ? minutes(lo) : `${lo} to ${hi} minutes`}`}
             onPress={() => go("timed", lines.timed)}
           />
-          {best !== "mixed" && (
-            <Row
-              testID="mode-mixed"
-              icon="shuffle"
-              title="Mixed"
-              detail={anyStarted ? "10 questions from skills you've started" : "10 questions from your open skills"}
-              onPress={() => go("mixed")}
-            />
-          )}
-          <Row testID="mode-skill" icon="book" title="One skill" detail="Pick any open skill and drill it" onPress={() => setPicking(true)} />
+          <Row
+            testID="mode-mixed"
+            icon="shuffle"
+            title="Mixed"
+            detail={anyStarted ? `${SET_N} questions from skills you've started` : `${SET_N} questions from your open skills`}
+            onPress={() => go("mixed")}
+          />
+          <Row testID="mode-skill" icon="book" title="Pick a skill" detail="Any open skill, easy to hard" onPress={() => setPicking(true)} />
           {f.available && (
             <Row
               testID="mode-fresh"
@@ -127,7 +132,6 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
         </Rise>
         <View style={{ height: space(4) }} />
       </ScrollView>
-      {!wide && <View style={s.foot}>{cta}</View>}
     </View>
   );
 }
@@ -185,11 +189,12 @@ function PracticeSkeleton() {
   return (
     <Skeleton label="Loading practice">
       <View style={s.scroll}>
-        <Bone w={260} h={30} />
-        <Bone w={200} h={30} style={{ marginTop: 8 }} />
-        {[0, 1, 2, 3, 4, 5].map((i) => (
+        <Bone w={140} h={30} />
+        <Bone w={260} h={16} style={{ marginTop: 10 }} />
+        <Bone h={58} r={16} style={{ marginTop: 24 }} />
+        {[0, 1, 2, 3].map((i) => (
           <View key={i} style={{ flexDirection: "row", gap: 14, marginTop: i ? 22 : 34 }}>
-            <Bone w={24} h={24} r={12} />
+            <Bone w={44} h={44} r={22} />
             <View style={{ flex: 1, gap: 8 }}><Bone w="45%" h={16} /><Bone w="75%" h={12} /></View>
           </View>
         ))}
@@ -200,6 +205,5 @@ function PracticeSkeleton() {
 
 const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1.5), paddingBottom: space(1.5), backgroundColor: color.bg, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
 });
 
