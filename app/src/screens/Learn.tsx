@@ -219,8 +219,8 @@ export function Learn({
   const popIds = new Set<string>(unlock ? (unlock.stage === "go" ? [unlock.from, unlock.to] : [unlock.from]) : []);
 
   const groups: { id: string; unit: PathUnit | null; nodes: PathNode[]; accent: ReturnType<typeof accentFor> }[] = [
-    ...data.units.map((u) => ({ id: u.id, unit: u, nodes: u.nodes, accent: accentFor(u.section_index) })),
-    { id: "end", unit: null, nodes: [data.end as PathNode], accent: accentFor(0) },
+    ...data.units.map((u) => ({ id: u.id, unit: u, nodes: u.nodes, accent: accentFor(u.section_kind) })),
+    { id: "end", unit: null, nodes: [data.end as PathNode], accent: accentFor("numbers") },
   ];
   let offset = 0;
 

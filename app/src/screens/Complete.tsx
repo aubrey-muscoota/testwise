@@ -1,7 +1,7 @@
 // After a lesson or set: Socrates celebrates, the real numbers count up, and
 // Continue goes back where the lesson started (the Learn path shows the next
-// circle opening). After placement, the path is re-fetched to say where it
-// picks up.
+// circle opening). After placement, the path is re-fetched: the title says
+// where it picks up, and the button starts that lesson straight away.
 import React, { useEffect, useState } from "react";
 import { Platform, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { api, LearnPath, PathNode } from "../api";
@@ -10,15 +10,15 @@ import { SocratesSays } from "../components/SocratesLine";
 import { Socrates } from "../socrates/Socrates";
 import { Button, CountUp, Rise, TextButton } from "../components/ui";
 import { feedback } from "../motion/feedback";
-import { LessonSource } from "../nav";
+import { LessonSource, nodeSource } from "../nav";
 import { color, font, GUTTER, space, type, COLUMN } from "../theme";
 import type { LessonResult } from "./Lesson";
 import { Streak } from "./Streak";
 
 const low = (n: string) => n.charAt(0).toLowerCase() + n.slice(1);
 
-// "math" from a Math placement, so counts say which skills they mean.
-const sectionWord = (r: LessonResult) => (r.source.kind === "placement" && r.source.name ? `${r.source.name.toLowerCase()} ` : "");
+// "math" from a Math placement, so counts say which skills they mean (nothing for the quiz over every section).
+const sectionWord = (r: LessonResult) => (r.source.kind === "placement" && !r.source.all && r.source.name ? `${r.source.name.toLowerCase()} ` : "");
 
 function socratesLine(r: LessonResult) {
   const p = r.placement;
@@ -38,9 +38,13 @@ function socratesLine(r: LessonResult) {
   return "That's what practice is for. Which one surprised you?";
 }
 
-function titleOf(r: LessonResult) {
+function titleOf(r: LessonResult, start?: PathNode) {
   const p = r.placement;
-  if (p) return p.tested_out.length && p.next.length ? `You start at ${p.next[0].name.toLowerCase()}` : "You start at the beginning";
+  if (p) {
+    if (!p.tested_out.length) return "You start at the beginning";
+    if (start) return start.kind === "skill" ? `You start at ${low(start.title)}` : `Your path picks up at the ${low(start.title)}`;
+    return p.next.length ? `You start at ${low(p.next[0].name)}` : "You start at the beginning";
+  }
   if (r.timeUp) return r.answered ? "Time's up" : "Time ran out before you answered";
   return r.title ? `${r.title}, done` : "Done";
 }
@@ -51,7 +55,7 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
     feedback.complete();
     // After placement, where the path picks up. (Continue lands on a tab,
     // which refreshes the top bar's numbers.)
-    if (result.placement) api.path().then(setPath, () => {});
+    if (result.placement) api.path().then(setPath, () => setPathFailed(true));
   }, [result.placement]);
 
   const { streak, lessons_today, lessons_today_no_placement } = result.stats;
@@ -66,10 +70,10 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
   const streakDue = !placed && !empty && streak >= 1 && (lessons_today_no_placement ?? lessons_today) === 1;
   const [after, setAfter] = useState<(() => void) | null>(null);
   const go = (fn: () => void) => () => (streakDue ? setAfter(() => fn) : fn());
-  const names = placed?.next.map((n) => n.name) ?? [];
-  const placedFirst = placed?.tested_out.length ? placed.next[0]?.id : undefined;
+  // After placement: the circle the path picks up at, which the button starts.
+  const [pathFailed, setPathFailed] = useState(false);
   const pathNext = path ? [...path.units.flatMap((u) => u.nodes), path.end as PathNode].find((n) => n.id === path.current) : undefined;
-  const more = names.length - 3;
+  const firstLesson = placed && pathNext ? nodeSource(pathNext) : null;
   const short = useWindowDimensions().height < 720;
 
   const [typing, setTyping] = useState(true);
@@ -94,9 +98,12 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
           />
         </Rise>
 
-        <Rise delay={120} style={{ marginTop: space(short ? 2.5 : 3) }}>
-          <Text style={s.title} accessibilityRole="header">{noOrphan(titleOf(result))}</Text>
-        </Rise>
+        {/* After placement the title waits for the path, so it names where the path really picks up. */}
+        {(!placed || path || pathFailed) && (
+          <Rise delay={120} style={{ marginTop: space(short ? 2.5 : 3) }}>
+            <Text style={s.title} accessibilityRole="header">{noOrphan(titleOf(result, pathNext))}</Text>
+          </Rise>
+        )}
 
         {!empty && <Rise delay={200} style={s.numbers}>
           <NumberCell label="right" delay={300}>
@@ -113,21 +120,6 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
           </NumberCell>
         </Rise>}
 
-        {placed && (
-          <Rise delay={600} style={{ marginTop: space(3) }}>
-            {names.length > 1 && (
-              <Text style={[type.body, s.centerText]}>
-                {noOrphan(names.length > 2 ? `Then ${low(names[1])} and ${low(names[2])}${more > 0 ? `, and ${more} more` : ""}.` : `Then ${low(names[1])}.`)}
-              </Text>
-            )}
-            {/* The path can pick up somewhere else (another section's unit); say so, so the title isn't contradicted. */}
-            {placedFirst && pathNext && !(pathNext.kind === "skill" && pathNext.skill_id === placedFirst) && (
-              <Text style={[type.body, s.centerText, { marginTop: space(1.5) }]}>
-                {noOrphan(`Your path picks up at ${pathNext.kind === "skill" ? low(pathNext.title) : `the ${low(pathNext.title)}`}.`)}
-              </Text>
-            )}
-          </Rise>
-        )}
 
       </ScrollView>
       <Rise delay={700} style={s.foot}>
@@ -136,12 +128,21 @@ export function Complete({ result, onContinue, onStart }: { result: LessonResult
             <Button title="Try the timed set again" onPress={() => onStart(result.source)} testID="complete-retry" />
             <TextButton title="Back" onPress={onContinue} tone="soft" style={{ marginTop: space(0.5) }} />
           </>
+        ) : placed ? (
+          firstLesson
+            ? <Button title={startTitle(pathNext!)} onPress={() => onStart(firstLesson)} testID="complete-start" />
+            : <Button title={pathFailed ? "See your path" : "Finding your lesson…"} disabled={!pathFailed} onPress={onContinue} testID="complete-continue" />
         ) : (
-          <Button title={placed ? "See your path" : "Continue"} onPress={go(onContinue)} testID="complete-continue" />
+          <Button title="Continue" onPress={go(onContinue)} testID="complete-continue" />
         )}
       </Rise>
     </View>
   );
+}
+
+// The button after placement says what it starts, like the path's card does.
+function startTitle(n: PathNode) {
+  return n.kind === "skill" ? "Start lesson" : n.kind === "review" ? "Start review" : n.kind === "check" ? "Start unit check" : "Start practice";
 }
 
 function NumberCell({ label, children, delay }: { label: string; children: React.ReactNode; delay: number }) {

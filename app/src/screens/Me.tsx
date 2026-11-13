@@ -8,7 +8,7 @@ import { useWide } from "../components/Shell";
 import { Bone, ErrorState, Rise, Row, Skeleton, Toggle, TextButton, useMuted } from "../components/ui";
 import { useLoad } from "../nav";
 import { color, GUTTER, space, type, COLUMN } from "../theme";
-import type { Field } from "./Onboarding";
+import type { Field } from "../setup/EditField";
 import { ConsentSheet } from "../lesson/sheets";
 
 function confirm(title: string, msg: string, yes: () => void) {
@@ -39,6 +39,9 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
   const name = exam?.short_name ?? "test";
 
   const dateText = profile.exam_date ? (() => { const d = parseDay(profile.exam_date!); return `${monthName(d.getMonth())} ${d.getDate()}`; })() : profile.not_booked ? "Not booked yet" : "Not set";
+  const minutes = profile.daily_minutes ?? exam?.plan.default_daily_minutes ?? 10;
+  const target = profile.target_score;
+  const scoreText = target == null ? "Not sure yet" : exam?.score.targets?.find((t) => t.value === target)?.label ?? String(target);
   // The rows below carry the date, so the title doesn't repeat it.
   const title = `Your ${name} plan`;
 
@@ -81,9 +84,9 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
         </Rise>
 
         <Rise delay={60} style={{ marginTop: space(3) }}>
-          <Row title="Test date" value={dateText} onPress={() => onEdit("date", profile)} accessibilityLabel={`Test date, ${dateText}. Change`} />
-          <Row title="Target score" value={profile.target_score ? String(profile.target_score) : "None"} onPress={() => onEdit("score", profile)} accessibilityLabel={`Target score, ${profile.target_score ?? "none"}. Change`} />
-          <Row title="Time each day" value={`${profile.daily_minutes ?? exam?.plan.default_daily_minutes ?? 20} min`} onPress={() => onEdit("minutes", profile)} accessibilityLabel={`Time each day, ${profile.daily_minutes ?? 20} minutes. Change`} />
+          <Row title="Test date" value={dateText} onPress={() => onEdit("date", profile)} accessibilityLabel={`Test date, ${dateText}. Change`} testID="me-date" />
+          <Row title="Daily goal" value={`${minutes} minutes`} onPress={() => onEdit("minutes", profile)} accessibilityLabel={`Daily goal, ${minutes} minutes. Change`} testID="me-goal" />
+          <Row title="Target score" value={scoreText} onPress={() => onEdit("score", profile)} accessibilityLabel={`Target score, ${scoreText}. Change`} testID="me-score" />
         </Rise>
 
         <Rise delay={100} style={{ marginTop: space(3) }}>

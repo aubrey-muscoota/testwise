@@ -44,14 +44,14 @@ const COMBO_MILESTONES = [3, 5, 8];
 export function sourceTitle(src: LessonSource) {
   if (src.kind === "skill") return src.name;
   if (src.kind === "review") return "Review";
-  if (src.kind === "placement") return `${src.name} placement`;
+  if (src.kind === "placement") return src.all ? "Placement quiz" : `${src.name} placement`;
   return src.title;
 }
 
 function begin(src: LessonSource) {
   if (src.kind === "skill") return api.startLesson(src.skillId);
   if (src.kind === "review") return api.startLesson(null);
-  if (src.kind === "placement") return api.startPlacement(src.section || undefined);
+  if (src.kind === "placement") return api.startPlacement(src.all ? { all: true } : { section: src.section || undefined });
   return api.start(src.start);
 }
 

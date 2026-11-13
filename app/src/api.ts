@@ -71,9 +71,17 @@ export type Profile = {
   not_booked: boolean;
   assumed_exam_date: string | null;
   target_score: number | null;
+  // One of the exam's plan.daily_minutes (5, 10, 15 or 20 for the SAT). A time
+  // saved before those options reads as the nearest one below.
   daily_minutes: number | null;
   plan_started_at: string | null;
 };
+
+// What setup saves: the test date (or not booked), daily time and target.
+export type ProfileAnswers = { exam_date?: string | null; not_booked?: true; target_score?: number | null; daily_minutes?: number };
+
+// The test picker (GET /api/exams): every exam pack, ready or not yet.
+export type ExamListing = { id: string; name: string; short_name: string; ready: boolean; sections?: string[] };
 
 // The exact request that starts a plan task.
 export type StartRequest = { method: "POST"; path: string; body: Record<string, unknown> };
@@ -127,7 +135,10 @@ export type PathUnit = {
   name: string;
   section_id: string;
   section_name: string;
+  // Kept for older builds; colour comes from section_kind.
   section_index: number;
+  // The kind of thinking the section asks for: blue for numbers, teal for words.
+  section_kind: SectionKind;
   number: number;
   of: number;
   done: number;
@@ -172,10 +183,13 @@ export type Placement = { tested_out: { id: string; name: string }[]; next: { id
 export type TutorTurn = { role: "student" | "socrates"; content: string };
 
 // The exam pack (exams/<id>/exam.json + voice.json, with domain weights), from GET /api/exam.
-export type Score = { min: number; max: number; step: number };
+export type Score = { min: number; max: number; step: number; targets?: { value: number; label?: string }[] };
+export type SectionKind = "numbers" | "words";
+export type TestDate = { date: string; register_by?: string; anticipated?: boolean };
 export type ExamSection = {
   id: string;
   name: string;
+  kind?: SectionKind;
   minutes: number;
   questions: number;
   modules?: number;
@@ -195,7 +209,9 @@ export type Exam = {
   score: Score;
   default_section: string;
   sections: ExamSection[];
-  placement: { per_domain: number; difficulties: number[]; seconds_per_question?: number };
+  placement: { per_domain: number; difficulties: number[]; seconds_per_question?: number; max_questions?: number };
+  // Official test days still ahead of the learner's day (absent: the exam has none on file).
+  test_dates?: TestDate[];
   plan: {
     default_weeks: number;
     daily_minutes: number[];
@@ -207,6 +223,8 @@ export type Exam = {
     persona_notes?: string[];
     terms?: { spr?: string; sections?: Record<string, string> };
     placement_intro?: Record<string, string>;
+    // Socrates' setup questions; the app has plain fallbacks.
+    setup?: { date?: string; goal?: string; score?: string; start?: string };
     skill_about?: Record<string, string>;
     test_day_tips?: string[];
   };
@@ -255,9 +273,10 @@ export async function loadLearner(): Promise<string | null> {
   return learnerId;
 }
 
-// Only called after the age question says 13 or older.
-export async function createLearner(): Promise<string> {
-  const { id } = await call<{ id: string }>("/api/learners", { method: "POST", body: { age_13_plus: true } });
+// Only called after the age question says 13 or older. Setup sends the exam
+// the learner picked and their answers, so the learner is made with them.
+export async function createLearner(setup?: { exam_id?: string; profile?: ProfileAnswers }): Promise<string> {
+  const { id } = await call<{ id: string }>("/api/learners", { method: "POST", body: { age_13_plus: true, ...setup } });
   consent = { age_confirmed: true, ai_consent: false };
   learnerId = id;
   try {
@@ -282,9 +301,10 @@ export async function forgetLearner() {
 const EXAM_KEY = "testwise.exam";
 let exam: Exam | null = null;
 export const getExam = () => exam;
-export async function loadExam(): Promise<Exam | null> {
+// With an id and no learner yet, the exam picked in setup; otherwise the learner's.
+export async function loadExam(examId?: string): Promise<Exam | null> {
   try {
-    exam = await call<Exam>("/api/exam");
+    exam = await call<Exam>(examId && !learnerId ? `/api/exam?exam=${encodeURIComponent(examId)}` : "/api/exam");
     AsyncStorage.setItem(EXAM_KEY, JSON.stringify(exam)).catch(() => {});
   } catch {
     try {
@@ -301,6 +321,9 @@ export async function loadExam(): Promise<Exam | null> {
 // needs the exam id too.
 export const placementKey = (id: string | null, section?: string) =>
   `testwise.placementDone.${id ?? "anon"}${!section || section === exam?.default_section ? "" : `.${section}`}`;
+// Every key for the exam: setup's choice covers all sections at once.
+export const placementKeys = (id: string | null) => [placementKey(id), ...(exam?.sections ?? []).map((s) => placementKey(id, s.id))]
+  .filter((k, i, all) => all.indexOf(k) === i);
 export const currentLearnerId = () => learnerId;
 
 // Last known consent state, refreshed by every tree load.
@@ -326,6 +349,10 @@ export function primeForLab(p: LearnPath, e: Exam) {
   exam = e;
   setLastPath(p);
 }
+// The setup review page (?lab=setup) shows its exam without a server.
+export function primeExamForLab(e: Exam) {
+  exam = e;
+}
 export function refreshPathSummary() {
   if (learnerId) api.path().catch(() => {});
 }
@@ -341,6 +368,8 @@ export function usePathSummary() {
 }
 
 export const api = {
+  // The test picker. Open without a learner.
+  exams: () => call<{ exams: ExamListing[] }>("/api/exams").then((r) => r.exams),
   tree: async () => {
     const t = await call<Tree>("/api/tree");
     if (t.learner) consent = t.learner;
@@ -359,15 +388,15 @@ export const api = {
   startLesson: (skillId: string | null) => call<Lesson>("/api/lessons", { method: "POST", body: { skill_id: skillId } }),
   answer: (b: { lesson_id: string; item_id: string; response: string; time_ms: number }) =>
     call<{ correct: boolean; answer: string; mastery: number; xp: number }>("/api/answers", { method: "POST", body: b }),
-  // No section: the Worker uses the exam's default section.
-  startPlacement: (section?: string) => call<Lesson>("/api/lessons", { method: "POST", body: { placement: true, section } }),
+  // all: every section of the exam (setup's "Find my level"). No section: the exam's default section.
+  startPlacement: (o: { all?: boolean; section?: string } = {}) =>
+    call<Lesson>("/api/lessons", { method: "POST", body: o.all ? { placement: true, all_sections: true } : { placement: true, section: o.section } }),
   finish: (lessonId: string) =>
     call<{ correct: number; total: number; xp: number; stats: Stats; placement?: Placement }>("/api/lessons/finish", { method: "POST", body: { lesson_id: lessonId } }),
   socrates: (b: { item_id: string; response: string; history: TutorTurn[] }) =>
     call<{ reply: string; offline?: boolean; done?: boolean; error?: string; remaining_today?: number }>("/api/socrates", { method: "POST", body: b }),
   profile: () => call<Profile>("/api/profile"),
-  saveProfile: (b: { exam_date?: string | null; not_booked?: true; target_score?: number | null; daily_minutes?: number }) =>
-    call<Profile>("/api/profile", { method: "POST", body: b }),
+  saveProfile: (b: ProfileAnswers) => call<Profile>("/api/profile", { method: "POST", body: b }),
   plan: () => call<Plan>("/api/plan"),
   // Calls made while one is in flight share it (the top bar and Learn both ask on open).
   path: () => {

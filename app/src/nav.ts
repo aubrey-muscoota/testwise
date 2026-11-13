@@ -5,7 +5,8 @@ import type { PathNode, PracticeMode, StartRequest } from "./api";
 export type LessonSource =
   | { kind: "skill"; skillId: string; name: string }
   | { kind: "review" }
-  | { kind: "placement"; section: string; name: string }
+  // all: the quiz over every section (setup's "Find my level").
+  | { kind: "placement"; section?: string; name: string; all?: boolean }
   // A plan task or a practice mode: the request that starts it.
   | { kind: "task"; start: StartRequest; title: string; why?: string; mode?: PracticeMode };
 

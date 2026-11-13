@@ -1,61 +1,47 @@
-// First open: Socrates introduces himself and the one thing to press.
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+// After the test picker: Socrates says hello, the name, the picked test's
+// line, and the one thing to press. Centered: one big thing is the point.
+import React from "react";
+import { Platform, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { getExam } from "../api";
-import { noOrphan } from "../copy";
-import { SocratesLine } from "../components/SocratesLine";
-import { Button, Rise, Wordmark } from "../components/ui";
-import { color, GUTTER, space, type, COLUMN } from "../theme";
+import { Socrates } from "../socrates/Socrates";
+import { Button, IconButton, Rise, Wordmark } from "../components/ui";
+import { color, COLUMN, GUTTER, space, type } from "../theme";
 
-export function Welcome({ onStart }: { onStart: () => Promise<void> }) {
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export function Welcome({ onStart, onBack }: { onStart: () => void; onBack?: () => void }) {
   const exam = getExam();
   const short = useWindowDimensions().height < 720;
   const name = exam?.short_name ?? "test";
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={[s.wrap, short && { paddingTop: space(2) }]}>
-        <Wordmark size={26} />
-        <Rise delay={80} style={{ marginTop: short ? space(3) : space(6) }}>
-          <SocratesLine
-            size={short ? 104 : 128}
-            mood="happy"
-            text="I'm Socrates. I ask the questions, you find the answers."
-          />
+      <View style={s.head}>
+        {onBack && <IconButton name="back" label="Pick another test" onPress={onBack} style={{ marginLeft: -8 }} />}
+      </View>
+      <ScrollView contentContainerStyle={s.wrap}>
+        <Rise style={s.center}>
+          <Socrates size={short ? 104 : 140} mood="happy" />
         </Rise>
-        <Rise delay={240} style={{ marginTop: space(4) }}>
-          <Text style={type.title} accessibilityRole="header">{noOrphan(exam?.tagline ?? `A daily ${name} plan, built from your test date`)}</Text>
-          <Text style={[type.body, { color: color.ink2, marginTop: space(1) }]}>
-            No account needed. Your progress stays on this device.
-          </Text>
+        <Rise delay={120} style={[s.center, { marginTop: space(short ? 2 : 3) }]}>
+          <Wordmark size={34} />
+          <Text style={[type.body, s.tagline]}>{exam?.tagline ?? `${name} practice in five minutes a day, with Socrates`}</Text>
         </Rise>
-        {error && <Text style={[type.body, { color: color.badInk, marginTop: space(2) }]} accessibilityRole="alert">{error}</Text>}
       </ScrollView>
       <View style={s.foot}>
-        <Button
-          title={busy ? "Getting ready…" : "Start"}
-          disabled={busy}
-          accessibilityLabel="Start practicing"
-          onPress={async () => {
-            setBusy(true);
-            setError(null);
-            try {
-              await onStart();
-            } catch {
-              setError("I couldn't connect. Check your connection and try again.");
-              setBusy(false);
-            }
-          }}
-        />
-        <Text style={[type.small, { marginTop: space(1.5) }]}>{exam?.publisher.disclaimer}</Text>
+        <Button title="Get started" onPress={onStart} testID="welcome-start" />
+        <Text style={[type.small, s.note]}>No account needed. Your progress stays on this device.</Text>
+        {exam?.publisher.disclaimer ? <Text style={[type.small, s.note, { marginTop: space(0.5) }]}>{exam.publisher.disclaimer}</Text> : null}
       </View>
     </View>
   );
 }
 
+const balance = Platform.OS === "web" ? ({ textWrap: "balance" } as object) : null;
+
 const s = StyleSheet.create({
-  wrap: { paddingHorizontal: GUTTER, paddingTop: space(5), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
-  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  head: { flexDirection: "row", alignItems: "center", paddingHorizontal: GUTTER, paddingTop: space(1), minHeight: 52, maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  wrap: { flexGrow: 1, justifyContent: "center", paddingHorizontal: GUTTER, paddingBottom: space(2), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  center: { alignItems: "center" },
+  tagline: { color: color.ink2, fontSize: 18, textAlign: "center", marginTop: space(1), maxWidth: 300, ...balance },
+  foot: { paddingHorizontal: GUTTER, paddingTop: space(1), paddingBottom: space(1.5), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
+  note: { textAlign: "center", marginTop: space(1.5) },
 });
