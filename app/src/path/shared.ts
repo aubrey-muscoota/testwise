@@ -1,4 +1,5 @@
 // Sizes and colors shared by the Learn path's pieces.
+import type { SectionKind } from "../api";
 import { color } from "../theme";
 
 // Nodes are 70 x 62 ovals on a 7 px edge, one per row, swinging left and right
@@ -13,11 +14,12 @@ export const NEXT_ROOM = 40;
 export const XS = [0, -64, -32, 40, 0, 64, 32, -40];
 export const SOC = 96;
 
-// The first section is blue, the second teal, by the section's place in the
-// exam (a third section would wrap to blue until it has its own color).
+// A section's colour says the kind of thinking it asks for, from the exam
+// pack: blue for numbers, teal for words. There is never a third colour;
+// sections of the same kind are told apart by name on their banner.
 export type Accent = { fill: string; edge: string; wash: string; ink: string };
-const ACCENTS: Accent[] = [
-  { fill: color.blue, edge: color.blueDark, wash: color.blueWash, ink: color.blueDark },
-  { fill: color.teal, edge: color.tealDark, wash: color.tealWash, ink: color.tealDark },
-];
-export const accentFor = (sectionIndex: number) => ACCENTS[Math.max(0, sectionIndex) % ACCENTS.length];
+const ACCENTS: Record<SectionKind, Accent> = {
+  numbers: { fill: color.blue, edge: color.blueDark, wash: color.blueWash, ink: color.blueDark },
+  words: { fill: color.teal, edge: color.tealDark, wash: color.tealWash, ink: color.tealDark },
+};
+export const accentFor = (kind: SectionKind | undefined) => ACCENTS[kind === "words" ? "words" : "numbers"];

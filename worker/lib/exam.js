@@ -12,8 +12,12 @@
 // working. Rows are cached per isolate for a minute, so a re-seed shows up
 // within that time.
 //
-// One exam per learner: learners.exam_id (NULL for everyone today) falls back
-// to the DEFAULT_EXAM var in wrangler.jsonc, then to the first exam seeded.
+// One exam per learner: learners.exam_id (set when the learner picks a test in
+// setup; NULL for learners from before the picker) falls back to the
+// DEFAULT_EXAM var in wrangler.jsonc, then to the first ready exam.
+//
+// The test picker lists every pack (listExams). A pack that isn't enabled is
+// seeded as a listing only (config NULL), shown as not ready yet.
 
 const TTL_MS = 60_000;
 const cache = new Map();
@@ -53,8 +57,54 @@ export async function examIdFor(env, learnerId) {
     if (r?.exam_id) return r.exam_id;
   }
   if (env.DEFAULT_EXAM) return env.DEFAULT_EXAM;
-  const first = await env.DB.prepare("SELECT id FROM exams WHERE config IS NOT NULL ORDER BY position, id LIMIT 1").first();
+  const first = await env.DB.prepare("SELECT id FROM exams WHERE config IS NOT NULL AND enabled = 1 ORDER BY position, id LIMIT 1").first();
   return first?.id ?? null;
+}
+
+/** Whether learners can pick this exam now: enabled and seeded. */
+export async function isReady(env, examId) {
+  const r = await env.DB.prepare("SELECT enabled, config IS NOT NULL AS ok FROM exams WHERE id = ?").bind(examId).first();
+  return !!(r && r.enabled && r.ok);
+}
+
+/**
+ * Every exam for the test picker, in picker order. Ready exams carry their
+ * section names (the option's sub-line); the rest carry only their names,
+ * never anything from a config.
+ */
+export async function listExams(env) {
+  const { results } = await env.DB.prepare(
+    "SELECT id, name, short_name, enabled, config IS NOT NULL AS ok FROM exams ORDER BY position, id",
+  ).all();
+  const out = [];
+  for (const r of results) {
+    const ready = !!(r.enabled && r.ok);
+    const row = { id: r.id, name: r.name, short_name: r.short_name || r.name, ready };
+    if (ready) {
+      const exam = await getExam(env, r.id);
+      row.name = exam?.name || r.name;
+      row.short_name = exam?.short_name || row.short_name;
+      row.sections = (exam?.sections || []).map((s) => s.name);
+    }
+    out.push(row);
+  }
+  return out;
+}
+
+/**
+ * The official test days still ahead of `today` (the learner's local day),
+ * at most two years out. A registration deadline is kept only while it
+ * hasn't passed. Packs without test_dates return [].
+ */
+export function upcomingTestDates(exam, today, maxDays = 730) {
+  const last = new Date(Date.parse(`${today}T00:00:00Z`) + maxDays * 86400000).toISOString().slice(0, 10);
+  return (exam?.test_dates?.dates || [])
+    .filter((d) => d.date > today && d.date <= last)
+    .map((d) => ({
+      date: d.date,
+      ...(d.register_by && d.register_by >= today ? { register_by: d.register_by } : {}),
+      ...(d.anticipated ? { anticipated: true } : {}),
+    }));
 }
 
 /** The learner's exam pack. Throws if nothing is seeded, which is a deploy bug. */
@@ -70,10 +120,15 @@ export function sectionOf(exam, sectionId) {
   return exam.sections.find((s) => s.id === (sectionId || exam.default_section)) || null;
 }
 
-/** What GET /api/exam returns: the pack as the app needs it. */
-export function publicExam(exam) {
+/**
+ * What GET /api/exam returns: the pack as the app needs it. `today` is the
+ * learner's local day; test dates on or before it are left out.
+ */
+export function publicExam(exam, today) {
   const { id, name, short_name, tagline, audience, publisher, score, default_section, sections, placement, plan, voice } = exam;
-  return { id, name, short_name, tagline, audience, publisher, score, default_section, sections, placement, plan, voice };
+  const out = { id, name, short_name, tagline, audience, publisher, score, default_section, sections, placement, plan, voice };
+  if (exam.test_dates) out.test_dates = upcomingTestDates(exam, today);
+  return out;
 }
 
 // Clears the cache (tests).

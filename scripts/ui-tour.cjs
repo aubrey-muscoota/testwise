@@ -1,4 +1,5 @@
-// Playwright tour of the app screens: setup, placement, the Learn path (a
+// Playwright tour of the app screens: setup (test picker, Welcome, date, goal,
+// score, birthday, where to start), placement and the first lesson, the Learn path (a
 // node's card, a locked one, a lesson from the current circle and the next one
 // opening, a review circle, a unit check), Progress, Practice and Me.
 // Usage: BASE=http://localhost:8787 node scripts/ui-tour.cjs <outdir> <w> <h> <dpr> [video]
@@ -78,55 +79,88 @@ fs.mkdirSync(out, { recursive: true });
     return item;
   };
 
-  await step("welcome", async () => {
+  // Setup: the test picker, Welcome, then one question a screen. START=basics
+  // takes "Start from the basics"; otherwise "Find my level" (the placement quiz
+  // over every section), right on the first eight, wrong after.
+  const t0 = Date.now();
+  await step("picker", async () => {
     await page.goto(BASE);
-    await page.getByRole("button", { name: "Start practicing" }).waitFor({ timeout: 30000 });
-    await shot("welcome", 2600);
-    await page.getByRole("button", { name: "Start practicing" }).click();
+    await page.getByTestId("test-sat").waitFor({ timeout: 30000 });
+    await shot("setup-picker", 2600);
+    await page.getByTestId("test-sat").click();
+    await shot("setup-picker-picked", 500);
+    await page.getByTestId("setup-next").click();
+  });
+  await step("welcome", async () => {
+    await page.getByTestId("welcome-start").waitFor({ timeout: 15000 });
+    await shot("setup-welcome", 2000);
+    await page.getByTestId("welcome-start").click();
+  });
+  await step("date", async () => {
+    const first = page.locator("[data-testid^=date-2]").first();
+    await first.waitFor();
+    await shot("setup-date", 2500);
+    await page.getByTestId("date-other").click();
+    await shot("setup-date-calendar", 1200);
+    await page.getByRole("button", { name: "Back to the dates" }).click();
+    await first.click();
+    await shot("setup-date-picked", 500);
+    await page.getByTestId("setup-next").click();
+  });
+  await step("goal", async () => {
+    await page.getByTestId("goal-10").waitFor();
+    await shot("setup-goal", 2500);
+    await page.getByTestId("setup-next").click();
+  });
+  await step("score", async () => {
+    await page.getByTestId("score-1400").waitFor();
+    await page.getByTestId("score-1400").click();
+    await shot("setup-score", 2500);
+    await page.getByTestId("setup-next").click();
   });
   await step("age", async () => {
     await page.getByRole("radio", { name: "March" }).click();
     await page.getByLabel("Birth year").fill("2009");
-    await shot("age");
-    await btn("Continue").click();
+    await shot("setup-age", 2000);
+    await page.getByTestId("age-continue").click();
   });
-  await step("date", async () => {
-    await page.getByRole("button", { name: "Next month" }).waitFor();
-    await shot("onboarding-date", 3500);
-    for (let i = 0; i < 4; i++) await page.getByRole("button", { name: "Next month" }).click();
-    await page.getByRole("button", { name: "Saturday, March 13" }).click();
-    await shot("onboarding-date-picked", 600);
-    await page.getByTestId("onboarding-next").click();
-  });
-  await step("score", async () => {
-    await page.getByRole("button", { name: /^Higher/ }).waitFor();
-    for (let i = 0; i < 5; i++) await page.getByRole("button", { name: /^Higher/ }).click();
-    await shot("onboarding-score", 2500);
-    await page.getByTestId("onboarding-next").click();
-  });
-  await step("minutes", async () => {
-    await page.getByRole("radio", { name: /^30 minutes/ }).click();
-    await shot("onboarding-minutes", 2500);
-    await page.getByTestId("onboarding-next").click();
-  });
-  await step("placement", async () => {
-    await btn("Find my level").waitFor();
-    await shot("placement-offer", 3000);
-    await btn("Find my level").click();
+  await step("start", async () => {
+    await page.getByTestId("start-level").waitFor({ timeout: 15000 });
+    await shot("setup-start", 2500);
+    await page.getByTestId(process.env.START === "basics" ? "start-basics" : "start-level").click();
+    await shot("setup-start-picked", 500);
+    await page.getByTestId("start-go").click();
     await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
-    await shot("placement-question", 2000);
-    // Right on the first eight, wrong after, so some skills test out and some don't.
-    for (let i = 0; i < 30; i++) {
+    console.log("first question after", ((Date.now() - t0) / 1000).toFixed(1), "s (tour pace, with screenshots)");
+  });
+  // Answers until the finish; `right(i)` says which to get right.
+  const finish = async (right) => {
+    for (let i = 0; i < 40; i++) {
       if (await page.getByTestId("continue").count()) await page.getByTestId("continue").click();
       await page.waitForTimeout(400);
-      if (await page.getByTestId("complete-continue").count()) break;
+      if (await page.getByTestId("complete-continue").or(page.getByTestId("complete-start")).count()) break;
       if (!(await page.getByRole("button", { name: "Check" }).count())) { await page.waitForTimeout(600); continue; }
-      await answer(i < 8);
+      await answer(right(i));
       await page.waitForTimeout(250);
     }
-    await shot("placement-done", 2500);
+  };
+  if (process.env.START !== "basics") {
+    await step("placement", async () => {
+      await shot("placement-question", 2000);
+      await finish((i) => i < 8);
+      await page.getByTestId("complete-start").waitFor({ timeout: 15000 });
+      await shot("placement-done", 2500);
+      await page.getByTestId("complete-start").click();
+      await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
+    });
+  }
+  await step("first-lesson", async () => {
+    await shot("first-lesson-question", 2000);
+    await finish(() => true);
+    await page.getByTestId("complete-continue").waitFor({ timeout: 15000 });
+    await shot("first-lesson-done", 2200);
     await page.getByTestId("complete-continue").click();
-    await streakIfShown("placement-streak");
+    await streakIfShown("first-lesson-streak");
   });
   const tab = (name) => page.getByRole("tab", { name, exact: true }).click();
   const current = () => page.locator('[aria-label$=", start here"]').first();
@@ -219,19 +253,6 @@ fs.mkdirSync(out, { recursive: true });
     if (after === before) throw new Error(`the next circle didn't open (still ${after})`);
     console.log("current", before, "->", after);
   });
-  await step("rw-placement", async () => {
-    await tab("Learn");
-    await current().waitFor({ timeout: 15000 });
-    const offer = btn("Find my level");
-    if (!(await offer.count())) { console.log("no second-section offer"); return; }
-    await offer.scrollIntoViewIfNeeded();
-    await shot("learn-rw-offer", 1200);
-    await offer.click();
-    await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
-    await shot("placement-rw-question", 2500);
-    await page.getByRole("button", { name: "Quit placement quiz" }).click();
-    await current().waitFor({ timeout: 15000 });
-  });
   await step("review", async () => {
     // Walk on until a review circle is current, then look at it on Learn.
     for (let i = 0; i < 8 && !(await currentId()).startsWith("review:"); i++) await walk(1);
@@ -286,11 +307,22 @@ fs.mkdirSync(out, { recursive: true });
   });
   await step("me", async () => {
     await tab("Me");
-    await page.getByRole("button", { name: /^Test date/ }).waitFor({ timeout: 15000 });
+    await page.getByTestId("me-date").waitFor({ timeout: 15000 });
     await shot("me", 1500);
-    await page.getByRole("button", { name: /^Target score/ }).click();
-    await shot("me-edit-score", 2500);
-    await page.getByRole("button", { name: "Back" }).first().click();
+    for (const [row, name] of [["me-date", "date"], ["me-goal", "goal"], ["me-score", "score"]]) {
+      await page.getByTestId(row).click();
+      await page.getByTestId("setup-next").waitFor({ timeout: 15000 });
+      await shot(`me-edit-${name}`, 2000);
+      await page.getByRole("button", { name: "Back" }).first().click();
+      await page.getByTestId("me-date").waitFor({ timeout: 15000 });
+    }
+    // Change the goal and see it saved.
+    await page.getByTestId("me-goal").click();
+    await page.getByTestId("goal-15").click();
+    await page.getByTestId("setup-next").click();
+    await page.getByTestId("me-date").waitFor({ timeout: 15000 });
+    await page.getByText("15 minutes").waitFor({ timeout: 5000 });
+    await shot("me-after-goal", 1200);
   });
   await step("learn-later", async () => {
     // Further along: a unit check, then the second section's unit.

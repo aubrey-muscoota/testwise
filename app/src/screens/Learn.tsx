@@ -6,16 +6,16 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { LayoutChangeEvent, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { api, currentLearnerId, getExam, LearnPath, PathNode, PathUnit, placementKey } from "../api";
+import { api, currentLearnerId, getExam, LearnPath, PathNode, PathUnit } from "../api";
 import { useWide } from "../components/Shell";
-import { Bone, ErrorState, Rise, Skeleton, TextButton, isReduceMotion } from "../components/ui";
+import { Bone, ErrorState, Rise, Skeleton, isReduceMotion } from "../components/ui";
 import { feedback } from "../motion/feedback";
 import { LessonSource, nodeSource, useLoad } from "../nav";
 import { NodeCard, cardTop } from "../path/NodeCard";
 import { layoutTrack, Point, Track } from "../path/Track";
 import { UnitBanner } from "../path/UnitBanner";
 import { accentFor, NODE_H, NODE_W, ROW, XS } from "../path/shared";
-import { color, COLUMN, GUTTER, radius, space, type } from "../theme";
+import { color, COLUMN, GUTTER, space, type } from "../theme";
 
 // Remembered between visits (per learner, on this device) so the path can
 // show what changed: {current, done}.
@@ -27,10 +27,9 @@ const allNodes = (p: LearnPath): PathNode[] => [...p.units.flatMap((u) => u.node
 type Selected = { id: string; unit: string; at: Point };
 
 export function Learn({
-  onStart, onStartPlacement, onUnauthorized, fixture, openId,
+  onStart, onUnauthorized, fixture, openId,
 }: {
   onStart: (s: LessonSource) => void;
-  onStartPlacement: (section: string, name: string) => void;
   onUnauthorized?: () => void;
   // Review page only (?lab=path): a path to show instead of loading one, and a card to open.
   fixture?: LearnPath;
@@ -46,7 +45,6 @@ export function Learn({
   // An unlock to show: the circle just finished and the one it opened.
   const [unlock, setUnlock] = useState<{ from: string; to: string; stage: "pre" | "go" } | null>(null);
   const [checked, setChecked] = useState(!!fixture);
-  const [placed, setPlaced] = useState<Record<string, boolean>>(exam ? { [exam.default_section]: true } : {});
   const scrollRef = useRef<React.ComponentRef<typeof ScrollView>>(null);
   const unitY = useRef(new Map<string, number>());
   const trackY = useRef(new Map<string, number>());
@@ -57,15 +55,6 @@ export function Learn({
   useEffect(() => {
     if (error?.status === 401) onUnauthorized?.();
   }, [error, onUnauthorized]);
-
-  // The second section's placement offer, until it's taken or declined.
-  useEffect(() => {
-    const id = currentLearnerId();
-    for (const sec of exam?.sections ?? []) {
-      if (sec.id === exam?.default_section) continue;
-      AsyncStorage.getItem(placementKey(id, sec.id)).then((v) => v === "1" && setPlaced((p) => ({ ...p, [sec.id]: true })), () => {});
-    }
-  }, [exam]);
 
   // What changed since the last visit: the remembered current circle is done now.
   useEffect(() => {
@@ -175,18 +164,6 @@ export function Learn({
   if (error && !data) return <ErrorState message="I couldn't load your path. Is the connection down?" onRetry={reload} />;
   if (!data) return <LearnSkeleton />;
 
-  const settleOffer = (sec: string) => {
-    setPlaced((p) => ({ ...p, [sec]: true }));
-    AsyncStorage.setItem(placementKey(currentLearnerId(), sec), "1").catch(() => {});
-  };
-  // A section gets the placement offer above its first unit until the learner
-  // takes or declines it, or starts anything in it.
-  const untouched = (sectionId: string) => data.units
-    .filter((u) => u.section_id === sectionId)
-    .every((u) => u.nodes.every((n) => n.kind !== "skill" || (n.state !== "done" && n.mastery === 0 && !n.tested_out)));
-  const firstOf = new Map<string, string>();
-  for (const u of data.units) if (!firstOf.has(u.section_id)) firstOf.set(u.section_id, u.id);
-
   const open = (n: PathNode, unit: string, at: Point) => {
     setSelected((cur) => (cur?.id === n.id ? null : { id: n.id, unit, at }));
   };
@@ -219,8 +196,8 @@ export function Learn({
   const popIds = new Set<string>(unlock ? (unlock.stage === "go" ? [unlock.from, unlock.to] : [unlock.from]) : []);
 
   const groups: { id: string; unit: PathUnit | null; nodes: PathNode[]; accent: ReturnType<typeof accentFor> }[] = [
-    ...data.units.map((u) => ({ id: u.id, unit: u, nodes: u.nodes, accent: accentFor(u.section_index) })),
-    { id: "end", unit: null, nodes: [data.end as PathNode], accent: accentFor(0) },
+    ...data.units.map((u) => ({ id: u.id, unit: u, nodes: u.nodes, accent: accentFor(u.section_kind) })),
+    { id: "end", unit: null, nodes: [data.end as PathNode], accent: accentFor("numbers") },
   ];
   let offset = 0;
 
@@ -238,8 +215,6 @@ export function Learn({
           const from = offset;
           offset += g.nodes.length;
           const u = g.unit;
-          const sec = u && exam?.sections.find((x) => x.id === u.section_id);
-          const offer = !fixture && u && sec && firstOf.get(u.section_id) === u.id && !placed[u.section_id] && untouched(u.section_id);
           const sel = selected?.unit === g.id ? selected : null;
           const selNode = sel ? g.nodes.find((n) => n.id === sel.id) : null;
           return (
@@ -248,20 +223,6 @@ export function Learn({
               onLayout={(e) => { unitY.current.set(g.id, e.nativeEvent.layout.y); settle(); }}
               style={[{ marginTop: gi === 0 ? space(2) : space(1) }, sel && { zIndex: 10 }]}
             >
-              {offer && sec && (
-                // Quiet on purpose: the current circle and its card's button are
-                // the one focal point and the one primary; Socrates stays by the circle.
-                <Rise style={s.offer}>
-                  <Text style={type.heading}>New to {sec.name}?</Text>
-                  <Text style={[type.body, { color: color.ink2, marginTop: space(0.5) }]}>
-                    Answer about {(sec.domains.length || 4) * (exam?.placement.per_domain ?? 3)} questions and your path skips what you already know.
-                  </Text>
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: space(2), marginTop: space(1) }}>
-                    <TextButton title="Find my level" align="left" onPress={() => onStartPlacement(sec.id, sec.name)} testID="placement-offer" />
-                    <TextButton title="Not now" tone="soft" align="left" onPress={() => settleOffer(sec.id)} />
-                  </View>
-                </Rise>
-              )}
               {u && <UnitBanner unit={u} accent={g.accent} />}
               <Track
                 nodes={g.nodes}
@@ -306,5 +267,4 @@ function LearnSkeleton() {
 const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(1), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   // Grouped by space only: no card around the offer.
-  offer: { marginTop: space(1), marginBottom: space(3), borderRadius: radius.card, backgroundColor: color.bg },
 });

@@ -1,13 +1,41 @@
-import { json, fail } from "../lib/http.js";
+import { json, fail, today as localToday } from "../lib/http.js";
+import { getExam, isReady, learnerExam } from "../lib/exam.js";
+import { minutesOptions } from "../plan.js";
+import { checkProfile } from "./plan.js";
 
 // A learner is created only after the app's age question says 13 or older.
-export async function createLearner(env, b) {
+// Setup sends the test the learner picked and their answers (test date,
+// daily time, target) with it, so everything is stored in one INSERT: nothing
+// before the age answer, and no half-made learner if a field is wrong.
+// Old app builds send only age_13_plus; their learners have no exam_id (the
+// default exam) and no profile yet.
+export async function createLearner(env, request, b) {
   if (b.age_13_plus !== true) return fail(403, "age_gate");
+  let examId = null;
+  if (b.exam_id !== undefined) {
+    if (b.exam_id === "__invalid__" || !(await isReady(env, b.exam_id))) return fail(400, "exam_id is not available");
+    examId = b.exam_id;
+  }
+  const p = b.profile;
+  const given = p && Object.values(p).some((v) => v !== undefined);
+  let profile = null;
+  const day = localToday(request);
+  if (given) {
+    const exam = examId ? await getExam(env, examId) : await learnerExam(env, null).catch(() => null);
+    const minutes = minutesOptions(exam);
+    const v = checkProfile(p, {}, day, minutes);
+    if (v.error) return fail(400, v.error);
+    profile = { ...v, daily_minutes: v.daily_minutes ?? minutes.default };
+  }
   const id = crypto.randomUUID().replace(/-/g, "");
   const now = Date.now();
-  await env.DB.prepare("INSERT INTO learners (id, created_at, age_confirmed_at) VALUES (?, ?, ?)").bind(id, now, now).run();
+  await env.DB.prepare(
+    `INSERT INTO learners (id, created_at, age_confirmed_at, exam_id, exam_date, target_score, daily_minutes, plan_started_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(id, now, now, examId, profile?.exam_date ?? null, profile?.target_score ?? null, profile?.daily_minutes ?? null, profile ? day : null).run();
   return json({ id });
 }
+
 
 export async function consentState(env, learnerId) {
   const r = await env.DB.prepare("SELECT age_confirmed_at, ai_consent_at FROM learners WHERE id = ?").bind(learnerId).first();

@@ -1,0 +1,8 @@
+{
+  "//": "Listed in the test picker as not ready yet. No sections, skills or items until the pack is built (docs/ADDING_AN_EXAM.md).",
+  "id": "gre",
+  "enabled": false,
+  "name": "GRE General Test",
+  "short_name": "GRE",
+  "order": 1
+}

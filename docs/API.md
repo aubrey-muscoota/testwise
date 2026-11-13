@@ -6,6 +6,40 @@ Every request needs the learner id in the `x-learner` header (or `?learner=` / a
 
 Errors are `{"error": "<reason>"}` with a 4xx status. The reason strings are written to be readable, but match on the status code.
 
+## Setup
+
+These three need no learner: they run before one exists.
+
+### `GET /api/exams`
+
+Every exam pack, for the test picker, in the packs' `order`:
+
+```json
+{ "exams": [
+  { "id": "sat", "name": "SAT", "short_name": "SAT", "ready": true, "sections": ["Math", "Reading and Writing"] },
+  { "id": "gre", "name": "GRE General Test", "short_name": "GRE", "ready": false }
+] }
+```
+
+`ready` is `true` for a pack that is turned on (`enabled: true`) and seeded. A not-ready row carries only its id and names: a stub pack (`exams/<id>/exam.json` with `enabled: false`) or a pack that was turned off. Turning a pack on lists it as ready with no app change.
+
+### `GET /api/exam?exam=<id>`
+
+The exam pack (exam.json and voice.json, with domain weights). With a learner, always the learner's own exam. Without one, the ready exam named by `exam` (the one picked in setup), else the default exam. `sections[].kind` is `"numbers"` or `"words"` (the app's section colour: blue or teal). `test_dates` lists the official test days after the caller's local day (from `x-tz-offset`) and at most two years out, `[{ "date": "2026-12-05", "register_by": "2026-11-20" }, { "date": "2027-08-28", "anticipated": true }]`; `register_by` is dropped once it has passed. A pack without official days has no `test_dates`, and the app shows a calendar.
+
+### `POST /api/learners`
+
+```json
+{ "age_13_plus": true, "exam_id": "sat",
+  "profile": { "exam_date": "2026-12-05", "daily_minutes": 10, "target_score": 1400 } }
+```
+
+Creates the learner after the birthday question, with the picked exam and the setup answers in one call. `profile` takes the same fields and rules as `POST /api/profile` (`not_booked: true` in place of a date); `daily_minutes` defaults to the pack's `plan.default_daily_minutes`. `400 "exam_id is not available"` for an unknown or not-ready exam; a bad profile is a `400` too, and no learner is created. Older builds that send only `age_13_plus` still work (no exam, no profile yet). Returns `{ "id": "…" }`.
+
+### Placement over every section
+
+`POST /api/lessons` with `{ "placement": true, "all_sections": true }` (and the learner) starts setup's "Find my level": probes from every domain of every section, `min(per_domain, max(1, floor(max_questions / domains)))` a domain with difficulties spread over `placement.difficulties` (2 a domain gives the easiest and the hardest), sections taking turns. The finish (`POST /api/lessons/finish`) tests out skills across the whole exam, and its `placement.total_skills` counts the whole exam. `{ "placement": true, "section": "<id>" }` (one section, or the default section without one) still works for older builds.
+
 ## Profile
 
 ### `GET /api/profile`
@@ -29,7 +63,7 @@ Errors are `{"error": "<reason>"}` with a 4xx status. The reason strings are wri
 | `not_booked` | `true` when onboarded without a date. |
 | `assumed_exam_date` | When not booked: the date the plan assumes (8 weeks after the plan started, never less than 4 weeks away). Otherwise `null`. |
 | `target_score` | Integer or `null`. Stored and shown back; the plan doesn't use it yet. |
-| `daily_minutes` | 10, 20, 30 or 45 (`null` before onboarding; the plan then uses 20). |
+| `daily_minutes` | One of the exam's `plan.daily_minutes` (5, 10, 15 or 20 for the SAT); `null` before onboarding, when the plan uses the pack's `default_daily_minutes` (10). A time saved before these options (30 or 45) reads as the largest option at or below it (20); the stored value is unchanged, and the data export shows it as stored. |
 | `plan_started_at` | Local day the current plan began. It resets to today whenever the exam date changes, so "behind" is measured from when the learner committed to that date. |
 
 `GET /api/tree` also returns this object as `profile`.
@@ -41,7 +75,7 @@ Every field is optional; fields you leave out keep their value.
 ```json
 { "exam_date": "2027-03-13", "target_score": 1400, "daily_minutes": 20 }
 { "not_booked": true }
-{ "daily_minutes": 30 }
+{ "daily_minutes": 15 }
 ```
 
 | Field | Rules |
@@ -49,9 +83,9 @@ Every field is optional; fields you leave out keep their value.
 | `exam_date` | `YYYY-MM-DD` or `null`. Not in the past (learner's local day), at most 2 years out. |
 | `not_booked` | `true` clears the date; the plan assumes a test 8 weeks from today. |
 | `target_score` | Whole number or `null`. Validate the exam's range in the app (SAT: 400–1600 in steps of 10). |
-| `daily_minutes` | One of 10, 20, 30, 45. |
+| `daily_minutes` | One of the exam's `plan.daily_minutes` (5, 10, 15, 20). |
 
-Returns the profile (same shape as `GET`). `400` with a reason for a bad field: `exam_date must be YYYY-MM-DD`, `exam_date is in the past`, `exam_date is more than 2 years away`, `target_score must be a whole number`, `daily_minutes must be one of 10, 20, 30, 45`.
+Returns the profile (same shape as `GET`). `400` with a reason for a bad field: `exam_date must be YYYY-MM-DD`, `exam_date is in the past`, `exam_date is more than 2 years away`, `target_score must be a whole number`, `daily_minutes must be one of 5, 10, 15, 20`.
 
 ## Plan
 
@@ -141,7 +175,7 @@ Top-level fields:
 | `today_tasks_done` | How many of `today` are done. |
 | `today` | Today's tasks, in suggested order (see below). |
 | `minutes_planned` | Sum of the tasks' `minutes`; within about ±25% of `daily_minutes`, except on rest days. |
-| `daily_minutes` | The time budget used (profile value, or 20). |
+| `daily_minutes` | The time budget used (the profile value read as above, or the pack's default, 10). |
 | `skills_started` / `skills_total` | Skills with any practice or tested out, and all skills with questions. |
 | `learn_by` | The day every skill should be started by (about 60% into the runway). |
 | `test_ready_from` | First test-ready day. |
@@ -198,7 +232,7 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
   "current": "skill:alg-linear-func",
   "units": [
     {
-      "id": "alg", "name": "Algebra", "section_id": "sat-math", "section_name": "Math", "section_index": 0,
+      "id": "alg", "name": "Algebra", "section_id": "sat-math", "section_name": "Math", "section_index": 0, "section_kind": "numbers",
       "number": 1, "of": 8, "done": 1, "total": 5,
       "nodes": [
         { "id": "skill:alg-linear-eq-1var", "kind": "skill", "state": "done", "title": "Linear equations in one variable",
@@ -229,7 +263,7 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
 | Field | Meaning |
 | --- | --- |
 | `current` | The id of the one circle in `state: "current"`: the first open circle in path order, or `due` on a day with reviews due. There is always exactly one. |
-| `units[]` | In path order. `section_index` is the section's place in the exam (the app colors units by it); `done` / `total` count the unit's finished skills. |
+| `units[]` | In path order. `section_kind` is the section's `kind` from the pack (`numbers` or `words`), which the app colours units by (blue or teal); `section_index` is the section's place in the exam, kept for older builds; `done` / `total` count the unit's finished skills. |
 | `nodes[].id` | Stable: `skill:<skill id>`, `review:<domain id>:<k>`, `check:<domain id>`, `due` and `end`. |
 | `nodes[].kind` | `skill` (a lesson), `review` (practice `mode: "review"` over the skills since the last review), `check` (practice `mode: "mixed"` over the unit's skills, 8–12 questions). The `due` circle is also `kind: "review"`, but starts a review lesson (`POST /api/lessons` with `skill_id: null`) over every due question. |
 | `nodes[].state` | `done`, `current`, `open` or `locked`. |

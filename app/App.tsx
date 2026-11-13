@@ -4,48 +4,51 @@ import {
   useFonts, Nunito_400Regular, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Nunito_900Black,
 } from "@expo-google-fonts/nunito";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api, createLearner, forgetLearner, getExam, loadExam, loadLearner, placementKey, Profile, refreshPathSummary } from "./src/api";
-import { Welcome } from "./src/screens/Welcome";
+import { api, createLearner, forgetLearner, LearnPath, loadExam, loadLearner, PathNode, placementKey, placementKeys, Profile, refreshPathSummary } from "./src/api";
 import { Learn } from "./src/screens/Learn";
 import { Progress } from "./src/screens/Progress";
 import { Practice } from "./src/screens/Practice";
 import { Me } from "./src/screens/Me";
-import { Field, Onboarding } from "./src/screens/Onboarding";
+import { EditField, Field } from "./src/setup/EditField";
+import { profileOf, Setup, SetupStep } from "./src/setup/Setup";
 import { Lesson, LessonResult } from "./src/screens/Lesson";
 import { Complete } from "./src/screens/Complete";
-import { PlacementIntro } from "./src/screens/PlacementIntro";
 import { AgeGate, TooYoung } from "./src/screens/AgeGate";
 import { SocratesLab } from "./src/screens/SocratesLab";
 import { RendererLab } from "./src/screens/RendererLab";
 import { PathLab } from "./src/screens/PathLab";
+import { SetupLab } from "./src/screens/SetupLab";
 import { Shell } from "./src/components/Shell";
 import { useReducedMotion } from "./src/components/ui";
 import { Socrates } from "./src/socrates/Socrates";
 import { initFeedback, preloadSounds } from "./src/motion/feedback";
-import { LessonSource, Tab } from "./src/nav";
+import { LessonSource, nodeSource, Tab } from "./src/nav";
 import { color } from "./src/theme";
 
 type Screen =
   | { name: "boot" }
-  | { name: "welcome" }
-  | { name: "age"; existing: boolean }
+  // Setup (src/setup/Setup.tsx): every step on a fresh install, fewer for a returning learner.
+  | { name: "setup"; steps: SetupStep[] }
+  // Learners from before the age question answer it once.
+  | { name: "age" }
   | { name: "tooYoung" }
-  | { name: "onboarding"; then: "placement" | "home" }
-  | { name: "placement" }
   | { name: "main"; tab: Tab; key: number }
   | { name: "edit"; field: Field; profile: Profile; back: Tab }
-  | { name: "lesson"; source: LessonSource; back: Tab | "placement" }
-  // Continue goes back to the tab the lesson started from (Learn after placement).
+  | { name: "lesson"; source: LessonSource; back: Tab }
+  // Continue goes back to the tab the lesson started from (Learn after setup).
   | { name: "complete"; result: LessonResult; back: Tab };
 
+const FRESH: SetupStep[] = ["picker", "welcome", "date", "goal", "score", "age", "start"];
+
 // Review pages, web only: ?lab=socrates (the rig), ?lab=renderers (every item
-// type) and ?lab=path (the Learn path from fixtures).
+// type), ?lab=path (the Learn path from fixtures) and ?lab=setup (each setup step).
 const LAB = Platform.OS === "web" && typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("lab") : null;
 
 export default function App() {
   if (LAB === "socrates") return <SocratesLab />;
   if (LAB === "renderers") return <RendererLab />;
   if (LAB === "path") return <PathLab />;
+  if (LAB === "setup") return <SetupLab />;
   return <TestwiseApp />;
 }
 
@@ -68,22 +71,24 @@ function TestwiseApp() {
     setScreen({ name: "main", tab, key: Math.random() });
   }, []);
 
-  // Where a returning learner lands: the test-date questions once, then the
-  // placement offer if they never chose, else Learn.
+  // Where a returning learner lands: the setup questions they haven't
+  // answered (test date, goal, score once; where to start if they never
+  // chose and have no XP), else Learn.
   const resume = useCallback(async (id: string) => {
-    let needsPlacement = false;
+    let needsStart = false;
     if (!(await placementSettled(id))) {
       try {
         const t = await api.tree();
-        if (t.stats.xp === 0) needsPlacement = true;
-        else await settlePlacement();
+        if (t.stats.xp === 0) needsStart = true;
+        // Answered something already (a quiz left halfway): the start is behind them.
+        else await settleAllPlacement();
       } catch {}
     }
     try {
       const p = await api.profile();
-      if (!p.onboarded) return setScreen({ name: "onboarding", then: needsPlacement ? "placement" : "home" });
+      if (!p.onboarded) return setScreen({ name: "setup", steps: ["date", "goal", "score", ...(needsStart ? ["start" as const] : [])] });
     } catch {}
-    if (needsPlacement) return setScreen({ name: "placement" });
+    if (needsStart) return setScreen({ name: "setup", steps: ["start"] });
     home();
   }, [home]);
 
@@ -91,38 +96,49 @@ function TestwiseApp() {
     (async () => {
       if (await ageBlocked()) return setScreen({ name: "tooYoung" });
       const id = await loadLearner();
-      // Exam name, sections and disclaimer come from the exam pack (GET /api/exam).
+      // A fresh install starts at the test picker, which loads the list itself.
+      if (!id) return setScreen({ name: "setup", steps: FRESH });
+      // Exam name, sections and disclaimer come from the learner's exam pack (GET /api/exam).
       await loadExam();
-      if (!id) return setScreen({ name: "welcome" });
-      // Learners from before the age question answer it once.
       try {
         const t = await api.tree();
-        if (t.learner && !t.learner.age_confirmed) return setScreen({ name: "age", existing: true });
+        if (t.learner && !t.learner.age_confirmed) return setScreen({ name: "age" });
       } catch {}
       await resume(id);
     })();
   }, [resume]);
 
-  const answerAge = useCallback(async (existing: boolean, ok: boolean) => {
+  // A learner from before the age question.
+  const answerOldAge = useCallback(async (ok: boolean) => {
     if (!ok) {
       await blockAge();
-      if (existing) await api.deleteMe().catch(() => forgetLearner());
+      await api.deleteMe().catch(() => forgetLearner());
       return setScreen({ name: "tooYoung" });
     }
-    if (existing) {
-      await api.setConsent({ age_13_plus: true }).catch(() => {});
-      const id = await loadLearner();
-      return id ? resume(id) : setScreen({ name: "welcome" });
-    }
-    currentLearner = await createLearner();
-    setScreen({ name: "onboarding", then: "placement" });
+    await api.setConsent({ age_13_plus: true }).catch(() => {});
+    const id = await loadLearner();
+    return id ? resume(id) : setScreen({ name: "setup", steps: FRESH });
   }, [resume]);
 
-  const skipPlacement = useCallback(() => { settlePlacement(); home(); }, [home]);
   const reset = useCallback(() => {
-    forgetLearner().then(() => setScreen({ name: "welcome" }));
+    forgetLearner().then(() => setScreen({ name: "setup", steps: FRESH }));
   }, []);
-  const startFrom = (back: Tab | "placement") => (source: LessonSource) => setScreen({ name: "lesson", source, back });
+  const startFrom = (back: Tab) => (source: LessonSource) => setScreen({ name: "lesson", source, back });
+
+  // "Where to start": the first lesson on the path, or the placement quiz over
+  // every section. Either way a question is next, not the Learn tab.
+  const startFirst = useCallback(async (choice: "basics" | "level") => {
+    if (choice === "level") {
+      setScreen({ name: "lesson", source: { kind: "placement", all: true, name: "" }, back: "learn" });
+      return;
+    }
+    await settleAllPlacement();
+    const p: LearnPath = await api.path();
+    const n = [...p.units.flatMap((u) => u.nodes), p.end as PathNode].find((x) => x.id === p.current);
+    const src = n ? nodeSource(n) : null;
+    if (src) setScreen({ name: "lesson", source: src, back: "learn" });
+    else home();
+  }, [home]);
 
   let body: React.ReactNode;
   const booting = !fontsLoaded || screen.name === "boot";
@@ -135,33 +151,43 @@ function TestwiseApp() {
         <Socrates size={96} mood="thinking" />
       </View>
     );
-  } else if (screen.name === "welcome") {
-    body = <Welcome onStart={async () => setScreen({ name: "age", existing: false })} />;
+  } else if (screen.name === "setup") {
+    body = (
+      <Setup
+        steps={screen.steps}
+        remember={screen.steps[0] === "picker"}
+        onPickExam={async (examId) => {
+          const e = await loadExam(examId);
+          if (e?.id !== examId) throw new Error("exam not loaded");
+        }}
+        onAge={async (ok, answers) => {
+          if (!ok) {
+            await blockAge();
+            setScreen({ name: "tooYoung" });
+            return;
+          }
+          currentLearner = await createLearner({ ...(answers.examId ? { exam_id: answers.examId } : {}), profile: profileOf(answers) });
+        }}
+        onSaveProfile={async (answers) => { await api.saveProfile(profileOf(answers)); }}
+        onStart={startFirst}
+        onDone={() => home()}
+      />
+    );
   } else if (screen.name === "age") {
-    const existing = screen.existing;
-    body = <AgeGate onAnswer={(ok) => answerAge(existing, ok)} />;
+    body = <AgeGate onAnswer={answerOldAge} />;
   } else if (screen.name === "tooYoung") {
     body = <TooYoung />;
-  } else if (screen.name === "onboarding") {
-    const then = screen.then;
-    body = <Onboarding onDone={() => (then === "placement" ? setScreen({ name: "placement" }) : home())} />;
-  } else if (screen.name === "placement") {
-    const exam = getExam();
-    const section = exam?.default_section ?? "";
-    const name = exam?.sections.find((x) => x.id === section)?.name ?? "";
-    body = <PlacementIntro onQuiz={() => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "placement" })} onSkip={skipPlacement} />;
   } else if (screen.name === "main" || screen.name === "edit") {
     const tab: Tab = screen.name === "main" ? screen.tab : screen.back;
     let inner: React.ReactNode;
     if (screen.name === "edit") {
       const back = screen.back;
-      inner = <Onboarding only={screen.field} initial={screen.profile} onDone={() => home(back)} onCancel={() => home(back)} />;
+      inner = <EditField field={screen.field} profile={screen.profile} onDone={() => home(back)} onCancel={() => home(back)} />;
     } else if (tab === "learn") {
       inner = (
         <Learn
           key={screen.key}
           onStart={startFrom("learn")}
-          onStartPlacement={(section, name) => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "learn" })}
           onUnauthorized={reset}
         />
       );
@@ -183,10 +209,14 @@ function TestwiseApp() {
     body = (
       <Lesson
         source={source}
-        onQuit={() => (back === "placement" ? setScreen({ name: "placement" }) : home(back))}
+        onQuit={() => {
+          // Quitting the quiz from setup means starting from the basics.
+          if (source.kind === "placement" && source.all) settleAllPlacement();
+          home(back);
+        }}
         onDone={(result) => {
-          if (result.placement && source.kind === "placement") settlePlacement(source.section);
-          setScreen({ name: "complete", result, back: back === "placement" ? "learn" : back });
+          if (result.placement) settleAllPlacement();
+          setScreen({ name: "complete", result, back });
         }}
       />
     );
@@ -207,7 +237,7 @@ function TestwiseApp() {
   );
 }
 
-// Remembers (per learner and section) that the placement offer was taken or declined.
+// Remembers (per learner and section) that placement was taken or declined.
 // The exam's default section keeps the original key so existing learners aren't asked again.
 let currentLearner: string | null = null;
 
@@ -219,10 +249,11 @@ async function placementSettled(id: string) {
     return false;
   }
 }
-async function settlePlacement(section?: string) {
+// Setup's choice covers every section, so no section offers placement again.
+async function settleAllPlacement() {
   try {
     const id = currentLearner ?? (await loadLearner());
-    await AsyncStorage.setItem(placementKey(id, section), "1");
+    await AsyncStorage.multiSet(placementKeys(id).map((k) => [k, "1"]));
   } catch {}
 }
 

@@ -11,6 +11,12 @@
       "sat-rw": "Reading and Writing"
     }
   },
+  "setup": {
+    "date": "When's your SAT?",
+    "goal": "How much time on a normal school day?",
+    "score": "What score are you aiming for?",
+    "start": "Where do you want to start?"
+  },
   "placement_intro": {
     "sat-math": "Answer what you can and I'll skip the math you already know.",
     "sat-rw": "Answer what you can and I'll skip what you already know."

@@ -20,8 +20,9 @@ import { UNLOCK_ATTEMPTS } from "./engine.js";
 export const MINUTES = { lesson: 6, review: 0.6, practice: 1 };
 export const LESSON_QUESTIONS = 8;
 export const NOT_BOOKED_DAYS = 56; // "not booked yet" assumes a test 8 weeks out
-export const DAILY_MINUTES_OPTIONS = [10, 20, 30, 45];
-export const DEFAULT_DAILY_MINUTES = 20;
+// Fallbacks when the exam pack has no plan.daily_minutes / default_daily_minutes.
+export const DAILY_MINUTES_OPTIONS = [5, 10, 15, 20];
+export const DEFAULT_DAILY_MINUTES = 10;
 export const LEARN_SHARE = 0.6; // all skills started by ~60% of the runway
 export const LONG_RUNWAY_DAYS = 150; // ~5 months+: at most one new skill a day
 export const REVIEW_CHUNK = LESSON_QUESTIONS; // a review lesson serves up to 8 due items
@@ -238,6 +239,26 @@ export function phaseOn(daysLeft, tr, anyUnstarted) {
   return anyUnstarted ? "learn" : "strengthen";
 }
 
+/**
+ * A stored daily time as one of today's options: the largest option at or
+ * below it, else the smallest. Learners who chose 30 or 45 before the options
+ * became 5, 10, 15 and 20 get 20; their row keeps the old value, so an older
+ * Worker still reads it. null stays null (no profile yet).
+ */
+export function normalizeMinutes(m, options) {
+  if (typeof m !== "number" || !Number.isFinite(m)) return null;
+  const opts = [...(options?.length ? options : DAILY_MINUTES_OPTIONS)].sort((a, b) => a - b);
+  const below = opts.filter((x) => x <= m);
+  return below.length ? below[below.length - 1] : opts[0];
+}
+
+/** The daily-time options and default from the exam pack (falling back to plan.js). */
+export function minutesOptions(exam) {
+  const options = Array.isArray(exam?.plan?.daily_minutes) && exam.plan.daily_minutes.length ? exam.plan.daily_minutes : DAILY_MINUTES_OPTIONS;
+  const dflt = options.includes(exam?.plan?.default_daily_minutes) ? exam.plan.default_daily_minutes : (options.includes(DEFAULT_DAILY_MINUTES) ? DEFAULT_DAILY_MINUTES : options[0]);
+  return { options, default: dflt };
+}
+
 // Lesson cap per day: lessons may use up to ~75% of the daily time.
 export const lessonCap = (minutes, daysLeft) => {
   const cap = Math.max(1, Math.floor((0.75 * minutes) / MINUTES.lesson));
@@ -302,7 +323,7 @@ function weakWhy(list) {
  */
 export function runwayContext(o) {
   const today = o.today;
-  const minutes = DAILY_MINUTES_OPTIONS.includes(o.daily_minutes) ? o.daily_minutes : DEFAULT_DAILY_MINUTES;
+  const minutes = normalizeMinutes(o.daily_minutes, o.minutes_options) ?? o.default_minutes ?? DEFAULT_DAILY_MINUTES;
   const pace = o.pace || {};
   const planStart = o.plan_started_at && daysBetween(o.plan_started_at, today) >= 0 ? o.plan_started_at : today;
   const exam = effectiveExamDate({ exam_date: o.exam_date, plan_started_at: planStart, today });
@@ -424,7 +445,11 @@ export function buildPlan(o) {
       start: { method: "POST", path: "/api/practice", body },
     };
   };
-  const nFor = (mins, per) => Math.max(5, Math.min(30, Math.round(mins / per)));
+  // A set is 3 to 30 questions, sized to the time left (3, not more, so a
+  // 5-minute day isn't pushed past its time by a set's minimum).
+  const nFor = (mins, per) => Math.max(3, Math.min(30, Math.round(mins / per)));
+  // At least 5 reviews when there's room; a 5-minute day keeps room for a short set.
+  const reviewFloor = Math.min(5, Math.floor((0.4 * minutes) / MINUTES.review));
 
   // New-skill lessons done today are always shown, done.
   const newDoneToday = [...new Set(done.filter((l) => l.kind === "skill" && l.skill_id && !startedSod.has(l.skill_id)).map((l) => l.skill_id))]
@@ -439,7 +464,7 @@ export function buildPlan(o) {
     const notYet = new Set([...startedSod, ...newDoneToday]);
     const att = (id) => (newDoneToday.includes(id) ? Math.max(sodAttempts(id), LESSON_QUESTIONS) : sodAttempts(id));
     for (const s of pickNewSkills(order, notYet, att, left)) add(lessonTask(s, false));
-    addReview(tl.daysLeft > LONG_RUNWAY_DAYS ? 16 : Math.max(5, Math.floor((0.3 * minutes) / MINUTES.review)));
+    addReview(tl.daysLeft > LONG_RUNWAY_DAYS ? 16 : Math.max(reviewFloor, Math.floor((0.3 * minutes) / MINUTES.review)));
     // Practice fills the rest: skills already started plus today's new ones.
     const todayIds = new Set(tasks.filter((t) => t.kind === "lesson").map((t) => t.skill_id));
     const pool = skills.filter((s) => s.started || todayIds.has(s.id));
@@ -465,8 +490,8 @@ export function buildPlan(o) {
     }
   } else if (phase === "strengthen") {
     for (const id of newDoneToday) add(lessonTask(byId.get(id), true));
-    addReview(Math.max(5, Math.floor((0.3 * minutes) / MINUTES.review)));
-    const weak = weakest(skills, minutes >= 30 ? 4 : 3);
+    addReview(Math.max(reviewFloor, Math.floor((0.3 * minutes) / MINUTES.review)));
+    const weak = weakest(skills, minutes >= 20 ? 4 : 3);
     const weakShare = budget >= 8 ? 0.6 : 1;
     if (budget >= 3 && weak.length) {
       const per = practiceMinutesPer(weak, pace);
@@ -496,7 +521,9 @@ export function buildPlan(o) {
     addReview(Math.max(3, Math.floor((0.15 * minutes) / MINUTES.review)));
     const pool = startedNow.length ? startedNow : skills;
     const secs = timedSecondsPer(pool, pace);
-    const n = Math.max(5, Math.min(30, Math.round((budget * 0.75) / (secs / 60))));
+    const timedN = (share) => Math.max(3, Math.min(30, Math.round((budget * share) / (secs / 60))));
+    // Three quarters of the time, unless what's left is too short for a second set.
+    const n = budget - timedN(0.75) * (secs / 60) < 3 ? timedN(1) : timedN(0.75);
     add(practiceTask("timed", pool, n, {
       title: `Timed set: ${n} questions`,
       why: `${plural(tl.daysLeft, "day")} to go. This set runs at test pace (about ${Math.round(secs)} seconds a question), so the real clock feels normal.`,

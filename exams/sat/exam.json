@@ -3,7 +3,9 @@
   "enabled": true,
   "name": "SAT",
   "short_name": "SAT",
-  "tagline": "A daily SAT plan, built from your test date",
+  "// order": "Place in the test picker (lowest first).",
+  "order": 0,
+  "tagline": "SAT practice in five minutes a day, with Socrates",
   "audience": "high school students",
   "publisher": {
     "name": "College Board",
@@ -12,13 +14,30 @@
   "score": {
     "min": 400,
     "max": 1600,
-    "step": 10
+    "step": 10,
+    "// targets": "The target-score choices in setup and Me, lowest first. label is shown instead of the number when set.",
+    "targets": [
+      {
+        "value": 1000
+      },
+      {
+        "value": 1200
+      },
+      {
+        "value": 1400
+      },
+      {
+        "value": 1500,
+        "label": "1500+"
+      }
+    ]
   },
   "default_section": "sat-math",
   "sections": [
     {
       "id": "sat-math",
       "name": "Math",
+      "kind": "numbers",
       "minutes": 70,
       "questions": 44,
       "modules": 2,
@@ -39,6 +58,7 @@
     {
       "id": "sat-rw",
       "name": "Reading and Writing",
+      "kind": "words",
       "minutes": 64,
       "questions": 54,
       "modules": 2,
@@ -69,17 +89,18 @@
       2,
       3
     ],
-    "seconds_per_question": 25
+    "seconds_per_question": 25,
+    "max_questions": 16
   },
   "plan": {
     "default_weeks": 8,
     "daily_minutes": [
+      5,
       10,
-      20,
-      30,
-      45
+      15,
+      20
     ],
-    "default_daily_minutes": 20,
+    "default_daily_minutes": 10,
     "rest_days_per_week": 1,
     "phases": [
       {
@@ -96,6 +117,61 @@
         "id": "test-ready",
         "name": "Test-ready",
         "share": 0.2
+      }
+    ]
+  },
+  "test_dates": {
+    "//": "Official test days, as published. Setup shows the ones still ahead of the learner's local day; anticipated dates are not confirmed by the publisher yet. Re-check before each SAT year.",
+    "source": "https://satsuite.collegeboard.org/sat/dates-deadlines",
+    "checked": "2026-11-12",
+    "dates": [
+      {
+        "date": "2026-12-05",
+        "register_by": "2026-11-20"
+      },
+      {
+        "date": "2027-03-06",
+        "register_by": "2027-02-19"
+      },
+      {
+        "date": "2027-05-01",
+        "register_by": "2027-04-16"
+      },
+      {
+        "date": "2027-06-05",
+        "register_by": "2027-05-21"
+      },
+      {
+        "date": "2027-08-28",
+        "anticipated": true
+      },
+      {
+        "date": "2027-09-18",
+        "anticipated": true
+      },
+      {
+        "date": "2027-10-09",
+        "anticipated": true
+      },
+      {
+        "date": "2027-11-06",
+        "anticipated": true
+      },
+      {
+        "date": "2027-12-04",
+        "anticipated": true
+      },
+      {
+        "date": "2028-03-04",
+        "anticipated": true
+      },
+      {
+        "date": "2028-05-06",
+        "anticipated": true
+      },
+      {
+        "date": "2028-06-03",
+        "anticipated": true
       }
     ]
   }

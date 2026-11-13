@@ -4,7 +4,7 @@
 // The new exam is a test-only pack in test/fixtures/exams/demo/.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -26,15 +26,19 @@ test("build-seed accepts the demo pack", () => {
   const res = buildSeed({ examsDir: FIXTURES });
   assert.ok(res.ok, res.problems?.join("\n"));
   assert.match(res.summary, /1 exam \(demo\): 2 domains, 3 skills, 6 items from 3 files/);
-  assert.match(res.sql, /INSERT INTO exams \(id, name, config, voice, position\) VALUES \('demo', 'Demo Exam'/);
+  assert.match(res.sql, /INSERT INTO exams \(id, name, short_name, config, voice, position, enabled\) VALUES \('demo', 'Demo Exam', 'Demo'/);
   assert.match(res.sql, /INSERT INTO domains .*'demo-arith'.* 0\.6\)/);
   assert.ok(!res.sql.includes('"//"'), "comment keys are dropped");
 });
 
-test("the SAT pack is valid and is the only enabled exam", () => {
+test("the SAT pack is valid and is the only enabled exam; GRE, GMAT and CFA are listed", () => {
   const packs = loadPacks(path("../exams"));
   assert.deepEqual(packs.map((p) => p.exam.id), ["sat"]);
   assert.deepEqual(validatePacks(packs), []);
+  const every = loadPacks(path("../exams"), { enabledOnly: false });
+  assert.deepEqual(validatePacks(every), []);
+  assert.deepEqual(every.filter((p) => !p.exam.enabled).map((p) => p.exam.id).sort(), ["cfa", "gmat", "gre"]);
+  assert.deepEqual(packs[0].exam.sections.map((s) => s.kind), ["numbers", "words"]);
   const weights = packs[0].skills.sections.map((s) => s.domains.reduce((a, d) => a + d.weight, 0));
   for (const w of weights) assert.ok(Math.abs(w - 1) < 1e-9);
 });
@@ -66,6 +70,122 @@ test("broken packs get one readable problem each", () => {
     /"demo-add-099": needs 3 choices/,
   ]) assert.match(problems, want);
   assert.ok(problems.split("\n").every((m) => m.startsWith("exams/demo: ")));
+});
+
+// A stub folder: only an exam.json listing.
+function stubDir(exam) {
+  const dir = mkdtempSync(join(tmpdir(), "testwise-stub-"));
+  mkdirSync(join(dir, exam.id));
+  writeFileSync(join(dir, exam.id, "exam.json"), JSON.stringify(exam));
+  return dir;
+}
+
+test("a stub pack (exam.json only, not enabled) loads and validates; it needs a short name", () => {
+  const dir = stubDir({ id: "gre", enabled: false, name: "GRE General Test", short_name: "GRE", order: 1 });
+  try {
+    const [pack] = loadPacks(dir, { enabledOnly: false });
+    assert.deepEqual(pack.problems, []);
+    assert.deepEqual(validatePacks([pack]), []);
+    delete pack.exam.short_name;
+    assert.match(validatePacks([pack]).join("\n"), /"short_name" must be 1 to 5 characters/);
+    pack.exam.short_name = "GRE-GT";
+    assert.match(validatePacks([pack]).join("\n"), /"short_name" must be 1 to 5 characters/);
+    pack.exam.short_name = "GRE";
+    pack.exam.order = 1.5;
+    assert.match(validatePacks([pack]).join("\n"), /"order" must be a whole number/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("an enabled pack still needs skills.json and voice.json", () => {
+  const dir = stubDir({ id: "gre", enabled: true, name: "GRE General Test", short_name: "GRE" });
+  try {
+    const [pack] = loadPacks(dir);
+    const problems = validatePacks([pack]).join("\n");
+    assert.match(problems, /skills\.json: missing/);
+    assert.match(problems, /voice\.json: missing/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("sections need a kind, and score targets sit on the scale in order", () => {
+  const p = demo();
+  p.exam = clone(p.exam);
+  delete p.exam.sections[0].kind;
+  assert.match(validatePacks([p]).join("\n"), /sections\[0\] \(demo-quant\): "kind" must be "numbers" or "words"/);
+  p.exam.sections[0].kind = "colour";
+  assert.match(validatePacks([p]).join("\n"), /"kind" must be "numbers" or "words"/);
+  p.exam.sections[0].kind = "words";
+  assert.deepEqual(validatePacks([p]), []);
+  for (const targets of [undefined, [], [{ value: 70 }], [{ value: 50 }, { value: 40 }], [{ value: 40.5 }], [{ value: 40, label: "" }]]) {
+    p.exam.score.targets = targets;
+    assert.match(validatePacks([p]).join("\n"), /"score\.targets" must list/, JSON.stringify(targets));
+  }
+});
+
+test("test dates: real days, in order, deadlines before their day, an https source", () => {
+  const p = demo();
+  p.exam = clone(p.exam);
+  const good = { source: "https://example.org/dates", checked: "2026-11-12", dates: [{ date: "2026-12-05", register_by: "2026-11-20" }, { date: "2027-03-06", anticipated: true }] };
+  p.exam.test_dates = clone(good);
+  assert.deepEqual(validatePacks([p]), []);
+  const bad = (mut, want) => {
+    p.exam.test_dates = clone(good);
+    mut(p.exam.test_dates);
+    assert.match(validatePacks([p]).join("\n"), want);
+  };
+  bad((t) => t.dates.reverse(), /dates must be in order with no repeats/);
+  bad((t) => t.dates.push({ date: "2027-03-06" }), /dates must be in order with no repeats/);
+  bad((t) => { t.dates[0].register_by = "2026-12-06"; }, /"register_by" must be a real day before 2026-12-05/);
+  bad((t) => { t.dates[1].date = "2027-02-30"; }, /"date" must be a real day/);
+  bad((t) => { t.source = "http://example.org/dates"; }, /"test_dates\.source" must be the https link/);
+  bad((t) => { t.checked = "Nov 12"; }, /"test_dates\.checked"/);
+  bad((t) => { t.dates[1].anticipated = "yes"; }, /"anticipated" must be true or false/);
+  // The SAT pack's dates are in the same shape.
+  const sat = loadPack(path("../exams/sat"));
+  assert.ok(sat.exam.test_dates.dates.length >= 4);
+  assert.ok(sat.exam.test_dates.dates.filter((d) => !d.anticipated).every((d) => d.register_by));
+});
+
+test("the seed lists stubs (no config, not enabled, nothing else) and places ready packs by order", () => {
+  const dir = mkdtempSync(join(tmpdir(), "testwise-seed-"));
+  try {
+    cpSync(`${FIXTURES}/demo`, join(dir, "demo"), { recursive: true });
+    const demoExam = JSON.parse(readFileSync(join(dir, "demo", "exam.json"), "utf8"));
+    writeFileSync(join(dir, "demo", "exam.json"), JSON.stringify({ ...demoExam, order: 0 }));
+    mkdirSync(join(dir, "gre"));
+    writeFileSync(join(dir, "gre", "exam.json"), JSON.stringify({ id: "gre", enabled: false, name: "GRE General Test", short_name: "GRE", order: 1 }));
+    const res = buildSeed({ examsDir: dir });
+    assert.ok(res.ok, res.problems?.join("\n"));
+    assert.match(res.summary, /1 listed as not ready \(gre\)/);
+    const db = new DatabaseSync(":memory:");
+    const migrations = path("../migrations");
+    for (const f of readdirSync(migrations).filter((f) => f.endsWith(".sql")).sort()) db.exec(readFileSync(`${migrations}/${f}`, "utf8"));
+    db.exec(res.sql);
+    // Seeding twice is the same as once, and a stub never gains a config.
+    db.exec(res.sql);
+    const rows = db.prepare("SELECT id, short_name, enabled, position, config IS NOT NULL AS ok FROM exams WHERE id IN ('demo', 'gre') ORDER BY position").all();
+    assert.deepEqual(rows.map((r) => ({ ...r })), [
+      { id: "demo", short_name: "Demo", enabled: 1, position: 0, ok: 1 },
+      { id: "gre", short_name: "GRE", enabled: 0, position: 1, ok: 0 },
+    ]);
+    for (const t of ["sections", "domains", "skills"]) assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM ${t} WHERE exam_id = 'gre'`).get().n, 0, t);
+    // A pack that was live and is turned off keeps its config for learners already on it.
+    writeFileSync(join(dir, "demo", "exam.json"), JSON.stringify({ ...demoExam, enabled: false }));
+    writeFileSync(join(dir, "gre", "exam.json"), JSON.stringify({ id: "gre", enabled: true, name: "GRE General Test", short_name: "GRE" }));
+    assert.equal(buildSeed({ examsDir: dir }).ok, false, "gre has no content yet");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("build-seed reminds when fewer than two test dates are left", () => {
+  const sat = buildSeed({ examsDir: path("../exams"), today: "2028-05-10" });
+  assert.ok(sat.ok);
+  assert.match(sat.warnings.join("\n"), /exams\/sat: only 1 test date left after 2028-05-10/);
+  assert.deepEqual(buildSeed({ examsDir: path("../exams"), today: "2026-11-12" }).warnings, []);
 });
 
 test("ids must be unique across packs", () => {
@@ -118,6 +238,14 @@ test("new-exam scaffolds a disabled pack that is valid once enabled", () => {
     pack.exam.enabled = true;
     assert.deepEqual(validatePacks([pack]), []);
     assert.equal(pack.items.length, 1);
+    // A stub listing is filled in, keeping its name, short name and order.
+    mkdirSync(join(dir, "cfa"));
+    writeFileSync(join(dir, "cfa", "exam.json"), JSON.stringify({ id: "cfa", enabled: false, name: "CFA Level I", short_name: "CFA", order: 3 }));
+    scaffoldExam("cfa", "", dir);
+    const cfa = loadPack(join(dir, "cfa"));
+    assert.deepEqual([cfa.exam.name, cfa.exam.short_name, cfa.exam.order, cfa.exam.enabled], ["CFA Level I", "CFA", 3, false]);
+    cfa.exam.enabled = true;
+    assert.deepEqual(validatePacks([{ ...cfa, folder: "cfa" }]), []);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

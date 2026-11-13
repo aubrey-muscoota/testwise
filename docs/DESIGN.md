@@ -30,8 +30,17 @@ The target look is the clickable prototype (project files `testwise/redesign/pro
 - The finish: a lesson-done screen (Socrates celebrating, the title, right, XP and time, one button), then, after the
   first lesson of the learner's day (the placement quiz keeps the streak but doesn't count), the streak screen (the count in goldInk, Socrates, this week's days, Continue).
 - Answer choices are full-width cards, stacked, with the letter key on the left.
+- Setup, in under a minute: the test picker, Welcome, then one question a screen (test date, daily goal, target score,
+  birthday, where to start). Each step has a back arrow and the 16 px green progress bar on top, Socrates asking the
+  question in his bubble (listening), the answers as option cards, and one Continue at the bottom; nothing is
+  preselected except the pack's default goal. "Start from the basics" opens the first lesson and "Find my level"
+  the placement quiz over every section, straight away; Learn comes after the lesson's finish. Me changes the date,
+  goal and score with the same steps (Save instead of Continue, no bar).
+- The test picker lists every exam pack. A test's mark is its short name in a 76 x 44 blueWash tile (blue with white
+  text when picked); no logos, flags or per-test colors. Tests that aren't ready are plain rows, not pressable: a lock
+  tile, ink2 text, "Not ready yet".
 - The Learn tab is one path: a stack of units, one per domain, the sections interleaved. Each unit is a banner in the
-  section's color (blue for the first section, teal for the second) on its darker edge, then its nodes as big ovals
+  section's color on its darker edge. Section color says the kind of thinking, from the pack's `sections[].kind`: blue for numbers, teal for words, never a third color (sections of one kind are told apart by name on the banner), then its nodes as big ovals
   in a centered zigzag: lessons, a review after every three lessons, and a unit check last; a flag closes the path.
   Exactly one node is current: ringed, with a "Start" bubble above it and Socrates beside it on the roomier side. The
   tab opens scrolled to it. Names, status and mastery are in the card a node opens.
@@ -66,7 +75,7 @@ Tied to Socrates: his outline is the ink, his toga cream is the well, his skin a
 | good / goodDark / goodWash / goodInk | #1FB46B / #168A52 / #DFF6EA / #0F7A45 | Right answers, progress bars, toggles on |
 | bad / badDark / badWash / badInk | #F0524F / #C93A37 / #FDE6E5 / #B02F2C | Wrong answers, destructive links, errors |
 | lock / lockDark | #ECEAE4 / #D3D0C7 | Locked and disabled faces, empty progress track, a toggle that is off |
-| teal / tealDark / tealWash | #12A08F / #0B7A6D / #D7F3EE | The second section (Reading and Writing) on the path; tealWash is its "current" ring, as blueWash is for Math |
+| teal / tealDark / tealWash | #12A08F / #0B7A6D / #D7F3EE | Sections of kind `words` on the path (SAT Reading and Writing); tealWash is their "current" ring, as blueWash is for `numbers`. Never on a button |
 
 Rules:
 

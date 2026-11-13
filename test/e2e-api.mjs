@@ -24,6 +24,39 @@ const call = async (path, body) => {
   assert.deepEqual(e.sections.map((s) => s.id), ["sat-math", "sat-rw"]);
   for (const s of e.sections) assert.ok(Math.abs(s.domains.reduce((a, d) => a + d.weight, 0) - 1) < 1e-9, `${s.id} weights add up to 1`);
   assert.equal(e.plan.default_weeks, 8);
+  assert.deepEqual(e.plan.daily_minutes, [5, 10, 15, 20]);
+  assert.deepEqual(e.sections.map((s) => s.kind), ["numbers", "words"]);
+  // Test dates still ahead of the caller's day, in order.
+  const today = new Date(Date.now() - 300 * 60_000).toISOString().slice(0, 10);
+  assert.ok(Array.isArray(e.test_dates));
+  assert.ok(e.test_dates.every((d, i) => d.date > today && (i === 0 || d.date > e.test_dates[i - 1].date)));
+}
+
+// The test picker: SAT ready, then GRE, GMAT and CFA not ready yet.
+{
+  const { exams } = (await call("/api/exams")).data;
+  assert.deepEqual(exams.map((x) => [x.short_name, x.ready]), [["SAT", true], ["GRE", false], ["GMAT", false], ["CFA", false]]);
+  assert.deepEqual(exams[0].sections, ["Math", "Reading and Writing"]);
+  assert.ok(exams.slice(1).every((x) => Object.keys(x).sort().join() === "id,name,ready,short_name"), "nothing from a config");
+  assert.equal((await call("/api/exam?exam=sat")).data.id, "sat");
+  assert.equal((await call("/api/exam?exam=gre")).status, 404);
+  assert.equal((await call("/api/learners", { age_13_plus: true, exam_id: "gre" })).status, 400);
+  // A learner made in one call with the setup answers, then placement over every section.
+  const r = (await call("/api/learners", { age_13_plus: true, exam_id: "sat", profile: { not_booked: true, daily_minutes: 15, target_score: 1400 } })).data;
+  learner = r.id;
+  const prof = (await call("/api/profile")).data;
+  assert.deepEqual([prof.onboarded, prof.not_booked, prof.daily_minutes, prof.target_score], [true, true, 15, 1400]);
+  const quiz = (await call("/api/lessons", { placement: true, all_sections: true })).data;
+  assert.equal(quiz.items.length, 16, "2 a domain over 8 domains");
+  const rw = quiz.items.filter((i) => i.skill_id.startsWith("rw-")).length;
+  assert.equal(rw, 8, "both sections");
+  for (const it of quiz.items) await call("/api/answers", { lesson_id: quiz.lesson_id, item_id: it.id, response: it.answer, time_ms: 2000 });
+  const done = (await call("/api/lessons/finish", { lesson_id: quiz.lesson_id })).data;
+  assert.equal(done.placement.total_skills, 29, "the whole exam");
+  assert.ok(done.placement.tested_out.some((x) => x.id.startsWith("rw-")) && done.placement.tested_out.some((x) => !x.id.startsWith("rw-")));
+  const path = PathResponse.parse((await call("/api/path")).data);
+  assert.ok(path.units.some((u) => u.section_kind === "words"));
+  learner = undefined;
 }
 
 assert.equal((await call("/api/learners", {})).status, 403, "no learner without the age answer");
@@ -168,7 +201,7 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
   assert.equal((await call("/api/profile", { exam_date: "2020-01-01" })).status, 400, "past date");
   assert.equal((await call("/api/profile", { exam_date: "next tuesday" })).status, 400, "not a date");
   assert.equal((await call("/api/profile", { exam_date: localDay(800) })).status, 400, "over 2 years out");
-  assert.equal((await call("/api/profile", { daily_minutes: 15 })).status, 400, "minutes must be 10/20/30/45");
+  assert.equal((await call("/api/profile", { daily_minutes: 30 })).status, 400, "minutes must be 5/10/15/20");
   assert.equal((await call("/api/profile", { target_score: "lots" })).status, 400);
 
   const examDate = localDay(60);
@@ -180,7 +213,7 @@ learner = (await call("/api/learners", { age_13_plus: true })).data.id;
   assert.deepEqual((await call("/api/profile")).data, prof);
   assert.equal((await call("/api/tree")).data.profile.exam_date, examDate);
   // Only given fields change.
-  assert.equal((await call("/api/profile", { daily_minutes: 30 })).data.exam_date, examDate);
+  assert.equal((await call("/api/profile", { daily_minutes: 15 })).data.exam_date, examDate);
   await call("/api/profile", { daily_minutes: 20 });
 
   let plan = (await call("/api/plan")).data;

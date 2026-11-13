@@ -30,12 +30,18 @@ function readJson(path, problems) {
   }
 }
 
-/** Reads one pack folder. Never throws; problems go into pack.problems. */
+/**
+ * Reads one pack folder. Never throws; problems go into pack.problems.
+ * A pack that is not enabled may be a stub (only exam.json, listed in the
+ * test picker as not ready yet), so its other files are optional.
+ */
 export function loadPack(dir) {
   const problems = [];
   const exam = readJson(join(dir, "exam.json"), problems);
-  const skills = readJson(join(dir, "skills.json"), problems);
-  const voice = readJson(join(dir, "voice.json"), problems);
+  const stub = exam?.enabled === false;
+  const optional = (f) => (stub && !existsSync(join(dir, f)) ? null : readJson(join(dir, f), problems));
+  const skills = optional("skills.json");
+  const voice = optional("voice.json");
   const items = [];
   const itemsDir = join(dir, "items");
   const files = existsSync(itemsDir) ? readdirSync(itemsDir).filter((f) => f.endsWith(".json")).sort() : [];
@@ -83,22 +89,61 @@ export function packSection(pack, sectionId) {
 
 const isNum = (v) => typeof v === "number" && Number.isFinite(v);
 const isStr = (v) => typeof v === "string" && v.trim().length > 0;
+export const SECTION_KINDS = ["numbers", "words"];
+export const SHORT_NAME_MAX = 5; // the test picker's tile fits about five capitals
+const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
+const isDay = (v) => typeof v === "string" && DAY_RE.test(v) && new Date(`${v}T00:00:00Z`).toISOString().slice(0, 10) === v;
+
+// What every pack needs, ready or not: what the test picker lists.
+function checkListing(exam, folder, p) {
+  const need = (cond, msg) => cond || p.push(`exam.json: ${msg}`);
+  need(exam.id === folder, `"id" must be "${folder}" (the folder name), got ${JSON.stringify(exam.id)}`);
+  need(typeof exam.enabled === "boolean", `"enabled" must be true or false`);
+  need(isStr(exam.name), `missing "name"`);
+  need(isStr(exam.short_name) && exam.short_name.length <= SHORT_NAME_MAX, `"short_name" must be 1 to ${SHORT_NAME_MAX} characters (the test picker shows it as the test's mark)`);
+  need(exam.order === undefined || Number.isInteger(exam.order), `"order" must be a whole number (the place in the test picker)`);
+}
+
+// Official test days (optional): setup offers the ones still ahead.
+function checkTestDates(td, need) {
+  if (td === undefined) return;
+  need(td && typeof td === "object" && !Array.isArray(td), `"test_dates" must be an object`);
+  if (!td || typeof td !== "object") return;
+  need(typeof td.source === "string" && /^https:\/\/\S+$/.test(td.source), `"test_dates.source" must be the https link the dates were read from`);
+  need(isDay(td.checked), `"test_dates.checked" must be the day the dates were read (YYYY-MM-DD)`);
+  if (!Array.isArray(td.dates) || !td.dates.length) return need(false, `"test_dates.dates" must be a non-empty list`);
+  td.dates.forEach((d, i) => {
+    const at = `test_dates.dates[${i}]`;
+    if (!isDay(d?.date)) return need(false, `${at}: "date" must be a real day (YYYY-MM-DD), got ${JSON.stringify(d?.date)}`);
+    if (i > 0 && isDay(td.dates[i - 1]?.date)) need(d.date > td.dates[i - 1].date, `${at}: dates must be in order with no repeats (${d.date} after ${td.dates[i - 1].date})`);
+    if (d.register_by !== undefined) need(isDay(d.register_by) && d.register_by < d.date, `${at}: "register_by" must be a real day before ${d.date}`);
+    if (d.anticipated !== undefined) need(typeof d.anticipated === "boolean", `${at}: "anticipated" must be true or false`);
+  });
+}
 
 function checkExam(exam, folder, p) {
   const need = (cond, msg) => cond || p.push(`exam.json: ${msg}`);
   if (!exam) return;
-  need(exam.id === folder, `"id" must be "${folder}" (the folder name), got ${JSON.stringify(exam.id)}`);
-  need(typeof exam.enabled === "boolean", `"enabled" must be true or false`);
-  for (const k of ["name", "short_name", "tagline", "audience"]) need(isStr(exam[k]), `missing "${k}"`);
+  checkListing(exam, folder, p);
+  // A pack that isn't enabled is only listed (as not ready yet), so the rest can wait.
+  if (exam.enabled !== true) return;
+  for (const k of ["tagline", "audience"]) need(isStr(exam[k]), `missing "${k}"`);
   need(isStr(exam.publisher?.name), `missing "publisher.name"`);
   need(isStr(exam.publisher?.disclaimer), `missing "publisher.disclaimer"`);
   const score = (s, where) => need(s && isNum(s.min) && isNum(s.max) && isNum(s.step) && s.min < s.max && s.step > 0, `${where} needs {min, max, step} with min < max`);
   score(exam.score, `"score"`);
+  const t = exam.score?.targets;
+  const sc = exam.score || {};
+  const onScale = (v) => isNum(v) && v >= sc.min && v <= sc.max && Math.abs((v - sc.min) / sc.step - Math.round((v - sc.min) / sc.step)) < 1e-9;
+  need(Array.isArray(t) && t.length > 0 && t.every((x, i) => onScale(x?.value) && (x.label === undefined || isStr(x.label)) && (i === 0 || x.value > t[i - 1].value)),
+    `"score.targets" must list {value, label?} choices on the score scale, lowest first`);
+  checkTestDates(exam.test_dates, need);
   if (!Array.isArray(exam.sections) || !exam.sections.length) return p.push(`exam.json: "sections" must be a non-empty list`);
   exam.sections.forEach((s, i) => {
     const at = `sections[${i}]${s?.id ? ` (${s.id})` : ""}`;
     need(isStr(s.id), `${at}: missing "id"`);
     need(isStr(s.name), `${at}: missing "name"`);
+    need(SECTION_KINDS.includes(s.kind), `${at}: "kind" must be "numbers" or "words" (the kind of thinking; it picks the section's colour)`);
     for (const k of ["minutes", "questions", "seconds_per_question"]) need(isNum(s[k]) && s[k] > 0, `${at}: "${k}" must be a positive number`);
     score(s.score, `${at}: "score"`);
     need(Array.isArray(s.item_types) && s.item_types.length && s.item_types.every((t) => ITEM_TYPES.includes(t)), `${at}: "item_types" must list some of ${ITEM_TYPES.join(", ")}`);
@@ -109,6 +154,7 @@ function checkExam(exam, folder, p) {
   const pl = exam.placement;
   need(pl && Number.isInteger(pl.per_domain) && pl.per_domain >= 1, `"placement.per_domain" must be a whole number, 1 or more`);
   need(pl && Array.isArray(pl.difficulties) && pl.difficulties.length && pl.difficulties.every((d) => [1, 2, 3].includes(d)), `"placement.difficulties" must list difficulties 1-3`);
+  need(pl?.max_questions === undefined || (Number.isInteger(pl.max_questions) && pl.max_questions >= 1), `"placement.max_questions" must be a whole number, 1 or more`);
   const plan = exam.plan;
   need(plan && Number.isInteger(plan.default_weeks) && plan.default_weeks > 0, `"plan.default_weeks" must be a positive whole number`);
   need(plan && Array.isArray(plan.daily_minutes) && plan.daily_minutes.length && plan.daily_minutes.every((m) => isNum(m) && m > 0), `"plan.daily_minutes" must list minutes`);
@@ -137,6 +183,11 @@ export function validatePacks(packs) {
     const { exam, skills, voice } = pack;
     checkExam(exam, folder, p);
     if (exam?.id) claim("exam", exam.id, folder, p);
+    // A pack that isn't enabled is listed by name only; its content is checked once it is turned on.
+    if (exam?.enabled !== true) {
+      all.push(...p.map((m) => `exams/${folder}: ${m}`));
+      continue;
+    }
     if (voice && (typeof voice !== "object" || Array.isArray(voice))) p.push("voice.json: must be an object");
     if (voice?.persona_notes && !Array.isArray(voice.persona_notes)) p.push(`voice.json: "persona_notes" must be a list of sentences`);
 

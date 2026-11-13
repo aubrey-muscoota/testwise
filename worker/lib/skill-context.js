@@ -4,6 +4,7 @@
 // estimate is practice_minutes_per_question (default 1 minute). Domains with
 // no weight get an equal share of their section.
 import { examIdFor, getExam } from "./exam.js";
+import { minutesOptions } from "../plan.js";
 
 const DEFAULT_PRACTICE_MINUTES = 1.0;
 const DEFAULT_TIMED_SECONDS = 80;
@@ -11,14 +12,14 @@ const DEFAULT_TIMED_SECONDS = 80;
 const num = (v) => (typeof v === "number" && Number.isFinite(v) && v > 0 ? v : null);
 
 /**
- * @returns {Promise<{exam:{id,name}|null, sections:{id,name}[], skills:object[], pace:Object<string,{timed_seconds,practice_minutes}>}>}
+ * @returns {Promise<{exam:{id,name}|null, sections:{id,name,kind}[], skills:object[], pace:Object<string,{timed_seconds,practice_minutes}>, minutes:{options:number[], default:number}}>}
  * Skills only include those with live bank questions (like the tree).
  */
 export async function skillContext(env, learnerId = null) {
   const examId = await examIdFor(env, learnerId);
   const pack = examId ? await getExam(env, examId) : null;
   const exam = pack ? { id: pack.id, name: pack.name } : null;
-  if (!exam) return { exam: null, sections: [], skills: [], pace: {} };
+  if (!exam) return { exam: null, sections: [], skills: [], pace: {}, minutes: minutesOptions(null) };
   const [sections, domains, skills, counts] = await Promise.all([
     env.DB.prepare("SELECT * FROM sections WHERE exam_id = ? ORDER BY position").bind(exam.id).all(),
     env.DB.prepare("SELECT * FROM domains WHERE exam_id = ? ORDER BY position").bind(exam.id).all(),
@@ -53,5 +54,13 @@ export async function skillContext(env, learnerId = null) {
         items: itemCount[s.id],
       };
     });
-  return { exam, sections: sections.results.map((s) => ({ id: s.id, name: s.name })), skills: out, pace };
+  // A section's kind ("numbers" or "words") picks its colour on the path.
+  const kindOf = (id) => pack.sections.find((x) => x.id === id)?.kind;
+  return {
+    exam,
+    sections: sections.results.map((s) => ({ id: s.id, name: s.name, kind: kindOf(s.id) === "words" ? "words" : "numbers" })),
+    skills: out,
+    pace,
+    minutes: minutesOptions(pack),
+  };
 }

@@ -128,6 +128,13 @@ guards against them coming back.
   and the renderer screenshot checks run in CI. Open: accounts (sign-in and cross-device progress), analytics and
   error tracking, the pilot. See `docs/PLAN.md`.
 - **v1.5 (depth and craft)**: done Nov 8.
+- **Redesign (Pop, Duolingo layout), six steps**: 1 to 3 merged (#17, #19, #20). Step 4, "Setup in under a minute",
+  adds the test picker (every pack in `exams/`, with GRE, GMAT and CFA as stubs listed "Not ready yet"), Welcome, then
+  test date (the pack's official dates, `test_dates`), daily goal (5, 10, 15 or 20 minutes; 30 and 45 read as 20),
+  target score, birthday and "Start from the basics" or "Find my level" (placement over every section), straight into
+  the first lesson. Section colour comes from `sections[].kind` (blue for numbers, teal for words). Migration 0008
+  adds `exams.short_name` and `exams.enabled`. Time to the first question: `node scripts/setup-timer.cjs`.
+  SAT test dates go stale: `npm run seed` reminds when fewer than two are ahead (source and day read are in the pack).
 - **v2 to v5**: not started. v2 iPhone app (EAS) and full practice tests; v3 GRE; v4 paid plans and GMAT; v5 CFA
   Level I, Android, scale. Note that v2's "exam date and target score at onboarding" item already shipped in v1.5.
 
@@ -145,6 +152,10 @@ These block the rest of v1. Don't build around them with throwaway work; ask.
 7. Final prices and product ids before v4.
 8. Try "New questions from Socrates" once on the live site. It is tested offline with a stand-in writer but has not
    run with the real key yet (cloud sandboxes can't reach workers.dev).
+9. Setup calls to confirm (step 4 took the recommended option for each): placement over both sections is capped at
+   16 questions (about 7 minutes); "Where to start" is select then Continue, not tap-to-go; not-ready tests can't be
+   tapped (no "tell me when" sign-up, there is no email sender); learners who had 30 or 45 minutes a day now plan
+   for 20; existing learners who placed only Math no longer see a Reading and Writing placement offer on Learn.
 
 ## Known rough edges
 

@@ -41,7 +41,7 @@ function practiceMinutes(list, pace, n) {
  * The path.
  * @param {object} o  everything buildPlan takes (routes/plan.js planInput), plus:
  * @param {string[]} [o.nodes_done]  ids of path circles with a finished session (lessons.node)
- * @param {{id:string, name:string}[]} [o.sections]  the exam's sections in order
+ * @param {{id:string, name:string, kind?:"numbers"|"words"}[]} [o.sections]  the exam's sections in order
  * @param {Object<string,number>} [o.reviews_due_by_skill]  due review items per skill
  * @param {Object<string,string>} [o.skill_about]  skill id → what it covers
  * @param {object} [o.stats]  {xp, streak, xp_today, reviews_due}
@@ -62,6 +62,8 @@ export function buildPath(o) {
     const i = sectionList.findIndex((x) => x.id === id);
     return i >= 0 ? i : [...new Set(skills.map((s) => s.section_id))].indexOf(id);
   };
+  // The kind of thinking a section asks for picks its colour (blue for numbers, teal for words).
+  const sectionKind = (id) => (sectionList.find((x) => x.id === id)?.kind === "words" ? "words" : "numbers");
   const sectionName = (id) => sectionList.find((x) => x.id === id)?.name ?? skills.find((s) => s.section_id === id)?.section_name ?? "";
 
   // A review is passed once the learner learned (not tested out of) a later
@@ -158,6 +160,7 @@ export function buildPath(o) {
       section_id: u.section_id,
       section_name: sectionName(u.section_id),
       section_index: Math.max(0, sectionIndex(u.section_id)),
+      section_kind: sectionKind(u.section_id),
       number: ui + 1,
       of: units.length,
       done: u.skills.filter(isDone).length,
