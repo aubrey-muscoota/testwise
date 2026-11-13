@@ -186,7 +186,6 @@ function TestwiseApp() {
         <Learn
           key={screen.key}
           onStart={startFrom("learn")}
-          onStartPlacement={(section, name) => setScreen({ name: "lesson", source: { kind: "placement", section, name }, back: "learn" })}
           onUnauthorized={reset}
         />
       );
@@ -214,10 +213,7 @@ function TestwiseApp() {
           home(back);
         }}
         onDone={(result) => {
-          if (result.placement && source.kind === "placement") {
-            if (source.all) settleAllPlacement();
-            else settlePlacement(source.section);
-          }
+          if (result.placement) settleAllPlacement();
           setScreen({ name: "complete", result, back });
         }}
       />
@@ -250,12 +246,6 @@ async function placementSettled(id: string) {
   } catch {
     return false;
   }
-}
-async function settlePlacement(section?: string) {
-  try {
-    const id = currentLearner ?? (await loadLearner());
-    await AsyncStorage.setItem(placementKey(id, section), "1");
-  } catch {}
 }
 // Setup's choice covers every section, so no section offers placement again.
 async function settleAllPlacement() {

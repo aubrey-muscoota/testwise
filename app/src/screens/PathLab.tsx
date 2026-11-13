@@ -33,7 +33,7 @@ export function PathLab() {
   return (
     <View style={s.root} testID="lab-ready">
       <Shell tab="learn" onTab={() => {}} onEditDate={() => {}}>
-        <Learn fixture={path} openId={open} onStart={() => {}} onStartPlacement={() => {}} />
+        <Learn fixture={path} openId={open} onStart={() => {}} />
       </Shell>
     </View>
   );
