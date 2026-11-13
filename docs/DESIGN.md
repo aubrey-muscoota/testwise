@@ -60,7 +60,9 @@ The target look is the clickable prototype (project files `testwise/redesign/pro
   on-track check (a heading, goodInk when on track or ahead, ink when behind, then one line of what to do), skills
   done per section (a 16 px bar in the section's color, blue or teal, with "5 of 19"; the path's unit counts added
   up), this month as a streak calendar (Sunday first, 40 px days: lesson days gold with ink figures, today ringed
-  2 px goldDark, days ahead ink3) under the month name and the streak in goldInk, then the plan week by week.
+  2 px goldDark, days so far ink, days ahead ink2 in bold rather than extra bold, never ink3; each day's state also
+  in hidden words for screen readers, the days a list) under the month name and the streak in goldInk, then the
+  plan week by week. On a short runway the check's heading is "Not enough days for every skill", never "ahead".
 - Practice: the title, one line, then "Fix 4 mistakes", the one primary button, at the top (not anchored at the
   bottom: the sets under it are the choices). With nothing to fix, Socrates says so in his bubble instead. The other
   sets (weak spots, timed, mixed, pick a skill, new questions) are rows with a blueWash icon circle.

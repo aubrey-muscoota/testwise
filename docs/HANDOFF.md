@@ -137,7 +137,9 @@ guards against them coming back.
   adds `exams.short_name` and `exams.enabled`. Time to the first question: `node scripts/setup-timer.cjs`.
   SAT test dates go stale: `npm run seed` reminds when fewer than two are ahead (source and day read are in the pack).
   Step 5, "Progress, Practice and Me": Progress shows the days to the test, an on-track check from the plan
-  (`status.ahead_by_lessons` is new; behind and missed days say what to do), skills done per section from the path's
+  (`status.ahead_by_lessons` and `status.short_runway` are new; behind counts today's lessons at once, ahead
+  counts only lessons past today's plan, a lesson today clears the missed-days state; behind and missed days say
+  what to do), skills done per section from the path's
   unit counts, and a streak calendar for this month (`stats.month_days` is new on the path and the lesson finish),
   then the weeks. Practice puts "Fix N mistakes" on top, with Socrates in its place when there is nothing to fix.
   Me is settings only. The tour checks these screens; there are no committed screenshot baselines for them yet.

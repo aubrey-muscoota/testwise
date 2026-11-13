@@ -109,7 +109,8 @@ function Countdown({ path, onEditDate }: { path: LearnPath; onEditDate: () => vo
 
 // ─── On track ────────────────────────────────────────────────────────────────
 // An honest check against the plan's even pace, and what to do about it.
-// Counts are the plan's own (status.behind_by_lessons, ahead_by_lessons).
+// Counts are the plan's own (status.behind_by_lessons, ahead_by_lessons,
+// short_runway), all of which count what the learner did today.
 
 function trackLines(plan: Plan, done: Set<string>): { head: string; body: string; good: boolean } | null {
   const st = plan.status;
@@ -119,6 +120,20 @@ function trackLines(plan: Plan, done: Set<string>): { head: string; body: string
   if (plan.phase === "rest") {
     return plan.days_left === 1 ? { head: "Rest day", body: "A few review questions if you like, then rest. Tomorrow is the test.", good: true } : null;
   }
+  // On a short runway the weeks start only some of the skills left (the ones
+  // worth the most points); say so rather than measure against a pace the
+  // plan can't reach.
+  const toStart = new Set(plan.weeks.filter((w) => w.phase === "learn").flatMap((w) => w.focus_skill_ids).filter((id) => !done.has(id))).size;
+  const left = plan.skills_total - plan.skills_started;
+  const short = plan.phase === "learn" && (st.short_runway ?? (toStart > 0 && toStart < left));
+  if (short) {
+    return {
+      head: "Not enough days for every skill",
+      body: `${toStart} of the ${left} skills left fit before the test, so your path starts with the ones worth the most points. Timed sets from ${day(plan.test_ready_from)}.`,
+      good: false,
+    };
+  }
+  // behind_by_lessons counts lessons done today, so each one lowers it at once.
   if (st.behind_by_lessons > 0) {
     if (plan.phase === "learn") {
       return {
@@ -133,17 +148,12 @@ function trackLines(plan: Plan, done: Set<string>): { head: string; body: string
       good: false,
     };
   }
+  // The server counts a lesson finished today, so this clears once one is done.
   if (!st.on_track) {
     return { head: "A little behind", body: "You've missed the last two days. A lesson today puts you back on pace.", good: false };
   }
-  // On a short runway the weeks start only some of the skills left (the ones
-  // worth the most points); say so rather than promise every skill.
-  const toStart = new Set(plan.weeks.filter((w) => w.phase === "learn").flatMap((w) => w.focus_skill_ids).filter((id) => !done.has(id))).size;
-  const left = plan.skills_total - plan.skills_started;
   const next = plan.phase === "learn"
-    ? toStart > 0 && toStart < left
-      ? `${toStart} of the ${left} skills left fit before the test, so your path starts with the ones worth the most points. Timed sets from ${day(plan.test_ready_from)}.`
-      : `Start every skill by ${day(plan.learn_by)}, then timed sets from ${day(plan.test_ready_from)}.`
+    ? `Start every skill by ${day(plan.learn_by)}, then timed sets from ${day(plan.test_ready_from)}.`
     : plan.phase === "strengthen"
       ? `Every skill is started. Now your weakest ones, then timed sets from ${day(plan.test_ready_from)}.`
       : "Timed sets now, so test pace feels normal on the day.";
@@ -183,10 +193,10 @@ function Sections({ path }: { path: LearnPath }) {
       {rows.map((r) => {
         const a = accentFor(r.kind);
         return (
-          <View key={r.id} style={{ marginTop: space(2) }} accessible accessibilityLabel={`${r.name}, ${r.done} of ${r.total} skills done`} testID={`progress-section-${r.id}`}>
+          <View key={r.id} style={{ marginTop: space(2) }} testID={`progress-section-${r.id}`}>
             <View style={s.meterRow}>
               <Text style={[type.label, { flex: 1 }]}>{r.name}</Text>
-              <Text style={[type.label, tabular, { color: color.ink2 }]}>{r.done} of {r.total}</Text>
+              <Text style={[type.label, tabular, { color: color.ink2 }]}>{r.done} of {r.total}<Text style={s.srOnly}> skills done</Text></Text>
             </View>
             <View style={{ flexDirection: "row", marginTop: space(1) }}>
               <ProgressBar value={r.total ? r.done / r.total : 0} fill={a.fill} />
@@ -210,8 +220,7 @@ function Calendar({ path }: { path: LearnPath }) {
   const on = new Set(path.stats.month_days ?? []);
   const first = new Date(y, m, 1, 12).getDay();
   const count = new Date(y, m + 1, 0, 12).getDate();
-  const cells: (number | null)[] = [...Array(first).fill(null), ...Array.from({ length: count }, (_, i) => i + 1)];
-  while (cells.length % 7) cells.push(null);
+  const days = Array.from({ length: count }, (_, i) => i + 1);
   const iso = (d: number) => `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
   const streak = path.stats.streak;
   const doneToday = on.has(path.date);
@@ -224,23 +233,29 @@ function Calendar({ path }: { path: LearnPath }) {
     <View testID="progress-calendar">
       <Text style={type.heading} accessibilityRole="header">{monthName(m)}</Text>
       <Text style={[type.label, { marginTop: 2, color: streak > 0 ? color.goldInk : color.ink2, fontFamily: font.bold }]}>{line}</Text>
-      <View style={s.grid} accessibilityLabel={`${monthName(m)}: ${plural(on.size, "day")} with a lesson`}>
+      <View style={[s.grid, { marginTop: space(1.5) }]} {...decorative}>
         {WEEKDAYS.map((w) => (
-          <View key={w} style={s.cell} {...decorative}>
+          <View key={w} style={s.cell}>
             <Text style={[type.small, s.weekday]}>{w[0]}</Text>
           </View>
         ))}
-        {cells.map((d, i) => {
-          if (d == null) return <View key={`x${i}`} style={s.cell} {...decorative} />;
+      </View>
+      {/* A list, so each day's hidden words ("lesson done", "today") are read
+          with its number; colour alone never carries the state. */}
+      <View style={s.grid} accessibilityRole="list" accessibilityLabel={`${monthName(m)}: ${plural(on.size, "day")} with a lesson`}>
+        {days.map((d) => {
           const day = iso(d);
           const done = on.has(day);
           const isToday = day === path.date;
           const future = day > path.date;
-          const label = `${shortMonth(m)} ${d}${isToday ? ", today" : ""}${done ? ", lesson done" : ""}`;
+          const said = `${isToday ? ", today" : ""}${done ? ", lesson done" : ""}`;
           return (
-            <View key={day} style={s.cell} accessible accessibilityLabel={label} testID={done ? "calendar-done" : undefined}>
+            <View key={day} style={[s.cell, d === 1 && { marginLeft: `${(100 / 7) * first}%` }]} accessibilityRole="listitem" testID={done ? "calendar-done" : undefined}>
               <View style={[s.day, done && s.dayDone, isToday && s.dayToday]}>
-                <Text style={[s.dayText, tabular, { color: done ? color.ink : future ? color.ink3 : color.ink2 }]}>{d}</Text>
+                <Text style={[s.dayText, tabular, future && s.dayAhead]}>
+                  {d}
+                  {said ? <Text style={s.srOnly}>{said}</Text> : null}
+                </Text>
               </View>
             </View>
           );
@@ -394,13 +409,18 @@ const s = StyleSheet.create({
   big: { fontFamily: font.black, fontSize: 64, lineHeight: 70, color: color.blueDark, ...tabular },
   bigLabel: { fontFamily: font.black, fontSize: 20, lineHeight: 26, color: color.ink },
   meterRow: { flexDirection: "row", alignItems: "baseline" },
-  grid: { flexDirection: "row", flexWrap: "wrap", marginTop: space(1.5), marginHorizontal: -space(0.5) },
+  grid: { flexDirection: "row", flexWrap: "wrap", marginHorizontal: -space(0.5) },
   cell: { width: `${100 / 7}%`, alignItems: "center", paddingVertical: 3 },
   weekday: { lineHeight: 28 },
   day: { width: DAY, height: DAY, borderRadius: DAY / 2, alignItems: "center", justifyContent: "center" },
   dayDone: { backgroundColor: color.gold },
   dayToday: { borderWidth: BORDER, borderColor: color.goldDark },
-  dayText: { fontFamily: font.extra, fontSize: 15, lineHeight: 20 },
+  // Days so far in ink, days ahead in ink2 at a lighter weight (ink3 is too
+  // faint for a number that must be read).
+  dayText: { fontFamily: font.extra, fontSize: 15, lineHeight: 20, color: color.ink },
+  dayAhead: { fontFamily: font.bold, color: color.ink2 },
+  // Read by screen readers, not shown.
+  srOnly: { position: "absolute", width: 1, height: 1, overflow: "hidden", left: 0, top: 0 },
   // A sunken well holds a phase's weeks; rows inside follow its corner (16 − 6).
   well: { backgroundColor: color.well, borderRadius: radius.well, padding: space(0.75), marginTop: space(1.25) },
   week: { flexDirection: "row", paddingVertical: space(1.5), paddingHorizontal: space(1.5), borderRadius: inner(radius.well, space(0.75)) },

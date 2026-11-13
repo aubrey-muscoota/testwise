@@ -107,6 +107,7 @@ Works before onboarding too (as "not booked", 20 minutes a day), so Home can sho
     "on_track": true,
     "behind_by_lessons": 0,
     "ahead_by_lessons": 0,
+    "short_runway": false,
     "missed_yesterday": false,
     "message": "On track: 1 of 29 skills started. 28 skills to go by Jan 21."
   },
@@ -169,9 +170,10 @@ Top-level fields:
 | `exam_date_assumed` | `true` when not booked (or not onboarded): label the countdown "about". |
 | `days_left` | Days from `date` to `exam_date`. 0 on test day, negative after it. |
 | `phase` | `learn` (starting every skill), `strengthen` (fixing weak spots), `test_ready` (timed sets, the final ~15% or 7–10 days), `rest` (the day before the test, and test day), `after` (the date has passed). |
-| `status.on_track` | `false` when behind on new skills, or when the learner missed the last two days. |
-| `status.behind_by_lessons` | Learn phase: new-skill lessons behind an even pace from `plan_started_at` to `learn_by`. Test-ready and rest: skills that never got started. Otherwise 0. |
-| `status.ahead_by_lessons` | Learn phase, when not behind: skills started so far (today's lessons included) past where the even pace line is by the end of today. Otherwise 0. Progress shows "On track, 2 lessons ahead". |
+| `status.on_track` | `false` when behind on new skills, or when the learner missed the last two days and hasn't finished a lesson today. |
+| `status.behind_by_lessons` | Learn phase: new-skill lessons behind an even pace from `plan_started_at` to `learn_by` (the pace as of the start of today, against skills started so far, so each lesson done today lowers it at once). Test-ready and rest: skills not started. Otherwise 0. |
+| `status.ahead_by_lessons` | Learn phase, when not behind and not on a short runway: lessons (skills tested out by placement don't count, on either side) past the even pace by the end of today, rounded up, and no more than the learner was ahead this morning plus new skills started today beyond today's plan. So doing exactly today's plan is 0. Otherwise 0. Progress shows "On track, 2 lessons ahead". |
+| `status.short_runway` | Learn phase: too few days left to start every skill, so the plan starts the ones worth the most points. Progress then says "Not enough days for every skill" instead of measuring ahead. |
 | `status.missed_yesterday` | No finished lesson or session yesterday (only once the plan is a day old). |
 | `status.message` | One line for the top of Home, written from the learner's numbers. |
 | `today_tasks_done` | How many of `today` are done. |

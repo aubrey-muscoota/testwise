@@ -109,8 +109,10 @@ export type Plan = {
   exam_date_assumed: boolean;
   days_left: number;
   phase: PlanPhase;
-  // ahead_by_lessons: skills started past the even pace by tonight (learn phase; older servers leave it out).
-  status: { on_track: boolean; behind_by_lessons: number; ahead_by_lessons?: number; missed_yesterday: boolean; message: string };
+  // behind_by_lessons counts today's lessons. ahead_by_lessons: lessons (not skills tested out) past the
+  // even pace by tonight and past today's plan. short_runway: too few days to start every skill.
+  // Older servers leave the last two out.
+  status: { on_track: boolean; behind_by_lessons: number; ahead_by_lessons?: number; short_runway?: boolean; missed_yesterday: boolean; message: string };
   today_tasks_done: number;
   today: PlanTask[];
   minutes_planned: number;
