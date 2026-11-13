@@ -6,7 +6,8 @@
 //
 // A fresh install walks every step. A returning learner without a profile
 // gets the date, goal and score (saved with POST /api/profile), and the start
-// question if they never chose; App decides which steps to show.
+// question if they never chose; App decides which steps to show. When the
+// profile is the last thing asked, onDone takes them on (to Learn).
 import React, { useEffect, useState } from "react";
 import { api, getExam, ProfileAnswers } from "../api";
 import { AgeGate } from "../screens/AgeGate";
@@ -38,7 +39,7 @@ export function profileOf(a: SetupAnswers): ProfileAnswers {
   };
 }
 
-export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart }: {
+export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart, onDone }: {
   steps: SetupStep[];
   // Loads the picked exam's pack (getExam() then returns it).
   onPickExam: (examId: string) => Promise<void>;
@@ -48,6 +49,8 @@ export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart }: {
   onSaveProfile: (answers: SetupAnswers) => Promise<void>;
   // Resolves once the first lesson or the quiz is on its way.
   onStart: (choice: Start) => Promise<void>;
+  // The profile was the last step (a returning learner with no start question).
+  onDone: () => void;
 }) {
   const [i, setI] = useState(0);
   const [answers, setAnswers] = useState<SetupAnswers>({ examId: null, date: null, minutes: null, score: undefined });
@@ -87,6 +90,7 @@ export function Setup({ steps, onPickExam, onAge, onSaveProfile, onStart }: {
       run(async () => {
         await onSaveProfile(a);
         if (i < steps.length - 1) next();
+        else onDone();
       });
     } else next();
   };

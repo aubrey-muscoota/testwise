@@ -169,6 +169,7 @@ function TestwiseApp() {
         }}
         onSaveProfile={async (answers) => { await api.saveProfile(profileOf(answers)); }}
         onStart={startFirst}
+        onDone={() => home()}
       />
     );
   } else if (screen.name === "age") {
