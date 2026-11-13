@@ -277,6 +277,76 @@ test("ahead counts skills started past the even pace by tonight, and only when n
   assert.equal(late.status.ahead_by_lessons, 0);
 });
 
+test("lessons started today close the behind gap at once", () => {
+  const base = {
+    today: TODAY, exam_date: examIn(60), plan_started_at: addDays(TODAY, -30), daily_minutes: 30,
+    reviews_due: 0, pace: PACE, active_days: [],
+  };
+  const sod = buildPlan({ ...base, skills: fresh() });
+  assert.ok(sod.status.behind_by_lessons >= 3, JSON.stringify(sod.status));
+  // Two of today's lessons done: two fewer behind, same day.
+  const ids = sod.today.filter((t) => t.kind === "lesson").slice(0, 2).map((t) => t.skill_id);
+  assert.equal(ids.length, 2);
+  const skills = fresh().map((s) => (ids.includes(s.id) ? { ...s, attempts: 8, attempts_today: 8, mastery: 50, first_day: TODAY } : s));
+  const now = buildPlan({
+    ...base, skills, active_days: [TODAY],
+    lessons_today: ids.map((id) => ({ kind: "skill", mode: null, skill_id: id, completed: true })),
+  });
+  assert.equal(now.status.behind_by_lessons, sod.status.behind_by_lessons - 2);
+  assert.equal(now.status.ahead_by_lessons, 0);
+});
+
+test("doing exactly today's plan is on track, not ahead; placement is not lessons ahead", () => {
+  const f = plan({ exam_date: examIn(90), plan_started_at: TODAY, skills: fresh() });
+  const ids = f.today.filter((t) => t.kind === "lesson").map((t) => t.skill_id);
+  assert.ok(ids.length >= 1);
+  const skills = fresh().map((s) => (ids.includes(s.id) ? { ...s, attempts: 8, attempts_today: 8, mastery: 50, first_day: TODAY } : s));
+  const after = plan({
+    exam_date: examIn(90), plan_started_at: TODAY, skills, active_days: [TODAY],
+    lessons_today: ids.map((id) => ({ kind: "skill", mode: null, skill_id: id, completed: true })),
+  });
+  assert.equal(after.status.on_track, true);
+  assert.equal(after.status.ahead_by_lessons, 0, JSON.stringify(after.status));
+  // One lesson past today's plan is one ahead.
+  const next = prepareSkills(skills).find((s) => !ids.includes(s.id) && !s.prereqs.length);
+  const more = skills.map((s) => (s.id === next.id ? { ...s, attempts: 8, attempts_today: 8, mastery: 50, first_day: TODAY } : s));
+  const plus = plan({
+    exam_date: examIn(90), plan_started_at: TODAY, skills: more, active_days: [TODAY],
+    lessons_today: [...ids, next.id].map((id) => ({ kind: "skill", mode: null, skill_id: id, completed: true })),
+  });
+  assert.equal(plus.status.ahead_by_lessons, 1, JSON.stringify(plus.status));
+  // Placement only: skills tested out are not lessons ahead.
+  const placed = fresh().map((s, i) => (i < 20 ? { ...s, tested_out: true, mastery: 80 } : s));
+  const p = plan({ exam_date: examIn(90), plan_started_at: TODAY, skills: placed });
+  assert.equal(p.status.ahead_by_lessons, 0, JSON.stringify(p.status));
+  assert.equal(p.status.behind_by_lessons, 0);
+});
+
+test("short runway after placement: never ahead, and says so", () => {
+  const placed = fresh().map((s, i) => (i < 8 ? { ...s, tested_out: true, mastery: 80 } : s));
+  const p = buildPlan({
+    today: TODAY, exam_date: examIn(23), plan_started_at: TODAY, daily_minutes: 10,
+    skills: placed, reviews_due: 0, pace: PACE, active_days: [],
+  });
+  assert.equal(p.phase, "learn");
+  assert.equal(p.status.short_runway, true, p.status.message);
+  assert.match(p.status.message, /isn't enough/);
+  assert.equal(p.status.ahead_by_lessons, 0);
+});
+
+test("a lesson today ends the missed-two-days state", () => {
+  const skills = fresh().map((s, i) => (i < 6 ? { ...s, attempts: 8, mastery: 50, first_day: addDays(TODAY, -5) } : s));
+  const base = { today: TODAY, exam_date: examIn(88), plan_started_at: addDays(TODAY, -6), daily_minutes: 20, reviews_due: 0, pace: PACE };
+  const missed = buildPlan({ ...base, skills, active_days: [addDays(TODAY, -3)] });
+  assert.equal(missed.status.behind_by_lessons, 0, JSON.stringify(missed.status));
+  assert.equal(missed.status.on_track, false);
+  const back = buildPlan({
+    ...base, skills, active_days: [addDays(TODAY, -3), TODAY],
+    lessons_today: [{ kind: "practice", mode: "mixed", skill_id: null, completed: true }],
+  });
+  assert.equal(back.status.on_track, true);
+});
+
 test("work done today marks tasks done without changing the list", () => {
   const base = { exam_date: examIn(90), plan_started_at: addDays(TODAY, -5), skills: fresh(), reviews_due: 5 };
   const before = plan(base);
