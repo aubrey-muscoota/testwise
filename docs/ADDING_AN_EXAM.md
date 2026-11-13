@@ -17,14 +17,18 @@ exams/
 
 ## Steps
 
-1. **Scaffold.** `npm run new-exam -- gre "GRE General Test"` writes `exams/gre/` with every file filled with a working example and `"enabled": false`. Keys starting with `//` are comments; the seed drops them.
+1. **Scaffold.** `npm run new-exam -- gre "GRE General Test"` writes `exams/gre/` with every file filled with a working example and `"enabled": false`. If the folder is already a stub (see below), it is filled in place and keeps the stub's `name`, `short_name` and `order`. Keys starting with `//` are comments; the seed drops them.
 2. **Fill `exam.json`** from the publisher's public test specs (fields below). Ids for sections, domains, skills and items are global in the database, so prefix them with the exam id (`gre-quant`, `gre-qc-compare`).
 3. **Write the skill map** in `skills.json`: the publisher's content domains, each with its `weight` (share of the section's questions; a section's weights add up to 1), and 3 to 8 skills per domain with `prereqs`. Order skills the way they should be learned; the first skill of a domain should need nothing outside it. Placement picks its probes from early, middle and late skills, so the prerequisite chains matter.
 4. **Write format notes** in `docs/` for anything ITEM_FORMAT.md doesn't cover (passage lengths, new stem patterns, style). If a section needs a passage per question, set its `passage` rules in `exam.json` so `check_items.py` enforces them.
-5. **Write `voice.json`**: what Socrates should know about the test (`persona_notes`, 2 to 4 sentences, they go into his system prompt), what he calls the sections and the typed-answer type (`terms`), the line he says before each section's placement quiz (`placement_intro`), and `test_day_tips`.
+5. **Write `voice.json`**: what Socrates should know about the test (`persona_notes`, 2 to 4 sentences, they go into his system prompt), what he calls the sections and the typed-answer type (`terms`), the line he says before each section's placement quiz (`placement_intro`), Socrates' setup questions (`setup`: `date`, `goal`, `score`, `start`; the app has plain fallbacks), and `test_day_tips`.
 6. **Write and check items** with the pipeline below.
 7. **Check it:** `npm run seed` (validates every enabled pack and lists all problems), `npm test`, then load it locally (README, "Run it locally") and walk through it in the app.
-8. **Enable it** (`"enabled": true`) once it meets the definition of ready. Until learners can pick an exam (v3), the app shows the exam named by `DEFAULT_EXAM` in `wrangler.jsonc`.
+8. **Enable it** (`"enabled": true`) once it meets the definition of ready. The test picker (`GET /api/exams`) then lists it as ready with no app change. Learners from before the picker keep the exam named by `DEFAULT_EXAM` in `wrangler.jsonc`.
+
+### Stubs: tests listed as not ready yet
+
+A folder with only an `exam.json` holding `id`, `enabled: false`, `name`, `short_name` (at most 5 characters, it is the test's mark in the picker) and `order` is a stub. The picker lists it as "Not ready yet", not pressable; nothing else from it reaches the app. `exams/gre`, `exams/gmat` and `exams/cfa` are stubs. A disabled full pack is listed the same way.
 
 ## How questions are made
 
@@ -42,23 +46,25 @@ This is the pipeline the SAT's 3,325 questions went through. Run it per skill.
 | Field | What it's for |
 | --- | --- |
 | `id` | Folder name; prefix for every other id in the pack |
-| `enabled` | `false` keeps the pack out of the seed and the app |
+| `enabled` | `false` lists the test as not ready in the picker and keeps the rest of the pack out of the seed and the app |
+| `order` | Place in the test picker (whole number, lowest first) |
 | `name`, `short_name` | "GRE General Test", "GRE". Socrates says "the {short_name}" |
 | `tagline` | Welcome screen headline |
 | `audience` | Who studies for it, as Socrates pictures them ("high school students") |
 | `publisher.name`, `publisher.disclaimer` | Trademark owner and the line shown on Welcome and Home |
-| `score` | Total score scale `{min, max, step}` |
-| `default_section` | Section of the sign-up placement quiz and the path Home opens on |
-| `sections[]` | `id`, `name`, `minutes`, `questions`, `modules`, `seconds_per_question` (pacing for timed sets), `score`, `item_types` (`mc`, `spr`), `choices` (per `mc` question), `code_checks`, optional `passage` rules (`required`, `min_words`, `max_words`, `paired_max_words`) |
-| `placement` | `per_domain` probes per domain, `difficulties` (one per probe level, 1 to 3), `seconds_per_question` (for the "about N minutes" estimate) |
-| `plan` | `default_weeks` without a test date, `daily_minutes` options, `default_daily_minutes`, `rest_days_per_week`, `phases[]` (`id`, `name`, `share`; shares add up to 1) |
+| `score` | Total score scale `{min, max, step}` and `targets` (ascending `{value, label?}` inside the scale and on the step: the target score cards in setup) |
+| `test_dates` | Optional official test days: `{source (https URL), checked (day read), dates: [{date, register_by?, anticipated?}]}`, strictly ascending. Setup shows the next four after the learner's day as cards; without it, a calendar. Update when the publisher posts new dates (the seed warns when fewer than two are ahead) |
+| `default_section` | The section older single-section placement uses |
+| `sections[]` | `id`, `name`, `kind` (`numbers` or `words`: the kind of thinking, which sets the section colour, blue or teal; never a third), `minutes`, `questions`, `modules`, `seconds_per_question` (pacing for timed sets), `score`, `item_types` (`mc`, `spr`), `choices` (per `mc` question), `code_checks`, optional `passage` rules (`required`, `min_words`, `max_words`, `paired_max_words`) |
+| `placement` | `per_domain` probes per domain, `difficulties` (one per probe level, 1 to 3), `seconds_per_question` (for the "about N minutes" estimate), optional `max_questions` (caps the quiz over every section: fewer probes a domain) |
+| `plan` | `default_weeks` without a test date, `daily_minutes` options (5, 10, 15, 20), `default_daily_minutes`, `rest_days_per_week`, `phases[]` (`id`, `name`, `share`; shares add up to 1) |
 
 Domain weights live on each domain in `skills.json`, so there is one source. The seed writes them to `domains.weight`, and `GET /api/exam` returns them under `sections[].domains`.
 
 ## Where it ends up
 
 - `npm run seed` writes `exam.json` and `voice.json` into the exam's row in D1 (`exams.config`, `exams.voice`), next to its sections, domains, skills and items.
-- The Worker reads the pack through `worker/lib/exam.js` (`learnerExam`, `sectionOf`) and serves it at `GET /api/exam`. Socrates' prompt is built from it (`buildPersona` in `worker/socrates.js`); placement uses its default section and placement config.
+- The Worker reads the pack through `worker/lib/exam.js` (`learnerExam`, `sectionOf`) and serves it at `GET /api/exam`. Socrates' prompt is built from it (`buildPersona` in `worker/socrates.js`); placement covers every section with its placement config.
 - The app loads `/api/exam` at boot (`loadExam`, `getExam` in `app/src/api.ts`) for the tagline, disclaimer, placement copy and sections.
 
 ## Definition of ready
@@ -67,7 +73,7 @@ Domain weights live on each domain in `skills.json`, so there is one source. The
 - [ ] Every skill has at least 75 live questions in even thirds of difficulty (passage-based skills: 160, one question per passage), and every `mc` question has a reason for each wrong choice.
 - [ ] Every question passed the code check (where computable), the blind solve and the adversarial review, with notes in `reports/`; answer positions are balanced; `scripts/scan_duplicates.py exams/<id>` passes (any pair it keeps is explained in `reports/duplicates-allowed.json`).
 - [ ] Domain weights match the publisher's published section breakdown.
-- [ ] Placement works for every section: the quiz starts, has `per_domain` questions per domain, easy to hard, and finishing it tests out skills.
+- [ ] Placement works over every section: the quiz starts, probes every domain (within `max_questions`), easy to hard, and finishing it tests out skills.
 - [ ] The plan engine has what it needs: weights on every domain, section timing, `plan` defaults.
 - [ ] Socrates' persona reads right for the exam (check `buildPersona` output) and the offline hints work.
-- [ ] Screenshots of Welcome, placement, Home, a lesson with each item type the exam uses, and the Complete screen, at iPhone SE, iPhone 15 and 1440px widths, with no text from another exam.
+- [ ] Screenshots of the test picker, Welcome and the setup steps, placement, Home, a lesson with each item type the exam uses, and the Complete screen, at iPhone SE, iPhone 15 and 1440px widths, with no text from another exam.
