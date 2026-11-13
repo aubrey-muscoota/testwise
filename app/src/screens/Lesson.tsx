@@ -64,6 +64,7 @@ function openingLine(src: LessonSource, l: LessonT) {
   const lessonTask = src.kind === "task" && !src.mode;
   if (src.kind === "review" || (lessonTask && src.title === "Review")) return pick(lines.review);
   if (src.kind === "task" && src.mode && src.why) return src.why;
+  if (src.kind === "task" && src.mode === "review") return lines.pathReview;
   if (l.time_limit_seconds) return lines.timed;
   if (src.kind === "skill" || lessonTask || (src.kind === "task" && src.mode === "skill")) return "Read each one to the end before the choices.";
   return "";
@@ -148,7 +149,7 @@ export function Lesson({ source, onDone, onQuit }: { source: LessonSource; onDon
       .catch((e: Error & { status?: number }) => {
         const msg = e.status && e.status < 500 && e.message && !/^HTTP/.test(e.message) ? e.message : null;
         setError(
-          msg === "no mistakes to fix" ? "There's nothing in your mistakes pile right now. Nice."
+          msg === "no mistakes to fix" ? "There's nothing in your mistakes pile right now."
           : msg === "no skills to practice yet" ? "Start a skill first, then there's something to practice."
           : msg === "skill locked" ? "That skill isn't open yet."
           : placement ? "I couldn't start the placement quiz. Is the connection down?"

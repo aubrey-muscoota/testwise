@@ -23,7 +23,7 @@ export async function skillContext(env, learnerId = null) {
   const [sections, domains, skills, counts] = await Promise.all([
     env.DB.prepare("SELECT * FROM sections WHERE exam_id = ? ORDER BY position").bind(exam.id).all(),
     env.DB.prepare("SELECT * FROM domains WHERE exam_id = ? ORDER BY position").bind(exam.id).all(),
-    env.DB.prepare("SELECT id, name, domain_id, position, prereqs FROM skills WHERE exam_id = ? ORDER BY position").bind(exam.id).all(),
+    env.DB.prepare("SELECT id, name, official_name, domain_id, position, prereqs FROM skills WHERE exam_id = ? ORDER BY position").bind(exam.id).all(),
     env.DB.prepare("SELECT skill_id, COUNT(*) AS n FROM items WHERE status = 'live' GROUP BY skill_id").all(),
   ]);
   const itemCount = Object.fromEntries(counts.results.map((r) => [r.skill_id, r.n]));
@@ -44,10 +44,12 @@ export async function skillContext(env, learnerId = null) {
       return {
         id: s.id,
         name: s.name,
+        official_name: s.official_name || s.name,
         position: s.position,
         prereqs: JSON.parse(s.prereqs || "[]"),
         domain_id: d.id,
         domain_name: d.name,
+        domain_official_name: d.official_name || d.name,
         domain_weight: num(d.weight) ?? null,
         section_id: d.section_id,
         section_name: secById.get(d.section_id)?.name || "",

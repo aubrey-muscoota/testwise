@@ -129,6 +129,13 @@ export function prepareSkills(skills) {
 
 const unlockedBy = (skill, attemptsOf) => skill.prereqs.every((p) => attemptsOf(p) >= UNLOCK_ATTEMPTS || attemptsOf(p) === Infinity);
 
+// A skill or unit name in the middle of a sentence: "You start at solving
+// linear equations". Names are sentence case, so only the first letter drops,
+// and not for an acronym ("SAT"). A pack name never starts with a proper noun
+// (scripts/new-exam.mjs says so; test/plan.test.mjs runs every name through this).
+const ACRONYM = /^[A-Z]{2,}\b/;
+export const midSentence = (name) => (ACRONYM.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
+
 /**
  * The path's units in order: one unit per domain, its skills by prerequisite
  * depth then position, so a unit's own prerequisites always come first. The
@@ -140,13 +147,13 @@ const unlockedBy = (skill, attemptsOf) => skill.prereqs.every((p) => attemptsOf(
  * everything) it is the most weight per skill, so the points per lesson lead.
  * Skills come from prepareSkills. A pack with a cross-domain cycle still gets
  * an order: the unit with the fewest unmet prerequisites goes next.
- * @returns {{id:string, name:string, section_id:string, skills:object[]}[]}
+ * @returns {{id:string, name:string, official_name:string, section_id:string, skills:object[]}[]}
  */
 export function unitOrder(skills, { byWeight = false } = {}) {
   const domainOf = new Map(skills.map((s) => [s.id, s.domain_id]));
   const units = new Map();
   for (const s of skills) {
-    if (!units.has(s.domain_id)) units.set(s.domain_id, { id: s.domain_id, name: s.domain_name || s.domain_id, section_id: s.section_id, skills: [], weight: 0, position: s.position });
+    if (!units.has(s.domain_id)) units.set(s.domain_id, { id: s.domain_id, name: s.domain_name || s.domain_id, official_name: s.domain_official_name || s.domain_name || s.domain_id, section_id: s.section_id, skills: [], weight: 0, position: s.position });
     const u = units.get(s.domain_id);
     u.skills.push(s);
     u.weight += s.weight;
@@ -182,7 +189,7 @@ export function unitOrder(skills, { byWeight = false } = {}) {
     placedIn.set(sec, (placedIn.get(sec) || 0) + u.skills.length);
     order.push(u);
   }
-  return order.map(({ id, name, section_id, skills: list }) => ({ id, name, section_id, skills: list }));
+  return order.map(({ id, name, official_name, section_id, skills: list }) => ({ id, name, official_name, section_id, skills: list }));
 }
 
 /** Every skill in path order (the units of unitOrder, one after another). */
@@ -303,14 +310,14 @@ function timedSecondsPer(skills, pace) {
 
 function recentLine(s) {
   if (!s.recent?.total) return null;
-  return `You got ${s.recent.correct} of your last ${s.recent.total} right on ${s.name}.`;
+  return `You got ${s.recent.correct} of your last ${s.recent.total} right on ${midSentence(s.name)}.`;
 }
 
 function weakWhy(list) {
   if (!list.length) return "Practice on the skills you've started.";
   const lead = recentLine(list[0]) || `${list[0].name} is your lowest at ${pct(list[0].mastery)}.`;
   const rest = list.slice(1).map((s) => `${s.name} (${pct(s.mastery)})`);
-  return rest.length ? `${lead} Also in this set: ${rest.join(" and ")}.` : lead;
+  return rest.length ? `${lead} Also in this set: ${rest.join(", ")}.` : lead;
 }
 
 /**
@@ -418,7 +425,7 @@ export function buildPlan(o) {
   const lessonTask = (s, isDone) => {
     // What the skill covers, in plain words (the row's title and ring already say whether it's started).
     const about = o.skill_about?.[s.id];
-    const why = about ? `${about}. ${LESSON_QUESTIONS} questions.` : `A first lesson on ${s.name.charAt(0).toLowerCase()}${s.name.slice(1)}.`;
+    const why = about ? `${about}. ${LESSON_QUESTIONS} questions.` : `A first lesson on ${midSentence(s.name)}.`;
     return {
       id: `lesson-${s.id}`,
       kind: "lesson",
@@ -511,7 +518,7 @@ export function buildPlan(o) {
         const per = practiceMinutesPer(startedNow, pace);
         add(practiceTask("mistakes", [], Math.min(o.mistakes, nFor(budget, per)), {
           title: "My mistakes",
-          why: `${plural(o.mistakes, "question")} you missed and haven't gotten right since. Let's clear some.`,
+          why: `${plural(o.mistakes, "question")} you missed and haven't got right since.`,
         }));
       } else {
         const per = practiceMinutesPer(startedNow, pace);
@@ -557,7 +564,7 @@ export function buildPlan(o) {
       title: tl.daysLeft === 1 ? "Rest" : "Test day",
       why: tl.daysLeft === 1
         ? "Your test is tomorrow. Sleep does more for your score tonight than cramming. A few reviews, then put it away."
-        : "Today's the day. Eat something, bring your charged device and ID, and trust the work you put in.",
+        : "Eat breakfast, bring your charged device and photo ID, and get there early.",
       done: false,
       start: null,
     });
@@ -604,9 +611,9 @@ export function buildPlan(o) {
   const assumedNote = exam.assumed ? ` (We're assuming a test around ${shortDate(exam.date)} until you pick a date.)` : "";
   let message;
   if (phase === "after") {
-    message = "Your test date has passed. Hope it went well! Practice stays open, and you can set a new date anytime.";
+    message = "Your test date has passed. Practice stays open, and you can set a new date in Me if you're taking it again.";
   } else if (phase === "rest") {
-    message = tl.daysLeft === 1 ? "Test tomorrow. Light review, then rest." : "Test day. You've got this.";
+    message = tl.daysLeft === 1 ? "Test tomorrow. Light review, then rest." : "Test day. No practice today.";
   } else if (phase === "test_ready") {
     if (!startedSod.size) message = `${plural(tl.daysLeft, "day")} left. We'll spend them on timed mixed sets across the whole test.`;
     else if (behind) message = `${plural(tl.daysLeft, "day")} left. ${plural(behind, "skill")} never got started, so we'll sharpen what you know instead.`;

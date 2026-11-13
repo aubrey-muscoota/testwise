@@ -4,7 +4,7 @@
 import * as E from "../engine.js";
 import { json, fail, parseItem, masteryMap, today as localToday } from "../lib/http.js";
 import { skillContext } from "../lib/skill-context.js";
-import { prepareSkills } from "../plan.js";
+import { midSentence, prepareSkills } from "../plan.js";
 import { MODES, DEFAULT_N, DEFAULT_FRESH_N, MAX_N, practiceSkills, pickPractice, bankSummary, lowUnseen } from "../practice.js";
 import {
   generateBatch, makeClient, generatorModel, globalDailyCap, newItemId, BATCH_SIZE, PER_LEARNER_DAILY,
@@ -87,8 +87,9 @@ export async function generateForSkill(env, { learnerId, day, skill, ctx, rating
     if (ex.length < 2) return { ids: [], reason: "no_examples" };
     const res = await generateBatch({
       client, model,
-      exam: ctx.exam?.name || "", section: skill.section_name, domain: skill.domain_name,
-      skill: { id: skill.id, name: skill.name }, difficulty, examples: ex, n: room,
+      // The writer gets the publisher's names, which match how the test describes the skill.
+      exam: ctx.exam?.name || "", section: skill.section_name, domain: skill.domain_official_name || skill.domain_name,
+      skill: { id: skill.id, name: skill.official_name || skill.name }, difficulty, examples: ex, n: room,
     });
     for (const r of res.rejected) console.log("generated item rejected", skill.id, r.reason);
     if (!res.accepted.length) return { ids: [], reason: "none_passed" };
@@ -168,7 +169,7 @@ export async function startPractice(env, request, learnerId, b, execCtx) {
     extra.generated = freshIds.length;
     extra.note = gen.reason
       ? `${FALLBACK_NOTES[gen.reason]}, so these are from the bank.`
-      : `I just wrote ${freshIds.length} new ${freshIds.length === 1 ? "question" : "questions"} on ${skill.name}. A second solver checked each answer, but tap Report if one looks off.`;
+      : `I just wrote ${freshIds.length} new ${freshIds.length === 1 ? "question" : "questions"} on ${midSentence(skill.name)}. A second solver checked each answer, but tap Report if one looks off.`;
   }
 
   const plan = practiceSkills({
@@ -244,7 +245,7 @@ export async function practiceSummary(env, request, learnerId) {
   const counts = await generatedCounts(env, learnerId, day);
   const rows = skills.map((s) => {
     const r = by.get(s.id) || { bank: 0, generated: 0, seen: 0, unseen: 0, missed: 0 };
-    return { skill_id: s.id, name: s.name, section_id: s.section_id, ...r, started: s.started, unlocked: s.unlocked, low: lowUnseen(r) };
+    return { skill_id: s.id, name: s.name, official_name: s.official_name || s.name, section_id: s.section_id, ...r, started: s.started, unlocked: s.unlocked, low: lowUnseen(r) };
   });
   const sum = (k) => rows.reduce((a, r) => a + r[k], 0);
   // What "My mistakes" can actually serve: misses in skills practice draws from

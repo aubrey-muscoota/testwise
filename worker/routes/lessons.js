@@ -129,7 +129,7 @@ async function applyPlacement(env, exam, learnerId, lesson) {
 async function placementSummary(env, exam, learnerId, lesson) {
   const skills = await placementSkills(env, exam, lesson);
   const mastery = await masteryMap(env, learnerId);
-  const name = (s) => ({ id: s.id, name: s.name });
+  const name = (s) => ({ id: s.id, name: s.name, official_name: s.official_name || s.name });
   const m = (s) => mastery[s.id] || { rating: 0, attempts: 0 };
   return {
     tested_out: skills.filter((s) => m(s).tested_out).map(name),

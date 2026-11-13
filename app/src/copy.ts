@@ -33,8 +33,10 @@ export const lines = {
   ],
   review: [
     "These are ones you missed before. Do they look different now?",
-    "A few you got wrong earlier. Let's see what stuck.",
+    "A few you got wrong earlier. Which ones stuck?",
   ],
+  // Opening a review circle from the path.
+  pathReview: "A mix from your last few lessons, to see what stuck.",
   placement: [
     "Easy ones first. They get harder as you go.",
     "Answer what you can.",
@@ -117,13 +119,20 @@ export function listOf(names: string[]) {
 }
 
 // Keeps the last two words of a title together, so no single word sits alone on the last line.
+// A skill or unit name in the middle of a sentence ("You start at solving
+// linear equations"). Names are sentence case and never start with a proper
+// noun, so only the first letter drops, and not for an acronym ("SAT").
+// Same rule as midSentence in worker/plan.js.
+const ACRONYM = /^[A-Z]{2,}\b/;
+export const midSentence = (name: string) => (ACRONYM.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
+
 export function noOrphan(t: string) {
   const i = t.lastIndexOf(" ");
   return i > 0 && t.length - i < 14 ? `${t.slice(0, i)}\u00a0${t.slice(i + 1)}` : t;
 }
 
 // One status line for a skill, in the Practice skill picker:
-// misses to fix first, then how far along it is. `pct` adds the mastery
+// how far along it is, then misses to fix. `pct` gives the mastery
 // percentage where no ring shows it.
 export function skillStatus(
   sk: { answered?: number; attempts: number; mastery: number; mastered: boolean; tested_out?: boolean },
@@ -132,10 +141,10 @@ export function skillStatus(
 ) {
   const n = sk.answered ?? sk.attempts;
   const parts: string[] = [];
-  if (missed) parts.push(`${missed} to fix`);
   if (sk.mastered) parts.push("Mastered");
-  else if (n > 0) parts.push(pct ? `${sk.mastery}% after ${plural(n, "question")}` : `${plural(n, "question")} so far`);
+  else if (n > 0) parts.push(pct && sk.mastery > 0 ? `${sk.mastery}% mastered` : `${plural(n, "question")} so far`);
   else if (sk.tested_out) parts.push("Tested out");
+  if (missed) parts.push(plural(missed, "mistake") + " to fix");
   const line = parts.join(", ");
   return line ? line.charAt(0).toUpperCase() + line.slice(1) : "";
 }

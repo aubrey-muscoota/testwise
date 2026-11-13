@@ -52,6 +52,8 @@ test("broken packs get one readable problem each", () => {
   p.skills.sections[0].domains[1].weight = 0.3;
   p.skills.sections[0].domains[1].skills[0].prereqs = ["demo-missing"];
   p.skills.sections[0].domains[0].skills.push({ id: "demo-add", name: "Again", prereqs: [] });
+  p.skills.sections[0].domains[1].name = "Algebra with one unknown and a few steps"; // too long for a card title
+  p.skills.sections[0].domains[0].skills[0].official_name = 7;
   p.items = [
     ...p.items,
     { ...p.items[0] }, // duplicate id
@@ -68,6 +70,8 @@ test("broken packs get one readable problem each", () => {
     /duplicate item id "demo-add-001"/,
     /unknown skill_id "demo-x"/,
     /"demo-add-099": needs 3 choices/,
+    /domain "demo-alg" "name" is 40 characters; keep it to 32/,
+    /skill "demo-add" "official_name" must be text/,
   ]) assert.match(problems, want);
   assert.ok(problems.split("\n").every((m) => m.startsWith("exams/demo: ")));
 });
@@ -285,8 +289,8 @@ test("the Worker serves the demo exam end to end with no code changes", async ()
   assert.equal(exam.publisher.disclaimer, "Testwise is not affiliated with Demo Board.");
   assert.equal(exam.default_section, "demo-quant");
   assert.deepEqual(exam.sections[0].domains, [
-    { id: "demo-arith", name: "Arithmetic", weight: 0.6 },
-    { id: "demo-alg", name: "Algebra", weight: 0.4 },
+    { id: "demo-arith", name: "Arithmetic", official_name: "Arithmetic", weight: 0.6 },
+    { id: "demo-alg", name: "Algebra", official_name: "Algebra", weight: 0.4 },
   ]);
   assert.equal(exam.plan.default_weeks, 6);
   assert.equal(exam.voice.terms.spr, "numeric entry");
@@ -319,4 +323,22 @@ test("no wrong_reason opens with a 'Picked/Chosen/Tempting because' template", (
       for (const [k, v] of Object.entries(it.wrong_reasons ?? {})) assert.ok(!/^(Picked|Chosen|Tempting) because/.test(v), `${it.id} ${k}: ${v}`);
     }
   }
+});
+
+test("the SAT pack names every skill and unit in a student's words and keeps College Board's name", () => {
+  const sat = loadPack(path("../exams/sat"));
+  const all = sat.skills.sections.flatMap((s) => s.domains.flatMap((d) => [d, ...d.skills]));
+  assert.equal(all.length, 8 + 29);
+  for (const x of all) {
+    assert.ok(x.official_name && x.official_name.trim(), `${x.id} has an official name`);
+    assert.ok(x.name.length <= 32, `${x.id}: "${x.name}" fits a card title`);
+    assert.match(x.name, /^[A-Z][^A-Z]*(?:[A-Z][a-z]*(?:ean|ian)?[^A-Z]*)*$/, `${x.id}: "${x.name}" is sentence case`);
+  }
+  const byId = new Map(all.map((x) => [x.id, x]));
+  assert.equal(byId.get("rw-boundaries").name, "Commas, dashes and semicolons");
+  assert.equal(byId.get("rw-boundaries").official_name, "Boundaries");
+  assert.equal(packSkills(sat).find((s) => s.id === "rw-boundaries").official_name, "Boundaries");
+  // The seed stores both.
+  const res = buildSeed({ examsDir: path("../exams") });
+  assert.match(res.sql, /INSERT INTO skills \(id, exam_id, domain_id, name, official_name, .*'rw-boundaries', 'sat', 'rw-sec', 'Commas, dashes and semicolons', 'Boundaries'/);
 });

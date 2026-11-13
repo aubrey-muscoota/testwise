@@ -16,7 +16,7 @@ const { exam: e, skills, voice } = sat;
 const exam = {
   id: e.id, name: e.name, short_name: e.short_name, tagline: e.tagline, audience: e.audience, publisher: e.publisher,
   score: e.score, default_section: e.default_section, placement: e.placement, plan: e.plan, voice,
-  sections: e.sections.map((s) => ({ ...s, domains: skills.sections.find((x) => x.id === s.id).domains.map((d) => ({ id: d.id, name: d.name, weight: d.weight })) })),
+  sections: e.sections.map((s) => ({ ...s, domains: skills.sections.find((x) => x.id === s.id).domains.map((d) => ({ id: d.id, name: d.name, official_name: d.official_name || d.name, weight: d.weight })) })),
   test_dates: e.test_dates.dates,
 };
 const exams = packs.map((p) => (p.exam.enabled

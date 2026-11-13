@@ -83,7 +83,7 @@ const NodeBase = {
   start: Start.nullable(),
 };
 const PathNode = z.discriminatedUnion("kind", [
-  z.object({ ...NodeBase, kind: z.literal("skill"), skill_id: z.string(), mastery: z.number().int().min(0).max(100), tested_out: z.boolean(), questions: z.number().int(), minutes: z.number() }),
+  z.object({ ...NodeBase, kind: z.literal("skill"), skill_id: z.string(), official_name: z.string().min(1), mastery: z.number().int().min(0).max(100), tested_out: z.boolean(), questions: z.number().int(), minutes: z.number() }),
   z.object({ ...NodeBase, kind: z.literal("review"), skill_ids: z.array(z.string()).min(1), due: z.number().int().min(0), questions: z.number().int(), minutes: z.number() }),
   z.object({ ...NodeBase, kind: z.literal("check"), skill_ids: z.array(z.string()).min(1), questions: z.number().int(), minutes: z.number() }),
 ]);
@@ -96,7 +96,7 @@ export const PathResponse = z.object({
   stats: z.object({ xp: z.number(), streak: z.number(), xp_today: z.number(), reviews_due: z.number(), month_days: z.array(z.string()) }),
   current: z.string(),
   units: z.array(z.object({
-    id: z.string(), name: z.string(), section_id: z.string(), section_name: z.string(), section_index: z.number().int().min(0), section_kind: z.enum(["numbers", "words"]),
+    id: z.string(), name: z.string(), official_name: z.string(), section_id: z.string(), section_name: z.string(), section_index: z.number().int().min(0), section_kind: z.enum(["numbers", "words"]),
     number: z.number().int().min(1), of: z.number().int().min(1), done: z.number().int().min(0), total: z.number().int().min(1),
     nodes: z.array(PathNode).min(1),
   })),

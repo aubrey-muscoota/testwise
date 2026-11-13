@@ -57,9 +57,9 @@ export function buildSeed({ examsDir = "exams", today = new Date().toISOString()
       out.push(`INSERT INTO sections (id, exam_id, name, position) VALUES (${q(sec.id)}, ${q(exam.id)}, ${q(names.get(sec.id))}, ${order.get(sec.id)}) ON CONFLICT (id) DO UPDATE SET exam_id = excluded.exam_id, name = excluded.name, position = excluded.position;`);
       for (const d of sec.domains) {
         nDomains++;
-        out.push(`INSERT INTO domains (id, exam_id, section_id, name, position, weight) VALUES (${q(d.id)}, ${q(exam.id)}, ${q(sec.id)}, ${q(d.name)}, ${dpos++}, ${d.weight}) ON CONFLICT (id) DO UPDATE SET exam_id = excluded.exam_id, section_id = excluded.section_id, name = excluded.name, position = excluded.position, weight = excluded.weight;`);
+        out.push(`INSERT INTO domains (id, exam_id, section_id, name, official_name, position, weight) VALUES (${q(d.id)}, ${q(exam.id)}, ${q(sec.id)}, ${q(d.name)}, ${q(d.official_name || d.name)}, ${dpos++}, ${d.weight}) ON CONFLICT (id) DO UPDATE SET exam_id = excluded.exam_id, section_id = excluded.section_id, name = excluded.name, official_name = excluded.official_name, position = excluded.position, weight = excluded.weight;`);
         for (const s of d.skills) {
-          out.push(`INSERT INTO skills (id, exam_id, domain_id, name, position, prereqs) VALUES (${q(s.id)}, ${q(exam.id)}, ${q(d.id)}, ${q(s.name)}, ${pos++}, ${j(s.prereqs || [])}) ON CONFLICT (id) DO UPDATE SET exam_id = excluded.exam_id, name = excluded.name, domain_id = excluded.domain_id, position = excluded.position, prereqs = excluded.prereqs;`);
+          out.push(`INSERT INTO skills (id, exam_id, domain_id, name, official_name, position, prereqs) VALUES (${q(s.id)}, ${q(exam.id)}, ${q(d.id)}, ${q(s.name)}, ${q(s.official_name || s.name)}, ${pos++}, ${j(s.prereqs || [])}) ON CONFLICT (id) DO UPDATE SET exam_id = excluded.exam_id, name = excluded.name, official_name = excluded.official_name, domain_id = excluded.domain_id, position = excluded.position, prereqs = excluded.prereqs;`);
         }
       }
     }

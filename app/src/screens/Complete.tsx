@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from "react";
 import { Platform, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { api, LearnPath, PathNode } from "../api";
-import { clock, noOrphan } from "../copy";
+import { clock, midSentence as low, noOrphan } from "../copy";
 import { SocratesSays } from "../components/SocratesLine";
 import { Socrates } from "../socrates/Socrates";
 import { Button, CountUp, Rise, TextButton } from "../components/ui";
@@ -14,8 +14,6 @@ import { LessonSource, nodeSource } from "../nav";
 import { color, font, GUTTER, space, type, COLUMN } from "../theme";
 import type { LessonResult } from "./Lesson";
 import { Streak } from "./Streak";
-
-const low = (n: string) => n.charAt(0).toLowerCase() + n.slice(1);
 
 // "math" from a Math placement, so counts say which skills they mean (nothing for the quiz over every section).
 const sectionWord = (r: LessonResult) => (r.source.kind === "placement" && !r.source.all && r.source.name ? `${r.source.name.toLowerCase()} ` : "");

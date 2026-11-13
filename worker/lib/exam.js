@@ -28,7 +28,7 @@ export async function getExam(env, examId) {
   if (hit && hit.db === env.DB && Date.now() - hit.at < TTL_MS) return hit.exam;
   const [row, domains] = await Promise.all([
     env.DB.prepare("SELECT id, name, config, voice FROM exams WHERE id = ?").bind(examId).first(),
-    env.DB.prepare("SELECT id, name, section_id, weight FROM domains WHERE exam_id = ? ORDER BY position").bind(examId).all(),
+    env.DB.prepare("SELECT id, name, official_name, section_id, weight FROM domains WHERE exam_id = ? ORDER BY position").bind(examId).all(),
   ]);
   const exam = row?.config ? toExam(row, domains.results) : null;
   cache.set(examId, { exam, at: Date.now(), db: env.DB });
@@ -44,7 +44,7 @@ function toExam(row, domains) {
     name: cfg.name || row.name,
     sections: (cfg.sections || []).map((s) => ({
       ...s,
-      domains: domains.filter((d) => d.section_id === s.id).map((d) => ({ id: d.id, name: d.name, weight: d.weight })),
+      domains: domains.filter((d) => d.section_id === s.id).map((d) => ({ id: d.id, name: d.name, official_name: d.official_name || d.name, weight: d.weight })),
     })),
     voice,
   };

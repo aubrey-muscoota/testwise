@@ -17,7 +17,7 @@ export async function socrates(env, request, learnerId, b) {
     : [];
   const studentTurns = history.filter((t) => t.role === "student").length;
   if (studentTurns >= MAX_STUDENT_TURNS) {
-    return json({ reply: "We've thought hard about this one together. Let's look at the full solution and keep going!", done: true });
+    return json({ reply: "That's as far as I can take this one in a chat. The worked solution has every step.", done: true });
   }
   if (history.length && history[history.length - 1].role !== "student") return fail(400, "expected a student turn");
 
@@ -27,7 +27,7 @@ export async function socrates(env, request, learnerId, b) {
   ).bind(learnerId, today).all();
   const ids = convs.results.map((r) => r.item_id);
   if (!ids.includes(item.id) && ids.length >= DAILY_CONVERSATIONS) {
-    return json({ error: "daily_limit", reply: "I've loved our talks today! Come back tomorrow for more. For now, the worked solution is right below." }, 429);
+    return json({ error: "daily_limit", reply: `That's ${DAILY_CONVERSATIONS} questions talked through today, my limit. I'm back tomorrow. The worked solution is below.` }, 429);
   }
 
   let reply = null;

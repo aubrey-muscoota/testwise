@@ -19,7 +19,7 @@
 // voice.json's skill_about) or is exam-neutral.
 
 import { UNLOCK_ATTEMPTS, LESSON_SIZE } from "./engine.js";
-import { buildPlan, runwayContext, MINUTES, LESSON_QUESTIONS } from "./plan.js";
+import { buildPlan, runwayContext, MINUTES, LESSON_QUESTIONS, midSentence } from "./plan.js";
 
 export const REVIEW_EVERY = 3; // a review circle after every 3 skills (not at a unit's end)
 export const REVIEW_QUESTIONS = 8;
@@ -27,7 +27,6 @@ export const CHECK_MIN = 8;
 export const CHECK_MAX = 12;
 
 const plural = (n, one, many = one + "s") => `${n} ${n === 1 ? one : many}`;
-const lower = (t) => t.charAt(0).toLowerCase() + t.slice(1);
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 
 function practiceMinutes(list, pace, n) {
@@ -84,17 +83,17 @@ export function buildPath(o) {
     if (state === "locked") {
       const first = s.prereqs.map((p) => byId.get(p)).find((p) => !p || p.attempts < UNLOCK_ATTEMPTS);
       locked_reason = !engine
-        ? first ? `Opens after ${first.name}` : "Opens once every skill before it has questions"
-        : `Opens when you finish ${units[ui - 1]?.name ?? "the unit above"}`;
+        ? first ? `Opens after ${midSentence(first.name)}` : "Opens once every skill before it has questions"
+        : `Opens when you finish ${units[ui - 1] ? midSentence(units[ui - 1].name) : "the unit above"}`;
     }
     const a = about[s.id];
-    const lead = a ? `${a}.` : `A first lesson on ${lower(s.name)}.`;
+    const lead = a ? `${a}.` : `A first lesson on ${midSentence(s.name)}.`;
     const why = s.tested_out && s.attempts <= UNLOCK_ATTEMPTS && !s.mastered
       ? `${lead} You tested out of it in the placement quiz.`
       : `${lead} ${LESSON_QUESTIONS} questions, about ${MINUTES.lesson} minutes.`;
     const id = `skill:${s.id}`;
     return {
-      id, kind: "skill", state, title: s.name, why,
+      id, kind: "skill", state, title: s.name, official_name: s.official_name || s.name, why,
       skill_id: s.id, mastery: Math.round(s.mastery * 100), tested_out: !!s.tested_out,
       questions: LESSON_QUESTIONS, minutes: MINUTES.lesson,
       ...(locked_reason ? { locked_reason } : {}),
@@ -122,10 +121,10 @@ export function buildPath(o) {
       why = due
         ? `${plural(due, "question")} you missed ${due === 1 ? "is" : "are"} due, then a mix of ${mix}.`
         : `A mix of ${mix}, so they stick.`;
-      if (state === "locked") locked_reason = `Opens after ${[...covers].reverse().find((s) => !isDone(s)).name}`;
+      if (state === "locked") locked_reason = `Opens after ${midSentence([...covers].reverse().find((s) => !isDone(s)).name)}`;
     } else {
       title = "Unit check";
-      why = `${n} questions across ${unitName}. Finish it to close the unit.`;
+      why = `${n} questions across ${midSentence(unitName)}. Finish it to close the unit.`;
       const left = covers.filter((s) => !isDone(s)).length;
       if (state === "locked") locked_reason = left === 1 ? "Opens when you finish the lesson above" : `Opens when you finish the ${left} lessons above`;
     }
@@ -157,6 +156,7 @@ export function buildPath(o) {
     return {
       id: u.id,
       name: u.name,
+      official_name: u.official_name || u.name,
       section_id: u.section_id,
       section_name: sectionName(u.section_id),
       section_index: Math.max(0, sectionIndex(u.section_id)),
