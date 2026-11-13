@@ -93,7 +93,7 @@ export const PathResponse = z.object({
   exam_date_assumed: z.boolean(),
   days_left: z.number().int(),
   phase: z.enum(["learn", "strengthen", "test_ready", "rest", "after"]),
-  stats: z.object({ xp: z.number(), streak: z.number(), xp_today: z.number(), reviews_due: z.number() }),
+  stats: z.object({ xp: z.number(), streak: z.number(), xp_today: z.number(), reviews_due: z.number(), month_days: z.array(z.string()) }),
   current: z.string(),
   units: z.array(z.object({
     id: z.string(), name: z.string(), section_id: z.string(), section_name: z.string(), section_index: z.number().int().min(0), section_kind: z.enum(["numbers", "words"]),

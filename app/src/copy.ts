@@ -139,22 +139,3 @@ export function skillStatus(
   const line = parts.join(", ");
   return line ? line.charAt(0).toUpperCase() + line.slice(1) : "";
 }
-
-// The big countdown line (Progress): "41 days to your SAT". The test's short
-// name comes from the exam pack.
-export function countdown(
-  plan: { days_left: number; phase: string; exam_date: string; exam_date_assumed: boolean },
-  shortName: string | undefined,
-  narrow: boolean,
-): { title: string; sub: string | null } {
-  const name = shortName ?? "test";
-  const d = plan.days_left;
-  const br = narrow ? "\n" : " ";
-  if (plan.phase === "after" || d < 0) return { title: `How did the${br}${name} go?`, sub: "Taking it again? Set a new date in Me." };
-  if (d === 0) return { title: "Test day", sub: longDay(plan.exam_date) };
-  if (d === 1) return { title: `Your ${name} is${br}tomorrow`, sub: longDay(plan.exam_date) };
-  if (plan.exam_date_assumed) {
-    return { title: d >= 14 ? `About ${Math.round(d / 7)} weeks${br}to go` : `About ${d} days${br}to go`, sub: null };
-  }
-  return { title: `${d} days${br}to your ${name}`, sub: longDay(plan.exam_date) };
-}

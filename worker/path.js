@@ -44,7 +44,7 @@ function practiceMinutes(list, pace, n) {
  * @param {{id:string, name:string, kind?:"numbers"|"words"}[]} [o.sections]  the exam's sections in order
  * @param {Object<string,number>} [o.reviews_due_by_skill]  due review items per skill
  * @param {Object<string,string>} [o.skill_about]  skill id → what it covers
- * @param {object} [o.stats]  {xp, streak, xp_today, reviews_due}
+ * @param {object} [o.stats]  {xp, streak, xp_today, reviews_due, month_days}
  */
 export function buildPath(o) {
   const ctx = runwayContext(o);
@@ -227,7 +227,7 @@ export function buildPath(o) {
     exam_date_assumed: plan.exam_date_assumed,
     days_left: plan.days_left,
     phase: plan.phase,
-    stats: { xp: st.xp ?? 0, streak: st.streak ?? 0, xp_today: st.xp_today ?? 0, reviews_due: st.reviews_due ?? o.reviews_due ?? 0 },
+    stats: { xp: st.xp ?? 0, streak: st.streak ?? 0, xp_today: st.xp_today ?? 0, reviews_due: st.reviews_due ?? o.reviews_due ?? 0, month_days: st.month_days ?? [] },
     current: currentId,
     units: outUnits,
     end,

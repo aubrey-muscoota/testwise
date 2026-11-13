@@ -1,5 +1,6 @@
-// Me: the test date, target and daily time (each editable), sound, the
-// Socrates AI switch, the legal pages and deleting everything.
+// Me: settings only. The test date, daily goal and target score (each
+// editable), sound, the Socrates AI switch, the legal pages, and downloading or
+// deleting everything. Numbers about progress live on Progress.
 import React, { useState } from "react";
 import { Alert, Linking, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { api, getExam, legalUrl, Profile, Tree } from "../api";
@@ -10,6 +11,7 @@ import { useLoad } from "../nav";
 import { color, GUTTER, space, type, COLUMN } from "../theme";
 import type { Field } from "../setup/EditField";
 import { ConsentSheet } from "../lesson/sheets";
+import { SocratesAvatar } from "../socrates/Socrates";
 
 function confirm(title: string, msg: string, yes: () => void) {
   if (Platform.OS === "web") {
@@ -79,8 +81,9 @@ export function Me({ onEdit, onDeleted }: { onEdit: (f: Field, p: Profile) => vo
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}>
-        <Rise>
-          <Text style={type.title} accessibilityRole="header">{title}</Text>
+        <Rise style={s.head}>
+          <SocratesAvatar size={72} mood="happy" />
+          <Text style={[type.title, { flex: 1, marginLeft: space(1.75) }]} accessibilityRole="header">{title}</Text>
         </Rise>
 
         <Rise delay={60} style={{ marginTop: space(3) }}>
@@ -185,7 +188,10 @@ function MeSkeleton() {
   return (
     <Skeleton label="Loading your settings">
       <View style={s.scroll}>
-        <Bone w={240} h={30} />
+        <View style={s.head}>
+          <Bone w={72} h={72} r={36} />
+          <Bone w={200} h={30} style={{ marginLeft: 14 }} />
+        </View>
         {[0, 1, 2, 3, 4].map((i) => (
           <View key={i} style={{ flexDirection: "row", gap: 14, marginTop: i ? 26 : 36 }}>
             <Bone w="40%" h={16} />
@@ -199,4 +205,5 @@ function MeSkeleton() {
 const s = StyleSheet.create({
   scroll: { paddingHorizontal: GUTTER, paddingTop: space(3), maxWidth: COLUMN, width: "100%", alignSelf: "center" },
   link: { paddingHorizontal: 0 },
+  head: { flexDirection: "row", alignItems: "center" },
 });

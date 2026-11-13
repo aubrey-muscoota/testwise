@@ -109,7 +109,10 @@ export type Plan = {
   exam_date_assumed: boolean;
   days_left: number;
   phase: PlanPhase;
-  status: { on_track: boolean; behind_by_lessons: number; missed_yesterday: boolean; message: string };
+  // behind_by_lessons counts today's lessons. ahead_by_lessons: lessons (not skills tested out) past the
+  // even pace by tonight and past today's plan. short_runway: too few days to start every skill.
+  // Older servers leave the last two out.
+  status: { on_track: boolean; behind_by_lessons: number; ahead_by_lessons?: number; short_runway?: boolean; missed_yesterday: boolean; message: string };
   today_tasks_done: number;
   today: PlanTask[];
   minutes_planned: number;
@@ -151,7 +154,8 @@ export type LearnPath = {
   exam_date_assumed: boolean;
   days_left: number;
   phase: PlanPhase;
-  stats: { xp: number; streak: number; xp_today: number; reviews_due: number };
+  // month_days: this month's local days with a finished lesson, for Progress' calendar.
+  stats: { xp: number; streak: number; xp_today: number; reviews_due: number; month_days?: string[] };
   current: string;
   units: PathUnit[];
   end: PathNode & { kind: "end" };

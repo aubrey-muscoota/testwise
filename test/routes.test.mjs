@@ -9,6 +9,7 @@ import { deleteLearner, exportLearner } from "../worker/routes/learners.js";
 import { answer } from "../worker/routes/answers.js";
 import { report } from "../worker/routes/reports.js";
 import { finishLesson } from "../worker/routes/lessons.js";
+import { stats } from "../worker/lib/http.js";
 
 const L = "learner0000000001";
 function setup(envExtra = {}) {
@@ -198,6 +199,20 @@ test("the placement quiz keeps the streak but isn't the day's first lesson", asy
   assert.equal(f.stats.lessons_today, 2);
   assert.equal(f.stats.lessons_today_no_placement, 1);
   assert.equal(f.stats.streak, 1);
+});
+
+test("month_days lists this month's lesson days for the calendar, and nothing from other months or unfinished lessons", async () => {
+  const env = setup();
+  const day = new Date().toISOString().slice(0, 10);
+  const month = day.slice(0, 7);
+  const ins = env.DB.raw.prepare("INSERT INTO lessons (id, learner_id, skill_id, started_at, completed_at, correct, total, xp, local_day, kind) VALUES (?, ?, NULL, 0, ?, 1, 1, 10, ?, 'practice')");
+  ins.run("m1", L, 1, `${month}-01`);
+  ins.run("m2", L, 1, `${month}-01`);
+  ins.run("m3", L, null, day); // started, never finished
+  const prev = new Date(Date.UTC(+month.slice(0, 4), +month.slice(5, 7) - 2, 15)).toISOString().slice(0, 10);
+  ins.run("m4", L, 1, prev);
+  const st = await stats(env, L, day);
+  assert.deepEqual(st.month_days, [`${month}-01`]);
 });
 
 test("the data export holds every table the learner appears in, and nothing after a delete", async () => {

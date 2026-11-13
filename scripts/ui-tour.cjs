@@ -272,7 +272,7 @@ fs.mkdirSync(out, { recursive: true });
   });
   await step("progress", async () => {
     await tab("Progress");
-    await page.getByText("Show every week").or(page.getByText(/^This week/)).first().waitFor({ timeout: 15000 });
+    await page.getByTestId("progress-calendar").waitFor({ timeout: 15000 });
     await shot("progress", 1500);
     await page.mouse.wheel(0, 900);
     await shot("progress-scrolled", 800);
@@ -281,17 +281,11 @@ fs.mkdirSync(out, { recursive: true });
     await tab("Practice");
     await page.getByTestId("mode-timed").waitFor({ timeout: 15000 });
     await shot("practice", 1500);
-    // The recommended mode is the screen's button, not a row; "fresh" only
-    // shows when Socrates can write questions here (its number is kept free).
-    for (const m of ["weak", "mixed", "timed", "fresh"]) {
-      let target = page.getByTestId(`mode-${m}`);
-      if (!(await target.count())) {
-        const best = page.getByTestId("practice-best");
-        const label = (await best.getAttribute("aria-label").catch(() => "")) || "";
-        const isBest = (m === "weak" && /^Practice /.test(label)) || (m === "mixed" && /mixed/.test(label));
-        if (!isBest) { n += 1; console.log("skip", m); continue; }
-        target = best;
-      }
+    // "Fix my mistakes" is the screen's button when there are any; "fresh"
+    // only shows when Socrates can write questions here (its number is kept free).
+    for (const m of ["mistakes", "weak", "mixed", "timed", "fresh"]) {
+      const target = page.getByTestId(m === "mistakes" ? "practice-mistakes" : `mode-${m}`);
+      if (!(await target.count())) { n += 1; console.log("skip", m); continue; }
       await target.click();
       await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 30000 });
       await shot(`practice-${m}`, 2500);

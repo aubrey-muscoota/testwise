@@ -369,15 +369,18 @@ export function buildPlan(o) {
   const phase = phaseOn(tl.daysLeft, tl.tr, unstartedSod.length > 0);
   const sodAttempts = (id) => byId.get(id)?.sod_attempts ?? Infinity;
 
-  // Behind: the even pace line from plan start vs skills started by today.
+  // Behind: the even pace line from plan start (as of the start of today) vs
+  // skills started so far, today's lessons included, so every lesson done
+  // today closes the gap at once.
   const learnLen = Math.max(1, daysBetween(planStart, tl.learnEnd) + 1);
   const elapsed = Math.max(0, daysBetween(planStart, today));
   const expected = Math.floor(skills.length * Math.min(1, elapsed / learnLen));
+  const startedCount = skills.filter((s) => s.started).length;
   let behind = 0;
-  if (phase === "learn") behind = Math.max(0, expected - startedSod.size);
-  else if (phase === "test_ready" || phase === "rest") behind = unstartedSod.length;
-
+  if (phase === "learn") behind = Math.max(0, expected - startedCount);
+  else if (phase === "test_ready" || phase === "rest") behind = skills.length - startedCount;
   const tasks = [];
+  let plannedNew = 0; // new-skill lessons today's plan asks for
   let budget = minutes;
   const add = (t) => { tasks.push(t); budget -= t.minutes; };
   const startedNow = skills.filter((s) => s.started);
@@ -458,6 +461,7 @@ export function buildPlan(o) {
   if (phase === "learn") {
     let L = newLessonsOn({ day: today, unstarted: unstartedSod.length, tl, minutes, lastNewDay });
     if (!startedSod.size) L =Math.max(L, Math.min(lessonCap(minutes, tl.daysLeft), Math.floor(minutes / MINUTES.lesson)));
+    plannedNew = L;
     for (const id of newDoneToday) add(lessonTask(byId.get(id), true));
     // The next skills on the path, as of the start of today.
     const left = Math.max(0, L - newDoneToday.length);
@@ -573,7 +577,25 @@ export function buildPlan(o) {
   const planDays = daysBetween(planStart, today);
   const missedTwo = planDays >= 2 && !active.has(yesterday) && !active.has(dayBefore);
   const missedYesterday = planDays >= 1 && !active.has(yesterday);
-  const onTrack = behind === 0 && !missedTwo;
+  // A finished lesson today puts a learner who missed two days back on pace.
+  const activeToday = done.length > 0 || active.has(today);
+  const onTrack = behind === 0 && !(missedTwo && !activeToday);
+  // Ahead: lessons (not skills tested out by placement) past the even pace
+  // line by tonight, rounded up so that doing exactly today's plan reads as on
+  // track, and never more than the learner was ahead this morning plus new
+  // skills started today beyond today's plan. Learn phase only, and not on a
+  // short runway, where the plan can't start every skill anyway.
+  let ahead = 0;
+  if (phase === "learn" && !behind && !shortRunway) {
+    const learned = (sod) => skills.filter((s) => !s.tested_out && (sod ? s.sod_attempts > 0 : s.attempts > 0)).length;
+    const needed = skills.filter((s) => !s.tested_out).length;
+    const paceBy = (days) => Math.ceil(needed * Math.min(1, days / learnLen));
+    const learnedNow = learned(false);
+    const learnedSod = learned(true);
+    const aheadSod = Math.max(0, learnedSod - paceBy(elapsed));
+    const extraToday = Math.max(0, learnedNow - learnedSod - plannedNew);
+    ahead = Math.max(0, Math.min(learnedNow - paceBy(elapsed + 1), aheadSod + extraToday));
+  }
   // The weeks ahead, and from them the one date every skill is started by, so
   // Today, the plan header and the weekly list never disagree.
   const weeks = phase === "after" ? [] : projectWeeks({ today, tl, skills, minutes, lastNewDay, startedSod, todayNew: tasks.filter((t) => t.kind === "lesson").map((t) => t.skill_id), order });
@@ -592,9 +614,9 @@ export function buildPlan(o) {
   } else if (phase === "strengthen") {
     const w = weakest(skills, 1)[0];
     message = `All ${skills.length} skills started. Now we fix weak spots${w ? `: ${w.name} is lowest at ${pct(w.mastery)}` : ""}.`;
-    if (missedTwo) message += " You've missed a couple of days; today's plan picks it back up.";
+    if (missedTwo && !activeToday) message += " You've missed a couple of days; today's plan picks it back up.";
   } else {
-    const left = unstartedSod.length;
+    const left = skills.length - startedCount;
     message = shortRunway
       ? `${plural(tl.daysLeft, "day")} isn't enough to start all ${plural(left, "skill")}, so we'll start the ones worth the most points first.`
       : behind
@@ -610,7 +632,14 @@ export function buildPlan(o) {
     exam_date_assumed: exam.assumed,
     days_left: tl.daysLeft,
     phase,
-    status: { on_track: onTrack, behind_by_lessons: behind, missed_yesterday: missedYesterday, message },
+    status: {
+      on_track: onTrack,
+      behind_by_lessons: behind,
+      ahead_by_lessons: ahead,
+      short_runway: phase === "learn" && shortRunway,
+      missed_yesterday: missedYesterday,
+      message,
+    },
     today_tasks_done: tasks.filter((t) => t.done).length,
     today: tasks,
     minutes_planned: round1(tasks.reduce((a, t) => a + t.minutes, 0)),

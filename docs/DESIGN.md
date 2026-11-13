@@ -54,7 +54,20 @@ The target look is the clickable prototype (project files `testwise/redesign/pro
   mark, goldInk count) and XP (blue mark, blueDark count), counts in 16 black tabular figures, a 2 px line under it.
   Streak and XP appear after the first lesson. Each count opens Progress.
 - Navigation: four tabs, Learn, Practice, Progress and Me: bottom tabs on phones (icon in a wash when current), a left
-  rail at 900 px and wider. Progress holds the countdown, the plan's track sentence and the weeks.
+  rail at 900 px and wider.
+- Progress: the days to the test as the page's one big number (64/70 900 in blueDark, tabular, then "days to your
+  SAT" in 20 900 and the date in ink2; "No test date yet" with a "Set your test date" link when there is none), the
+  on-track check (a heading, goodInk when on track or ahead, ink when behind, then one line of what to do), skills
+  done per section (a 16 px bar in the section's color, blue or teal, with "5 of 19"; the path's unit counts added
+  up), this month as a streak calendar (Sunday first, 40 px days: lesson days gold with ink figures, today ringed
+  2 px goldDark, days so far ink, days ahead ink2 in bold rather than extra bold, never ink3; each day's state also
+  in hidden words for screen readers, the days a list) under the month name and the streak in goldInk, then the
+  plan week by week. On a short runway the check's heading is "Not enough days for every skill", never "ahead".
+- Practice: the title, one line, then "Fix 4 mistakes", the one primary button, at the top (not anchored at the
+  bottom: the sets under it are the choices). With nothing to fix, Socrates says so in his bubble instead. The other
+  sets (weak spots, timed, mixed, pick a skill, new questions) are rows with a blueWash icon circle.
+- Me is settings only: Socrates beside "Your SAT plan", then the date, goal and score rows, sound and Socrates AI
+  toggles, the legal links, download and delete. Numbers about progress live on Progress.
 - Left-aligned text with a 20 px gutter. Center only a single number or word that is the point.
 
 ## Color (`app/src/theme.ts`)
@@ -94,7 +107,8 @@ Rules:
 - Sentence case everywhere, buttons included. No all-caps, no letter-spacing, no negative tracking. No periods at the
   end of titles, headings or buttons.
 - Scale: hero 34/40 900; title 26/32 900; heading 20/26 900; button 19/24 900; question 19/28 700; Socrates 18/25 800
-  (16/22 in tight places); body 17/25 600; label 16/21 800; small 14/19 700 in ink2; numbers 30/36 900.
+  (16/22 in tight places); body 17/25 600; label 16/21 800; small 14/19 700 in ink2; numbers 30/36 900; the
+  Progress countdown 64/70 900.
 - Tabular numbers (`fontVariant: ["tabular-nums"]`) wherever numbers change or line up: timers, counts, scores, XP.
 
 ## Shape and components
