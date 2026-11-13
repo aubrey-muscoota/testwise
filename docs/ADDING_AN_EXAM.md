@@ -19,7 +19,7 @@ exams/
 
 1. **Scaffold.** `npm run new-exam -- gre "GRE General Test"` writes `exams/gre/` with every file filled with a working example and `"enabled": false`. If the folder is already a stub (see below), it is filled in place and keeps the stub's `name`, `short_name` and `order`. Keys starting with `//` are comments; the seed drops them.
 2. **Fill `exam.json`** from the publisher's public test specs (fields below). Ids for sections, domains, skills and items are global in the database, so prefix them with the exam id (`gre-quant`, `gre-qc-compare`).
-3. **Write the skill map** in `skills.json`: the publisher's content domains, each with its `weight` (share of the section's questions; a section's weights add up to 1), and 3 to 8 skills per domain with `prereqs`. Order skills the way they should be learned; the first skill of a domain should need nothing outside it. Placement picks its probes from early, middle and late skills, so the prerequisite chains matter.
+3. **Write the skill map** in `skills.json`: the publisher's content domains, each with its `weight` (share of the section's questions; a section's weights add up to 1), and 3 to 8 skills per domain with `prereqs`. Every skill and domain has two names: `name`, what the learner sees on the path, Practice and Progress, in the words a student uses for what they will practise (sentence case, at most 32 characters: "Commas, dashes and semicolons"), and `official_name`, the publisher's ("Boundaries"), as on score reports. The node card shows the official one in small type when they differ, and the question writer gets the official ones. Order skills the way they should be learned; the first skill of a domain should need nothing outside it. Placement picks its probes from early, middle and late skills, so the prerequisite chains matter.
 4. **Write format notes** in `docs/` for anything ITEM_FORMAT.md doesn't cover (passage lengths, new stem patterns, style). If a section needs a passage per question, set its `passage` rules in `exam.json` so `check_items.py` enforces them.
 5. **Write `voice.json`**: what Socrates should know about the test (`persona_notes`, 2 to 4 sentences, they go into his system prompt), what he calls the sections and the typed-answer type (`terms`), the line he says before each section's placement quiz (`placement_intro`), Socrates' setup questions (`setup`: `date`, `goal`, `score`, `start`; the app has plain fallbacks), and `test_day_tips`.
 6. **Write and check items** with the pipeline below.
@@ -59,7 +59,7 @@ This is the pipeline the SAT's 3,325 questions went through. Run it per skill.
 | `placement` | `per_domain` probes per domain, `difficulties` (one per probe level, 1 to 3), `seconds_per_question` (for the "about N minutes" estimate), optional `max_questions` (caps the quiz over every section: fewer probes a domain) |
 | `plan` | `default_weeks` without a test date, `daily_minutes` options (5, 10, 15, 20), `default_daily_minutes`, `rest_days_per_week`, `phases[]` (`id`, `name`, `share`; shares add up to 1) |
 
-Domain weights live on each domain in `skills.json`, so there is one source. The seed writes them to `domains.weight`, and `GET /api/exam` returns them under `sections[].domains`.
+Domain weights live on each domain in `skills.json`, so there is one source. The seed writes them to `domains.weight`, and `GET /api/exam` returns them under `sections[].domains`. Both names go to `domains.name`/`official_name` and `skills.name`/`official_name`; an `official_name` left out is the same as `name`.
 
 ## Where it ends up
 

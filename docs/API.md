@@ -118,8 +118,8 @@ Works before onboarding too (as "not booked", 20 minutes a day), so Home can sho
       "kind": "lesson",
       "skill_id": "rw-boundaries",
       "minutes": 6,
-      "title": "Learn: Boundaries",
-      "why": "You started Boundaries today. It opens up Form, structure and sense.",
+      "title": "Learn: Commas, dashes and semicolons",
+      "why": "Commas, semicolons and dashes between clauses. 8 questions.",
       "done": true,
       "start": { "method": "POST", "path": "/api/lessons", "body": { "skill_id": "rw-boundaries" } }
     },
@@ -128,8 +128,8 @@ Works before onboarding too (as "not booked", 20 minutes a day), so Home can sho
       "kind": "lesson",
       "skill_id": "alg-linear-eq-1var",
       "minutes": 6,
-      "title": "Learn: Linear equations in one variable",
-      "why": "You haven't started Linear equations in one variable yet. It opens up Linear functions and Linear equations in two variables. 28 skills left to start by Jan 21.",
+      "title": "Learn: Solving linear equations",
+      "why": "Solving for x when it shows up on both sides. 8 questions.",
       "done": false,
       "start": { "method": "POST", "path": "/api/lessons", "body": { "skill_id": "alg-linear-eq-1var" } }
     },
@@ -236,10 +236,10 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
   "current": "skill:alg-linear-func",
   "units": [
     {
-      "id": "alg", "name": "Algebra", "section_id": "sat-math", "section_name": "Math", "section_index": 0, "section_kind": "numbers",
+      "id": "alg", "name": "Linear equations and graphs", "official_name": "Algebra", "section_id": "sat-math", "section_name": "Math", "section_index": 0, "section_kind": "numbers",
       "number": 1, "of": 8, "done": 1, "total": 5,
       "nodes": [
-        { "id": "skill:alg-linear-eq-1var", "kind": "skill", "state": "done", "title": "Linear equations in one variable",
+        { "id": "skill:alg-linear-eq-1var", "kind": "skill", "state": "done", "title": "Solving linear equations", "official_name": "Linear equations in one variable",
           "why": "Solving for x when it shows up on both sides. 8 questions, about 6 minutes.",
           "skill_id": "alg-linear-eq-1var", "mastery": 41, "tested_out": false, "questions": 8, "minutes": 6,
           "start": { "method": "POST", "path": "/api/lessons", "body": { "skill_id": "alg-linear-eq-1var", "node": "skill:alg-linear-eq-1var" } } },
@@ -248,11 +248,11 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
         { "id": "review:alg:1", "kind": "review", "state": "locked", "title": "Review",
           "why": "2 questions you missed are due, then a mix of the 3 skills above.",
           "skill_ids": ["alg-linear-eq-1var", "alg-linear-func", "alg-linear-eq-2var"], "due": 2, "questions": 8, "minutes": 8,
-          "locked_reason": "Opens after Linear equations in two variables", "start": null },
-        { "id": "skill:alg-systems", "kind": "skill", "state": "locked", "locked_reason": "Opens after Linear equations in two variables", "start": null, "…": "…" },
+          "locked_reason": "Opens after equations with x and y", "start": null },
+        { "id": "skill:alg-systems", "kind": "skill", "state": "locked", "locked_reason": "Opens after equations with x and y", "start": null, "…": "…" },
         { "id": "skill:alg-inequalities", "kind": "skill", "state": "locked", "…": "…" },
         { "id": "check:alg", "kind": "check", "state": "locked", "title": "Unit check",
-          "why": "10 questions across Algebra. Finish it to close the unit.",
+          "why": "10 questions across linear equations and graphs. Finish it to close the unit.",
           "skill_ids": ["alg-linear-eq-1var", "…"], "questions": 10, "minutes": 10,
           "locked_reason": "Opens when you finish the 4 lessons above", "start": null }
       ]
@@ -268,7 +268,7 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
 | --- | --- |
 | `stats` | The top bar's numbers: `xp`, `streak`, `xp_today`, `reviews_due`, and `month_days`, the learner's local days this month (up to today) with a finished lesson, oldest first. The streak calendar on Progress marks them; placement days count, as they do for the streak. |
 | `current` | The id of the one circle in `state: "current"`: the first open circle in path order, or `due` on a day with reviews due. There is always exactly one. |
-| `units[]` | In path order. `section_kind` is the section's `kind` from the pack (`numbers` or `words`), which the app colours units by (blue or teal); `section_index` is the section's place in the exam, kept for older builds; `done` / `total` count the unit's finished skills. |
+| `units[]` | In path order. `name` is the unit (domain) in the learner's words and `official_name` the publisher's, as on score reports; skill circles carry both too (`title` and `official_name`). `section_kind` is the section's `kind` from the pack (`numbers` or `words`), which the app colours units by (blue or teal); `section_index` is the section's place in the exam, kept for older builds; `done` / `total` count the unit's finished skills. |
 | `nodes[].id` | Stable: `skill:<skill id>`, `review:<domain id>:<k>`, `check:<domain id>`, `due` and `end`. |
 | `nodes[].kind` | `skill` (a lesson), `review` (practice `mode: "review"` over the skills since the last review), `check` (practice `mode: "mixed"` over the unit's skills, 8–12 questions). The `due` circle is also `kind: "review"`, but starts a review lesson (`POST /api/lessons` with `skill_id: null`) over every due question. |
 | `nodes[].state` | `done`, `current`, `open` or `locked`. |
@@ -349,7 +349,7 @@ For the practice screen ("3,317 questions you haven't seen").
 {
   "totals": { "bank": 3325, "generated": 0, "seen": 8, "unseen": 3317, "missed": 3 },
   "skills": [
-    { "skill_id": "alg-linear-eq-1var", "name": "Linear equations in one variable", "section_id": "sat-math", "bank": 75, "generated": 0, "seen": 0, "unseen": 75, "missed": 0, "started": false, "unlocked": true, "low": false }
+    { "skill_id": "alg-linear-eq-1var", "name": "Solving linear equations", "official_name": "Linear equations in one variable", "section_id": "sat-math", "bank": 75, "generated": 0, "seen": 0, "unseen": 75, "missed": 0, "started": false, "unlocked": true, "low": false }
   ],
   "fresh": { "available": false, "generated_today": 0, "daily_limit": 20 }
 }
