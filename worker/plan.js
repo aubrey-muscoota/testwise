@@ -616,7 +616,7 @@ export function buildPlan(o) {
     message = `All ${skills.length} skills started. Now we fix weak spots${w ? `: ${w.name} is lowest at ${pct(w.mastery)}` : ""}.`;
     if (missedTwo && !activeToday) message += " You've missed a couple of days; today's plan picks it back up.";
   } else {
-    const left = unstartedSod.length;
+    const left = skills.length - startedCount;
     message = shortRunway
       ? `${plural(tl.daysLeft, "day")} isn't enough to start all ${plural(left, "skill")}, so we'll start the ones worth the most points first.`
       : behind
