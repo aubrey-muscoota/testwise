@@ -165,7 +165,7 @@
             },
             {
               "id": "geo-right-trig",
-              "name": "Pythagorean theorem and trig",
+              "name": "Right triangles and trig",
               "official_name": "Right triangles and trigonometry",
               "prereqs": [
                 "geo-lines-angles"

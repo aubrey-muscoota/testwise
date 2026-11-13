@@ -95,7 +95,7 @@ export function scaffoldExam(id, name, examsDir = "exams") {
   };
 
   const skills = {
-    "//": "Sections (ids from exam.json) → domains → skills. A domain's weight is its share of the section's questions; weights in a section add up to 1. Ids are global: prefix them with the exam id. \"name\" is what learners see, in their words, at most 32 characters (a path card title); \"official_name\" is the publisher's, as on score reports.",
+    "//": "Sections (ids from exam.json) → domains → skills. A domain's weight is its share of the section's questions; weights in a section add up to 1. Ids are global: prefix them with the exam id. \"name\" is what learners see, in their words, at most 32 characters (a path card title), starting with a common word or an acronym, since mid-sentence the first capital drops; \"official_name\" is the publisher's, as on score reports.",
     sections: [
       {
         id: section,

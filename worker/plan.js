@@ -131,10 +131,10 @@ const unlockedBy = (skill, attemptsOf) => skill.prereqs.every((p) => attemptsOf(
 
 // A skill or unit name in the middle of a sentence: "You start at solving
 // linear equations". Names are sentence case, so only the first letter drops,
-// and not for an acronym ("SAT") or a word that keeps its capital (a name like
-// "Pythagorean").
-const KEEPS_CAPITAL = /^(?:[A-Z]{2,}|[A-Z][a-z]*(?:ean|ian)|English)\b/;
-export const midSentence = (name) => (KEEPS_CAPITAL.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
+// and not for an acronym ("SAT"). A pack name never starts with a proper noun
+// (scripts/new-exam.mjs says so; test/plan.test.mjs runs every name through this).
+const ACRONYM = /^[A-Z]{2,}\b/;
+export const midSentence = (name) => (ACRONYM.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
 
 /**
  * The path's units in order: one unit per domain, its skills by prerequisite
@@ -564,7 +564,7 @@ export function buildPlan(o) {
       title: tl.daysLeft === 1 ? "Rest" : "Test day",
       why: tl.daysLeft === 1
         ? "Your test is tomorrow. Sleep does more for your score tonight than cramming. A few reviews, then put it away."
-        : "Today's the day. Eat something, bring your charged device and ID, and trust the work you put in.",
+        : "Eat breakfast, bring your charged device and photo ID, and get there early.",
       done: false,
       start: null,
     });
@@ -613,7 +613,7 @@ export function buildPlan(o) {
   if (phase === "after") {
     message = "Your test date has passed. Practice stays open, and you can set a new date in Me if you're taking it again.";
   } else if (phase === "rest") {
-    message = tl.daysLeft === 1 ? "Test tomorrow. Light review, then rest." : "Test day. No new skills today: a few easy questions to warm up, then go.";
+    message = tl.daysLeft === 1 ? "Test tomorrow. Light review, then rest." : "Test day. No practice today.";
   } else if (phase === "test_ready") {
     if (!startedSod.size) message = `${plural(tl.daysLeft, "day")} left. We'll spend them on timed mixed sets across the whole test.`;
     else if (behind) message = `${plural(tl.daysLeft, "day")} left. ${plural(behind, "skill")} never got started, so we'll sharpen what you know instead.`;

@@ -120,11 +120,11 @@ export function listOf(names: string[]) {
 
 // Keeps the last two words of a title together, so no single word sits alone on the last line.
 // A skill or unit name in the middle of a sentence ("You start at solving
-// linear equations"). Names are sentence case, so only the first letter
-// drops, and not for an acronym or a word that keeps its capital
-// ("Pythagorean"). Same rule as midSentence in worker/plan.js.
-const KEEPS_CAPITAL = /^(?:[A-Z]{2,}|[A-Z][a-z]*(?:ean|ian)|English)\b/;
-export const midSentence = (name: string) => (KEEPS_CAPITAL.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
+// linear equations"). Names are sentence case and never start with a proper
+// noun, so only the first letter drops, and not for an acronym ("SAT").
+// Same rule as midSentence in worker/plan.js.
+const ACRONYM = /^[A-Z]{2,}\b/;
+export const midSentence = (name: string) => (ACRONYM.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
 
 export function noOrphan(t: string) {
   const i = t.lastIndexOf(" ");
@@ -142,9 +142,9 @@ export function skillStatus(
   const n = sk.answered ?? sk.attempts;
   const parts: string[] = [];
   if (sk.mastered) parts.push("Mastered");
-  else if (n > 0) parts.push(pct ? `${sk.mastery}% mastered` : `${plural(n, "question")} so far`);
-  if (missed) parts.push(plural(missed, "mistake") + " to fix");
+  else if (n > 0) parts.push(pct && sk.mastery > 0 ? `${sk.mastery}% mastered` : `${plural(n, "question")} so far`);
   else if (sk.tested_out) parts.push("Tested out");
+  if (missed) parts.push(plural(missed, "mistake") + " to fix");
   const line = parts.join(", ");
   return line ? line.charAt(0).toUpperCase() + line.slice(1) : "";
 }

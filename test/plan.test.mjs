@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  buildPlan, addDays, daysBetween, effectiveExamDate, testReadyDays, prepareSkills, unitOrder, pathOrder, isDay, normalizeMinutes,
+  buildPlan, addDays, daysBetween, effectiveExamDate, testReadyDays, prepareSkills, unitOrder, pathOrder, isDay, normalizeMinutes, midSentence,
 } from "../worker/plan.js";
 
 // The real SAT skill map and domain weights from the exam pack.
@@ -61,6 +61,14 @@ test("the day before the test is a rest day with only light review", () => {
   assert.ok(review.reduce((a, t) => a + t.n, 0) <= 5);
   assert.ok(!p.today.some((t) => t.kind === "lesson" || t.kind === "practice"));
   assert.match(p.status.message, /tomorrow/);
+});
+
+test("test day: only the rest task, and the words say so", () => {
+  const p = plan({ exam_date: examIn(0), plan_started_at: addDays(TODAY, -60), skills: allStarted(), reviews_due: 12 });
+  assert.equal(p.phase, "rest");
+  assert.deepEqual(p.today.map((t) => t.kind), ["rest"]);
+  assert.equal(p.status.message, "Test day. No practice today.");
+  assert.doesNotMatch(p.today[0].why, /trust|you've got|believe/i);
 });
 
 test("after the test date: gentle message, practice still offered, no weeks", () => {
@@ -433,4 +441,41 @@ test("each daily goal's description matches the plan's learning day", async () =
     // Anything past "one lesson" promises more than the lesson.
     if (minutes >= 10) assert.ok(p.today.some((t) => t.kind !== "lesson"), `${minutes} min has more than lessons`);
   }
+});
+
+// Skill and unit names mid-sentence ("A first lesson on mean, median and
+// spread"): every name in every pack, through the worker's and the app's copy
+// of the rule, which must agree. Names never start with a proper noun.
+test("every pack name reads right mid-sentence", async () => {
+  const { midSentence: appMid } = await import("../app/src/copy.ts");
+  const { readdirSync, existsSync } = await import("node:fs");
+  const names = [];
+  for (const id of readdirSync(new URL("../exams/", import.meta.url))) {
+    const f = new URL(`../exams/${id}/skills.json`, import.meta.url);
+    if (!existsSync(f)) continue;
+    for (const sec of JSON.parse(readFileSync(f)).sections) for (const d of sec.domains) names.push(d.name, ...d.skills.map((s) => s.name));
+  }
+  assert.ok(names.length >= 37);
+  for (const n of names) {
+    const mid = midSentence(n);
+    assert.equal(appMid(n), mid, n);
+    if (/^[A-Z]{2,}\b/.test(n)) assert.equal(mid, n);
+    else assert.equal(mid, n[0].toLowerCase() + n.slice(1), n);
+  }
+  assert.equal(midSentence("Mean, median and spread"), "mean, median and spread");
+  assert.equal(midSentence("SAT words"), "SAT words");
+});
+
+// The Practice skill picker's status line (app/src/copy.ts skillStatus).
+test("skill status: one progress word, tested out only when nothing else shows", async () => {
+  const { skillStatus } = await import("../app/src/copy.ts");
+  const sk = (o) => ({ attempts: 0, mastery: 0, mastered: false, ...o });
+  assert.equal(skillStatus(sk({}), 0, true), "");
+  assert.equal(skillStatus(sk({ tested_out: true }), 0, true), "Tested out");
+  assert.equal(skillStatus(sk({ tested_out: true }), 2, true), "Tested out, 2 mistakes to fix");
+  assert.equal(skillStatus(sk({ tested_out: true, attempts: 5, mastery: 62 }), 0, true), "62% mastered");
+  assert.equal(skillStatus(sk({ tested_out: true, attempts: 5, mastery: 90, mastered: true }), 0, true), "Mastered");
+  assert.equal(skillStatus(sk({ attempts: 5, mastery: 90, mastered: true }), 1, true), "Mastered, 1 mistake to fix");
+  assert.equal(skillStatus(sk({ attempts: 3, mastery: 0 }), 0, true), "3 questions so far");
+  assert.equal(skillStatus(sk({ attempts: 3, mastery: 40 }), 2, false), "3 questions so far, 2 mistakes to fix");
 });
