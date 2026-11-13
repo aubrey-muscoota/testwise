@@ -37,7 +37,8 @@ export function dateTitle(iso: string, today = todayIso()) {
 function dateDetail(d: TestDate, today: string) {
   const parts = [away(daysBetween(today, d.date))];
   if (d.anticipated) parts.push("Date not confirmed yet");
-  else if (d.register_by) parts.push(`Register by ${shortDay(d.register_by)}`);
+  // A no-break space keeps "Feb 19" together on narrow phones.
+  else if (d.register_by) parts.push(`Register by ${shortDay(d.register_by).replace(" ", "\u00a0")}`);
   return parts.join(". ");
 }
 
