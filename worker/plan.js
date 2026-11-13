@@ -129,6 +129,13 @@ export function prepareSkills(skills) {
 
 const unlockedBy = (skill, attemptsOf) => skill.prereqs.every((p) => attemptsOf(p) >= UNLOCK_ATTEMPTS || attemptsOf(p) === Infinity);
 
+// A skill or unit name in the middle of a sentence: "You start at solving
+// linear equations". Names are sentence case, so only the first letter drops,
+// and not for an acronym ("SAT") or a word that keeps its capital (a name like
+// "Pythagorean").
+const KEEPS_CAPITAL = /^(?:[A-Z]{2,}|[A-Z][a-z]*(?:ean|ian)|English)\b/;
+export const midSentence = (name) => (KEEPS_CAPITAL.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
+
 /**
  * The path's units in order: one unit per domain, its skills by prerequisite
  * depth then position, so a unit's own prerequisites always come first. The
@@ -140,13 +147,13 @@ const unlockedBy = (skill, attemptsOf) => skill.prereqs.every((p) => attemptsOf(
  * everything) it is the most weight per skill, so the points per lesson lead.
  * Skills come from prepareSkills. A pack with a cross-domain cycle still gets
  * an order: the unit with the fewest unmet prerequisites goes next.
- * @returns {{id:string, name:string, section_id:string, skills:object[]}[]}
+ * @returns {{id:string, name:string, official_name:string, section_id:string, skills:object[]}[]}
  */
 export function unitOrder(skills, { byWeight = false } = {}) {
   const domainOf = new Map(skills.map((s) => [s.id, s.domain_id]));
   const units = new Map();
   for (const s of skills) {
-    if (!units.has(s.domain_id)) units.set(s.domain_id, { id: s.domain_id, name: s.domain_name || s.domain_id, section_id: s.section_id, skills: [], weight: 0, position: s.position });
+    if (!units.has(s.domain_id)) units.set(s.domain_id, { id: s.domain_id, name: s.domain_name || s.domain_id, official_name: s.domain_official_name || s.domain_name || s.domain_id, section_id: s.section_id, skills: [], weight: 0, position: s.position });
     const u = units.get(s.domain_id);
     u.skills.push(s);
     u.weight += s.weight;
@@ -182,7 +189,7 @@ export function unitOrder(skills, { byWeight = false } = {}) {
     placedIn.set(sec, (placedIn.get(sec) || 0) + u.skills.length);
     order.push(u);
   }
-  return order.map(({ id, name, section_id, skills: list }) => ({ id, name, section_id, skills: list }));
+  return order.map(({ id, name, official_name, section_id, skills: list }) => ({ id, name, official_name, section_id, skills: list }));
 }
 
 /** Every skill in path order (the units of unitOrder, one after another). */
@@ -418,7 +425,7 @@ export function buildPlan(o) {
   const lessonTask = (s, isDone) => {
     // What the skill covers, in plain words (the row's title and ring already say whether it's started).
     const about = o.skill_about?.[s.id];
-    const why = about ? `${about}. ${LESSON_QUESTIONS} questions.` : `A first lesson on ${s.name.charAt(0).toLowerCase()}${s.name.slice(1)}.`;
+    const why = about ? `${about}. ${LESSON_QUESTIONS} questions.` : `A first lesson on ${midSentence(s.name)}.`;
     return {
       id: `lesson-${s.id}`,
       kind: "lesson",

@@ -6,31 +6,36 @@
       "domains": [
         {
           "id": "alg",
-          "name": "Algebra",
+          "name": "Linear equations and graphs",
+          "official_name": "Algebra",
           "weight": 0.35,
           "skills": [
             {
               "id": "alg-linear-eq-1var",
-              "name": "Linear equations in one variable",
+              "name": "Solving linear equations",
+              "official_name": "Linear equations in one variable",
               "prereqs": []
             },
             {
               "id": "alg-linear-func",
-              "name": "Linear functions",
+              "name": "Slope and linear functions",
+              "official_name": "Linear functions",
               "prereqs": [
                 "alg-linear-eq-1var"
               ]
             },
             {
               "id": "alg-linear-eq-2var",
-              "name": "Linear equations in two variables",
+              "name": "Equations with x and y",
+              "official_name": "Linear equations in two variables",
               "prereqs": [
                 "alg-linear-eq-1var"
               ]
             },
             {
               "id": "alg-systems",
-              "name": "Systems of two linear equations",
+              "name": "Systems of equations",
+              "official_name": "Systems of two linear equations",
               "prereqs": [
                 "alg-linear-eq-2var"
               ]
@@ -38,6 +43,7 @@
             {
               "id": "alg-inequalities",
               "name": "Linear inequalities",
+              "official_name": "Linear inequalities",
               "prereqs": [
                 "alg-linear-eq-2var"
               ]
@@ -46,19 +52,22 @@
         },
         {
           "id": "adv",
-          "name": "Advanced Math",
+          "name": "Quadratics and exponentials",
+          "official_name": "Advanced Math",
           "weight": 0.35,
           "skills": [
             {
               "id": "adv-equiv-expr",
-              "name": "Equivalent expressions",
+              "name": "Factoring and simplifying",
+              "official_name": "Equivalent expressions",
               "prereqs": [
                 "alg-linear-eq-1var"
               ]
             },
             {
               "id": "adv-nonlinear-eq",
-              "name": "Nonlinear equations and systems",
+              "name": "Quadratic and radical equations",
+              "official_name": "Nonlinear equations and systems",
               "prereqs": [
                 "adv-equiv-expr",
                 "alg-systems"
@@ -66,7 +75,8 @@
             },
             {
               "id": "adv-nonlinear-func",
-              "name": "Nonlinear functions",
+              "name": "Parabolas and exponentials",
+              "official_name": "Nonlinear functions",
               "prereqs": [
                 "adv-equiv-expr",
                 "alg-linear-func"
@@ -76,29 +86,34 @@
         },
         {
           "id": "psda",
-          "name": "Problem-Solving and Data Analysis",
+          "name": "Ratios, percents and data",
+          "official_name": "Problem-Solving and Data Analysis",
           "weight": 0.15,
           "skills": [
             {
               "id": "psda-ratios",
-              "name": "Ratios, rates, proportions and units",
+              "name": "Ratios, rates and units",
+              "official_name": "Ratios, rates, proportions and units",
               "prereqs": []
             },
             {
               "id": "psda-percent",
-              "name": "Percentages",
+              "name": "Percents and percent change",
+              "official_name": "Percentages",
               "prereqs": [
                 "psda-ratios"
               ]
             },
             {
               "id": "psda-one-var-data",
-              "name": "One-variable data: center and spread",
+              "name": "Mean, median and spread",
+              "official_name": "One-variable data: center and spread",
               "prereqs": []
             },
             {
               "id": "psda-two-var-data",
-              "name": "Two-variable data: models and scatterplots",
+              "name": "Scatterplots and best-fit lines",
+              "official_name": "Two-variable data: models and scatterplots",
               "prereqs": [
                 "psda-one-var-data",
                 "alg-linear-func"
@@ -106,21 +121,24 @@
             },
             {
               "id": "psda-probability",
-              "name": "Probability and conditional probability",
+              "name": "Probability and two-way tables",
+              "official_name": "Probability and conditional probability",
               "prereqs": [
                 "psda-ratios"
               ]
             },
             {
               "id": "psda-inference",
-              "name": "Inference from samples and margin of error",
+              "name": "Samples and margin of error",
+              "official_name": "Inference from samples and margin of error",
               "prereqs": [
                 "psda-one-var-data"
               ]
             },
             {
               "id": "psda-studies",
-              "name": "Evaluating statistical claims",
+              "name": "Surveys and experiments",
+              "official_name": "Evaluating statistical claims",
               "prereqs": [
                 "psda-inference"
               ]
@@ -129,29 +147,34 @@
         },
         {
           "id": "geo",
-          "name": "Geometry and Trigonometry",
+          "name": "Geometry and trig",
+          "official_name": "Geometry and Trigonometry",
           "weight": 0.15,
           "skills": [
             {
               "id": "geo-area-volume",
               "name": "Area and volume",
+              "official_name": "Area and volume",
               "prereqs": []
             },
             {
               "id": "geo-lines-angles",
-              "name": "Lines, angles and triangles",
+              "name": "Angles and triangles",
+              "official_name": "Lines, angles and triangles",
               "prereqs": []
             },
             {
               "id": "geo-right-trig",
-              "name": "Right triangles and trigonometry",
+              "name": "Pythagorean theorem and trig",
+              "official_name": "Right triangles and trigonometry",
               "prereqs": [
                 "geo-lines-angles"
               ]
             },
             {
               "id": "geo-circles",
-              "name": "Circles",
+              "name": "Circles, arcs and equations",
+              "official_name": "Circles",
               "prereqs": [
                 "geo-area-volume",
                 "geo-right-trig"
@@ -166,24 +189,28 @@
       "domains": [
         {
           "id": "rw-ii",
-          "name": "Information and Ideas",
+          "name": "Main ideas and evidence",
+          "official_name": "Information and Ideas",
           "weight": 0.26,
           "skills": [
             {
               "id": "rw-central-ideas",
-              "name": "Central ideas and details",
+              "name": "Main idea and details",
+              "official_name": "Central ideas and details",
               "prereqs": []
             },
             {
               "id": "rw-command-evidence",
-              "name": "Command of evidence",
+              "name": "Evidence that backs a claim",
+              "official_name": "Command of evidence",
               "prereqs": [
                 "rw-central-ideas"
               ]
             },
             {
               "id": "rw-inferences",
-              "name": "Inferences",
+              "name": "Drawing conclusions",
+              "official_name": "Inferences",
               "prereqs": [
                 "rw-central-ideas"
               ]
@@ -192,24 +219,28 @@
         },
         {
           "id": "rw-cs",
-          "name": "Craft and Structure",
+          "name": "Words, purpose and paired texts",
+          "official_name": "Craft and Structure",
           "weight": 0.28,
           "skills": [
             {
               "id": "rw-words-context",
-              "name": "Words in context",
+              "name": "Vocabulary in context",
+              "official_name": "Words in context",
               "prereqs": []
             },
             {
               "id": "rw-text-structure",
-              "name": "Text structure and purpose",
+              "name": "Author's purpose and structure",
+              "official_name": "Text structure and purpose",
               "prereqs": [
                 "rw-words-context"
               ]
             },
             {
               "id": "rw-cross-text",
-              "name": "Cross-text connections",
+              "name": "Comparing two passages",
+              "official_name": "Cross-text connections",
               "prereqs": [
                 "rw-text-structure"
               ]
@@ -218,17 +249,20 @@
         },
         {
           "id": "rw-eoi",
-          "name": "Expression of Ideas",
+          "name": "Transitions and using notes",
+          "official_name": "Expression of Ideas",
           "weight": 0.2,
           "skills": [
             {
               "id": "rw-transitions",
-              "name": "Transitions",
+              "name": "Transition words",
+              "official_name": "Transitions",
               "prereqs": []
             },
             {
               "id": "rw-rhetorical-synthesis",
-              "name": "Rhetorical synthesis",
+              "name": "Using notes to meet a goal",
+              "official_name": "Rhetorical synthesis",
               "prereqs": [
                 "rw-transitions"
               ]
@@ -237,17 +271,20 @@
         },
         {
           "id": "rw-sec",
-          "name": "Standard English Conventions",
+          "name": "Grammar and punctuation",
+          "official_name": "Standard English Conventions",
           "weight": 0.26,
           "skills": [
             {
               "id": "rw-boundaries",
-              "name": "Boundaries",
+              "name": "Commas, dashes and semicolons",
+              "official_name": "Boundaries",
               "prereqs": []
             },
             {
               "id": "rw-form-structure",
-              "name": "Form, structure and sense",
+              "name": "Verbs, pronouns and apostrophes",
+              "official_name": "Form, structure and sense",
               "prereqs": [
                 "rw-boundaries"
               ]

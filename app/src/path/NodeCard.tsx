@@ -7,7 +7,7 @@
 // so the text is ink and the one blue thing is the button.
 import React, { useEffect, useRef } from "react";
 import { Animated, Easing, LayoutChangeEvent, Platform, StyleSheet, Text, View } from "react-native";
-import type { PathNode, PracticeMode } from "../api";
+import { getExam, type PathNode, type PracticeMode } from "../api";
 import { Button, ProgressBar, useReducedMotion } from "../components/ui";
 import { noOrphan } from "../copy";
 import { BORDER, color, font, space, tabular, type } from "../theme";
@@ -31,6 +31,15 @@ export function startLabel(n: PathNode) {
   return (mode && MODE_VERB[mode]) ?? "Start review";
 }
 
+// A skill's name on the publisher's side, so a learner can match it to the
+// test's own materials: "College Board calls it Boundaries". Only when it
+// differs from the name on the card.
+export function officialLine(n: PathNode) {
+  if (n.kind !== "skill" || !n.official_name || n.official_name === n.title) return null;
+  const publisher = getExam()?.publisher?.name;
+  return publisher ? `${publisher} calls it ${n.official_name}` : `Official name: ${n.official_name}`;
+}
+
 // Where the card sits in its track: under the circle, across the column.
 // Clear of the current circle's ring (10 px past its edge) and the tail.
 export const cardTop = (at: Point) => at.y + NODE_H / 2 + NODE_EDGE + space(3);
@@ -50,6 +59,7 @@ export function NodeCard({ node, at, onStart, onLayout }: {
   const locked = node.state === "locked";
   const skill = node.kind === "skill" ? node : null;
   const showBar = !!skill && (skill.state === "done" || skill.mastery > 0);
+  const official = officialLine(node);
   return (
     <Animated.View
       ref={ref}
@@ -62,6 +72,7 @@ export function NodeCard({ node, at, onStart, onLayout }: {
     >
       <View style={[s.tail, { left: "50%", marginLeft: at.x - 9 }]} />
       <Text style={s.title} accessibilityRole="header">{node.title}</Text>
+      {official && <Text style={[type.small, s.official]}>{official}</Text>}
       {showBar && (
         <View style={s.bar} accessibilityLabel={`${skill!.mastery}% mastered`}>
           <ProgressBar value={skill!.mastery / 100} fill={skill!.state === "done" && skill!.mastery >= 80 ? color.gold : color.good} />
@@ -89,6 +100,7 @@ const s = StyleSheet.create({
     borderLeftWidth: BORDER, borderTopWidth: BORDER, borderColor: color.line, transform: [{ rotate: "45deg" }], borderTopLeftRadius: 3,
   },
   title: { fontFamily: font.black, fontSize: 19, lineHeight: 24, color: color.ink },
+  official: { marginTop: space(0.25) },
   bar: { flexDirection: "row", alignItems: "center", marginTop: space(1.25) },
   pct: { marginLeft: space(1.5), minWidth: 44, textAlign: "right" },
 });

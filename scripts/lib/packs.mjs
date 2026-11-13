@@ -64,7 +64,7 @@ export function loadPacks(examsDir = "exams", { enabledOnly = true } = {}) {
 
 /**
  * Skills of a pack (optionally one section), flattened in path order with the
- * fields the engine expects: {id, name, domain_id, section_id, prereqs, position}.
+ * fields the engine expects: {id, name, official_name, domain_id, section_id, prereqs, position}.
  */
 export function packSkills(pack, sectionId = null) {
   let pos = 0;
@@ -72,7 +72,7 @@ export function packSkills(pack, sectionId = null) {
   for (const sec of pack.skills?.sections || []) {
     for (const d of sec.domains || []) {
       for (const s of d.skills || []) {
-        const row = { id: s.id, name: s.name, domain_id: d.id, section_id: sec.id, prereqs: s.prereqs || [], position: pos++ };
+        const row = { id: s.id, name: s.name, official_name: s.official_name || s.name, domain_id: d.id, section_id: sec.id, prereqs: s.prereqs || [], position: pos++ };
         if (!sectionId || sec.id === sectionId) out.push(row);
       }
     }
@@ -91,6 +91,9 @@ const isNum = (v) => typeof v === "number" && Number.isFinite(v);
 const isStr = (v) => typeof v === "string" && v.trim().length > 0;
 export const SECTION_KINDS = ["numbers", "words"];
 export const SHORT_NAME_MAX = 5; // the test picker's tile fits about five capitals
+// A skill's or unit's "name" is the learner's words, shown on a path card title
+// and a Progress row; "official_name" is the publisher's, as on score reports.
+export const SKILL_NAME_MAX = 32;
 const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
 const isDay = (v) => typeof v === "string" && DAY_RE.test(v) && new Date(`${v}T00:00:00Z`).toISOString().slice(0, 10) === v;
 
@@ -202,13 +205,13 @@ export function validatePacks(packs) {
       if (!doms.length) p.push(`skills.json: section "${sec.id}" has no domains`);
       for (const d of doms) {
         claim("domain", d.id, folder, p);
-        if (!isStr(d.name)) p.push(`skills.json: domain "${d.id}" needs a "name"`);
+        checkNames(`domain "${d.id}"`, d, p);
         if (!isNum(d.weight) || d.weight <= 0 || d.weight > 1) p.push(`skills.json: domain "${d.id}" needs a "weight" between 0 and 1 (its share of the section's questions)`);
         if (!d.skills?.length) p.push(`skills.json: domain "${d.id}" has no skills`);
         for (const s of d.skills || []) {
           claim("skill", s.id, folder, p);
           skillSection.set(s.id, sec.id);
-          if (!isStr(s.name)) p.push(`skills.json: skill "${s.id}" needs a "name"`);
+          checkNames(`skill "${s.id}"`, s, p);
           for (const pre of s.prereqs || []) {
             if (!skillIds.has(pre)) p.push(`skills.json: skill "${s.id}" has prerequisite "${pre}", which is not a skill in this exam`);
           }
@@ -235,6 +238,14 @@ export function validatePacks(packs) {
     all.push(...p.map((m) => `exams/${folder}: ${m}`));
   }
   return all;
+}
+
+// "name" (the learner's words, short enough for a card title) and the optional
+// "official_name" (the publisher's, when it differs).
+function checkNames(at, x, p) {
+  if (!isStr(x.name)) p.push(`skills.json: ${at} needs a "name"`);
+  else if (x.name.length > SKILL_NAME_MAX) p.push(`skills.json: ${at} "name" is ${x.name.length} characters; keep it to ${SKILL_NAME_MAX} (it is a path card title and a Progress row)`);
+  if (x.official_name !== undefined && !isStr(x.official_name)) p.push(`skills.json: ${at} "official_name" must be text (the publisher's name, as on score reports)`);
 }
 
 // Skill ids on a prerequisite cycle (empty when the map is a proper DAG).

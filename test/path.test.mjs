@@ -12,7 +12,7 @@ function load(dir) {
   const exam = JSON.parse(readFileSync(new URL(`${dir}/exam.json`, import.meta.url)));
   const skills = [];
   for (const sec of map.sections) for (const d of sec.domains) for (const s of d.skills) {
-    skills.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_name: d.name, domain_weight: d.weight, position: skills.length });
+    skills.push({ id: s.id, name: s.name, official_name: s.official_name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_name: d.name, domain_official_name: d.official_name, domain_weight: d.weight, position: skills.length });
   }
   return { skills, sections: exam.sections.map((s) => ({ id: s.id, name: s.name, kind: s.kind })) };
 }
@@ -39,6 +39,11 @@ function rng(seed) {
 test("units are the domains, sections interleaved, prerequisites always earlier", () => {
   const p = path();
   assert.deepEqual(p.units.map((u) => u.name), [
+    "Linear equations and graphs", "Words, purpose and paired texts", "Quadratics and exponentials", "Main ideas and evidence",
+    "Ratios, percents and data", "Grammar and punctuation", "Geometry and trig", "Transitions and using notes",
+  ]);
+  // The publisher's names ride along, as on score reports.
+  assert.deepEqual(p.units.map((u) => u.official_name), [
     "Algebra", "Craft and Structure", "Advanced Math", "Information and Ideas",
     "Problem-Solving and Data Analysis", "Standard English Conventions", "Geometry and Trigonometry", "Expression of Ideas",
   ]);
@@ -252,8 +257,10 @@ test("later units stay locked until the units before them are finished", () => {
   const words = cs.nodes[0];
   assert.equal(words.skill_id, "rw-words-context");
   assert.equal(words.state, "locked", "open in the engine, but not on the path yet");
-  assert.equal(words.locked_reason, "Opens when you finish Algebra");
-  assert.equal(p.units[0].nodes[1].locked_reason, "Opens after Linear equations in one variable");
+  assert.equal(words.locked_reason, "Opens when you finish linear equations and graphs");
+  assert.equal(p.units[0].nodes[1].locked_reason, "Opens after solving linear equations");
+  assert.equal(words.title, "Vocabulary in context");
+  assert.equal(words.official_name, "Words in context");
   assert.equal(p.end.locked_reason, "Opens when every unit is done");
   // Algebra's skills done: Craft and Structure opens even before Algebra's check.
   let skills = fresh();

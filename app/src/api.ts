@@ -24,9 +24,12 @@ export type Item = {
   source?: "bank" | "generated";
 };
 
+// Skills and units have two names: `name` in the learner's words, shown
+// everywhere, and `official_name`, the publisher's (as on score reports).
 export type Skill = {
   id: string;
   name: string;
+  official_name?: string;
   prereqs: string[];
   items: number;
   attempts: number;
@@ -38,7 +41,7 @@ export type Skill = {
   unlocked: boolean;
 };
 
-export type Domain = { id: string; name: string; section_id?: string; weight?: number; skills: Skill[] };
+export type Domain = { id: string; name: string; official_name?: string; section_id?: string; weight?: number; skills: Skill[] };
 
 export type Section = { id: string; name: string; domains: string[] };
 
@@ -129,13 +132,14 @@ export type Plan = {
 export type NodeState = "done" | "current" | "open" | "locked";
 type NodeBase = { id: string; state: NodeState; title: string; why: string; locked_reason?: string; start: StartRequest | null };
 export type PathNode =
-  | (NodeBase & { kind: "skill"; skill_id: string; mastery: number; tested_out: boolean; questions: number; minutes: number })
+  | (NodeBase & { kind: "skill"; skill_id: string; official_name?: string; mastery: number; tested_out: boolean; questions: number; minutes: number })
   | (NodeBase & { kind: "review"; skill_ids: string[]; due: number; questions: number; minutes: number })
   | (NodeBase & { kind: "check"; skill_ids: string[]; questions: number; minutes: number })
   | (NodeBase & { kind: "end"; task_title: string | null });
 export type PathUnit = {
   id: string;
   name: string;
+  official_name?: string;
   section_id: string;
   section_name: string;
   // Kept for older builds; colour comes from section_kind.
@@ -164,6 +168,7 @@ export type LearnPath = {
 export type SkillSummary = {
   skill_id: string;
   name: string;
+  official_name?: string;
   section_id: string;
   bank: number;
   generated: number;
@@ -201,7 +206,7 @@ export type ExamSection = {
   score: Score;
   item_types: ("mc" | "spr")[];
   choices: number;
-  domains: { id: string; name: string; weight: number }[];
+  domains: { id: string; name: string; official_name?: string; weight: number }[];
 };
 export type Exam = {
   id: string;

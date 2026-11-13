@@ -9,7 +9,7 @@ import {
 const map = JSON.parse(readFileSync(new URL("../exams/sat/skills.json", import.meta.url)));
 const SKILLS = [];
 for (const sec of map.sections) for (const d of sec.domains) for (const s of d.skills) {
-  SKILLS.push({ id: s.id, name: s.name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_name: d.name, domain_weight: d.weight, position: SKILLS.length });
+  SKILLS.push({ id: s.id, name: s.name, official_name: s.official_name, prereqs: s.prereqs, section_id: sec.id, domain_id: d.id, domain_name: d.name, domain_official_name: d.official_name, domain_weight: d.weight, position: SKILLS.length });
 }
 const PACE = { "sat-math": { practice_minutes: 1, timed_seconds: 95 }, "sat-rw": { practice_minutes: 1.2, timed_seconds: 71 } };
 const TODAY = "2026-11-08";

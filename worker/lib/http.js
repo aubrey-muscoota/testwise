@@ -54,7 +54,7 @@ export async function masteryMap(env, learnerId) {
 // Skills of one exam, or only those in one section (an id from the exam pack),
 // in path position order, with their domain and section.
 export async function allSkills(env, { examId = null, sectionId = null } = {}) {
-  const base = "SELECT s.id, s.name, s.domain_id, s.position, s.prereqs, d.section_id FROM skills s JOIN domains d ON d.id = s.domain_id";
+  const base = "SELECT s.id, s.name, s.official_name, s.domain_id, s.position, s.prereqs, d.section_id FROM skills s JOIN domains d ON d.id = s.domain_id";
   const { results } = await (sectionId
     ? env.DB.prepare(`${base} WHERE d.section_id = ? ORDER BY s.position`).bind(sectionId)
     : env.DB.prepare(`${base} WHERE s.exam_id = ? ORDER BY s.position`).bind(examId)).all();

@@ -10,8 +10,8 @@ export async function tree(env, request, learnerId) {
   const [exam, sections, domains, skills, counts, mastery, st, consent, profile, answeredRes] = await Promise.all([
     env.DB.prepare("SELECT id, name FROM exams WHERE id = ?").bind(examId).first(),
     env.DB.prepare("SELECT id, name FROM sections WHERE exam_id = ? ORDER BY position").bind(examId).all(),
-    env.DB.prepare("SELECT id, name, section_id, weight FROM domains WHERE exam_id = ? ORDER BY position").bind(examId).all(),
-    env.DB.prepare("SELECT id, domain_id, name, prereqs FROM skills WHERE exam_id = ? ORDER BY position").bind(examId).all(),
+    env.DB.prepare("SELECT id, name, official_name, section_id, weight FROM domains WHERE exam_id = ? ORDER BY position").bind(examId).all(),
+    env.DB.prepare("SELECT id, domain_id, name, official_name, prereqs FROM skills WHERE exam_id = ? ORDER BY position").bind(examId).all(),
     env.DB.prepare("SELECT skill_id, COUNT(*) AS n FROM items WHERE status = 'live' GROUP BY skill_id").all(),
     masteryMap(env, learnerId),
     stats(env, learnerId, today(request)),
@@ -29,6 +29,7 @@ export async function tree(env, request, learnerId) {
   const out = domains.results.map((d) => ({
     id: d.id,
     name: d.name,
+    official_name: d.official_name || d.name,
     section_id: d.section_id,
     weight: d.weight,
     skills: skills.results
@@ -39,6 +40,7 @@ export async function tree(env, request, learnerId) {
         return {
           id: s.id,
           name: s.name,
+          official_name: s.official_name || s.name,
           prereqs,
           items: itemCount[s.id] || 0,
           attempts: m.attempts,

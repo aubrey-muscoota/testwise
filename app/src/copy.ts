@@ -117,6 +117,13 @@ export function listOf(names: string[]) {
 }
 
 // Keeps the last two words of a title together, so no single word sits alone on the last line.
+// A skill or unit name in the middle of a sentence ("You start at solving
+// linear equations"). Names are sentence case, so only the first letter
+// drops, and not for an acronym or a word that keeps its capital
+// ("Pythagorean"). Same rule as midSentence in worker/plan.js.
+const KEEPS_CAPITAL = /^(?:[A-Z]{2,}|[A-Z][a-z]*(?:ean|ian)|English)\b/;
+export const midSentence = (name: string) => (KEEPS_CAPITAL.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));
+
 export function noOrphan(t: string) {
   const i = t.lastIndexOf(" ");
   return i > 0 && t.length - i < 14 ? `${t.slice(0, i)}\u00a0${t.slice(i + 1)}` : t;
