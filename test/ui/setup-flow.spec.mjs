@@ -26,7 +26,7 @@ async function mockApi(page, routes) {
 }
 
 test.beforeEach(async ({}, info) => {
-  test.skip(info.project.name !== "iphone-15", "flow checks run at one size");
+  test.skip(info.project.name === "desktop", "flow checks run at the phone sizes");
 });
 
 test("a returning learner with XP and no profile goes on to Learn after the score", async ({ page }) => {
@@ -99,6 +99,7 @@ test("a test date the server refuses sends setup back to the date step, in plain
   await answerBirthday(page);
   await expect(page.getByTestId("date-none")).toBeVisible();
   await expect(page.getByRole("alert")).toContainText("too far away");
+  await expect(page.getByRole("alert")).toBeInViewport();
   await expect(page.getByText("exam_date")).toHaveCount(0);
 });
 

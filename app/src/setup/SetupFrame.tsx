@@ -49,10 +49,11 @@ export function SetupFrame({
           </View>
           <View style={{ height: short ? space(2) : space(2.5) }} />
           {children}
-          {error ? <Text style={[type.body, { color: color.badInk, marginTop: space(2) }]} accessibilityRole="alert">{error}</Text> : null}
         </Rise>
       </ScrollView>
       <View style={s.foot}>
+        {/* Above the button, so it's on screen however long the answers run. */}
+        {error ? <Text style={[type.body, { color: color.badInk, marginBottom: space(1) }]} accessibilityRole="alert">{error}</Text> : null}
         <Button title={button.title} disabled={button.disabled} onPress={button.onPress} testID={button.testID ?? "setup-next"} />
         {secondary && <TextButton title={secondary.title} onPress={secondary.onPress} disabled={secondary.disabled} style={{ marginTop: space(0.5) }} testID="setup-secondary" />}
         {foot}

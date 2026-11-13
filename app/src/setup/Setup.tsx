@@ -26,7 +26,7 @@ export type SetupStep = "picker" | "welcome" | "date" | "goal" | "score" | "age"
 // The steps the progress bar counts.
 const COUNTED: SetupStep[] = ["date", "goal", "score", "age", "start"];
 
-const DATE_REFUSED = "That date is too far away to plan for. Pick one in the next two years, or say you haven't booked it yet.";
+const DATE_REFUSED = "That date is too far away. Pick one in the next two years, or say you haven't booked it yet.";
 
 export type SetupAnswers = {
   examId: string | null;
