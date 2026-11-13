@@ -106,6 +106,7 @@ Works before onboarding too (as "not booked", 20 minutes a day), so Home can sho
   "status": {
     "on_track": true,
     "behind_by_lessons": 0,
+    "ahead_by_lessons": 0,
     "missed_yesterday": false,
     "message": "On track: 1 of 29 skills started. 28 skills to go by Jan 21."
   },
@@ -170,6 +171,7 @@ Top-level fields:
 | `phase` | `learn` (starting every skill), `strengthen` (fixing weak spots), `test_ready` (timed sets, the final ~15% or 7–10 days), `rest` (the day before the test, and test day), `after` (the date has passed). |
 | `status.on_track` | `false` when behind on new skills, or when the learner missed the last two days. |
 | `status.behind_by_lessons` | Learn phase: new-skill lessons behind an even pace from `plan_started_at` to `learn_by`. Test-ready and rest: skills that never got started. Otherwise 0. |
+| `status.ahead_by_lessons` | Learn phase, when not behind: skills started so far (today's lessons included) past where the even pace line is by the end of today. Otherwise 0. Progress shows "On track, 2 lessons ahead". |
 | `status.missed_yesterday` | No finished lesson or session yesterday (only once the plan is a day old). |
 | `status.message` | One line for the top of Home, written from the learner's numbers. |
 | `today_tasks_done` | How many of `today` are done. |
@@ -228,7 +230,7 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
   "exam_date_assumed": false,
   "days_left": 121,
   "phase": "learn",
-  "stats": { "xp": 75, "streak": 1, "xp_today": 75, "reviews_due": 2 },
+  "stats": { "xp": 75, "streak": 1, "xp_today": 75, "reviews_due": 2, "month_days": ["2026-11-12"] },
   "current": "skill:alg-linear-func",
   "units": [
     {
@@ -262,6 +264,7 @@ The Learn tab: one path through the whole test, built from the plan. One unit pe
 
 | Field | Meaning |
 | --- | --- |
+| `stats` | The top bar's numbers: `xp`, `streak`, `xp_today`, `reviews_due`, and `month_days`, the learner's local days this month (up to today) with a finished lesson, oldest first. The streak calendar on Progress marks them; placement days count, as they do for the streak. |
 | `current` | The id of the one circle in `state: "current"`: the first open circle in path order, or `due` on a day with reviews due. There is always exactly one. |
 | `units[]` | In path order. `section_kind` is the section's `kind` from the pack (`numbers` or `words`), which the app colours units by (blue or teal); `section_index` is the section's place in the exam, kept for older builds; `done` / `total` count the unit's finished skills. |
 | `nodes[].id` | Stable: `skill:<skill id>`, `review:<domain id>:<k>`, `check:<domain id>`, `due` and `end`. |
@@ -285,7 +288,7 @@ A finished unit check pays 20 bonus XP, once per unit. It counts as mixed practi
 
 ## Practice
 
-A practice session is a lesson with `kind = 'practice'`. The response has the same shape as `POST /api/lessons`, so the lesson screen runs it unchanged: answers go to `POST /api/answers` with the `lesson_id`, and `POST /api/lessons/finish` ends it. Ratings, the review queue, XP and the streak update exactly as for a lesson. The `stats` that `POST /api/lessons/finish` returns carry `streak`, `lessons_today`, `lessons_today_no_placement` (the same count without the placement quiz, so the streak screen follows the first real lesson of the day) and `recent_days` (the learner's local days among the last seven, today included, with a finished lesson, oldest first), which the streak screen uses to mark the week.
+A practice session is a lesson with `kind = 'practice'`. The response has the same shape as `POST /api/lessons`, so the lesson screen runs it unchanged: answers go to `POST /api/answers` with the `lesson_id`, and `POST /api/lessons/finish` ends it. Ratings, the review queue, XP and the streak update exactly as for a lesson. The `stats` that `POST /api/lessons/finish` returns carry `streak`, `lessons_today`, `lessons_today_no_placement` (the same count without the placement quiz, so the streak screen follows the first real lesson of the day), `recent_days` (the learner's local days among the last seven, today included, with a finished lesson, oldest first), which the streak screen uses to mark the week, and `month_days` (the same for this month so far, as in the path's `stats`).
 
 ### `POST /api/practice`
 

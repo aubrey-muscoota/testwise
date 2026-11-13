@@ -37,13 +37,14 @@ export function Progress({ onEditDate }: { onEditDate: () => void }) {
   if (error && !data) return <ErrorState message="I couldn't load your progress. Try again?" onRetry={reload} />;
   if (!data) return <ProgressSkeleton />;
   const { plan, path } = data;
+  const done = doneSkills(path);
 
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(2) }]}>
         <Rise>
           <Countdown path={path} onEditDate={onEditDate} />
-          <Track plan={plan} />
+          <Track plan={plan} done={done} />
         </Rise>
         <Rise delay={60} style={{ marginTop: space(4) }}>
           <Sections path={path} />
@@ -53,7 +54,7 @@ export function Progress({ onEditDate }: { onEditDate: () => void }) {
         </Rise>
         {plan.weeks.length > 0 && (
           <Rise delay={160} style={{ marginTop: space(4) }}>
-            <Weeks plan={plan} done={doneSkills(path)} all={all} onAll={() => setAll(true)} />
+            <Weeks plan={plan} done={done} all={all} onAll={() => setAll(true)} />
           </Rise>
         )}
         <View style={{ height: space(4) }} />
@@ -110,7 +111,7 @@ function Countdown({ path, onEditDate }: { path: LearnPath; onEditDate: () => vo
 // An honest check against the plan's even pace, and what to do about it.
 // Counts are the plan's own (status.behind_by_lessons, ahead_by_lessons).
 
-function trackLines(plan: Plan): { head: string; body: string; good: boolean } | null {
+function trackLines(plan: Plan, done: Set<string>): { head: string; body: string; good: boolean } | null {
   const st = plan.status;
   const ahead = st.ahead_by_lessons ?? 0;
   const day = (iso: string) => shortDay(iso).replace(" ", " ");
@@ -135,8 +136,14 @@ function trackLines(plan: Plan): { head: string; body: string; good: boolean } |
   if (!st.on_track) {
     return { head: "A little behind", body: "You've missed the last two days. A lesson today puts you back on pace.", good: false };
   }
+  // On a short runway the weeks start only some of the skills left (the ones
+  // worth the most points); say so rather than promise every skill.
+  const toStart = new Set(plan.weeks.filter((w) => w.phase === "learn").flatMap((w) => w.focus_skill_ids).filter((id) => !done.has(id))).size;
+  const left = plan.skills_total - plan.skills_started;
   const next = plan.phase === "learn"
-    ? `Start every skill by ${day(plan.learn_by)}, then timed sets from ${day(plan.test_ready_from)}.`
+    ? toStart > 0 && toStart < left
+      ? `${toStart} of the ${left} skills left fit before the test, so your path starts with the ones worth the most points. Timed sets from ${day(plan.test_ready_from)}.`
+      : `Start every skill by ${day(plan.learn_by)}, then timed sets from ${day(plan.test_ready_from)}.`
     : plan.phase === "strengthen"
       ? `Every skill is started. Now your weakest ones, then timed sets from ${day(plan.test_ready_from)}.`
       : "Timed sets now, so test pace feels normal on the day.";
@@ -147,8 +154,8 @@ function trackLines(plan: Plan): { head: string; body: string; good: boolean } |
   };
 }
 
-function Track({ plan }: { plan: Plan }) {
-  const t = trackLines(plan);
+function Track({ plan, done }: { plan: Plan; done: Set<string> }) {
+  const t = trackLines(plan, done);
   if (!t) return null;
   return (
     <View style={{ marginTop: space(3) }} testID="progress-track">

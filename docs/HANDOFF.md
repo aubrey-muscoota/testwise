@@ -66,8 +66,9 @@ Secrets (GitHub repo secrets, never in code or chat): `CLOUDFLARE_API_TOKEN`, `C
 - **App** (`app/`): Expo SDK 58 (React Native 0.88, react-native-web), exported to web into `app/dist` and served by
   the Worker as static assets. The same code is meant to build for iOS through EAS in v2.
   - Screens (`app/src/screens/`): Welcome, AgeGate, Onboarding (test date, target score, daily minutes),
-    PlacementIntro, Learn (the path, `app/src/path/` for its banner, nodes, track and card), Progress (countdown and
-    the plan's weeks), Practice, Me, Lesson, Complete. `components/TopBar.tsx` is the days/streak/XP bar. The lesson's parts live in
+    PlacementIntro, Learn (the path, `app/src/path/` for its banner, nodes, track and card), Progress (countdown,
+    on-track check, skills done per section, this month's streak calendar, the plan's weeks), Practice ("Fix my
+    mistakes" on top, the other sets as rows), Me (settings only), Lesson, Complete. `components/TopBar.tsx` is the days/streak/XP bar. The lesson's parts live in
     `app/src/lesson/`: `Question` (passage, figure, table, stem, choices, typed answer, solution), `ResultPanel`,
     `Tutor` (the chat) and the consent and quit sheets. Dev-only pages: `?lab=socrates` (the rig) and
     `?lab=renderers` (every item type, used by the screenshot checks) and `?lab=path&state=fresh|mid|teal|done&open=<node>`
@@ -135,6 +136,11 @@ guards against them coming back.
   the first lesson. Section colour comes from `sections[].kind` (blue for numbers, teal for words). Migration 0008
   adds `exams.short_name` and `exams.enabled`. Time to the first question: `node scripts/setup-timer.cjs`.
   SAT test dates go stale: `npm run seed` reminds when fewer than two are ahead (source and day read are in the pack).
+  Step 5, "Progress, Practice and Me": Progress shows the days to the test, an on-track check from the plan
+  (`status.ahead_by_lessons` is new; behind and missed days say what to do), skills done per section from the path's
+  unit counts, and a streak calendar for this month (`stats.month_days` is new on the path and the lesson finish),
+  then the weeks. Practice puts "Fix N mistakes" on top, with Socrates in its place when there is nothing to fix.
+  Me is settings only. The tour checks these screens; there are no committed screenshot baselines for them yet.
 - **v2 to v5**: not started. v2 iPhone app (EAS) and full practice tests; v3 GRE; v4 paid plans and GMAT; v5 CFA
   Level I, Android, scale. Note that v2's "exam date and target score at onboarding" item already shipped in v1.5.
 

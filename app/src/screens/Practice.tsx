@@ -71,7 +71,7 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
       <ScrollView contentContainerStyle={[s.scroll, wide && { paddingTop: space(6) }]}>
         <Rise>
           <Text style={type.title} accessibilityRole="header">Practice</Text>
-          <Text style={[type.body, { color: color.ink2, marginTop: space(0.5) }]}>Extra sets, any time, on the skills you've opened</Text>
+          <Text style={[type.body, { color: color.ink2, marginTop: space(0.5) }]}>Extra sets on the skills you've opened</Text>
         </Rise>
 
         <Rise delay={50} style={{ marginTop: space(3) }}>
@@ -85,7 +85,7 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
               />
               <Text style={[type.small, { marginTop: space(1) }]}>
                 {fixable > serve
-                  ? `${serve} of the ${fixable} questions you missed and haven't got right since`
+                  ? `${fixable} questions you missed are waiting, ${serve} a set`
                   : `${serve === 1 ? "A question" : "Questions"} you missed and haven't got right since`}
               </Text>
             </>
