@@ -310,14 +310,14 @@ function timedSecondsPer(skills, pace) {
 
 function recentLine(s) {
   if (!s.recent?.total) return null;
-  return `You got ${s.recent.correct} of your last ${s.recent.total} right on ${s.name}.`;
+  return `You got ${s.recent.correct} of your last ${s.recent.total} right on ${midSentence(s.name)}.`;
 }
 
 function weakWhy(list) {
   if (!list.length) return "Practice on the skills you've started.";
   const lead = recentLine(list[0]) || `${list[0].name} is your lowest at ${pct(list[0].mastery)}.`;
   const rest = list.slice(1).map((s) => `${s.name} (${pct(s.mastery)})`);
-  return rest.length ? `${lead} Also in this set: ${rest.join(" and ")}.` : lead;
+  return rest.length ? `${lead} Also in this set: ${rest.join(", ")}.` : lead;
 }
 
 /**
@@ -518,7 +518,7 @@ export function buildPlan(o) {
         const per = practiceMinutesPer(startedNow, pace);
         add(practiceTask("mistakes", [], Math.min(o.mistakes, nFor(budget, per)), {
           title: "My mistakes",
-          why: `${plural(o.mistakes, "question")} you missed and haven't gotten right since. Let's clear some.`,
+          why: `${plural(o.mistakes, "question")} you missed and haven't got right since.`,
         }));
       } else {
         const per = practiceMinutesPer(startedNow, pace);
@@ -611,9 +611,9 @@ export function buildPlan(o) {
   const assumedNote = exam.assumed ? ` (We're assuming a test around ${shortDate(exam.date)} until you pick a date.)` : "";
   let message;
   if (phase === "after") {
-    message = "Your test date has passed. Hope it went well! Practice stays open, and you can set a new date anytime.";
+    message = "Your test date has passed. Practice stays open, and you can set a new date in Me if you're taking it again.";
   } else if (phase === "rest") {
-    message = tl.daysLeft === 1 ? "Test tomorrow. Light review, then rest." : "Test day. You've got this.";
+    message = tl.daysLeft === 1 ? "Test tomorrow. Light review, then rest." : "Test day. No new skills today: a few easy questions to warm up, then go.";
   } else if (phase === "test_ready") {
     if (!startedSod.size) message = `${plural(tl.daysLeft, "day")} left. We'll spend them on timed mixed sets across the whole test.`;
     else if (behind) message = `${plural(tl.daysLeft, "day")} left. ${plural(behind, "skill")} never got started, so we'll sharpen what you know instead.`;

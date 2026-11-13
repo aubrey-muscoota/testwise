@@ -33,8 +33,10 @@ export const lines = {
   ],
   review: [
     "These are ones you missed before. Do they look different now?",
-    "A few you got wrong earlier. Let's see what stuck.",
+    "A few you got wrong earlier. Which ones stuck?",
   ],
+  // Opening a review circle from the path.
+  pathReview: "A mix from your last few lessons, to see what stuck.",
   placement: [
     "Easy ones first. They get harder as you go.",
     "Answer what you can.",
@@ -130,7 +132,7 @@ export function noOrphan(t: string) {
 }
 
 // One status line for a skill, in the Practice skill picker:
-// misses to fix first, then how far along it is. `pct` adds the mastery
+// how far along it is, then misses to fix. `pct` gives the mastery
 // percentage where no ring shows it.
 export function skillStatus(
   sk: { answered?: number; attempts: number; mastery: number; mastered: boolean; tested_out?: boolean },
@@ -139,9 +141,9 @@ export function skillStatus(
 ) {
   const n = sk.answered ?? sk.attempts;
   const parts: string[] = [];
-  if (missed) parts.push(`${missed} to fix`);
   if (sk.mastered) parts.push("Mastered");
-  else if (n > 0) parts.push(pct ? `${sk.mastery}% after ${plural(n, "question")}` : `${plural(n, "question")} so far`);
+  else if (n > 0) parts.push(pct ? `${sk.mastery}% mastered` : `${plural(n, "question")} so far`);
+  if (missed) parts.push(plural(missed, "mistake") + " to fix");
   else if (sk.tested_out) parts.push("Tested out");
   const line = parts.join(", ");
   return line ? line.charAt(0).toUpperCase() + line.slice(1) : "";

@@ -101,7 +101,7 @@ export function Practice({ onStart }: { onStart: (s: LessonSource) => void }) {
             testID="mode-weak"
             icon="target"
             title="Weak spots"
-            detail={started.length ? `${started[0].name}${started.length > 1 ? ` and ${started.length - 1} more` : ""}` : "Your first open skills, until you've tried a few"}
+            detail={started.length ? `${started[0].name}${started.length > 1 ? `, plus ${started.length - 1} more` : ""}` : "Your first open skills, until you've tried a few"}
             onPress={() => go("weak")}
           />
           <Row

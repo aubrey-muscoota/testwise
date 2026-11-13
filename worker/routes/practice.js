@@ -4,7 +4,7 @@
 import * as E from "../engine.js";
 import { json, fail, parseItem, masteryMap, today as localToday } from "../lib/http.js";
 import { skillContext } from "../lib/skill-context.js";
-import { prepareSkills } from "../plan.js";
+import { midSentence, prepareSkills } from "../plan.js";
 import { MODES, DEFAULT_N, DEFAULT_FRESH_N, MAX_N, practiceSkills, pickPractice, bankSummary, lowUnseen } from "../practice.js";
 import {
   generateBatch, makeClient, generatorModel, globalDailyCap, newItemId, BATCH_SIZE, PER_LEARNER_DAILY,
@@ -169,7 +169,7 @@ export async function startPractice(env, request, learnerId, b, execCtx) {
     extra.generated = freshIds.length;
     extra.note = gen.reason
       ? `${FALLBACK_NOTES[gen.reason]}, so these are from the bank.`
-      : `I just wrote ${freshIds.length} new ${freshIds.length === 1 ? "question" : "questions"} on ${skill.name}. A second solver checked each answer, but tap Report if one looks off.`;
+      : `I just wrote ${freshIds.length} new ${freshIds.length === 1 ? "question" : "questions"} on ${midSentence(skill.name)}. A second solver checked each answer, but tap Report if one looks off.`;
   }
 
   const plan = practiceSkills({

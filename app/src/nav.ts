@@ -29,7 +29,9 @@ export function nodeSource(n: PathNode): LessonSource | null {
   if (!n.start) return null;
   const body = n.start.body as { mode?: PracticeMode };
   const title = n.kind === "end" ? n.task_title ?? n.title : n.title;
-  return { kind: "task", start: n.start, title, why: n.why, mode: body.mode };
+  // A review's why points at the path ("the 3 skills above"), so the lesson
+  // opens with its own line instead (Lesson's openingLine).
+  return { kind: "task", start: n.start, title, why: n.kind === "review" ? undefined : n.why, mode: body.mode };
 }
 
 export function practiceSource(

@@ -70,7 +70,7 @@ test("fresh mode: generated questions are stored, served first, and work with an
   assert.equal(r.http, 200);
   assert.equal(r.fresh, true);
   assert.equal(r.generated, 1, "one passed shape and agreement (one bad key, one solver disagreement)");
-  assert.match(r.note, /I just wrote 1 new question on Adding/);
+  assert.match(r.note, /I just wrote 1 new question on adding/);
   assert.equal(r.items.length, 5);
   assert.match(r.items[0].id, /^gen-tx-add-/);
   assert.equal(r.items[0].source, "generated");

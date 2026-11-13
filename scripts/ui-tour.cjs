@@ -294,7 +294,7 @@ fs.mkdirSync(out, { recursive: true });
     }
     await page.getByTestId("mode-skill").click();
     await shot("practice-skill-picker", 1000);
-    await page.getByRole("button", { name: /^Linear equations in one variable/ }).first().click();
+    await page.getByRole("button", { name: /^Solving linear equations/ }).first().click();
     await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
     await shot("practice-skill", 2000);
     await page.getByRole("button", { name: "Quit lesson" }).click();
