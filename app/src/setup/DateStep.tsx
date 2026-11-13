@@ -22,11 +22,11 @@ export function upcoming(dates: TestDate[] | undefined, today: string, n = SHOWN
     .map((d) => (d.register_by && d.register_by < today ? { ...d, register_by: undefined } : d));
 }
 
-// "23 days away", "About 4 months away".
+// "23 days away", "4 months away" (rounded; short enough to sit beside the deadline on one line).
 export function away(days: number) {
   if (days <= 1) return "Tomorrow";
   if (days <= 45) return `${days} days away`;
-  return `About ${plural(Math.round(days / 30.44), "month")} away`;
+  return `${plural(Math.round(days / 30.44), "month")} away`;
 }
 
 // "Saturday, December 5", with the year when it's far enough out to be unclear.
