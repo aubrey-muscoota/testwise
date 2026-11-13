@@ -1,7 +1,7 @@
 [
   {
     "id": "mc-linear",
-    "title": "Linear equations",
+    "title": "Solving linear equations",
     "states": [
       "idle",
       "picked",
@@ -41,7 +41,7 @@
   },
   {
     "id": "mc-tex",
-    "title": "Equivalent expressions",
+    "title": "Factoring and simplifying",
     "states": [
       "idle",
       "wrong",
@@ -81,7 +81,7 @@
   },
   {
     "id": "spr-fraction",
-    "title": "Linear equations",
+    "title": "Solving linear equations",
     "states": [
       "idle",
       "right",
@@ -113,7 +113,7 @@
   },
   {
     "id": "mc-table",
-    "title": "Statistics",
+    "title": "Mean, median and spread",
     "states": [
       "idle"
     ],
@@ -184,7 +184,7 @@
   },
   {
     "id": "mc-table-wide",
-    "title": "Percentages",
+    "title": "Percents and percent change",
     "states": [
       "idle"
     ],
@@ -249,7 +249,7 @@
   },
   {
     "id": "fig-function",
-    "title": "Nonlinear functions",
+    "title": "Parabolas and exponentials",
     "states": [
       "idle"
     ],
@@ -361,7 +361,7 @@
   },
   {
     "id": "fig-geometry",
-    "title": "Right triangles and trigonometry",
+    "title": "Pythagorean theorem and trig",
     "states": [
       "idle",
       "wrong"
@@ -490,7 +490,7 @@
   },
   {
     "id": "fig-circle",
-    "title": "Circles",
+    "title": "Circles, arcs and equations",
     "states": [
       "idle"
     ],
@@ -602,7 +602,7 @@
   },
   {
     "id": "fig-scatter",
-    "title": "Scatterplots",
+    "title": "Scatterplots and best-fit lines",
     "states": [
       "idle"
     ],
@@ -718,7 +718,7 @@
   },
   {
     "id": "fig-wide",
-    "title": "Nonlinear functions",
+    "title": "Parabolas and exponentials",
     "states": [
       "idle"
     ],
@@ -817,7 +817,7 @@
   },
   {
     "id": "rw-transition",
-    "title": "Transitions",
+    "title": "Transition words",
     "states": [
       "idle"
     ],
@@ -856,7 +856,7 @@
   },
   {
     "id": "rw-notes",
-    "title": "Rhetorical synthesis",
+    "title": "Using notes to meet a goal",
     "states": [
       "idle"
     ],
@@ -895,7 +895,7 @@
   },
   {
     "id": "rw-paired",
-    "title": "Cross-text connections",
+    "title": "Comparing two passages",
     "states": [
       "idle",
       "wrong"
@@ -936,7 +936,7 @@
   },
   {
     "id": "rw-underline",
-    "title": "Text structure and purpose",
+    "title": "Author's purpose and structure",
     "states": [
       "idle"
     ],
