@@ -253,19 +253,6 @@ fs.mkdirSync(out, { recursive: true });
     if (after === before) throw new Error(`the next circle didn't open (still ${after})`);
     console.log("current", before, "->", after);
   });
-  await step("rw-placement", async () => {
-    await tab("Learn");
-    await current().waitFor({ timeout: 15000 });
-    const offer = btn("Find my level");
-    if (!(await offer.count())) { console.log("no second-section offer"); return; }
-    await offer.scrollIntoViewIfNeeded();
-    await shot("learn-rw-offer", 1200);
-    await offer.click();
-    await page.getByRole("button", { name: "Check" }).waitFor({ timeout: 15000 });
-    await shot("placement-rw-question", 2500);
-    await page.getByRole("button", { name: "Quit placement quiz" }).click();
-    await current().waitFor({ timeout: 15000 });
-  });
   await step("review", async () => {
     // Walk on until a review circle is current, then look at it on Learn.
     for (let i = 0; i < 8 && !(await currentId()).startsWith("review:"); i++) await walk(1);
